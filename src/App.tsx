@@ -1,14 +1,13 @@
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
+import { AppRoutes } from "./routes/routes";
 
 function App() {
-
   return (
     <>
-      <h1 className="text-4xl font-bold underline text-blue md:text-gray hover:text-yellow ">
-        Hello Developer!
-      </h1>
-      <h2 className="pt-1">React POC</h2>
-     
+      <BrowserRouter>
+        <AppRoutes></AppRoutes>
+      </BrowserRouter>
     </>
   );
 }
