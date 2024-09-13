@@ -1,6 +1,5 @@
-import { Button } from "../../atoms/Button";
-import InputField from "../../molecules/FormField";
-
+import { Button } from "@ui/atoms/Button";
+import { InputField } from "@ui/molecules/FormField";
 interface ISearchbar {
     submitLabel: string,
     onSubmit: (value: string) => void,
