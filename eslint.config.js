@@ -12,6 +12,7 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     rules: {
+      "react/react-in-jsx-scope": "off",
       "indent": ["error", 2],
       "linebreak-style": 0, // remove due to different line feeds , windows(CRLF) && linux(LF)
       "quotes": ["error", "single"],
