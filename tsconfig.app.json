@@ -18,7 +18,27 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+   
+    "baseUrl": ".",
+    "paths": {
+      // root level
+      "@components/*":["src/components/*"],
+      "@pages/*":["src/pages/*"],
+      "@store/*":["src/store/*"],
+      "@routes/*":["src/routes/*"],
+     
+      // lib level
+      "@utils/*":["src/libs/utils/*"],
+      "@hooks/*":["src/libs/hooks/*"],
+
+       // Ui level
+      "@ui/atoms/*":["src/libs/ui/src/atoms/*"],
+      "@ui/molecules/*":["src/libs/ui/src/molecules/*"],
+      "@ui/organisms/*":["src/libs/ui/src/organisms/*"],
+      "@ui/templates/*":["src/libs/ui/src/templates/*"],
+      
+    }
   },
   "include": ["src"]
 }

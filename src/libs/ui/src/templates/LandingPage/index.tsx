@@ -1,4 +1,4 @@
-import { Searchbar } from "../../organisms/Searchbar"
+import { Searchbar } from "@ui/organisms/Searchbar"
 
 export const LandingTemplatePage = () => {
     const searchUsers = (value: string) => {
