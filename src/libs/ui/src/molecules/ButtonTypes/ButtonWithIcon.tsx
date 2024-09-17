@@ -11,7 +11,7 @@ export const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({ onClick, icon, c
     return (
         <Button
             onClick={onClick}
-            className={`flex items-center p-2 rounded-full hover:bg-gray-200 focus:ring-2 focus:ring-gray-300 ${className}`}
+            className={` border border-b p-2 m-1 hover:bg-gray-200 focus:ring-2 focus:ring-gray-300 ${className}`}
         >
             {icon}
         </Button>

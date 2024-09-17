@@ -6,6 +6,10 @@ import { FormFieldWithLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithLa
 import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithoutLabel";
 import { ProductCard } from "@ui/molecules/ProductTypes/ProductCard";  
 import { Rating } from "@ui/molecules/RatingStarProduct/RatingStarProduct"
+import { ButtonWithIcon } from "@ui/molecules/ButtonTypes/ButtonWithIcon";
+import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextAndIcon";
+import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
+
 interface ISearchbar {
     submitLabel: string;
     onSubmit: (value: string) => void;
@@ -17,16 +21,21 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
         onSubmit(e.target[0].value);
     };
 
+
     const handleRatingChange = (newRating: number) => {
         console.log('New Rating:', newRating);
     };
+
 
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <div className="flex">
-                    <PrimaryButton>Primary button</PrimaryButton>
-                    <SecondaryButton>Secondary button</SecondaryButton>
+                <PrimaryButton>Primary button</PrimaryButton>
+                <SecondaryButton>Secondary button</SecondaryButton>
+                <ButtonWithTextAndIcon text={"ButtonWithTextAndIcon"} icon={undefined}></ButtonWithTextAndIcon>
+                <ButtonWithIcon icon={undefined}></ButtonWithIcon>
+                <LabelButton label={"label"}></LabelButton>
                 </div>
             </form>
 
