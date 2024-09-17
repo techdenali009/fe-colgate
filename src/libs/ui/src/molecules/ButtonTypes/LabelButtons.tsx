@@ -11,7 +11,7 @@ export const LabelButton: React.FC<LabelButtonProps> = ({ onClick, label, classN
     return (
         <Button
             onClick={onClick}
-            className={`text-blue-600 underline hover:text-blue-800 focus:ring-2 focus:ring-blue-500 ${className}`}
+            className={`text-black p-2 m-1 hover:text-blue-700 hover:underline hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 ${className}`}
         >
             {label}
         </Button>
