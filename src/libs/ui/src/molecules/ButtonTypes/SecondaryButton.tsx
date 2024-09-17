@@ -11,7 +11,7 @@ export const SecondaryButton: React.FC<ISecondaryButton> = ({ children, onClick 
         <Button
             type="button"
             onClick={onClick}
-            className="bg-secondary text-white hover:bg-secondary-dark"
+            className="bg-white text-blue-700 rounded p-2 m-1 hover:bg-blue-700 hover:text-white"
         >
             {children}
         </Button>

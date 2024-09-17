@@ -9,6 +9,9 @@ const LandingPage = lazy(() => import('../pages/LandingPage/index'));
 
 // ProductModule
 
+//Test Module
+const TestPage = lazy(() => import('../pages/TestPage/testPage'));
+
 export const AppRoutes = () => {
     return <>
         <Routes>
@@ -28,7 +31,10 @@ export const AppRoutes = () => {
                    <Route  path="/" element={<Products/>}></Route>
                    <Route  path="product/:id" element={<ProductsDetails/>}></Route>
                 </Route> */}
-            </Route>
+
+                <Route path="/test" element={<TestPage />}></Route>
+            
+             </Route>
         </Routes>
     </>
 }
