@@ -1,3 +1,4 @@
+import React from 'react';
 import { PrimaryButton } from "@ui/molecules/ButtonTypes/PrimaryButton";
 import { SecondaryButton } from "@ui/molecules/ButtonTypes/SecondaryButton";
 import { HeaderLabel } from "@ui/molecules/LabelTypes/HeaderLabel";
@@ -5,10 +6,11 @@ import { SubtitleLabel } from "@ui/molecules/LabelTypes/SubTitleLabel";
 import { FormFieldWithLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithLabel";
 import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithoutLabel";
 import { ProductCard } from "@ui/molecules/ProductTypes/ProductCard";  
-import { Rating } from "@ui/molecules/RatingStarProduct/RatingStarProduct"
+import { Rating } from "@ui/molecules/RatingStarProduct/RatingStarProduct";
 import { ButtonWithIcon } from "@ui/molecules/ButtonTypes/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextAndIcon";
 import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
+import AccordionItem from "@ui/molecules/AccordianItemComponent/AccordionItem";
 
 interface ISearchbar {
     submitLabel: string;
@@ -16,26 +18,24 @@ interface ISearchbar {
 }
 
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit(e.target[0].value);
+        onSubmit((e.target as HTMLFormElement)[0].value);
     };
-
 
     const handleRatingChange = (newRating: number) => {
         console.log('New Rating:', newRating);
     };
 
-
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <div className="flex">
-                <PrimaryButton>Primary button</PrimaryButton>
-                <SecondaryButton>Secondary button</SecondaryButton>
-                <ButtonWithTextAndIcon text={"ButtonWithTextAndIcon"} icon={undefined}></ButtonWithTextAndIcon>
-                <ButtonWithIcon icon={undefined}></ButtonWithIcon>
-                <LabelButton label={"label"}></LabelButton>
+                <div className="flex mb-4">
+                    <PrimaryButton>Primary button</PrimaryButton>
+                    <SecondaryButton>Secondary button</SecondaryButton>
+                    <ButtonWithTextAndIcon text="ButtonWithTextAndIcon" icon={undefined} />
+                    <ButtonWithIcon icon={undefined} />
+                    <LabelButton label="label" />
                 </div>
             </form>
 
@@ -60,7 +60,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 />
             </div>
 
-            {/* Render the ProductCard component */}
             <div className="mb-4">
                 <ProductCard
                     name="Stylish Chair"
@@ -69,10 +68,18 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     className="p-4 border rounded-lg shadow-lg"
                 />
             </div>
-             {/* Render the Rating component */}
-             <div className="mb-4">
-                Rating Component:-
+
+            <div className="mb-4">
+                Rating Component:
                 <Rating totalStars={5} initialRating={3} onRatingChange={handleRatingChange} />
+            </div>
+
+            {/* Accordion Section */}
+            <div className="mb-4">
+                <AccordionItem
+                    title="Accordion Item 1"
+                    content="This is the content for the first accordion item. It provides more details and can be expanded or collapsed."
+                />
             </div>
         </>
     );
