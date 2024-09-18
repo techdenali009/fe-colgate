@@ -51,7 +51,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 ">
                 <FormFieldWithoutLabel
                     id="email"
                     type="email"

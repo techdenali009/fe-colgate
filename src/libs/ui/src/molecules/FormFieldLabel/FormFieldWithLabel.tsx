@@ -22,9 +22,9 @@ export const FormFieldWithLabel: React.FC<FormFieldWithLabelProps> = ({
     className = '',
 }) => {
     return (
-        <div className={`flex flex-col ${className}`}>
-            <Label text={label} className="mb-1" />
-            <FormField
+        <div className={` ${className}`}>
+            <Label text={label} className="block text-gray-700 mb-2" />
+            <FormField className={` ${className}`}
                 id={id}
                 type={type}
                 placeholder={placeholder}
