@@ -1,10 +1,9 @@
-import { Searchbar } from "@ui/organisms/Searchbar"
-
 export const LandingTemplatePage = () => {
-    const searchUsers = (value: string) => {
-        console.log('searchUsers', value)
-    }
     return <>
-        <Searchbar submitLabel="search" onSubmit={searchUsers}></Searchbar>
+        {/* Carcousal */}
+        {/* marketing-banner-1*/}
+        {/* promotion-banner-1 */}
+        {/* marketing-banner-2" */}
+        {/* popular-products */}
     </>
 }
