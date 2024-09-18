@@ -39,8 +39,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </div>
             </form>
 
-            <HeaderLabel text="Title component" className="mb-4" />
-            <SubtitleLabel text="Subtitle component" className="mb-4" />
+             <HeaderLabel text="Title component" className="m-4" />
+            <SubtitleLabel text="Subtitle component" className="m-4" /> 
+
+            
 
             <div className="mb-4">
                 <FormFieldWithLabel

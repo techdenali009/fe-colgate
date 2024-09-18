@@ -9,8 +9,8 @@ interface HeaderLabelProps {
 export const HeaderLabel: React.FC<HeaderLabelProps> = ({ text, className = '' }) => {
     return (
         <Label
-            text={text}
+            
             className={`text-2xl font-bold ${className}`} // Adds large size and bold font
-        />
+            text={''} >{text}</Label>
     );
 };
