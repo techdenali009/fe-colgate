@@ -23,9 +23,11 @@ export default [
       }
       ],
       "react/jsx-fragments": ['error', "syntax"],
-      "react/jsx-curly-spacing": ['error', { "when": "never" }]
+      "react/jsx-curly-spacing": ['error', { "when": "never" }],
+      "no-unused-vars": "off"
     }
   },
+ 
 ];
 
 
