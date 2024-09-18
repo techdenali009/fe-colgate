@@ -1,10 +1,13 @@
-import { Searchbar } from "@ui/organisms/Searchbar"
+import { Carousel } from "@ui/organisms/Carousel"
+import { carouselData } from "@utils/carouselData"
 
 export const LandingTemplatePage = () => {
-    const searchUsers = (value: string) => {
-        console.log('searchUsers', value)
-    }
+    
+   
+        
     return <>
-        <Searchbar submitLabel="search" onSubmit={searchUsers}></Searchbar>
+       
+        <Carousel slides={carouselData} />
+        
     </>
 }
