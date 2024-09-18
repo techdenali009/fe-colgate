@@ -19,7 +19,7 @@ export const ButtonWithTextAndIcon: React.FC<ButtonWithTextAndIconProps> = ({
     return (
         <Button
             onClick={onClick}
-            className={`bg-white border border-blue-700 text-blue-700 p-2 m-1 rounded-md transition-all duration-300 hover:bg-black hover:underline hover:text-white hover:border-black ${className}`}
+            className={`bg-white border border-blue-700 text-blue-700 p-2 m-1 transition-all duration-300 hover:bg-black hover:underline hover:text-white hover:border-black ${className}`}
         >
             {iconPosition === 'left' && <span className="mr-2">{icon}</span>}
             {text}
