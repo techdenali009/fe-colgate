@@ -11,8 +11,6 @@ import { ButtonWithIcon } from "@ui/molecules/ButtonTypes/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextAndIcon";
 import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
 import AccordionItem from "@ui/molecules/AccordianItemComponent/AccordionItem";
-import Footer from "@ui/organisms/Footer";
-import GreetRegister from '@ui/organisms/GreetingRegister/greetRegister';
 
 interface ISearchbar {
     submitLabel: string;
@@ -22,7 +20,7 @@ interface ISearchbar {
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit((e.target as HTMLFormElement)[0].value);
+        // onSubmit((e.target as HTMLFormElement)[0].value);
     };
 
     const handleRatingChange = (newRating: number) => {
@@ -91,7 +89,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 />
             </div>
 
-            <GreetRegister></GreetRegister>
            
         </>
     );
