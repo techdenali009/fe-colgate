@@ -9,8 +9,8 @@ interface SubtitleLabelProps {
 export const SubtitleLabel: React.FC<SubtitleLabelProps> = ({ text, className = '' }) => {
     return (
         <Label
-            text={text}
-            className={`text-lg text-gray-600 ${className}`} // Smaller size and gray text for subtitles
-        />
+            
+        className={`text-lg text-gray-600 ${className}`} // Adds large size and bold font
+        text={''} >{text}</Label>
     );
 };
