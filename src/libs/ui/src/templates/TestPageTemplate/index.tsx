@@ -12,6 +12,7 @@ import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextA
 import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
 import AccordionItem from "@ui/molecules/AccordianItemComponent/AccordionItem";
 import Footer from "@ui/organisms/Footer";
+import GreetRegister from '@ui/organisms/GreetingRegister/greetRegister';
 
 interface ISearchbar {
     submitLabel: string;
@@ -89,9 +90,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     content="This is the content for the first accordion item. It provides more details and can be expanded or collapsed."
                 />
             </div>
-            <div className="bg-black text-white">
-            <Footer></Footer>
-            </div>
+
+            <GreetRegister></GreetRegister>
+           
         </>
     );
 };

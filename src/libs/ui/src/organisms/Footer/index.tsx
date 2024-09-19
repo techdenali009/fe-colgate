@@ -2,6 +2,7 @@ import React from 'react';
 import LinkGroup from '@ui/molecules/Footer_list'; // Adjust the path as needed
 import { Label } from '@ui/atoms/Labels/Label';
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
+import { Image } from '@ui/atoms/LogoImage/logoimg';
 
 const shop = [
   { url: '/home', label: 'All Products' },
@@ -33,35 +34,42 @@ const CustomerService = [
   { url: '/services', label: 'Returns' },
 ];
 
+const OtherLinks = [
+  { url: '/home', label: 'PCA SKIN International' },
+  { url: '/about', label: 'Privacy Policy' },
+  { url: '/services', label: 'Terms & Conditions' },
+  { url: '/contact', label: 'Do Not Sell My Personal Information' },
+  { url: '/services', label: 'Product excellence' },
+];
+
 const Footer: React.FC = () => (
-  <footer className="footer-class">
+  <footer className="p-11 bg-black text-white">
     <div className='flex'>
-      <div>
-        <Label text={'Shop'} className='font-bold text-brand-white-100'></Label>
-        <LinkGroup links={shop} className="shop" />
+      <div className='text-left w-1/4 '>
+        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>Shop</Label></div>
+        <LinkGroup links={shop} className="text-white" />
       </div>
-      <div>
-        <Label text={'Learn'} className='w-full text-base font-bold leading-6 tracking-[0.02rem] text-brand-white-100'></Label>
-        <LinkGroup links={Learn} className="Learn" />
+      <div className='text-left w-1/4'>
+        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>Learn</Label></div>
+        <LinkGroup links={Learn} className="text-white" />
       </div>
-      <div>
-        <Label text={'About'} className='w-full text-base font-bold leading-6 tracking-[0.02rem] text-brand-white-100'></Label>
-        <LinkGroup links={About} className="About" />
+      <div className='text-left w-1/4'>
+        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>About</Label></div>
+        <LinkGroup links={About} className="text-white" />
       </div>
-      <div>
-        <Label text={'Customer Service'} className='w-full text-base font-bold leading-6 tracking-[0.02rem] text-brand-white-100'></Label>
-        <LinkGroup links={CustomerService} className="CustomerService" />
+      <div className='text-left w-1/4'>
+        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>Customer Service</Label></div>
+        <LinkGroup links={CustomerService} className="text-white" />
       </div>
-
-
     </div>
 
     <div className=''>
-      <LinkGroup links={shop} className="flex mb-4 footer-item items-center" />
+      <LinkGroup links={OtherLinks} className="flex mb-4 footer-item items-center pt-8 " />
     </div>
 
-    <div className=''>
-      <Paragraph className='text-sm font-light lg:text-base font-white'>© 2023 CP Skin Health Group. All Rights Reserved</Paragraph>
+    <div className='flex flex-col items-center py-8 text-brand-white-100 lg:flex-row logo-wrapper h-3'>
+      <Image src={'https://www.pcaskinpro.com/cms/assets/c2782b46-2b21-4342-87aa-8831260c2f20.svg?key=pca-en-us-footer-brand-logo-medium'} alt={'FooterLogo'} className='ps-3'></Image>
+      <Paragraph className='p-8 mb-4'>© 2023 CP Skin Health Group. All Rights Reserved</Paragraph>
     </div>
   </footer>
 );

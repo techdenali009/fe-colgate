@@ -6,7 +6,7 @@ type ParagraphProps = {
 };
 
 const Paragraph: React.FC<ParagraphProps> = ({ children, className = '' }) => (
-  <p className={`text-base ${className}`}>
+  <p className={`${className}`}>
     {children}
   </p>
 );
