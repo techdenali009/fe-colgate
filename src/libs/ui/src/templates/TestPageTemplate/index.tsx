@@ -1,16 +1,16 @@
 import React from 'react';
-import { PrimaryButton } from "@ui/molecules/ButtonTypes/PrimaryButton";
-import { SecondaryButton } from "@ui/molecules/ButtonTypes/SecondaryButton";
-import { HeaderLabel } from "@ui/molecules/LabelTypes/HeaderLabel";
-import { SubtitleLabel } from "@ui/molecules/LabelTypes/SubTitleLabel";
-import { FormFieldWithLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithLabel";
-import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithoutLabel";
-import { ProductCard } from "@ui/molecules/ProductTypes/ProductCard";  
-import { Rating } from "@ui/molecules/RatingStarProduct/RatingStarProduct";
-import { ButtonWithIcon } from "@ui/molecules/ButtonTypes/ButtonWithIcon";
-import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextAndIcon";
-import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
-import AccordionItem from "@ui/molecules/AccordianItemComponent/AccordionItem";
+import { PrimaryButton } from "@ui/molecules/PrimaryButtonComponent";
+import { SecondaryButton } from "@ui/molecules/SecondaryButtonComponent/index";
+import { HeaderLabel } from "@ui/molecules/HeaderLabelComponent";
+import { SubtitleLabel } from "@ui/molecules/SubTitleLabelComponent/index";
+import { FormFieldWithLabel } from "@ui/molecules/FormFieldWithLabelComponent/index";
+import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldWithoutLabelComponent/index";
+import { ProductCard } from "@ui/molecules/ProductCardComponent/index";  
+import { Rating } from "@ui/molecules/RatingComponent";
+import { ButtonWithIcon } from "@ui/molecules/ButtonWithIconComponent/index";
+import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIconComponent";
+import { LabelButton } from "@ui/molecules/LabelButtonComponent/index";
+import AccordionItem from "@ui/molecules/AccordianItemComponent";
 
 interface ISearchbar {
     submitLabel: string;
