@@ -1,16 +1,16 @@
 import React from 'react';
-import { PrimaryButton } from "@ui/molecules/PrimaryButtonComponent";
-import { SecondaryButton } from "@ui/molecules/SecondaryButtonComponent/index";
-import { HeaderLabel } from "@ui/molecules/HeaderLabelComponent";
-import { SubtitleLabel } from "@ui/molecules/SubTitleLabelComponent/index";
-import { FormFieldWithLabel } from "@ui/molecules/FormFieldWithLabelComponent/index";
-import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldWithoutLabelComponent/index";
-import { ProductCard } from "@ui/molecules/ProductCardComponent/index";  
-import { Rating } from "@ui/molecules/RatingComponent";
-import { ButtonWithIcon } from "@ui/molecules/ButtonWithIconComponent/index";
-import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIconComponent";
-import { LabelButton } from "@ui/molecules/LabelButtonComponent/index";
-import AccordionItem from "@ui/molecules/AccordianItemComponent";
+import { PrimaryButton } from "@ui/molecules/PrimaryButton";
+import { SecondaryButton } from "@ui/molecules/SecondaryButton/index";
+import { HeaderLabel } from "@ui/molecules/HeaderLabel";
+import { SubtitleLabel } from "@ui/molecules/SubTitleLabel/index";
+import { FormFieldWithLabel } from "@ui/molecules/FormFieldWithLabel/index";
+import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldWithoutLabel/index";
+import { ProductCard } from "@ui/molecules/ProductCard/index";  
+import { Rating } from "@ui/molecules/Rating";
+import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon/index";
+import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
+import { LabelButton } from "@ui/molecules/LabelButton/index";
+import AccordionItem from "@ui/molecules/AccordianItem";
 
 interface ISearchbar {
     submitLabel: string;
@@ -39,8 +39,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </div>
             </form>
 
-             <HeaderLabel text="Title component" className="m-4" />
-            <SubtitleLabel text="Subtitle component" className="m-4" /> 
+            <HeaderLabel className="m-4">Title component</HeaderLabel>
+            <SubtitleLabel className="m-4">Subtitle component</SubtitleLabel>
+
 
             
 
