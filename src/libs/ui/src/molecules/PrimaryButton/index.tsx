@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@ui/atoms/Button';
 
-interface IPrimaryButton {
+interface IPrimaryButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     onClick?: () => void;
     className?: string;
