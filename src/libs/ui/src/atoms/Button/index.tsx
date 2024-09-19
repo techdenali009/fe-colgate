@@ -8,5 +8,5 @@ interface IButton {
 }
 
 export const Button: React.FC<IButton> = ({ children, onClick, className = '', ...rest }) => (
-    <button onClick={onClick} className={`${className} sadas asdasdas dfsdfsdfcvv`} {...rest} >{children}</button>
+    <button onClick={onClick} className={`${className}`} {...rest} >{children}</button>
 );

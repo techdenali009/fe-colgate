@@ -7,8 +7,9 @@ import searchIcon from "../../../assets/searchIcon.svg";
 import profile from "../../../assets/profile.svg";
 import cart from "../../../assets/cart.svg";
 import { Icon } from '@ui/atoms/Icons';
+import NavLinks from '@ui/molecules/NavLink/NavLink';
 
-import NavLinks from '@ui/molecules/NavLink/navLink';
+
 
 
 
