@@ -1,0 +1,10 @@
+.scroll-menu-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+}
+
+.product-item {
+  display: inline-block;
+  margin-right: 16px; /* Adjust spacing between products */
+}
