@@ -11,6 +11,8 @@ import { ButtonWithIcon } from "@ui/molecules/ButtonTypes/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextAndIcon";
 import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
 import AccordionItem from "@ui/molecules/AccordianItemComponent/AccordionItem";
+import Footer from "@ui/organisms/Footer";
+import GreetRegister from '@ui/organisms/GreetingRegister/greetRegister';
 
 interface ISearchbar {
     submitLabel: string;
@@ -26,6 +28,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     const handleRatingChange = (newRating: number) => {
         console.log('New Rating:', newRating);
     };
+
+
+    function searchUsers(value: string): void {
+        throw new Error("Function not implemented.");
+    }
 
     return (
         <>
@@ -83,6 +90,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     content="This is the content for the first accordion item. It provides more details and can be expanded or collapsed."
                 />
             </div>
+
+            <GreetRegister></GreetRegister>
+           
         </>
     );
 };
