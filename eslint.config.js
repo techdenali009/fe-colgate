@@ -5,7 +5,10 @@ import pluginReact from "eslint-plugin-react";
 
 
 export default [
-  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"], 
+    
+  },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
@@ -23,9 +26,11 @@ export default [
       }
       ],
       "react/jsx-fragments": ['error', "syntax"],
-      "react/jsx-curly-spacing": ['error', { "when": "never" }]
+      "react/jsx-curly-spacing": ['error', { "when": "never" }],
+      "no-unused-vars": "off"
     }
   },
+ 
 ];
 
 
