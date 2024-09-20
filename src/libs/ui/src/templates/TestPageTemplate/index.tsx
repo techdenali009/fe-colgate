@@ -87,7 +87,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     {hoveredButton === 'button2' && (
                         <Popover position="top-12 left-0">
                             <p>Hello! I am Button 2 Popover</p>
-                            <PrimaryButton>Button for reference</PrimaryButton>
+                            <PrimaryButton>Button</PrimaryButton>
                         </Popover>
                     )}
                 </div>
@@ -132,8 +132,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     content="This is the content for the first accordion item. It provides more details and can be expanded or collapsed."
                 />
             </div>
-
-           
         </>
     );
 };
