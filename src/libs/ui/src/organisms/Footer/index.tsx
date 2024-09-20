@@ -1,6 +1,6 @@
 import React from 'react';
 import LinkGroup from '@ui/molecules/Footer_list'; // Adjust the path as needed
-import { Label } from '@ui/atoms/Labels/Label';
+import { Label } from '@ui/atoms/Label/index';
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import { Image } from '@ui/atoms/LogoImage/logoimg';
 import { Appowner } from '@utils/constants';
@@ -12,19 +12,19 @@ const Footer: React.FC = () => (
   <footer className="p-11 bg-black text-white">
     <div className='flex'>
       <div className='text-left w-1/4 '>
-        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>Shop</Label></div>
+        <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>Shop</Label></div>
         <LinkGroup links={shop} className="text-white" />
       </div>
       <div className='text-left w-1/4'>
-        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>Learn</Label></div>
+        <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>Learn</Label></div>
         <LinkGroup links={Learn} className="text-white" />
       </div>
       <div className='text-left w-1/4'>
-        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>About</Label></div>
+        <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>About</Label></div>
         <LinkGroup links={About} className="text-white" />
       </div>
       <div className='text-left w-1/4'>
-        <div className='mb-5'><Label text='' className='font-bold text-brand-white-100 ps-3 text-base'>Customer Service</Label></div>
+        <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>Customer Service</Label></div>
         <LinkGroup links={CustomerService} className="text-white" />
       </div>
     </div>

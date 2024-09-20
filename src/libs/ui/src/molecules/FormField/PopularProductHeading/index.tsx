@@ -1,5 +1,5 @@
 import { Button } from "@ui/atoms/Button";
-import { Label } from "@ui/atoms/Labels/Label";
+import { Label } from "@ui/atoms/Label/index";
 
 const ProductHeader = ({ handleScroll }: any) => {
   return (
@@ -7,7 +7,7 @@ const ProductHeader = ({ handleScroll }: any) => {
       <h2 className="text-3xl font-bold text-gray-700">Popular Products</h2>
       <div className="mb-10 flex flex-col lg:flex-row lg:items-center">
        <Label
-         text=""
+         
           className="mt-5 text-base text-slate-600 "
         >{'A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey.'}</Label>
         
