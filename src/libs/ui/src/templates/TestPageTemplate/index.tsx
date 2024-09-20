@@ -3,7 +3,7 @@ import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { SecondaryButton } from "@ui/molecules/SecondaryButton/index";
 import { HeaderLabel } from "@ui/molecules/HeaderLabel";
 import { SubtitleLabel } from "@ui/molecules/SubTitleLabel/index";
-import { ProductCard } from "@ui/molecules/ProductCard/index";  
+import { ProductCard } from "@ui/molecules/ProductCard/index";
 import { Rating } from "@ui/molecules/Rating";
 import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon/index";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
@@ -62,12 +62,26 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
             {/* Accordion Section */}
             <div className="mb-4">
                 <AccordionItem
-                    title="Accordion Item 1"
-                    content="This is the content for the first accordion item. It provides more details and can be expanded or collapsed."
-                />
+                    title="Product Category"
+                    titleClassName="text-lg font-bold text-blue-500" // Custom title class
+                    containerClassName="border-t border-blue-300"    // Custom container class
+                    contentClassName="p-6 bg-white"                 // Custom content class
+                >
+                    {/* Pass children dynamically */}
+                    <div>
+                        <p>This is the content for the product category accordion item.</p>
+                        <ul>
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                        </ul>
+                    </div>
+                </AccordionItem>
+
             </div>
 
-           
+
+
         </>
     );
 };
