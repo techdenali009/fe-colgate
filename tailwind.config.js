@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         hero: ['Hero', 'sans-serif'],
-        heroNewLight: ['Hero New Light', 'sans-serif'], // Add the custom font
+        heroNewLight: ['Hero New Light', 'sans-serif'], 
+        heroBold: ['Hero Bold', 'sans-serif'],
       },
     },
   },
