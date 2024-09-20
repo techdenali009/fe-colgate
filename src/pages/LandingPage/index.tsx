@@ -1,5 +1,9 @@
-import { LandingTemplatePage } from "../../libs/ui/src/templates/LandingPage"
+import { LandingTemplatePage } from "@ui/templates/LandingPage"
+
 
 export default function LandingPage() {
-    return <LandingTemplatePage></LandingTemplatePage>
+    return <>
+        <LandingTemplatePage></LandingTemplatePage>
+    </>
+
 }

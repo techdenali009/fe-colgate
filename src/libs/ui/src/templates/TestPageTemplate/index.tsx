@@ -20,12 +20,17 @@ interface ISearchbar {
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit((e.target as HTMLFormElement)[0].value);
+        // onSubmit((e.target as HTMLFormElement)[0].value);
     };
 
     const handleRatingChange = (newRating: number) => {
         console.log('New Rating:', newRating);
     };
+
+
+    function searchUsers(value: string): void {
+        throw new Error("Function not implemented.");
+    }
 
     return (
         <>
@@ -83,6 +88,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     content="This is the content for the first accordion item. It provides more details and can be expanded or collapsed."
                 />
             </div>
+
+           
         </>
     );
 };

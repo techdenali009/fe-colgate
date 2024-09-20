@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-
+import './button.styles.scss'
 interface IButton {
     children: ReactNode
     type: "submit" | "reset" | "button" | undefined,
@@ -8,5 +8,5 @@ interface IButton {
 }
 
 export const Button: React.FC<IButton> = ({ children, onClick, className = '', ...rest }) => (
-    <button onClick={onClick} className={className} {...rest} >{children}</button>
+    <button onClick={onClick} className={`${className}`} {...rest} >{children}</button>
 );

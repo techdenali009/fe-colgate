@@ -1,10 +1,11 @@
+import PopularProducts from '@ui/organisms/PopularProducts';
 import './landingPage.styles.scss'
+import { products } from '@utils/test';
 export const LandingTemplatePage = () => {
     return <>
-        {/* Carcousal */}
-        {/* marketing-banner-1*/}
-        {/* promotion-banner-1 */}
-        {/* marketing-banner-2" */}
-        {/* popular-products */}
+        <div>
+            <PopularProducts products={products}></PopularProducts>
+        </div>
+
     </>
-}
+};
