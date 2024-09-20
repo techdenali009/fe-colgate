@@ -3,11 +3,12 @@ import { Carousel as ReactCarousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { BannerSlide } from '../Carousel_BannerSlide';
 import { CarouselProps } from '@utils/interface';
+import './carousel.style.scss'
 
 
 export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   
-  // Custom Prev Arrow
+  
   const customPrevArrow = (onClickHandler: () => void, hasPrev: boolean, label: string) => {
     return (
       <button

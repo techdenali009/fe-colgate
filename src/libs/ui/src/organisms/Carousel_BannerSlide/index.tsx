@@ -1,6 +1,5 @@
-import { Button } from '@ui/atoms/Button';
 import { Image } from '@ui/atoms/Carousel_Image';
-import { BannerContent } from '@ui/molecules/Carousel_Bannercontent';
+import { BannerContent } from '@ui/molecules/Carousel_Banner_content';
 import { BannerSlideProps } from '@utils/interface';
 import React from 'react';
 
