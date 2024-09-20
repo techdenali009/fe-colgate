@@ -5,8 +5,8 @@ import './logo.css'
 
 const Logo: React.FC = () => (
 
-  <a href="/" className='focus:outline-none focus:ring-2 focus:ring-blue-500'>
-    <img src={logo} alt="Site Logo" className="p-6 mx-[92px] " />
+  <a href="/" className=''>
+    <img src={logo} alt="Site Logo" className="p-4 mx-[80px] " />
 
   </a>
 
