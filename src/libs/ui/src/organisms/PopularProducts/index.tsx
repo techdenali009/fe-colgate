@@ -1,81 +1,68 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef } from "react";
+import Slider from "react-slick";
 import Product from "../Product";
 import ProductHeader from "@ui/molecules/FormField/PopularProductHeading";
-import { PRODUCTS_PER_PAGE } from "@utils/constants";
-import {  ProductType } from "@utils/Product";
+import { PopularProductsProps } from "@utils/Product";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const getCircularProducts = (products: ProductType[]) => {
-  return [
-    ...products.slice(-PRODUCTS_PER_PAGE),
-    ...products,
-    ...products.slice(0, PRODUCTS_PER_PAGE),
-  ];
+const sliderSettings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  arrows: false,
+  responsive: [
+    {
+      breakpoint: 1280,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
-function PopularProducts({ products }: any) {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [currentProducts, setCurrentProducts] = useState(() =>
-    getCircularProducts(products)
-  );
+function PopularProducts({ products }: PopularProductsProps) {
+  const sliderRef = useRef<any>(null);
 
-  // Handle scrolling
-  const handleScroll = useCallback((direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = scrollContainerRef.current
-        ? scrollContainerRef.current.offsetWidth / PRODUCTS_PER_PAGE
-        : 400;
-
-      // const scrollAmount = direction === 'left' ? -655 : 655;
-      scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  }, []);
-
-  // Check if scroll position needs to update the product list
-  const updateProductList = useCallback(() => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } =
-        scrollContainerRef.current;
-      const maxScrollLeft = scrollWidth - clientWidth;
-
-      if (scrollLeft === 0) {
-        setCurrentProducts((prev) =>
-          getCircularProducts(prev.slice(PRODUCTS_PER_PAGE))
-        );
-      } else if (scrollLeft >= maxScrollLeft) {
-        setCurrentProducts((prev) =>
-          getCircularProducts(prev.slice(0, -PRODUCTS_PER_PAGE))
-        );
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener("scroll", updateProductList);
-      return () => {
-        container.removeEventListener("scroll", updateProductList);
-      };
-    }
-  }, [updateProductList]);
+  const handleScroll = (direction: "left" | "right") => {
+    if (direction === "left") {
+      sliderRef.current.slickPrev();
+      return
+    } 
+    sliderRef.current.slickNext();
+  };
 
   return (
-    <div>
+    <div className="p-4 md:p-16 w-full">
       <ProductHeader handleScroll={handleScroll} />
-      <div className=" mt-10 ml-14 w-11/12">
-        <div
-          className="flex overflow-x-hidden scroll-smooth gap-4"
-          ref={scrollContainerRef}
-        >
-          {currentProducts.map((product: any) => (
-            <div key={product.id} className="">
+      <div className="ml-0 md:ml-12 space-x-10">
+        <Slider ref={sliderRef} {...sliderSettings}>
+          {products.map((product) => (
+            <div key={product.id}>
               <Product product={product} />
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </div>
   );
