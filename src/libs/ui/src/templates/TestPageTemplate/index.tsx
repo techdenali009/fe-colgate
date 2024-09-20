@@ -1,16 +1,15 @@
-import React from 'react';
-import { PrimaryButton } from "@ui/molecules/ButtonTypes/PrimaryButton";
-import { SecondaryButton } from "@ui/molecules/ButtonTypes/SecondaryButton";
-import { HeaderLabel } from "@ui/molecules/LabelTypes/HeaderLabel";
-import { SubtitleLabel } from "@ui/molecules/LabelTypes/SubTitleLabel";
-import { FormFieldWithLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithLabel";
-import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithoutLabel";
-import { ProductCard } from "@ui/molecules/ProductTypes/ProductCard";  
-import { Rating } from "@ui/molecules/RatingStarProduct/RatingStarProduct";
-import { ButtonWithIcon } from "@ui/molecules/ButtonTypes/ButtonWithIcon";
-import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextAndIcon";
-import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
-import AccordionItem from "@ui/molecules/AccordianItemComponent/AccordionItem";
+import React, { useState } from 'react';
+import { PrimaryButton } from "@ui/molecules/PrimaryButton";
+import { SecondaryButton } from "@ui/molecules/SecondaryButton";
+import { HeaderLabel } from "@ui/molecules/HeaderLabel";
+import { SubtitleLabel } from "@ui/molecules/SubTitleLabel";
+import { ProductCard } from "@ui/molecules/ProductCard";  
+import { Rating } from "@ui/molecules/Rating";
+import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon";
+import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
+import { LabelButton } from "@ui/molecules/LabelButton";
+import AccordionItem from '@ui/molecules/AccordianItem';
+import Popover from '@ui/molecules/Popover/Popover';
 
 interface ISearchbar {
     submitLabel: string;
@@ -18,56 +17,87 @@ interface ISearchbar {
 }
 
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // onSubmit((e.target as HTMLFormElement)[0].value);
+    const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
+
+    const handleMouseEnter = (button: string) => {
+        setIsPopoverVisible(button);
     };
 
-    const handleRatingChange = (newRating: number) => {
-        console.log('New Rating:', newRating);
+    const handleMouseLeave = () => {
+        setIsPopoverVisible(null);
     };
-
-
-    function searchUsers(value: string): void {
-        throw new Error("Function not implemented.");
-    }
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="flex mb-4">
                     <PrimaryButton>Primary button</PrimaryButton>
                     <SecondaryButton>Secondary button</SecondaryButton>
-                    <ButtonWithTextAndIcon text="ButtonWithTextAndIcon" icon={undefined} />
-                    <ButtonWithIcon icon={undefined} />
-                    <LabelButton label="label" />
+                    <ButtonWithTextAndIcon children={undefined} />
+                    <ButtonWithIcon children={undefined} />
+                    <LabelButton>label</LabelButton>
                 </div>
             </form>
 
-             <HeaderLabel text="Title component" className="m-4" />
-            <SubtitleLabel text="Subtitle component" className="m-4" /> 
+            <HeaderLabel className="m-4">Title component</HeaderLabel>
+            <SubtitleLabel className="m-4">Subtitle component</SubtitleLabel>
 
-            
+            {/* Popover buttons */}
+            <div className="flex mb-4 space-x-4 justify-center">
+                {/* Button 1 */}
+                <div
+                    className="relative"
+                    onMouseEnter={() => handleMouseEnter('button1')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                        Popover Button 1
+                    </button>
+                    {isPopoverVisible === 'button1' && (
+                        <div 
+                            onMouseEnter={() => setIsPopoverVisible('button1')}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <Popover>
+                                <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
+                                <p>Hello World! I am Button 1 Popover</p>
+                                <SecondaryButton>Secondary Button</SecondaryButton>
+                            </Popover>
+                        </div>
+                    )}
+                </div>
 
-            <div className="mb-4">
-                <FormFieldWithLabel
-                    label="Your Name"
-                    id="name"
-                    placeholder="Enter your name"
-                    onChange={(e) => console.log('Name:', e.target.value)}
-                />
+                {/* Button 2 */}
+                <div
+                    className="relative"
+                    onMouseEnter={() => handleMouseEnter('button2')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                        Hover Me
+                    </button>
+                    {isPopoverVisible === 'button2' && (
+                        <div 
+                            onMouseEnter={() => setIsPopoverVisible('button2')}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <Popover>
+                                <p>Hello! I am Button 2 Popover</p>
+                                <PrimaryButton>Button For Reference</PrimaryButton>
+                            </Popover>
+                        </div>
+                    )}
+                </div>
             </div>
 
-            <div className="mb-4 ">
-                <FormFieldWithoutLabel
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    onChange={(e) => console.log('Email:', e.target.value)}
-                />
-            </div>
+           
 
             <div className="mb-4">
+                Rating Component:
+                <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
+            </div>
+
+            <div className="mb-4 mt-52">
                 <ProductCard
                     name="Stylish Chair"
                     imageSrc="https://dribbble.com/shots/24594692-Supplement-Product-Card-Design"
@@ -77,19 +107,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
             </div>
 
             <div className="mb-4">
-                Rating Component:
-                <Rating totalStars={5} initialRating={3} onRatingChange={handleRatingChange} />
-            </div>
-
-            {/* Accordion Section */}
-            <div className="mb-4">
                 <AccordionItem
                     title="Accordion Item 1"
                     content="This is the content for the first accordion item. It provides more details and can be expanded or collapsed."
                 />
             </div>
-
-           
         </>
     );
 };
