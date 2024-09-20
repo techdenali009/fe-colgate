@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star } from '@ui/atoms/RatingCompoent/RatingStar';
+import { Star } from '@ui/atoms/Rating/index';
 
 interface RatingProps {
     totalStars?: number; // Total number of stars

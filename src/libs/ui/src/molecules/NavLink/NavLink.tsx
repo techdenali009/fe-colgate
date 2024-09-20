@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HeaderLabel } from '@ui/molecules/LabelTypes/HeaderLabel';
+import { HeaderLabel } from '@ui/molecules/HeaderLabel/index';
 import { HiMenu, HiX } from 'react-icons/hi'; // Importing icons for hamburger and close button
 
 const NavLinks: React.FC = () => {
@@ -27,9 +27,11 @@ const NavLinks: React.FC = () => {
                         className='relative group flex items-center justify-center px-4 py-2 cursor-pointer hover:bg-[rgba(238,244,255,1)] group-hover:scale-110 transition-transform duration-300'
                     >
                         <HeaderLabel
-                            text={item}
                             className='relative z-10 text-black group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300 font-normal font-sans'
-                        />
+                        >
+                            {item}
+                        </HeaderLabel>
+                    
                     </li>
                 ))}
             </ul>

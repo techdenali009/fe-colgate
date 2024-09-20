@@ -1,4 +1,3 @@
-// src/components/molecules/AccordionItem/AccordionItem.tsx
 import React, { useState } from 'react';
 
 interface AccordionItemProps {
@@ -12,7 +11,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, content }) => {
   return (
     <div className="border border-gray-300 rounded-lg mb-2">
       <div
-        className="bg-gray-100 p-4 cursor-pointer flex justify-between items-center"
+        className="bg-white p-4 cursor-pointer flex justify-between items-center border-b"
         onClick={() => setIsOpen(!isOpen)}
       >
         <h3 className="text-lg font-semibold">{title}</h3>
@@ -33,7 +32,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, content }) => {
           </svg>
         </span>
       </div>
-      {isOpen && <div className="p-4 bg-white">{content}</div>}
+      {isOpen && <div className="p-4 bg-gray-100">{content}</div>}
     </div>
   );
 };
