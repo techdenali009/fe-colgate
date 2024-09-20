@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from '@ui/atoms/Label/Label';
+import { Label } from '@ui/atoms/Label';
 
 interface SubtitleLabelProps {
     children: React.ReactNode;

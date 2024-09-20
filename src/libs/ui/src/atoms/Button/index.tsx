@@ -1,4 +1,5 @@
 import React, { ReactNode, ButtonHTMLAttributes, MouseEventHandler, KeyboardEventHandler } from 'react';
+import './button.styles.scss'
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
     type?: "submit" | "reset" | "button";
