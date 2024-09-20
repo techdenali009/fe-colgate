@@ -19,7 +19,7 @@ const Header: React.FC = () => (
       <Logo />
       
      <NavLinks />
-      <div className='Iconsnav flex space-x-4 pr-24 gap-6'>
+      <div className='Iconsnav flex space-x-4  pr-24 gap-6'>
         <ButtonWithIcon
           className='w-[40px] h-[40px] border-0 border-b-0'
         >
