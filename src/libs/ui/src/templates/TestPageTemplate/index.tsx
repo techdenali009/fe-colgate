@@ -51,10 +51,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
           onMouseEnter={() => handleMouseEnter('button1')}
           onMouseLeave={handleMouseLeave}
         >
-          Button 1
+          Popover Button 1
         </button>
         {hoveredButton === 'button1' && (
           <Popover position="top-12">
+            <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
             <p>Hello World! I am Button 1 Popover</p>
             <SecondaryButton>Secondary Button</SecondaryButton>
           </Popover>
@@ -68,7 +69,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
           onMouseEnter={() => handleMouseEnter('button2')}
           onMouseLeave={handleMouseLeave}
         >
-          Button 2
+          Hover Me
         </button>
         {hoveredButton === 'button2' && (
           <Popover position="top-12">
