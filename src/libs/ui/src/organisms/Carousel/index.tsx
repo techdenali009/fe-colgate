@@ -11,9 +11,9 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   const customPrevArrow = (onClickHandler: () => void, hasPrev: boolean, label: string) => {
     return (
       <button
-        type="button"
+        type='button'
         onClick={onClickHandler}
-        className="swiper-button-prev absolute left-0 z-10 p-2 focus:outline-none "
+        className='swiper-button-prev absolute left-0 z-10 p-2 focus:outline-none'
         aria-label={label}
       >
         
@@ -21,13 +21,12 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
     );
   };
 
-  // Custom Next Arrow
   const customNextArrow = (onClickHandler: () => void, hasNext: boolean, label: string) => {
     return (
       <button
-        type="button"
+        type='button'
         onClick={onClickHandler}
-        className="swiper-button-next  right-0 z-10 p-2 focus:outline-none"
+        className='swiper-button-next  right-0 z-10 p-2 focus:outline-none'
         aria-label={label}
       >
         
@@ -42,9 +41,9 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
       showThumbs={false}
       showStatus={false}
       interval={3000}
-      className="carousel-container"
-      renderArrowPrev={customPrevArrow}  // Adding the custom previous arrow with image
-      renderArrowNext={customNextArrow}  // Adding the custom next arrow with image
+      className='carousel-container'
+      renderArrowPrev={customPrevArrow}  
+      renderArrowNext={customNextArrow} 
     >
       {slides.map((slide, index) => (
         <BannerSlide
