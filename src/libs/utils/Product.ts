@@ -1,17 +1,21 @@
-
 export interface ProductType {
-  id: string;
-  image: string;
-  name: string;
-  isBestSeller: boolean;
-  rating: number;
-}
+    id: number;
+    name: string;
+    image: string;
+    rating: number;
+    isBestSeller: boolean;
+  }
+  
 
 export interface ProductProps {
 
     product: ProductType;
   }
-  
+
   export interface PopularProductsProps {
     products: ProductType[];
   }
+export interface ProductHeaderProps {
+    handleScroll: (direction: "left" | "right") => void;
+  }
+  
