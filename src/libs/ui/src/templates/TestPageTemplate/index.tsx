@@ -17,14 +17,14 @@ interface ISearchbar {
 }
 
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
-    const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+    const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
 
     const handleMouseEnter = (button: string) => {
-        setHoveredButton(button);
+        setIsPopoverVisible(button);
     };
 
     const handleMouseLeave = () => {
-        setHoveredButton(null);
+        setIsPopoverVisible(null);
     };
 
     return (
@@ -44,54 +44,66 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
             {/* Popover buttons */}
             <div className="flex mb-4 space-x-4 justify-center">
-      {/* Button 1 */}
-      <div className="relative">
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
-          onMouseEnter={() => handleMouseEnter('button1')}
-          onMouseLeave={handleMouseLeave}
-        >
-          Popover Button 1
-        </button>
-        {hoveredButton === 'button1' && (
-          <Popover position="top-12">
-            <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
-            <p>Hello World! I am Button 1 Popover</p>
-            <SecondaryButton>Secondary Button</SecondaryButton>
-          </Popover>
-        )}
-      </div>
+                {/* Button 1 */}
+                <div
+                    className="relative"
+                    onMouseEnter={() => handleMouseEnter('button1')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                        Popover Button 1
+                    </button>
+                    {isPopoverVisible === 'button1' && (
+                        <div 
+                            onMouseEnter={() => setIsPopoverVisible('button1')}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <Popover>
+                                <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
+                                <p>Hello World! I am Button 1 Popover</p>
+                                <SecondaryButton>Secondary Button</SecondaryButton>
+                            </Popover>
+                        </div>
+                    )}
+                </div>
 
-      {/* Button 2 */}
-      <div className="relative">
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
-          onMouseEnter={() => handleMouseEnter('button2')}
-          onMouseLeave={handleMouseLeave}
-        >
-          Hover Me
-        </button>
-        {hoveredButton === 'button2' && (
-          <Popover position="top-12">
-            <p>Hello! I am Button 2 Popover</p>
-            <PrimaryButton>Button For Reference</PrimaryButton>
-          </Popover>
-        )}
-      </div>
-    </div>
+                {/* Button 2 */}
+                <div
+                    className="relative"
+                    onMouseEnter={() => handleMouseEnter('button2')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                        Hover Me
+                    </button>
+                    {isPopoverVisible === 'button2' && (
+                        <div 
+                            onMouseEnter={() => setIsPopoverVisible('button2')}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <Popover>
+                                <p>Hello! I am Button 2 Popover</p>
+                                <PrimaryButton>Button For Reference</PrimaryButton>
+                            </Popover>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+           
 
             <div className="mb-4">
+                Rating Component:
+                <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
+            </div>
+
+            <div className="mb-4 mt-52">
                 <ProductCard
                     name="Stylish Chair"
                     imageSrc="https://dribbble.com/shots/24594692-Supplement-Product-Card-Design"
                     altText="A stylish chair"
                     className="p-4 border rounded-lg shadow-lg"
                 />
-            </div>
-
-            <div className="mb-4">
-                Rating Component:
-                <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
             </div>
 
             <div className="mb-4">
