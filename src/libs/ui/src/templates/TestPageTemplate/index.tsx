@@ -10,6 +10,7 @@ import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
 import { LabelButton } from "@ui/molecules/LabelButton";
 import AccordionItem from '@ui/molecules/AccordianItem';
 import Popover from '@ui/molecules/Popover/Popover';
+import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 
 interface ISearchbar {
     submitLabel: string;
@@ -18,6 +19,7 @@ interface ISearchbar {
 
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
+    const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
     const handleMouseEnter = (button: string) => {
         setIsPopoverVisible(button);
@@ -25,6 +27,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
     const handleMouseLeave = () => {
         setIsPopoverVisible(null);
+    };
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(event.target.checked);
     };
 
     return (
@@ -37,6 +43,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     <ButtonWithIcon children={undefined} />
                     <LabelButton>label</LabelButton>
                 </div>
+{/* Checkbox Section */}
+<div className="mb-4">
+                    <Checkbox
+                        label="I agree to the terms and conditions"
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                    />
+                </div>
+
+
             </form>
 
             <HeaderLabel className="m-4">Title component</HeaderLabel>
@@ -91,21 +107,21 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </div>
             </div>
 
-           
+            <div className="mb-4">
+                <ProductCard
+                    name="Stylish Chair"
+                    imageSrc="https://imgs.search.brave.com/nBRnq1ceKvzUOyW-11T00_NWvFGZzdx6PNE8t-KY11k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9iYW5u/ZXJlbmdpbmVlcmlu/Zy1oLmFzc2V0c2Fk/b2JlLmNvbS9pcy9p/bWFnZS9jb250ZW50/L2RhbS9iYW5uZXIt/ZW5naW5lZXJpbmcv/M2QtcmVuZGVycy9w/cm9kdWN0LWdyb3Vw/L211bHRpX2Rpdmlz/aW9uL0Jhbm5lci1w/cm9kdWN0cy1tdWx0/aS1kaXZpc2lvbi1o/b21lLWhlcnJvLXIz/LmpwZz93aWQ9MjAw/MCZxbHQ9OTAmZm10/PXdlYnA"
+                    altText="A stylish chair"
+                    className="p-4 border rounded-lg shadow-lg"
+                />
+            </div>
 
             <div className="mb-4">
                 Rating Component:
                 <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
             </div>
 
-            <div className="mb-4 mt-52">
-                <ProductCard
-                    name="Stylish Chair"
-                    imageSrc="https://dribbble.com/shots/24594692-Supplement-Product-Card-Design"
-                    altText="A stylish chair"
-                    className="p-4 border rounded-lg shadow-lg"
-                />
-            </div>
+            
 
             <div className="mb-4">
                 <AccordionItem
