@@ -21,6 +21,6 @@ export const LandingTemplatePage = () => {
         {/* marketing-banner-2" */}
         <MarketingBannerTwo />
         {/* popular-products */}
-        {/* <PopularProducts products={products}></PopularProducts> */}
+        <PopularProducts products={products}></PopularProducts>
     </>
 };
