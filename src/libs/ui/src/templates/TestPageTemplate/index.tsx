@@ -128,9 +128,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
             </div>
 
-            <div className="space-y-4">
-                <Skeleton width="w-48" height="h-6" className="mb-2" /> {/* Example for text */}
-                <Skeleton width="w-full" height="h-36" /> {/* Example for an image */}
+            <div className="flex space-x-4">   
+                <Skeleton width="100%" height="200px" /> 
             </div>
         </>
     );
