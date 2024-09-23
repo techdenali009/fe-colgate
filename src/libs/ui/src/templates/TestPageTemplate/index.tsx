@@ -31,7 +31,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
         <>
             <form>
                 <div className="flex mb-4">
-                    <PrimaryButton>Primary button</PrimaryButton>
+                    <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
                     <SecondaryButton>Secondary button</SecondaryButton>
                     <ButtonWithTextAndIcon children={undefined} />
                     <ButtonWithIcon children={undefined} />
