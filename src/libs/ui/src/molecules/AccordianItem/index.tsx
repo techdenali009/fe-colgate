@@ -2,29 +2,31 @@ import React, { useState } from 'react';
 
 interface AccordionItemProps {
   title: string;
-  children: React.ReactNode; // Dynamic content via children
-  titleClassName?: string;   // Dynamic classes for title
-  containerClassName?: string;  // Dynamic classes for container
-  contentClassName?: string; // Dynamic classes for content section
+  children: React.ReactNode; 
+  titleClassName?: string;   
+  containerClassName?: string;  
+  contentClassName?: string; 
+  className?: string;
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
   title,
   children,
-  titleClassName = "text-lg font-semibold",  // Default class for title
-  containerClassName = "border-b",  // Default class for the container
-  contentClassName = "p-4 bg-gray-100"  // Default class for the content
+  titleClassName = "text-lg font-semibold", 
+  containerClassName = "border-b",  
+  contentClassName = "p-4 bg-gray-100",  
+  className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`mb-2 ${containerClassName}`}> {/* Dynamic container classes */}
+    <div className={`mb-2 ${containerClassName}`}> 
       <div
-        className="bg-white p-4 cursor-pointer flex justify-between items-center"
+        className={` p-4 cursor-pointer flex justify-between items-center ${className}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className={titleClassName}>{title}</h3> {/* Dynamic title classes */}
-        <span className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'} w-5 h-5`}>
+        <h3 className={titleClassName}>{title}</h3>
+        <span className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'} w-5 h-5 ${className}`}>
           <svg
             className="w-full h-full"
             xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +43,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
           </svg>
         </span>
       </div>
-      {isOpen && <div className={contentClassName}>{children}</div>} {/* Dynamic content classes */}
+      {isOpen && <div className={contentClassName}>{children}</div>}
     </div>
   );
 };

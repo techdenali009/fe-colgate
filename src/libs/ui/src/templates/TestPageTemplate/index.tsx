@@ -10,7 +10,7 @@ import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
 import { LabelButton } from "@ui/molecules/LabelButton";
 import AccordionItem from '@ui/molecules/AccordianItem';
 import Popover from '@ui/molecules/Popover/Popover';
-
+import Skeleton from '@ui/molecules/SkeletonCard';
 interface ISearchbar {
     submitLabel: string;
     onSubmit: (value: string) => void;
@@ -128,7 +128,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
             </div>
 
-
+            <div className="space-y-4">
+                <Skeleton width="w-48" height="h-6" className="mb-2" /> {/* Example for text */}
+                <Skeleton width="w-full" height="h-36" /> {/* Example for an image */}
+            </div>
         </>
     );
 };
