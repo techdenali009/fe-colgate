@@ -6,6 +6,7 @@ interface AccordionItemProps {
   titleClassName?: string;   // Dynamic classes for title
   containerClassName?: string;  // Dynamic classes for container
   contentClassName?: string; // Dynamic classes for content section
+  className?: string;
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
@@ -13,14 +14,15 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   children,
   titleClassName = "text-lg font-semibold",  // Default class for title
   containerClassName = "border-b",  // Default class for the container
-  contentClassName = "p-4 bg-gray-100"  // Default class for the content
+  contentClassName = "p-4 bg-gray-100",  // Default class for the content
+  className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={`mb-2 ${containerClassName}`}> {/* Dynamic container classes */}
       <div
-        className="bg-white p-4 cursor-pointer flex justify-between items-center"
+        className={` p-4 cursor-pointer flex justify-between items-center ${className}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         <h3 className={titleClassName}>{title}</h3> {/* Dynamic title classes */}
