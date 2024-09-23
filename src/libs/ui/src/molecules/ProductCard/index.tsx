@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductName } from '@ui/atoms/ProductName';
 import { ProductImage } from '@ui/atoms/ProductImage';
-import { BestSeller } from '@ui/atoms/BestSeller'; // Import the badge component
+import BestSellerBadge from '@ui/molecules/BestSeller/index';
 
 interface ProductCardProps {
     name: string;
@@ -18,17 +18,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     imageSrc,
     altText,
     className = '',
-    isBestSeller = false,
     imageWidth = '100%',
     imageHeight = 'auto',
+    isBestSeller = true,
 }) => {
     return (
         <div className={`relative flex flex-col items-center ${className}`}>
-            {/* Conditionally render the BestSeller badge */}
+            {/* Conditionally render the BestSellerBadge */}
             {isBestSeller && (
-                <BestSeller
-                    className="absolute top-2 right-2 z-10" // Ensure it’s above other elements
-                    size="small"
+                <BestSellerBadge
+                    isBestSeller={isBestSeller}
+                    productName={name}
+                    position="top-right"  // Position badge at top-right by default
                 />
             )}
             <ProductImage

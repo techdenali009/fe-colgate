@@ -6,21 +6,23 @@ interface BestSellerBadgeProps {
   badgeText?: string;
   badgeColor?: string;
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-  badgeStyle?: React.CSSProperties;
+  badgeClassName?: string;  
+  textClassName?: string;   
+  containerClassName?: string; 
 }
 
 const BestSellerBadge: React.FC<BestSellerBadgeProps> = ({
   isBestSeller,
-  productName,
   badgeText = 'Best Seller',
-  badgeColor = '#ffbe0b',  // Default badge color
   position = 'top-right',
-  badgeStyle = {},
+  badgeClassName = '',      // Default to empty if not provided
+  containerClassName = '',  // Default container class
 }) => {
   if (!isBestSeller) {
     return null; // If not a bestseller, don't show the badge
   }
 
+  // Mapping positions to Tailwind CSS classes
   const badgePositionClass = {
     'top-left': 'top-0 left-0',
     'top-right': 'top-0 right-0',
@@ -29,15 +31,9 @@ const BestSellerBadge: React.FC<BestSellerBadgeProps> = ({
   }[position];
 
   return (
-    <div className={`absolute ${badgePositionClass}`} style={{ ...badgeStyle }}>
+    <div className={`absolute ${badgePositionClass} ${containerClassName}`}>
       <span
-        style={{
-          backgroundColor: badgeColor,
-          padding: '5px 10px',
-          borderRadius: '5px',
-          color: '#fff',
-          fontWeight: 'bold',
-        }}
+        className={`text-white font-bold  bg-blue-700  py-1 px-2 rounded-md ${badgeClassName}`}
       >
         {badgeText}
       </span>
