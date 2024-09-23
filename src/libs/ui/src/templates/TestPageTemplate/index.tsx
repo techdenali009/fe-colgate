@@ -3,7 +3,7 @@ import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { SecondaryButton } from "@ui/molecules/SecondaryButton";
 import { HeaderLabel } from "@ui/molecules/HeaderLabel";
 import { SubtitleLabel } from "@ui/molecules/SubTitleLabel/index";
-import { ProductCard } from "@ui/molecules/ProductCard/index";  
+import { ProductCard } from "@ui/molecules/ProductCard/index";
 import { Rating } from "@ui/molecules/Rating";
 import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
@@ -54,15 +54,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                         Popover Button 1
                     </button>
                     {isPopoverVisible === 'button1' && (
-                        <div 
+                        <div
                             onMouseEnter={() => setIsPopoverVisible('button1')}
                             onMouseLeave={handleMouseLeave}
                         >
-                                <Popover>
-                                    <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
-                                    <p>Hello World! I am Button 1 Popover</p>
-                                    <SecondaryButton>Secondary Button</SecondaryButton>
-                                </Popover>
+                            <Popover>
+                                <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
+                                <p>Hello World! I am Button 1 Popover</p>
+                                <SecondaryButton>Secondary Button</SecondaryButton>
+                            </Popover>
                         </div>
                     )}
                 </div>
@@ -76,8 +76,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
                         Hover Me
                     </button>
-                    {isPopoverVisible === 'button2' && (
-                        <div 
+                    {isPopoverVisible !== 'button2' && (
+                        <div
                             onMouseEnter={() => setIsPopoverVisible('button2')}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -91,7 +91,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </div>
             </div>
 
-           
+
 
             <div className="mb-4">
                 Rating Component:
@@ -126,9 +126,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </AccordionItem>
 
             </div>
-            
 
-           
+
+
         </>
     );
 };
