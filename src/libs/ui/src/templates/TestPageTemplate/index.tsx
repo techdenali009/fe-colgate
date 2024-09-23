@@ -58,7 +58,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                             onMouseEnter={() => setIsPopoverVisible('button1')}
                             onMouseLeave={handleMouseLeave}
                         >
-                                <Popover>
+                                <Popover position='absolute'>                                                  {/*Specify the position for the popover if needed */}
                                     <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
                                     <p>Hello World! I am Button 1 Popover</p>
                                     <SecondaryButton>Secondary Button</SecondaryButton>
