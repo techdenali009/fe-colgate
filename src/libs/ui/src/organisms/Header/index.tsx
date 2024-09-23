@@ -15,7 +15,7 @@ import NavLinks from '@ui/molecules/NavLink/NavLink';
 
 const Header: React.FC = () => (
   <>
-    <header className='flex items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
+    <header className='table-fixed flex items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
       <Logo />
       
      <NavLinks />
