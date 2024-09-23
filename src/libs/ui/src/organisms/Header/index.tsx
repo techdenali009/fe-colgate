@@ -28,9 +28,9 @@ const Header: React.FC = () => {
     <>
       <header className={`flex items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd] ${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white' : ''}`}>
         <Logo />
-
+        
         <NavLinks />
-
+        
         <div className='Iconsnav flex space-x-4 pr-24 gap-5'>
           <ButtonWithIcon
             className='w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.5em] pb-[2.2rem] pl-[1.1rem]'
@@ -64,13 +64,13 @@ const Header: React.FC = () => {
           </Popover>
         )}
         {hoveredIcon === 'profile' && (
-          <Popover >
+           <Popover position='absolute'>
             <p>If you have a professional account, please login. If you would like to establish a professional account please click Create Account.</p>
             <PrimaryButton>Login</PrimaryButton>
             <PrimaryButton>Create Account</PrimaryButton>
           </Popover>
         )}
-
+       
       </header>
     </>
   );
