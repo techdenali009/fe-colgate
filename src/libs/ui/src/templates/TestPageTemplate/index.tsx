@@ -58,11 +58,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                             onMouseEnter={() => setIsPopoverVisible('button1')}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <Popover>
-                                <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
-                                <p>Hello World! I am Button 1 Popover</p>
-                                <SecondaryButton>Secondary Button</SecondaryButton>
-                            </Popover>
+                                <Popover>
+                                    <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
+                                    <p>Hello World! I am Button 1 Popover</p>
+                                    <SecondaryButton>Secondary Button</SecondaryButton>
+                                </Popover>
                         </div>
                     )}
                 </div>
@@ -81,8 +81,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                             onMouseEnter={() => setIsPopoverVisible('button2')}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <Popover>
-                                <p>Hello! I am Button 2 Popover</p>
+                            <Popover maxWidth='800px'>                                      {/*Specify the maximum width for the popover if needed */}
+                                <h1 className='text-amber-800'>POPOVER WITH THE MAXWIDTH</h1>
+                                <p>Hello! I am Button 2 dcdsvhgcvdsghchdsgvcgdsvchdsvgcdvsghcvdsghcvdsghvcdsgcdsvcgdsvgchvdsghcvdsghvhghjjj hcgdscbhjdsgcyhdshvhcbvdsghcgdsvchgdvcdvghcdsvgcvdsghcvdshgvcgdsvcgh </p>
                                 <PrimaryButton>Button For Reference</PrimaryButton>
                             </Popover>
                         </div>
@@ -125,6 +126,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </AccordionItem>
 
             </div>
+            
 
            
         </>
