@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 interface PopoverProps {
     children: React.ReactNode;
     position?: string;
-    width?: string; 
     maxWidth?: string;
 }
 
