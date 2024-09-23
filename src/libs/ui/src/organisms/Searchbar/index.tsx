@@ -1,5 +1,6 @@
 import { Button } from "@ui/atoms/Button";
 import { InputField } from "@ui/molecules/FormField";
+
 interface ISearchbar {
     submitLabel: string,
     onSubmit: (value: string) => void,
@@ -15,7 +16,8 @@ export const Searchbar: React.FC<ISearchbar> = ({ submitLabel, onSubmit }) => {
         <form onSubmit={handleSubmit}>
             <div className="flex">
                 <InputField placeholder="Search users" type="text" className="border-2 rounded py-2 px-4 rounded mr-1"></InputField>
-                <Button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{submitLabel}</Button>
+                <Button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{'Submit'}</Button>
+            
             </div>
         </form>
     </>

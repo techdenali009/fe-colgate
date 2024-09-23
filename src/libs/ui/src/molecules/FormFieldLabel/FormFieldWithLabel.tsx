@@ -9,6 +9,7 @@ interface FormFieldWithLabelProps {
     placeholder?: string;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void; // Add onKeyUp prop
     className?: string;
 }
 
@@ -19,17 +20,22 @@ export const FormFieldWithLabel: React.FC<FormFieldWithLabelProps> = ({
     placeholder,
     value,
     onChange,
-    className = '',
+    onKeyUp,  // Add onKeyUp prop here
+    className,
+    ...rest
 }) => {
     return (
         <div className={` ${className}`}>
-            <Label text={label} className="block text-gray-700 mb-2" />
-            <FormField className={` ${className}`}
+            <Label text={label} className="block text-gray-700 mb-2" children={undefined} />
+            <FormField
+                className={` ${className}`}
                 id={id}
                 type={type}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
+                onKeyUp={onKeyUp}  // Pass onKeyUp to FormField
+                {...rest}
             />
         </div>
     );

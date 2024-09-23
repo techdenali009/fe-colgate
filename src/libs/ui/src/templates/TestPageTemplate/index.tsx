@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PrimaryButton } from "@ui/molecules/ButtonTypes/PrimaryButton";
 import { SecondaryButton } from "@ui/molecules/ButtonTypes/SecondaryButton";
 import { HeaderLabel } from "@ui/molecules/LabelTypes/HeaderLabel";
 import { SubtitleLabel } from "@ui/molecules/LabelTypes/SubTitleLabel";
 import { FormFieldWithLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithLabel";
 import { FormFieldWithoutLabel } from "@ui/molecules/FormFieldLabel/FormFieldWithoutLabel";
-import { ProductCard } from "@ui/molecules/ProductTypes/ProductCard";  
+import { ProductCard } from '@ui/molecules/ProductTypes/ProductCard'; 
 import { Rating } from "@ui/molecules/RatingStarProduct/RatingStarProduct";
 import { ButtonWithIcon } from "@ui/molecules/ButtonTypes/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonTypes/ButtonWithTextAndIcon";
 import { LabelButton } from "@ui/molecules/ButtonTypes/LabelButtons";
 import AccordionItem from "@ui/molecules/AccordianItemComponent/AccordionItem";
+import { Searchbar } from '@ui/organisms/Searchbar';
+import LoginModal from '@ui/organisms/LoginModal';
+import { useNavigate } from 'react-router-dom';
+import { LoginForm } from '@utils/Login';
 
 interface ISearchbar {
     submitLabel: string;
@@ -18,20 +22,29 @@ interface ISearchbar {
 }
 
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
+    const [toggle, SetToggle] = useState(false);
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // onSubmit((e.target as HTMLFormElement)[0].value);
     };
-
+   
     const handleRatingChange = (newRating: number) => {
         console.log('New Rating:', newRating);
     };
+    const modalSetToggle = ()=>{
+        SetToggle(!toggle)
+    }
 
+    const navigate = useNavigate();
+    const handleRegisterClick = () => {
+        navigate('/register'); // Navigate to the /register route
+      };
 
+    
     function searchUsers(value: string): void {
         throw new Error("Function not implemented.");
     }
-
+    
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -43,7 +56,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     <LabelButton label="label" />
                 </div>
             </form>
-
+          
              <HeaderLabel text="Title component" className="m-4" />
             <SubtitleLabel text="Subtitle component" className="m-4" /> 
 
@@ -89,7 +102,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 />
             </div>
 
-           
+            <div>
+                <Searchbar submitLabel="search" onSubmit={searchUsers}></Searchbar>
+                
+                 <PrimaryButton onClick={modalSetToggle}>Login</PrimaryButton>
+                {toggle && <LoginModal closeModal={modalSetToggle} /> } 
+                <button onClick={handleRegisterClick}>Register</button>
+            </div>
+            
         </>
     );
 };
