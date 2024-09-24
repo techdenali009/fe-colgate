@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 type LinkProps = {
   children: React.ReactNode;

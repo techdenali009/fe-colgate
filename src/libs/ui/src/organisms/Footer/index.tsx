@@ -10,7 +10,7 @@ import AccordionItem from '@ui/molecules/AccordianItem';
 const Footer: React.FC = () => {
   // const navigation = useNavigate();
   const navigate = (pageName: string, contentType: string) => {
-    console.log('pageName', pageName);
+    console.log('pageName', pageName, contentType);
   }
   return <footer className="bg-black text-white ">
     <div className='lg:p-11 lg:mx-8 '>
