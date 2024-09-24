@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className=' hidden  flex-col items-center py-8 text-brand-white-100 lg:flex-row logo-wrapper h-3  lg:flex xl:flex'>
-        <Image src={'src/libs/ui/assets/appSvgs/PCA_LOGO.svg'} alt={''} className=''></Image>
+        <Image src={'src/libs/ui/assests/appSvgs/PCA_LOGO.svg'} alt={''} className=''></Image>
         <Paragraph className='p-8 mb-4'>{APPOWNER}</Paragraph>
       </div>
 
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className='lg:hidden sm:text-left py-8 md:text-left px-9'>
-          <Image src={'src/libs/ui/assets/appSvgs/PCA_LOGO.svg'} alt={''} className=''></Image>
+          <Image src={'src/libs/ui/assests/appSvgs/PCA_LOGO.svg'} alt={''} className=''></Image>
           <Paragraph className='pt-4 text-xs'>{APPOWNER}</Paragraph>
         </div>
       </div>

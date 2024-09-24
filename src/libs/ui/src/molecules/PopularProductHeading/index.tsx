@@ -25,7 +25,7 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
 
           <div className="flex space-x-1 mt-3">
             <div
-              className="bg-center bg-no-repeat cursor-pointer w-10 h-10 bg-[url(src/libs/ui/assets/Navigate-prev-blue.2eaabede.svg)] hover:bg-[url(src/libs/ui/assets/Navigate-prev-blue-dark.e86f8f17.svg)] "
+              className="bg-center bg-no-repeat cursor-pointer w-10 h-10 bg-[url(src/libs/ui/assests/Navigate-prev-blue.2eaabede.svg)] hover:bg-[url(src/libs/ui/assests/Navigate-prev-blue-dark.e86f8f17.svg)] "
               onClick={() => handleScroll("left")}
              
               aria-label="Scroll Left"
@@ -33,7 +33,7 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
               tabIndex={0}
             />
             <div
-              className=" bg-center bg-no-repeat cursor-pointer w-10 h-10 bg-[url(src/libs/ui/assets/Navigate-next-blue.b30f7023.svg)] hover:bg-[url(src/libs/ui/assets/Navigate-next-blue-dark.352e6f9a.svg)]"
+              className=" bg-center bg-no-repeat cursor-pointer w-10 h-10 bg-[url(src/libs/ui/assests/Navigate-next-blue.b30f7023.svg)] hover:bg-[url(src/libs/ui/assests/Navigate-next-blue-dark.352e6f9a.svg)]"
               onClick={() => handleScroll("right")}
              
               aria-label="Scroll Right"
