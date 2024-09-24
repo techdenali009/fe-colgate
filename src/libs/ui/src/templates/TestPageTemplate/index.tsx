@@ -12,6 +12,7 @@ import { LabelButton } from "@ui/molecules/LabelButton/index";
 import AccordionItem from "@ui/molecules/AccordianItem/index";
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
+import Currency from '@ui/molecules/Currency/Currency';
 
 interface ISearchbar {
     submitLabel: string;
@@ -39,11 +40,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
         setIsChecked(event.target.checked);
     };
 
+    const price = 1234.567;
+
     return (
         <>
             <GreetRegister></GreetRegister>
             <form>
-                <div className="flex mb-4">
+                <div className="flex justify-center mb-4">
                     <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
                     <SecondaryButton>Secondary button</SecondaryButton>
                     <ButtonWithTextAndIcon children={undefined} />
@@ -116,6 +119,23 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </div>
             </div>
 
+
+            <div className='flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10'>
+            <h1 className='text-slate-950 text-3xl mb-5'>Product Prices</h1>
+            <p>
+                Price in USD: <Currency value={price} currency="USD" />
+            </p>
+            <p>
+                Price in EUR: <Currency value={price} currency="EUR" />
+            </p>
+            <p>
+                Price in JPY: <Currency value={price} currency="JPY" />
+            </p>
+            <p>
+                Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+            </p>
+        </div>
+
             <div className="mb-4">
                 <ProductCard
                     name="Stylish Chair"
@@ -158,6 +178,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </AccordionItem>
 
             </div>
+
+            
             
 
 
