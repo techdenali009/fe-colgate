@@ -18,7 +18,6 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <div className={`mb-2 ${containerClassName}`}> {/* Dynamic container classes */}
