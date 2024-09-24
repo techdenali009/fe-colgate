@@ -5,9 +5,9 @@ import PopularProducts from '@ui/organisms/PopularProducts';
 import { products } from '@utils/test';
 export const LandingTemplatePage = () => {
     return <>
-      <div className='container' >
+      
         <Carousel slides={carouselData} />
-      </div>
+      
         {/* marketing-banner-1*/}
         {/* promotion-banner-1 */}
         {/* marketing-banner-2" */}
