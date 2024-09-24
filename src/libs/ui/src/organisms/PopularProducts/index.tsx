@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import Slider from "react-slick";
 import Product from "../Product";
-import ProductHeader from "@ui/molecules/FormField/PopularProductHeading";
+import ProductHeader from "@ui/molecules/PopularProductHeading";
 import { PopularProductsProps } from "@utils/Product";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

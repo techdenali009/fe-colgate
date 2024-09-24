@@ -2,59 +2,12 @@ import React, { useState } from 'react';
 
 import { HiMenu, HiX } from 'react-icons/hi'; // Importing icons for hamburger and close button
 import { Label } from '@ui/atoms/Label';
-import { title } from 'process';
 import { links } from '@utils/NavLinksConstants';
 
-// const links = [
-//     {
-//         title: 'Shop',
-//         submenu: [
-//             { title: 'Daily care', items: ['Best Seller', 'Antioxidants', 'Body treatments', 'Broad spectrum SPF', 'Cleansers & toners', 'Eye, neck, lip', 'Masks', 'Moisturizers', 'Retinols', 'Serums', 'Solution sets'] },
-//             { title: 'Category 2', items: ['Best Seller', 'Peels', 'Peel alternative', 'Retinoid treatments', 'Therapeutic masks', 'Treatment enhancements', 'Backbar tools', 'By skin type', ''] },
-//             { title: 'By skin type', items: ['Combination', 'Dry', 'Normal', 'Oily', 'Sensitive', ''] },
-//             { title: 'By skin concern', items: ['Brightening', 'Acne', 'Aging', 'Discoloration', 'Preventative', 'Sensitive Skin'] },
-//         ],
-//     },
-//     {
-//         title: 'Academy',
-//         submenu: [
-//             { title: 'Courses', items: ['Fundamental courses', 'Certification courses', 'Acne','Aging', 'Hyperpigmentation', ''] },
-//             { title: 'Learn', items: ['Skin concerns', 'Skin types', 'Skin types'] },
-//             { title: 'Education memberships', items: ['Course 7', 'Course 8', 'Course 9'] }
-
-//         ],
-//     },
-//     {
-//         title: 'Events',
-//         submenu: [
-//             { title: 'Calendar', items: ['Treatment Tuesdays', 'National Seminars'] },
-
-//         ],
-//     },
-//     {
-//         title: 'About',
-//         submenu: [
-//             { title: 'About', items: ['Our story', 'Culture', 'Our peel legacy'] },
-//             { title: 'Customer service', items: ['FAQs', 'Returns & exchanges', 'Shipping terms', 'Contact us', 'Subscriptions'] }
-
-//         ],
-//     },
-//     {
-//         title: 'Business tools',
-//         submenu: [{ title: "Marketing materials", items: ['Content Hub'] }],
-//     },
-//     {
-//         title: 'Student',
-//         submenu: [{ title: "Student Products", items: ['View All'] },
-//         { title: "Student courses", items: ['Enhancing Student Curriculum', 'Peel Certification for Students'] },
-//         { title: "Student Store", items: ['FAQ'] }
-//         ],
-//     },
-// ];
 
 const NavLinks: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeMenu, setActiveMenu] = useState<string | null>(null);
+    const [activeMenu,setActiveMenu] = useState<string | null>(null);
 
     const handleMouseEnter = (title: string) => {
         setActiveMenu(title);

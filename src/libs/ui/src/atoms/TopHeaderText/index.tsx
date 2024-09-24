@@ -1,5 +1,5 @@
 import React from 'react';
-import sell from "../../../assets/sell.svg";
+import sell from "../../../assests/sell.svg";
 // Define the props interface for TopText component
 interface TopTextProps {
   text: string; // The dynamic text to be rendered in the <p> tag
