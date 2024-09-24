@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from 'react';
 
 interface IInput extends InputHTMLAttributes<Element> {
     type: string,
-    placeholder: string,
+    placeholder?: string,
     className?: string
 }
 

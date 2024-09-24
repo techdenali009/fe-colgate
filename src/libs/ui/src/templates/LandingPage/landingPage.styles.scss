@@ -1,4 +1,40 @@
 .test {
     color: red;
-  }
-  
+}
+.carousel .control-dots {
+    position: absolute;
+    bottom: 0;
+    margin: 10px 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    padding-left: 10.5rem;
+    bottom: 12% !important;
+}
+li.dot{
+    transition: opacity .25s ease-in;
+    background-color: #fff !important;
+    opacity: 1 !important;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 8px;
+    height: 0.625rem;
+    width: 0.625rem;
+    border: 1px solid black;
+}
+li.dot.selected{
+    transition: opacity .25s ease-in;
+    background-color:#000000 !important;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 8px;
+    height: 0.625rem;
+    width: 0.625rem;
+}

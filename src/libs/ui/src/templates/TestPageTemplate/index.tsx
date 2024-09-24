@@ -3,21 +3,25 @@ import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { SecondaryButton } from "@ui/molecules/SecondaryButton";
 import { HeaderLabel } from "@ui/molecules/HeaderLabel";
 import { SubtitleLabel } from "@ui/molecules/SubTitleLabel/index";
-import { ProductCard } from "@ui/molecules/ProductCard/index";  
+import { ProductCard } from "@ui/molecules/ProductCard/index";
 import { Rating } from "@ui/molecules/Rating";
 import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
-import { LabelButton } from "@ui/molecules/LabelButton";
-import AccordionItem from '@ui/molecules/AccordianItem';
 import Popover from '@ui/molecules/Popover/Popover';
+import { LabelButton } from "@ui/molecules/LabelButton/index";
+import AccordionItem from "@ui/molecules/AccordianItem/index";
+import GreetRegister from '@ui/organisms/GreetingRegister';
+import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 
 interface ISearchbar {
     submitLabel: string;
     onSubmit: (value: string) => void;
 }
 
-export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
+
+export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
+    const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
     const handleMouseEnter = (button: string) => {
         setIsPopoverVisible(button);
@@ -25,10 +29,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
     const handleMouseLeave = () => {
         setIsPopoverVisible(null);
+    }
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(event.target.checked);
     };
 
     return (
         <>
+            <GreetRegister></GreetRegister>
             <form>
                 <div className="flex mb-4">
                     <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
@@ -37,6 +46,18 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     <ButtonWithIcon children={undefined} />
                     <LabelButton>label</LabelButton>
                 </div>
+                    {/* Checkbox Section */}
+                <div className="flex m-10 justify-center bg-slate-300 text-blue-700">  
+                    <Checkbox
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        >
+                            I agree to the terms and conditions
+                    </Checkbox>
+                
+                </div>
+
+
             </form>
 
             <HeaderLabel className="m-4">Title component</HeaderLabel>
@@ -91,7 +112,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </div>
             </div>
 
-           
+            <div className="mb-4">
+                <ProductCard
+                    name="Stylish Chair"
+                    imageSrc="https://imgs.search.brave.com/nBRnq1ceKvzUOyW-11T00_NWvFGZzdx6PNE8t-KY11k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9iYW5u/ZXJlbmdpbmVlcmlu/Zy1oLmFzc2V0c2Fk/b2JlLmNvbS9pcy9p/bWFnZS9jb250ZW50/L2RhbS9iYW5uZXIt/ZW5naW5lZXJpbmcv/M2QtcmVuZGVycy9w/cm9kdWN0LWdyb3Vw/L211bHRpX2Rpdmlz/aW9uL0Jhbm5lci1w/cm9kdWN0cy1tdWx0/aS1kaXZpc2lvbi1o/b21lLWhlcnJvLXIz/LmpwZz93aWQ9MjAw/MCZxbHQ9OTAmZm10/PXdlYnA"
+                    altText="A stylish chair"
+                    className="p-4 border rounded-lg shadow-lg"
+                />
+            </div>
 
             <div className="mb-4">
                 Rating Component:
@@ -128,7 +156,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
             </div>
             
 
-           
+
         </>
     );
 };
