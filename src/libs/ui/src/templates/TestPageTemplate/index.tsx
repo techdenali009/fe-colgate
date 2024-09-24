@@ -3,19 +3,21 @@ import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { SecondaryButton } from "@ui/molecules/SecondaryButton";
 import { HeaderLabel } from "@ui/molecules/HeaderLabel";
 import { SubtitleLabel } from "@ui/molecules/SubTitleLabel/index";
-import { ProductCard } from "@ui/molecules/ProductCard/index";  
+import { ProductCard } from "@ui/molecules/ProductCard/index";
 import { Rating } from "@ui/molecules/Rating";
 import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
-import { LabelButton } from "@ui/molecules/LabelButton";
-import AccordionItem from '@ui/molecules/AccordianItem';
 import Popover from '@ui/molecules/Popover/Popover';
+import { LabelButton } from "@ui/molecules/LabelButton/index";
+import AccordionItem from "@ui/molecules/AccordianItem/index";
+import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 
 interface ISearchbar {
     submitLabel: string;
     onSubmit: (value: string) => void;
 }
+
 
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
@@ -27,6 +29,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
     const handleMouseLeave = () => {
         setIsPopoverVisible(null);
+    }
+
+    const handleRatingChange = (newRating: number) => {
+        console.log('New Rating:', newRating);
     };
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +41,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
     return (
         <>
+            <GreetRegister></GreetRegister>
             <form>
                 <div className="flex mb-4">
                     <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
@@ -153,7 +160,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
             </div>
             
 
-           
+
         </>
     );
 };
