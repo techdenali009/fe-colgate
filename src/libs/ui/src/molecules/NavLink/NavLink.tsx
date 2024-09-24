@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { HiMenu, HiX } from 'react-icons/hi'; // Importing icons for hamburger and close button
 import { Label } from '@ui/atoms/Label';
-import { title } from 'process';
 
 const links = [
     {
@@ -53,7 +52,7 @@ const links = [
 
 const NavLinks: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeMenu, setActiveMenu] = useState<string | null>(null);
+    const [_,setActiveMenu] = useState<string | null>(null);
 
     const handleMouseEnter = (title: string) => {
         setActiveMenu(title);
