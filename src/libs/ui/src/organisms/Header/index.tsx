@@ -9,30 +9,53 @@ import NavLinks from '@ui/molecules/NavLink/NavLink';
 import Popover from '@ui/molecules/Popover/Popover';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 
-const Header: React.FC = () => (
-  <>
-    <header className='flex items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
-      <Logo />
-      
-     <NavLinks />
-      <div className='Iconsnav flex space-x-4  pr-24 gap-6'>
-        <ButtonWithIcon
-          className='w-[40px] h-[40px] border-0 border-b-0'
-        >
-        <Icon icon={searchIcon} className='text-black' />
-        </ButtonWithIcon>
+import './header.styles.scss'
 
+const Header: React.FC = () => {
+  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
+  const [isFixed, setIsFixed] = useState<boolean>(false);
+
+  const handleScroll = () => {
+    setIsFixed(window.scrollY > 0);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      <header className={`flex gap-4 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd] ${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white' : ''}`}>
+       <div className='humburger'><NavLinks /></div>
+       <div className='logo_one'><Logo /></div>
+        
+       <div className='second_nav'><NavLinks /></div> 
+       
+        <div className='Iconsnav flex space-x-4 pr-24 gap-6'>
+        <div className='second_logo'><Logo /></div>
           <ButtonWithIcon
             className='w-[40px] h-[40px] border-0 border-b-0 pt-[1.3rem] pr-[2.5rem] pb-[2.2rem] pl-[1.3rem]'
           
           >
-            <Icon icon={profile} className='text-black' />
+            <Icon icon={searchIcon} className='text-black' />
           </ButtonWithIcon>
+
           <ButtonWithIcon
             className='w-[40px] h-[40px] border-0 border-b-0 pt-[1.3rem] pr-[2.5rem] pb-[2.2rem] pl-[1.3rem]'
            
           >
             <Icon icon={cart} className='text-black' />
+          </ButtonWithIcon>
+
+          <ButtonWithIcon
+            className=' profile w-[40px] h-[40px] border-0 border-b-0'
+            onMouseEnter={() => setHoveredIcon('profile')}
+            onMouseLeave={() => setHoveredIcon(null)}
+          >
+            <Icon icon={profile} className='text-black' />
           </ButtonWithIcon>
         </div>
 
@@ -41,5 +64,6 @@ const Header: React.FC = () => (
       </header>
     </>
   );
+}
 
 export default Header;

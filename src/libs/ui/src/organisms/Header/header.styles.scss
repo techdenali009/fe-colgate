@@ -1,0 +1,46 @@
+@media (max-width: 1020px) {
+    .second_nav {
+      display: none!important;
+    }
+  
+    .humburger {
+      display: flex;
+      position: relative;
+      left: 15px;
+    }
+    .Iconsnav {
+        align-items: center;
+        padding-right: 2rem;
+        gap:0rem;
+    }
+    .logo_one{
+        display: none;
+    }
+  .second_logo{
+    margin: 0 -78px;
+   padding: 0.5rem!important;
+  }
+  .profile{
+    display: none!important;
+  }
+  }
+ 
+  @media (min-width: 1021px) {
+    .second_nav {
+      display: flex;
+    }
+  
+    .humburger {
+      display: none;
+    }
+    .second_logo{
+        display: none;
+       
+    }
+  }
+  
+  @media (max-width: 1492px) {
+    
+      
+}
+
