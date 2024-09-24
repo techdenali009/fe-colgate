@@ -3,7 +3,7 @@ import LinkGroup from '@ui/molecules/Footer_list'; // Adjust the path as needed
 import { Label } from '@ui/atoms/Label/index';
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import { Image } from '@ui/atoms/LogoImage/logoimg';
-import { about, Appowner, customer_Service, learn, otherLinks, shop_d } from '@utils/constants';
+import { ABOUT, APPOWNER, CUSTOMER_SERVICE, LEARN, OTHERLINKS, SHOP_D, } from '@utils/constants';
 import { About, CustomerService, Learn, OtherLinks, shop } from '@utils/test';
 import AccordionItem from '@ui/molecules/AccordianItem';
 
@@ -17,26 +17,26 @@ const Footer: React.FC = () => {
       {/* Desktop view */}
       <div className='hidden lg:flex xl:flex'>
         <div className=' text-left w-1/4 '>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{shop_d}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{SHOP_D}</Label></div>
           <LinkGroup links={shop} className="text-white" onClick={(pageName) => {
             navigate(pageName, 'Shop')
           }} />
 
         </div>
         <div className='text-left w-1/4'>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{learn}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{LEARN}</Label></div>
           <LinkGroup links={Learn} className="text-white" onClick={(pageName) => {
             navigate(pageName, 'Learn')
           }} />
         </div>
         <div className='text-left w-1/4'>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{about}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{ABOUT}</Label></div>
           <LinkGroup links={About} className="text-white" onClick={(pageName) => {
             navigate(pageName, 'About')
           }} />
         </div>
         <div className='text-left w-1/4'>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{customer_Service}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{CUSTOMER_SERVICE}</Label></div>
           <LinkGroup links={CustomerService} className="text-white" onClick={(pageName) => {
             navigate(pageName, 'Customer Service')
           }} />
@@ -44,47 +44,49 @@ const Footer: React.FC = () => {
       </div>
 
       <div className='hidden lg:flex xl:flex'>
-        <div className='mb-5'><Label className='hidden'>{otherLinks}</Label></div>
+        <div className='mb-5'><Label className='hidden'>{OTHERLINKS}</Label></div>
         <LinkGroup links={OtherLinks} className="flex mb-4 footer-item items-center pt-8" onClick={(pageName) => {
           navigate(pageName, 'otherLinks')
         }} />
       </div>
 
       <div className=' hidden  flex-col items-center py-8 text-brand-white-100 lg:flex-row logo-wrapper h-3  lg:flex xl:flex'>
-        <Image src={'https://www.pcaskinpro.com/cms/assets/c2782b46-2b21-4342-87aa-8831260c2f20.svg?key=pca-en-us-footer-brand-logo-medium'} alt={'FooterLogo'} className='ps-3'></Image>
-        <Paragraph className='p-8 mb-4'>{Appowner}</Paragraph>
+        <Image src={'src/libs/ui/assets/appSvgs/PCA_LOGO.svg'} alt={''} className=''></Image>
+        <Paragraph className='p-8 mb-4'>{APPOWNER}</Paragraph>
       </div>
 
 
       {/* responsive view */}
-      <div id="Accordian" className='lg:hidden flex-col text-white bg-black sm:px-6'>
-        <AccordionItem title='Shop' className='bg-black' containerClassName='' titleClassName='text-white text-base font-bold pr-4' contentClassName='' >
-          <LinkGroup links={shop} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'Shop')} />
-        </AccordionItem>
-        <hr className='px-6 mx-4'></hr>
-        <AccordionItem title='Learn' className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
-          <LinkGroup links={Learn} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'Learn')} />
-        </AccordionItem>
-        <hr className='px-6 mx-4'></hr>
-        <AccordionItem title='About' className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
-          <LinkGroup links={About} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'About')} />
-        </AccordionItem>
-        <hr className='px-6 mx-4'></hr>
-        <AccordionItem title='Customer Service' className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
-          <LinkGroup links={CustomerService} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'Customer Service')} />
-        </AccordionItem>
-        <hr className='px-6 mx-4'></hr>
-        <AccordionItem title='otherLinks' className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
-          <LinkGroup links={OtherLinks} className="text-white bg-black" onClick={(pageName) => {
-            navigate(pageName, 'otherLinks')
-          }} />
-        </AccordionItem>
-        <hr className='px-6 mx-4'></hr>
-      </div>
+      <div className=''>
+        <div id="Accordian" className='lg:hidden flex-col text-white bg-black sm:px-6 pt-10 '>
+          <AccordionItem title='Shop' className='bg-black' containerClassName='' titleClassName='text-white text-base font-bold pr-4' contentClassName='' >
+            <LinkGroup links={shop} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'Shop')} />
+          </AccordionItem>
+          <hr className='px-6 mx-4'></hr>
+          <AccordionItem title={LEARN} className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
+            <LinkGroup links={Learn} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'Learn')} />
+          </AccordionItem>
+          <hr className='px-6 mx-4'></hr>
+          <AccordionItem title={ABOUT} className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
+            <LinkGroup links={About} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'About')} />
+          </AccordionItem>
+          <hr className='px-6 mx-4'></hr>
+          <AccordionItem title={CUSTOMER_SERVICE} className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
+            <LinkGroup links={CustomerService} className="text-white bg-black" onClick={(pageName) => navigate(pageName, 'Customer Service')} />
+          </AccordionItem>
+          <hr className='px-6 mx-4'></hr>
+          <AccordionItem title={OTHERLINKS} className='bg-black' containerClassName="" titleClassName='text-white text-base font-bold' contentClassName=''>
+            <LinkGroup links={OtherLinks} className="text-white bg-black" onClick={(pageName) => {
+              navigate(pageName, 'otherLinks')
+            }} />
+          </AccordionItem>
+          <hr className='px-6 mx-4'></hr>
+        </div>
 
-      <div className='lg:hidden sm:text-left py-8 md:text-left px-9'>
-        <Image src={'https://www.pcaskinpro.com/cms/assets/c2782b46-2b21-4342-87aa-8831260c2f20.svg?key=pca-en-us-footer-brand-logo-medium'} alt={'FooterLogo'} className=''></Image>
-        <Paragraph className='pt-4 text-xs'>{Appowner}</Paragraph>
+        <div className='lg:hidden sm:text-left py-8 md:text-left px-9'>
+          <Image src={'src/libs/ui/assets/appSvgs/PCA_LOGO.svg'} alt={''} className=''></Image>
+          <Paragraph className='pt-4 text-xs'>{APPOWNER}</Paragraph>
+        </div>
       </div>
     </div>
   </footer>

@@ -34,7 +34,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
     return (
         <>
-            {/* <GreetRegister></GreetRegister> */}
+            <GreetRegister></GreetRegister>
             <form>
                 <div className="flex mb-4">
                     <PrimaryButton>Primary button</PrimaryButton>

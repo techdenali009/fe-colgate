@@ -35,6 +35,7 @@ export const OtherLinks = [
     { url: '/contact', label: 'Do Not Sell My Personal Information' },
     { url: '/services', label: 'Product excellence' },
 ];
+
 export const products = [
   {
     id: 1,
