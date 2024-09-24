@@ -22,7 +22,7 @@ interface ISearchbar {
 }
 
 
-export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
+export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
     const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
@@ -33,10 +33,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     const handleMouseLeave = () => {
         setIsPopoverVisible(null);
     }
-
-    const handleRatingChange = (newRating: number) => {
-        console.log('New Rating:', newRating);
-    };
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsChecked(event.target.checked);
