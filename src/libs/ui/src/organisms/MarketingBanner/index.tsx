@@ -2,7 +2,8 @@ import { Icon } from '@ui/atoms/Icons';
 import { Image } from '@ui/atoms/Image';
 import { BannerText } from '@ui/molecules/Bannertext';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
-import arrowIcon from "src/libs/ui/assets/Right-Icon.e85181bb.svg";
+import arrowIcon from "src/libs/ui/assests/Right-Icon.e85181bb.svg";
+
 import React from 'react';
 
 interface IMarketingBanner {

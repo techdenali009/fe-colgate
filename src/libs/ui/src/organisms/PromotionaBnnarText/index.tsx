@@ -1,6 +1,6 @@
-import React from 'react';
-import { Heading } from '@ui/atoms/Heading'; 
+import React from 'react'; 
 import { Subheading } from '@ui/atoms/Subheading';
+import { Heading } from '@ui/atoms/Heading';
 
 interface IPromotionBannerText {
   text: string;
