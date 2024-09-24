@@ -10,15 +10,15 @@ export default function MainModule() {
     <>
       {/* Header */}
       <div>
-        {/* <TopHeader></TopHeader>
-        <Header></Header> */}
+        <TopHeader></TopHeader>
+        <Header></Header>
       </div>
 
       <>
-        {/* <Outlet /> */}
+        <Outlet />
       </>
       {/* Footer */}
-       {/* <Footer/> */}
+       <Footer/>
        
     </>
   );
