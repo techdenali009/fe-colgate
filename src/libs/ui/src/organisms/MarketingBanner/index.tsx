@@ -24,8 +24,7 @@ export const MarketingBanner: React.FC<IMarketingBanner> = ({
 }) => {
     return (
         <div className={`flex w-[591.5px] h-auto md:h-[279.750px] flex-col md:flex-row overflow-hidden`}>
-        {/*  <div className={`h-full w-full  mb-[5.25rem] grid grid-cols-2 p-0 `}> */}
-        {/* <div className={`${bgColor} grid lg:grid-cols-2 lg:gap-8  gap-8 py-12 px-16 `}> */}
+       
             <div className={`${bgColor} w-full md:w-1/2 flex flex-col justify-center text-left px-8 py-2 pb-0 overflow-hidden`}>
             
                 <div className=''>
