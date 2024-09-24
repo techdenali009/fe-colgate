@@ -1,14 +1,19 @@
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 type LinkProps = {
   children: React.ReactNode;
-  url: string;
-  className?: string
+  pageName: string
+  className?: string,
+  onClick?: (page: string) => void
 };
 
-const Link: React.FC<LinkProps> = ({ url, children, className = '' }) => (
-  <li className={className}>
+const Link: React.FC<LinkProps> = ({ pageName, children, className = '', onClick }) => (
+  <li className={className} onClick={() => {
+    if (onClick) {
+      onClick(pageName)
+    }
+  }}>
     {children}
   </li>
 );

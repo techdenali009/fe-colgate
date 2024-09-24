@@ -1,7 +1,7 @@
 
 import { Button } from '@ui/atoms/Button';
-import { Heading } from '@ui/atoms/Carousel_Heading';
-import { Subheading } from '@ui/atoms/Carousel_Subheading';
+import { Heading } from '@ui/atoms/CarouselHeading';
+import { Subheading } from '@ui/atoms/CarouselSubheading';
 import { BannerContentProps } from '@utils/interface';
 import React from 'react';
 
