@@ -10,7 +10,10 @@ import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
 import { LabelButton } from "@ui/molecules/LabelButton";
 import AccordionItem from '@ui/molecules/AccordianItem';
 import Popover from '@ui/molecules/Popover/Popover';
-import Skeleton from '@ui/molecules/SkeletonCard';
+import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
+import BannerSkeleton from '@ui/molecules/BannerSkeleton';
+import FilterSkeleton from '@ui/molecules/FilterSkeleton/index'
+
 interface ISearchbar {
     submitLabel: string;
     onSubmit: (value: string) => void;
@@ -128,9 +131,18 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
             </div>
 
-            <div className="flex space-x-4">   
-                <Skeleton width="100%" height="200px" /> 
+            <div>
+               <ProductCardSkeleton />
             </div>
+            <br />
+            <div>
+               <BannerSkeleton />
+            </div>
+            <br/>
+            <div>
+                <FilterSkeleton />
+            </div>
+
         </>
     );
 };
