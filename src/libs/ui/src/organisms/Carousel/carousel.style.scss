@@ -7,8 +7,8 @@
   width: 100%;
   z-index: 1;
   padding-left: 10.5rem;
-  bottom: 15% !important;
-  left: 12px;
+  bottom: 12% !important;
+  left: 6px;
 }
 
 li.dot.dot-other {
@@ -107,10 +107,10 @@ li.selected.dot-black {
 }
 
 .heading {
-  padding-right: 168px;
-  font-weight: 400;
-  font-size: 40px;
-  
+  padding-right: 69px;
+  font-weight: 300;
+  font-size: 3rem;
+  font-family: sans-serif;
 }
 
 @media (max-width: 2560px) {
