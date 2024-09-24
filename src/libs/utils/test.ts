@@ -63,20 +63,21 @@ export const products = [
   },
   {
     id: 4,
-    name: "Brighten: Therapeutic Blackberry Mask",
-    image:
-      "https://pcaskin.vtexassets.com/arquivos/ids/156918-608-auto/Brighten-Therapeutic-Blackberry-Mask.jpg?v=638579600468300000&width=608&height=auto&aspect=true",
-    rating: 2.8,
-    isBestSeller: false,
-  },
-  {
-    id: 5,
     name: "Hyaluronic Acid Boosting Serum",
     image:
       "https://pcaskin.vtexassets.com/arquivos/ids/156942-608-auto/hyalruonic-acid-boosting-serum.jpg?v=638579634152870000&width=608&height=auto&aspect=true",
     rating: 4.6,
     isBestSeller: true,
   },
+  {
+    id: 5,
+    name: "Brighten: Therapeutic Blackberry Mask",
+    image:
+      "https://pcaskin.vtexassets.com/arquivos/ids/156918-608-auto/Brighten-Therapeutic-Blackberry-Mask.jpg?v=638579600468300000&width=608&height=auto&aspect=true",
+    rating: 2.8,
+    isBestSeller: false,
+  },
+
   {
     id: 6,
     name: "ExLinea® Peptide Smoothing Serum",

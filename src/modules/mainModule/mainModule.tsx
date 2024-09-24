@@ -18,7 +18,7 @@ export default function MainModule() {
         {/* <Outlet /> */}
       </>
       {/* Footer */}
-       <Footer/>
+       {/* <Footer/> */}
        
     </>
   );
