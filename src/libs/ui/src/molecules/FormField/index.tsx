@@ -13,8 +13,3 @@ export const InputField: React.FC<IInputField> = ({ label, placeholder, type, ..
         <Input type={type} placeholder={placeholder} {...rest}></Input>
     </div>
 );
-
-
-
-
-
