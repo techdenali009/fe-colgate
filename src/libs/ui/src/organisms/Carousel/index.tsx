@@ -12,7 +12,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
         setCurrentIndex(index);
     };
 
-    const renderPrevArrow = (onClickHandler: () => void, hasPrev: boolean, label: string) => {
+    const renderPrevArrow = (onClickHandler: () => void, _hasPrev: boolean, label: string) => {
         const currentSlide = slides[currentIndex];
         return (
             <button
@@ -24,7 +24,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
         );
     };
 
-    const renderNextArrow = (onClickHandler: () => void, hasNext: boolean, label: string) => {
+    const renderNextArrow = (onClickHandler: () => void, _hasNext: boolean, label: string) => {
         const currentSlide = slides[currentIndex];
         return (
             <button
