@@ -1,3 +1,9 @@
+
+.carousel.carousel-slider {
+  position: relative;
+  margin: 0;
+  // overflow: unset;
+}
 .carousel .control-dots {
   position: absolute;
   bottom: 0;
@@ -55,9 +61,9 @@ li.selected.dot-black {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-before.6460f699.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  top: 277px;
+  top: 220px;
   padding: 30px;
-  position: relative;
+  position: absolute;
   z-index: 1;
 }
 
@@ -65,29 +71,29 @@ li.selected.dot-black {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-next.dd06af0f.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  float: right;
-  position: relative;
-  bottom: 281px;
+  position: absolute;
+  bottom: 217px;
   padding: 30px;
+  right: 10px;
 }
 
 .custom-next-arrow-other {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-next-darkblue.b32edc63.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  float: right;
-  position: relative;
-  bottom: 281px;
+  position: absolute;
+  bottom: 217px;
   padding: 30px;
+  right: 10px;
 }
 
 .custom-prev-arrow-other {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-before-blue.feeeb49c.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  top: 277px;
+  top: 220px;
   padding: 30px;
-  position: relative;
+  position: absolute;
   z-index: 1;
 }
 
@@ -95,7 +101,7 @@ li.selected.dot-black {
   font-size: 3rem !important;
   line-height: 1 !important;
   text-align: left;
-  padding: 80px 40px 0px 34px;
+  padding: 25px 40px 0px 34px;
 }
 
 .banner-button {
@@ -193,7 +199,7 @@ li.selected.dot-black {
   .carousel.carousel-slider {
       position: relative;
       margin: 0;
-      overflow: unset;
+      // overflow: unset;
   }
   .carousel-subheading{
     font-size: 14px;

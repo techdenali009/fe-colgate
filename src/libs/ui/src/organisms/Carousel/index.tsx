@@ -57,7 +57,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
 
     return (
         <ReactCarousel
-            autoPlay
+            // autoPlay
             infiniteLoop
             showThumbs={false}
             showStatus={false}
