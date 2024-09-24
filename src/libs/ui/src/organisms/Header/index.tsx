@@ -24,38 +24,22 @@ const Header: React.FC = () => (
 
           <ButtonWithIcon
             className='w-[40px] h-[40px] border-0 border-b-0 pt-[1.3rem] pr-[2.5rem] pb-[2.2rem] pl-[1.3rem]'
-            onMouseEnter={() => setHoveredIcon('profile')}
-            onMouseLeave={() => setHoveredIcon(null)}
+          
           >
             <Icon icon={profile} className='text-black' />
           </ButtonWithIcon>
           <ButtonWithIcon
             className='w-[40px] h-[40px] border-0 border-b-0 pt-[1.3rem] pr-[2.5rem] pb-[2.2rem] pl-[1.3rem]'
-            onMouseEnter={() => setHoveredIcon('cart')}
-            onMouseLeave={() => setHoveredIcon(null)}
+           
           >
             <Icon icon={cart} className='text-black' />
           </ButtonWithIcon>
         </div>
 
-        {hoveredIcon === 'cart' && (
-          <Popover>
-            <p>If you have a professional account, please login. If you would like to establish a professional account please click Create Account.</p>
-            <PrimaryButton>Login</PrimaryButton>
-            <PrimaryButton>Register Now</PrimaryButton>
-          </Popover>
-        )}
-        {hoveredIcon === 'profile' && (
-           <Popover position='absolute'>
-            <p>If you have a professional account, please login. If you would like to establish a professional account please click Create Account.</p>
-            <PrimaryButton>Login</PrimaryButton>
-            <PrimaryButton>Create Account</PrimaryButton>
-          </Popover>
-        )}
+      
        
       </header>
     </>
   );
-};
 
 export default Header;
