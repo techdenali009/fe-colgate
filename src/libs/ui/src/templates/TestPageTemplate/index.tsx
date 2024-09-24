@@ -37,7 +37,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
         <>
             <form>
                 <div className="flex mb-4">
-                    <PrimaryButton>Primary button</PrimaryButton>
+                    <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
                     <SecondaryButton>Secondary button</SecondaryButton>
                     <ButtonWithTextAndIcon children={undefined} />
                     <ButtonWithIcon children={undefined} />
@@ -76,7 +76,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                             onMouseEnter={() => setIsPopoverVisible('button1')}
                             onMouseLeave={handleMouseLeave}
                         >
-                                <Popover>
+                                <Popover position='absolute'>                                                  {/*Specify the position for the popover if needed */}
                                     <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
                                     <p>Hello World! I am Button 1 Popover</p>
                                     <SecondaryButton>Secondary Button</SecondaryButton>
@@ -123,7 +123,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
             </div>
 
-            
+            <div className="mb-4">
+                <ProductCard
+                    name="Stylish Chair"
+                    imageSrc="https://imgs.search.brave.com/5D278NqlZF0MvA_TrFlS9TBVJfYURKoYEw3lWm0v5oY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1wc2QvYmln/LXNhbGUtYmFubmVy/LXRlbXBsYXRlXzIz/LTIxNDkyMjU3MjEu/anBnP3NpemU9NjI2/JmV4dD1qcGc"
+                    altText="A stylish chair"
+                    className="p-4 border rounded-lg shadow-lg"
+                />
+            </div>
 
             <div className="mb-4">
                 <AccordionItem
