@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Carousel as ReactCarousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { BannerSlide } from '../CarouselBannerSlide';
@@ -14,61 +14,56 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
 
     const renderPrevArrow = (onClickHandler: () => void, hasPrev: boolean, label: string) => {
         const currentSlide = slides[currentIndex];
-        if (currentSlide.bgColor.includes('bg-black')) {
-            return (
-                <button
-                    type="button"
-                    onClick={onClickHandler}
-                    className="custom-prev-arrow-black"
-                    aria-label={label}
-                />
-            );
-        } else if (currentSlide.bgColor.includes('bg-gray-100')) {
-            return (
-                <button
-                    type="button"
-                    onClick={onClickHandler}
-                    className="custom-prev-arrow-other"
-                    aria-label={label}
-                />
-            );
-        }
-        return null; // Fallback if no condition matches
+        return (
+            <button
+                type="button"
+                onClick={onClickHandler}
+                className={currentSlide.bgColor.includes('bg-black') ? 'custom-prev-arrow-black' : 'custom-prev-arrow-other'}
+                aria-label={label}
+            />
+        );
     };
 
     const renderNextArrow = (onClickHandler: () => void, hasNext: boolean, label: string) => {
         const currentSlide = slides[currentIndex];
-        if (currentSlide.bgColor.includes('bg-black')) {
-            return (
-                <button
-                    type="button"
-                    onClick={onClickHandler}
-                    className="custom-next-arrow-black"
-                    aria-label={label}
-                />
-            );
-        } else if (currentSlide.bgColor.includes('bg-gray-100')) {
-            return (
-                <button
-                    type="button"
-                    onClick={onClickHandler}
-                    className="custom-next-arrow-other"
-                    aria-label={label}
-                />
-            );
-        }
-        return null; // Fallback if no condition matches
+        return (
+            <button
+                type="button"
+                onClick={onClickHandler}
+                className={currentSlide.bgColor.includes('bg-black') ? 'custom-next-arrow-black' : 'custom-next-arrow-other'}
+                aria-label={label}
+            />
+        );
     };
+
+    useEffect(() => {
+        const dotElements = document.querySelectorAll('.control-dots li');
+        const currentSlide = slides[currentIndex];
+
+        dotElements.forEach((dot) => {
+          
+            if (currentSlide.bgColor.includes('bg-black')) {
+                dot.classList.add('dot-black');
+                dot.classList.remove('dot-other');
+            } else if (currentSlide.bgColor.includes('bg-gray-100')) {
+                dot.classList.add('dot-other');
+                dot.classList.remove('dot-black');
+            } else {
+                
+                dot.classList.remove('dot-black', 'dot-other');
+            }
+        });
+    }, [currentIndex, slides]);
 
     return (
         <ReactCarousel
-            // autoPlay
+            autoPlay
             infiniteLoop
             showThumbs={false}
             showStatus={false}
             interval={3000}
             className="carousel-container"
-            onChange={onChange} // Update current index on slide change
+            onChange={onChange}
             renderArrowPrev={renderPrevArrow}
             renderArrowNext={renderNextArrow}
         >
@@ -83,7 +78,6 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
                     bgColor={slide.bgColor}
                 />
             ))}
-            
         </ReactCarousel>
     );
 };
