@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 const sliderSettings = {
   dots: false,
   infinite: true,
-  speed: 500,
+  speed: 700,
   slidesToShow: 4,
   slidesToScroll: 1,
   arrows: false,
@@ -53,9 +53,9 @@ function PopularProducts({ products }: PopularProductsProps) {
   };
 
   return (
-    <div className="p-4 md:p-16 w-full">
+    <div className="p-4 md:pl-24 w-full">
       <ProductHeader handleScroll={handleScroll} />
-      <div className="ml-0 md:ml-12 space-x-10">
+      <div className="ml-0 md:ml-3">
         <Slider ref={sliderRef} {...sliderSettings}>
           {products.map((product) => (
             <div key={product.id}>
