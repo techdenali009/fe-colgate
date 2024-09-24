@@ -1,11 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
-interface IHeading{
-    className ?: string,
-    children : ReactNode
+interface IHeading {
+  children: ReactNode; 
+  className?: string; 
 }
 
-export const Heading: React.FC<IHeading> = ({className='',children}) =>{
-    return  <h1 className={className}>{children}</h1>
-    
-};
+export const Heading: React.FC<IHeading> = ({ children, className = '' }) => (
+  <h1 className={className}>{children}</h1>
+);
