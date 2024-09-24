@@ -8,6 +8,9 @@ import { Rating } from "@ui/molecules/Rating";
 import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
 import Popover from '@ui/molecules/Popover/Popover';
+import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
+import BannerSkeleton from '@ui/molecules/BannerSkeleton';
+import FilterSkeleton from '@ui/molecules/FilterSkeleton/index'
 import { LabelButton } from "@ui/molecules/LabelButton/index";
 import AccordionItem from "@ui/molecules/AccordianItem/index";
 import GreetRegister from '@ui/organisms/GreetingRegister';
@@ -75,7 +78,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                         Popover Button 1
                     </button>
                     {isPopoverVisible === 'button1' && (
-                        <div 
+                        <div
                             onMouseEnter={() => setIsPopoverVisible('button1')}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -98,7 +101,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                         Hover Me
                     </button>
                     {isPopoverVisible === 'button2' && (
-                        <div 
+                        <div
                             onMouseEnter={() => setIsPopoverVisible('button2')}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -120,7 +123,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                     className="p-4 border rounded-lg shadow-lg"
                 />
             </div>
-
             <div className="mb-4">
                 Rating Component:
                 <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
@@ -132,7 +134,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                     imageSrc="https://imgs.search.brave.com/5D278NqlZF0MvA_TrFlS9TBVJfYURKoYEw3lWm0v5oY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1wc2QvYmln/LXNhbGUtYmFubmVy/LXRlbXBsYXRlXzIz/LTIxNDkyMjU3MjEu/anBnP3NpemU9NjI2/JmV4dD1qcGc"
                     altText="A stylish chair"
                     className="p-4 border rounded-lg shadow-lg"
+                    isBestSeller={true}
                 />
+
             </div>
 
             <div className="mb-4">
@@ -155,8 +159,17 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
 
             </div>
             
-
-
+            <div>
+               <ProductCardSkeleton />
+            </div>
+            <br />
+            <div>
+               <BannerSkeleton />
+            </div>
+            <br/>
+            <div>
+                <FilterSkeleton />
+            </div>
         </>
     );
 };
