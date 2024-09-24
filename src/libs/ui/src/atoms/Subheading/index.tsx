@@ -1,14 +1,14 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface ISubheading {
-    text: string;
     className?: string;
+    children : ReactNode
 }
 
-export const Subheading: React.FC<ISubheading> = ({ text, className = "" }) => {
+export const Subheading: React.FC<ISubheading> = ({ className = "",children }) => {
    return (
     <p className={className}>
-        {text}
+        {children}
     </p>
    );
 };

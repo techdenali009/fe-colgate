@@ -11,7 +11,8 @@ export const marketingBannersData = [
         subtext:"PCA SKIN was voted the #1 professional skincare brand by recommended by estheticians",
         buttonText:"Learn More",
         imageUrl:"https://www.pcaskinpro.com/cms/assets/b1cdc34e-7cdf-4302-bf2c-a4d9d36b25d1.jpg?key:pca-en-us-marketing-banner-large",
-        bgColor:"bg-gray-300 text-black ",
+        bgColor:"bg-gray-300 text-black pt-10 ",
+        
     },
 ]
 
@@ -43,14 +44,12 @@ export const promotionBannersData=[
 
 ]
 
-export const promotionBannerText = [
-{
+export const promotionBannerText = {
     text:"BETTER VALUE & MORE CONVENIENCE",
     heading: "Trust the experts",
     paragraph: "When it comes to your business, trust the experts. PCA SKIN takes a bold approach to customer service that is unmatched in the clinical skincare industry. We work closely with our professionals to help them build their own successful practices by providing marketing tools, product knowledge, and more. Why? Because PCA SKIN Certified Professionals are an extension of our mission to deliver the best patient results. Together, we can transform skin and lives around the globe.",
 
 }
-]
 
 export const marketingBannerTwo = [
     {

@@ -7,19 +7,17 @@ type BannerTextProps = {
     subheadingText: string;
 };
 
-export const BannerText: React.FC<BannerTextProps> = ({ heading, subheadingText }) => (
-    <div>
-        <Heading
-            type="h1"
-            className="text-secondary-400 font-normal text-xl w-2/3 mb-6 ">
-            {heading}
-        </Heading>
-        <div className="mt-4 mb-4 pr-8 leading-[1.25rem]">
-            <Subheading 
-                text={subheadingText} 
-                className="font-light leading-6 text-sm"
-            />
+export const BannerText: React.FC<BannerTextProps> = ({ heading, subheadingText }) => {
+    return (
+        <div>
+            <Heading className="text-secondary-400 font-HeroNewRegular text-xl w-2/3 mb-6">
+                {heading}
+            </Heading>
+            <div className="mt-4 mb-4 leading-[1.25rem]">
+                <Subheading className="font-normal leading-6 text-base  ">
+                    {subheadingText}
+                </Subheading>    
+            </div>
         </div>
-    </div>
-);
-
+    );
+};

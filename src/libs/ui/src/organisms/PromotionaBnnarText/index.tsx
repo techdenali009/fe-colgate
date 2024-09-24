@@ -11,10 +11,11 @@ interface IPromotionBannerText {
 export const PromotionBannerText: React.FC<IPromotionBannerText> = ({text,heading,paragraph,}) => {
   return (
     <div className="text-center px-4">
-      <Subheading text={text} className=" text-sm font-bold text-slate-600 leading-6 short-title uppercase">
+      <Subheading className="font-HeroNewBold text-xs text-gray-500 leading-6 tracking-widest short-title uppercase">
+        {text}
       </Subheading>
-      <Heading type="h1" className=" text-xl tracking-normal text-primary-400 lg:text-5xl text-gray-800 mt-2">{heading}</Heading>
-      <p className="text-sm leading-relaxed text-slate-500 mt-2 max-w-4xl mx-auto">
+      <Heading className=" font-HeroNewLight tracking-normal text-primary-400 lg:text-5xl text-gray-800 mt-2">{heading}</Heading>
+      <p className=" font-HeroNewLightleading-relaxed text-gray-500 mt-2 max-w-4xl mx-auto">
         {paragraph}
       </p>
     </div>

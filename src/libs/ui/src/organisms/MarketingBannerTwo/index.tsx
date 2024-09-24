@@ -1,15 +1,28 @@
 import React from 'react';
 import { Heading } from '@ui/atoms/Heading';
 import { Subheading } from '@ui/atoms/Subheading';
-import { marketingBannerTwo } from '@utils/banner';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
+import { Icon } from '@ui/atoms/Icons';
+import arrowIcon from "src/libs/ui/assets/Right-Icon.e85181bb.svg";
 
-export const MarketingBannerTwo: React.FC = () => {
-  const { heading, subtext, buttonText, imageUrl, bgColor } = marketingBannerTwo[0];
+type BannerData = {
+  heading: string;
+  subtext: string;
+  buttonText: string;
+  imageUrl: string;
+  bgColor: string;
+};
+
+interface MarketingBannerTwoProps {
+  bannerData: BannerData;
+}
+
+export const MarketingBannerTwo: React.FC<MarketingBannerTwoProps> = ({ bannerData }) => {
+  const { heading, subtext, buttonText, imageUrl, bgColor } = bannerData;
 
   return (
     <div className={`container mb-12 ${bgColor}`}>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 items-center banner-wrapper">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 h-full w-full items-center banner-wrapper">
         <div className="relative h-[300px] lg:h-[640px]">
           <img
             src={imageUrl}
@@ -18,36 +31,21 @@ export const MarketingBannerTwo: React.FC = () => {
           />
         </div>
 
-        <div className="lg:col-span-2 flex flex-col justify-center text-left first-letter pl-5 pr-12 ">
-          <Heading type="h1" className="text-secondary-400 font-light lg:text-5xl text-2xl tracking-normal leading-10 mb-4">
+        <div className="lg:col-span-2 flex flex-col justify-center text-left first-letter pl-10 pr-12 ">
+          <Heading className="text-secondary-400 font-HeroNewLight lg:text-5xl text-2xl tracking-normal !leading-snug">
             {heading}
           </Heading>
 
-          <Subheading
-            text={subtext}
-            className="text-base font-light leading-6 mb-4"/>
+          <Subheading className="font-HeroNewRegular leading-6 my-10 ">
+            {subtext}
+          </Subheading>
 
           <div className="relative">
             <PrimaryButton
               onClick={() => console.log('Button clicked!')}
-              className="flex items-center border-2 border-transparent group hover:border-white">
+              className="flex text-base font-HeroNewBold items-center border border-transparent group hover:border-white p-3">
               {buttonText}
-              <svg
-                className="h-4 w-4 text-gray-300 ml-2"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <line x1="15" y1="16" x2="19" y2="12" />
-                <line x1="15" y1="8" x2="19" y2="12" />
-              </svg>
+              <Icon icon={arrowIcon} className="h-8 w-8 ml-2" />
             </PrimaryButton>
           </div>
         </div>

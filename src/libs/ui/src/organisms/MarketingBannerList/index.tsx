@@ -16,7 +16,8 @@ export const MarketingBannerList: React.FC<MarketingBannerListProps> = ({ market
     };
 
     return (
-        <div className="hidden lg:grid lg:grid-cols-2 w-full h-auto pb-12 px-16 space-x-6">
+        // <div className="hidden lg:grid grid-cols-2 w-full h-auto pb-12 px-16 space-x-6">
+        <div className="hidden lg:grid grid-cols-2 gap-8 py-12 px-16">
             {marketingBannersData.map((banner, index) => (
                 <div key={index} className="flex items-center  ">
                     <MarketingBanner
