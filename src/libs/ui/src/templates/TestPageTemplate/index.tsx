@@ -123,13 +123,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
             <div className='flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10'>
             <h1 className='text-slate-950 text-3xl mb-5'>Product Prices</h1>
             <p>
-                Price in USD: <Currency value={price} currency="USD" />
+                Price in USD: <Currency className='text-blue-900' value={price} currency="USD">(including tax)</Currency>
             </p>
             <p>
-                Price in EUR: <Currency value={price} currency="EUR" />
+                Price in EUR: <Currency className='text-amber-600' value={price} currency="EUR">(excluding VAT)</Currency>
             </p>
             <p>
-                Price in JPY: <Currency value={price} currency="JPY" />
+                Price in JPY: <Currency className='text-red-950' value={price} currency="JPY" >(no decimals)</Currency>
             </p>
             <p>
                 Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
