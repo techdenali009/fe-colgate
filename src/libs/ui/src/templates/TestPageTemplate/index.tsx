@@ -43,13 +43,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     <ButtonWithIcon children={undefined} />
                     <LabelButton>label</LabelButton>
                 </div>
-{/* Checkbox Section */}
-<div className="mb-4">
+                    {/* Checkbox Section */}
+                <div className="flex m-10 justify-center bg-slate-300 text-blue-700">  
                     <Checkbox
-                        label="I agree to the terms and conditions"
                         checked={isChecked}
                         onChange={handleCheckboxChange}
-                    />
+                        >
+                            I agree to the terms and conditions
+                    </Checkbox>
+                
                 </div>
 
 

@@ -1,7 +1,8 @@
+import { Input } from '@ui/atoms/Input';
 import React, { ReactNode, InputHTMLAttributes, ChangeEventHandler, FocusEventHandler } from 'react';
 
 interface ICheckbox extends InputHTMLAttributes<HTMLInputElement> {
-    label?: ReactNode; 
+    children?: ReactNode; 
     checked?: boolean; 
     onChange?: ChangeEventHandler<HTMLInputElement>; 
     onFocus?: FocusEventHandler<HTMLInputElement>; 
@@ -10,7 +11,7 @@ interface ICheckbox extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Checkbox: React.FC<ICheckbox> = ({
-    label,
+    children,
     checked,
     onChange,
     onFocus,
@@ -19,7 +20,8 @@ export const Checkbox: React.FC<ICheckbox> = ({
     ...rest
 }) => (
     <label className={`checkbox-container ${className}`}>
-        <input className='cursor-pointer hover:font-bold m-2'
+        <Input
+            className='cursor-pointer hover:font-bold m-2'
             type="checkbox"
             checked={checked}
             onChange={onChange}
@@ -27,6 +29,6 @@ export const Checkbox: React.FC<ICheckbox> = ({
             onBlur={onBlur}
             {...rest}
         />
-        {label && <span className="checkbox-label">{label}</span>}
+        {children && <span className="cursor-pointer">{children}</span>}
     </label>
 );
