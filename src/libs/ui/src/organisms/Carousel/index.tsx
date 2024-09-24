@@ -9,7 +9,9 @@ import './carousel.style.scss'
 export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   
   
-  const customPrevArrow = (onClickHandler: () => void, hasPrev: boolean, label: string) => {
+  const customPrevArrow = (
+    // @ts-ignore: Unused variable 'hasPrev'
+    onClickHandler: () => void, hasPrev: boolean, label: string) => {
     return (
       <button
         type='button'
@@ -22,6 +24,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
     );
   };
 
+ // @ts-ignore: Unused variable 'hasPrev'
   const customNextArrow = (onClickHandler: () => void, hasNext: boolean, label: string) => {
     return (
       <button
