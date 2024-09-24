@@ -15,6 +15,7 @@ import { LabelButton } from "@ui/molecules/LabelButton/index";
 import AccordionItem from "@ui/molecules/AccordianItem/index";
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
+import Currency from '@ui/molecules/Currency/Currency';
 
 interface ISearchbar {
     submitLabel: string;
@@ -38,11 +39,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
         setIsChecked(event.target.checked);
     };
 
+    const price = 1234.567;
+
     return (
         <>
             <GreetRegister></GreetRegister>
             <form>
-                <div className="flex mb-4">
+                <div className="flex justify-center mb-4">
                     <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
                     <SecondaryButton>Secondary button</SecondaryButton>
                     <ButtonWithTextAndIcon children={undefined} />
@@ -115,6 +118,23 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                 </div>
             </div>
 
+
+            <div className='flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10'>
+            <h1 className='text-slate-950 text-3xl mb-5'>Product Prices</h1>
+            <p>
+                Price in USD: <Currency className='text-blue-900' value={price} currency="USD">(including tax)</Currency>
+            </p>
+            <p>
+                Price in EUR: <Currency className='text-amber-600' value={price} currency="EUR">(excluding VAT)</Currency>
+            </p>
+            <p>
+                Price in JPY: <Currency className='text-red-950' value={price} currency="JPY" >(no decimals)</Currency>
+            </p>
+            <p>
+                Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+            </p>
+        </div>
+
             <div className="mb-4">
                 <ProductCard
                     name="Stylish Chair"
@@ -158,6 +178,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                 </AccordionItem>
 
             </div>
+
+            
             
             <div>
                <ProductCardSkeleton />
