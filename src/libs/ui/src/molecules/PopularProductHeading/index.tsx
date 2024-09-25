@@ -1,11 +1,11 @@
-import { Button } from "@ui/atoms/Button";
-import { Label } from "@ui/atoms/Label";
-import { ProductHeaderProps } from "@utils/Product";
-import { PrimaryButton } from "../PrimaryButton";
-import NavigateNextBlue from "../../../assests/Navigatenextblue.svg";
-import NavigateNextBlueDark from "../../../assests/Navigate-next-bluedark.svg";
-import NavigatePrevBlue from "../../../assests/Navigateprevblue.svg";
-import NavigatePrevBlueDark from "../../../assests/Navigateprevbluedark.svg";
+import { Button } from '@ui/atoms/Button';
+import { Label } from '@ui/atoms/Label';
+import { ProductHeaderProps } from '@utils/Product';
+import { PrimaryButton } from '../PrimaryButton';
+import NavigateNextBlue from '../../../assests/Navigatenextblue.svg';
+import NavigateNextBlueDark from '../../../assests/Navigate-next-bluedark.svg';
+import NavigatePrevBlue from '../../../assests/Navigateprevblue.svg';
+import NavigatePrevBlueDark from '../../../assests/Navigateprevbluedark.svg';
 
 const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
   return (
@@ -18,12 +18,12 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
         <div className="flex flex-col lg:flex-row items-start mt-4">
           <Label className=" mr-6 text-base text-slate-600 font-HeroNewLight">
             {
-              "A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
+              'A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey.'
             }
           </Label>
           <Button
             className="text-base font-bold text-blue-700 hover:text-white hover:bg-blue-700 font-HeroNewBold   "
-            type={"submit"}
+            type={'submit'}
           >
             {'Log in to view prices'}
           </Button>
@@ -32,7 +32,7 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
         <div className="flex space-x-1 mt-3 lg:mt-0">
           <PrimaryButton
             className="w-10 h-10 hover:bg-blue-800 relative overflow-hidden !p-0"
-            onClick={() => handleScroll("left")}
+            onClick={() => handleScroll('left')}
           >
             <img
               src={NavigatePrevBlue}
@@ -48,7 +48,7 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
 
           <PrimaryButton
             className="w-10 h-10 hover:bg-blue-800 relative overflow-hidden !p-0"
-            onClick={() => handleScroll("right")}
+            onClick={() => handleScroll('right')}
           >
             <img
               src={NavigateNextBlue}
