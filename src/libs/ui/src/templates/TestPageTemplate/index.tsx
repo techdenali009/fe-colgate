@@ -16,6 +16,7 @@ import AccordionItem from '@ui/molecules/AccordianItem/index';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import Currency from '@ui/molecules/Currency/Currency';
+import Sidebar from '@ui/organisms/Sidebar/Sidebar';
 
 interface ISearchbar {
     submitLabel: string;
@@ -178,7 +179,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         </AccordionItem>
 
       </div>
-
+      <div className="flex">
+      {/* Sidebar */}
+      <Sidebar />
+      </div>
             
             
       <div>
