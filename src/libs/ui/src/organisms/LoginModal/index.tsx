@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Modal from '@ui/atoms/Modal';
 import ModalHeader from '@ui/atoms/ModalHeader';
 import ModalBody from '@ui/atoms/ModalBody';
-import LoginForm from '@ui/molecules/LoginForm';
+import LoginForm from '@ui/organisms/LoginForm';
 import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
-import AlreadyRegistered from '@ui/molecules/AlreadyRegisteredForm';
+import AlreadyRegistered from '@ui/organisms/AlreadyRegisteredForm';
 
 interface LoginModalProps {
   closeModal: () => void;
@@ -39,13 +39,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
     >
       <ModalHeader 
         onClose={closeModal} 
-        heading={
-          currentForm === 'forgotPassword' 
-            ? 'Forgot Password' 
-            : currentForm === 'alreadyRegistered' 
-              ? 'Already Registered' 
-              : 'Customer Login'
-        }
+       
       />
       <ModalBody title="">
         {currentForm === 'login' && (

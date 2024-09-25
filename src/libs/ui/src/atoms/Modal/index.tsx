@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({ show,children,className }) => {
     <div className="modal-overlay bg-overlayBackground-100 z-50 h-full w-full fixed top-[0%] flex items-center transition-[hidden]  justify-center overflow-auto">
       <div
         className={`${
-          isLoginClicked ? 'h-40.6rem' : 'h-31rem'
+          isLoginClicked ? 'h-40.6rem' : 'h-auto'
         }  w-40.6rem bg-brand-white-100 relative overflow-y-auto !mt-3 ${className}`}
       >
         {children}

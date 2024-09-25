@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@ui/atoms/Button';
-import { Label } from '@ui/atoms/Labels/Label';
-import { FormField } from '@ui/atoms/FormField/FormField';
-import { LoginForm as LoginFormEnum } from '@utils/Login';
+import { Label } from '@ui/atoms/Label';
+import { InputField } from '@ui/molecules/FormField';
+import { LoginForm, LoginForm as LoginFormEnum } from '@utils/Login';
 import { PasswordFeild } from '@ui/atoms/PasswordField';
 
 interface FormValues {
@@ -13,10 +13,10 @@ interface FormValues {
 
 interface LoginFormProps {
   onSubmit: (data: FormValues) => void;
-  setIsForgotPassword: (value: boolean) => void;
+  setIsForgotPassword: (value: boolean) => void; // Passed from parent to control the modal state
 }
 
-const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword }) => {
+const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword }) => {
   const [showPassword, setShowPassword] = useState(false); // State to control password visibility
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true); // To track if the password field is empty
 
@@ -32,48 +32,37 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
   return (
     <>
       <div className="mb-8">
-        <p className="text-33px font-normal font-heroNewLight">Customer Login</p>
+        <p className="text-33px font-normal font-heroNewLight">Already Registered?</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         {/* Email Input */}
-        <div className="mb-3 inline-grid">
-            <div className='flex text-xs font-heroNewLight,font-sans' >
-          <Label text="Email" className="mb-3 mt-1 text-xs font-heroNewLight,font-sans">Email</Label>
-         
-          <Label text=" *" className="mb-3 ml-0 text-s font-heroNewLight,font-sans text-red-600"> *</Label>
-          </div>
-       
+        <div className="mb-8 inline-grid">
           <Controller
             render={({ field }) =>
-              <FormField
+              <InputField
                 className="rounded-none p-3 text-base border-slate-200 border-2"
                 type="email"
-                placeholder="Email *" {...field}
+                placeholder="Email *" 
+                {...field}
               />
             }
             control={control}
-            {...register(LoginFormEnum.Email, { required: 'This field is required' })}
-            
+            {...register(LoginFormEnum.Email, { required: LoginForm.Message })}
           />
-        </div>
-        {errors[LoginFormEnum.Email] && (
+          {errors[LoginFormEnum.Email] && (
           <span style={{ color: '#ce4635' }} className="text-normal font-bold mb-3">
             {errors[LoginFormEnum.Email]?.message}
           </span>
         )}
+        </div>
         
 
         {/* Password Input with Visibility Toggle */}
-        <div className="mb-4 inline-grid">
-            <div className='flex'>
-        <Label text="Email" className="mb-3 mt-4 text-xs text-black font-heroNewLight,font-sans">Paasword</Label>
-         
-         <Label text=" *" className="mt-3  text-s font-heroNewLight,font-sans text-red-600"> *</Label>
-         </div>
+        <div className="inline-grid">
           <Controller
             render={({ field }) =>
               <PasswordFeild
-                className="rounded-none p-3 text-base text-neutral-200 border-2"
+                className="rounded-none p-3 text-base border-2"
                 type={showPassword ? 'text' : 'password'} // Password visibility toggle
                 placeholder="Password *"
                 {...field}
@@ -95,7 +84,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
               />
             }
             control={control}
-            {...register(LoginFormEnum.Password, { required: 'This field is required' })}
+            {...register(LoginFormEnum.Password, { required: LoginForm.Message })}
           />
 
           {errors.password && (
@@ -105,8 +94,9 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
           )}
         </div>
 
+        {/* Forgot Password button should set the state to switch to ForgotPassword modal */}
         <Button
-          onClick={() => setIsForgotPassword(true)}
+          onClick={() => setIsForgotPassword(false)} // Correct handler to open ForgotPassword modal
           type={undefined}
           className="mt-2 p-0 text-start"
         >
@@ -118,7 +108,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
 
           <Button
             type="submit"
-            className="bg-blue-700 text-white p-3 m-1 hover:bg-black hover:underline font-bold"
+            className="bg-blue-700 text-white p-3 m-1 mb-8 hover:bg-black hover:underline font-bold"
           >
             Log in
           </Button>
@@ -128,4 +118,4 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
   );
 };
 
-export default LoginForms;
+export default AlreadyRegistered;

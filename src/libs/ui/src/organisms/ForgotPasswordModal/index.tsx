@@ -12,7 +12,7 @@ interface ForgotModalProps {
 const ForgotPasswordModal: React.FC<ForgotModalProps> = ({ toggle, closeModal }) => {
   return (
     <Modal show={toggle} onClose={closeModal}>
-      <ModalHeader onClose={closeModal} heading="Forgot Password" />
+      <ModalHeader onClose={closeModal}  />
       <ModalBody title={''} >
         <p>Please enter your email to reset your password.</p>
       </ModalBody>
