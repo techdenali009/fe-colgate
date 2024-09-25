@@ -14,10 +14,10 @@ export const PromotionBanner: React.FC<IPromotionBanner> = ({
   imageUrl,
 }) => {
   return (
-    <div className="flex flex-col items-center text-center py-6 ">
-      <ProductImage src={imageUrl} alt={heading} className="w-26 h-26 mb-3" />
-      <ProductName name={heading} className="text-sm font-HeroNewBold text-zinc-950" />
-      <Subheading className="font-HeroNewLight text-gray-600 leading-6" >{subtext}</Subheading> 
+    <div className="flex flex-col items-center text-center py-3">
+      <ProductImage src={imageUrl} alt={heading} className="relative mx-auto mb-5" />
+      <ProductName name={heading} className="text-base font-HeroNewBold text-black" />
+      <Subheading className="font-HeroNewLight text-gray-600 leading-6 px-9 lg:px-0 " >{subtext}</Subheading> 
     </div>
   );
 };
