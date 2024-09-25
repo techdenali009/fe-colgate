@@ -26,8 +26,13 @@ module.exports = {
         HeroNewThin: ['Hero New Thin'],
         HeroNewUltraLight: ['Hero New UltraLight']
       },
+      padding: {
+        'appPaddingLeft': '3.5rem',
+        'appPaddingRight': '3.5rem',
+      }
     },
    
+    
   },
   plugins: [],
 };

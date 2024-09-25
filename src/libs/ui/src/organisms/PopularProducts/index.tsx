@@ -15,10 +15,10 @@ const sliderSettings = {
   slidesToScroll: 1,
   arrows: false,
   swipeToSlide: true,
-  centerPadding: "20px", 
+
   responsive: [
     {
-      breakpoint: 1430,
+      breakpoint: 1350,
       settings: {
         slidesToShow: 3,
         centerPadding: '15px',  
@@ -31,15 +31,9 @@ const sliderSettings = {
         centerPadding: '10px',
       },
     },
+
     {
-      breakpoint: 550,
-      settings: {
-        slidesToShow: 1.2,
-        centerPadding: "5px",
-      },
-    },
-    {
-      breakpoint:430,
+      breakpoint: 670,
       settings: {
         slidesToShow: 1,
         centerPadding: '5px',
@@ -50,7 +44,6 @@ const sliderSettings = {
 
 function PopularProducts({ products }: PopularProductsProps) {
   const sliderRef = useRef<any>(null);
- 
 
   const handleScroll = (direction: "left" | "right") => {
     if (direction === "left") {
@@ -59,14 +52,14 @@ function PopularProducts({ products }: PopularProductsProps) {
     }
     sliderRef.current.slickNext();
   };
-  
+
   return (
-    <div className="w-full mb-8">
+    <div className="w-full">
       <ProductHeader handleScroll={handleScroll} />
-      <div className="md:px-14 mx-10  px-0">
+      <div className="">
         <Slider ref={sliderRef} {...sliderSettings}>
           {products.map((product) => (
-            <div key={product.id} className="mt-1 "> {/* Add padding between products */}
+            <div key={product.id} className="mt-1 pr-8">
               <Product product={product} />
             </div>
           ))}
