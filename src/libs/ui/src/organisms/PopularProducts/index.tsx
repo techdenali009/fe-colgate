@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Slider from "react-slick";
 import Product from "../Product";
 
-import { PopularProductsProps, ProductType } from "@utils/Product";
+import {  ProductType } from "@utils/Product";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductHeader from "@ui/molecules/PopularProductHeading";
@@ -43,7 +43,7 @@ const sliderSettings = {
 };
 
 function PopularProducts() {
-  const {data:products,error,isLoading}=useGetProductsQuery();
+  const {data:products}=useGetProductsQuery();
   const sliderRef = useRef<any>(null);
  
   const handleScroll = (direction: "left" | "right") => {
