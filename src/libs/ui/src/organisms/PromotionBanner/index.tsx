@@ -2,8 +2,6 @@ import React from 'react';
 import { Subheading } from '@ui/atoms/Subheading';
 import { ProductImage } from '@ui/atoms/ProductImage';
 import { ProductName } from '@ui/atoms/ProductName';
-
-ProductImage
 interface IPromotionBanner {
   heading: string;
   subtext: string;

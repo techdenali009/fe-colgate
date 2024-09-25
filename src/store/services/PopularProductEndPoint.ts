@@ -4,7 +4,7 @@ export const PopularProductsEndpoints = createApi({
   reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
   endpoints: (builder) => ({
-    getProducts: builder.query<any, void>({
+    getProducts: builder.query({
       query: () => '/PopularProducts',
     }),
   }),

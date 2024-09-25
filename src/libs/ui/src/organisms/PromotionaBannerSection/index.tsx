@@ -3,7 +3,7 @@ import { PromotionBannerList } from '../PromotionBannerList';
 import { SecondaryButton } from '@ui/molecules/SecondaryButton';
 import { Icon } from '@ui/atoms/Icons';
 import { PromotionBannerText } from '../PromotionaBnnarText';
-import arrowIcon from "src/libs/ui/assests/Arrow-right-blue.495910aa.svg";
+import arrowIcon from 'src/libs/ui/assests/Arrow-right-blue.495910aa.svg';
 
 
 interface PromotionBannerSectionProps {
