@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import Slider from "react-slick";
-import Product from "../Product";
+import { useRef } from 'react';
+import Slider from 'react-slick';
+import Product from '../Product';
 
 import { PopularProductsProps } from "@utils/Product";
 import "slick-carousel/slick/slick.css";
@@ -21,14 +21,14 @@ const sliderSettings = {
       breakpoint: 1430,
       settings: {
         slidesToShow: 3,
-        centerPadding: "15px",  
+        centerPadding: '15px',  
       },
     },
     {
       breakpoint: 1020,
       settings: {
         slidesToShow: 2,
-        centerPadding: "10px",
+        centerPadding: '10px',
       },
     },
     {
@@ -42,7 +42,7 @@ const sliderSettings = {
       breakpoint:430,
       settings: {
         slidesToShow: 1,
-        centerPadding: "5px",
+        centerPadding: '5px',
       },
     },
   ],

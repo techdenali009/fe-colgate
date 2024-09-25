@@ -28,7 +28,7 @@ export type Slide = {
     
   };
   
-  export interface CarouselProps {
+export interface CarouselProps {
     slides: {
         imgSrc: string;
         imgAlt: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface BestSellerBadgeProps {
-  className?:String;
+  className?:string;
   children: React.ReactNode; // Use children to pass content
 }
 

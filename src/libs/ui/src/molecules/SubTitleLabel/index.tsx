@@ -7,11 +7,11 @@ interface SubtitleLabelProps {
 }
 
 export const SubtitleLabel: React.FC<SubtitleLabelProps> = ({ children, className = '' }) => {
-    return (
-        <Label
-            className={`text-lg text-gray-600 ${className}`} // Smaller size and gray text for subtitles
-        >
-            {children} {/* Pass children here */}
-        </Label>
-    );
+  return (
+    <Label
+      className={`text-lg text-gray-600 ${className}`} // Smaller size and gray text for subtitles
+    >
+      {children} {/* Pass children here */}
+    </Label>
+  );
 };

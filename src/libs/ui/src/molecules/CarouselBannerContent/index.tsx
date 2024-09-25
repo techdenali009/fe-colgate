@@ -12,8 +12,9 @@ export const BannerContent: React.FC<BannerContentProps> = ({ heading, subheadin
       <Heading  text={heading} />
       <Subheading text={subheading} />
       <Button type='button' 
-             className='banner-button bg-white text-blue-500 py-2 px-4 rounded hover:bg-blue-700 hover:text-white'>
-      {buttonText} </Button>
+        className='banner-button bg-white text-blue-500 py-2 px-4 rounded hover:bg-blue-700 hover:text-white'>
+        {buttonText} 
+      </Button>
     </div>
   );
 };

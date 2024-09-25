@@ -9,17 +9,18 @@ import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 import { products } from '@utils/test';
 
 export const LandingTemplatePage = () => {
-    return <>
-      
-        <Carousel slides={carouselData} />
-      
-        {/* marketing-banner-1*/}
-        <MarketingBannerList  marketingBannersData={marketingBannersData}/>
-        {/* promotion-banner-1 */}
-        <PromotionBannerSection banners={promotionBannersData} />
-        {/* marketing-banner-2" */}
-        <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
-        {/* popular-products */}
-        <PopularProducts products={products}></PopularProducts>
+  return (
+    <>
+      <Carousel slides={carouselData} />
+
+      {/* marketing-banner-1*/}
+      <MarketingBannerList marketingBannersData={marketingBannersData} />
+      {/* promotion-banner-1 */}
+      <PromotionBannerSection banners={promotionBannersData} />
+      {/* marketing-banner-2" */}
+      <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
+      {/* popular-products */}
+      <PopularProducts products={products}></PopularProducts>
     </>
+  )
 };

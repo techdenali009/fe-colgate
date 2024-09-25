@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
   mode: 'jit', // Enable JIT mode
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
  
   theme: {
@@ -15,10 +15,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'navigatenextblue': "url('/path/to/Navigatenextblue.svg')",
-        'navigateprevblue': "url('/path/to/Navigateprevblue.svg')",
-        'navigatenextbluedark': "url('/path/to/Navigatenextbluedark.svg')",
-        'navigateprevbluedark': "url('/path/to/Navigateprevbluedark.svg')",
+      
       },
       fontFamily: {
         HeroNewBold: ['Hero New Bold'],

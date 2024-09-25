@@ -8,10 +8,10 @@ interface LabelButtonProps {
 }
 
 export const LabelButton: React.FC<LabelButtonProps> = ({ className = '', ...rest }) => {
-    return (
-        <Button
-            className={`text-black p-2 m-1 hover:text-blue-700 hover:underline hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 ${className}`}
-            {...rest} 
-        />
-    );
+  return (
+    <Button
+      className={`text-black p-2 m-1 hover:text-blue-700 hover:underline hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 ${className}`}
+      {...rest} 
+    />
+  );
 };

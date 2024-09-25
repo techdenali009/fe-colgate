@@ -6,7 +6,7 @@ interface ImageProps {
   className?: string;
 }
 
-const PopularImage: React.FC<ImageProps> = ({ src, alt, className = "" }) => {
+const PopularImage: React.FC<ImageProps> = ({ src, alt, className = '' }) => {
   return (
     <img
       src={src}

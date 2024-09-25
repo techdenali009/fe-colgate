@@ -24,7 +24,7 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
             className="text-base font-bold text-blue-700 hover:text-white hover:bg-blue-700 font-HeroNewBold lg:block"
             type={"submit"}
           >
-            {"Log in to view prices"}
+            {'Log in to view prices'}
           </Button>
 
           <div className="flex space-x-1 mt-3 lg:ml-[80px] lg:mt-0">
