@@ -2,11 +2,9 @@ import { Carousel } from '@ui/organisms/Carousel'
 import './landingPage.styles.scss'
 import { carouselData } from '@utils/carouselData'
 import PopularProducts from '@ui/organisms/PopularProducts';
-import { products } from '@utils/test';
-import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection'
-
-import { MarketingBannerList } from "@ui/organisms/MarketingBannerList"
+import { MarketingBannerList } from '@ui/organisms/MarketingBannerList';
 import { marketingBannersData, marketingBannerTwo, promotionBannersData } from '@utils/banner';
+import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 
 export const LandingTemplatePage = () => {
@@ -21,6 +19,6 @@ export const LandingTemplatePage = () => {
         {/* marketing-banner-2" */}
         <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
         {/* popular-products */}
-        <PopularProducts products={products}></PopularProducts>
+        <PopularProducts></PopularProducts>
     </>
 };

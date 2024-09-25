@@ -58,7 +58,7 @@ export const products = [
     name: "ExLinea® Pro Peptide Serum",
     image:
       "https://pcaskin.vtexassets.com/arquivos/ids/156810-608-auto/exlinea-pro.jpg?v=638578896004000000&width=608&height=auto&aspect=true",
-    rating: 5,
+    rating: 5.0,
     isBestSeller: false,
   },
   {

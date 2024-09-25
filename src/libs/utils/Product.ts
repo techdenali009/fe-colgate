@@ -8,7 +8,6 @@ export interface ProductType {
   
 
 export interface ProductProps {
-
     product: ProductType;
   }
 
