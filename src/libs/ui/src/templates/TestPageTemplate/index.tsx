@@ -3,17 +3,23 @@ import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { SecondaryButton } from "@ui/molecules/SecondaryButton";
 import { HeaderLabel } from "@ui/molecules/HeaderLabel";
 import { SubtitleLabel } from "@ui/molecules/SubTitleLabel/index";
-import { ProductCard } from "@ui/molecules/ProductCard/index";  
+import { ProductCard } from "@ui/molecules/ProductCard/index";
 import { Rating } from "@ui/molecules/Rating";
 import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon";
 import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
-import { LabelButton } from "@ui/molecules/LabelButton";
-import AccordionItem from '@ui/molecules/AccordianItem';
 import Popover from '@ui/molecules/Popover/Popover';
 import LoginModal from '@ui/organisms/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import { LoginForm } from '@utils/Login';
 import { Searchbar } from '@ui/organisms/Searchbar';
+import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
+import { LabelButton } from '@ui/molecules/LabelButton';
+import GreetRegister from '@ui/organisms/GreetingRegister';
+import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
+import BannerSkeleton from '@ui/molecules/BannerSkeleton';
+import FilterSkeleton from '@ui/molecules/FilterSkeleton/index';
+import AccordionItem from "@ui/molecules/AccordianItem/index";
+import Currency from '@ui/molecules/Currency/Currency';
 interface ISearchbar {
     submitLabel: string;
     onSubmit: (value: string) => void;
@@ -22,6 +28,7 @@ interface ISearchbar {
 export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     const [toggle, SetToggle] = useState(false);
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
+    const [isChecked, setIsChecked] = useState(false);
     const navigate = useNavigate();
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -39,6 +46,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
 
     const handleMouseLeave = () => {
         setIsPopoverVisible(null);
+    }
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(event.target.checked);
     };
     const modalSetToggle = ()=>{
         SetToggle(!toggle)
@@ -53,17 +64,30 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
     function searchUsers(value: string): void {
         throw new Error("Function not implemented.");
     }
-    
+    const price = 1234.567;
     return (
         <>
+            <GreetRegister></GreetRegister>
             <form>
-                <div className="flex mb-4">
+                <div className="flex justify-center mb-4">
                     <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
                     <SecondaryButton>Secondary button</SecondaryButton>
                     <ButtonWithTextAndIcon children={undefined} />
                     <ButtonWithIcon children={undefined} />
                     <LabelButton>label</LabelButton>
                 </div>
+                    {/* Checkbox Section */}
+                <div className="flex m-10 justify-center bg-slate-300 text-blue-700">  
+                    <Checkbox
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                        >
+                            I agree to the terms and conditions
+                    </Checkbox>
+                
+                </div>
+
+
             </form>
 
             <HeaderLabel className="m-4">Title component</HeaderLabel>
@@ -81,7 +105,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                         Popover Button 1
                     </button>
                     {isPopoverVisible === 'button1' && (
-                        <div 
+                        <div
                             onMouseEnter={() => setIsPopoverVisible('button1')}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -104,7 +128,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                         Hover Me
                     </button>
                     {isPopoverVisible === 'button2' && (
-                        <div 
+                        <div
                             onMouseEnter={() => setIsPopoverVisible('button2')}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -118,8 +142,31 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </div>
             </div>
 
-           
 
+            <div className='flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10'>
+            <h1 className='text-slate-950 text-3xl mb-5'>Product Prices</h1>
+            <p>
+                Price in USD: <Currency className='text-blue-900' value={price} currency="USD">(including tax)</Currency>
+            </p>
+            <p>
+                Price in EUR: <Currency className='text-amber-600' value={price} currency="EUR">(excluding VAT)</Currency>
+            </p>
+            <p>
+                Price in JPY: <Currency className='text-red-950' value={price} currency="JPY" >(no decimals)</Currency>
+            </p>
+            <p>
+                Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+            </p>
+        </div>
+
+            <div className="mb-4">
+                <ProductCard
+                    name="Stylish Chair"
+                    imageSrc="https://imgs.search.brave.com/nBRnq1ceKvzUOyW-11T00_NWvFGZzdx6PNE8t-KY11k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9iYW5u/ZXJlbmdpbmVlcmlu/Zy1oLmFzc2V0c2Fk/b2JlLmNvbS9pcy9p/bWFnZS9jb250ZW50/L2RhbS9iYW5uZXIt/ZW5naW5lZXJpbmcv/M2QtcmVuZGVycy9w/cm9kdWN0LWdyb3Vw/L211bHRpX2Rpdmlz/aW9uL0Jhbm5lci1w/cm9kdWN0cy1tdWx0/aS1kaXZpc2lvbi1o/b21lLWhlcnJvLXIz/LmpwZz93aWQ9MjAw/MCZxbHQ9OTAmZm10/PXdlYnA"
+                    altText="A stylish chair"
+                    className="p-4 border rounded-lg shadow-lg"
+                />
+            </div>
             <div className="mb-4">
                 Rating Component:
                 <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
@@ -131,7 +178,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                     imageSrc="https://imgs.search.brave.com/5D278NqlZF0MvA_TrFlS9TBVJfYURKoYEw3lWm0v5oY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1wc2QvYmln/LXNhbGUtYmFubmVy/LXRlbXBsYXRlXzIz/LTIxNDkyMjU3MjEu/anBnP3NpemU9NjI2/JmV4dD1qcGc"
                     altText="A stylish chair"
                     className="p-4 border rounded-lg shadow-lg"
+                    isBestSeller={true}
                 />
+
             </div>
 
             <div className="mb-4">
@@ -153,7 +202,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 </AccordionItem>
 
             </div>
-            
 
             <div>
                 <Searchbar submitLabel="search" onSubmit={searchUsers}></Searchbar>
@@ -162,7 +210,17 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
                 {toggle && <LoginModal closeModal={modalSetToggle} /> } 
                 <button onClick={handleRegisterClick}>Register</button>
             </div>
-            
+            <div>
+               <ProductCardSkeleton />
+            </div>
+            <br />
+            <div>
+               <BannerSkeleton />
+            </div>
+            <br/>
+            <div>
+                <FilterSkeleton />
+            </div>
         </>
     );
 };

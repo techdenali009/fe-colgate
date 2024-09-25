@@ -11,7 +11,7 @@ const PopularImage: React.FC<ImageProps> = ({ src, alt, className = "" }) => {
     <img
       src={src}
       alt={alt}
-      className={`w-full h-5/6 ${className}`}
+      className={`w-full align-middle  ${className}`}
       loading="lazy" 
       onError={(e) => { 
         e.currentTarget.src = 'path/to/placeholder/image.jpg';
