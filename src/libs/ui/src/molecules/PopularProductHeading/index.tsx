@@ -1,7 +1,8 @@
 import { Button } from "@ui/atoms/Button";
 import { Label } from "@ui/atoms/Label";
 import { ProductHeaderProps } from "@utils/Product";
-
+import { PrimaryButton } from "../PrimaryButton";
+import Navigateprevblue from "../../../assests/Navigate-prev-blue.svg";
 const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
   return (
     <div className="text-left md:pl-14 ml-10" >
@@ -16,7 +17,7 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
           }
         </Label>
 
-        <div className="lg:flex mt-5 lg:ml-5 lg:mt-2 items-center">
+        <div className="lg:flex mt-5 lg:ml-5 lg:mt-0 items-center">
           <Button
             className=" text-base font-bold text-blue-700 hover:text-white hover:bg-blue-700 font-HeroNewBold lg:block"
             type={"submit"}
@@ -32,14 +33,16 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
               role="button"
               tabIndex={0}
             /> */}
+            <PrimaryButton className="w-10  hover:bg-blue-800" onClick={()=>handleScroll("left")}>{'<'}</PrimaryButton>
             {/* Right scroll button */}
-            <div
+            {/* <div
               className="bg-center bg-no-repeat cursor-pointer w-10 h-10 bg-NavigateNextBlue hover:bg-NavigateNextBluedark"
               onClick={() => handleScroll("right")}
               aria-label="Scroll Right"
               role="button"
               tabIndex={0}
-            />
+            /> */}
+              <PrimaryButton className="w-10 hover:bg-blue-800" onClick={()=>handleScroll("right")}>{'>'}</PrimaryButton>
           </div>
         </div>
       </div>
