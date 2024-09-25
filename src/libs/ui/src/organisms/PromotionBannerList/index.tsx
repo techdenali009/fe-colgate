@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { PromotionBanner } from '@ui/organisms/PromotionBanner';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css"; 
+import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick-theme.css'; 
 
 interface PromotionBannerData {
   heading: string;
@@ -14,12 +14,14 @@ interface PromotionBannerListProps {
   banners: PromotionBannerData[];
 }
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 const PrevArrow: React.FC<any> = ({ onClick }) => (
   <div className="absolute left-0 z-10 cursor-pointer top-44" onClick={onClick}>
     <span className="text-4xl text-blue-700">❮</span>
   </div>
 );
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 const NextArrow: React.FC<any> = ({ onClick }) => (
   <div className="absolute right-0 z-10 cursor-pointer top-44" onClick={onClick}>
     <span className="text-4xl text-blue-700">❯</span>

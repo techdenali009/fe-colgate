@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": " npm i && tsc -b && vite build",
-    "lint": "npx eslint src/* --fix",
+    "build": "npm i && npx eslint  && tsc -b && vite build",
+    "lint": "npx eslint --fix",
     "preview": "vite preview",
     "json-server": "json-server --watch db.json --port 3001"
   },

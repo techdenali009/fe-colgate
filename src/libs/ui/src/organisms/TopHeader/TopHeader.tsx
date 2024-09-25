@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const App: React.FC = () => {
-  const dynamicText = "NEW Acne Peel & Acne Peel Plus"; // Example dynamic text
+  const dynamicText = 'NEW Acne Peel & Acne Peel Plus'; // Example dynamic text
 
   return (
     <div>

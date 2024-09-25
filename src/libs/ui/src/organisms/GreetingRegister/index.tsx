@@ -1,8 +1,8 @@
-import { PrimaryButtonClickablecurve } from "@ui/atoms/Clickablebuttoncurve";
-import { Heading } from "@ui/atoms/Heading";
-import Paragraph from "@ui/atoms/Paragraph/paragraph";
-import { PrimaryButton } from "@ui/molecules/PrimaryButton";
-import { WELCOMEFORMMSG,WELCOMEGREETPARA, WELCOMEMSG } from "@utils/constants";
+import { PrimaryButtonClickablecurve } from '@ui/atoms/Clickablebuttoncurve';
+import { Heading } from '@ui/atoms/Heading';
+import Paragraph from '@ui/atoms/Paragraph/paragraph';
+import { PrimaryButton } from '@ui/molecules/PrimaryButton';
+import { WELCOMEFORMMSG,WELCOMEGREETPARA, WELCOMEMSG } from '@utils/constants';
 
 const GreetRegister: React.FC = () => (
   <div className="p-11 mx-8 gap-8 pt-12 flex text-left basis-1/2">
