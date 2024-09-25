@@ -15,6 +15,8 @@ import { LabelButton } from "@ui/molecules/LabelButton/index";
 import AccordionItem from "@ui/molecules/AccordianItem/index";
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
+import { FilterBadge } from "@ui/molecules/FilterOptionBadge";
+import { ClearAllButton } from '@ui/molecules/FilterOptionBadgeClearBtn';
 
 interface ISearchbar {
     submitLabel: string;
@@ -22,8 +24,9 @@ interface ISearchbar {
 }
 
 
-export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
+export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
+    const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
     const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
     const handleMouseEnter = (button: string) => {
@@ -38,6 +41,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
         setIsChecked(event.target.checked);
     };
 
+    // Remove filter function
+    const removeFilter = (filterToRemove: string) => {
+        setFilters(filters.filter((filter) => filter !== filterToRemove));
+    };
+
+    // Clear all filters function
+    const clearAllFilters = () => {
+        setFilters([]);
+    };
+
     return (
         <>
             <GreetRegister></GreetRegister>
@@ -49,15 +62,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                     <ButtonWithIcon children={undefined} />
                     <LabelButton>label</LabelButton>
                 </div>
-                    {/* Checkbox Section */}
-                <div className="flex m-10 justify-center bg-slate-300 text-blue-700">  
+                {/* Checkbox Section */}
+                <div className="flex m-10 justify-center bg-slate-300 text-blue-700">
                     <Checkbox
                         checked={isChecked}
                         onChange={handleCheckboxChange}
-                        >
-                            I agree to the terms and conditions
+                    >
+                        I agree to the terms and conditions
                     </Checkbox>
-                
+
                 </div>
 
 
@@ -82,11 +95,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                             onMouseEnter={() => setIsPopoverVisible('button1')}
                             onMouseLeave={handleMouseLeave}
                         >
-                                <Popover position='absolute'>                                                  {/*Specify the position for the popover if needed */}
-                                    <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
-                                    <p>Hello World! I am Button 1 Popover</p>
-                                    <SecondaryButton>Secondary Button</SecondaryButton>
-                                </Popover>
+                            <Popover position='absolute'>                                                  {/*Specify the position for the popover if needed */}
+                                <h1 className='text-amber-800'>TITLE FOR POPOVER</h1>
+                                <p>Hello World! I am Button 1 Popover</p>
+                                <SecondaryButton>Secondary Button</SecondaryButton>
+                            </Popover>
                         </div>
                     )}
                 </div>
@@ -158,18 +171,38 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({}) => {
                 </AccordionItem>
 
             </div>
-            
+
             <div>
-               <ProductCardSkeleton />
+                <h3>Product Card skeleton:-</h3>
+                <ProductCardSkeleton />
             </div>
             <br />
             <div>
-               <BannerSkeleton />
+                <h3>Banner skeleton</h3>
+                <BannerSkeleton />
             </div>
-            <br/>
+            <br />
             <div>
+                <h3>Filter skeleton</h3>
                 <FilterSkeleton />
             </div>
+
+            <div className="flex items-center">
+                {/* Render FilterBadges */}
+                {filters.map((filter) => (
+                    <FilterBadge
+                        key={filter}
+                        children={filter}
+                        onRemove={() => removeFilter(filter)}
+                    />
+                ))}
+
+                {/* Render Clear All Button only if filters exist */}
+                {filters.length > 0 && (
+                    <ClearAllButton onClearAll={clearAllFilters} />
+                )}
+            </div>
+
         </>
     );
 };
