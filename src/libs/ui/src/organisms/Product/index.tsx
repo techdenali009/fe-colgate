@@ -10,7 +10,7 @@ function Product({ product }: ProductProps) {
 
   return (
    
-    <div className="lg:w-[315px]  group p-1 w-60">
+    <div className=" group">
       <div className="relative">
         <PopularImage src={image} alt={name} />
 
