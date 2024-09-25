@@ -3,7 +3,9 @@ module.exports = {
   mode: 'jit', // Enable JIT mode
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    
   ],
+ 
   theme: {
     screens: {
       'sm': '640px',
@@ -12,12 +14,11 @@ module.exports = {
       'xl': '1280px'
     },
     extend: {
-      //Here you havre to add the path for the backgroundImage
       backgroundImage: {
-        'NavigatePrevBlue': "url('src/libs/ui/assests/Navigate-prev-blue.svg')",
-        'NavigatePrevBlueDark': "url('src/libs/ui/assests/Navigate-prev-blue-dark.svg')", 
-        'NavigateNextBlue':"url(src/libs/ui/assests/Navigate-next-blue.svg)",
-        'NavigateNextBluedark':"url(src/libs/ui/assests/Navigate-next-blue-dark.svg)"
+        'navigatenextblue': "url('/path/to/Navigatenextblue.svg')",
+        'navigateprevblue': "url('/path/to/Navigateprevblue.svg')",
+        'navigatenextbluedark': "url('/path/to/Navigatenextbluedark.svg')",
+        'navigateprevbluedark': "url('/path/to/Navigateprevbluedark.svg')",
       },
       fontFamily: {
         HeroNewBold: ['Hero New Bold'],
@@ -29,13 +30,7 @@ module.exports = {
         HeroNewUltraLight: ['Hero New UltraLight']
       },
     },
-    // this is for hover effect in the backgroundImage
-    variants: {
-      extend: {
-       
-         backgroundImage: ['hover'], 
-      },
-    },
+   
   },
   plugins: [],
 };
