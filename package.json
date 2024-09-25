@@ -5,15 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm i && tsc -b && vite build",
-    "lint": "npx eslint src/* --fix",
-    "preview": "vite preview"
+    "build": "npx eslint && npm i && tsc -b && vite build",
+    "lint": "npx eslint --fix",
+    "preview": "vite preview",
+    "json-server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-horizontal-scrolling-menu": "^7.1.7",
     "react-icons": "^5.3.0",
+    "react-redux": "^9.1.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.26.2",
     "react-scroll": "^1.9.0",
@@ -21,6 +24,7 @@
     "react-transition-group": "^4.4.5",
     "sass-embedded": "^1.79.1",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.14",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {
@@ -36,6 +40,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "json-server": "^0.16.3",
     "postcss": "^8.4.45",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",

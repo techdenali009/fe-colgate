@@ -1,65 +1,68 @@
-import { useRef } from "react";
-import Slider from "react-slick";
-import Product from "../Product";
-import ProductHeader from "@ui/molecules/PopularProductHeading";
-import { PopularProductsProps } from "@utils/Product";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useRef } from 'react';
+import Slider from 'react-slick';
+import Product from '../Product';
+
+import {  ProductType } from '@utils/Product';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import ProductHeader from '@ui/molecules/PopularProductHeading';
+import { useGetProductsQuery } from '@store/services/PopularProductEndPoint';
 
 const sliderSettings = {
   dots: false,
   infinite: true,
-  speed: 700,
+  speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
   arrows: false,
+  swipeToSlide: true,
+  centerPadding: '20px',  
   responsive: [
     {
-      breakpoint: 1280,
+      breakpoint: 1435,
       settings: {
         slidesToShow: 3,
+        centerPadding: '15px',  
       },
     },
     {
-      breakpoint: 1024,
+      breakpoint: 1130,
       settings: {
         slidesToShow: 2,
+        centerPadding: '10px',
       },
     },
     {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 480,
+      breakpoint: 600,
       settings: {
         slidesToShow: 1,
+        centerPadding: '5px',
       },
     },
   ],
 };
 
-function PopularProducts({ products }: PopularProductsProps) {
+function PopularProducts() {
+  const {data:products}=useGetProductsQuery(undefined);
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const sliderRef = useRef<any>(null);
-
-  const handleScroll = (direction: "left" | "right") => {
-    if (direction === "left") {
+ 
+  const handleScroll = (direction: 'left' | 'right') => {
+    if (direction === 'left') {
       sliderRef.current.slickPrev();
-      return
-    } 
+      return;
+    }
     sliderRef.current.slickNext();
   };
-
+  
   return (
-    <div className="p-4 md:pl-24 w-full">
+    <div className="w-full pb-8">
       <ProductHeader handleScroll={handleScroll} />
-      <div className="ml-0 md:ml-3">
+      <div className="md:px-14 md:mx-11  px-5 mx-6">
         <Slider ref={sliderRef} {...sliderSettings}>
-          {products.map((product) => (
-            <div key={product.id}>
-              <Product product={product} />
+          {products?.map((products: ProductType) => (
+            <div key={products.id} className="mt-1 ">
+              <Product product={products} />
             </div>
           ))}
         </Slider>

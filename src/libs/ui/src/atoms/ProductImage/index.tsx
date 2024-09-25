@@ -10,19 +10,19 @@ interface ProductImageProps {
 }
 
 export const ProductImage: React.FC<ProductImageProps> = ({
-    src,
-    alt,
-    className = '',
-    width,
-    height
+  src,
+  alt,
+  className = '',
+  width,
+  height
 }) => {
-    return (
-        <Image
-            src={src}
-            alt={alt}
-            className={`object-cover ${className}`}
-            width={width}
-            height={height}
-        />
-    );
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      className={`object-cover ${className}`}
+      width={width}
+      height={height}
+    />
+  );
 };
