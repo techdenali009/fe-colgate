@@ -25,13 +25,13 @@ const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
           </Button>
 
           <div className="flex space-x-1 mt-3 lg:ml-[135px] lg:mt-0 items-center">
-            <div
+            {/* <div
               className="bg-center bg-no-repeat cursor-pointer w-10 h-10 bg-NavigatePrevBlue hover:bg-NavigatePrevBlueDark  bg-cover"
               onClick={() => handleScroll("left")}
               aria-label="Scroll Left"
               role="button"
               tabIndex={0}
-            />
+            /> */}
             {/* Right scroll button */}
             <div
               className="bg-center bg-no-repeat cursor-pointer w-10 h-10 bg-NavigateNextBlue hover:bg-NavigateNextBluedark"

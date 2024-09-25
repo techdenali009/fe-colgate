@@ -42,8 +42,8 @@ const sliderSettings = {
   ],
 };
 
-function PopularProducts() {
-  const {data:products}=useGetProductsQuery();
+function PopularProducts(products:any) {
+  // const {data:products}=useGetProductsQuery();
   const sliderRef = useRef<any>(null);
  
   const handleScroll = (direction: "left" | "right") => {

@@ -6,6 +6,7 @@ import { MarketingBannerList } from '@ui/organisms/MarketingBannerList';
 import { marketingBannersData, marketingBannerTwo, promotionBannersData } from '@utils/banner';
 import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
+import { products } from '@utils/test';
 
 export const LandingTemplatePage = () => {
     return <>
@@ -19,6 +20,6 @@ export const LandingTemplatePage = () => {
         {/* marketing-banner-2" */}
         <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
         {/* popular-products */}
-        <PopularProducts></PopularProducts>
+        <PopularProducts products={products}></PopularProducts>
     </>
 };
