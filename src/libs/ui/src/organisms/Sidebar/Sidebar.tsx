@@ -1,3 +1,4 @@
+import AccordionItem from '@ui/molecules/AccordianItem';
 import React, { useState } from 'react';
 
 const filterData = {
@@ -28,81 +29,89 @@ const filterData = {
   skinType: ['Combination', 'Dry', 'Normal', 'Oily', 'Sensitive'],
 };
 
-const FilterDropdown = () => {
+const Sidebar = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<null | string>(null);
-
-  const toggleDropdown = (dropdown: string) => {
-    setOpenDropdown(openDropdown === dropdown ? null : dropdown);
-  };
 
   return (
-    <div className="space-y-6">
-      {/* Product Category Dropdown */}
-      <div>
-        <button
-          onClick={() => toggleDropdown('productCategory')}
-          className="w-full flex justify-between items-center py-2 border-b text-gray-700 font-semibold"
-        >
-          Product Category
-          <span className="text-blue-500">{openDropdown === 'productCategory' ? '▲' : '▼'}</span>
-        </button>
-        {openDropdown === 'productCategory' && (
-          <div className="mt-2">
-            <ul className="space-y-1">
-              {(showAllCategories ? filterData.productCategory : filterData.productCategory.slice(0, 5)).map(
-                (category, index) => (
-                  <li key={index} className="text-gray-700">
-                    {category}
-                  </li>
-                )
-              )}
-            </ul>
-            {!showAllCategories && (
-              <button
-                onClick={() => setShowAllCategories(true)}
-                className="text-blue-500 mt-2"
-              >
-                Show All Categories
-              </button>
-            )}
-          </div>
+    <div className="w-full max-w-xs p-4 space-y-6 bg-white shadow-md rounded-lg">
+      {/* Product Category Accordion */}
+      <AccordionItem title="Product Category" containerClassName="border-b">
+        <ul className="space-y-1">
+          {(showAllCategories ? filterData.productCategory : filterData.productCategory.slice(0, 5)).map(
+            (category, index) => (
+              <li key={index} className="text-gray-700">
+                {category}
+              </li>
+            )
+          )}
+        </ul>
+        {!showAllCategories && (
+          <button
+            onClick={() => setShowAllCategories(true)}
+            className="text-blue-500 mt-2"
+          >
+            Show All Categories
+          </button>
         )}
-      </div>
+      </AccordionItem>
 
-      {/* Other Categories (Best Seller, Product Types, etc.) */}
-      {Object.keys(filterData).map(
-        (key, index) =>
-          key !== 'productCategory' && (
-            <div key={index}>
-              <button
-                onClick={() => toggleDropdown(key)}
-                className="w-full flex justify-between items-center py-2 border-b text-gray-700 font-semibold"
-              >
-                {key
-                  .replace(/([A-Z])/g, ' $1')
-                  .replace(/^./, (str) => str.toUpperCase())}
-                <span className="text-blue-500">{openDropdown === key ? '▲' : '▼'}</span>
-              </button>
-              {openDropdown === key && (
-                <div className="mt-2">
-                  <ul className="space-y-1">
-                    {filterData[key as keyof typeof filterData].map((option, idx) => (
-                      <li key={idx} className="text-gray-700">
-                        <label className="flex items-center space-x-2">
-                          <input type="checkbox" className="form-checkbox" />
-                          <span>{option}</span>
-                        </label>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          )
-      )}
+      {/* Best Seller Accordion */}
+      <AccordionItem title="Best Seller" containerClassName="border-b">
+        <ul className="space-y-1">
+          {filterData.bestSeller.map((option, index) => (
+            <li key={index} className="text-gray-700">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" className="form-checkbox" />
+                <span>{option}</span>
+              </label>
+            </li>
+          ))}
+        </ul>
+      </AccordionItem>
+
+      {/* Product Types Accordion */}
+      <AccordionItem title="Product Types" containerClassName="border-b">
+        <ul className="space-y-1">
+          {filterData.productTypes.map((option, index) => (
+            <li key={index} className="text-gray-700">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" className="form-checkbox" />
+                <span>{option}</span>
+              </label>
+            </li>
+          ))}
+        </ul>
+      </AccordionItem>
+
+      {/* Skin Concern Accordion */}
+      <AccordionItem title="Skin Concern" containerClassName="border-b">
+        <ul className="space-y-1">
+          {filterData.skinConcern.map((option, index) => (
+            <li key={index} className="text-gray-700">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" className="form-checkbox" />
+                <span>{option}</span>
+              </label>
+            </li>
+          ))}
+        </ul>
+      </AccordionItem>
+
+      {/* Skin Type Accordion */}
+      <AccordionItem title="Skin Type" containerClassName="border-b">
+        <ul className="space-y-1">
+          {filterData.skinType.map((option, index) => (
+            <li key={index} className="text-gray-700">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" className="form-checkbox" />
+                <span>{option}</span>
+              </label>
+            </li>
+          ))}
+        </ul>
+      </AccordionItem>
     </div>
   );
 };
 
-export default FilterDropdown;
+export default Sidebar;
