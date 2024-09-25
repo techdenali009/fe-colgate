@@ -16,24 +16,24 @@ const sliderSettings = {
   slidesToScroll: 1,
   arrows: false,
   swipeToSlide: true,
-  centerPadding: "20px",  // Adjust padding between products
+  centerPadding: "20px",  
   responsive: [
     {
-      breakpoint: 1280,
+      breakpoint: 1435,
       settings: {
         slidesToShow: 3,
-        centerPadding: "15px",  // Smaller gap for this screen size
+        centerPadding: "15px",  
       },
     },
     {
-      breakpoint: 1024,
+      breakpoint: 1130,
       settings: {
         slidesToShow: 2,
         centerPadding: "10px",
       },
     },
     {
-      breakpoint: 768,
+      breakpoint: 600,
       settings: {
         slidesToShow: 1,
         centerPadding: "5px",
@@ -57,7 +57,7 @@ function PopularProducts() {
   return (
     <div className="w-full pb-8">
       <ProductHeader handleScroll={handleScroll} />
-      <div className="px-14 mx-11 ">
+      <div className="md:px-14 md:mx-11  px-5 mx-6">
         <Slider ref={sliderRef} {...sliderSettings}>
           {products?.map((products: ProductType) => (
             <div key={products.id} className="mt-1 ">

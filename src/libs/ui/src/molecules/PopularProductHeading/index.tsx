@@ -4,7 +4,7 @@ import { ProductHeaderProps } from "@utils/Product";
 
 const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
   return (
-    <div className="text-left pl-24">
+    <div className="text-left md:pl-14 ml-10" >
       <h2 className="font-bold text-[28px] text-stone-600 font-HeroNewExtraBold leading-8  hover:font-HeroNewBold">
         Popular Products
       </h2>

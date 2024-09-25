@@ -1,7 +1,8 @@
-import { BestSeller } from "@ui/atoms/BestSeller";
+
 import { Button } from "@ui/atoms/Button";
 import PopularImage from "@ui/atoms/PopularImage";
 import StarRating from "@ui/atoms/StarRating";
+import BestSellerBadge from "@ui/molecules/BestSeller";
 import { ProductProps } from "@utils/Product";
 
 function Product({ product }: ProductProps) {
@@ -9,17 +10,16 @@ function Product({ product }: ProductProps) {
 
   return (
    
-    <div className="lg:w-[315px] group w-64 p-1">
+    <div className="lg:w-[315px]  group p-1 w-60">
       <div className="relative">
         <PopularImage src={image} alt={name} />
 
         {isBestSeller && (
-          <BestSeller
-            size={"small"}
+          <BestSellerBadge
             className={
-              "absolute top-[-4px] left-0 !bg-blue-700 !text-white font-HeroNewBold w-[100px] h-5 !leading-5 text-sm !tracking-wide"
+              "absolute top-[-4px] left-0 !bg-blue-700 !text-white !font-HeroNewBold w-[100px]  text-xs text-center leading-4 py-0.5 !tracking-wide !rounded-xl"
             }
-          ></BestSeller>
+          >Best seller</BestSellerBadge>
         )}
       </div>
       <div className="p-0.5">
