@@ -27,9 +27,15 @@ module.exports = {
         HeroNewUltraLight: ['Hero New UltraLight']
       },
       padding: {
-        'appPaddingLeft': '3.5rem',
-        'appPaddingRight': '3.5rem',
+        'appPaddingLeft': '4.5rem',
+        'appPaddingRight': '4.5rem',
+      },
+      colors:{
+        'appTheme': 'var(--primary-color)',
+        'appBlackTheme':'var(--secondary-color)',
+        'appTextColor': 'var(--app-text-color)'
       }
+     
     },
    
     

@@ -24,7 +24,7 @@ export const LandingTemplatePage = () => {
       {/* marketing-banner-2" */}
       <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
       {/* popular-products */}
-      <div className="lg:pl-appPaddingLeft lg:pr-appPaddingRight px-6 mb-20 ">
+      <div className="lg:pl-appPaddingLeft lg:pr-appPaddingRight pl-6 pr-6 mb-20 ">
         <PopularProducts products={products}></PopularProducts>
       </div>
     </>

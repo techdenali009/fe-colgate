@@ -13,7 +13,6 @@ export default function MainModule() {
         <TopHeader></TopHeader>
         <Header></Header>
       </div>
-
       <>
         <Outlet />
       </>
