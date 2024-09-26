@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-
 import { HiMenu, HiX } from 'react-icons/hi'; // Importing icons for hamburger and close button
 import { Label } from '@ui/atoms/Label';
 import { links } from '@utils/NavLinksConstants';
-
+import { Button } from '@ui/atoms/Button';
 
 const NavLinks: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,12 +19,12 @@ const NavLinks: React.FC = () => {
     return (
         <div className="relative">
             {/* Hamburger Button */}
-            <button
+            <Button
                 className="lg:hidden p-2 text-black hover:text-blue-600"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-            </button>
+            </Button>
 
             {/* Navigation Menu */}
             {/* Navigation Menu */}
@@ -47,11 +46,8 @@ const NavLinks: React.FC = () => {
                         </Label>
 
                         {/* Submenu */}
-
-                        {/* Submenu */}
-
-                        <div
-                            className={`fixed p-8 left-0 w-full top-[103px] bg-white z-[22] ${activeMenu === link.title ? 'block' : 'hidden'} shadow-lg p-4`}
+                        {/* <div
+                            className={`absolute left-0 w-full top-full bg-white z-[22] ${activeMenu === link.title ? 'block' : 'hidden'} shadow-lg p-4 transition-all duration-300`}
                             onMouseEnter={() => handleMouseEnter(link.title)} // Keep submenu open when hovering
                             onMouseLeave={handleMouseLeave} // Close submenu when leaving
                         >
@@ -77,17 +73,12 @@ const NavLinks: React.FC = () => {
                                             </ul>
                                         </div>
                                     ))}
-
                                 </div>
                             </div>
-
-                        </div>
+                        </div> */}
                     </li>
-
                 ))}
             </ul>
-
-
         </div>
     );
 };
