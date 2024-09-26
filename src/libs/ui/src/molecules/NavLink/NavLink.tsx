@@ -6,7 +6,7 @@ import { Button } from '@ui/atoms/Button';
 
 const NavLinks: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // @ts-ignore  activeMenu
+  // @ts-expect-error activeMenu
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   const handleMouseEnter = (title: string) => {
