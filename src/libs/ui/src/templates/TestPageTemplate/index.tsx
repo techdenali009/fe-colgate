@@ -15,8 +15,7 @@ import { LabelButton } from "@ui/molecules/LabelButton/index";
 import AccordionItem from "@ui/molecules/AccordianItem/index";
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
-import { FilterBadge } from "@ui/molecules/FilterOptionBadge";
-import { ClearAllButton } from '@ui/molecules/FilterOptionBadgeClearBtn';
+import { FilterContainer } from '@ui/molecules/FilterContainer';
 
 interface ISearchbar {
     submitLabel: string;
@@ -26,7 +25,7 @@ interface ISearchbar {
 
 export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
-    const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
+    const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail', 'Body Treatments', 'Backbar', 'Sample', 'Retail','Body Treatments', 'Backbar', 'Sample', 'Retail','Body Treatments', 'Backbar', 'Sample', 'Retail']);
     const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
     const handleMouseEnter = (button: string) => {
@@ -41,12 +40,12 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
         setIsChecked(event.target.checked);
     };
 
-    // Remove filter function
+    // Remove individual filter
     const removeFilter = (filterToRemove: string) => {
         setFilters(filters.filter((filter) => filter !== filterToRemove));
     };
 
-    // Clear all filters function
+    // Clear all filters
     const clearAllFilters = () => {
         setFilters([]);
     };
@@ -187,21 +186,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
                 <FilterSkeleton />
             </div>
 
-            <div className="flex items-center">
-                {/* Render FilterBadges */}
-                {filters.map((filter) => (
-                    <FilterBadge
-                        key={filter}
-                        children={filter}
-                        onRemove={() => removeFilter(filter)}
-                    />
-                ))}
-
-                {/* Render Clear All Button only if filters exist */}
-                {filters.length > 0 && (
-                    <ClearAllButton onClearAll={clearAllFilters} />
-                )}
-            </div>
+            <FilterContainer 
+                filters={filters} 
+                onRemoveFilter={removeFilter} 
+                onClearAll={clearAllFilters} 
+            />
 
         </>
     );
