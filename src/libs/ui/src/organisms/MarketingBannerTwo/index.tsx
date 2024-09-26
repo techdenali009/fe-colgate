@@ -32,22 +32,22 @@ export const MarketingBannerTwo: React.FC<MarketingBannerTwoProps> = ({ bannerDa
         </div>
 
         <div className="lg:col-span-2 flex flex-col justify-center text-left first-letter px-6 pb-10 lg:px-16">
-            <Heading className="text-secondary-400 font-HeroNewLight lg:text-5xl text-2xl tracking-normal !leading-snug">
-              {heading}
-            </Heading>
+          <Heading className="text-secondary-400 font-HeroNewLight lg:text-5xl text-2xl tracking-normal !leading-snug">
+            {heading}
+          </Heading>
 
-            <Subheading className="font-HeroNewRegular leading-6 mt-6 mb-12 lg:text-[16px] text-sm ">
-              {subtext}
-            </Subheading>
+          <Subheading className="font-HeroNewRegular leading-6 mt-6 mb-12 lg:text-[16px] text-sm ">
+            {subtext}
+          </Subheading>
 
-            <div className="relative">
-              <PrimaryButton
-                onClick={() => console.log('Button clicked!')}
-                className="flex text-base bg-[#125ce0] font-HeroNewBold items-center border border-transparent group hover:border-white py-[13.5px] px-4">
-                {buttonText}
-                <Icon icon={`${AppAssets}/Right-Icon.e85181bb.svg`} className="h-8 w-8 ml-2" />
-              </PrimaryButton>
-            </div>
+          <div className="relative">
+            <PrimaryButton
+              onClick={() => console.log('Button clicked!')}
+              className="flex text-base bg-[#125ce0] font-HeroNewBold items-center border border-transparent group hover:border-white py-[13.5px] px-4">
+              {buttonText}
+              <Icon icon={`${AppAssets}/Right-Icon.e85181bb.svg`} className="h-8 w-8 ml-2" />
+            </PrimaryButton>
+          </div>
         </div>
       </div>
     </div>

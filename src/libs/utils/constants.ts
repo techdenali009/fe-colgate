@@ -8,5 +8,5 @@ export const LEARN='Learn'
 export const ABOUT='About'
 export const CUSTOMER_SERVICE='Customer Service'
 export const OTHERLINKS='OtherLinks'
-export const AppAssets=`src/libs/ui/assests`
+export const AppAssets='src/libs/ui/assests'
 
