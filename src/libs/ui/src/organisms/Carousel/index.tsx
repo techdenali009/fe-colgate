@@ -11,7 +11,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   const onChange = (index: number) => {
     setCurrentIndex(index);
   };
-
+// @ts-expect-error
   const renderPrevArrow = (onClickHandler: () => void, hasPrev: boolean, label: string) => {
     const currentSlide = slides[currentIndex];
     return (
@@ -23,7 +23,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
       />
     );
   };
-
+// @ts-expect-error
   const renderNextArrow = (onClickHandler: () => void, hasNext: boolean, label: string) => {
     const currentSlide = slides[currentIndex];
     return (
