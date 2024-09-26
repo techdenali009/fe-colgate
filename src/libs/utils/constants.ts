@@ -8,5 +8,8 @@ export const LEARN='Learn'
 export const ABOUT='About'
 export const CUSTOMER_SERVICE='Customer Service'
 export const OTHERLINKS='OtherLinks'
+export const CREATEACCOUNT='Create Account'
+export const LOGIN='Login'
 export const AppAssets='src/libs/ui/assests'
+
 

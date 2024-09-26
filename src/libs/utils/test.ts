@@ -21,7 +21,6 @@ export const About = [
 ];
 
 export const CustomerService = [
-  { url: '/home', label: 'Contact Service' },
   { url: '/about', label: 'Contact Us' },
   { url: '/services', label: 'FAQ' },
   { url: '/contact', label: 'Shipping' },
