@@ -11,24 +11,24 @@ interface ICheckbox extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Checkbox: React.FC<ICheckbox> = ({
-    children,
-    checked,
-    onChange,
-    onFocus,
-    onBlur,
-    className = '',
-    ...rest
+  children,
+  checked,
+  onChange,
+  onFocus,
+  onBlur,
+  className = '',
+  ...rest
 }) => (
-    <label className={`checkbox-container ${className}`}>
-        <Input
-            className='cursor-pointer hover:font-bold m-2'
-            type="checkbox"
-            checked={checked}
-            onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            {...rest}
-        />
-        {children && <span className="cursor-pointer">{children}</span>}
-    </label>
+  <label className={`checkbox-container ${className}`}>
+    <Input
+      className='cursor-pointer hover:font-bold m-2'
+      type="checkbox"
+      checked={checked}
+      onChange={onChange}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      {...rest}
+    />
+    {children && <span className="cursor-pointer">{children}</span>}
+  </label>
 );

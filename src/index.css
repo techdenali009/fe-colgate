@@ -4,37 +4,40 @@
 
 @font-face {
   font-family: 'Hero New Bold';
-  src: url('src/libs/ui/assets/fonts/Hero New Bold.otf') format('truetype');
+  src: url('/assests/fonts/Hero New Bold.otf') format('truetype');
  
 }
 @font-face {
   font-family: 'Hero New ExtraBold';
-  src: url('src/libs/ui/assets/fonts/Hero New ExtraBold.otf') format('truetype');
+  src: url('/assests/fonts/Hero New ExtraBold.otf') format('truetype');
  
 }
 @font-face {
   font-family: 'Hero New Light';
-  src: url('src/libs/ui/assets/fonts/Hero New Light.otf') format('truetype');
+  src: url('/assests/fonts/Hero New Light.otf') format('truetype');
  
 }
 @font-face {
   font-family: 'Hero New Regular';
-  src: url('src/libs/ui/assets/fonts/Hero New Regular.otf') format('truetype');
+  src: url('/assests/fonts/Hero New Regular.otf') format('truetype');
  
 }
 @font-face {
   font-family: 'Hero New SemiBold';
-  src: url('src/libs/ui/assets/fonts/Hero New SemiBold.otf') format('truetype');
+  src: url('/assests/fonts/Hero New SemiBold.otf') format('truetype');
  
 }
 @font-face {
   font-family: 'Hero New UltraLight';
-  src: url('src/libs/ui/assets/fonts/Hero New UltraLight.otf') format('truetype');
+  src: url('/assests/fonts/Hero New UltraLight.otf') format('truetype');
  
 }
 @font-face {
   font-family: 'Hero New Thin';
-  src: url('src/libs/ui/assets/fonts/Hero New Thin.otf') format('truetype');
- 
+  src: url('/assests/fonts/Hero New Thin.otf') format('truetype');
+}
+
+body {
+  font-family: 'Hero New Light' ;
 }
 

@@ -8,13 +8,13 @@ interface ButtonWithIconProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
 }
 
 export const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({ onClick, children, className = '', ...rest }) => {
-    return (
-        <Button
-            onClick={onClick}
-            className={`border border-b p-2 m-1 hover:bg-gray-200 focus:ring-2 focus:ring-gray-300 ${className}`}
-            {...rest} // Spread additional props
-        >
-            {children}
-        </Button>
-    );
+  return (
+    <Button
+      onClick={onClick}
+      className={`border border-b p-2 m-1 hover:bg-gray-200 focus:ring-2 focus:ring-gray-300 ${className}`}
+      {...rest} // Spread additional props
+    >
+      {children}
+    </Button>
+  );
 };

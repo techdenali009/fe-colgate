@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { PrimaryButton } from "@ui/molecules/PrimaryButton";
-import { SecondaryButton } from "@ui/molecules/SecondaryButton";
-import { HeaderLabel } from "@ui/molecules/HeaderLabel";
-import { SubtitleLabel } from "@ui/molecules/SubTitleLabel/index";
-import { ProductCard } from "@ui/molecules/ProductCard/index";
-import { Rating } from "@ui/molecules/Rating";
-import { ButtonWithIcon } from "@ui/molecules/ButtonWithIcon";
-import { ButtonWithTextAndIcon } from "@ui/molecules/ButtonWithTextAndIcon";
+import { PrimaryButton } from '@ui/molecules/PrimaryButton';
+import { SecondaryButton } from '@ui/molecules/SecondaryButton';
+import { HeaderLabel } from '@ui/molecules/HeaderLabel';
+import { SubtitleLabel } from '@ui/molecules/SubTitleLabel/index';
+import { ProductCard } from '@ui/molecules/ProductCard/index';
+import { Rating } from '@ui/molecules/Rating';
+import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon';
+import { ButtonWithTextAndIcon } from '@ui/molecules/ButtonWithTextAndIcon';
 import Popover from '@ui/molecules/Popover/Popover';
 import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
 import BannerSkeleton from '@ui/molecules/BannerSkeleton';
 import FilterSkeleton from '@ui/molecules/FilterSkeleton/index'
-import { LabelButton } from "@ui/molecules/LabelButton/index";
-import AccordionItem from "@ui/molecules/AccordianItem/index";
+import { LabelButton } from '@ui/molecules/LabelButton/index';
+import AccordionItem from '@ui/molecules/AccordianItem/index';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
+import Currency from '@ui/molecules/Currency/Currency';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
 
 interface ISearchbar {
@@ -23,9 +24,9 @@ interface ISearchbar {
 }
 
 
-export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
+export const TestTemplatePage: React.FC<ISearchbar> = () => {
     const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
-    const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail', 'Body Treatments', 'Backbar', 'Sample', 'Retail','Body Treatments', 'Backbar', 'Sample', 'Retail','Body Treatments', 'Backbar', 'Sample', 'Retail']);
+    const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail', 'Body Treatments', 'Backbar', 'Sample', 'Retail', 'Body Treatments', 'Backbar', 'Sample', 'Retail', 'Body Treatments', 'Backbar', 'Sample', 'Retail']);
     const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
     const handleMouseEnter = (button: string) => {
@@ -50,15 +51,17 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
         setFilters([]);
     };
 
+    const price = 1234.567;
+
     return (
         <>
             <GreetRegister></GreetRegister>
             <form>
-                <div className="flex mb-4">
+                <div className="flex justify-center mb-4">
                     <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
                     <SecondaryButton>Secondary button</SecondaryButton>
-                    <ButtonWithTextAndIcon children={undefined} />
-                    <ButtonWithIcon children={undefined} />
+                    <ButtonWithTextAndIcon />
+                    <ButtonWithIcon>test</ButtonWithIcon>
                     <LabelButton>label</LabelButton>
                 </div>
                 {/* Checkbox Section */}
@@ -127,6 +130,23 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
                 </div>
             </div>
 
+
+            <div className='flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10'>
+                <h1 className='text-slate-950 text-3xl mb-5'>Product Prices</h1>
+                <p>
+                    Price in USD: <Currency className='text-blue-900' value={price} currency="USD">(including tax)</Currency>
+                </p>
+                <p>
+                    Price in EUR: <Currency className='text-amber-600' value={price} currency="EUR">(excluding VAT)</Currency>
+                </p>
+                <p>
+                    Price in JPY: <Currency className='text-red-950' value={price} currency="JPY" >(no decimals)</Currency>
+                </p>
+                <p>
+                    Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+                </p>
+            </div>
+
             <div className="mb-4">
                 <ProductCard
                     name="Stylish Chair"
@@ -170,7 +190,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
                 </AccordionItem>
 
             </div>
-
             <div>
                 <h3>Product Card skeleton:-</h3>
                 <ProductCardSkeleton />
@@ -181,15 +200,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ }) => {
                 <BannerSkeleton />
             </div>
             <br />
+
             <div>
                 <h3>Filter skeleton</h3>
                 <FilterSkeleton />
             </div>
 
-            <FilterContainer 
-                filters={filters} 
-                onRemoveFilter={removeFilter} 
-                onClearAll={clearAllFilters} 
+            <FilterContainer
+                filters={filters}
+                onRemoveFilter={removeFilter}
+                onClearAll={clearAllFilters}
             />
 
         </>

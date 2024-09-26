@@ -24,12 +24,21 @@ export type Slide = {
     heading: string;
     subheading: string;
     buttonText: string;
+    bgColor:string;
     
   };
   
-export  type CarouselProps = {
-    slides: Slide[];
-  };
+export interface CarouselProps {
+    slides: {
+        imgSrc: string;
+        imgAlt: string;
+        heading: string;
+        subheading: string;
+        buttonText: string;
+        bgColor: string;
+    }[];
+}
+
   
 export type BannerSlideProps = {
     imgSrc: string;
@@ -37,5 +46,6 @@ export type BannerSlideProps = {
     heading: string;
     subheading: string;
     buttonText: string;
+    bgColor:string;
     
   };  
