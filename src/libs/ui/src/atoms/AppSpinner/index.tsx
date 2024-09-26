@@ -6,14 +6,14 @@ interface AppSpinnerProps {
 }
 
 export const AppSpinner: React.FC<AppSpinnerProps> = ({
-    containerClassName = 'h-screen flex justify-center items-center',
-    spinnerClassName = 'w-14 h-14'
+  containerClassName = 'h-screen flex justify-center items-center',
+  spinnerClassName = 'w-14 h-14'
 }) => {
-    return (
-        <div className={`${containerClassName}`}>
-            <Image src={'/assests/spinner.svg'} 
-                   className={`${spinnerClassName}`} 
-                   alt='loader' />
-        </div>
-    )
+  return (
+    <div className={`${containerClassName}`}>
+      <Image src={'/assests/spinner.svg'} 
+        className={`${spinnerClassName}`} 
+        alt='loader' />
+    </div>
+  )
 }

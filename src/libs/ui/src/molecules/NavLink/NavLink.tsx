@@ -6,7 +6,9 @@ import { Button } from '@ui/atoms/Button';
 
 const NavLinks: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // @ts-expect-error  @typescript-eslint/no-unused-vars
+  
+  // @ts-expect-error activeMenu we will use in future
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   const handleMouseEnter = (title: string) => {
