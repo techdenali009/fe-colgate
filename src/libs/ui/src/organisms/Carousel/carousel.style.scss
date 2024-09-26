@@ -2,7 +2,6 @@
 .carousel.carousel-slider {
   position: relative;
   margin: 0;
-  // overflow: unset;
 }
 .carousel .control-dots {
   position: absolute;
@@ -13,8 +12,8 @@
   width: 100%;
   z-index: 1;
   padding-left: 10.5rem;
-  bottom: 12% !important;
-  left: 6px;
+  bottom: 11% !important;
+  left: 10px;
 }
 
 li.dot.dot-other {
@@ -96,27 +95,34 @@ li.selected.dot-black {
   position: absolute;
   z-index: 1;
 }
+.carousel-subheading{
+  font-size: 1rem;
+  font-weight: 600
+}
 
 .bannercontent {
   font-size: 3rem !important;
   line-height: 1 !important;
   text-align: left;
-  padding: 25px 40px 0px 34px;
+  padding: 60px 40px 0px 34px;
 }
 
 .banner-button {
   height: 44px;
-  font-size: 14px;
-  width: 160px;
-  font-weight: bold;
+  font-size: 1rem;
+  width: 135px;
+  font-weight: 700;
   border-radius: 0px;
+  font-family: sans-serif;
+  color: #125ce0;
 }
 
 .heading {
-  padding-right: 69px;
+  padding-right: 42px;
   font-weight: 300;
   font-size: 3rem;
-  font-family: sans-serif;
+  // font-family: sans-serif;
+  line-height: 1;
 }
 
 @media (max-width: 2560px) {
@@ -136,14 +142,20 @@ li.selected.dot-black {
 
   .w-1\/2 {
       width: 100%;
-      height: 50%;
+      
   }
 
   .w-1\/2.bg-gray-100.p-8 {
       width: 100%;
       height: 100% !important;
-      padding: 10px 20px;
+      padding: 0px 20px;
+      // padding: 0px 16px;
   }
+  .w-1\/2.p-8.bg-black.text-white {
+    height: 100%;
+    width: 100%;
+    padding: 0px 20px;
+}
 
   .swiper-button-prev {
       top: 102px;
@@ -173,36 +185,37 @@ li.selected.dot-black {
 }
 
   .custom-next-arrow-black {
-      bottom: 340px !important;
+    bottom: 398px !important;
   }
 
   .custom-prev-arrow-black {
-    top: 100px !important;
+    top: 43px !important;
   }
 
   .custom-next-arrow-other {
-      bottom: 340px !important;
+    bottom: 398px !important;
   }
 
   .custom-prev-arrow-other {
-    top: 100px !important;
+    top: 43px !important;
   }
 
   .heading {
-      padding-right: 0px !important;
-      font-size: 30px;
-  }
-  .w-1\/2.p-8.bg-black.text-white {
-    padding: 10px 14px;
-  }
-  .banner-button {
-      height: 35px;
-      font-size: 14px;
-      width: 105px;
-      font-weight: bold;
-      border-radius: 0px;
-  }
-
+    /* padding-right: 69px; */
+    font-weight: 300;
+    font-size: 2.375rem;
+    line-height: 1;
+}
+.banner-button {
+  height: 43px;
+  font-size: 1rem;
+  font-family: sans-serif;
+  width: 113px;
+  font-weight: 700;
+  border-radius: 0px;
+  background-color: blue;
+  color: white;
+}
   .carousel.carousel-slider {
       position: relative;
       margin: 0;
@@ -212,6 +225,12 @@ li.selected.dot-black {
     font-size: 14px;
     margin-bottom: 0.5rem;
   }
+  .carousel .slide img {
+    width: 100%;
+    vertical-align: top;
+    border: 0;
+    height: 145px;
+}
 }
 
 @media (min-width: 1536px) {
