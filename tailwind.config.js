@@ -24,7 +24,8 @@ module.exports = {
         HeroNewRegular: ['Hero New Regular'],
         HeroNewSemiBold: ['Hero New SemiBold'],
         HeroNewThin: ['Hero New Thin'],
-        HeroNewUltraLight: ['Hero New UltraLight']
+        HeroNewUltraLight: ['Hero New UltraLight'],
+        SwiperIconns:['swiper-icons']
       },
       padding: {
         'appPaddingLeft': '4.5rem',
