@@ -37,6 +37,11 @@
   src: url('/assests/fonts/Hero New Thin.otf') format('truetype');
 }
 
+@font-face {
+  font-family: 'swiper-icons';
+  src: url('/assests/fonts/swiper-icons.ttf') format('truetype');
+}
+
 body {
   font-family: 'Hero New Light' ;
 }

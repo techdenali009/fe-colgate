@@ -8,9 +8,10 @@ import {
   marketingBannerTwo,
   promotionBannersData,
 } from '@utils/banner';
-import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
+
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 import { products } from '@utils/test';
+import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
 
 export const LandingTemplatePage = () => {
   return (
