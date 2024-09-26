@@ -1,8 +1,8 @@
-
 .carousel.carousel-slider {
   position: relative;
   margin: 0;
 }
+
 .carousel .control-dots {
   position: absolute;
   bottom: 0;
@@ -95,9 +95,10 @@ li.selected.dot-black {
   position: absolute;
   z-index: 1;
 }
-.carousel-subheading{
+
+.carousel-subheading {
   font-size: 1rem;
-  font-weight: 600
+  font-weight: 600;
 }
 
 .bannercontent {
@@ -121,55 +122,53 @@ li.selected.dot-black {
   padding-right: 42px;
   font-weight: 300;
   font-size: 3rem;
-  // font-family: sans-serif;
   line-height: 1;
 }
 
 @media (max-width: 2560px) {
   .container {
-      max-width: 100% !important;
+    max-width: 100% !important;
   }
 }
 
 @media (max-width: 1020px) {
   .container {
-      max-width: 100% !important;
+    max-width: 100% !important;
   }
 
   .flex-row {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .w-1\/2 {
-      width: 100%;
-      
+    width: 100%;
   }
 
   .w-1\/2.bg-gray-100.p-8 {
-      width: 100%;
-      height: 100% !important;
-      padding: 0px 20px;
-      // padding: 0px 16px;
+    width: 100%;
+    height: 100% !important;
+    padding: 0px 20px;
   }
+
   .w-1\/2.p-8.bg-black.text-white {
     height: 100%;
     width: 100%;
     padding: 0px 20px;
-}
+  }
 
   .swiper-button-prev {
-      top: 102px;
+    top: 102px;
   }
 
   .swiper-button-next {
-      bottom: 400px;
+    bottom: 400px;
   }
 
   .bannercontent {
-      font-size: 0rem !important;
-      line-height: 1 !important;
-      text-align: left;
-      padding: 0px !important;
+    font-size: 0rem !important;
+    line-height: 1 !important;
+    text-align: left;
+    padding: 0px !important;
   }
 
   .carousel .control-dots {
@@ -182,7 +181,7 @@ li.selected.dot-black {
     padding-left: 0px;
     bottom: 0% !important;
     align-items: center;
-}
+  }
 
   .custom-next-arrow-black {
     bottom: 398px !important;
@@ -201,40 +200,42 @@ li.selected.dot-black {
   }
 
   .heading {
-    /* padding-right: 69px; */
     font-weight: 300;
     font-size: 2.375rem;
     line-height: 1;
-}
-.banner-button {
-  height: 43px;
-  font-size: 1rem;
-  font-family: sans-serif;
-  width: 113px;
-  font-weight: 700;
-  border-radius: 0px;
-  background-color: blue;
-  color: white;
-}
-  .carousel.carousel-slider {
-      position: relative;
-      margin: 0;
-      // overflow: unset;
   }
-  .carousel-subheading{
+
+  .banner-button {
+    height: 43px;
+    font-size: 1rem;
+    font-family: sans-serif;
+    width: 113px;
+    font-weight: 700;
+    border-radius: 0px;
+    background-color: blue;
+    color: white;
+  }
+
+  .carousel.carousel-slider {
+    position: relative;
+    margin: 0;
+  }
+
+  .carousel-subheading {
     font-size: 14px;
     margin-bottom: 0.5rem;
   }
+
   .carousel .slide img {
     width: 100%;
     vertical-align: top;
     border: 0;
     height: 145px;
-}
+  }
 }
 
 @media (min-width: 1536px) {
   .container {
-      max-width: 100%;
+    max-width: 100%;
   }
 }
