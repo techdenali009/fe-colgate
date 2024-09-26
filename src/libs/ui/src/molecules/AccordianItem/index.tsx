@@ -21,7 +21,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
 
   return (
     <div className={`mb-2 ${containerClassName}`}> {/* Dynamic container classes */}
-      <div className={` p-4 cursor-pointer flex justify-between items-center ${className}`} onClick={() => setIsOpen(!isOpen)}>
+      <div className={`${className} p-4 cursor-pointer flex justify-between items-center `} onClick={() => setIsOpen(!isOpen)}>
         <h3 className={titleClassName}>{title}</h3> {/* Dynamic title classes */}
         <span className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'} w-5 h-5`}>
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
