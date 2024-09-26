@@ -5,48 +5,49 @@ import { links } from '@utils/NavLinksConstants';
 import { Button } from '@ui/atoms/Button';
 
 const NavLinks: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars  
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
-    const handleMouseEnter = (title: string) => {
-        setActiveMenu(title);
-    };
+  const handleMouseEnter = (title: string) => {
+    setActiveMenu(title);
+  };
 
-    const handleMouseLeave = () => {
-        setActiveMenu(null);
-    };
+  const handleMouseLeave = () => {
+    setActiveMenu(null);
+  };
 
-    return (
-        <div className="relative">
-            {/* Hamburger Button */}
-            <Button
-                className="lg:hidden p-2 text-black hover:text-blue-600"
-                onClick={() => setIsOpen(!isOpen)}
+  return (
+    <div className="relative">
+      {/* Hamburger Button */}
+      <Button
+        className="lg:hidden p-2 text-black hover:text-blue-600"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+      </Button>
+
+      {/* Navigation Menu */}
+      {/* Navigation Menu */}
+      <ul
+        className={`fixed top-0 left-0 w-full bg-white lg:static lg:flex lg:gap-[0.6rem] text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        {links.map((link) => (
+          <li
+            key={link.title}
+            className="relative group flex items-center justify-center pt-3 pb-3 pl-4 pr-4 cursor-pointer hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
+            onMouseEnter={() => handleMouseEnter(link.title)}
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* Main navigation label */}
+            <Label
+              className='font-bold relative z-10 text-black group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300 font-normal font-sans'
             >
-                {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-            </Button>
+              {link.title}
+            </Label>
 
-            {/* Navigation Menu */}
-            {/* Navigation Menu */}
-            <ul
-                className={`fixed top-0 left-0 w-full bg-white lg:static lg:flex lg:gap-[0.6rem] text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
-            >
-                {links.map((link) => (
-                    <li
-                        key={link.title}
-                        className="relative group flex items-center justify-center pt-3 pb-3 pl-4 pr-4 cursor-pointer hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
-                        onMouseEnter={() => handleMouseEnter(link.title)}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        {/* Main navigation label */}
-                        <Label
-                            className='font-bold relative z-10 text-black group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300 font-normal font-sans'
-                        >
-                            {link.title}
-                        </Label>
-
-                        {/* Submenu */}
-                        {/* <div
+            {/* Submenu */}
+            {/* <div
                             className={`absolute left-0 w-full top-full bg-white z-[22] ${activeMenu === link.title ? 'block' : 'hidden'} shadow-lg p-4 transition-all duration-300`}
                             onMouseEnter={() => handleMouseEnter(link.title)} // Keep submenu open when hovering
                             onMouseLeave={handleMouseLeave} // Close submenu when leaving
@@ -76,11 +77,11 @@ const NavLinks: React.FC = () => {
                                 </div>
                             </div>
                         </div> */}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default NavLinks;
