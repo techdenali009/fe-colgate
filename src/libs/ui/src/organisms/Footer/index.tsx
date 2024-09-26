@@ -15,30 +15,30 @@ const Footer: React.FC = () => {
     console.log('pageName', pageName, contentType);
   }
   return <footer className="bg-black text-white ">
-    <div className='lg:p-20 !pb-0'>
+    <div className='lg:p-20 !pb-0 !pt-14'>
       {/* Desktop view */}
       <div className='hidden lg:flex xl:flex'>
         <div className=' text-left w-1/4 '>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{SHOP_D}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base font-HeroNewBold'>{SHOP_D}</Label></div>
           <LinkGroup links={shop} className="text-white font-HeroNewLight" onClick={(pageName) => {
             navigate(pageName, 'Shop')
           }} />
 
         </div>
         <div className='text-left w-1/4'>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{LEARN}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base font-HeroNewBold'>{LEARN}</Label></div>
           <LinkGroup links={Learn} className="text-white font-HeroNewLight" onClick={(pageName) => {
             navigate(pageName, 'Learn')
           }} />
         </div>
         <div className='text-left w-1/4'>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{ABOUT}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base font-HeroNewBold'>{ABOUT}</Label></div>
           <LinkGroup links={About} className="text-white font-HeroNewLight" onClick={(pageName) => {
             navigate(pageName, 'About')
           }} />
         </div>
         <div className='text-left w-1/4'>
-          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base'>{CUSTOMER_SERVICE}</Label></div>
+          <div className='mb-5'><Label className='font-bold text-brand-white-100 ps-3 text-base font-HeroNewBold'>{CUSTOMER_SERVICE}</Label></div>
           <LinkGroup links={CustomerService} className="text-white font-HeroNewLight" onClick={(pageName) => {
             navigate(pageName, 'Customer Service')
           }} />

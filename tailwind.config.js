@@ -35,6 +35,13 @@ module.exports = {
        
          backgroundImage: ['hover'], 
       },
+      fontSize:{
+        '33px': '33px',
+        '24px': '24px',
+      },
+      borderradius:{
+    
+    }
     },
   },
   plugins: [],
