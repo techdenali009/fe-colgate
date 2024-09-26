@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonWithText } from "@ui/molecules/ButtonWithText/index";
+import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
 interface ClearAllButtonProps {
   onClearAll: () => void;
 }
