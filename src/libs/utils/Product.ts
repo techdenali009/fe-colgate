@@ -11,10 +11,10 @@ export interface ProductProps {
     product: ProductType;
   }
 
-  export interface PopularProductsProps {
+export interface PopularProductsProps {
     products: ProductType[];
   }
 export interface ProductHeaderProps {
-    handleScroll: (direction: "left" | "right") => void;
+    handleScroll: (direction: 'left' | 'right') => void;
   }
   

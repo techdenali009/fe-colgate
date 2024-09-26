@@ -1,13 +1,12 @@
 
-import { configureStore } from '@reduxjs/toolkit';
-import { PopularProductsEndpoints } from './services/PopularProductEndPoint';
+// import { configureStore } from '@reduxjs/toolkit';
 
-const store = configureStore({
-  reducer: {
-    [PopularProductsEndpoints.reducerPath]: PopularProductsEndpoints.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(PopularProductsEndpoints.middleware), 
-});
+// const store = configureStore({
+//   reducer: {
+//     [PopularProductsEndpoints.reducerPath]: PopularProductsEndpoints.reducer,
+//   },
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware().concat(PopularProductsEndpoints.middleware), 
+// });
 
-export default store;
+// export default store;

@@ -74,7 +74,7 @@ li.selected.dot-black {
   position: absolute;
   bottom: 217px;
   padding: 30px;
-  right: 10px;
+  right: 0px;
 }
 
 .custom-next-arrow-other {
@@ -84,7 +84,7 @@ li.selected.dot-black {
   position: absolute;
   bottom: 217px;
   padding: 30px;
-  right: 10px;
+  right: 0px;
 }
 
 .custom-prev-arrow-other {
@@ -160,10 +160,17 @@ li.selected.dot-black {
       padding: 0px !important;
   }
 
-  .control-dots {
-      padding-left: 0px !important;
-      top: 521px;
-  }
+  .carousel .control-dots {
+    position: absolute;
+    bottom: 0;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    padding-left: 0px;
+    bottom: 0% !important;
+    align-items: center;
+}
 
   .custom-next-arrow-black {
       bottom: 340px !important;
@@ -183,7 +190,7 @@ li.selected.dot-black {
 
   .heading {
       padding-right: 0px !important;
-      font-size: 25px;
+      font-size: 30px;
   }
   .w-1\/2.p-8.bg-black.text-white {
     padding: 10px 14px;

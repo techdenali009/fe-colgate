@@ -1,25 +1,26 @@
 
-import { Button } from "@ui/atoms/Button";
-import PopularImage from "@ui/atoms/PopularImage";
-import StarRating from "@ui/atoms/StarRating";
-import BestSellerBadge from "@ui/molecules/BestSeller";
-import { ProductProps } from "@utils/Product";
+import { Button } from '@ui/atoms/Button';
+import PopularImage from '@ui/atoms/PopularImage';
+import StarRating from '@ui/atoms/StarRating';
+import BestSellerBadge from '@ui/molecules/BestSeller';
+import { ProductProps } from '@utils/Product';
 
 function Product({ product }: ProductProps) {
   const { image, name, isBestSeller, rating } = product;
 
   return (
    
-    <div className="lg:w-[315px]  group p-1 w-60">
+    <div className=" group">
       <div className="relative">
         <PopularImage src={image} alt={name} />
 
         {isBestSeller && (
           <BestSellerBadge
             className={
-              "absolute top-[-4px] left-0 !bg-blue-700 !text-white !font-HeroNewBold w-[100px]  text-xs text-center leading-4 py-0.5 !tracking-wide !rounded-xl"
+              'absolute top-[-4px] left-0 !bg-blue-700 !text-white !font-HeroNewBold w-[100px]  text-xs text-center leading-4 py-0.5 !tracking-wide !rounded-xl'
             }
-          >Best seller</BestSellerBadge>
+          >Best seller
+          </BestSellerBadge>
         )}
       </div>
       <div className="p-0.5">
@@ -39,9 +40,9 @@ function Product({ product }: ProductProps) {
           group-hover:bg-black group-hover:text-white group-hover:underline group-hover:border-white
           hover:bg-black hover:text-white hover:underline hover:border-white   
         "
-        type={"submit"}
+        type={'submit'}
       >
-        {" Log In to Order"}
+        {' Log In to Order'}
       </Button>
     </div>
   );

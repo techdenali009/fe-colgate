@@ -6,7 +6,7 @@ import { Image } from '@ui/atoms/LogoImage/logoimg';
 import { ABOUT, APPOWNER, CUSTOMER_SERVICE, LEARN, OTHERLINKS, SHOP_D, } from '@utils/constants';
 import { About, CustomerService, Learn, OtherLinks, shop } from '@utils/test';
 import AccordionItem from '@ui/molecules/AccordianItem';
-import PCA_LOGO  from "../../../assests/appSvgs/PCA_LOGO.svg";
+import PCA_LOGO from '../../../assests/appSvgs/PCA_LOGO.svg';
 
 
 const Footer: React.FC = () => {
@@ -14,8 +14,7 @@ const Footer: React.FC = () => {
   const navigate = (pageName: string, contentType: string) => {
     console.log('pageName', pageName, contentType);
   }
-  return <footer className="bg-black text-white ">
-    <div className='lg:p-20 !pb-0 !pt-14'>
+  return (<footer className="bg-black text-white ">    <div className='lg:p-20 !pb-0 !pt-14'>
       {/* Desktop view */}
       <div className='hidden lg:flex xl:flex'>
         <div className=' text-left w-1/4 '>
@@ -81,17 +80,20 @@ const Footer: React.FC = () => {
             <LinkGroup links={OtherLinks} className="text-white bg-black" onClick={(pageName) => {
               navigate(pageName, 'otherLinks')
             }} />
-          </AccordionItem>
-          <hr className='px-6 mx-4'></hr>
-        </div>
+            </AccordionItem>
 
-        <div className='lg:hidden sm:text-left py-8 md:text-left px-9'>
-          <Image src={PCA_LOGO } alt={''} className=''></Image>
-          <Paragraph className='pt-4 text-xs'>{APPOWNER}</Paragraph>
+          
+            <hr className='px-6 mx-4'></hr>
+          </div>
+
+          <div className='lg:hidden sm:text-left py-8 md:text-left px-9'>
+            <Image src={PCA_LOGO} alt={''} className=''></Image>
+            <Paragraph className='pt-4 text-xs'>{APPOWNER}</Paragraph>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  )
 };
 
 export default Footer;
