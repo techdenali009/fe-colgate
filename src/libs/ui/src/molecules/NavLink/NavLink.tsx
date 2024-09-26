@@ -7,7 +7,7 @@ import { links } from '@utils/NavLinksConstants';
 
 const NavLinks: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeMenu,setActiveMenu] = useState<string | null>(null);
+    const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
     const handleMouseEnter = (title: string) => {
         setActiveMenu(title);
@@ -27,6 +27,7 @@ const NavLinks: React.FC = () => {
                 {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
             </button>
 
+            {/* Navigation Menu */}
             {/* Navigation Menu */}
             <ul
                 className={`fixed top-0 left-0 w-full bg-white lg:static lg:flex lg:gap-[0.6rem] text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
@@ -81,8 +82,6 @@ const NavLinks: React.FC = () => {
                             </div>
 
                         </div>
-
-
                     </li>
 
                 ))}
@@ -90,7 +89,6 @@ const NavLinks: React.FC = () => {
 
 
         </div>
-
     );
 };
 

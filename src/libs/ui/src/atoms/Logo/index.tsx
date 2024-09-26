@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../../assests/Logo.svg"; // Adjust path according to your file structure
+import logo from '../../../assests/Logo.svg'; // Adjust path according to your file structure
 // Adjust the relative path based on your file structure
 // import './logo.scss'
 

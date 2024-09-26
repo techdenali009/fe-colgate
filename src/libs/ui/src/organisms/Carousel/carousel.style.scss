@@ -1,3 +1,9 @@
+
+.carousel.carousel-slider {
+  position: relative;
+  margin: 0;
+  // overflow: unset;
+}
 .carousel .control-dots {
   position: absolute;
   bottom: 0;
@@ -55,9 +61,9 @@ li.selected.dot-black {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-before.6460f699.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  top: 277px;
+  top: 220px;
   padding: 30px;
-  position: relative;
+  position: absolute;
   z-index: 1;
 }
 
@@ -65,29 +71,29 @@ li.selected.dot-black {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-next.dd06af0f.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  float: right;
-  position: relative;
-  bottom: 281px;
+  position: absolute;
+  bottom: 217px;
   padding: 30px;
+  right: 0px;
 }
 
 .custom-next-arrow-other {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-next-darkblue.b32edc63.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  float: right;
-  position: relative;
-  bottom: 281px;
+  position: absolute;
+  bottom: 217px;
   padding: 30px;
+  right: 0px;
 }
 
 .custom-prev-arrow-other {
   background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-before-blue.feeeb49c.svg);
   background-position: 50%;
   background-repeat: no-repeat;
-  top: 277px;
+  top: 220px;
   padding: 30px;
-  position: relative;
+  position: absolute;
   z-index: 1;
 }
 
@@ -95,7 +101,7 @@ li.selected.dot-black {
   font-size: 3rem !important;
   line-height: 1 !important;
   text-align: left;
-  padding: 80px 40px 0px 34px;
+  padding: 25px 40px 0px 34px;
 }
 
 .banner-button {
@@ -154,30 +160,37 @@ li.selected.dot-black {
       padding: 0px !important;
   }
 
-  .control-dots {
-      padding-left: 0px !important;
-      top: 521px;
-  }
+  .carousel .control-dots {
+    position: absolute;
+    bottom: 0;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    padding-left: 0px;
+    bottom: 0% !important;
+    align-items: center;
+}
 
   .custom-next-arrow-black {
-      bottom: 399px !important;
+      bottom: 340px !important;
   }
 
   .custom-prev-arrow-black {
-      top: 159px !important;
+    top: 100px !important;
   }
 
   .custom-next-arrow-other {
-      bottom: 399px !important;
+      bottom: 340px !important;
   }
 
   .custom-prev-arrow-other {
-      top: 159px !important;
+    top: 100px !important;
   }
 
   .heading {
       padding-right: 0px !important;
-      font-size: 25px;
+      font-size: 30px;
   }
   .w-1\/2.p-8.bg-black.text-white {
     padding: 10px 14px;
@@ -193,7 +206,7 @@ li.selected.dot-black {
   .carousel.carousel-slider {
       position: relative;
       margin: 0;
-      overflow: unset;
+      // overflow: unset;
   }
   .carousel-subheading{
     font-size: 14px;

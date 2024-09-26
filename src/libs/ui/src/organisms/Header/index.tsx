@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '@ui/atoms/Logo';
 import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon/index';
-import searchIcon from "../../../assests/searchIcon.svg";
-import profile from "../../../assests/profile.svg";
-import cart from "../../../assests/cart.svg";
+import searchIcon from '../../../assests/searchIcon.svg';
+import profile from '../../../assests/profile.svg';
+import cart from '../../../assests/cart.svg';
 import { Icon } from '@ui/atoms/Icons';
 import NavLinks from '@ui/molecules/NavLink/NavLink';
 import Popover from '@ui/molecules/Popover/Popover';
@@ -58,9 +58,6 @@ const Header: React.FC = () => {
             <Icon icon={profile} className='text-black' />
           </ButtonWithIcon>
         </div>
-
-      
-       
       </header>
     </>
   );
