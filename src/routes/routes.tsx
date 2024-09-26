@@ -1,5 +1,5 @@
 import RegisterPage from "@pages/RegisterPage";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // Main Module
@@ -36,7 +36,7 @@ export const AppRoutes = () => {
                    <Route  path="product/:id" element={<ProductsDetails/>}></Route>
                 </Route> */}
 
-                <Route path="/test" element={<TestPage />}></Route>
+                <Route path="/test" element={<Suspense><TestPage /></Suspense> }></Route>
             
              </Route>
         </Routes>

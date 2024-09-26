@@ -29,13 +29,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
     };
   }, []);
 
-  const modalHeightClass = currentForm === 'forgotPassword' || currentForm === 'alreadyRegistered' ? 'h-[420px]' : 'h-40.6rem'; // Adjust height
+  const modalHeightClass = currentForm === 'forgotPassword' || currentForm === 'alreadyRegistered' ? 'h-[420px]' : 'h-auto'; // Adjust height
 
   return (
     <Modal
       show={true}
       onClose={closeModal}
-      className={`!w-40rem ${modalHeightClass}`} // Apply dynamic class for height
+      className={`!pl-6 !pr-6 !w-40rem ${modalHeightClass}`} // Apply dynamic class for height
     >
       <ModalHeader 
         onClose={closeModal} 

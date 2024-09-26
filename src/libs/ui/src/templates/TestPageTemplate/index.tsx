@@ -11,7 +11,6 @@ import Popover from '@ui/molecules/Popover/Popover';
 import LoginModal from '@ui/organisms/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import { LoginForm } from '@utils/Login';
-import { Searchbar } from '@ui/organisms/Searchbar';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { LabelButton } from '@ui/molecules/LabelButton';
 import GreetRegister from '@ui/organisms/GreetingRegister';
@@ -204,7 +203,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ onSubmit }) => {
             </div>
 
             <div>
-                <Searchbar submitLabel="search" onSubmit={searchUsers}></Searchbar>
                 
                  <PrimaryButton onClick={modalSetToggle}>Login</PrimaryButton>
                 {toggle && <LoginModal closeModal={modalSetToggle} /> } 
