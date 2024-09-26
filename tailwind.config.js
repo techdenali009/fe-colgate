@@ -35,7 +35,7 @@ module.exports = {
     variants: {
       extend: {
        
-         backgroundImage: ['hover'], 
+        backgroundImage: ['hover'], 
       },
       fontSize:{
         '33px': '33px',
@@ -43,7 +43,7 @@ module.exports = {
       },
       borderradius:{
     
-    }
+      }
     },
   },
   plugins: [],

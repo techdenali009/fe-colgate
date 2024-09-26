@@ -1,8 +1,8 @@
-import { CreateAccountButton } from "@ui/atoms/CreateAccountButton";
-import { Heading } from "@ui/atoms/Heading";
-import Paragraph from "@ui/atoms/Paragraph/paragraph";
-import { CREATEACCOUNT, WELCOMEGREETPARA, WELCOMEMSG } from "@utils/constants";
-import WelcomeAlreadyRegistered from "@ui/molecules/WelcomeRegister";
+import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
+import { Heading } from '@ui/atoms/Heading';
+import Paragraph from '@ui/atoms/Paragraph/paragraph';
+import { CREATEACCOUNT, WELCOMEGREETPARA, WELCOMEMSG } from '@utils/constants';
+import WelcomeAlreadyRegistered from '@ui/molecules/WelcomeRegister';
 
 
 
@@ -19,10 +19,11 @@ const GreetRegister: React.FC = () => (
     <div className="basis-1/2  pt-6 lg:pt-0">
       <WelcomeAlreadyRegistered
         onSubmit={function (): void {
-          throw new Error("Function not implemented.");
+          throw new Error('Function not implemented.');
         }}
-        setIsForgotPassword={function (value: boolean): void {
-          throw new Error("Function not implemented.");
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        setIsForgotPassword={function (): void {
+          throw new Error('Function not implemented.');
         }}
       />
     </div>
