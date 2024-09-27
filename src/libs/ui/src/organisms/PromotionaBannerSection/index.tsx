@@ -2,8 +2,8 @@ import { promotionBannerText } from '@utils/banner';
 import { PromotionBannerList } from '../PromotionBannerList';
 import { SecondaryButton } from '@ui/molecules/SecondaryButton';
 import { PromotionBannerText } from '../PromotionaBnnarText';
-import { AppAssets } from '@utils/constants';
-
+import arrowIcon from 'src/libs/ui/assests/Arrow-right-blue.495910aa.svg';
+import hoverArrowIcon from 'src/libs/ui/assests/Arrow-right.8d33ac71.svg';
 
 interface PromotionBannerSectionProps {
   banners: Array<{ heading: string; subtext: string; imageUrl: string }>;
@@ -19,19 +19,19 @@ export const PromotionBannerSection: React.FC<PromotionBannerSectionProps> = ({ 
       <div className="flex justify-center lg:pt-4 ">
         <SecondaryButton
           onClick={() => console.log('Button clicked!')}
-          className="flex font-HeroNewBold  hover:underline  items-center justify-center text-[#125ce0] border border-[#125ee0] font-bold px-6 py-2.5 hover:!bg-black hover:border-transparent group" 
+          className="flex font-HeroNewBold hover:underline items-center !m-0 justify-center !text-[#125ce0] border !border-[#125ee0] font-bold px-6 py-2.5 hover:!bg-black hover:!border-transparent group hover:!text-white" 
         >
           Learn More
           <div className="ml-2 flex items-center relative w-4 h-4">
 
             <img
-              src={`${AppAssets}/Arrow-right-blue.495910aa.svg`}
+              src={arrowIcon}
               alt="Arrow icon"
               className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0" 
             />
 
             <img
-              src={`${AppAssets}/Arrow-right.8d33ac71.svg`}
+              src={hoverArrowIcon}
               alt="Arrow hover icon"
               className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100" 
             />
