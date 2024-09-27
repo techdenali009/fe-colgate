@@ -36,9 +36,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   //   // onSubmit((e.target as HTMLFormElement)[0].value);
   // };
   // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-  const handleRatingChange = (newRating: number) => {
-    console.log('New Rating:', newRating);
-  }
+  // const handleRatingChange = (newRating: number) => {
+  //   console.log('New Rating:', newRating);
+  // }
 
 
   const handleMouseLeave = () => {
@@ -60,9 +60,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     setIsPopoverVisible(button);
   };
   // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-  function searchUsers(value: string): void {
-    throw new Error('Function not implemented.');
-  }
+  // function searchUsers(value: string): void {
+  //   throw new Error('Function not implemented.');
+  // }
   const price = 1234.567;
   // Remove individual filter
   const removeFilter = (filterToRemove: string) => {
