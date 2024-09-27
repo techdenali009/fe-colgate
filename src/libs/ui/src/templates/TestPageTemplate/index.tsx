@@ -17,16 +17,31 @@ import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import Currency from '@ui/molecules/Currency/Currency';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
+import PageTitleHeader from '@ui/molecules/PageTitleHeader';
+import BusinessCard from '@ui/molecules/BussinessCard';
+import BusinessCardSkeleton from '@ui/molecules/BussinessCardSkeleton';
+import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
+
 
 interface ISearchbar {
-    submitLabel: string;
-    onSubmit: (value: string) => void;
+  submitLabel: string;
+  onSubmit: (value: string) => void;
 }
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
+
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'All Products', href: '/products' },
+    { label: 'peels' }
+  ];
+
+  const handleButtonClick = () => {
+    console.log('Learn more clicked!');
+  };
 
   const handleMouseEnter = (button: string) => {
     setIsPopoverVisible(button);
@@ -62,12 +77,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <ButtonWithTextAndIcon />
           <ButtonWithIcon>test</ButtonWithIcon>
           <LabelButton>label</LabelButton>
+          <ButtonWithText>Button with text</ButtonWithText>
         </div>
 
         {/* Checkbox Section */}
         <div className="flex m-10 justify-center bg-slate-300 text-blue-700">
           <Checkbox checked={isChecked} onChange={handleCheckboxChange}>
-                        I agree to the terms and conditions
+            I agree to the terms and conditions
           </Checkbox>
         </div>
       </form>
@@ -83,7 +99,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                        Popover Button 1
+            Popover Button 1
           </button>
           {isPopoverVisible === 'button1' && (
             <div>
@@ -102,7 +118,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                        Hover Me
+            Hover Me
           </button>
           {isPopoverVisible === 'button2' && (
             <div>
@@ -119,16 +135,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10">
         <h1 className="text-slate-950 text-3xl mb-5">Product Prices</h1>
         <p>
-                    Price in USD: <Currency className="text-blue-900" value={price} currency="USD">(including tax)</Currency>
+          Price in USD: <Currency className="text-blue-900" value={price} currency="USD">(including tax)</Currency>
         </p>
         <p>
-                    Price in EUR: <Currency className="text-amber-600" value={price} currency="EUR">(excluding VAT)</Currency>
+          Price in EUR: <Currency className="text-amber-600" value={price} currency="EUR">(excluding VAT)</Currency>
         </p>
         <p>
-                    Price in JPY: <Currency className="text-red-950" value={price} currency="JPY">(no decimals)</Currency>
+          Price in JPY: <Currency className="text-red-950" value={price} currency="JPY">(no decimals)</Currency>
         </p>
         <p>
-                    Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+          Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
         </p>
       </div>
 
@@ -142,7 +158,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="mb-4">
-                Rating Component:
+        Rating Component:
         <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
       </div>
 
@@ -194,6 +210,25 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
       />
+
+      <div className="p-8">
+        <PageTitleHeader breadcrumbs={breadcrumbs}>
+        </PageTitleHeader>
+      </div>
+
+      <div className="flex justify-center mt-10">
+      <BusinessCard
+        imageSrc="https://example.com/enhanced-merchandising.jpg"
+        title="Enhanced Merchandising"
+        description="Merchandising is a key part of any successful business. It promotes a positive customer experience to drive sales."
+        buttonText="Learn More"
+        onButtonClick={handleButtonClick}
+      />
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      <BusinessCardSkeleton />
+    </div>
     </>
   );
 };
