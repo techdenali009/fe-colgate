@@ -35,17 +35,17 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         {/* Email Input */}
-        <div className="mb-3 inline-grid">
+        <div className="inline-grid">
           <div className='flex text-xs' >
-            <Label className="mb-3 mt-1 text-xs font-HeroNewUltraLight">Email</Label>
+            <Label className="text-xs font-HeroNewUltraLight">Email</Label>
 
-            <Label className="mb-3 ml-0 text-sm font-heroNewLight,font-sans text-red-600"> *</Label>
+            <Label className="ml-0 text-sm font-heroNewLight,font-sans text-red-600"> *</Label>
           </div>
 
           <Controller
             render={({ field }) =>
               <InputField
-                className={`rounded-none p-3 text-base border-[1px] ${errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-slate-200'
+                className={`rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 h-[48px] text-base border-[1px] ${errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                   } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 type="email"
                 placeholder="Email *" {...field}
@@ -66,14 +66,14 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
         {/* Password Input with Visibility Toggle */}
         <div className="inline-grid">
           <div className='flex text-xs'>
-            <Label className="mb-3 mt-4 text-xs text-black font-HeroNewUltraLight">Password</Label>
+            <Label className="text-xs text-black font-HeroNewUltraLight">Password</Label>
 
-            <Label className="mt-3 text-sm font-heroNewLight,font-sans text-red-600"> *</Label>
+            <Label className="text-sm font-heroNewLight,font-sans text-red-600"> *</Label>
           </div>
           <Controller
             render={({ field }) =>
               <PasswordFeild
-                className={`rounded-none p-3 text-base border-[1px] ${errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-slate-200'
+                className={`rounded-none mt-3 mb-[13px]  pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] ${errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                   } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 type={showPassword ? 'text' : 'password'} // Password visibility toggle
                 placeholder="Password *"
@@ -109,9 +109,9 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
         <Button
           onClick={() => setIsForgotPassword(true)}
           type={undefined}
-          className="mt-2 p-0 text-start"
+          className="mt-0 p-0 text-start"
         >
-          <span className='bg-none text-blue-700 text-sm font-HeroNewRegular hover:font-semibold'>Forgot Password?</span>
+          <span className='bg-none text-blue-700 text-sm font-HeroNewRegular hover:font-semibold'>Forgot password?</span>
         </Button>
 
         <div className="flex justify-between items-center w-full">
@@ -119,7 +119,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
 
           <Button
             type="submit"
-            className="bg-blue-600 text-white p-3 m-1 mt-8 mb-10 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
+            className="bg-blue-600 w-[75px] h-[48px] text-white p-3 m-1 mt-8 mb-10 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
           >
             Log in
           </Button>

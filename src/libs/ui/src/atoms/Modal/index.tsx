@@ -1,35 +1,39 @@
 // src/components/atoms/Modal/Modal.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactDom from 'react-dom';
 import './modal.styles.css'
 
 
 interface ModalProps {
-  show: boolean;
   onClose: () => void;
-  children : React.ReactNode;
-  className ?: string
+  children: React.ReactNode;
+  className?: string
 }
 
-const Modal: React.FC<ModalProps> = ({ show,children,className }) => {
-  const [isLoginClicked, setIsLoginClicked] = useState(false);
-
-  // Function to handle the login button click
-  const handleLoginClick = () => {
-    setIsLoginClicked(true);
-  };
-
-  if (!show) return null;
-
-  return (
+const Modal: React.FC<ModalProps> = ({ children, className }) => {
+ 
+  // useEffect(() => {
+  //   const root = document.getElementById('appBody')!;
+    
+  //   if (root) {
+  //     root.classList.add('overflow-hidden');
+  //   }
+  
+  //   return () => {
+      
+  //       root.classList.remove('overflow-scroll');
+    
+  //   };
+  // }, []);
+  return ReactDom.createPortal(
     <div className="modal-overlay bg-overlayBackground-100 z-50 h-full w-full fixed top-[0%] flex items-center transition-[hidden]  justify-center overflow-auto">
       <div
-        className={`${
-          isLoginClicked ? 'h-[40.6rem]' : 'h-auto'
-        }  w-[40.6rem] max-md:w-[18.6rem] bg-brand-white-100 relative overflow-y-auto !mt-3 ${className}`}
+        className={`h-auto w-[40.6rem] max-md:w-[18.6rem] bg-brand-white-100 relative overflow-y-auto !mt-3 ${className}`}
       >
         {children}
       </div>
-    </div>
+    </div>,
+    document.getElementById('appModal')!
   );
 };
 

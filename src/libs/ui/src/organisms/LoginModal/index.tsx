@@ -3,7 +3,7 @@ import Modal from '@ui/atoms/Modal';
 import ModalHeader from '@ui/atoms/ModalHeader';
 import ModalBody from '@ui/atoms/ModalBody';
 import LoginForm from '@ui/organisms/LoginForm';
-import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
+import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
 import AlreadyRegistered from '@ui/organisms/AlreadyRegisteredForm';
 
 interface LoginModalProps {
@@ -23,17 +23,19 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
   };
 
   // Reset form when modal closes
-  useEffect(() => {
-    return () => {
-      clearModel();
-    };
-  }, []);
+  // useEffect(() => {
+  //   console.log("hitteddd");
+  //   return () => {
+  //     console.log("hitteddd 22");
+  //     clearModel();
+
+  //   };
+  // }, []);
 
   const modalHeightClass = currentForm === 'forgotPassword' || currentForm === 'alreadyRegistered' ? 'h-[420px]' : 'h-auto'; // Adjust height
 
   return (
     <Modal
-      show={true}
       onClose={closeModal}
       className={`!pl-6 !pr-6 !w-40rem ${modalHeightClass}`} // Apply dynamic class for height
     >

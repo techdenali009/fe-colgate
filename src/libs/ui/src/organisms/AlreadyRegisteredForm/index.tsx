@@ -38,8 +38,8 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
           <Controller
             render={({ field }) =>
               <InputField
-                className={`rounded-none mb-2 p-3 text-base border-[1px] ${
-                  errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-slate-200'
+                className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] ${
+                  errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                 } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`} // Conditional outline
                 type="email"
                 placeholder="Email *"
@@ -61,8 +61,8 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
           <Controller
             render={({ field }) =>
               <PasswordFeild
-                className={`rounded-none p-3  text-base border-[1px] ${
-                  errors[LoginFormEnum.Password] ? 'border-[#595959]' : 'border-slate-200'
+                className={`rounded-none h-[48px] pt-1 pl-4 pb-1 pr-4  text-base border-[1px] ${
+                  errors[LoginFormEnum.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                 } ${isSubmitted && errors[LoginFormEnum.Password] ? 'focus:outline-blue-700' : 'focus:outline-none'}`} // Conditional outline
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password *"
