@@ -32,15 +32,14 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onSubmit, setIs
           <Label className="mt-1 ml-0 text-s font-HeroNewRegular text-red-600"> *</Label>
         </div>
         <Controller
-          render={({ field }) =>
+          render={() =>
             <InputField
               type="email"
               placeholder=""
               className={`rounded-none p-3 !mt-3 !mb-6 text-base border-[1px] ${
                 errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
               } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
-            />
-          }
+            />}
           control={control}
           {...register('email', { required: LoginForm.Message })}
         />

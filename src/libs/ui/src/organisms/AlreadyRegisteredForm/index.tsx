@@ -44,8 +44,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
                 type="email"
                 placeholder="Email *"
                 {...field}
-              />
-            }
+              />}
             control={control}
             {...register(LoginFormEnum.Email, { required: LoginForm.Message })}
           />
@@ -82,8 +81,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
                     </button>
                   )
                 )}
-              />
-            }
+              />}
             control={control}
             {...register(LoginFormEnum.Password, { required: LoginForm.Message })}
           />

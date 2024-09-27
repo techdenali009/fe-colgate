@@ -1,6 +1,6 @@
 // Login Form
 export const LoginForm = {
-    Email: 'email' as 'email',
-    Password: 'password' as 'password',
-    Message: 'This field is required',
+  Email: 'email' as const,
+  Password: 'password' as const,
+  Message: 'This field is required',
 }

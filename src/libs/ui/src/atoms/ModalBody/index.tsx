@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface modalBodyProps {
     title: string
@@ -7,12 +7,12 @@ interface modalBodyProps {
     
 }
 
-const ModalBody: React.FC<modalBodyProps> = ({title,children, className='' }) => {
-    return(
-        <div className={`modal-body screenset-wrapper p-0 !pt-8 false !pb-0 mt-[50px] ${className}`}>
-            {children}
-        </div>
-    )
+const ModalBody: React.FC<modalBodyProps> = ({children, className='' }) => {
+  return(
+    <div className={`modal-body screenset-wrapper p-0 !pt-8 false !pb-0 mt-[50px] ${className}`}>
+      {children}
+    </div>
+  )
 }
 
 export default ModalBody;

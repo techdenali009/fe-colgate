@@ -46,11 +46,10 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
             render={({ field }) =>
               <InputField
                 className={`rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 h-[48px] text-base border-[1px] ${errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
-                  } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 type="email"
                 placeholder="Email *" {...field}
-              />
-            }
+              />}
             control={control}
             {...register(LoginFormEnum.Email, { required: LoginForm.Message })}
 
@@ -74,7 +73,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
             render={({ field }) =>
               <PasswordFeild
                 className={`rounded-none mt-3 mb-[13px]  pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] ${errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
-                  } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 type={showPassword ? 'text' : 'password'} // Password visibility toggle
                 placeholder="Password *"
                 {...field}
@@ -93,8 +92,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
                     </button>
                   )
                 )}
-              />
-            }
+              />}
             control={control}
             {...register(LoginFormEnum.Password, { required: LoginForm.Message })}
           />

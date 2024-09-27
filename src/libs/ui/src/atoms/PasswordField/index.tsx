@@ -4,6 +4,7 @@ interface FormFieldProps {
   type: string;
   placeholder: string;
   className?: string;
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   [x: string]: any; // For spreading other props
   suffix?: React.ReactNode; // Prop for suffix (like the Show/Hide button)
 }

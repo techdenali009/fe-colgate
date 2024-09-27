@@ -1,5 +1,5 @@
 // src/components/atoms/Modal/Modal.tsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
 import './modal.styles.css'
 

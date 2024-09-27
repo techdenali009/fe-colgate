@@ -22,15 +22,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
     setCurrentForm('login'); // Reset to login form on modal close
   };
 
-  // Reset form when modal closes
-  // useEffect(() => {
-  //   console.log("hitteddd");
-  //   return () => {
-  //     console.log("hitteddd 22");
-  //     clearModel();
+  //Reset form when modal closes
+  useEffect(() => {
+    console.log("hitted");
+    return () => {
+      clearModel();
 
-  //   };
-  // }, []);
+    };
+  }, []);
 
   const modalHeightClass = currentForm === 'forgotPassword' || currentForm === 'alreadyRegistered' ? 'h-[420px]' : 'h-auto'; // Adjust height
 

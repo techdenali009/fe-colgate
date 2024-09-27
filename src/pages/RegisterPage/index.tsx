@@ -1,6 +1,6 @@
-import { RegisterTemplatePage } from "@ui/templates/RegisterPage"
+import { RegisterTemplatePage } from '@ui/templates/RegisterPage'
 
 
 export default function RegisterPage() {
-    return <RegisterTemplatePage></RegisterTemplatePage>
+  return <RegisterTemplatePage></RegisterTemplatePage>
 }

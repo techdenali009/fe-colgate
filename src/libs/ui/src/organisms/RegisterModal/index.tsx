@@ -9,7 +9,7 @@ import { InputField } from '@ui/molecules/FormField';
 import ValidationModal from '@ui/molecules/VaidationModal';
 import { LoginForm } from '@utils/Login';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle } from 'react-icons/fa';
 
 interface FormValues {
   firstName: string;
@@ -24,7 +24,7 @@ const RegisterForm: React.FC = () => {
   const { handleSubmit, control, clearErrors, formState: { errors, isSubmitted }, watch } = useForm<FormValues>({
     mode: 'onChange',
   });
-  const watchEmail = watch('email'); // Watch the email field value
+  
   const watchFirstName = watch('firstName'); // Similarly for first name
   const watchLasttName = watch('lastName');
 
@@ -94,7 +94,7 @@ const RegisterForm: React.FC = () => {
                 placeholder=""
                 {...field}
                 className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 text-base border-[1px] w-full ${errors.email ? 'border-[#595959]' : 'border-slate-200'
-                  } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
               />
 
             )}
@@ -120,7 +120,7 @@ const RegisterForm: React.FC = () => {
                   placeholder="First Name *"
                   {...field}
                   className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'
-                    } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                  } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 />
                 {/* Conditionally render the checkmark icon */}
                 {watchFirstName && (
@@ -204,7 +204,7 @@ const RegisterForm: React.FC = () => {
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password*"
                   {...field}
-                  onClick={handleFocus}  // Open the modal on focus
+                  onClick= {handleFocus}  // Open the modal on focus
                   onBlur={handleBlur}  // Close the modal on blur
                   onChange={(e: any) => {
                     field.onChange(e); // Call react-hook-form's onChange
@@ -286,34 +286,34 @@ const RegisterForm: React.FC = () => {
 
         </div>
        
-          <Checkbox
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-            className='text-left text-[#333333] font-HeroNewLight text-xs pt-[11px] pb-6 !leading-6  '
-          >
-            <label>Please send me exclusive offers and updates from PCA SKIN. You have the freedom to unsubscribe whenever you wish.</label>
+        <Checkbox
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+          className='text-left text-[#333333] font-HeroNewLight text-xs pt-[11px] pb-6 !leading-6  '
+        >
+          <label>Please send me exclusive offers and updates from PCA SKIN. You have the freedom to unsubscribe whenever you wish.</label>
 
-          </Checkbox>
+        </Checkbox>
 
-          <Checkbox
-            checked={checkPolicy}
-            onChange={handlePolicyCheckbox}
-            className={`text-left !m-0 font-HeroNewLight text-[#333333] text-xs pt-[11px] pb-6 !leading-6 rounded-none h-12 p-0  border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-none'}
+        <Checkbox
+          checked={checkPolicy}
+          onChange={handlePolicyCheckbox}
+          className={`text-left !m-0 font-HeroNewLight text-[#333333] text-xs pt-[11px] pb-6 !leading-6 rounded-none h-12 p-0  border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-none'}
             ${isSubmitted && (errors[LoginForm.Email] || !checkPolicy) ? 'focus:outline-blue-700 border-[#595959]' : 'focus:outline-none'}`}
+        >
+          <label>Kindly explore our <a className='text-[#125ce0] text-sm font-HeroNewRegular'>privacy policy</a> to understand how we utilize your information.<span className='text-red-700'>*</span> </label>
+        </Checkbox>
+
+        <div className="flex justify-between items-center w-full">
+          <div className="flex-grow" /> {/* This empty div takes up space to push the login button to the right */}
+
+          <Button
+            type="submit"
+            className="bg-blue-600 text-white p-3 m-1 mt-10px text-sm hover:bg-black hover:underline font-HeroNewSemiBold"
           >
-            <label>Kindly explore our <a className='text-[#125ce0] text-sm font-HeroNewRegular'>privacy policy</a> to understand how we utilize your information.<span className='text-red-700'>*</span> </label>
-          </Checkbox>
-
-          <div className="flex justify-between items-center w-full">
-            <div className="flex-grow" /> {/* This empty div takes up space to push the login button to the right */}
-
-            <Button
-              type="submit"
-              className="bg-blue-600 text-white p-3 m-1 mt-10px text-sm hover:bg-black hover:underline font-HeroNewSemiBold"
-            >
               Create Account
-            </Button>
-          </div>
+          </Button>
+        </div>
        
       </form>
     </div>

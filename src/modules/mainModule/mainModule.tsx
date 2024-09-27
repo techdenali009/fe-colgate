@@ -9,7 +9,7 @@ export default function MainModule() {
   return (
     <>
       {/* Header */}
-       <div>
+      <div>
         <TopHeader></TopHeader>
         <Header></Header>
       </div>
