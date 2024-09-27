@@ -81,9 +81,9 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
                 <Popover className='float-left right-[0px] w-[371px] pt-3 pb-3 boxshadow'>
                   <h2 className='p-4 h-[128px] text-tertiary-400 tracking-wider font-bold text-base  leading-24 w-full mt-6 font-HeroNewRegular'>If you have a professional account, please login. If you would like to establish a professional account please click Create Account.</h2>
                   <div className='pop_up p-4 m-1 flex gap-[4]'>
-                    <PrimaryButton className='font-HeroNewRegular' onClick={modalSetToggle}>Login</PrimaryButton>
+                    <PrimaryButton className='w-[148px] font-HeroNewBold text-sm' onClick={modalSetToggle}>Login In</PrimaryButton>
                     {/* <PrimaryButton className='w-[148px] font-bold text-base font-hero-new-bold text-sm font-HeroNewBold' ><h2>Register Now</h2></PrimaryButton> */}
-                    <PrimaryButton  className='font-HeroNewRegular' onClick={handleRegisterClick}>Register</PrimaryButton>
+                    <PrimaryButton  className='w-[148px] font-HeroNewBold text-sm' onClick={handleRegisterClick}>Register Now</PrimaryButton>
                   </div>
                 </Popover>
               )}
