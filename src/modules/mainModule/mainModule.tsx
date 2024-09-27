@@ -36,7 +36,8 @@ export default function MainModule() {
 
       {toggle && <LoginModal closeModal={()=>{
         SetToggle(false)
-      }}></LoginModal>}
+      }}>
+      </LoginModal>}
        
     </>
   );

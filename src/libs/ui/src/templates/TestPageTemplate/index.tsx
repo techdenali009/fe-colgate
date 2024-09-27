@@ -35,7 +35,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   //   e.preventDefault();
   //   // onSubmit((e.target as HTMLFormElement)[0].value);
   // };
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+   
   // const handleRatingChange = (newRating: number) => {
   //   console.log('New Rating:', newRating);
   // }
@@ -59,7 +59,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const handleMouseEnter = (button: string) => {
     setIsPopoverVisible(button);
   };
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+   
   // function searchUsers(value: string): void {
   //   throw new Error('Function not implemented.');
   // }
