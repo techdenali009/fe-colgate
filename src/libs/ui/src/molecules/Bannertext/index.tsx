@@ -14,7 +14,7 @@ export const BannerText: React.FC<BannerTextProps> = ({ heading, subheadingText 
         {heading}
       </Heading>
       <div className="mt-6 mb-6 ">
-        <Subheading className="font-HeroNewRegular font-light text-sm leading-6 line-clamp-3 overflow-hidden text-ellipsis ">
+        <Subheading className="font-HeroNewRegular font-light text-sm line-clamp-3 overflow-hidden text-ellipsis ">
           {subheadingText}
         </Subheading>    
       </div>
