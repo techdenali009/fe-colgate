@@ -11,6 +11,8 @@ import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import './header.styles.scss';
 import SubMenu from '@ui/molecules/NavLink/SubMenu';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const Header: React.FC = () => {
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
@@ -23,6 +25,8 @@ const Header: React.FC = () => {
     setIsFixed(window.scrollY > 0);
   };
 
+
+  
   const handleNavLinkActive = (isActive: boolean, data: any) => {
     setIsNavActive(isActive);
     setSubmenuData(data);
