@@ -4,6 +4,7 @@ import { Button } from '@ui/atoms/Button';
 import { InputField } from '@ui/molecules/FormField';
 import { LoginForm } from '@utils/Login';
 import { PasswordFeild } from '@ui/atoms/PasswordFeild';
+import { FORGOTPASSWORD, LOGIN } from '@utils/constants';
 
 interface FormValues {
   email: string;
@@ -17,7 +18,7 @@ interface LoginFormProps {
   className?: string;
 }
 
-const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword}) => {
+const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword }) => {
   const [showPassword, setShowPassword] = useState(false); // State to control password visibility
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true); // To track if the password field is empty
 
@@ -32,49 +33,51 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
 
   return (
     <>
-      <div className=''>
+      <div className='' >
         <div className="">
-          <p className="text-2xl font-HeroNewRegular pt-1">Already registered?</p>
+          <p className="text-2xl
+            font-HeroNewRegular pt-1">Already Registered?
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:flex-row gap-2">
+        <form onSubmit={handleSubmit(onSubmit)} className=" flex flex-col lg:flex   ">
           {/* Email Input */}
-          <div className="flex flex-col lg:flex-row gap-2 w-full">
-            <div className="flex-1">
+          <div className='flex flex-col lg:grid grid-cols-2 gap-2'>
+            <div className="inline-grid">
               <Controller
-                render={({ field }) => (
+                render={({ field }) =>
                   <InputField
-                    className="rounded-none p-3 text-base border-[1px] border-[#d6d6d6] mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight focus:outline-none"
+                    className="rounded-none p-3 text-base border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight focus:outline-none lg:px-4 "
                     type="email"
                     placeholder="Email *"
                     {...field}
                   />
-                )}
+                  // eslint-disable-next-line  react/jsx-curly-newline
+                }
                 control={control}
                 {...register(LoginForm.Email, { required: 'This field is required' })}
               />
               {errors[LoginForm.Email] && (
-                <span style={{ color: '#ce4635' }} className="text-base font-HeroNewBold mb-3">
+                <span style={{ color: '#ce4635' }} className="text-normal font-bold mb-3">
                   {errors[LoginForm.Email]?.message}
                 </span>
               )}
             </div>
 
             {/* Password Input with Visibility Toggle */}
-            <div className="flex-1">
+            <div className="inline-grid">
               <Controller
-                render={({ field }) => (
+                render={({ field }) =>
                   <PasswordFeild
-                    className="rounded-none p-3 text-base text-neutral-200 border-[1px] border-[#d6d6d6] mt-3 mb-6 placeholder-slate-700 focus:outline-none"
-                    type={showPassword ? 'text' : 'password'}
+                    className="rounded-none p-3 text-base text-neutral-200 border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700 focus:outline-none"
+                    type={showPassword ? 'text' : 'password'} // Password visibility toggle
                     placeholder="Password *"
                     {...field}
-                    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-                    onChange={(e:any) => {
+                    onChange={(e: { target: { value: string; }; }) => {
                       field.onChange(e);
-                      setIsPasswordFieldEmpty(e.target.value === '');
+                      setIsPasswordFieldEmpty(e.target.value === ''); // Check if the field is empty
                     }}
-                    suffix={
+                    suffix={(
                       !isPasswordFieldEmpty && (
                         <button
                           type="button"
@@ -84,42 +87,39 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
                           {showPassword ? 'Hide' : 'Show'}
                         </button>
                       )
-                    }
+                    )}
                   />
-                )}
+                  // eslint-disable-next-line  react/jsx-curly-newline
+                }
                 control={control}
                 {...register(LoginForm.Password, { required: 'This field is required' })}
               />
+
               {errors.password && (
-                <span style={{ color: '#ce4635' }} className="text-base font-HeroNewBold mb-3">
+                <span style={{ color: '#ce4635' }} className="text-normal font-bold mt-3">
                   {errors[LoginForm.Password]?.message}
                 </span>
               )}
             </div>
-          </div>
 
-          {/* Forgot Password and Submit Button */}
-          <div className="flex flex-col lg:flex-row lg:items-center mt-2 justify-self-end">
-            <Button
-              onClick={() => setIsForgotPassword(false)}
-              type="button"
-              className="p-0 text-start mb-2 lg:mb-0 lg:mr-2"
-            >
-              <span className='bg-none text-blue-700 text-sm font-HeroNewRegular font-medium hover:underline hover:font-bold'>
-          Forgot your password?
-              </span>
-            </Button>
-
-            <Button
-              type="submit"
-              className="bg-blue-700 text-white p-3 hover:bg-black hover:underline font-bold lg:w-24"
-            >
-        Log in
-            </Button>
+            <div className="flex flex-row  gap-4 row-span-1 items-start justify-self-end lg:flex-row-reverse lg:items-center lg:row-span-1 col-span-2 lg:justify-self-end lg:gap-0 ">
+              <Button 
+                type="submit"
+                className="bg-blue-700 text-white p-3 lg:m-1 mb-0 hover:bg-black hover:underline font-bold"
+              >
+                {LOGIN}
+              </Button>
+              <Button
+                onClick={() => setIsForgotPassword(false)}
+                type={undefined}
+                className="mt-3 p-0 text-start"
+              >
+                <span className="bg-none text-blue-700 text-sm font-HeroNewRegular font-medium hover:underline hover:font-bold">{FORGOTPASSWORD}</span>
+              </Button>
+            </div>
           </div>
         </form>
       </div>
-
     </>
   );
 };
