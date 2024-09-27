@@ -1,5 +1,7 @@
 import AccordionItem from '@ui/molecules/AccordianItem';
-import React, { useState } from 'react';
+import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
+import { useState } from 'react';
+
 
 const filterData = {
   productCategory: [
@@ -32,27 +34,29 @@ const filterData = {
 const Sidebar = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
 
+  const toggleShowCategories = () => {
+    setShowAllCategories(!showAllCategories);
+  };
+
   return (
     <div className="w-full max-w-xs p-4 space-y-6 bg-white shadow-md rounded-lg">
       {/* Product Category Accordion */}
-      <AccordionItem title="Product Category" containerClassName="border-b">
+      <AccordionItem title="Product Category" containerClassName="border-b bg-white">
         <ul className="space-y-1">
           {(showAllCategories ? filterData.productCategory : filterData.productCategory.slice(0, 5)).map(
             (category, index) => (
-              <li key={index} className="text-gray-700">
+              <li key={index} className="text-gray-700 cursor-pointer">
                 {category}
               </li>
             )
           )}
         </ul>
-        {!showAllCategories && (
-          <button
-            onClick={() => setShowAllCategories(true)}
-            className="text-blue-500 mt-2"
-          >
-            Show All Categories
-          </button>
-        )}
+        <button
+          onClick={toggleShowCategories}
+          className="text-blue-500 mt-2"
+        >
+          {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
+        </button>
       </AccordionItem>
 
       {/* Best Seller Accordion */}
@@ -60,10 +64,7 @@ const Sidebar = () => {
         <ul className="space-y-1">
           {filterData.bestSeller.map((option, index) => (
             <li key={index} className="text-gray-700">
-              <label className="flex items-center space-x-2">
-                <input type="checkbox" className="form-checkbox" />
-                <span>{option}</span>
-              </label>
+              <Checkbox>{option}</Checkbox>
             </li>
           ))}
         </ul>
@@ -74,10 +75,7 @@ const Sidebar = () => {
         <ul className="space-y-1">
           {filterData.productTypes.map((option, index) => (
             <li key={index} className="text-gray-700">
-              <label className="flex items-center space-x-2">
-                <input type="checkbox" className="form-checkbox" />
-                <span>{option}</span>
-              </label>
+              <Checkbox>{option}</Checkbox>
             </li>
           ))}
         </ul>
@@ -88,10 +86,7 @@ const Sidebar = () => {
         <ul className="space-y-1">
           {filterData.skinConcern.map((option, index) => (
             <li key={index} className="text-gray-700">
-              <label className="flex items-center space-x-2">
-                <input type="checkbox" className="form-checkbox" />
-                <span>{option}</span>
-              </label>
+              <Checkbox>{option}</Checkbox>
             </li>
           ))}
         </ul>
@@ -102,10 +97,7 @@ const Sidebar = () => {
         <ul className="space-y-1">
           {filterData.skinType.map((option, index) => (
             <li key={index} className="text-gray-700">
-              <label className="flex items-center space-x-2">
-                <input type="checkbox" className="form-checkbox" />
-                <span>{option}</span>
-              </label>
+              <Checkbox>{option}</Checkbox>
             </li>
           ))}
         </ul>
