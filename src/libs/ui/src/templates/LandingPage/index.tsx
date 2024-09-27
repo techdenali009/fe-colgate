@@ -1,6 +1,6 @@
-import { Carousel } from '@ui/organisms/Carousel';
+// import { Carousel } from '@ui/organisms/Carousel';
 import './landingPage.styles.scss';
-import { carouselData } from '@utils/carouselData';
+// import { carouselData } from '@utils/carouselData';
 import PopularProducts from '@ui/organisms/PopularProducts';
 import { MarketingBannerList } from '@ui/organisms/MarketingBannerList';
 import {
@@ -17,8 +17,9 @@ import GreetRegister from '@ui/organisms/GreetingRegister';
 export const LandingTemplatePage = () => {
   return (
     <>
+   
       <GreetRegister/>
-      <Carousel slides={carouselData} />
+      {/* <Carousel slides={carouselData} /> */}
 
       {/* marketing-banner-1*/}
       <MarketingBannerList marketingBannersData={marketingBannersData} />

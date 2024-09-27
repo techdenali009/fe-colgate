@@ -21,7 +21,7 @@ const GreetRegister: React.FC = () => (
         onSubmit={function (): void {
           throw new Error('Function not implemented.');
         }}
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+         
         setIsForgotPassword={function (): void {
           throw new Error('Function not implemented.');
         }}
