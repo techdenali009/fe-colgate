@@ -13,7 +13,8 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
   const [currentForm, setCurrentForm] = useState<'login' | 'forgotPassword' | 'alreadyRegistered'>('login');
 
-  const onSubmit = (data: any) => {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const onSubmit = (data:any) => {
     console.log('data onSubmit', data);
   };
 
@@ -24,7 +25,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
 
   //Reset form when modal closes
   useEffect(() => {
-    console.log("hitted");
+    console.log('hitted');
     return () => {
       clearModel();
 

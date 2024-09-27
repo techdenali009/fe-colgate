@@ -24,7 +24,7 @@ const RegisterForm: React.FC = () => {
   const { handleSubmit, control, clearErrors, formState: { errors, isSubmitted }, watch } = useForm<FormValues>({
     mode: 'onChange',
   });
-  
+
   const watchFirstName = watch('firstName'); // Similarly for first name
   const watchLasttName = watch('lastName');
 
@@ -93,10 +93,10 @@ const RegisterForm: React.FC = () => {
                 id="email"
                 placeholder=""
                 {...field}
-                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 text-base border-[1px] w-full ${errors.email ? 'border-[#595959]' : 'border-slate-200'
-                } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 text-base border-[1px] w-full 
+                  ${errors.email ? 'border-[#595959]' : 'border-slate-200'}
+                  ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
               />
-
             )}
           />
           {errors.email && <span className="text-[#ce4635] text-normal font-HeroNewBold">{errors.email.message}</span>}
@@ -119,8 +119,9 @@ const RegisterForm: React.FC = () => {
                   id="firstname"
                   placeholder="First Name *"
                   {...field}
-                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'
-                  } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                    ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
+                    ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 />
                 {/* Conditionally render the checkmark icon */}
                 {watchFirstName && (
@@ -154,8 +155,9 @@ const RegisterForm: React.FC = () => {
                   id="lastname"
                   placeholder="Last Name *"
                   {...field}
-                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'
-                  } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                    ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
+                    ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 />
                 {watchLasttName && (
                   <FaCheckCircle
@@ -204,8 +206,9 @@ const RegisterForm: React.FC = () => {
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password*"
                   {...field}
-                  onClick= {handleFocus}  // Open the modal on focus
+                  onClick={handleFocus}  // Open the modal on focus
                   onBlur={handleBlur}  // Close the modal on blur
+                  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
                   onChange={(e: any) => {
                     field.onChange(e); // Call react-hook-form's onChange
                     setModalOpen(true);
@@ -215,8 +218,9 @@ const RegisterForm: React.FC = () => {
                     }
                   }}
                   // className="rounded-none mb-6 focus:outline-none p-3 text-base border-slate-200 border-2 w-full"
-                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'
-                  } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                    ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
+                    ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 />
                 {/* Display error message if validation fails */}
                 {errors.password && (
@@ -268,10 +272,12 @@ const RegisterForm: React.FC = () => {
                   field.onChange(e);
                   setIsConfirmPasswordFieldEmpty(e.target.value === ''); // Check if the field is empty
                 }}
-                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'
-                } ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                  ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
+                  ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
                 suffix={(
-                  !isConfirmPasswordFieldEmpty && <button
+                  !isConfirmPasswordFieldEmpty && 
+                  <button
                     type="button"
                     onClick={toggleConfirmPasswordVisibility}
                     className="font-light text-black focus:outline-none"
@@ -285,7 +291,7 @@ const RegisterForm: React.FC = () => {
           {errors.confirmPassword && <span className="text-[#ce4635] text-normal font-HeroNewBold">{errors.confirmPassword.message}</span>}
 
         </div>
-       
+
         <Checkbox
           checked={isChecked}
           onChange={handleCheckboxChange}
@@ -311,10 +317,10 @@ const RegisterForm: React.FC = () => {
             type="submit"
             className="bg-blue-600 text-white p-3 m-1 mt-10px text-sm hover:bg-black hover:underline font-HeroNewSemiBold"
           >
-              Create Account
+            Create Account
           </Button>
         </div>
-       
+
       </form>
     </div>
   );

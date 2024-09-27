@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ValidationModal: React.FC = ({ }) => {
+const ValidationModal: React.FC = () => {
   return (
     <div data-popover id="popover-default" role="tooltip" className="w-[645px] text-black bg-slate-100 absolute z-10 inline-block w-auto text-sm transition-opacity duration-300  border border-gray-200 shadow-sm opacity-100 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
       <div className="px-3 py-2 bg-slate-100 border-b text-center border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">

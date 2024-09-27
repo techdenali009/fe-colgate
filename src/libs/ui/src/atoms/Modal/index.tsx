@@ -11,18 +11,18 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ children, className }) => {
- 
+
   // useEffect(() => {
   //   const root = document.getElementById('appBody')!;
-    
+
   //   if (root) {
   //     root.classList.add('overflow-hidden');
   //   }
-  
+
   //   return () => {
-      
+
   //       root.classList.remove('overflow-scroll');
-    
+
   //   };
   // }, []);
   return ReactDom.createPortal(
