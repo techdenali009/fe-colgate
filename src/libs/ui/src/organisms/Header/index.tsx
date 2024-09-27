@@ -10,17 +10,21 @@ import Popover from '@ui/molecules/Popover/Popover';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 
 import './header.styles.scss'
+import LoginModal from '../LoginModal';
+import { useNavigate } from 'react-router-dom';
 
-const Header: React.FC = () => {
+interface headerProps {
+  modalSetToggle: () => void;
+  handleRegisterClick: () => void;
+}
+const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) => {
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
   const [isCartHovered, setIsCartHovered] = useState(false);
-
-
+ 
   const handleScroll = () => {
     setIsFixed(window.scrollY > 0);
   };
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -56,8 +60,11 @@ const Header: React.FC = () => {
                 <Popover className='float-left right-[0px] w-[415px] pt-3 pb-3 boxshadow'>
                   <h2 className='p-4 h-[128px] text-tertiary-400 tracking-wider font-bold text-base  leading-24 w-full mt-6 HeroNewLight font-HeroNewRegular'>If you have a professional account, please login. If you would like to establish a professional account please click Create Account.</h2>
                   <div className='pop_up p-4 flex gap-[3]'>
-                    <PrimaryButton className='w-[152px] font-bold text-base  text-sm font-HeroNewBold'>Login In</PrimaryButton>
-                    <PrimaryButton className='font-bold text-base  text-sm font-HeroNewBold'>Create Account</PrimaryButton>
+                    {/* <PrimaryButton className='w-[152px] font-bold text-base  text-sm font-HeroNewBold'>Login In</PrimaryButton> */}
+                    <PrimaryButton className='font-HeroNewRegular' onClick={modalSetToggle}>Login</PrimaryButton>
+                    {/* {toggle && <LoginModal closeModal={modalSetToggle} />} */}
+                    <PrimaryButton className='font-HeroNewRegular' onClick={handleRegisterClick}>Register</PrimaryButton>
+                   
                   </div>
                 </Popover>
               )}
@@ -75,9 +82,10 @@ const Header: React.FC = () => {
               {isCartHovered && (
                 <Popover className='float-left right-[0px] w-[371px] pt-3 pb-3 boxshadow'>
                   <h2 className='p-4 h-[128px] text-tertiary-400 tracking-wider font-bold text-base  leading-24 w-full mt-6 font-HeroNewRegular'>If you have a professional account, please login. If you would like to establish a professional account please click Create Account.</h2>
-                  <div className='pop_up p-4 m-1 flex gap-[3]'>
-                    <PrimaryButton className='w-[152px] font-bold text-base font-hero-new-bold text-sm font-HeroNewBold'>Login In</PrimaryButton>
-                    <PrimaryButton className='w-[148px] font-bold text-base font-hero-new-bold text-sm font-HeroNewBold' ><h2>Register Now</h2></PrimaryButton>
+                  <div className='pop_up p-4 m-1 flex gap-[4]'>
+                  <PrimaryButton className='font-HeroNewRegular' onClick={modalSetToggle}>Login</PrimaryButton>
+                    {/* <PrimaryButton className='w-[148px] font-bold text-base font-hero-new-bold text-sm font-HeroNewBold' ><h2>Register Now</h2></PrimaryButton> */}
+                    <PrimaryButton  className='font-HeroNewRegular' onClick={handleRegisterClick}>Register</PrimaryButton>
                   </div>
                 </Popover>
               )}
