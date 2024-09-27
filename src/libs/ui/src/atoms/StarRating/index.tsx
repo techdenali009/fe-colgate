@@ -14,11 +14,11 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
   for (let i = 0; i < 5; i++) {
     if (rating >= i + 1) {
       stars.push(
-        <RxStarFilled key={i} className="text-blue-700 w-[23px] h-[23px]" />
+        <RxStarFilled key={i} className="text-appTheme w-[23px] h-[23px]" />
       ); // Full star
     } else if (rating >= i + 0.5) {
       stars.push(
-        <LiaStarHalfSolid key={i} className="text-blue-700  w-[23px] h-[23px]" />
+        <LiaStarHalfSolid key={i} className="text-appTheme  w-[23px] h-[23px]" />
       ); // Half sta3
     } else {
       stars.push(

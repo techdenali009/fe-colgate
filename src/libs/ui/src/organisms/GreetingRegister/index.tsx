@@ -1,27 +1,32 @@
-import { PrimaryButtonClickablecurve } from "@ui/atoms/Clickablebuttoncurve";
-import { Heading } from "@ui/atoms/Heading";
-import Paragraph from "@ui/atoms/Paragraph/paragraph";
-import { PrimaryButton } from "@ui/molecules/PrimaryButton";
-import { WELCOMEFORMMSG,WELCOMEGREETPARA, WELCOMEMSG } from "@utils/constants";
+import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
+import { Heading } from '@ui/atoms/Heading';
+import Paragraph from '@ui/atoms/Paragraph/paragraph';
+import { CREATEACCOUNT, WELCOMEGREETPARA, WELCOMEMSG } from '@utils/constants';
+import WelcomeAlreadyRegistered from '@ui/molecules/WelcomeRegister';
+
+
 
 const GreetRegister: React.FC = () => (
-  <div className="p-11 mx-8 gap-8 pt-12 flex text-left basis-1/2">
-    <div className=" flex flex-col">
-      <Heading className="text-black text-[25px] font-medium leading-relaxed">{WELCOMEMSG}</Heading>
-      <Paragraph className="text-[rgba(85,85,85,var(--tw-text-opacity))] text-opacity-100 text-[15px]  mt-2 mb-6 font-medium">
+  <div className=" p-16 mx-8 gap-8 pt-12 text-left flex flex-col lg:flex-row pb-8">
+    <div className="basis-1/2 lg:pt-0 ">
+      <Heading className="text-black text-[24px] font-normal font-HeroNewRegular">{WELCOMEMSG}</Heading>
+      <Paragraph className="text-[14px] text-secondary-400 mt-2 mb-6">
         {WELCOMEGREETPARA}
       </Paragraph>
-      <PrimaryButtonClickablecurve className="text-left font-bold text-[20px]">Create Account</PrimaryButtonClickablecurve>
+      <CreateAccountButton className="text-left text-[16px] font-HeroNewBold !px-5 !py-3">{CREATEACCOUNT}</CreateAccountButton>
     </div>
 
-    <div className="pt-6 lg:pt-0 relative">
-      <Heading className="text-black text-[24px] font-normal">{WELCOMEFORMMSG}</Heading>
-      <div className="text-right">
-        
-        <PrimaryButton>Login</PrimaryButton>
-      </div>
+    <div className="basis-1/2  pt-6 lg:pt-0">
+      <WelcomeAlreadyRegistered
+        onSubmit={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        setIsForgotPassword={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
     </div>
   </div>
-
 );
 export default GreetRegister;

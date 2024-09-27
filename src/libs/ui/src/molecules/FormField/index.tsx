@@ -1,5 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
-import { Input } from "@ui/atoms/Input";
+import React, { InputHTMLAttributes } from 'react';
+import { Input } from '@ui/atoms/Input';
 
 interface IInputField extends InputHTMLAttributes<Element> {
     label?: string,

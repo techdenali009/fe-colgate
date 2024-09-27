@@ -7,5 +7,5 @@ interface IInput extends InputHTMLAttributes<Element> {
 }
 
 export const Input: React.FC<IInput> = ({ type, placeholder, className = '', ...rest }) => (
-    <input type={type} placeholder={placeholder} className = {className} {...rest} />
+  <input type={type} placeholder={placeholder} className = {className} {...rest} />
 );
