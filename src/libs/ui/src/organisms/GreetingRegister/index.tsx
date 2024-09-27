@@ -4,8 +4,6 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import { CREATEACCOUNT, WELCOMEGREETPARA, WELCOMEMSG } from '@utils/constants';
 import WelcomeAlreadyRegistered from '@ui/molecules/WelcomeRegister';
 
-
-
 const GreetRegister: React.FC = () => (
   <div className=" px-7 flex flex-col gap:4 lg:flex-row pb-8 p-16   lg:mx-8 lg:px-14  gap-8 pt-12 text-left">
     <div className="basis-1/2 lg:pt-0 ">

@@ -47,7 +47,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
               <Controller
                 render={({ field }) =>
                   <InputField
-                    className="rounded-none p-3 text-base border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight focus:outline-none lg:px-4 "
+                    className="rounded-none p-3 text-base border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight focus:outline-none"
                     type="email"
                     placeholder="Email *"
                     {...field}
@@ -58,7 +58,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
                 {...register(LoginForm.Email, { required: 'This field is required' })}
               />
               {errors[LoginForm.Email] && (
-                <span style={{ color: '#ce4635' }} className="text-normal font-bold mb-3">
+                <span style={{ color: '#ce4635' }} className="text-normal font-bold mb-3 font-HeroNewBold">
                   {errors[LoginForm.Email]?.message}
                 </span>
               )}
@@ -96,13 +96,13 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
               />
 
               {errors.password && (
-                <span style={{ color: '#ce4635' }} className="text-normal font-bold mt-3">
+                <span style={{ color: '#ce4635' }} className="text-normal font-bold mb-3 font-HeroNewBold">
                   {errors[LoginForm.Password]?.message}
                 </span>
               )}
             </div>
 
-            <div className="flex flex-row  gap-4 row-span-1 items-start justify-self-end lg:flex-row-reverse lg:items-center lg:row-span-1 col-span-2 lg:justify-self-end lg:gap-0 ">
+            <div className="flex flex-row  gap-4 row-span-1 items-start justify-self-end lg:flex-row-reverse lg:items-center lg:row-span-1 col-span-2 lg:justify-self-end ">
               <Button 
                 type="submit"
                 className="bg-blue-700 text-white p-3 lg:m-1 mb-0 hover:bg-black hover:underline font-bold"
