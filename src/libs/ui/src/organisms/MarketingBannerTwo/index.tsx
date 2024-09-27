@@ -2,7 +2,7 @@ import React from 'react';
 import { Subheading } from '@ui/atoms/Subheading';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import { Icon } from '@ui/atoms/Icons';
-import { AppAssets } from '@utils/constants';
+import arrowIcon from 'src/libs/ui/assests/Right-Icon.e85181bb.svg';
 import { Heading } from '@ui/atoms/Heading';
 
 type BannerData = {
@@ -32,7 +32,7 @@ export const MarketingBannerTwo: React.FC<MarketingBannerTwoProps> = ({ bannerDa
         </div>
 
         <div className="lg:col-span-2 flex flex-col justify-center text-left first-letter px-6 pb-10 lg:px-16">
-          <Heading className="text-secondary-400 font-HeroNewLight lg:text-5xl text-2xl tracking-normal !leading-snug">
+          <Heading className="text-secondary-400 font-HeroNewLight lg:text-5xl text-2xl tracking-normal !leading-[125%] ">
             {heading}
           </Heading>
 
@@ -43,9 +43,9 @@ export const MarketingBannerTwo: React.FC<MarketingBannerTwoProps> = ({ bannerDa
           <div className="relative">
             <PrimaryButton
               onClick={() => console.log('Button clicked!')}
-              className="flex text-base bg-[#125ce0] font-HeroNewBold items-center border border-transparent group hover:border-white py-[13.5px] px-4">
+              className="flex !m-0 text-base !bg-[#125ce0] hover:!bg-black font-HeroNewBold items-center border border-transparent group hover:border-white py-[13.5px] px-4">
               {buttonText}
-              <Icon icon={`${AppAssets}/Right-Icon.e85181bb.svg`} className="h-8 w-8 ml-2" />
+              <Icon icon={arrowIcon} className="h-8 w-8 ml-2" />
             </PrimaryButton>
           </div>
         </div>
