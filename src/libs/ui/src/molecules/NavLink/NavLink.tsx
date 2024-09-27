@@ -4,7 +4,6 @@ import { HiMenu, HiX } from 'react-icons/hi';
 import { Label } from '@ui/atoms/Label';
 import { links } from '@utils/NavLinksConstants';
 
-
 interface NavLinksProps {
     onNavLinkActive: (isActive: boolean, submenuData: any) => void; // Updated prop type
 }

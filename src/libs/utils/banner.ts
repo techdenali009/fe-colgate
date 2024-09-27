@@ -11,7 +11,7 @@ export const marketingBannersData = [
     subtext:'PCA SKIN was voted the #1 professional skincare brand by recommended by estheticians',
     buttonText:'Learn More',
     imageUrl:'https://www.pcaskinpro.com/cms/assets/b1cdc34e-7cdf-4302-bf2c-a4d9d36b25d1.jpg?key:pca-en-us-marketing-banner-large',
-    bgColor:'bg-gray-300 text-black',
+    bgColor:'bg-gray-300 text-[#333333]',
         
   },
 ]

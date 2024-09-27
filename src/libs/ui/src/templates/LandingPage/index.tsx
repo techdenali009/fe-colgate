@@ -8,9 +8,10 @@ import {
   marketingBannerTwo,
   promotionBannersData,
 } from '@utils/banner';
-import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
+
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 import { products } from '@utils/test';
+import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
 
 export const LandingTemplatePage = () => {
   return (
@@ -24,7 +25,7 @@ export const LandingTemplatePage = () => {
       {/* marketing-banner-2" */}
       <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
       {/* popular-products */}
-      <div className="lg:pl-appPaddingLeft lg:pr-appPaddingRight px-6 mb-20 ">
+      <div className="lg:pl-appPaddingLeft lg:pr-appPaddingRight pl-6 pr-6 mb-20 ">
         <PopularProducts products={products}></PopularProducts>
       </div>
     </>
