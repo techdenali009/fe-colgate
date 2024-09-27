@@ -56,16 +56,16 @@ function PopularProducts({ products }: PopularProductsProps) {
   return (
     <div className="w-full">
       <ProductHeader handleScroll={handleScroll} />
-      <div className="">
-        <Slider ref={sliderRef} {...sliderSettings}>
-          {products.map((product) => (
-            <div key={product.id} className="mt-1 pr-8">
-              <Product product={product} />
-            </div>
-          ))}
-        </Slider>
-      </div>
+     
+      <Slider ref={sliderRef} {...sliderSettings}>
+        {products.map((product) => (
+          <div key={product.id} className="mt-1 px-4">
+            <Product product={product} />
+          </div>
+        ))}
+      </Slider>
     </div>
+   
   );
 }
 

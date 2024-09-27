@@ -24,12 +24,19 @@ module.exports = {
         HeroNewRegular: ['Hero New Regular'],
         HeroNewSemiBold: ['Hero New SemiBold'],
         HeroNewThin: ['Hero New Thin'],
-        HeroNewUltraLight: ['Hero New UltraLight']
+        HeroNewUltraLight: ['Hero New UltraLight'],
+        SwiperIconns:['swiper-icons']
       },
       padding: {
-        'appPaddingLeft': '3.5rem',
-        'appPaddingRight': '3.5rem',
+        'appPaddingLeft': '4.5rem',
+        'appPaddingRight': '4.5rem',
+      },
+      colors:{
+        'appTheme': 'var(--primary-color)',
+        'appBlackTheme':'var(--secondary-color)',
+        'appTextColor': 'var(--app-text-color)'
       }
+     
     },
     // this is for hover effect in the backgroundImage
     variants: {

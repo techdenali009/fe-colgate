@@ -1,59 +1,15 @@
 import React, { useState } from 'react';
-
 import { HiMenu, HiX } from 'react-icons/hi'; // Importing icons for hamburger and close button
 import { Label } from '@ui/atoms/Label';
-
-const links = [
-  {
-    title: 'Shop',
-    submenu: [
-      { title: 'Daily care', items: ['Best Seller', 'Antioxidants', 'Body treatments', 'Broad spectrum SPF', 'Cleansers & toners', 'Eye, neck, lip', 'Masks', 'Moisturizers', 'Retinols', 'Serums', 'Solution sets'] },
-      { title: 'Category 2', items: ['Best Seller', 'Peels', 'Peel alternative', 'Retinoid treatments', 'Therapeutic masks', 'Treatment enhancements', 'Backbar tools', 'By skin type', ''] },
-      { title: 'By skin type', items: ['Combination', 'Dry', 'Normal', 'Oily', 'Sensitive', ''] },
-      { title: 'By skin concern', items: ['Brightening', 'Acne', 'Aging', 'Discoloration', 'Preventative', 'Sensitive Skin'] },
-    ],
-  },
-  {
-    title: 'Academy',
-    submenu: [
-      { title: 'Courses', items: ['Fundamental courses', 'Certification courses', 'Acne','Aging', 'Hyperpigmentation', ''] },
-      { title: 'Learn', items: ['Skin concerns', 'Skin types', 'Skin types'] },
-      { title: 'Education memberships', items: ['Course 7', 'Course 8', 'Course 9'] }
-            
-    ],
-  },
-  {
-    title: 'Events',
-    submenu: [
-      { title: 'Calendar', items: ['Treatment Tuesdays', 'National Seminars'] },
-
-    ],
-  },
-  {
-    title: 'About',
-    submenu: [
-      { title: 'About', items: ['Our story', 'Culture', 'Our peel legacy'] },
-      { title: 'Customer service', items: ['FAQs', 'Returns & exchanges', 'Shipping terms', 'Contact us', 'Subscriptions'] }
-
-    ],
-  },
-  {
-    title: 'Business tools',
-    submenu: [{ title: 'Marketing materials', items: ['Content Hub'] }],
-  },
-  {
-    title: 'Student',
-    submenu: [{ title: 'Student Products', items: ['View All'] },
-      { title: 'Student courses', items: ['Enhancing Student Curriculum', 'Peel Certification for Students'] },
-      { title: 'Student Store', items: ['FAQ'] }
-    ],
-  },
-];
+import { links } from '@utils/NavLinksConstants';
+import { Button } from '@ui/atoms/Button';
 
 const NavLinks: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  
+  // @ts-expect-error activeMenu we will use in future
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_,setActiveMenu] = useState<string | null>(null);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   const handleMouseEnter = (title: string) => {
     setActiveMenu(title);
@@ -66,13 +22,14 @@ const NavLinks: React.FC = () => {
   return (
     <div className="relative">
       {/* Hamburger Button */}
-      <button
+      <Button
         className="lg:hidden p-2 text-black hover:text-blue-600"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-      </button>
+      </Button>
 
+      {/* Navigation Menu */}
       {/* Navigation Menu */}
       <ul
         className={`fixed top-0 left-0 w-full bg-white lg:static lg:flex lg:gap-[0.6rem] text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
@@ -92,16 +49,39 @@ const NavLinks: React.FC = () => {
             </Label>
 
             {/* Submenu */}
-            {/* Submenu */}
-                       
-
-
+            {/* <div
+                            className={`absolute left-0 w-full top-full bg-white z-[22] ${activeMenu === link.title ? 'block' : 'hidden'} shadow-lg p-4 transition-all duration-300`}
+                            onMouseEnter={() => handleMouseEnter(link.title)} // Keep submenu open when hovering
+                            onMouseLeave={handleMouseLeave} // Close submenu when leaving
+                        >
+                            <div className="flex justify-center py-3.75 pr-7.5 pl-11">
+                                <div className={`grid ${link.submenu.length === 3 ? 'grid-cols-3' : 'grid-cols-4'} gap-4 w-full`}>
+                                    {link.submenu.map((column, index) => (
+                                        <div key={index}>
+                                            <h3 className="font-semibold text-gray-700 mb-2 hover:bg-blue-50 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px]" style={{ fontFamily: 'sans-serif', letterSpacing: '0.3px' }}>
+                                                {column.title}
+                                            </h3>
+                                            <ul>
+                                                {column.items.map((item, idx) => (
+                                                    <li
+                                                        key={idx}
+                                                        className={`text-gray-600 text-base font-serif transition-colors duration-200 cursor-pointer mb-2 hover:bg-blue-50 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-blue-600 hover:underline`}
+                                                        style={{ fontFamily: 'sans-serif' }}
+                                                    >
+                                                        <span className={item === 'View All' ? 'text-blue-600 font-semibold' : ''}>
+                                                            {item}
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div> */}
           </li>
-
         ))}
       </ul>
-
-
     </div>
   );
 };

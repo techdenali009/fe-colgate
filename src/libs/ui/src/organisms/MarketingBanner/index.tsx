@@ -2,7 +2,7 @@ import { Icon } from '@ui/atoms/Icons';
 import { Image } from '@ui/atoms/Image';
 import { BannerText } from '@ui/molecules/Bannertext';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
-import arrowIcon from 'src/libs/ui/assests/Right-Icon.e85181bb.svg';
+import { AppAssets } from '@utils/constants';
 
 import React from 'react';
 
@@ -31,13 +31,12 @@ export const MarketingBanner: React.FC<IMarketingBanner> = ({
         <div className=''>
           <BannerText heading={heading} subheadingText={subtext} />
           {buttonText && (
-            <div className="group inline-block mt-6">
+            <div className="group inline-block">
               <PrimaryButton
                 onClick={onButtonClick}
-                className="flex font-HeroNewBold text-xs items-center border border-transparent hover:border-white px-3 py-2">
-                                
+                className="flex font-HeroNewBold bg-[#125ce0] text-xs items-center border border-transparent hover:border-white px-3 py-2">                  
                 {buttonText}
-                <Icon icon={arrowIcon} className="h-6 w-6 ml-2" />
+                <Icon icon={`${AppAssets}/Right-Icon.e85181bb.svg`} className="h-6 w-6 ml-2" />
               </PrimaryButton>
             </div>
           )}
