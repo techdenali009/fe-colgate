@@ -1,34 +1,7 @@
 import AccordionItem from '@ui/molecules/AccordianItem';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { useState } from 'react';
-
-const filterData = {
-  productCategory: [
-    'All Products',
-    'Antioxidants',
-    'Broad Spectrum SPF',
-    'Cleansers & Toners',
-    'Eye, Neck, Lip',
-    'Masks',
-    'Moisturizers',
-    'Retinols',
-    'Serums',
-    'Solution Sets',
-    'Peels',
-    'Peel Alternative',
-    'Retinoid Treatments',
-    'Therapeutic Masks',
-    'Treatment Enhancements',
-    'Backbar Sizes',
-    'Backbar Tools',
-    'Body Treatments',
-    'Exfoliants',
-  ],
-  bestSeller: ['Best Seller'],
-  productTypes: ['Backbar', 'Retail', 'Sample'],
-  skinConcern: ['Brightening', 'Acne', 'Aging', 'Discolorations', 'Preventative', 'Sensitive Skin'],
-  skinType: ['Combination', 'Dry', 'Normal', 'Oily', 'Sensitive'],
-};
+import filterData from '@utils/FilterData';
 
 const Sidebar = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
