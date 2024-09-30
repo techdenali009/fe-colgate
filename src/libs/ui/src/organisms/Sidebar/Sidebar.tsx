@@ -83,7 +83,7 @@ const Sidebar = () => {
             <li
               key={index}
               className={`${
-                checkedFilters[option] ? 'text-black font-bold' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
+                checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
               } cursor-pointer`}
             >
               <Checkbox className='mr-2'
@@ -104,7 +104,7 @@ const Sidebar = () => {
             <li
               key={index}
               className={`${
-                checkedFilters[option] ? 'text-black font-bold' : 'text-gray-700 hover:font-bold pl-2 pb-1 mr-2 hover:text-blue-800'
+                checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 hover:font-bold pl-2 pb-1 mr-2 hover:text-blue-800'
               } cursor-pointer`}
             >
               <Checkbox className='mr-2'
@@ -125,7 +125,7 @@ const Sidebar = () => {
             <li
               key={index}
               className={`${
-                checkedFilters[option] ? 'text-black font-bold' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
+                checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
               } cursor-pointer`}
             >
               <Checkbox className='mr-2'
@@ -146,7 +146,7 @@ const Sidebar = () => {
             <li
               key={index}
               className={`${
-                checkedFilters[option] ? 'text-black font-bold' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
+                checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
               } cursor-pointer`}
             >
               <Checkbox className='mr-2'
