@@ -134,8 +134,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
+        {/* Sidebar */}
+        <Sidebar />
       </div>
 
 
