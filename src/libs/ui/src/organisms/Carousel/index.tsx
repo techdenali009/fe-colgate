@@ -3,7 +3,7 @@ import { Carousel as ReactCarousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { BannerSlide } from '../CarouselBannerSlide';
 import { CarouselProps } from '@utils/interface';
-import './carousel.style.scss';
+import  './carousel.style.scss';
 
 export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -67,28 +67,31 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   }, [currentIndex, slides]);
 
   return (
-    <ReactCarousel
-      autoPlay
-      infiniteLoop
-      showThumbs={false}
-      showStatus={false}
-      interval={3000}
-      className="carousel-container"
-      onChange={onChange}
-      renderArrowPrev={renderPrevArrow}
-      renderArrowNext={renderNextArrow}
-    >
-      {slides.map((slide, index) => (
-        <BannerSlide
-          key={index}
-          imgSrc={slide.imgSrc}
-          imgAlt={slide.imgAlt}
-          heading={slide.heading}
-          subheading={slide.subheading}
-          buttonText={slide.buttonText}
-          bgColor={slide.bgColor}
-        />
-      ))}
-    </ReactCarousel>
+    <div className='appCarousel'>
+      <ReactCarousel
+        autoPlay
+        infiniteLoop
+        showThumbs={false}
+        showStatus={false}
+        interval={3000}
+        className="carousel-container"
+        onChange={onChange}
+        renderArrowPrev={renderPrevArrow}
+        renderArrowNext={renderNextArrow}
+      >
+        {slides.map((slide, index) => (
+          <BannerSlide
+            key={index}
+            imgSrc={slide.imgSrc}
+            imgAlt={slide.imgAlt}
+            heading={slide.heading}
+            subheading={slide.subheading}
+            buttonText={slide.buttonText}
+            bgColor={slide.bgColor}
+          />
+        ))}
+      </ReactCarousel>
+    </div>
+    
   );
 };
