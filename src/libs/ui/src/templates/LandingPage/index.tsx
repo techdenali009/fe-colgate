@@ -12,10 +12,13 @@ import {
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 import { products } from '@utils/test';
 import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
+import GreetRegister from '@ui/organisms/GreetingRegister';
 
 export const LandingTemplatePage = () => {
   return (
     <>
+   
+      <GreetRegister/>
       {/* <Carousel slides={carouselData} /> */}
 
       {/* marketing-banner-1*/}
