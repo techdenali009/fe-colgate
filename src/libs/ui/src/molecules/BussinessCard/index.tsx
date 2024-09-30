@@ -9,11 +9,12 @@ interface BusinessCardProps {
     description: string;
     buttonText: string;
     onButtonClick: () => void;
+    className?: string;
 }
 
-const BusinessCard: React.FC<BusinessCardProps> = ({ imageSrc, title, description, buttonText, onButtonClick }) => {
+const BusinessCard: React.FC<BusinessCardProps> = ({ imageSrc, title, description, buttonText, onButtonClick, className }) => {
   return (
-    <div className="w-[500px] h-auto max-w-full lg:border-b ">
+    <div className={`w-[500px] h-auto max-w-full lg:border-b ${className}`}>
       <Image
         className="object-cover"
         src={imageSrc}

@@ -1,8 +1,12 @@
 import React from 'react';
 
-const BusinessCardSkeleton: React.FC = () => {
+interface BusinessCardSkeletonProps {
+  className?: string;
+}
+
+const BusinessCardSkeleton: React.FC<BusinessCardSkeletonProps> = ({className}) => {
   return (
-    <div className="w-[500px] h-auto max-w-full rounded-lg overflow-hidden shadow-lg border border-gray-200 animate-pulse">    
+    <div className={`w-[500px] h-auto max-w-full rounded-lg overflow-hidden shadow-lg border border-gray-200 animate-pulse1 ${className}`}>    
       <div className="px-8 py-6">
         <div className="w-32 h-8 bg-gray-300 rounded"></div>
       </div>
