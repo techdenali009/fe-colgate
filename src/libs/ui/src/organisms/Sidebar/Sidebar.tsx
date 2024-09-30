@@ -1,9 +1,20 @@
 import AccordionItem from '@ui/molecules/AccordianItem';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { useState } from 'react';
-import filterData from '@utils/FilterData';
 
-const Sidebar = () => {
+interface FilterData {
+  productCategory: string[];
+  bestSeller: string[];
+  productTypes: string[];
+  skinConcern: string[];
+  skinType: string[];
+}
+
+interface SidebarProps {
+  filterData: FilterData;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ filterData }) => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedProductCategory, setSelectedProductCategory] = useState<string | null>(null);
   const [checkedFilters, setCheckedFilters] = useState<{ [key: string]: boolean }>({});
@@ -43,7 +54,7 @@ const Sidebar = () => {
               </li>
             )
           )}
-        </ul> 
+        </ul>
         <button onClick={toggleShowCategories} className="text-blue-800 mt-2 p-4">
           {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
         </button>

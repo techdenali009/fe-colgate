@@ -18,6 +18,7 @@ import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import Currency from '@ui/molecules/Currency/Currency';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
 import Sidebar from '@ui/organisms/Sidebar/Sidebar';
+import filterData from '@utils/FilterData';
 
 interface ISearchbar {
     submitLabel: string;
@@ -134,8 +135,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="flex">
-        {/* Sidebar */}
-        <Sidebar />
+        <Sidebar filterData={filterData} />
       </div>
 
 
