@@ -36,7 +36,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const breadcrumbs = [
     { label: 'Home', href: '/' },
     { label: 'All Products', href: '/products' },
-    { label: 'peels' }
+    { label: 'Treatment Enhancements' }
   ];
 
   const handleButtonClick = () => {
@@ -218,7 +218,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <div className="flex justify-center mt-10">
       <BusinessCard
-        imageSrc="https://example.com/enhanced-merchandising.jpg"
+        imageSrc="https://pcaskin.vtexassets.com/arquivos/ids/155951-956-auto/15277-Enhanced-Merchandising--1--1.jpg?v=638307165671830000&width=956&height=auto&aspect=true"
         title="Enhanced Merchandising"
         description="Merchandising is a key part of any successful business. It promotes a positive customer experience to drive sales."
         buttonText="Learn More"

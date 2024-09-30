@@ -30,7 +30,7 @@ const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children
                 ))}
             </div>
 
-            <h1 className="text-3xl font-bold text-blue-600">{title}</h1>
+            <h1 className="text-3xl lg:text-[2.375rem] font-extrabold text-blue-600">{title}</h1>
 
             {children && <div className="mt-4">{children}</div>}
         </div>
