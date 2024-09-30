@@ -13,7 +13,7 @@ export const links = [
     title: 'Academy',
     submenu: [
       { title: 'Courses', items: ['Fundamental courses', 'Certification courses', 'Acne', 'Aging', 'Hyperpigmentation', 'Sensitive skin', 'Business building', 'Peel application videos', 'Multicultural skin'], hasMore: true },
-      { title: 'Learn', items: ['Skin concerns', 'Skin types', 'Skin types', 'Professional peels', 'Professional peels'] },
+      { title: 'Learn', items: ['Skin concerns', 'Skin types', 'Professional peels', 'Professional peels'] },
       { title: 'Education memberships', items: ['All-Access membership', 'Acne membership', 'Aging membership', 'Hyperpigmentation membership', 'Sensitive skin membership', 'Enhancing your services', 'Multicultural skin membership'], hasMore: true }
 
     ],
@@ -39,10 +39,13 @@ export const links = [
   },
   {
     title: 'Student',
-    submenu: [{ title: 'Student Products', items: [''], hasMore: true },
-    { title: 'Student courses', items: ['Enhancing Student Curriculum', 'Peel Certification for Students'] },
-    { title: 'Student Store', items: ['FAQ'] }
+    submenu: [{ title: 'Student Products', items: [], hasMore: true },
+      { title: 'Student courses', items: ['Enhancing Student Curriculum', 'Peel Certification for Students'] },
+      { title: 'Student Store', items: ['FAQ'] }
     ],
   },
+
+  
+  
 ];
 

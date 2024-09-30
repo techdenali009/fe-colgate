@@ -1,54 +1,186 @@
-// NavLinks.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { Label } from '@ui/atoms/Label';
 import { links } from '@utils/NavLinksConstants';
+import greaterArrow from '../../../assests/greaterArrow.svg';
+import straightArrow from '../../../assests/straightArrow.svg';
+import responsiveProfile from '../../../assests/responsiveProfile.svg';
+import Popover from '../Popover/Popover';
+import { PrimaryButton } from '../PrimaryButton';
 
 interface NavLinksProps {
-    onNavLinkActive: (isActive: boolean, submenuData: any) => void; // Updated prop type
+  onNavLinkActive: (isActive: boolean, submenuData: any) => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [submenuOpen, setSubmenuOpen] = useState<string | null>(null);
+  const [popoverOpen, setPopoverOpen] = useState(false);
 
-    const handleMouseEnter = (title: string, submenu: any) => {
-        setActiveMenu(title);
-        onNavLinkActive(true, submenu); // Notify the parent with submenu data
+  const handleMouseEnter = (title: string, submenu: any) => {
+    if (window.innerWidth >= 1024) {
+      setActiveMenu(title);
+      onNavLinkActive(true, submenu);
+      setSubmenuOpen(title);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setSubmenuOpen(null);
+  };
+
+
+  const handleToggleSubmenu = (title: string) => {
+    setSubmenuOpen((prev) => (prev === title ? null : title));
+    setIsOpen(false);
+  };
+
+  const handleHamburgerClick = () => {
+    setIsOpen((prev) => !prev);
+    setSubmenuOpen(null);
+  };
+
+  const togglePopover = () => {
+    setPopoverOpen((prev) => !prev);
+    setSubmenuOpen(null); // Close any open submenu when toggling popover
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
     };
+  }, [isOpen]);
 
-    // const handleMouseLeave = () => {
-    //     setActiveMenu(null);
-    //     onNavLinkActive(true, submenu); // Notify the parent that no link is active
-    // };
+  return (
+    <div className="relative" >
+      <button
+        className="lg:hidden p-2 text-black hover:text-blue-600"
+        onClick={handleHamburgerClick}
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+      >
+        {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+      </button>
 
-    return (
-        <div className="relative">
-            <button
-                className="lg:hidden p-2 text-black hover:text-blue-600"
-                onClick={() => setIsOpen(!isOpen)}
+      <ul
+        className={`fixed grid gap-4 sm:gap-[1rem] md:gap-4 lg:gap-4 xl:gap-4 top-0 left-0 w-full bg-white lg:static lg:flex lg:gap-[0.6rem] text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
+      >
+        <span
+          className="text-black cursor-pointer lg:hidden hover:text-blue-600 flex justify-end relative right-[10px]"
+          onClick={() => handleHamburgerClick()}
+        >
+          <HiX size={24} aria-label="back icon" />
+        </span>
+        {links.map((link) => (
+          <li
+            key={link.title}
+            className="relative border-b border-black lg:border-none group lg:hover:bg-[rgba(238,244,255,1)]"
+            onMouseEnter={() => handleMouseEnter(link.title, link.submenu)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div
+              className="flex items-center justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
+              onClick={() => handleToggleSubmenu(link.title)}
             >
-                {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-            </button>
+              <Label className="font-HeroNewRegular text-base font-normal relative z-10 text-black group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300 font-sans">
+                {link.title}
+              </Label>
+              {link.submenu && (
+                <span className="ml-2 lg:hidden">
+                  {submenuOpen === link.title ? (
+                    <span aria-label="collapse icon"></span>
+                  ) : (
+                    <span aria-label="expand icon"><img src={greaterArrow} alt="greaterArrow" className="" /></span>
+                  )}
+                </span>
+              )}
+            </div>
+          </li>
+        ))}
 
-            <ul
-                className={`fixed top-0 left-0 w-full bg-white lg:static lg:flex lg:gap-[0.6rem] text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
-            >
-                {links.map((link) => (
-                    <li
-                        key={link.title}
-                        className="relative group flex items-center justify-center pt-3 pb-3 pl-4 pr-4 cursor-pointer hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
-                        onMouseEnter={() => handleMouseEnter(link.title, link.submenu)} // Pass submenu data
-
-                    >
-                        <Label className=" font-bold relative z-10 text-black group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300 font-normal font-sans">
-                            {link.title}
-                        </Label>
-                    </li>
-                ))}
-            </ul>
+        <div className="flex justify-between align-middle menu-layout_two container lg:hidden h-full pt-2.5 pb-32 bg-gray-200 max-w-full">
+          <div className='profile_signin flex gap-2 pl-4' onClick={togglePopover}>
+            <img onClick={togglePopover} src={responsiveProfile} alt="responsiveProfile" className="" />
+            <span className="font-regular text-tertiary-400 ">Sign In</span>
+          </div>
+          <div className='arrow pr-5'>
+            <span onClick={togglePopover} aria-label="expand icon"><img src={greaterArrow} alt="greaterArrow" className="" /></span>
+          </div>
         </div>
-    );
+
+        {popoverOpen && (
+          <Popover className='w-full h-[78%] rounded-none text-center   right-[0px] w-full pt-3 pb-3 boxshadow'>
+            <div className='flex justify-between'>
+              <span
+                onClick={handleHamburgerClick}
+                aria-label="back icon"
+              >
+                <img src={straightArrow} alt="straightArrow" className="" />
+              </span>
+              <h2 className='font-HeroNewBold'>signIn</h2>
+              <span
+                className="text-black cursor-pointer hover:text-blue-600"
+                onClick={handleHamburgerClick}
+              >
+                <HiX size={24} aria-label="back icon" />
+              </span>
+            </div>
+            <h2 className='p-4 h-[128px] text-tertiary-400 text-center font-HeroNewBold  whitespace-normal tracking-wider font-bold text-base leading-24 w-full mt-6 HeroNewLight font-HeroNewRegular'>
+              If you have a professional account, please login. If you would like to establish a professional account please click Create Account.
+            </h2>
+            <div className='pop_up p-4 flex gap-[3]'>
+              <PrimaryButton className='w-[152px] font-bold text-base text-sm font-HeroNewBold'>Login In</PrimaryButton>
+              <PrimaryButton className='font-bold text-base text-sm font-HeroNewBold'>Create Account</PrimaryButton>
+            </div>
+          </Popover>
+        )}
+      </ul>
+
+      {submenuOpen && window.innerWidth < 1024 && (
+        <ul className="fixed inset-0 w-full h-full bg-white z-30 overflow-hidden">
+          <li className="relative h-full">
+            <div className="flex items-center justify-between p-4 bg-white cursor-pointer hover:bg-[rgba(238,244,255,1)] transition-transform duration-300">
+              <span onClick={handleHamburgerClick} aria-label="back icon">
+                <img src={straightArrow} alt="straightArrow" />
+              </span>
+              <Label className="text-black font-bold text-xl font-HeroNewBold">
+                {submenuOpen}
+              </Label>
+              <span
+                className="text-black cursor-pointer hover:text-blue-600"
+                onClick={() => setSubmenuOpen(null)}
+              >
+                <HiX size={24} aria-label="close icon" />
+              </span>
+            </div>
+            <div className="px-4 h-[calc(100%-60px)] overflow-y-auto scroll-smooth">
+              {links.find((link) => link.title === submenuOpen)?.submenu.map((subItem) => (
+                <div key={subItem.title}>
+                  <Label className="pb-4 text-[1.08rem] font-bold leading-6 font-HeroNewBold tracking-[0.3px] text-black text-base hover:text-blue-600 cursor-pointer">
+                    {subItem.title}
+                  </Label>
+                  {subItem.items && (
+                    <ul className="pl-4 border-b border-gray-500 p-2 bg-white grid gap-y-2 text-[1rem] font-HeroNewLight">
+                      {subItem.items.map((item) => (
+                        <li key={item} className="py-1 bg-white">
+                          <Label className="text-black hover:text-blue-600 cursor-pointer">{item}</Label>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </li>
+        </ul>
+      )}
+
+
+    </div>
+  );
 };
 
 export default NavLinks;
