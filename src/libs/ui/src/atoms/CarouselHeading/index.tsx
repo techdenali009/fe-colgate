@@ -4,5 +4,5 @@ import React from 'react';
 
 
 export const Heading: React.FC<HeadingProps> = ({ text }) => {
-  return <h1 className='heading text-primary-400 font-light text-4xl mb-4 leading-tight'>{text}</h1>;
+  return <h1 className='heading pr-[42px]  text-[3rem] leading-[1] text-primary-400 font-light text-4xl mb-4 '>{text}</h1>;
 };
