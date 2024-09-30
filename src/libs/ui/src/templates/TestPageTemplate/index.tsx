@@ -21,7 +21,8 @@ import PageTitleHeader from '@ui/molecules/PageTitleHeader';
 import BusinessCard from '@ui/molecules/BussinessCard';
 import BusinessCardSkeleton from '@ui/molecules/BussinessCardSkeleton';
 import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
-
+import Sidebar from '@ui/organisms/Sidebar/Sidebar';
+import filterData from '@utils/FilterData';
 
 interface ISearchbar {
   submitLabel: string;
@@ -148,6 +149,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         </p>
       </div>
 
+      <div className="flex">
+        <Sidebar filterData={filterData} />
+      </div>
+
+
       <div className="mb-4">
         <ProductCard
           name="Stylish Chair"
@@ -189,7 +195,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
-
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
@@ -228,7 +233,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         <BusinessCardSkeleton />
-      </div>
+      </div>    
     </>
   );
 };
