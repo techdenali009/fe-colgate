@@ -14,14 +14,18 @@ import SubMenu from '@ui/molecules/SubMenu/SubMenu';
 const Header: React.FC = () => {
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
-  const [isSearchHovered, setIsSearchHovered] = useState(false);
-  const [isLogoHovered, setIsLogoHovered] = useState(false);
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+  const [, setIsSearchHovered] = useState(false);
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+  const [, setIsLogoHovered] = useState(false);
   const [isCartHovered, setIsCartHovered] = useState(false);
-  const [isSubmenuHovered, setIsSubmenuHovered] = useState(false);
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+  const [, setIsSubmenuHovered] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const [submenuData, setSubmenuData] = useState<any>(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [popoverOpen, setPopoverOpen] = useState(false);
+
 
   const handleMouseEnterLogo = () => {
     setIsLogoHovered(true);
@@ -51,11 +55,7 @@ const Header: React.FC = () => {
   const handleScroll = () => {
     setIsFixed(window.scrollY > 0);
   };
-
-  const togglePopover = () => {
-    setPopoverOpen((prev) => !prev);
-
-  };
+ 
   // Handle window resize to detect small screen
   useEffect(() => {
     const handleResize = () => {
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  // Handle NavLink activation and submenu data
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleNavLinkActive = (isActive: boolean, data: any) => {
     setIsNavActive(isActive);
     setSubmenuData(data);
@@ -106,7 +106,8 @@ const Header: React.FC = () => {
         <div className='flex gap-4 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
           <div className='humburger'><NavLinks onNavLinkActive={handleNavLinkActive} /></div>
           <div className='logo_one' onMouseEnter={handleMouseEnterLogo}
-            onMouseLeave={handleMouseLeaveLogo}><Logo /></div>
+            onMouseLeave={handleMouseLeaveLogo}><Logo />
+          </div>
           <div className='second_nav'><NavLinks onNavLinkActive={handleNavLinkActive} /></div>
 
           <div className='Iconsnav flex space-x-4 pr-16 gap-6'>

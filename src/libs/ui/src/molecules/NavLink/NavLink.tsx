@@ -9,6 +9,7 @@ import Popover from '../Popover/Popover';
 import { PrimaryButton } from '../PrimaryButton';
 
 interface NavLinksProps {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   onNavLinkActive: (isActive: boolean, submenuData: any) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -16,10 +17,12 @@ interface NavLinksProps {
 
 const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+  const [, setActiveMenu] = useState<string | null>(null);
   const [submenuOpen, setSubmenuOpen] = useState<string | null>(null);
+   
   const [popoverOpen, setPopoverOpen] = useState(false);
-
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleMouseEnter = (title: string, submenu: any) => {
     if (window.innerWidth >= 1024) {
       setActiveMenu(title);
@@ -56,11 +59,11 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
   }, [isOpen]);
 
   return (
-    <div className="relative" >
+    <div className='relative'>
       <button
         className="lg:hidden p-2 text-black hover:text-blue-600"
         onClick={handleHamburgerClick}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
         {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
       </button>
