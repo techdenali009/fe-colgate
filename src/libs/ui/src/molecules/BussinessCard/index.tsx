@@ -20,19 +20,19 @@ const BusinessCard: React.FC<BusinessCardProps> = ({ imageSrc, title, descriptio
                 alt={title}
             />
 
-            <div className="py-4">
+            <div className="py-2">
                 <h2 className="font-bold text-2xl mb-3 hover:underline cursor-pointer">{title}</h2>
             </div>
 
-            <div className="py-4">
+            <div className="py-2">
                 <Rating />
             </div>
 
-            <div className="py-4">
+            <div className="py-2">
                 <p className="text-gray-700 text-base mb-4 hover:underline cursor-pointer">{description}</p>
             </div>
 
-            <div className="py-4">
+            <div className="py-2">
                 <PrimaryButton onClick={onButtonClick}>
                     {buttonText}
                 </PrimaryButton>
