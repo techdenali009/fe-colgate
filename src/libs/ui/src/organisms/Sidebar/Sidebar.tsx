@@ -51,7 +51,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-full max-w-xs p-4 space-y-6 bg-white shadow-md rounded-lg">
+    <div className="w-full max-w-xs p-4 space-y-6 bg-white shadow-md rounded-lg hidden lg:block">
       {/* Product Category Accordion */}
       <AccordionItem title="Product Category" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7" contentClassName="bg-white" containerClassName="border-b">
         <ul className="space-y-1">
