@@ -17,6 +17,8 @@ import GreetRegister from '@ui/organisms/GreetingRegister';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import Currency from '@ui/molecules/Currency/Currency';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
+import Sidebar from '@ui/organisms/Sidebar/Sidebar';
+import filterData from '@utils/FilterData';
 
 interface ISearchbar {
     submitLabel: string;
@@ -132,6 +134,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         </p>
       </div>
 
+      <div className="flex">
+        <Sidebar filterData={filterData} />
+      </div>
+
+
       <div className="mb-4">
         <ProductCard
           name="Stylish Chair"
@@ -173,7 +180,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
-
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
@@ -193,7 +199,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         filters={filters}
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
-      />
+      />      
     </>
   );
 };
