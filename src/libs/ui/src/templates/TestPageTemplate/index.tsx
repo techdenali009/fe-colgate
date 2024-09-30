@@ -19,6 +19,7 @@ import Currency from '@ui/molecules/Currency/Currency';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
 import Sidebar from '@ui/organisms/Sidebar/Sidebar';
 import filterData from '@utils/FilterData';
+import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 
 interface ISearchbar {
     submitLabel: string;
@@ -136,6 +137,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <div className="flex">
         <Sidebar filterData={filterData} />
+      </div>
+
+      <div className='m-5'>
+      <FilterDropdown></FilterDropdown>
       </div>
 
 
