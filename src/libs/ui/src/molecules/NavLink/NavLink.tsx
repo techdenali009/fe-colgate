@@ -20,7 +20,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
   // eslint-disable-next-line  @typescript-eslint/no-unused-vars
   const [, setActiveMenu] = useState<string | null>(null);
   const [submenuOpen, setSubmenuOpen] = useState<string | null>(null);
-   
+
   const [popoverOpen, setPopoverOpen] = useState(false);
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleMouseEnter = (title: string, submenu: any) => {

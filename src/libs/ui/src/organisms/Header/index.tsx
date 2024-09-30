@@ -14,10 +14,6 @@ import SubMenu from '@ui/molecules/SubMenu/SubMenu';
 const Header: React.FC = () => {
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-  const [, setIsSearchHovered] = useState(false);
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-  const [, setIsLogoHovered] = useState(false);
   const [isCartHovered, setIsCartHovered] = useState(false);
   // eslint-disable-next-line  @typescript-eslint/no-unused-vars
   const [, setIsSubmenuHovered] = useState(false);
@@ -28,13 +24,9 @@ const Header: React.FC = () => {
 
 
   const handleMouseEnterLogo = () => {
-    setIsLogoHovered(true);
     setIsNavActive(false);
   };
 
-  const handleMouseLeaveLogo = () => {
-    setIsLogoHovered(false);
-  };
   const handleMouseEnterProfile = () => {
     setIsProfileHovered(true);
     setIsNavActive(false);
@@ -44,18 +36,14 @@ const Header: React.FC = () => {
     setIsProfileHovered(false);
   };
   const handleMouseEnterSearch = () => {
-    setIsSearchHovered(true);
     setIsNavActive(false);
   };
 
-  const handleMouseLeaveSearch = () => {
-    setIsSearchHovered(false);
-  };
   // Handle scroll to fix header
   const handleScroll = () => {
     setIsFixed(window.scrollY > 0);
   };
- 
+
   // Handle window resize to detect small screen
   useEffect(() => {
     const handleResize = () => {
@@ -78,14 +66,14 @@ const Header: React.FC = () => {
     setSubmenuData(data);
   };
 
-  // Handle click event for cart popover on small screens
+
   const handleCartClick = () => {
     if (isSmallScreen) {
       setIsCartHovered(!isCartHovered);
     }
   };
 
-  // Handle mouse enter and leave for large screens
+
   const handleMouseEnterCart = () => {
     if (!isSmallScreen) {
       setIsCartHovered(true);
@@ -96,7 +84,6 @@ const Header: React.FC = () => {
   const handleMouseLeaveCart = () => {
     if (!isSmallScreen) {
       setIsCartHovered(false);
-
     }
   };
 
@@ -104,16 +91,25 @@ const Header: React.FC = () => {
     <>
       <header id='header_shadow' className={`${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white' : ''}`}>
         <div className='flex gap-4 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
-          <div className='humburger'><NavLinks onNavLinkActive={handleNavLinkActive} /></div>
-          <div className='logo_one' onMouseEnter={handleMouseEnterLogo}
-            onMouseLeave={handleMouseLeaveLogo}><Logo />
-          </div>
-          <div className='second_nav'><NavLinks onNavLinkActive={handleNavLinkActive} /></div>
 
-          <div className='Iconsnav flex space-x-4 pr-16 gap-6'>
-            <div className='second_logo'><Logo /></div>
+          <div className='tm:flex tl:hidden humburger'>
+            <NavLinks onNavLinkActive={handleNavLinkActive} />
+          </div>
+
+          <div className='tm:hidden logo_one' onMouseEnter={handleMouseEnterLogo}>
+            <Logo />
+          </div>
+
+          <div className='tm:hidden tl:flex'>
+            <NavLinks onNavLinkActive={handleNavLinkActive} />
+          </div>
+
+          <div className='tm:pr-0 tm:gap-0 tm:flex  Iconsnav items-center  flex space-x-4 pr-16 gap-6'>
+            <div className='tm:ml-[-78px] tl:hidden logo_two tm:p-0'>
+              <Logo />
+            </div>
             <ButtonWithIcon onMouseEnter={handleMouseEnterSearch}
-              onMouseLeave={handleMouseLeaveSearch} className='w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] sm:ml-0'>
+              className='w-[40px] tm:pr-0 h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] sm:ml-0'>
               <Icon icon={searchIcon} className='text-black' />
             </ButtonWithIcon>
 
@@ -121,7 +117,7 @@ const Header: React.FC = () => {
               onMouseEnter={handleMouseEnterProfile}
               onMouseLeave={handleMouseLeaveProfile}
             >
-              <ButtonWithIcon className='profile w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem]'>
+              <ButtonWithIcon className='tm:hidden profile w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem]'>
                 <Icon icon={profile} className='text-black' />
               </ButtonWithIcon>
 
@@ -167,9 +163,9 @@ const Header: React.FC = () => {
             <SubMenu className={`hidden lg:block ${isNavActive ? 'block' : ''}`}
               isActive={isNavActive}
               submenu={submenuData}
-              handleMouseEnter={() => setIsSubmenuHovered(false)} // Handle submenu mouse enter
+              handleMouseEnter={() => setIsSubmenuHovered(false)}
               handleMouseLeave={() => {
-                setIsNavActive(false); // Close the submenu if not hovering
+                setIsNavActive(false);
               }}
             />
           </div>

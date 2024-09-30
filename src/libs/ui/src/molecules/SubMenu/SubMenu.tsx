@@ -35,8 +35,8 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
                 {column.items.map((item, idx) => (
                   <li
                     key={idx}
-                    className={'text-gray-600 text-base font-serif transition-colors duration-200 cursor-pointer mb-2 hover:bg-blue-50 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-blue-600 hover:underline'}
-                    style={{ fontFamily: 'sans-serif' }}
+                    className={'text-gray-600 font-HeroNewRegular text-base transition-colors duration-200 cursor-pointer mb-2 hover:bg-blue-50 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-blue-600 hover:underline'}
+
                   >
                     {item}
                   </li>
