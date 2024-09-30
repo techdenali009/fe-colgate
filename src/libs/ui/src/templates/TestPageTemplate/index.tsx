@@ -217,18 +217,18 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="flex justify-center mt-10">
-      <BusinessCard
-        imageSrc="https://pcaskin.vtexassets.com/arquivos/ids/155951-956-auto/15277-Enhanced-Merchandising--1--1.jpg?v=638307165671830000&width=956&height=auto&aspect=true"
-        title="Enhanced Merchandising"
-        description="Merchandising is a key part of any successful business. It promotes a positive customer experience to drive sales."
-        buttonText="Learn More"
-        onButtonClick={handleButtonClick}
-      />
-    </div>
+        <BusinessCard
+          imageSrc="https://pcaskin.vtexassets.com/arquivos/ids/155951-956-auto/15277-Enhanced-Merchandising--1--1.jpg?v=638307165671830000&width=956&height=auto&aspect=true"
+          title="Enhanced Merchandising"
+          description="Merchandising is a key part of any successful business. It promotes a positive customer experience to drive sales."
+          buttonText="Learn More"
+          onButtonClick={handleButtonClick}
+        />
+      </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      <BusinessCardSkeleton />
-    </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <BusinessCardSkeleton />
+      </div>
     </>
   );
 };
