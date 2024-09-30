@@ -11,8 +11,8 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   const onChange = (index: number) => {
     setCurrentIndex(index);
   };
-
-  const renderPrevArrow = (onClickHandler: () => void, _hasPrev: boolean, label: string) => {
+  // @ts-expect-error hasPrev will use in future
+  const renderPrevArrow = (onClickHandler: () => void, hasPrev: boolean, label: string) => {
     const currentSlide = slides[currentIndex];
     return (
       <button
@@ -23,8 +23,8 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
       />
     );
   };
-
-  const renderNextArrow = (onClickHandler: () => void, _hasNext: boolean, label: string) => {
+  // @ts-expect-error hasPrev will use in future
+  const renderNextArrow = (onClickHandler: () => void, hasNext: boolean, label: string) => {
     const currentSlide = slides[currentIndex];
     return (
       <button
@@ -37,11 +37,23 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   };
 
   useEffect(() => {
+    const dotsContainer = document.querySelector('.control-dots');
     const dotElements = document.querySelectorAll('.control-dots li');
     const currentSlide = slides[currentIndex];
 
+    if (dotsContainer) {
+      if (currentSlide.bgColor.includes('bg-black')) {
+        dotsContainer.classList.add('dot-black');
+        dotsContainer.classList.remove('dot-other');
+      } else if (currentSlide.bgColor.includes('bg-gray-100')) {
+        dotsContainer.classList.add('dot-other');
+        dotsContainer.classList.remove('dot-black');
+      } else {
+        dotsContainer.classList.remove('dot-black', 'dot-other');
+      }
+    }
+
     dotElements.forEach((dot) => {
-          
       if (currentSlide.bgColor.includes('bg-black')) {
         dot.classList.add('dot-black');
         dot.classList.remove('dot-other');
@@ -49,7 +61,6 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
         dot.classList.add('dot-other');
         dot.classList.remove('dot-black');
       } else {
-                
         dot.classList.remove('dot-black', 'dot-other');
       }
     });
@@ -57,7 +68,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
 
   return (
     <ReactCarousel
-      // autoPlay
+      autoPlay
       infiniteLoop
       showThumbs={false}
       showStatus={false}

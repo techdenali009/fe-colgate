@@ -1,7 +1,8 @@
-import { lazy } from 'react';
+
+import { AppSpinner } from '@ui/atoms/AppSpinner';
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-// Main Module
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
 
@@ -16,7 +17,11 @@ export const AppRoutes = () => (
   <Routes>
     {/* <Route path="/" element={<LoginPage />} /> */}
     {/* <Route path="/" element={<RegisterPage />} /> */}
-    <Route path="/" element={<MainModule />}>
+    <Route path="/" element={
+      <Suspense fallback={<AppSpinner />}>
+        <MainModule />
+      </Suspense>
+    }>
       <Route path="" element={<LandingPage />}></Route>
 
       {/* User Module */}

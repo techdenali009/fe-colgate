@@ -37,6 +37,7 @@
       "@ui/molecules/*":["src/libs/ui/src/molecules/*"],
       "@ui/organisms/*":["src/libs/ui/src/organisms/*"],
       "@ui/templates/*":["src/libs/ui/src/templates/*"],
+      "@ui/assets/*":["src/libs/ui/assest/*"],
       
     }
   },

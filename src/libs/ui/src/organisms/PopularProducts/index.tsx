@@ -2,11 +2,10 @@ import { useRef } from 'react';
 import Slider from 'react-slick';
 import Product from '../Product';
 
-import {  ProductType } from '@utils/Product';
+import { PopularProductsProps } from '@utils/Product';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProductHeader from '@ui/molecules/PopularProductHeading';
-import { useGetProductsQuery } from '@store/services/PopularProductEndPoint';
 
 const sliderSettings = {
   dots: false,
@@ -16,24 +15,25 @@ const sliderSettings = {
   slidesToScroll: 1,
   arrows: false,
   swipeToSlide: true,
-  centerPadding: '20px',  
+
   responsive: [
     {
-      breakpoint: 1435,
+      breakpoint: 1350,
       settings: {
         slidesToShow: 3,
         centerPadding: '15px',  
       },
     },
     {
-      breakpoint: 1130,
+      breakpoint: 1020,
       settings: {
         slidesToShow: 2,
         centerPadding: '10px',
       },
     },
+
     {
-      breakpoint: 600,
+      breakpoint: 670,
       settings: {
         slidesToShow: 1,
         centerPadding: '5px',
@@ -42,11 +42,9 @@ const sliderSettings = {
   ],
 };
 
-function PopularProducts() {
-  const {data:products}=useGetProductsQuery(undefined);
+function PopularProducts({ products }: PopularProductsProps) {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const sliderRef = useRef<any>(null);
- 
   const handleScroll = (direction: 'left' | 'right') => {
     if (direction === 'left') {
       sliderRef.current.slickPrev();
@@ -54,20 +52,20 @@ function PopularProducts() {
     }
     sliderRef.current.slickNext();
   };
-  
+
   return (
-    <div className="w-full pb-8">
+    <div className="w-full">
       <ProductHeader handleScroll={handleScroll} />
-      <div className="md:px-14 md:mx-11  px-5 mx-6">
-        <Slider ref={sliderRef} {...sliderSettings}>
-          {products?.map((products: ProductType) => (
-            <div key={products.id} className="mt-1 ">
-              <Product product={products} />
-            </div>
-          ))}
-        </Slider>
-      </div>
+     
+      <Slider ref={sliderRef} {...sliderSettings}>
+        {products.map((product) => (
+          <div key={product.id} className="mt-1 px-4">
+            <Product product={product} />
+          </div>
+        ))}
+      </Slider>
     </div>
+   
   );
 }
 
