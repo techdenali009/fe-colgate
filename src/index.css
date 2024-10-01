@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.root,
-#root,
+
 #appBody {
   --primary-color: #125ee0;
   --secondary-color: #000000;
