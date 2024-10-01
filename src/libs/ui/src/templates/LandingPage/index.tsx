@@ -1,6 +1,6 @@
-// import { Carousel } from '@ui/organisms/Carousel';
+import { Carousel } from '@ui/organisms/Carousel';
 import './landingPage.styles.scss';
-// import { carouselData } from '@utils/carouselData';
+import { carouselData } from '@utils/carouselData';
 import PopularProducts from '@ui/organisms/PopularProducts';
 import { MarketingBannerList } from '@ui/organisms/MarketingBannerList';
 import {
@@ -21,20 +21,22 @@ import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
 
 export const LandingTemplatePage = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
- 
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      setProducts(initialProducts); 
+      setProducts(initialProducts);
     }, 4000);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, []);
 
-  
+
   return (
     <>
       <GreetRegister />
-      {/* <Carousel slides={carouselData} /> */}
+
+      {/* marketing-Carousel*/}
+      <Carousel slides={carouselData} />
 
       {/* marketing-banner-1*/}
       <div className="px-appPaddingLeft">
@@ -45,9 +47,7 @@ export const LandingTemplatePage = () => {
       {/* marketing-banner-2" */}
       <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
 
-
       {/* popular-products */}
-
       <div className="lg:pl-appPaddingLeft lg:pr-appPaddingRight pl-6 pr-6 mb-20">
         {products.length === 0 ? (
           <PopularProductSkeleton />
