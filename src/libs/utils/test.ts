@@ -97,7 +97,7 @@ export const products = [
     id: 8,
     name: 'Advanced Treatment Booster',
     image:
-      '  https://pcaskin.vtexassets.com/arquivos/ids/156889-608-auto/advancted-treatment-booster.jpg?v=638579570407470000&width=608&height=auto&aspect=true',
+      'https://pcaskin.vtexassets.com/arquivos/ids/156889-608-auto/advancted-treatment-booster.jpg?v=638579570407470000&width=608&height=auto&aspect=true',
     rating: 5.0,
     isBestSeller: true,
   },

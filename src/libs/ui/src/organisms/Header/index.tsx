@@ -20,7 +20,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
   const [isCartHovered, setIsCartHovered] = useState(false);
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+   
   const [, setIsSubmenuHovered] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
