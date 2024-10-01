@@ -1,4 +1,5 @@
 import React from 'react';
+import { TfiClose } from 'react-icons/tfi';
 
 interface modalHeaderProps {
     onClose: () => void;
@@ -13,8 +14,9 @@ const ModalHeader : React.FC<modalHeaderProps> = ({ onClose }) => {
         className=" group sign-close-icon focus-visible:bg-primary-400 p-2 rounded-full focus-visible:bg-primary-400 primary light false"
         aria-label="close_icon_title"
       >
-        <span className="sign-in_close-icon__4BNoR flex group:focus:[&:not(:focus-visible)]:flex group-focus-visible:[&:not(:focus)]:hidden sign-close-icon"></span>
-        {/* Button content is not needed since we're using a background image */}
+        <span className="flex group:focus:[&:not(:focus-visible)]:flex group-focus-visible:[&:not(:focus)]:hidden sign-close-icon"></span>
+        <TfiClose className='h-[33px] w-[19px] mt-1 font-bold' />
+        
       </button>
     </div>
   );

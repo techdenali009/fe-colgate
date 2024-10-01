@@ -12,28 +12,15 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ children, className }) => {
 
-  // useEffect(() => {
-  //   const root = document.getElementById('appBody')!;
-
-  //   if (root) {
-  //     root.classList.add('overflow-hidden');
-  //   }
-
-  //   return () => {
-
-  //       root.classList.remove('overflow-scroll');
-
-  //   };
-  // }, []);
   return ReactDom.createPortal(
-    <div className="modal-overlay bg-overlayBackground-100 z-50 h-full w-full fixed top-[0%] flex items-center transition-[hidden]  justify-center overflow-auto">
+    <div className="modal-overlay !p-[4rem] sm:p-2 xs:!p-4 2xs:!p-0 bg-[#00000040] z-50 h-full w-full fixed top-[0%] flex items-center transition-[hidden]  justify-center overflow-auto">
       <div
-        className={`h-auto w-[40.6rem] max-md:w-[18.6rem] bg-brand-white-100 relative overflow-y-auto !mt-3 ${className}`}
+        className={`lg:w-[650px] md:w-[400px] 2xs:w-[400px]  h-auto bg-white relative overflow-y-auto !mt-3 ${className}`}
       >
         {children}
       </div>
     </div>,
-    document.getElementById('appModal')!
+    document.getElementById('root')!
   );
 };
 

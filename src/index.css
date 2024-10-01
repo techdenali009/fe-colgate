@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 .root,
-#root {
+#root,
+#appBody {
   --primary-color: #125ee0;
   --secondary-color: #000000;
   --app-text-color: #000000;
+  --app-errorMessage-color: #ce4635;
+  --form-field-border :#595959;
 }
 
 @font-face {

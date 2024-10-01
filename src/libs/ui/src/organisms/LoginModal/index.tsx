@@ -3,8 +3,9 @@ import Modal from '@ui/atoms/Modal';
 import ModalHeader from '@ui/atoms/ModalHeader';
 import ModalBody from '@ui/atoms/ModalBody';
 import LoginForm from '@ui/organisms/LoginForm';
-import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
+import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
 import AlreadyRegistered from '@ui/organisms/AlreadyRegisteredForm';
+import { LoginConsts } from '@utils/Login';
 
 interface LoginModalProps {
   closeModal: () => void;
@@ -32,7 +33,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
     };
   }, []);
 
-  const modalHeightClass = currentForm === 'forgotPassword' || currentForm === 'alreadyRegistered' ? 'h-[420px]' : 'h-auto'; // Adjust height
+  const modalHeightClass = currentForm === LoginConsts.ForgotPassword || currentForm === LoginConsts.AlreadyRegistered ? 'h-[420px]' : 'h-auto'; // Adjust height
 
   return (
     <Modal
@@ -44,19 +45,19 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
        
       />
       <ModalBody title="">
-        {currentForm === 'login' && (
+        {currentForm === LoginConsts.Login && (
           <LoginForm 
             onSubmit={onSubmit} 
             setIsForgotPassword={() => setCurrentForm('forgotPassword')} // Open Forgot Password form
           />
         )}
-        {currentForm === 'forgotPassword' && (
+        {currentForm === LoginConsts.ForgotPassword && (
           <ForgotPasswordForm 
             onSubmit={onSubmit} 
             setIsForgotPassword={() => setCurrentForm('alreadyRegistered')} // Go to Already Registered form
           />
         )}
-        {currentForm === 'alreadyRegistered' && (
+        {currentForm === LoginConsts.AlreadyRegistered && (
           <AlreadyRegistered 
             onSubmit={onSubmit} 
             setIsForgotPassword={() => setCurrentForm('forgotPassword')} // Go back to Login form

@@ -7,7 +7,7 @@ import { Label } from '@ui/atoms/Label';
 import { Button } from '@ui/atoms/Button';
 import { InputField } from '@ui/molecules/FormField';
 import ValidationModal from '@ui/molecules/VaidationModal';
-import { LoginForm } from '@utils/Login';
+import { LoginForm, ValidationForm } from '@utils/Login';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { FaCheckCircle } from 'react-icons/fa';
 
@@ -24,13 +24,6 @@ const RegisterForm: React.FC = () => {
   const { handleSubmit, control, clearErrors, formState: { errors, isSubmitted }, watch } = useForm<FormValues>({
     mode: 'onChange',
   });
-
-  const watchFirstName = watch('firstName'); // Similarly for first name
-  const watchLasttName = watch('lastName');
-
-  const onSubmit = (data: FormValues) => {
-    console.log('Registering:', data);
-  };
   const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Confirm password visibility toggle
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true);
@@ -40,8 +33,13 @@ const RegisterForm: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
   const [checkPolicy, setIsCheckedPolicy] = useState(false);
+  const watchFirstName = watch('firstName'); // Similarly for first name
+  const watchLasttName = watch('lastName');
 
 
+  const onSubmit = (data: FormValues) => {
+    console.log('Registering:', data);
+  };
   const handleFocus = () => {
     setModalOpen(true);
   };
@@ -55,8 +53,6 @@ const RegisterForm: React.FC = () => {
   const handleBlur = () => {
     setModalOpen(false); // Close the modal when the input loses focus
   };
-
-
   const watchPassword = watch('password'); // Watch for password field for validation
 
   return (
@@ -81,10 +77,10 @@ const RegisterForm: React.FC = () => {
             name="email"
             control={control}
             rules={{
-              required: LoginForm.Message,
+              required: ValidationForm.Required,
               pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/,
-                message: 'E-mail address is invalid.',
+                value: ValidationForm.EmailValidationRule,
+                message: ValidationForm.EmailRuleFailed,
               },
             }}
             render={({ field }) => (
@@ -94,12 +90,12 @@ const RegisterForm: React.FC = () => {
                 placeholder=""
                 {...field}
                 className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 text-base border-[1px] w-full 
-                  ${errors.email ? 'border-[#595959]' : 'border-slate-200'}
-                  ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                  ${errors.email ? 'border-formFieldBorder' : 'border-slate-200'}
+                  ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
               />
             )}
           />
-          {errors.email && <span className="text-[#ce4635] text-normal font-HeroNewBold">{errors.email.message}</span>}
+          {errors.email && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.email.message}</span>}
         </div>
         {/* First Name */}
         <div className="mb-2 inline-grid text-start">
@@ -111,7 +107,7 @@ const RegisterForm: React.FC = () => {
           <Controller
             name="firstName"
             control={control}
-            rules={{ required: LoginForm.Message }}
+            rules={{ required: ValidationForm.Required }}
             render={({ field }) => (
               <div className="relative w-full">
                 <InputField
@@ -120,8 +116,8 @@ const RegisterForm: React.FC = () => {
                   placeholder="First Name *"
                   {...field}
                   className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
-                    ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
-                    ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                    ${errors.firstName ? 'border-formFieldBorder' : 'border-slate-200'}
+                    ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 />
                 {/* Conditionally render the checkmark icon */}
                 {watchFirstName && (
@@ -133,7 +129,7 @@ const RegisterForm: React.FC = () => {
               </div>
             )}
           />
-          {errors.firstName && <span className="text-[#ce4635] text-normal font-HeroNewBold">{errors.firstName.message}</span>}
+          {errors.firstName && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.firstName.message}</span>}
 
 
         </div>
@@ -147,7 +143,7 @@ const RegisterForm: React.FC = () => {
           <Controller
             name="lastName"
             control={control}
-            rules={{ required: LoginForm.Message }}
+            rules={{ required: ValidationForm.Required }}
             render={({ field }) => (
               <div className="relative w-full">
                 <InputField
@@ -156,19 +152,18 @@ const RegisterForm: React.FC = () => {
                   placeholder="Last Name *"
                   {...field}
                   className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
-                    ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
-                    ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                    ${errors.lastName ? 'border-formFieldBorder' : 'border-slate-200'}
+                    ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 />
                 {watchLasttName && (
                   <FaCheckCircle
                     className="absolute right-2.5 top-[30%] transform -translate-y-1/2 text-blue-600 text-base"
                   />
-
                 )}
               </div>
             )}
           />
-          {errors.lastName && <span className="text-[#ce4635] text-normal font-HeroNewBold">{errors.lastName.message}</span>}
+          {errors.lastName && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.lastName.message}</span>}
         </div>
 
         {/* Password */}
@@ -182,20 +177,20 @@ const RegisterForm: React.FC = () => {
             name="password"
             control={control}
             rules={{
-              required: LoginForm.Message,  // Only show this message after submit
+              required: ValidationForm.Required,  // Only show this message after submit
               minLength: {
                 value: 8,
-                message: 'Password does not meet complexity requirements',
+                message: ValidationForm.PasswordRequirementFailed
               },
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                message: 'Password does not meet complexity requirements',
+                value: ValidationForm.PasswordValidationRule,
+                message: ValidationForm.PasswordRequirementFailed,
               },
             }}
             render={({ field }) => (
               <div className="relative">
                 {isModalOpen && (
-                  <div className="mb-24 absolute z-10 left-0 bottom-full mb-2 w-full text-black bg-slate-300 text-sm border border-gray-200 rounded-lg shadow-md custom-modal">
+                  <div className="mb-20 absolute z-10 left-0 bottom-full mb-2 w-full text-black bg-slate-300 text-sm border border-gray-200 rounded-lg shadow-md custom-modal">
                     {/* Arrow pointing to the input */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-x-5 border-x-transparent border-b-5 border-b-slate-300" />
                     <ValidationModal />
@@ -219,12 +214,12 @@ const RegisterForm: React.FC = () => {
                   }}
                   // className="rounded-none mb-6 focus:outline-none p-3 text-base border-slate-200 border-2 w-full"
                   className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
-                    ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
-                    ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                    ${errors.password ? 'border-formFieldBorder' : 'border-slate-200'}
+                    ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 />
                 {/* Display error message if validation fails */}
                 {errors.password && (
-                  <span className="text-[#ce4635] text-normal font-HeroNewBold">
+                  <span className="text-appErrorMessage text-normal font-HeroNewBold">
                     {errors.password.message}
                   </span>
                 )}
@@ -258,8 +253,8 @@ const RegisterForm: React.FC = () => {
             name="confirmPassword"
             control={control}
             rules={{
-              required: 'Password do not match',
-              validate: (value) => value === watchPassword || 'Passwords do not match',
+              required: ValidationForm.Required,
+              validate: (value) => value === watchPassword || ValidationForm.PasswordNotMatch,
             }}
             render={({ field }) => (
               <PasswordFeild
@@ -273,10 +268,10 @@ const RegisterForm: React.FC = () => {
                   setIsConfirmPasswordFieldEmpty(e.target.value === ''); // Check if the field is empty
                 }}
                 className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
-                  ${errors.firstName ? 'border-[#595959]' : 'border-slate-200'}
-                  ${isSubmitted && errors.email ? 'focus:outline-blue-700' : 'focus:outline-none'}`}
+                  ${errors.confirmPassword ? 'border-formFieldBorder' : 'border-slate-200'}
+                  ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 suffix={(
-                  !isConfirmPasswordFieldEmpty && 
+                  !isConfirmPasswordFieldEmpty &&
                   <button
                     type="button"
                     onClick={toggleConfirmPasswordVisibility}
@@ -288,7 +283,7 @@ const RegisterForm: React.FC = () => {
               />
             )}
           />
-          {errors.confirmPassword && <span className="text-[#ce4635] text-normal font-HeroNewBold">{errors.confirmPassword.message}</span>}
+          {errors.confirmPassword && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.confirmPassword.message}</span>}
 
         </div>
 
@@ -305,7 +300,7 @@ const RegisterForm: React.FC = () => {
           checked={checkPolicy}
           onChange={handlePolicyCheckbox}
           className={`text-left !m-0 font-HeroNewLight text-[#333333] text-xs pt-[11px] pb-6 !leading-6 rounded-none h-12 p-0  border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-none'}
-            ${isSubmitted && (errors[LoginForm.Email] || !checkPolicy) ? 'focus:outline-blue-700 border-[#595959]' : 'focus:outline-none'}`}
+            ${isSubmitted && (errors[LoginForm.Email] || !checkPolicy) ? 'focus:outline-blue-700 border-formFieldBorder' : 'focus:outline-none'}`}
         >
           <label>Kindly explore our <a className='text-[#125ce0] text-sm font-HeroNewRegular'>privacy policy</a> to understand how we utilize your information.<span className='text-red-700'>*</span> </label>
         </Checkbox>

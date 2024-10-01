@@ -11,7 +11,9 @@ module.exports = {
       'sm': '640px',
       'md': '768px',
       'lg': '1024px',
-      'xl': '1280px'
+      'xl': '1280px',
+      'xs': '425px',
+      '2xs':'320px'
     },
     extend: {
       backgroundImage: {
@@ -34,7 +36,9 @@ module.exports = {
       colors:{
         'appTheme': 'var(--primary-color)',
         'appBlackTheme':'var(--secondary-color)',
-        'appTextColor': 'var(--app-text-color)'
+        'appTextColor': 'var(--app-text-color)',
+        'appErrorMessage':'var(--app-errorMessage-color)',
+        'formFieldBorder':'var(--form-field-border)'
       }
      
     },
@@ -50,7 +54,7 @@ module.exports = {
       },
       borderradius:{
     
-      }
+      },
     },
   },
   plugins: [],

@@ -31,16 +31,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   // onSubmit((e.target as HTMLFormElement)[0].value);
-  // };
-   
-  // const handleRatingChange = (newRating: number) => {
-  //   console.log('New Rating:', newRating);
-  // }
-
-
+  
   const handleMouseLeave = () => {
     setIsPopoverVisible(null);
   };
@@ -59,10 +50,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const handleMouseEnter = (button: string) => {
     setIsPopoverVisible(button);
   };
-   
-  // function searchUsers(value: string): void {
-  //   throw new Error('Function not implemented.');
-  // }
+  
   const price = 1234.567;
   // Remove individual filter
   const removeFilter = (filterToRemove: string) => {

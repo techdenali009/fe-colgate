@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@ui/atoms/Button';
 import { InputField } from '@ui/molecules/FormField';
-import { LoginForm, LoginForm as LoginFormEnum } from '@utils/Login';
+import { LoginForm as LoginFormEnum, ValidationForm } from '@utils/Login';
 import { PasswordFeild } from '@ui/atoms/PasswordField';
 
 interface FormValues {
@@ -30,9 +30,9 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
   return (
     <>
       <div className="mb-8">
-        <p className="text-[32px] font-HeroNewRegular">Already registered?</p>
+        <p className="text-[32px] pr-3 pl-3 font-HeroNewRegular">Already registered?</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col pb-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex pr-3 pl-3 flex-col pb-2">
         {/* Email Input */}
         <div className="mb-8 inline-grid">
           <Controller
@@ -46,10 +46,10 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
                 {...field}
               />}
             control={control}
-            {...register(LoginFormEnum.Email, { required: LoginForm.Message })}
+            {...register(LoginFormEnum.Email, { required: ValidationForm.Required})}
           />
           {errors[LoginFormEnum.Email] && (
-            <span style={{ color: '#ce4635' }} className="text-normal font-HeroNewBold mb-3">
+            <span className="text-normal text-appErrorMessage font-HeroNewBold">
               {errors[LoginFormEnum.Email]?.message}
             </span>
           )}
@@ -60,7 +60,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
           <Controller
             render={({ field }) =>
               <PasswordFeild
-                className={`rounded-none h-[48px] pt-1 pl-4 pb-1 pr-4  text-base border-[1px] ${
+                className={`rounded-none h-[48px] pl-4 pb-1 pr-4  text-base border-[1px] ${
                   errors[LoginFormEnum.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                 } ${isSubmitted && errors[LoginFormEnum.Password] ? 'focus:outline-blue-700' : 'focus:outline-none'}`} // Conditional outline
                 type={showPassword ? 'text' : 'password'}
@@ -83,10 +83,10 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
                 )}
               />}
             control={control}
-            {...register(LoginFormEnum.Password, { required: LoginForm.Message })}
+            {...register(LoginFormEnum.Password, { required: ValidationForm.Required })}
           />
           {errors[LoginFormEnum.Password] && (
-            <span style={{ color: '#ce4635' }} className="text-normal font-HeroNewBold mt-3">
+            <span className="text-normal text-appErrorMessage font-HeroNewBold mt-3">
               {errors[LoginFormEnum.Password]?.message}
             </span>
           )}
@@ -98,14 +98,14 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
           type={undefined}
           className="mt-2 p-0 text-start"
         >
-          <span className='bg-none text-blue-700 text-sm font-HeroNewRegular font-medium hover:font-semibold'>Forgot your Password?</span>
+          <span className='bg-none text-appTheme mb-1 text-sm font-HeroNewRegular font-medium hover:font-semibold'>Forgot your Password?</span>
         </Button>
 
         <div className="flex justify-between items-center w-full">
           <div className="flex-grow !h-[48px] !w-[75px]" />
           <Button
             type="submit"
-            className="bg-blue-600 !w-[75px] !h-[48px] text-white p-3 m-1 mb-8 hover:bg-black hover:underline !text-[15px] font-HeroNewSemiBold"
+            className="bg-appTheme !w-[75px] !h-[48px] text-white p-3 m-1 mb-8 hover:bg-black hover:underline !text-[15px] font-HeroNewSemiBold"
           >
             Log in
           </Button>
