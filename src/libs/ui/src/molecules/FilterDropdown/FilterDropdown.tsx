@@ -1,9 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const FilterDropdown: React.FC = () => {
+interface FilterDropdownProps {
+  options: string[];
+  onSelect: (option: string) => void;
+}
+
+const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('Alphabetical A - Z');
-  const [prevOption, setPrevOption] = useState('Alphabetical A - Z');
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [prevOption, setPrevOption] = useState(options[0]);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const toggleDropdown = () => {
@@ -13,6 +18,7 @@ const FilterDropdown: React.FC = () => {
   const handleOptionSelect = (option: string) => {
     setPrevOption(selectedOption); // Save previous option
     setSelectedOption(option);
+    onSelect(option); // Send selected option to parent
     setIsOpen(false); // Close dropdown after selection
   };
 
@@ -60,7 +66,7 @@ const FilterDropdown: React.FC = () => {
       {isOpen && (
         <div className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg" onScroll={handleScroll}>
           <ul className="py-1 max-h-60 overflow-y-auto">
-            {['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low'].map((option) => (
+            {options.map((option) => (
               <li
                 key={option}
                 onClick={() => handleOptionSelect(option)}

@@ -26,10 +26,11 @@ interface ISearchbar {
     onSubmit: (value: string) => void;
 }
 
-export const TestTemplatePage: React.FC<ISearchbar> = () => {
+export const TestTemplatePage: React.FC<ISearchbar> = ({ submitLabel, onSubmit }) => {
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
+  const [selectedSortingOption, setSelectedSortingOption] = useState('Alphabetical A - Z'); // State for selected sorting option
 
   const handleMouseEnter = (button: string) => {
     setIsPopoverVisible(button);
@@ -53,6 +54,12 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     setFilters([]);
   };
 
+  // Handle sorting option selection
+  const handleSortingSelect = (option: string) => {
+    setSelectedSortingOption(option);
+    console.log('Selected sorting option:', option);
+  };
+
   const price = 1234.567;
 
   return (
@@ -60,7 +67,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <GreetRegister />
       <form>
         <div className="flex justify-center mb-4">
-          <PrimaryButton className="font-HeroNewBold">Primary button</PrimaryButton>
+          <PrimaryButton className="font-HeroNewBold">{submitLabel}</PrimaryButton>
           <SecondaryButton>Secondary button</SecondaryButton>
           <ButtonWithTextAndIcon />
           <ButtonWithIcon>test</ButtonWithIcon>
@@ -70,13 +77,21 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         {/* Checkbox Section */}
         <div className="flex m-10 justify-center bg-slate-300 text-blue-700">
           <Checkbox checked={isChecked} onChange={handleCheckboxChange}>
-                        I agree to the terms and conditions
+            I agree to the terms and conditions
           </Checkbox>
         </div>
       </form>
 
       <HeaderLabel className="m-4">Title component</HeaderLabel>
       <SubtitleLabel className="m-4">Subtitle component</SubtitleLabel>
+
+      {/* Filter Dropdown */}
+      <div className='m-5'>
+        <FilterDropdown
+          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+          onSelect={handleSortingSelect}
+        />
+      </div>
 
       {/* Popover buttons */}
       <div className="flex mb-4 space-x-4 justify-center">
@@ -86,16 +101,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                        Popover Button 1
+            Popover Button 1
           </button>
           {isPopoverVisible === 'button1' && (
-            <div>
-              <Popover>
-                <h1 className="text-amber-800">TITLE FOR POPOVER</h1>
-                <p>Hello World! I am Button 1 Popover</p>
-                <SecondaryButton>Secondary Button</SecondaryButton>
-              </Popover>
-            </div>
+            <Popover>
+              <h1 className="text-amber-800">TITLE FOR POPOVER</h1>
+              <p>Hello World! I am Button 1 Popover</p>
+              <SecondaryButton>Secondary Button</SecondaryButton>
+            </Popover>
           )}
         </div>
 
@@ -105,16 +118,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                        Hover Me
+            Hover Me
           </button>
           {isPopoverVisible === 'button2' && (
-            <div>
-              <Popover maxWidth="800px">
-                <h1 className="text-amber-800">POPOVER WITH MAX WIDTH</h1>
-                <p>Popover content for button 2.</p>
-                <PrimaryButton>Reference Button</PrimaryButton>
-              </Popover>
-            </div>
+            <Popover maxWidth="800px">
+              <h1 className="text-amber-800">POPOVER WITH MAX WIDTH</h1>
+              <p>Popover content for button 2.</p>
+              <PrimaryButton>Reference Button</PrimaryButton>
+            </Popover>
           )}
         </div>
       </div>
@@ -122,27 +133,22 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10">
         <h1 className="text-slate-950 text-3xl mb-5">Product Prices</h1>
         <p>
-                    Price in USD: <Currency className="text-blue-900" value={price} currency="USD">(including tax)</Currency>
+          Price in USD: <Currency className="text-blue-900" value={price} currency="USD">(including tax)</Currency>
         </p>
         <p>
-                    Price in EUR: <Currency className="text-amber-600" value={price} currency="EUR">(excluding VAT)</Currency>
+          Price in EUR: <Currency className="text-amber-600" value={price} currency="EUR">(excluding VAT)</Currency>
         </p>
         <p>
-                    Price in JPY: <Currency className="text-red-950" value={price} currency="JPY">(no decimals)</Currency>
+          Price in JPY: <Currency className="text-red-950" value={price} currency="JPY">(no decimals)</Currency>
         </p>
         <p>
-                    Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+          Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
         </p>
       </div>
 
       <div className="flex">
         <Sidebar filterData={filterData} />
       </div>
-
-      <div className='m-5'>
-      <FilterDropdown></FilterDropdown>
-      </div>
-
 
       <div className="mb-4">
         <ProductCard
@@ -154,7 +160,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="mb-4">
-                Rating Component:
+        Rating Component:
         <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
       </div>
 
@@ -185,6 +191,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
+
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
@@ -204,7 +211,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         filters={filters}
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
-      />      
+      />
     </>
   );
 };
