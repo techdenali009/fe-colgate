@@ -28,10 +28,10 @@ export const MarketingBanner: React.FC<IMarketingBanner> = ({
       <div className=" w-full md:w-1/2 flex flex-col justify-center text-left px-8 overflow-hidden">            
         <BannerText heading={heading} subheadingText={subtext} />
         {buttonText && (
-          <div className="group inline-block">
+          <div className="group inline-block mt-6">
             <PrimaryButton
               onClick={onButtonClick}
-              className="flex !m-0 font-HeroNewBold !bg-[#125ce0] hover:!bg-black text-xs items-center border border-transparent hover:border-white px-3 py-2 ">                  
+              className="flex !m-0 font-HeroNewBold !bg-[#125ce0] hover:!bg-black text-xs items-center border border-transparent hover:border-white px-3 py-2 leading-[150%] font-semibold">                  
               {buttonText}
               <Icon icon={arrowIcon} className="h-6 w-6 ml-2" />
             </PrimaryButton>
@@ -40,7 +40,7 @@ export const MarketingBanner: React.FC<IMarketingBanner> = ({
 
 
       </div>
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/2 h-full">
         <Image src={imageUrl} alt={heading} className="w-full h-full" />
       </div>
     </div>

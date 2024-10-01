@@ -21,7 +21,7 @@ export const MarketingBannerTwo: React.FC<MarketingBannerTwoProps> = ({ bannerDa
   const { heading, subtext, buttonText, imageUrl, bgColor } = bannerData;
 
   return (
-    <div className={`container mb-12 ${bgColor}`}>
+    <div className={` mb-12 ${bgColor}`}>
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 h-full w-full items-center banner-wrapper">
         <div className="mb-10 lg:mb-0">
           <img

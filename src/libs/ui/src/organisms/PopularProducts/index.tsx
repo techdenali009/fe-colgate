@@ -1,46 +1,13 @@
 import { useRef } from 'react';
 import Slider from 'react-slick';
 import Product from '../Product';
-
 import { PopularProductsProps } from '@utils/Product';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProductHeader from '@ui/molecules/PopularProductHeading';
+import { sliderSettings } from '@utils/SliderSetting';
 
-const sliderSettings = {
-  dots: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  arrows: false,
-  swipeToSlide: true,
 
-  responsive: [
-    {
-      breakpoint: 1350,
-      settings: {
-        slidesToShow: 3,
-        centerPadding: '15px',  
-      },
-    },
-    {
-      breakpoint: 1020,
-      settings: {
-        slidesToShow: 2,
-        centerPadding: '10px',
-      },
-    },
-
-    {
-      breakpoint: 670,
-      settings: {
-        slidesToShow: 1,
-        centerPadding: '5px',
-      },
-    },
-  ],
-};
 
 function PopularProducts({ products }: PopularProductsProps) {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -55,8 +22,13 @@ function PopularProducts({ products }: PopularProductsProps) {
 
   return (
     <div className="w-full">
-      <ProductHeader handleScroll={handleScroll} />
-     
+      <ProductHeader
+        headingLabel="Popular Products"
+        description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
+        handleScroll={handleScroll}
+        LogInButtonDisable={true}
+      />
+
       <Slider ref={sliderRef} {...sliderSettings}>
         {products.map((product) => (
           <div key={product.id} className="mt-1 px-4">
@@ -65,7 +37,6 @@ function PopularProducts({ products }: PopularProductsProps) {
         ))}
       </Slider>
     </div>
-   
   );
 }
 
