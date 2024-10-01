@@ -19,6 +19,12 @@ import FilterSkeleton from '@ui/molecules/FilterSkeleton/index';
 import AccordionItem from '@ui/molecules/AccordianItem/index';
 import Currency from '@ui/molecules/Currency/Currency';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
+import PageTitleHeader from '@ui/molecules/PageTitleHeader';
+import BusinessCard from '@ui/molecules/BussinessCard';
+import BusinessCardSkeleton from '@ui/molecules/BussinessCardSkeleton';
+import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
+import Sidebar from '@ui/organisms/Sidebar/Sidebar';
+import filterData from '@utils/FilterData';
 
 interface ISearchbar {
   submitLabel: string;
@@ -29,9 +35,23 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false); // State for Checkbox
+
   const navigate = useNavigate();
-  
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'All Products', href: '/products' },
+    { label: 'Treatment Enhancements' }
+  ];
+
+  const handleButtonClick = () => {
+    console.log('Learn more clicked!');
+  };
+
+  const handleMouseEnter = (button: string) => {
+    setIsPopoverVisible(button);
+  };
+
   const handleMouseLeave = () => {
     setIsPopoverVisible(null);
   };
@@ -47,9 +67,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const handleRegisterClick = () => {
     navigate('/register'); // Navigate to the /register route
   };
-  const handleMouseEnter = (button: string) => {
-    setIsPopoverVisible(button);
-  };
+
   
   const price = 1234.567;
   // Remove individual filter
@@ -72,13 +90,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <ButtonWithTextAndIcon></ButtonWithTextAndIcon>
           <ButtonWithIcon>ButtonwithIcon</ButtonWithIcon>
           <LabelButton>label</LabelButton>
+          <ButtonWithText>Button with text</ButtonWithText>
         </div>
         {/* Checkbox Section */}
         <div className="flex m-10 justify-center bg-slate-300 text-blue-700">
-          <Checkbox
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          >
+          <Checkbox checked={isChecked} onChange={handleCheckboxChange}>
             I agree to the terms and conditions
           </Checkbox>
         </div>
@@ -144,6 +160,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         </p>
       </div>
 
+      <div className="flex">
+        <Sidebar filterData={filterData} />
+      </div>
+
+
       <div className="mb-4">
         <ProductCard
           name="Stylish Chair"
@@ -185,7 +206,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
-
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
@@ -225,6 +245,25 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
       />
+
+      <div className="p-8">
+        <PageTitleHeader breadcrumbs={breadcrumbs}>
+        </PageTitleHeader>
+      </div>
+
+      <div className="flex justify-center mt-10">
+        <BusinessCard
+          imageSrc="https://pcaskin.vtexassets.com/arquivos/ids/155951-956-auto/15277-Enhanced-Merchandising--1--1.jpg?v=638307165671830000&width=956&height=auto&aspect=true"
+          title="Enhanced Merchandising"
+          description="Merchandising is a key part of any successful business. It promotes a positive customer experience to drive sales."
+          buttonText="Learn More"
+          onButtonClick={handleButtonClick}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <BusinessCardSkeleton />
+      </div>    
     </>
   );
 };

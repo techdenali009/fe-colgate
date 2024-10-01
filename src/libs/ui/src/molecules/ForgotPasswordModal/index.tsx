@@ -57,7 +57,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onSubmit, setIs
           </Button>
           <Button
             type="submit"
-            className="bg-appThemenp text-[14px] text-white p-3 mb-10  hover:bg-black hover:underline font-HeroNewBold"
+            className="bg-appTheme text-[14px] text-white p-3 mb-10  hover:bg-black hover:underline font-HeroNewBold"
           >
             Reset My Password
           </Button>

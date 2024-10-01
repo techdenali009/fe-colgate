@@ -1,212 +1,142 @@
-.carousel.carousel-slider {
-  position: relative;
-  margin: 0;
-}
+.appCarousel{
+  .carousel {
+    &.carousel-slider {
+      position: relative;
+      margin: 0;
+    }
 
-.carousel .control-dots {
-  position: absolute;
-  bottom: 0;
-  margin: 10px 0;
-  padding: 0;
-  text-align: center;
-  width: 100%;
-  z-index: 1;
-  padding-left: 10.5rem;
-  bottom: 11% !important;
-  left: 10px;
-}
+    .control-dots {
+      position: absolute;
+      bottom: 0;
+      margin: 10px 0;
+      padding: 0;
+      text-align: center;
+      width: 100%;
+      z-index: 1;
+      padding-left: 10.5rem;
+      bottom: 11% !important;
+      left: 10px;
+    }
 
-li.dot.dot-other {
-  transition: opacity .25s ease-in;
-  background-color: #fff !important;
-  opacity: 1 !important;
-  border-radius: 50%;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 5px !important;
-  border: 0.5px solid black;
-  width: 10px !important;
-  height: 10px !important;
-}
-
-li.dot-other.selected {
-  transition: opacity .25s ease-in;
-  background-color: #000000 !important;
-  width: 8px !important;
-  height: 8px !important;
-}
-
-li.dot.dot-black {
-  transition: opacity .25s ease-in;
-  background-color: #000000 !important;
-  opacity: 1 !important;
-  border-radius: 50%;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 5px !important;
-  border: 0.5px solid white;
-  width: 10px !important;
-  height: 10px !important;
-}
-
-li.selected.dot-black {
-  transition: opacity .25s ease-in;
-  background-color: #fff !important;
-  width: 8px !important;
-  height: 8px !important;
-}
-
-.custom-prev-arrow-black {
-  background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-before.6460f699.svg);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  top: 220px;
-  padding: 30px;
-  position: absolute;
-  z-index: 1;
-}
-
-.custom-next-arrow-black {
-  background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-next.dd06af0f.svg);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  position: absolute;
-  bottom: 217px;
-  padding: 30px;
-  right: 0px;
-}
-
-.custom-next-arrow-other {
-  background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-next-darkblue.b32edc63.svg);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  position: absolute;
-  bottom: 217px;
-  padding: 30px;
-  right: 0px;
-}
-
-.custom-prev-arrow-other {
-  background-image: url(https://www.pcaskinpro.com/home/_next/static/media/navigate-before-blue.feeeb49c.svg);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  top: 220px;
-  padding: 30px;
-  position: absolute;
-  z-index: 1;
-}
-
-@media (max-width: 2560px) {
-  .container {
-    max-width: 100% !important;
-  }
-}
-
-@media (max-width: 1020px) {
-  .container {
-    max-width: 100% !important;
+    .slide img {
+      width: 100%;
+      vertical-align: top;
+      border: 0;
+    }
   }
 
-  .flex-row {
-    flex-direction: column;
+  li {
+    &.dot {
+      &.dot-other {
+        transition: opacity 0.25s ease-in;
+        background-color: #fff !important;
+        opacity: 1 !important;
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 5px !important;
+        border: 0.5px solid black;
+        width: 10px !important;
+        height: 10px !important;
+      }
+
+      &.dot-black {
+        transition: opacity 0.25s ease-in;
+        background-color: #000000 !important;
+        opacity: 1 !important;
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 5px !important;
+        border: 0.5px solid white;
+        width: 10px !important;
+        height: 10px !important;
+      }
+
+      &.selected {
+        &.dot-other {
+          background-color: #000000 !important;
+          width: 8px !important;
+          height: 8px !important;
+        }
+
+        &.dot-black {
+          background-color: #fff !important;
+          width: 8px !important;
+          height: 8px !important;
+        }
+      }
+    }
   }
 
-  .w-1\/2 {
-    width: 100%;
-  }
-
-  .w-1\/2.bg-gray-100.p-8 {
-    width: 100%;
-    height: 100% !important;
-    padding: 0px 20px;
-  }
-
-  .w-1\/2.p-8.bg-black.text-white {
-    height: 100%;
-    width: 100%;
-    padding: 0px 20px;
-  }
-
-  .swiper-button-prev {
-    top: 102px;
-  }
-
-  .swiper-button-next {
-    bottom: 400px;
-  }
-
-  .bannercontent {
-    font-size: 0rem !important;
-    line-height: 1 !important;
-    text-align: left;
-    padding: 0px !important;
-  }
-
-  .carousel .control-dots {
+  .custom-prev-arrow-black,
+  .custom-next-arrow-black,
+  .custom-prev-arrow-other,
+  .custom-next-arrow-other {
+    background-position: 50%;
+    background-repeat: no-repeat;
     position: absolute;
-    bottom: 0;
-    margin: 10px 0;
-    text-align: center;
-    width: 100%;
-    z-index: 1;
-    padding-left: 0px;
-    bottom: 0% !important;
-    align-items: center;
-  }
-
-  .custom-next-arrow-black {
-    bottom: 398px !important;
+    padding: 30px;
   }
 
   .custom-prev-arrow-black {
-    top: 43px !important;
+    background-image: url(../../../assests/white_prev.svg);
+    top: 220px;
+    z-index: 1;
   }
 
-  .custom-next-arrow-other {
-    bottom: 398px !important;
+  .custom-next-arrow-black {
+    background-image: url(../../../assests/white_next.svg);
+    bottom: 217px;
+    right: 0;
   }
 
   .custom-prev-arrow-other {
-    top: 43px !important;
+    background-image: url(../../../assests/blue_prev.svg);
+    top: 220px;
+    z-index: 1;
   }
 
-  .heading {
-    font-weight: 300;
-    font-size: 2.375rem;
-    line-height: 1;
+  .custom-next-arrow-other {
+    background-image: url(../../../assests/blue_next.svg);
+    bottom: 217px;
+    right: 0;
   }
 
-  .banner-button {
-    height: 43px;
-    font-size: 1rem;
-    font-family: sans-serif;
-    width: 113px;
-    font-weight: 700;
-    border-radius: 0px;
-    background-color: #1D4ED8;
-    color: white;
+  @media (max-width: 1020px) {
+    .swiper-button-prev {
+      top: 102px;
+    }
+
+    .swiper-button-next {
+      bottom: 400px;
+    }
+
+    .carousel .control-dots {
+      position: absolute;
+      bottom: 0;
+      margin: 10px 0;
+      text-align: center;
+      width: 100%;
+      z-index: 1;
+      padding-left: 0px;
+      bottom: 0% !important;
+      align-items: center;
+    }
+
+    .custom-next-arrow-black,
+    .custom-next-arrow-other {
+      bottom: 398px !important;
+    }
+
+    .custom-prev-arrow-black,
+    .custom-prev-arrow-other {
+      top: 43px !important;
+    }
+
+    .slide img {
+      height: 140px;
+    }
   }
 
-  .carousel.carousel-slider {
-    position: relative;
-    margin: 0;
-  }
-
-  .carousel-subheading {
-    font-size: 14px;
-    margin-bottom: 0.5rem;
-  }
-
-  .carousel .slide img {
-    width: 100%;
-    vertical-align: top;
-    border: 0;
-    height: 145px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 100%;
-  }
 }

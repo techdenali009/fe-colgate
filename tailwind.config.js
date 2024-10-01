@@ -10,6 +10,8 @@ module.exports = {
     screens: {
       'sm': '640px',
       'md': '768px',
+      'tm': {'max': '1020px'},  // max-width 1020px
+      'tl': {'min': '1021px'},  // min-width 1021px
       'lg': '1024px',
       'xl': '1280px',
       'xs': '425px',
