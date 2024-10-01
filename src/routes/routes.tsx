@@ -1,4 +1,5 @@
 
+import RegisterPage from '@pages/RegisterPage';
 import { AppSpinner } from '@ui/atoms/AppSpinner';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -23,6 +24,7 @@ export const AppRoutes = () => (
       </Suspense>
     }>
       <Route path="" element={<LandingPage />}></Route>
+      <Route path = "/register" element={<RegisterPage/>}></Route>
 
       {/* User Module */}
       {/* <Route path="/users" element={<UserModule />}>
