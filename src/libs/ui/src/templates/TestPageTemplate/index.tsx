@@ -235,18 +235,18 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         <BusinessCardSkeleton />
-      </div> 
+      </div>
 
       <div>
         <TwoCardsComponent />
-      </div>   
-      
+      </div>
+
       <div>
-          <h3 className="font-semibold mb-4">Skin Types</h3>
-            <div className="flex flex-wrap space-x-2">
-              <SkinTypeBadge children="Combination" active={true} />
-              <SkinTypeBadge children="Oily" active={true} />
-            </div>
+        <h3 className="font-semibold mb-4">Skin Types</h3>
+        <div className="flex flex-wrap space-x-2">
+          <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
+          <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
+        </div>
       </div>
     </>
   );
