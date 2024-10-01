@@ -1,4 +1,4 @@
-import { ProductDetailsPage } from "@ui/templates/ProductDetailsPage";
+import { ProductDetailsPage } from '@ui/templates/ProductDetailsPage';
 
 export default function PDPage() {
   return <ProductDetailsPage submitLabel={''} onSubmit={function (): void {

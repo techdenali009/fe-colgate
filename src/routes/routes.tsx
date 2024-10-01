@@ -35,13 +35,13 @@ export const AppRoutes = () => (
                 </Route> */}
 
       {/* Product module */}
-       <Route path="/products" element={<ProductModule />}>
-                   {/* <Route  path="/" element={<Products/>}></Route> */}
-                   <Route  path=":id" element={<ProductDetailsPage/>}></Route>
-                </Route> 
+      <Route path="/products" element={<ProductModule />}>
+        {/* <Route  path="/" element={<Products/>}></Route> */}
+        <Route  path=":id" element={<ProductDetailsPage/>}></Route>
+      </Route> 
 
       <Route path="/test" element={<TestPage />}></Route>
-     {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
+      {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
     </Route>
   </Routes>
 )
