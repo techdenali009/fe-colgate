@@ -35,7 +35,7 @@ export default function MainModule() {
         <ScrollToTop/>
 
       </div>
-     {toggle && 
+      {toggle && 
         <LoginModal closeModal={() => {
           SetToggle(false)
         }}
