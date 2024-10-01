@@ -82,7 +82,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   return (
     <>
+      
       <GreetRegister></GreetRegister>
+      
       <form>
         <div className="flex justify-center mb-4">
           <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>

@@ -1,3 +1,4 @@
+import { ScrollToTop } from '@ui/molecules/ScrollUpMolecule';
 import Footer from '@ui/organisms/Footer';
 import Header from '@ui/organisms/Header';
 import LoginModal from '@ui/organisms/LoginModal';
@@ -7,7 +8,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 // App level Module
 export default function MainModule() {
-
   const [toggle, SetToggle] = useState(false);
   const navigate = useNavigate();
   const modalSetToggle = () => {
@@ -17,8 +17,11 @@ export default function MainModule() {
   const handleRegisterClick = () => {
     navigate('/register'); // Navigate to the /register route
   };
+
   return (
     <>
+      {/* Header */}
+     
       <div>
         <TopHeader></TopHeader>
         <Header modalSetToggle={modalSetToggle} handleRegisterClick={handleRegisterClick}></Header>
@@ -26,13 +29,19 @@ export default function MainModule() {
       <>
         <Outlet />
       </>
-      <Footer />
+      {/* Footer */}
+      <div>
+        <Footer />
+        <ScrollToTop/>
+
+      </div>
       {toggle && 
         <LoginModal closeModal={() => {
           SetToggle(false)
         }}
         >
         </LoginModal>}
+
     </>
   );
 }
