@@ -1,3 +1,9 @@
+import OrderManagementtIcon from '../ui/assets/OrderManagementtIcon.svg';
+import AcademyIcon from '../ui/assets/AcademyIcon.svg';
+import LoyaltyIcon from '../ui/assets/LoyaltyIcon.svg';
+import SubscribeIcon from '../ui/assets/SubscribeIcon.svg';
+
+
 export const marketingBannersData = [
   {
     heading:'Register for Treatment Tuesday',
@@ -20,28 +26,27 @@ export const promotionBannersData=[
   {
     heading:'Order Management',
     subtext:'Effortlessly handle orders and invoices in your account and stay up-to-date on any and all business affairs.',
-    imageUrl:'https://www.pcaskinpro.com/cms/assets/f0fb8ed6-a79c-445e-a75f-461973c31ee7.jpg?key=pca-en-us-benefits-icons-large',
+    imageUrl:OrderManagementtIcon,
 
   },
   {
     heading:'Academy',
     subtext:'Get access to the entire education library via the our new single sign-on. All the product knowledge is at your fingertips.',
-    imageUrl:'https://www.pcaskinpro.com/cms/assets/bb7d5136-e83d-457b-8467-aaacb40463e5.jpg?key=pca-en-us-benefits-icons-large',
-        
+    imageUrl:AcademyIcon,
+      
   },
   {
     heading:'Loyalty',
     subtext:'Sign up to access exclusive perks, rewards, and special offers through our loyalty program. Your success is our success.',
-    imageUrl:'https://www.pcaskinpro.com/cms/assets/a37b7ea6-9b3e-4822-ba15-55ff633a34bf.jpg?key=pca-en-us-benefits-icons-large',
+    imageUrl:LoyaltyIcon,
         
   },
   {
     heading:'Subscriptions',
     subtext:'Keep your shelves stocked by auto-ordering all of your favorite products — just set it and forget it.',
-    imageUrl:'https://www.pcaskinpro.com/cms/assets/5704372f-9c43-4e45-a709-b6bc564970c0.jpg?key=pca-en-us-benefits-icons-large',
+    imageUrl:SubscribeIcon,
         
   },
-
 ]
 
 export const promotionBannerText = {
@@ -60,5 +65,4 @@ export const marketingBannerTwo = [
     bgColor:'bg-black text-white'
   },
     
-
 ]
