@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ReactNode } from 'react';
 
 interface FilterDropdownProps {
   options: string[];
   onSelect: (option: string) => void;
+  children?: ReactNode; // Accept children
 }
 
-const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect }) => {
+const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [prevOption, setPrevOption] = useState(options[0]);
@@ -20,14 +21,6 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect }) =>
     setSelectedOption(option);
     onSelect(option); // Send selected option to parent
     setIsOpen(false); // Close dropdown after selection
-  };
-
-  const handleScroll = () => {
-    // Remove background on scroll
-    const listItems = dropdownRef.current?.querySelectorAll('li');
-    listItems?.forEach((item) => {
-      item.classList.remove('bg-blue-800', 'text-white');
-    });
   };
 
   // Close the dropdown when clicking outside of it
@@ -64,20 +57,19 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect }) =>
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg" onScroll={handleScroll}>
+        <div className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg">
           <ul className="py-1 max-h-60 overflow-y-auto">
             {options.map((option) => (
               <li
                 key={option}
                 onClick={() => handleOptionSelect(option)}
-                className={`cursor-pointer px-4 py-2 text-sm text-gray-700 ${
-                  selectedOption === option ? 'bg-blue-800 text-white' : 'hover:bg-blue-800 hover:text-white'
-                }`}
+                className={`cursor-pointer px-4 py-2 text-sm text-gray-700 ${selectedOption === option ? 'bg-blue-800 text-white' : 'hover:bg-blue-800 hover:text-white'}`}
               >
                 {option}
               </li>
             ))}
           </ul>
+          {children} {/*children*/}
         </div>
       )}
     </div>

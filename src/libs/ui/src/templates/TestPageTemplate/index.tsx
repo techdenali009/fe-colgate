@@ -90,7 +90,17 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ submitLabel, onSubmit }
         <FilterDropdown
           options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
           onSelect={handleSortingSelect}
-        />
+        >
+        </FilterDropdown>
+        <FilterDropdown 
+        options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+        onSelect={handleSortingSelect}>
+        <div className="p-4 bg-gray-100"> 
+            <p>Additional Options:</p> {/* passing child */}
+            <button className="text-blue-500">Extra Action</button>
+          </div>
+        </FilterDropdown>
+
       </div>
 
       {/* Popover buttons */}
