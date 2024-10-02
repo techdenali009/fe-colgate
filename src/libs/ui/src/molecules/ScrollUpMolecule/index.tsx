@@ -1,18 +1,23 @@
-// ScrollToTop component
 import { useEffect, useState } from 'react';
 import { ScrollToTopButton } from '@ui/atoms/ScrollupButton';
 
 export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const scrollThresholdPercentage = parseFloat(import.meta.env.VITE_SCROLL_THRESHOLD) / 100;
 
   useEffect(() => {
     const handleScroll = () => {
-      const smallScrollThreshold = 400; 
-      setIsVisible(window.scrollY > smallScrollThreshold);
+      const scrollHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
+
+      const scrollThreshold = (scrollHeight - windowHeight) * scrollThresholdPercentage;
+
+      setIsVisible(scrollPosition > scrollThreshold);
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    handleScroll(); 
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -21,7 +26,6 @@ export const ScrollToTop = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
     setIsVisible(false);
   };
 
