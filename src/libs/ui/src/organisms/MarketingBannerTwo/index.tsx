@@ -2,7 +2,7 @@ import React from 'react';
 import { Subheading } from '@ui/atoms/Subheading';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import { Icon } from '@ui/atoms/Icons';
-import arrowIcon from 'src/libs/ui/assests/Right-Icon.e85181bb.svg';
+import arrowIcon from 'src/libs/ui/assets/Right-Icon.e85181bb.svg';
 import { Heading } from '@ui/atoms/Heading';
 
 type BannerData = {
