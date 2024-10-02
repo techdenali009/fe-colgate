@@ -25,6 +25,8 @@ import Sidebar from '@ui/organisms/Sidebar/Sidebar';
 import filterData from '@utils/FilterData';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
+import ReviewBar from '@ui/molecules/ReviewBar';
+import StarRating from '@ui/molecules/HoveringRatingStar';
 
 interface ISearchbar {
   submitLabel: string;
@@ -69,6 +71,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   };
 
   const price = 1234.567;
+
+  const reviews = [
+    { stars: 5, count: 9 },
+    { stars: 4, count: 0 },
+    { stars: 3, count: 0 },
+    { stars: 2, count: 0 },
+    { stars: 1, count: 0 },
+  ];
 
   return (
     <>
@@ -247,6 +257,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
           <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
         </div>
+      </div>
+
+      <div className="p-6">
+        <StarRating totalStars={5} initialRating={4} />
+        <ReviewBar reviews={reviews} />
       </div>
     </>
   );
