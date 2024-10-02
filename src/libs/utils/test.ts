@@ -63,8 +63,7 @@ export const products = [
   {
     id: 4,
     name: 'Hyaluronic Acid Boosting Serum',
-    image:
-      'https://pcaskin.vtexassets.com/arquivos/ids/156942-608-auto/hyalruonic-acid-boosting-serum.jpg?v=638579634152870000&width=608&height=auto&aspect=true',
+    image:'https://pcaskin.vtexassets.com/arquivos/ids/157014-608-auto/HABS-elle-shape-newbeauty-1oz.jpg?v=638633086347900000&width=608&height=auto&aspect=true',
     rating: 4.6,
     isBestSeller: true,
   },

@@ -11,7 +11,7 @@ export const AppSpinner: React.FC<AppSpinnerProps> = ({
 }) => {
   return (
     <div className={`${containerClassName}`}>
-      <Image src={'/assests/spinner.svg'} 
+      <Image src={'/assets/spinner.svg'} 
         className={`${spinnerClassName}`} 
         alt='loader' />
     </div>

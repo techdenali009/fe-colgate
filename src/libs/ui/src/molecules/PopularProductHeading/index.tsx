@@ -2,10 +2,10 @@ import { Button } from '@ui/atoms/Button';
 import { Label } from '@ui/atoms/Label';
 import { ProductHeaderProps } from '@utils/Product';
 import { PrimaryButton } from '../PrimaryButton';
-import NavigateNextBlue from '../../../assests/Navigatenextblue.svg';
-import NavigateNextBlueDark from '../../../assests/Navigate-next-bluedark.svg';
-import NavigatePrevBlue from '../../../assests/Navigateprevblue.svg';
-import NavigatePrevBlueDark from '../../../assests/Navigateprevbluedark.svg';
+import NavigateNextBlue from '../../../assets/Navigatenextblue.svg';
+import NavigateNextBlueDark from '../../../assets/Navigate-next-bluedark.svg';
+import NavigatePrevBlue from '../../../assets/Navigateprevblue.svg';
+import NavigatePrevBlueDark from '../../../assets/Navigateprevbluedark.svg';
 
 const ProductHeader = ({
   handleScroll,

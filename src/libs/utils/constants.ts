@@ -11,6 +11,6 @@ export const OTHERLINKS='OtherLinks'
 export const CREATEACCOUNT='Create Account'
 export const LOGIN='Login'
 export const FORGOTPASSWORD='Forgot your password?'
-export const AppAssets='src/libs/ui/assests'
+export const AppAssets='src/libs/ui/assets'
 
 

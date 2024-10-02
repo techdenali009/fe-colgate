@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '@ui/atoms/Logo';
 import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon/index';
-import searchIcon from '../../../assests/searchIcon.svg';
-import profile from '../../../assests/profile.svg';
-import cart from '../../../assests/cart.svg';
+import searchIcon from '../../../assets/searchIcon.svg';
+import profile from '../../../assets/profile.svg';
+import cart from '../../../assets/cart.svg';
 import { Icon } from '@ui/atoms/Icons';
 import Popover from '@ui/molecules/Popover/Popover';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
