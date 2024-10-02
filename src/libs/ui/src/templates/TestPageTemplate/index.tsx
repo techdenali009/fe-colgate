@@ -39,8 +39,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
-  const [selectedSortingOption, setSelectedSortingOption] = useState('Alphabetical A - Z'); // State for selected sorting option
-
+  
   const navigate = useNavigate();
   const breadcrumbs = [
     { label: 'Home', href: '/' },
@@ -86,7 +85,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   // Handle sorting option selection
   const handleSortingSelect = (option: string) => {
-    setSelectedSortingOption(option);
     console.log('Selected sorting option:', option);
   };
 
@@ -124,9 +122,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         >
         </FilterDropdown>
         <FilterDropdown 
-        options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
-        onSelect={handleSortingSelect}>
-        <div className="p-4 bg-gray-100"> 
+          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+          onSelect={handleSortingSelect}>
+          <div className="p-4 bg-gray-100"> 
             <p>Additional Options:</p> {/* passing child */}
             <button className="text-blue-500">Extra Action</button>
           </div>
