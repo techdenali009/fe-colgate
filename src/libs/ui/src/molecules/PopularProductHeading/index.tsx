@@ -2,30 +2,35 @@ import { Button } from '@ui/atoms/Button';
 import { Label } from '@ui/atoms/Label';
 import { ProductHeaderProps } from '@utils/Product';
 import { PrimaryButton } from '../PrimaryButton';
-import NavigateNextBlue from '../../../assests/Navigatenextblue.svg';
-import NavigateNextBlueDark from '../../../assests/Navigate-next-bluedark.svg';
-import NavigatePrevBlue from '../../../assests/Navigateprevblue.svg';
-import NavigatePrevBlueDark from '../../../assests/Navigateprevbluedark.svg';
+import NavigateNextBlue from '../../../assets/Navigatenextblue.svg';
+import NavigateNextBlueDark from '../../../assets/Navigate-next-bluedark.svg';
+import NavigatePrevBlue from '../../../assets/Navigateprevblue.svg';
+import NavigatePrevBlueDark from '../../../assets/Navigateprevbluedark.svg';
 
-const ProductHeader = ({ handleScroll }: ProductHeaderProps) => {
+const ProductHeader = ({
+  handleScroll,
+  headingLabel,
+  description,
+  LogInButtonDisable,
+}: ProductHeaderProps) => {
   return (
     <div className="text-left">
       <h2 className="font-bold text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold">
-        Popular Products
+        {headingLabel}
       </h2>
       <div className="mb-6 flex flex-col lg:flex-row lg:justify-between">
         <div className="flex flex-col lg:flex-row items-start mt-4">
-          <Label className=" mr-6 text-base text-slate-600 font-HeroNewLight">
-            {
-              'A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey.'
-            }
+          <Label className="mr-6 text-base text-slate-600 font-HeroNewLight">
+            {description}
           </Label>
-          <Button
-            className="text-base font-bold text-appTheme hover:text-white hover:bg-appTheme font-HeroNewBold   "
-            type={'submit'}
-          >
-            {'Log in to view prices'}
-          </Button>
+          {LogInButtonDisable ? (
+            <Button
+              className="text-base font-bold text-appTheme hover:text-white hover:bg-appTheme font-HeroNewBold"
+              type="submit"
+            >
+              Log in to view prices
+            </Button>
+          ) : null}
         </div>
 
         <div className="flex space-x-0.5 mt-3 lg:mt-0">

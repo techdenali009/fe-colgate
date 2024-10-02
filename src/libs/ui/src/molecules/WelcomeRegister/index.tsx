@@ -47,7 +47,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
               <Controller
                 render={({ field }) =>
                   <InputField
-                    className="rounded-none p-3 text-base border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight focus:outline-none"
+                    className="rounded-none py-2 px-3 text-base border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight placeholder:text-sm focus:outline-none"
                     type="email"
                     placeholder="Email *"
                     {...field}
@@ -69,7 +69,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
               <Controller
                 render={({ field }) =>
                   <PasswordFeild
-                    className="rounded-none p-3 text-base text-neutral-200 border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700 focus:outline-none"
+                    className="rounded-none py-2 px-3 text-base text-neutral-200 border-[1px] border-[#d6d6d6]  mt-3 mb-6 placeholder-slate-700  placeholder:text-sm focus:outline-none"
                     type={showPassword ? 'text' : 'password'} // Password visibility toggle
                     placeholder="Password *"
                     {...field}

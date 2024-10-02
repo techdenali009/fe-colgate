@@ -1,40 +1,3 @@
-export const shop = [
-  { url: '/home', label: 'All Products' },
-  { url: '/about', label: 'Daily Care' },
-  { url: '/services', label: 'By Treatment' },
-  { url: '/contact', label: 'By Skin Type' },
-  { url: '/contact', label: 'By Skin Concern' },
-];
-
-export const Learn = [
-  { url: '/home', label: 'Courses' },
-  { url: '/about', label: 'Professional Peels' },
-  { url: '/services', label: 'Skin Concerns' },
-  { url: '/contact', label: 'Skin Types' },
-  { url: '/contact', label: 'Skin Intelligence' },
-];
-
-export const About = [
-  { url: '/home', label: 'Our Story' },
-  { url: '/about', label: 'Our Peel Legacy' },
-  { url: '/services', label: 'Careers' },
-];
-
-export const CustomerService = [
-  { url: '/about', label: 'Contact Us' },
-  { url: '/services', label: 'FAQ' },
-  { url: '/contact', label: 'Shipping' },
-  { url: '/services', label: 'Returns' },
-];
-
-export const OtherLinks = [
-  { url: '/home', label: 'PCA SKIN International' },
-  { url: '/about', label: 'Privacy Policy' },
-  { url: '/services', label: 'Terms & Conditions' },
-  { url: '/contact', label: 'Do Not Sell My Personal Information' },
-  { url: '/services', label: 'Product excellence' },
-];
-
 export const products = [
   {
     id: 1,
@@ -63,8 +26,7 @@ export const products = [
   {
     id: 4,
     name: 'Hyaluronic Acid Boosting Serum',
-    image:
-      'https://pcaskin.vtexassets.com/arquivos/ids/156942-608-auto/hyalruonic-acid-boosting-serum.jpg?v=638579634152870000&width=608&height=auto&aspect=true',
+    image:'https://pcaskin.vtexassets.com/arquivos/ids/157014-608-auto/HABS-elle-shape-newbeauty-1oz.jpg?v=638633086347900000&width=608&height=auto&aspect=true',
     rating: 4.6,
     isBestSeller: true,
   },
@@ -97,7 +59,7 @@ export const products = [
     id: 8,
     name: 'Advanced Treatment Booster',
     image:
-      '  https://pcaskin.vtexassets.com/arquivos/ids/156889-608-auto/advancted-treatment-booster.jpg?v=638579570407470000&width=608&height=auto&aspect=true',
+      'https://pcaskin.vtexassets.com/arquivos/ids/156889-608-auto/advancted-treatment-booster.jpg?v=638579570407470000&width=608&height=auto&aspect=true',
     rating: 5.0,
     isBestSeller: true,
   },

@@ -13,7 +13,9 @@ module.exports = {
       'tm': {'max': '1020px'},  // max-width 1020px
       'tl': {'min': '1021px'},  // min-width 1021px
       'lg': '1024px',
-      'xl': '1280px'
+      'xl': '1280px',
+      'xs': '425px',
+      '2xs':'320px'
     },
     extend: {
       backgroundImage: {
@@ -36,7 +38,9 @@ module.exports = {
       colors:{
         'appTheme': 'var(--primary-color)',
         'appBlackTheme':'var(--secondary-color)',
-        'appTextColor': 'var(--app-text-color)'
+        'appTextColor': 'var(--app-text-color)',
+        'appErrorMessage':'var(--app-errorMessage-color)',
+        'formFieldBorder':'var(--form-field-border)'
       }
      
     },
@@ -52,7 +56,7 @@ module.exports = {
       },
       borderradius:{
     
-      }
+      },
     },
   },
   plugins: [],
