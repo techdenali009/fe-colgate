@@ -1,0 +1,7 @@
+@media (min-width: 768px) and (max-width: 1020px) {
+    .custom-modal {
+      left: auto;
+      right: 100%;
+      width: 16rem; /* Adjust the width as per your need */
+    }
+}

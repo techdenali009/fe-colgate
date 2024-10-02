@@ -8,29 +8,49 @@ import { Rating } from '@ui/molecules/Rating';
 import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon';
 import { ButtonWithTextAndIcon } from '@ui/molecules/ButtonWithTextAndIcon';
 import Popover from '@ui/molecules/Popover/Popover';
+import LoginModal from '@ui/organisms/LoginModal';
+import { useNavigate } from 'react-router-dom';
+import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
+import { LabelButton } from '@ui/molecules/LabelButton';
+import GreetRegister from '@ui/organisms/GreetingRegister';
 import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
 import BannerSkeleton from '@ui/molecules/BannerSkeleton';
 import FilterSkeleton from '@ui/molecules/FilterSkeleton/index';
-import { LabelButton } from '@ui/molecules/LabelButton/index';
 import AccordionItem from '@ui/molecules/AccordianItem/index';
-import GreetRegister from '@ui/organisms/GreetingRegister';
-import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import Currency from '@ui/molecules/Currency/Currency';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
+import PageTitleHeader from '@ui/molecules/PageTitleHeader';
+import BusinessCard from '@ui/molecules/BussinessCard';
+import BusinessCardSkeleton from '@ui/molecules/BussinessCardSkeleton';
+import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
 import Sidebar from '@ui/organisms/Sidebar/Sidebar';
 import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
+import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
+import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
 
 interface ISearchbar {
-    submitLabel: string;
-    onSubmit: (value: string) => void;
+  submitLabel: string;
+  onSubmit: (value: string) => void;
 }
 
-export const TestTemplatePage: React.FC<ISearchbar> = ({ submitLabel, onSubmit }) => {
+export const TestTemplatePage: React.FC<ISearchbar> = () => {
+  const [toggle, SetToggle] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
   const [selectedSortingOption, setSelectedSortingOption] = useState('Alphabetical A - Z'); // State for selected sorting option
+
+  const navigate = useNavigate();
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'All Products', href: '/products' },
+    { label: 'Treatment Enhancements' }
+  ];
+
+  const handleButtonClick = () => {
+    console.log('Learn more clicked!');
+  };
 
   const handleMouseEnter = (button: string) => {
     setIsPopoverVisible(button);
@@ -43,7 +63,17 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ submitLabel, onSubmit }
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
   };
+  const modalSetToggle = () => {
+    SetToggle(!toggle)
+  }
 
+
+  const handleRegisterClick = () => {
+    navigate('/register'); // Navigate to the /register route
+  };
+
+  
+  const price = 1234.567;
   // Remove individual filter
   const removeFilter = (filterToRemove: string) => {
     setFilters(filters.filter((filter) => filter !== filterToRemove));
@@ -60,20 +90,21 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ submitLabel, onSubmit }
     console.log('Selected sorting option:', option);
   };
 
-  const price = 1234.567;
-
   return (
     <>
-      <GreetRegister />
+      
+      <GreetRegister></GreetRegister>
+      
       <form>
         <div className="flex justify-center mb-4">
-          <PrimaryButton className="font-HeroNewBold">{submitLabel}</PrimaryButton>
+          <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
           <SecondaryButton>Secondary button</SecondaryButton>
-          <ButtonWithTextAndIcon />
-          <ButtonWithIcon>test</ButtonWithIcon>
+          <ButtonWithTextAndIcon></ButtonWithTextAndIcon>
+          <ButtonWithIcon>ButtonwithIcon</ButtonWithIcon>
+          
           <LabelButton>label</LabelButton>
+          <ButtonWithText>Button with text</ButtonWithText>
         </div>
-
         {/* Checkbox Section */}
         <div className="flex m-10 justify-center bg-slate-300 text-blue-700">
           <Checkbox checked={isChecked} onChange={handleCheckboxChange}>
@@ -217,11 +248,61 @@ export const TestTemplatePage: React.FC<ISearchbar> = ({ submitLabel, onSubmit }
         <FilterSkeleton />
       </div>
 
+
+
+      <div>
+
+        <PrimaryButton onClick={modalSetToggle}>Login</PrimaryButton>
+        {toggle && <LoginModal closeModal={modalSetToggle} />}
+        <button onClick={handleRegisterClick}>Register</button>
+      </div>
+      <div>
+        <ProductCardSkeleton />
+      </div>
+      <br />
+      <div>
+        <BannerSkeleton />
+      </div>
+      <br />
+      <div>
+        <FilterSkeleton />
+      </div>
       <FilterContainer
         filters={filters}
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
       />
+
+      <div className="p-8">
+        <PageTitleHeader breadcrumbs={breadcrumbs}>
+        </PageTitleHeader>
+      </div>
+
+      <div className="flex justify-center mt-10">
+        <BusinessCard
+          imageSrc="https://pcaskin.vtexassets.com/arquivos/ids/155951-956-auto/15277-Enhanced-Merchandising--1--1.jpg?v=638307165671830000&width=956&height=auto&aspect=true"
+          title="Enhanced Merchandising"
+          description="Merchandising is a key part of any successful business. It promotes a positive customer experience to drive sales."
+          buttonText="Learn More"
+          onButtonClick={handleButtonClick}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <BusinessCardSkeleton />
+      </div>
+
+      <div>
+        <TwoCardsComponent />
+      </div>
+
+      <div>
+        <h3 className="font-semibold mb-4">Skin Types</h3>
+        <div className="flex flex-wrap space-x-2">
+          <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
+          <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
+        </div>
+      </div>
     </>
   );
 };
