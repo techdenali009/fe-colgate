@@ -37,7 +37,7 @@ const StarRating: React.FC<StarRatingProps> = ({ totalStars = 5, initialRating =
               className={`cursor-pointer transition-colors p-2 mx-1 border-2 rounded-lg ${isFilled
                 ? 'bg-blue-500 border-blue-500' // Blue background for filled stars
                 : 'bg-white border-blue-500' // White background for empty stars
-                }`}
+              }`}
               onMouseEnter={() => handleMouseEnter(index + 1)}
               onMouseLeave={handleMouseLeave}
               onClick={() => handleClick(index + 1)}
@@ -57,7 +57,8 @@ const StarRating: React.FC<StarRatingProps> = ({ totalStars = 5, initialRating =
                     <path
                       fill="#ffffff" // Inside of the star is always white
                       d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z"
-                    ></path>
+                    >
+                    </path>
                   </g>
                 </g>
               </svg>
