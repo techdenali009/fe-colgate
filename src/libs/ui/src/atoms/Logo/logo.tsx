@@ -10,12 +10,12 @@ interface ImageProps {
 }
 
 export const Logo: React.FC<ImageProps> = ({ 
-    src, 
-    alt, 
-    className = '', 
-    width, 
-    height, 
-    onClick = () => console.log('clicked'), 
+  src, 
+  alt, 
+  className = '', 
+  width, 
+  height, 
+  onClick = () => console.log('clicked'), 
 }) => {
  
   return (

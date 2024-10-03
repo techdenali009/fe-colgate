@@ -20,7 +20,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
   const [showPassword, setShowPassword] = useState(false); // State to control password visibility
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true); // To track if the password field is empty
 
-  const { control, register, handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
+  const { control,handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
     mode: 'onChange',
   });
 

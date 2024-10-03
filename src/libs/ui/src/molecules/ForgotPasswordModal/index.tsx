@@ -53,7 +53,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
               {...field}
               type="email"
               className={`rounded-none pt-1 pb-1 pl-4 pr-4 !mt-3 !mb-6 h-[48px] text-base border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
-                } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
+              } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
               placeholder=""
             />
           )}

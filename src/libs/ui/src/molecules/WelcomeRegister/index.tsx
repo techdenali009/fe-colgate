@@ -38,24 +38,24 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
           {/* Email Field */}
           <div className="inline-grid">
             <div className='w-full relative '>
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <InputField
-                  className="rounded-none py-2 w-full px-3 text-base border-[1px] border-[#d6d6d6] mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight placeholder:text-sm focus:outline-none"
-                  type="email"
-                  placeholder="Email *"
-                  {...field}
-                />
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    className="rounded-none py-2 w-full px-3 text-base border-[1px] border-[#d6d6d6] mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight placeholder:text-sm focus:outline-none"
+                    type="email"
+                    placeholder="Email *"
+                    {...field}
+                  />
+                )}
+                rules={{ required: 'This field is required' }}
+              />
+              {errors.email && (
+                <span style={{ color: '#ce4635' }} className="text-normal font-bold mb-3 font-HeroNewBold">
+                  {errors.email.message}
+                </span>
               )}
-              rules={{ required: 'This field is required' }}
-            />
-            {errors.email && (
-              <span style={{ color: '#ce4635' }} className="text-normal font-bold mb-3 font-HeroNewBold">
-                {errors.email.message}
-              </span>
-            )}
             </div>
           </div>
 
