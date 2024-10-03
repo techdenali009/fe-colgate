@@ -1,0 +1,31 @@
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+
+  }
+
+  100% {
+    transform: translateY(0);
+
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+
+  }
+
+  100% {
+    transform: translateY(-100%);
+
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.8s forwards;
+}
+
+.animate-slideOut {
+  animation: slideOut 0.8s forwards;
+}
