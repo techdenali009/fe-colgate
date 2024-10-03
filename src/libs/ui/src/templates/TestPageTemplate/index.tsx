@@ -28,6 +28,8 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
+import coursesData from '@utils/CoursesData';
+import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 
 interface ISearchbar {
   submitLabel: string;
@@ -188,6 +190,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex">
         <Sidebar filterData={filterData} />
       </div>
+
+      <h1 className='pl-28 pt-16 font-bold'>Business Sidebar</h1>
+
+      <div className='pl-24 pt-4'>
+            <BusinessSidebar categories={coursesData.courseCategories}>
+                <div className="mt-4">
+                    <p>Select a category to see more details.</p>
+                </div>
+            </BusinessSidebar>
+        </div>
 
       <div className="mb-4">
         <ProductCard
