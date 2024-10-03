@@ -1,14 +1,15 @@
-import React, { InputHTMLAttributes } from 'react';
-import { Input } from '@ui/atoms/Input';
+import React, { forwardRef } from 'react';
 
-interface IInputField extends InputHTMLAttributes<Element> {
-    placeholder: string,
-    type: string
+interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
 }
 
-export const InputField: React.FC<IInputField> = ({ placeholder, type, ...rest }) => (
-  // <div className="flex flex-col">
-  //     {label && <label htmlFor="input-field">{label}</label>}
-  <Input type={type} placeholder={placeholder} {...rest}></Input>
-  // </div>
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <input ref={ref} className={className} {...props} />
+    );
+  }
 );
+
+InputField.displayName = 'InputField'; // For better debugging
