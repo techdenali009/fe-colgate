@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '@ui/atoms/Logo';
 import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon/index';
 import searchIcon from '../../../assets/searchIcon.svg';
 import profile from '../../../assets/profile.svg';
@@ -10,6 +9,7 @@ import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import './header.styles.scss';
 import NavLinks from '@ui/molecules/NavLink/NavLink';
 import SubMenu from '@ui/molecules/SubMenu/SubMenu';
+import { HeaderLogo } from '@ui/atoms/HeaderLogo';
 
 
 interface headerProps {
@@ -102,7 +102,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
           </div>
 
           <div className='tm:hidden logo_one' onMouseEnter={handleMouseEnterLogo}>
-            <Logo />
+            <HeaderLogo/>
           </div>
 
           <div className='tm:hidden tl:flex'>
@@ -111,7 +111,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
 
           <div className='tm:pr-0 tm:gap-0 tm:flex  Iconsnav items-center  flex space-x-4 pr-16 gap-6'>
             <div className='tm:ml-[-78px] tl:hidden logo_two tm:p-0'>
-              <Logo />
+              <HeaderLogo/>
             </div>
             <ButtonWithIcon onMouseEnter={handleMouseEnterSearch}
               className='w-[40px] tm:pr-0 h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] sm:ml-0'>
