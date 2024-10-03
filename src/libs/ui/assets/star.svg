@@ -1,0 +1,18 @@
+<svg
+  aria-hidden="true"
+  width="20px"
+  height="20px"
+  fill="none"
+  viewBox="0 0 34 34"
+  xmlns="http://www.w3.org/2000/svg"
+  class="fill-current stroke-current"
+>
+  <g stroke="none" fill="none" fill-rule="evenodd">
+    <g fill-rule="nonzero" stroke="#125CE0" stroke-width="1.5">
+      <path
+        fill="#ffffff" 
+        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z"
+      />
+    </g>
+  </g>
+</svg>

@@ -2,21 +2,21 @@ import OrderManagementtIcon from '../ui/assets/OrderManagementtIcon.svg';
 import AcademyIcon from '../ui/assets/AcademyIcon.svg';
 import LoyaltyIcon from '../ui/assets/LoyaltyIcon.svg';
 import SubscribeIcon from '../ui/assets/SubscribeIcon.svg';
-
+const url=import.meta.env.VITE_SCROLL_PCA_CMS_URL;
 
 export const marketingBannersData = [
   {
     heading:'Register for Treatment Tuesday',
     subtext:'Join us live to engage, learn, and shop with access to exclusive promotions.',
     buttonText:'Learn More',
-    imageUrl:'https://www.pcaskinpro.com/cms/assets/32708211-0079-4636-9899-33a276cbd9bc.jpg?key:pca-en-us-marketing-banner-large',
+    imageUrl:`${url}/32708211-0079-4636-9899-33a276cbd9bc.jpg?key:pca-en-us-marketing-banner-large`,
     bgColor:'bg-black text-white',
   },
   {
     heading:'Did you hear?',
     subtext:'PCA SKIN was voted the #1 professional skincare brand by recommended by estheticians',
     buttonText:'Learn More',
-    imageUrl:'https://www.pcaskinpro.com/cms/assets/b1cdc34e-7cdf-4302-bf2c-a4d9d36b25d1.jpg?key:pca-en-us-marketing-banner-large',
+    imageUrl:`${url}/b1cdc34e-7cdf-4302-bf2c-a4d9d36b25d1.jpg?key:pca-en-us-marketing-banner-large`,
     bgColor:'bg-[#D6D6D6] text-[#333333]',
         
   },
@@ -61,7 +61,7 @@ export const marketingBannerTwo = [
     heading:' PCA SKIN Professional Peel Certification',
     subtext:'Complete this course as a certified PCA SKIN Professional, ready to promptly apply new protocols, optimal techniques, and treatment strategies. Gain entry to PCA SKIN\'s extensive selection of professional treatment products, encompassing top-of-the-line professional peels, therapeutic treatment masks, and alternative treatments.',
     buttonText:'Learn More',
-    imageUrl:'https://www.pcaskinpro.com/cms/assets/5239f229-b873-4bd1-b36c-3b92745ebf8a.jpg?key=pca-en-us-marketing-banner-large',
+    imageUrl:`${url}/5239f229-b873-4bd1-b36c-3b92745ebf8a.jpg?key=pca-en-us-marketing-banner-large`,
     bgColor:'bg-black text-white'
   },
     
