@@ -9,23 +9,25 @@ import { LoginForm, ValidationForm } from '@utils/Login';
 interface ForgotPasswordFormProps {
   onSubmit: (data: { email: string }) => void;
   setIsForgotPassword: (value: boolean) => void;
+  className?:string;
+  headclassname?: string;
 }
 
-const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onSubmit, setIsForgotPassword }) => {
+const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onSubmit, setIsForgotPassword,className,headclassname }) => {
   const { control, register, handleSubmit, formState: { errors,isSubmitted } } = useForm<{ email: string }>({
     mode: 'onChange',
   });
 
   return (
     <>
-      <div className="mb-8">
-        <p className="text-[32px] pr-3 pl-3 font-HeroNewRegular text-black">Forgot Your Password?</p>
+      <div className={`mb-8 ${className}`}>
+        <p className={`text-[32px] pr-3 pl-3 font-HeroNewRegular text-black ${headclassname}`}>Forgot Your Password?</p>
       </div>
-      <Paragraph className='font-HeroNewRegular pr-3 pl-3 font-normal text-black'>
+      <Paragraph className={`font-HeroNewRegular pr-3 pl-3 font-normal text-black ${className}`}>
         <p>Recover your password. Please enter your email address below to receive a password reset link.</p>
         <p>Allow for 15 mins, and check spam/junk folders before trying again.</p>
       </Paragraph>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col pr-3 pl-3 space-y-1">
+      <form onSubmit={handleSubmit(onSubmit)} className={`flex flex-col pr-3 pl-3 space-y-1 ${className}`}>
         <div className='flex text-xs font-heroNewLight' >
           <Label className=" mt-2 text-xs font-HeroNewRegular">Email</Label>
 

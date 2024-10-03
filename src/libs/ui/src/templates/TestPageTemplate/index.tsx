@@ -25,6 +25,8 @@ import BusinessCardSkeleton from '@ui/molecules/BussinessCardSkeleton';
 import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
 import Sidebar from '@ui/organisms/Sidebar/Sidebar';
 import filterData from '@utils/FilterData';
+import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
+import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
 
 interface ISearchbar {
   submitLabel: string;
@@ -82,7 +84,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   return (
     <>
+      
       <GreetRegister></GreetRegister>
+      
       <form>
         <div className="flex justify-center mb-4">
           <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
@@ -263,7 +267,19 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         <BusinessCardSkeleton />
-      </div>    
+      </div>
+
+      <div>
+        <TwoCardsComponent />
+      </div>
+
+      <div>
+        <h3 className="font-semibold mb-4">Skin Types</h3>
+        <div className="flex flex-wrap space-x-2">
+          <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
+          <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
+        </div>
+      </div>
     </>
   );
 };

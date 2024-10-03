@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '@ui/atoms/Logo';
 import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon/index';
-import searchIcon from '../../../assests/searchIcon.svg';
-import profile from '../../../assests/profile.svg';
-import cart from '../../../assests/cart.svg';
+import searchIcon from '../../../assets/searchIcon.svg';
+import profile from '../../../assets/profile.svg';
+import cart from '../../../assets/cart.svg';
 import { Icon } from '@ui/atoms/Icons';
 import Popover from '@ui/molecules/Popover/Popover';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
@@ -20,7 +20,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
   const [isCartHovered, setIsCartHovered] = useState(false);
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+   
   const [, setIsSubmenuHovered] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any

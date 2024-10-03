@@ -2,8 +2,8 @@ import { promotionBannerText } from '@utils/banner';
 import { PromotionBannerList } from '../PromotionBannerList';
 import { SecondaryButton } from '@ui/molecules/SecondaryButton';
 import { PromotionBannerText } from '../PromotionaBnnarText';
-import arrowIcon from 'src/libs/ui/assests/Arrow-right-blue.495910aa.svg';
-import hoverArrowIcon from 'src/libs/ui/assests/Arrow-right.8d33ac71.svg';
+import arrowIcon from 'src/libs/ui/assets/Arrow-right-blue.495910aa.svg';
+import hoverArrowIcon from 'src/libs/ui/assets/Arrow-right.8d33ac71.svg';
 
 interface PromotionBannerSectionProps {
   banners: Array<{ heading: string; subtext: string; imageUrl: string }>;
