@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@ui/atoms/Button';
 import { InputField } from '@ui/molecules/FormField';
 import { LoginForm } from '@utils/Login';
-import { PasswordFeild } from '@ui/atoms/PasswordFeild';
+import { PasswordFeild } from '@ui/atoms/PasswordField';
 import { FORGOTPASSWORD, LOGIN } from '@utils/constants';
 
 interface FormValues {
