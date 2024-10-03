@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import animations from '@midudev/tailwind-animations'
 // eslint-disable-next-line no-undef
 module.exports = {
   mode: 'jit', // Enable JIT mode
@@ -59,5 +60,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [animations],
 };

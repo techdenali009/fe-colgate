@@ -1,8 +1,8 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import Logo from '../Logo'; // Assuming you have a Logo component
-import CloseSearch from '../../../assests/CloseSearch.svg';
-import searchIcon from '../../../assests/searchIcon.svg';
-import clearIcon from '../../../assests/clearIcon.svg'; // Add your clear (X) icon here
+import CloseSearch from '../../../assets/CloseSearch.svg';
+import searchIcon from '../../../assets/searchIcon.svg';
+import clearIcon from '../../../assets/clearIcon.svg'; // Add your clear (X) icon here
 import './SearchPopOver.scss';
 
 interface ModalProps {
