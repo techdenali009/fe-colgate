@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
+import Dropdown from '../../../assets/Dropdown.svg';
+import { Icon } from '@ui/atoms/Icons';
+
 
 interface FilterDropdownProps {
   options: string[];
   onSelect: (option: string) => void;
-  children?: ReactNode; // Accept children
+  children?: ReactNode;
 }
 
 const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect, children }) => {
@@ -44,15 +47,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect, chil
         onClick={toggleDropdown}
         className={`flex items-center px-4 py-2 bg-white border rounded-full shadow-sm focus:outline-none ${isOpen ? 'border-blue-500' : 'border-gray-300'}`}
       >
-        <svg
-          className="mr-2 h-4 w-4 text-blue-500"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-        </svg>
+
+        <Icon icon={Dropdown} className= "mr-2 h-4 w-4 text-blue-500" />
+       
         <span className="text-sm font-medium text-gray-700">{selectedOption}</span>
       </button>
 
@@ -69,7 +66,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect, chil
               </li>
             ))}
           </ul>
-          {children} {/*children*/}
+          {children}
         </div>
       )}
     </div>
