@@ -1,6 +1,7 @@
 
 import { Button } from '@ui/atoms/Button';
-import PopularImage from '@ui/atoms/PopularImage';
+
+import { ProductImage } from '@ui/atoms/ProductImage';
 import StarRating from '@ui/atoms/StarRating';
 import BestSellerBadge from '@ui/molecules/BestSeller';
 import { ProductProps } from '@utils/Product';
@@ -12,8 +13,7 @@ function Product({ product }: ProductProps) {
    
     <div className=" group">
       <div className="relative">
-        <PopularImage src={image} alt={name} />
-
+        <ProductImage src={image} alt={name} ></ProductImage>
         {isBestSeller && (
           <BestSellerBadge
             className={
