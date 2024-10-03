@@ -4,9 +4,9 @@ import { Label } from '@ui/atoms/Label/index';
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import { Image } from '@ui/atoms/LogoImage/logoimg';
 import { ABOUT, APPOWNER, CUSTOMER_SERVICE, LEARN, OTHERLINKS, SHOP_D, } from '@utils/constants';
-import { About, CustomerService, Learn, OtherLinks, shop } from '@utils/test';
+import { About, CustomerService, Learn, OtherLinks, shop } from '@utils/constants';
 import AccordionItem from '@ui/molecules/AccordianItem';
-import PCA_LOGO from '../../../assests/appSvgs/PCA_LOGO.svg';
+import PCA_LOGO from '../../../assets/appSvgs/PCA_LOGO.svg';
 
 
 const Footer: React.FC = () => {

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { Label } from '@ui/atoms/Label';
 import { links } from '@utils/NavLinksConstants';
-import greaterArrow from '../../../assests/greaterArrow.svg';
-import straightArrow from '../../../assests/straightArrow.svg';
-import responsiveProfile from '../../../assests/responsiveProfile.svg';
+import greaterArrow from '../../../assets/greaterArrow.svg';
+import straightArrow from '../../../assets/straightArrow.svg';
+import responsiveProfile from '../../../assets/responsiveProfile.svg';
 import Popover from '../Popover/Popover';
 import { PrimaryButton } from '../PrimaryButton';
 

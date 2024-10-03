@@ -1,5 +1,5 @@
 import React from 'react';
-import CancelIcon from '../../../assests/close-bluebg.aa950da4.svg';
+import CancelIcon from '../../../assets/close-bluebg.aa950da4.svg';
 
 interface FilterBadgeProps {
   onRemove: () => void;
