@@ -13,48 +13,48 @@
 
 @font-face {
   font-family: 'Hero New Bold';
-  src: url('/assests/fonts/Hero New Bold.otf') format('truetype');
+  src: url('/assets/fonts/Hero New Bold.otf') format('truetype');
 
 }
 
 @font-face {
   font-family: 'Hero New ExtraBold';
-  src: url('/assests/fonts/Hero New ExtraBold.otf') format('truetype');
+  src: url('/assets/fonts/Hero New ExtraBold.otf') format('truetype');
 
 }
 
 @font-face {
   font-family: 'Hero New Light';
-  src: url('/assests/fonts/Hero New Light.otf') format('truetype');
+  src: url('/assets/fonts/Hero New Light.otf') format('truetype');
 
 }
 
 @font-face {
   font-family: 'Hero New Regular';
-  src: url('/assests/fonts/Hero New Regular.otf') format('truetype');
+  src: url('/assets/fonts/Hero New Regular.otf') format('truetype');
 
 }
 
 @font-face {
   font-family: 'Hero New SemiBold';
-  src: url('/assests/fonts/Hero New SemiBold.otf') format('truetype');
+  src: url('/assets/fonts/Hero New SemiBold.otf') format('truetype');
 
 }
 
 @font-face {
   font-family: 'Hero New UltraLight';
-  src: url('/assests/fonts/Hero New UltraLight.otf') format('truetype');
+  src: url('/assets/fonts/Hero New UltraLight.otf') format('truetype');
 
 }
 
 @font-face {
   font-family: 'Hero New Thin';
-  src: url('/assests/fonts/Hero New Thin.otf') format('truetype');
+  src: url('/assets/fonts/Hero New Thin.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'swiper-icons';
-  src: url('/assests/fonts/swiper-icons.ttf') format('truetype');
+  src: url('/assets/fonts/swiper-icons.ttf') format('truetype');
 }
 
 body {

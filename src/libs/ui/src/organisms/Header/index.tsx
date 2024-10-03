@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '@ui/atoms/Logo';
 import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon/index';
-import searchIcon from '../../../assests/searchIcon.svg';
-import profile from '../../../assests/profile.svg';
-import cart from '../../../assests/cart.svg';
+import searchIcon from '../../../assets/searchIcon.svg';
+import profile from '../../../assets/profile.svg';
+import cart from '../../../assets/cart.svg';
 import { Icon } from '@ui/atoms/Icons';
 import Popover from '@ui/molecules/Popover/Popover';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
@@ -133,9 +133,9 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
                   </h2>
                   <div className='pop_up p-4 flex gap-[3]'>
                     {/* <PrimaryButton className='w-[152px] font-bold text-base  text-sm font-HeroNewBold'>Login In</PrimaryButton> */}
-                    <PrimaryButton className='font-HeroNewRegular' onClick={modalSetToggle}>Login</PrimaryButton>
+                    <PrimaryButton className='w-[90%] font-HeroNewBold text-sm' onClick={modalSetToggle}>Login</PrimaryButton>
                     {/* {toggle && <LoginModal closeModal={modalSetToggle} />} */}
-                    <PrimaryButton className='font-HeroNewRegular' onClick={handleRegisterClick}>Register</PrimaryButton>
+                    <PrimaryButton className='w-[90%] font-HeroNewBold text-sm' onClick={handleRegisterClick}>Create Account</PrimaryButton>
                    
                   </div>
                 </Popover>
