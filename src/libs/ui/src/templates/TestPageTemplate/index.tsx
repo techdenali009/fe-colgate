@@ -28,6 +28,8 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
+import ReviewBar from '@ui/molecules/ReviewBar';
+import StarRating from '@ui/molecules/HoveringRatingStar';
 
 interface ISearchbar {
   submitLabel: string;
@@ -39,7 +41,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
-  
+
   const navigate = useNavigate();
   const breadcrumbs = [
     { label: 'Home', href: '/' },
@@ -71,9 +73,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     navigate('/register'); // Navigate to the /register route
   };
 
-  
-  const price = 1234.567;
-  // Remove individual filter
   const removeFilter = (filterToRemove: string) => {
     setFilters(filters.filter((filter) => filter !== filterToRemove));
   };
@@ -83,6 +82,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     setFilters([]);
   };
 
+  const price = 1234.567;
+
+  const reviews = [
+    { stars: 5, count: 9 },
+    { stars: 4, count: 0 },
+    { stars: 3, count: 0 },
+    { stars: 2, count: 0 },
+    { stars: 1, count: 0 },
+  ];
+
   // Handle sorting option selection
   const handleSortingSelect = (option: string) => {
     console.log('Selected sorting option:', option);
@@ -90,16 +99,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   return (
     <>
-      
+
       <GreetRegister></GreetRegister>
-      
+
       <form>
         <div className="flex justify-center mb-4">
           <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
           <SecondaryButton>Secondary button</SecondaryButton>
           <ButtonWithTextAndIcon></ButtonWithTextAndIcon>
           <ButtonWithIcon>ButtonwithIcon</ButtonWithIcon>
-          
+
           <LabelButton>label</LabelButton>
           <ButtonWithText>Button with text</ButtonWithText>
         </div>
@@ -121,10 +130,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           onSelect={handleSortingSelect}
         >
         </FilterDropdown>
-        <FilterDropdown 
+        <FilterDropdown
           options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
           onSelect={handleSortingSelect}>
-          <div className="p-4 bg-gray-100"> 
+          <div className="p-4 bg-gray-100">
             <p>Additional Options:</p> {/* passing child */}
             <button className="text-blue-500">Extra Action</button>
           </div>
@@ -300,6 +309,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
           <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
         </div>
+      </div>
+
+      <div className="p-6">
+        <StarRating totalStars={5} initialRating={4} />
+        <ReviewBar reviews={reviews} />
       </div>
     </>
   );
