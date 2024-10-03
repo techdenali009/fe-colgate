@@ -25,6 +25,7 @@ import BusinessCardSkeleton from '@ui/molecules/BussinessCardSkeleton';
 import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
 import Sidebar from '@ui/organisms/Sidebar/Sidebar';
 import filterData from '@utils/FilterData';
+import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
 import ReviewBar from '@ui/molecules/ReviewBar';
@@ -91,17 +92,23 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     { stars: 1, count: 0 },
   ];
 
+  // Handle sorting option selection
+  const handleSortingSelect = (option: string) => {
+    console.log('Selected sorting option:', option);
+  };
+
   return (
     <>
-      
+
       <GreetRegister></GreetRegister>
-      
+
       <form>
         <div className="flex justify-center mb-4">
           <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
           <SecondaryButton>Secondary button</SecondaryButton>
           <ButtonWithTextAndIcon></ButtonWithTextAndIcon>
           <ButtonWithIcon>ButtonwithIcon</ButtonWithIcon>
+
           <LabelButton>label</LabelButton>
           <ButtonWithText>Button with text</ButtonWithText>
         </div>
@@ -116,6 +123,24 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <HeaderLabel className="m-4">Title component</HeaderLabel>
       <SubtitleLabel className="m-4">Subtitle component</SubtitleLabel>
 
+      {/* Filter Dropdown */}
+      <div className='m-5'>
+        <FilterDropdown
+          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+          onSelect={handleSortingSelect}
+        >
+        </FilterDropdown>
+        <FilterDropdown
+          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+          onSelect={handleSortingSelect}>
+          <div className="p-4 bg-gray-100">
+            <p>Additional Options:</p> {/* passing child */}
+            <button className="text-blue-500">Extra Action</button>
+          </div>
+        </FilterDropdown>
+
+      </div>
+
       {/* Popover buttons */}
       <div className="flex mb-4 space-x-4 justify-center">
         <div
@@ -127,13 +152,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             Popover Button 1
           </button>
           {isPopoverVisible === 'button1' && (
-            <div>
-              <Popover>
-                <h1 className="text-amber-800">TITLE FOR POPOVER</h1>
-                <p>Hello World! I am Button 1 Popover</p>
-                <SecondaryButton>Secondary Button</SecondaryButton>
-              </Popover>
-            </div>
+            <Popover>
+              <h1 className="text-amber-800">TITLE FOR POPOVER</h1>
+              <p>Hello World! I am Button 1 Popover</p>
+              <SecondaryButton>Secondary Button</SecondaryButton>
+            </Popover>
           )}
         </div>
 
@@ -146,13 +169,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             Hover Me
           </button>
           {isPopoverVisible === 'button2' && (
-            <div>
-              <Popover maxWidth="800px">
-                <h1 className="text-amber-800">POPOVER WITH MAX WIDTH</h1>
-                <p>Popover content for button 2.</p>
-                <PrimaryButton>Reference Button</PrimaryButton>
-              </Popover>
-            </div>
+            <Popover maxWidth="800px">
+              <h1 className="text-amber-800">POPOVER WITH MAX WIDTH</h1>
+              <p>Popover content for button 2.</p>
+              <PrimaryButton>Reference Button</PrimaryButton>
+            </Popover>
           )}
         </div>
       </div>
@@ -176,7 +197,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex">
         <Sidebar filterData={filterData} />
       </div>
-
 
       <div className="mb-4">
         <ProductCard
@@ -219,6 +239,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
+
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
