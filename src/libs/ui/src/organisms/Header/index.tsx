@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '@ui/atoms/Logo';
 import { ButtonWithIcon } from '@ui/molecules/ButtonWithIcon/index';
-
-// import searchIcon from '../../../assets/searchIcon.svg';
-// import profile from '../../../assets/profile.svg';
 import { Icon } from '@ui/atoms/Icons';
 import Popover from '@ui/molecules/Popover/Popover';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
@@ -12,12 +9,14 @@ import NavLinks from '@ui/molecules/NavLink/NavLink';
 import SubMenu from '@ui/molecules/SubMenu/SubMenu';
 import SearchModal from '@ui/atoms/SearchPopOver';
 
- import searchIcon from '../../../assets/searchIcon.svg';
- import profile from '../../../assets/profile.svg';
+import searchIcon from '../../../assets/searchIcon.svg';
+import profile from '../../../assets/profile.svg';
 import HoverSearch from '../../../assets/HoverSearch.svg';
-import HoverProfile from '../../../assets/hover-profile.svg';
+import HoverProfile from '../../../assets/HoverProfile.svg';
+
 import HoverCart from '../../../assets/HoverCart.svg';
-import Cart from '../../../assets/cart.svg';
+import cart from '../../../assets/cart.svg';
+
 interface headerProps {
   modalSetToggle: () => void;
   handleRegisterClick: () => void;
@@ -33,7 +32,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   const [submenuData, setSubmenuData] = useState<any>(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-  const [] = useState(false);
+  
 
   const handleMouseEnterLogo = () => {
     setIsNavActive(false);
@@ -163,7 +162,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               onMouseLeave={handleMouseLeaveCart}
             >
               <ButtonWithIcon className='w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[39px] pb-[2.5rem] pl-[18px]'>
-                <Icon icon={isCartHovered ? HoverCart : Cart} className='text-black' onClick={handleCartClick} />
+                <Icon icon={isCartHovered ? HoverCart : cart} className='text-black' onClick={handleCartClick} />
               </ButtonWithIcon>
 
               {isCartHovered && (
