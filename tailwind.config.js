@@ -33,8 +33,8 @@ module.exports = {
         SwiperIconns: ['swiper-icons']
       },
       padding: {
-        'appPaddingLeft': '4.5rem',
-        'appPaddingRight': '4.5rem',
+        'appPaddingLeft': '6rem',
+        'appPaddingRight': '6rem',
       },
       colors: {
         'appTheme': 'var(--primary-color)',

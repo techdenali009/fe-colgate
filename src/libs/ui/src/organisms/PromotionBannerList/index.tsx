@@ -65,7 +65,7 @@ export const PromotionBannerList: React.FC<PromotionBannerListProps> = ({ banner
 
   return (
     <div>
-      <div className='hidden lg:grid gap-8 grid-cols-4 py-8 w-11/12 mx-auto'>
+      <div className='hidden lg:grid gap-8 grid-cols-4 py-8 w-[94.25%] mx-auto'>
         {banners.map((banner, index) => (
           <PromotionBanner
             key={index}
