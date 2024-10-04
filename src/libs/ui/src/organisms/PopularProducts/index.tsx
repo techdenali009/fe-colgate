@@ -1,41 +1,66 @@
 import { useRef } from 'react';
-import Slider from 'react-slick';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import Product from '../Product';
 import { PopularProductsProps } from '@utils/Product';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import ProductHeader from '@ui/molecules/PopularProductHeading';
-import { sliderSettings } from '@utils/SliderSetting';
-
-
 
 function PopularProducts({ products }: PopularProductsProps) {
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  const sliderRef = useRef<any>(null);
+  const swiperRef =  useRef<SwiperRef | null>(null);
+
   const handleScroll = (direction: 'left' | 'right') => {
-    if (direction === 'left') {
-      sliderRef.current.slickPrev();
-      return;
+    if (swiperRef.current) {
+      if (direction === 'left') {
+        swiperRef.current.swiper.slidePrev(); 
+      } else {
+        swiperRef.current.swiper.slideNext();
+      }
     }
-    sliderRef.current.slickNext();
+  };
+
+  // Swiper settings with responsive breakpoints
+  const swiperSettings = {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    loop: true,
+    modules: [Navigation],
+    navigation: false, 
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+      
+      },
+      1024: {
+        slidesPerView: 3,
+      
+      },
+      1280: {
+        slidesPerView: 4,
+  
+      },
+    },
   };
 
   return (
     <div className="w-full">
-      <ProductHeader
-        headingLabel="Popular Products"
-        description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
-        handleScroll={handleScroll}
-        LogInButtonDisable={true}
-      />
+      <div className='mb-6'>
+        <ProductHeader
+          headingLabel="Popular Products"
+          description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
+          handleScroll={handleScroll}
+          LogInButtonDisable={true}
+        />
+      </div> 
 
-      <Slider ref={sliderRef} {...sliderSettings}>
+      <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
-          <div key={product.id} className="mt-1 px-4">
+          <SwiperSlide key={product.id} className="  !items-start">
             <Product product={product} />
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 }

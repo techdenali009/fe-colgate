@@ -24,14 +24,14 @@ export const MarketingBanner: React.FC<IMarketingBanner> = ({
   bgColor,
 }) => {
   return (
-    <div className={`${bgColor} flex lg:w-full lg:h-full h-auto md:h-[279.750px] lg:gap-8 flex-col md:flex-row overflow-hidden`}>      
+    <div className={`${bgColor} flex lg:w-full lg:h-[100%]  md:h-[279.750px] lg:gap-8 flex-col md:flex-row `}>      
       <div className=" w-full md:w-1/2 flex flex-col justify-center text-left px-8 overflow-hidden">            
         <BannerText heading={heading} subheadingText={subtext} />
         {buttonText && (
           <div className="group inline-block mt-6">
             <PrimaryButton
               onClick={onButtonClick}
-              className="flex !m-0 font-HeroNewBold !bg-[#125ce0] hover:!bg-black text-xs items-center border border-transparent hover:border-white px-3 py-2 leading-[150%] font-semibold">                  
+              className="flex !m-0 font-HeroNewBold !bg-[#125ce0] items-center hover:!bg-black text-[0.75rem] border border-transparent hover:border-white px-3 py-2 leading-[150%] font-bold tracking-[0.3px]" >                  
               {buttonText}
               <Icon icon={arrowIcon} className="h-6 w-6 ml-2" />
             </PrimaryButton>
@@ -41,7 +41,7 @@ export const MarketingBanner: React.FC<IMarketingBanner> = ({
 
       </div>
       <div className="w-full md:w-1/2 h-full">
-        <Image src={imageUrl} alt={heading} className="w-full h-full" />
+        <Image src={imageUrl} alt={heading} className="w-full h-full object-fill"/>
       </div>
     </div>
   );

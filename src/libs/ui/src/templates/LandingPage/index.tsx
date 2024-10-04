@@ -39,7 +39,7 @@ export const LandingTemplatePage = () => {
       <Carousel slides={carouselData} />
 
       {/* marketing-banner-1*/}
-      <div className="px-appPaddingLeft">
+      <div className="px-16 p-12">
         <MarketingBannerList marketingBannersData={marketingBannersData} />
       </div>
       {/* promotion-banner-1 */}
