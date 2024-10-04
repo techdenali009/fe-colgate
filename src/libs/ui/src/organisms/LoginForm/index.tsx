@@ -107,19 +107,19 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
         <Button
           onClick={() => setIsForgotPassword(true)}
           type="button"
-          className="mt-0 p-0 text-start"
+          className="mt-[12px] p-0 text-start"
         >
-          <span className="bg-none text-blue-700 text-sm font-HeroNewRegular hover:font-semibold">
+          <span className="bg-none text-blue-700 mt-4 text-sm font-HeroNewRegular hover:font-semibold">
             Forgot password?
           </span>
         </Button>
 
         <div className="flex h-[48px] mt-4 justify-between items-center w-full">
-          <div className="flex-grow mt-[25px]" /> {/* This empty div takes up space to push the login button to the right */}
+          <div className="flex-grow mt-[40px]" /> {/* This empty div takes up space to push the login button to the right */}
 
           <Button
             type="submit"
-            className="bg-appTheme w-[75px] h-[48px] text-white p-3 m-1 mt-8 mb-10 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
+            className="bg-appTheme w-[75px] h-[48px] text-white p-3 m-1 mt-14 mb-12 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
           >
             Log in
           </Button>
