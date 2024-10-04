@@ -1,4 +1,4 @@
-import { Button } from "@ui/atoms/Button";
+import { Button } from '@ui/atoms/Button';
 
 
 import { ProductImage } from '@ui/atoms/ProductImage';
@@ -17,7 +17,7 @@ function Product({ product }: ProductProps) {
         {isBestSeller && (
           <BestSellerBadge
             className={
-              "absolute top-1 left-1 !bg-appTheme !text-appWhiteTheme !font-HeroNewBold w-[100px]  text-xs text-center leading-3  !tracking-[0.3px] !rounded-xl "
+              'absolute top-1 left-1 !bg-appTheme !text-appWhiteTheme !font-HeroNewBold w-[100px]  text-xs text-center leading-3  !tracking-[0.3px] !rounded-xl '
             }
           >
             Best-seller
@@ -42,9 +42,9 @@ function Product({ product }: ProductProps) {
           group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
           hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white   
         "
-          type={"submit"}
+          type={'submit'}
         >
-          {" Log In to Order"}
+          {' Log In to Order'}
         </Button>
       </div>
     </div>

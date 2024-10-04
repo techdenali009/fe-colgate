@@ -24,7 +24,7 @@ export const PromotionBannerSection: React.FC<PromotionBannerSectionProps> = ({
       <PromotionBannerList banners={banners} />
       <div className="flex justify-center lg:pt-4">
         <SecondaryButton
-          onClick={() => console.log("Button clicked!")}
+          onClick={() => console.log('Button clicked!')}
           className="flex items-center justify-center font-HeroNewBold hover:underline text-[1rem] !m-0 !text-[#125ce0] border !border-[#125ee0] font-bold px-6 py-2.5 hover:!bg-black hover:!border-transparent group hover:!text-white tracking-[0.3px] leading-6"
         >
           <span className="flex items-center">Learn More</span>
