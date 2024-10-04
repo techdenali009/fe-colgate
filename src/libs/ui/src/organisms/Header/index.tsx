@@ -7,13 +7,14 @@ import './header.styles.scss';
 import NavLinks from '@ui/molecules/NavLink/NavLink';
 import SubMenu from '@ui/molecules/SubMenu/SubMenu';
 import { HeaderLogo } from '@ui/atoms/HeaderLogo';
-import SearchModal from '@ui/atoms/SearchPopOver';
+
 import HoverCart from '../../../assets/HoverCart.svg';
 import  HoverSearch from '../../../assets/HoverSearch.svg';
 import  HoverProfile from '../../../assets/HoverProfile.svg';
 import searchIcon from '../../../assets/searchIcon.svg';
 import profile from '../../../assets/profile.svg';
 import cart from '../../../assets/cart.svg';
+import SearchModal from '@ui/molecules/SearchModal';
 
 interface headerProps {
   modalSetToggle: () => void;
