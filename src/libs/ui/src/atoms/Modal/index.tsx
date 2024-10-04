@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ children, className }) => {
   return ReactDom.createPortal(
     <div className="modal-overlay !p-[4rem]  sm:p-2 xs:!p-4 2xs:!p-0 bg-[#00000040] z-50 h-full w-full fixed top-[0%] flex items-center transition-[hidden]  justify-center overflow-auto">
       <div
-        className={`lg:!w-[650px] md:w-[400px] 2xs:w-[400px] !pt-8  h-auto bg-white relative overflow-y-auto !mt-3 ${className}`}
+        className={`lg:!w-[648px] ml-[15px] md:w-[400px] 2xs:w-[400px] !p-[40px]  h-auto bg-white relative overflow-y-auto ${className}`}
       >
         {children}
       </div>
