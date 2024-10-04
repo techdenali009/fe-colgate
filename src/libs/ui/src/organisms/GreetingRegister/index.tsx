@@ -33,14 +33,14 @@ const GreetRegister: React.FC = () => {
           <ForgotPasswordForm 
             onSubmit={onSubmit} 
             className={'font-HeroNewRegular !mb-0 2xs:!px-0'}
-            setIsForgotPassword={() => setCurrentForm('alreadyRegistered')} // Go to Already Registered form
+            setIsForgotPassword={() => setCurrentForm('alreadyRegistered')} 
             headclassname='!text-2xl !px-0'
           />
         )}
         {currentForm === LoginConsts.AlreadyRegistered && (
           <WelcomeAlreadyRegistered 
             onSubmit={onSubmit} 
-            setIsForgotPassword={() => setCurrentForm('forgotPassword')} // Go back to Login form
+            setIsForgotPassword={() => setCurrentForm('forgotPassword')} 
           />
         )}
       </div>
