@@ -65,8 +65,8 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
         <div className="flex justify-end items-center">
           <Button
             onClick={() => setIsForgotPassword(false)} // Go to Already Registered form
-            className="bg-none mb-8 text-[14px] text-blue-600"
-            type='button' // Changed to 'button' to prevent form submission
+            className="bg-none text-[14px] text-blue-600"
+            type='submit'
           >
             <span className='text-!sm mr-4 font-HeroNewRegular hover:font-semibold'>
               Return to Log In
@@ -74,7 +74,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           </Button>
           <Button
             type="submit"
-            className="bg-appTheme text-[14px] text-white p-3 mb-10 hover:bg-black hover:underline font-HeroNewBold"
+            className="bg-appTheme text-[14px] text-white p-3 h-[48px] hover:bg-black hover:underline font-HeroNewBold"
           >
             Reset My Password
           </Button>

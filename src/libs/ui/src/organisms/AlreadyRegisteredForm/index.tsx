@@ -30,9 +30,9 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
   return (
     <>
       <div className="mb-8">
-        <p className="text-[32px] pr-3 pl-3 font-HeroNewRegular">Already registered?</p>
+        <p className="text-[32px] font-HeroNewRegular">Already registered?</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex pr-3 pl-3 flex-col pb-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col pb-2">
         {/* Email Input */}
         <div className="mb-8 inline-grid">
           <Controller
@@ -65,7 +65,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
             rules={{ required: ValidationForm.Required }}
             render={({ field }) => (
               <PasswordFeild
-                className={`rounded-none h-[48px] pl-4 pb-1 pr-4  text-base border-[1px] ${
+                className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] ${
                   errors[LoginFormEnum.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                 } ${isSubmitted && errors[LoginFormEnum.Password] ? 'focus:outline-blue-700' : 'focus:outline-none'}`} // Conditional outline
                 type={showPassword ? 'text' : 'password'}
@@ -109,7 +109,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
           <div className="flex-grow !h-[48px] !w-[75px]" />
           <Button
             type="submit"
-            className="bg-appTheme !w-[75px] !h-[48px] text-white p-3 m-1 mb-8 hover:bg-black hover:underline !text-[15px] font-HeroNewSemiBold"
+            className="bg-appTheme !w-[75px] !h-[48px] text-white p-3 m-1 hover:bg-black hover:underline !text-[15px] font-HeroNewSemiBold"
           >
             Log in
           </Button>
