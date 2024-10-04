@@ -5,10 +5,10 @@ import SearchIcon from '../../../assets/SeachBarIcon.svg';
 interface SearchBarProps {
   placeholder?: string;
   onSearch: (searchTerm: string) => void;
-  className?: string;
+  className?: string; // Accept className prop
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search topics and reviews", onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search topics and reviews", onSearch, className = "" }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search topics and 
   }, [searchTerm, onSearch]);
 
   return (
-    <div className="flex items-center border border-black rounded-lg p-2 focus-within:border-blue-600 focus-within:border-2 w-1/2 text-sm">
+    <div className={`flex items-center border border-black rounded-lg p-2 focus-within:border-blue-600 focus-within:border-2 w-1/2 text-sm ${className}`}>
       <input
         type="text"
         value={searchTerm}

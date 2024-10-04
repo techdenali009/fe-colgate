@@ -30,7 +30,8 @@ import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
 import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
-
+import SearchBar from '@ui/molecules/SearchBar';
+import ReviewRatings from '@ui/molecules/QuantityValueScent';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -95,6 +96,30 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   // Handle sorting option selection
   const handleSortingSelect = (option: string) => {
     console.log('Selected sorting option:', option);
+  };
+
+  const [filteredDescriptions, setFilteredDescriptions] = useState<string[]>([]);
+
+  const fakeDescriptions = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  ];
+
+  const handleSearch = (searchTerm: string) => {
+    // Filter the description data based on the search term
+    const filtered = fakeDescriptions.filter(description =>
+      description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredDescriptions(filtered);
+  };
+
+  const ratings = {
+    quality: { score: 4.3, label: "Quality" },
+    value: { score: 4.9, label: "Value" },
+    scent: { score: 3.5, label: "Scent" },
   };
 
   return (
@@ -314,6 +339,26 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="p-6">
         <StarRating totalStars={5} initialRating={4} />
         <ReviewBar reviews={reviews} />
+      </div>
+
+      <div className="p-4">
+        <h1 className="text-lg font-bold mb-4">Description Search</h1>
+        <SearchBar onSearch={handleSearch} className="mb-4" />
+        <div>
+          {/* Render filtered description data */}
+          {filteredDescriptions.length > 0 ? (
+            filteredDescriptions.map((description, index) => (
+              <p key={index} className="border-b mb-2 pb-2">{description}</p>
+            ))
+          ) : (
+            <p className="text-gray-500">No descriptions found.</p>
+          )}
+        </div>
+      </div>
+
+      <div className="p-4">
+        <h1 className="text-lg font-bold mb-4">Product Ratings</h1>
+        <ReviewRatings ratings={ratings} />
       </div>
     </>
   );
