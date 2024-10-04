@@ -1,9 +1,10 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import Logo from '../Logo'; // Assuming you have a Logo component
+
 import CloseSearch from '../../../assets/CloseSearch.svg';
 import searchIcon from '../../../assets/searchIcon.svg';
 import clearIcon from '../../../assets/clearIcon.svg'; // Add your clear (X) icon here
 import './SearchPopOver.scss';
+import { HeaderLogo } from '../HeaderLogo';
 
 interface ModalProps {
   isOpen: boolean; // Indicates whether the modal is open or not
@@ -61,7 +62,7 @@ const SearchModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             {/* Modal header with logo, search bar, and back arrow */}
             <div className="p-4 flex items-center justify-between">
               <div className="tm:hidden">
-                <Logo />
+                <HeaderLogo />
               </div>
               <div className="relative flex-1 pb-[35px] tm:pb-0">
                 <input
