@@ -25,8 +25,13 @@ import BusinessCardSkeleton from '@ui/molecules/BussinessCardSkeleton';
 import { ButtonWithText } from '@ui/molecules/ButtonWithText/index';
 import Sidebar from '@ui/organisms/Sidebar/Sidebar';
 import filterData from '@utils/FilterData';
+import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
+import coursesData from '@utils/CoursesData';
+import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
+import ReviewBar from '@ui/molecules/ReviewBar';
+import StarRating from '@ui/molecules/HoveringRatingStar';
 
 interface ISearchbar {
   submitLabel: string;
@@ -70,9 +75,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     navigate('/register'); // Navigate to the /register route
   };
 
-  
-  const price = 1234.567;
-  // Remove individual filter
   const removeFilter = (filterToRemove: string) => {
     setFilters(filters.filter((filter) => filter !== filterToRemove));
   };
@@ -82,17 +84,35 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     setFilters([]);
   };
 
+  const price = 1234.567;
+
+  const reviews = [
+    { stars: 5, count: 9 },
+    { stars: 4, count: 0 },
+    { stars: 3, count: 0 },
+    { stars: 2, count: 0 },
+    { stars: 1, count: 0 },
+  ];
+
+  // Handle sorting option selection
+  const handleSortingSelect = (option: string) => {
+    console.log('Selected sorting option:', option);
+  };
+  // State for selected category in business side bar
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   return (
     <>
-      
+
       <GreetRegister></GreetRegister>
-      
+
       <form>
         <div className="flex justify-center mb-4">
           <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
           <SecondaryButton>Secondary button</SecondaryButton>
           <ButtonWithTextAndIcon></ButtonWithTextAndIcon>
           <ButtonWithIcon>ButtonwithIcon</ButtonWithIcon>
+
           <LabelButton>label</LabelButton>
           <ButtonWithText>Button with text</ButtonWithText>
         </div>
@@ -107,6 +127,24 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <HeaderLabel className="m-4">Title component</HeaderLabel>
       <SubtitleLabel className="m-4">Subtitle component</SubtitleLabel>
 
+      {/* Filter Dropdown */}
+      <div className='m-5'>
+        <FilterDropdown
+          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+          onSelect={handleSortingSelect}
+        >
+        </FilterDropdown>
+        <FilterDropdown
+          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+          onSelect={handleSortingSelect}>
+          <div className="p-4 bg-gray-100">
+            <p>Additional Options:</p> {/* passing child */}
+            <button className="text-blue-500">Extra Action</button>
+          </div>
+        </FilterDropdown>
+
+      </div>
+
       {/* Popover buttons */}
       <div className="flex mb-4 space-x-4 justify-center">
         <div
@@ -118,13 +156,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             Popover Button 1
           </button>
           {isPopoverVisible === 'button1' && (
-            <div>
-              <Popover>
-                <h1 className="text-amber-800">TITLE FOR POPOVER</h1>
-                <p>Hello World! I am Button 1 Popover</p>
-                <SecondaryButton>Secondary Button</SecondaryButton>
-              </Popover>
-            </div>
+            <Popover>
+              <h1 className="text-amber-800">TITLE FOR POPOVER</h1>
+              <p>Hello World! I am Button 1 Popover</p>
+              <SecondaryButton>Secondary Button</SecondaryButton>
+            </Popover>
           )}
         </div>
 
@@ -137,13 +173,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             Hover Me
           </button>
           {isPopoverVisible === 'button2' && (
-            <div>
-              <Popover maxWidth="800px">
-                <h1 className="text-amber-800">POPOVER WITH MAX WIDTH</h1>
-                <p>Popover content for button 2.</p>
-                <PrimaryButton>Reference Button</PrimaryButton>
-              </Popover>
-            </div>
+            <Popover maxWidth="800px">
+              <h1 className="text-amber-800">POPOVER WITH MAX WIDTH</h1>
+              <p>Popover content for button 2.</p>
+              <PrimaryButton>Reference Button</PrimaryButton>
+            </Popover>
           )}
         </div>
       </div>
@@ -168,6 +202,19 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <Sidebar filterData={filterData} />
       </div>
 
+      <h1 className='pl-28 pt-16 font-bold'>Business Sidebar</h1>
+
+      <div className='pl-24 pt-4'>
+        <BusinessSidebar
+          categories={coursesData.courseCategories}
+          selectedCategory={selectedCategory}
+          onCategorySelect={setSelectedCategory}
+        >
+          <div className="mt-4">
+            <p>Select a category to see more details.</p>
+          </div>
+        </BusinessSidebar>
+      </div>
 
       <div className="mb-4">
         <ProductCard
@@ -210,6 +257,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
+
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
@@ -279,6 +327,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
           <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
         </div>
+      </div>
+
+      <div className="p-6">
+        <StarRating totalStars={5} initialRating={4} />
+        <ReviewBar reviews={reviews} />
       </div>
     </>
   );
