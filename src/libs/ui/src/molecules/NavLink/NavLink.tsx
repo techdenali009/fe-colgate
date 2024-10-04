@@ -13,6 +13,8 @@ interface NavLinksProps {
   onNavLinkActive: (isActive: boolean, submenuData: any) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  
+  
 }
 
 const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
@@ -33,6 +35,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
 
   const handleMouseLeave = () => {
     setSubmenuOpen(null);
+    
   };
 
 
@@ -85,10 +88,10 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
             onMouseLeave={handleMouseLeave}
           >
             <div
-              className="flex items-center justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
+              className="flex items-center !text-gray-600 justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
               onClick={() => handleToggleSubmenu(link.title)}
             >
-              <Label className="font-HeroNewRegular text-base font-normal relative z-10 text-black group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300">
+              <Label className="font-HeroNewRegular !text-gray-600 text-base font-normal relative z-10  group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300">
                 {link.title}
               </Label>
               {link.submenu && (
