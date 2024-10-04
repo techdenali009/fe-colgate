@@ -41,8 +41,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
       className={`!w-40rem ${modalHeightClass}`} // Apply dynamic class for height
     >
       <ModalHeader 
-        onClose={closeModal} children={undefined}       
-      />
+        onClose={closeModal}              
+      >
+        <p></p>
+      </ModalHeader>
       <ModalBody title="">
         {currentForm === LoginConsts.Login && (
           <LoginForm 

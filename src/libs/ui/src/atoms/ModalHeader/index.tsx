@@ -1,4 +1,3 @@
-import React, { Children } from 'react';
 import { TfiClose } from 'react-icons/tfi';
 
 interface modalHeaderProps {
