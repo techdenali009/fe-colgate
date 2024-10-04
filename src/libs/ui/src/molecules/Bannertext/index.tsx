@@ -9,8 +9,8 @@ type BannerTextProps = {
 
 export const BannerText: React.FC<BannerTextProps> = ({ heading, subheadingText }) => {
   return (
-    <div>
-      <Heading className="text-secondary-400 font-normal text-xl w-5/6 leading-[150%]">
+    <div className='justify-center'>
+      <Heading className="text-secondary-400 font-normal text-xl w-5/6 leading-[150%] font-HeroNewRegular">
         {heading}
       </Heading>
       <div className="mt-6 mb-6">
