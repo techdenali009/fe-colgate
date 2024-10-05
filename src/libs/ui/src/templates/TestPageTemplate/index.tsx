@@ -30,11 +30,20 @@ import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
 import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
-import SearchBar from '@ui/molecules/SearchBar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
+import SearchBar from '@ui/molecules/SearchBar';
+import RatingSelectDropdown from '@ui/molecules/RatingSelectDropdown';
+import AgeSelectDropdown from '@ui/molecules/AgeSelectDropdown';
+
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
+}
+
+interface ReviewSearchBar {
+  description: string;
+  ageGroup: string;
+  rating: number;
 }
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
@@ -42,6 +51,28 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
+  
+  const reviewBarSelectOption: ReviewSearchBar[] = [
+    { description: "Amazing product!", ageGroup: "25 to 34", rating: 5 },
+    { description: "Not bad", ageGroup: "18 to 24", rating: 3 },
+    { description: "Could be better", ageGroup: "45 to 54", rating: 2 },
+    { description: "Loved it", ageGroup: "35 to 44", rating: 4 },
+    { description: "Would not recommend", ageGroup: "55 to 64", rating: 1 },
+  ];
+
+  // State variables for filters
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
+
+  // Filter reviews based on search, rating, and age group
+  const filteredReviewsSearchBar = reviewBarSelectOption.filter((review) => {
+    return (
+      (searchQuery ? review.description.toLowerCase().includes(searchQuery.toLowerCase()) : true) &&
+      (selectedRating ? review.rating === selectedRating : true) &&
+      (selectedAgeGroup ? review.ageGroup === selectedAgeGroup : true)
+    );
+  });
 
   const navigate = useNavigate();
   const breadcrumbs = [
@@ -96,24 +127,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   // Handle sorting option selection
   const handleSortingSelect = (option: string) => {
     console.log('Selected sorting option:', option);
-  };
-
-  const [filteredDescriptions, setFilteredDescriptions] = useState<string[]>([]);
-
-  const fakeDescriptions = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  ];
-
-  const handleSearch = (searchTerm: string) => {
-    // Filter the description data based on the search term
-    const filtered = fakeDescriptions.filter(description =>
-      description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredDescriptions(filtered);
   };
 
   const ratings = {
@@ -342,24 +355,36 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="p-4">
-        <h1 className="text-lg font-bold mb-4">Description Search</h1>
-        <SearchBar onSearch={handleSearch} className="mb-4" />
-        <div>
-          {/* Render filtered description data */}
-          {filteredDescriptions.length > 0 ? (
-            filteredDescriptions.map((description, index) => (
-              <p key={index} className="border-b mb-2 pb-2">{description}</p>
-            ))
-          ) : (
-            <p className="text-gray-500">No descriptions found.</p>
-          )}
-        </div>
-      </div>
-
-      <div className="p-4">
         <h1 className="text-lg font-bold mb-4">Product Ratings</h1>
         <ReviewRatings ratings={ratings} />
       </div>
+
+      <div className="container mx-auto p-4">
+      <h1>Filter Reviews</h1>
+
+      {/* Render the search bar, rating select, and age select */}
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <RatingSelectDropdown selectedRating={selectedRating} setSelectedRating={setSelectedRating} />
+      <AgeSelectDropdown selectedAgeGroup={selectedAgeGroup} setSelectedAgeGroup={setSelectedAgeGroup} />
+
+      {/* Display filtered reviews */}
+      <div className="mt-4">
+        <h3>Filtered Reviews</h3>
+        {filteredReviewsSearchBar.length > 0 ? (
+          <ul>
+            {filteredReviewsSearchBar.map((review, index) => (
+              <li key={index}>
+                <p>{review.description}</p>
+                <p>Age Group: {review.ageGroup}</p>
+                <p>Rating: {review.rating} Stars</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No reviews found.</p>
+        )}
+      </div>
+    </div>
     </>
   );
 };

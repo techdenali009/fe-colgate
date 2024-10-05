@@ -1,50 +1,21 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
-import CloseIcon from '../../../assets/close-icon.svg';  // Adjust the path as needed
-import SearchIcon from '../../../assets/SeachBarIcon.svg';
+// src/components/molecules/SearchBar.tsx
+import React from 'react';
 
 interface SearchBarProps {
-  placeholder?: string;
-  onSearch: (searchTerm: string) => void;
-  className?: string; // Accept className prop
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  className?: string; 
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search topics and reviews", onSearch, className = "" }) => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
-  // Call the onSearch function whenever the searchTerm changes, including when cleared
-  useEffect(() => {
-    onSearch(searchTerm);
-  }, [searchTerm, onSearch]);
-
+const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuery, className = '' }) => {
   return (
-    <div className={`flex items-center border border-black rounded-lg p-2 focus-within:border-blue-600 focus-within:border-2 w-1/2 text-sm ${className}`}>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-        className="focus:outline-none w-full"
-      />
-      {searchTerm ? (
-        <button
-          type="button"
-          onClick={() => setSearchTerm("")} // Clear search field
-          className="ml-2 text-black text-xl"
-        >
-          {/* Cancel Icon */}
-          <img src={CloseIcon} alt="Clear Search" />
-        </button>
-      ) : (
-        <div className="ml-2 text-black text-xl">
-          {/* Search Icon */}
-          <img src={SearchIcon} alt="Search" />
-        </div>
-      )}
-    </div>
+    <input
+      type="text"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      placeholder="Search reviews..."
+      className={`p-2 border rounded w-full ${className}`}
+    />
   );
 };
 
