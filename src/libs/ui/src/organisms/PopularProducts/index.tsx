@@ -7,7 +7,7 @@ import Product from '../Product';
 import { PopularProductsProps } from '@utils/Product';
 import ProductHeader from '@ui/molecules/PopularProductHeading';
 
-function PopularProducts({ products }: PopularProductsProps) {
+function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
   const swiperRef =  useRef<SwiperRef | null>(null);
 
   const handleScroll = (direction: 'left' | 'right') => {
@@ -51,13 +51,14 @@ function PopularProducts({ products }: PopularProductsProps) {
           description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
           handleScroll={handleScroll}
           LogInButtonDisable={true}
+          modalSetToggle={modalSetToggle}
         />
       </div> 
 
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
           <SwiperSlide key={product.id} className="  !items-start">
-            <Product product={product} />
+            <Product product={product}  modalSetToggle={modalSetToggle}/>
           </SwiperSlide>
         ))}
       </Swiper>
