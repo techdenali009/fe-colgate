@@ -28,7 +28,7 @@ export const AppRoutes = () => (
       </Suspense>
     }>
       <Route path="" element={<LandingPage />}></Route>
-      <Route path = "/register" element={<RegisterPage/>}></Route>
+      <Route path = "auth/register" element={<RegisterPage/>}></Route>
 
       {/* User Module */}
       {/* <Route path="/users" element={<UserModule />}>

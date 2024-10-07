@@ -43,7 +43,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
                 control={control}
                 render={({ field }) => (
                   <InputField
-                    className="rounded-none py-3 w-full px-[16px] text-base border-[1px] border-[#d6d6d6] mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight placeholder:text-sm focus:outline-none"
+                    className="rounded-none py-3 w-full px-[16px] text-base border-[1px] border-[#d6d6d6] mt-3 mb-6 placeholder-slate-700 placeholder:font-HeroNewLight  focus:outline-none"
                     type="email"
                     placeholder="Email *"
                     {...field}

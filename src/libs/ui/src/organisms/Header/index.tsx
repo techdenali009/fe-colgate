@@ -20,6 +20,7 @@ interface headerProps {
   modalSetToggle: () => void;
   handleRegisterClick: () => void;
 }
+
 const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) => {
   const [isFixed, setIsFixed] = useState<boolean>(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
@@ -146,7 +147,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
                   </h2>
                   <div className='pop_up p-4 flex gap-[3]'>
                     {/* <PrimaryButton className='w-[152px] font-bold text-base  text-sm font-HeroNewBold'>Login In</PrimaryButton> */}
-                    <PrimaryButton className='w-[90%] font-HeroNewBold text-sm' onClick={modalSetToggle}>Login</PrimaryButton>
+                    <PrimaryButton className='font-HeroNewRegular' onClick={modalSetToggle}>Login</PrimaryButton>
                     {/* {toggle && <LoginModal closeModal={modalSetToggle} />} */}
                     <PrimaryButton className='w-[90%] font-HeroNewBold text-sm' onClick={handleRegisterClick}>Create Account</PrimaryButton>
 

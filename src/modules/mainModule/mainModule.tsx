@@ -15,7 +15,7 @@ export default function MainModule() {
   };
 
   const handleRegisterClick = () => {
-    navigate('/register'); // Navigate to the /register route
+    navigate('auth/register'); // Navigate to the /register route
   };
 
   return (
@@ -25,6 +25,7 @@ export default function MainModule() {
       <div>
         <TopHeader></TopHeader>
         <Header modalSetToggle={modalSetToggle} handleRegisterClick={handleRegisterClick}></Header>
+        
       </div>
       <>
         <Outlet />
