@@ -13,8 +13,8 @@ interface NavLinksProps {
   onNavLinkActive: (isActive: boolean, submenuData: any) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
-  
-  
+
+
 }
 
 const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
@@ -35,7 +35,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
 
   const handleMouseLeave = () => {
     setSubmenuOpen(null);
-    
+
   };
 
 
@@ -62,7 +62,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
   }, [isOpen]);
 
   return (
-    <div className='relative'>
+    <div className='relative' >
       <button
         className="lg:hidden p-2 text-black hover:text-blue-600 "
         onClick={handleHamburgerClick}
@@ -72,10 +72,10 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
       </button>
 
       <ul
-        className={`fixed grid gap-4 sm:gap-[1rem] md:gap-4 lg:gap-4 xl:gap-4 top-0 left-0 w-full bg-white lg:static lg:flex lg:gap-[0.6rem] text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
+        className={`fixed grid  sm:gap-[1rem] hover:text-blue-600 md:gap-[1px] top-0 left-0 w-full bg-white lg:static lg:flex  text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
       >
         <span
-          className="text-black cursor-pointer lg:hidden hover:text-blue-600 flex justify-end relative right-[10px]"
+          className="text-black cursor-pointer lg:hidden !hover:text-blue-600 flex justify-end relative right-[10px]"
           onClick={() => handleHamburgerClick()}
         >
           <HiX size={24} aria-label="back icon" />
@@ -83,15 +83,15 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
         {links.map((link) => (
           <li
             key={link.title}
-            className="relative border-b border-black lg:border-none group lg:hover:bg-[rgba(238,244,255,1)]"
+            className="relative border-b  lg:border-none group hover:text-blue-600 lg:hover:bg-[rgba(238,244,255,1)]"
             onMouseEnter={() => handleMouseEnter(link.title, link.submenu)}
             onMouseLeave={handleMouseLeave}
           >
             <div
-              className="flex items-center !text-gray-600 justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
+              className="flex hover:text-blue-600 items-center text-gray-600 justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
               onClick={() => handleToggleSubmenu(link.title)}
             >
-              <Label className="font-HeroNewRegular !text-gray-600 text-base font-normal relative z-10  group-hover:text-blue-600 group-hover:underline group-hover:underline-offset-4 transition-colors duration-300">
+              <Label className="font-HeroNewRegular text-gray-600 text-base font-normal relative z-10  hover:text-blue-600  group-hover:underline transition-colors duration-300">
                 {link.title}
               </Label>
               {link.submenu && (
