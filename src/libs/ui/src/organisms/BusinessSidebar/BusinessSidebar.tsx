@@ -4,24 +4,36 @@ interface CategoryListProps {
     categories: string[];
     selectedCategory: string | null; 
     onCategorySelect: (category: string) => void;
+    className?: string;
+    liClassName?: string; 
+    buttonClassName?: string; 
     children?: React.ReactNode;
 }
 
-const CategoryList: React.FC<CategoryListProps> = ({ categories, selectedCategory, onCategorySelect, children }) => {
+const CategoryList: React.FC<CategoryListProps> = ({
+  categories,
+  selectedCategory,
+  onCategorySelect,
+  className,
+  liClassName,
+  buttonClassName,
+  children,
+}) => {
   return (
-    <div>
+    <div className={className}>
       <ul className="pb-6 pl-0">
         {categories.map((category, index) => {
           const isSelected = selectedCategory === category;
           return (
             <li
               key={index}
-              className={`border-b-[0.063rem] list-none lg:border-b-0 lg:px-0 ${
+              className={`border-b-[0.063rem] list-none lg:border-b-0 lg:px-0 ${liClassName} ${
                 isSelected ? 'border-l-4 border-blue-700 text-blue-700' : 'border-l-2 border-gray-300'
-              }`}>
+              }`}
+            >
               <button
                 type="button"
-                className="py-2 lg:px-4 font-thin cursor-pointer text-sm hover:text-blue-700 hover:text-base hover:font-black focus-visible:px-3"
+                className={`py-2 lg:px-4 font-thin cursor-pointer text-sm hover:text-blue-700 hover:text-base hover:font-black focus-visible:px-3 ${buttonClassName}`}
                 aria-label={category}
                 onClick={() => onCategorySelect(category)}
               >

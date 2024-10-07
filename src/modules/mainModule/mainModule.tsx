@@ -23,7 +23,7 @@ export default function MainModule() {
 
   // Navigate to the /register route
   const handleRegisterClick = () => {
-    navigate('/register');
+    navigate('auth/register'); // Navigate to the /register route
   };
 
   return (
