@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react';
 import { ProductType } from '@utils/Product';
 import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
 import { useDispatch } from 'react-redux';
-import { toggleLoginModel } from '@store/services/ModalSlice';
+import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 
 export const LandingTemplatePage = () => {
   const [products, setProducts] = useState<ProductType[]>([]);

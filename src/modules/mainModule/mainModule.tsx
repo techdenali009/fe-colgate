@@ -1,4 +1,4 @@
-import { toggleLoginModel} from '@store/services/ModalSlice';
+import { toggleLoginModel} from '@store/services/Slices/ModalSlice';
 import { RootState } from '@store/store';
 import { ScrollToTop } from '@ui/molecules/ScrollUpMolecule';
 import Footer from '@ui/organisms/Footer';
