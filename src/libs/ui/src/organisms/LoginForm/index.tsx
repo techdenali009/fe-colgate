@@ -32,9 +32,9 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
   return (
     <>
       <div className="mb-8">
-        <p className="text-[32px] pl-3 font-normal font-HeroNewRegular">Customer Login</p>
+        <p className="text-[32px] font-normal font-HeroNewRegular">Customer Login</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex pl-3 pr-4 flex-col">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         {/* Email Input */}
         <div className="inline-grid">
           <div className="flex text-xs">
@@ -74,7 +74,8 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
             rules={{ required: ValidationForm.Required }}
             render={({ field }) => (
               <PasswordFeild
-                className={`rounded-none mt-3 mb-[13px] pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'} ${isSubmitted && errors[LoginForm.Password] ? 'focus:outline-none' : 'focus:outline-none'}`}
+                className={`rounded-none mt-3  pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
                 type={showPassword ? 'text' : 'password'} // Password visibility toggle
                 placeholder="Password *"
                 {...field}
@@ -106,19 +107,19 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
         <Button
           onClick={() => setIsForgotPassword(true)}
           type="button"
-          className="mt-0 p-0 text-start"
+          className="mt-[12px] p-0 text-start"
         >
-          <span className="bg-none text-blue-700 text-sm font-HeroNewRegular hover:font-semibold">
+          <span className="bg-none text-blue-700 mt-4 text-sm font-HeroNewRegular hover:font-semibold">
             Forgot password?
           </span>
         </Button>
 
-        <div className="flex justify-between items-center w-full">
-          <div className="flex-grow" /> {/* This empty div takes up space to push the login button to the right */}
+        <div className="flex h-[48px] mt-4 justify-between items-center w-full">
+          <div className="flex-grow mt-[40px]" /> {/* This empty div takes up space to push the login button to the right */}
 
           <Button
             type="submit"
-            className="bg-appTheme w-[75px] h-[48px] text-white p-3 m-1 mt-8 mb-10 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
+            className="bg-appTheme w-[75px] h-[48px] text-white p-3 m-1 mt-14 mb-12 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
           >
             Log in
           </Button>

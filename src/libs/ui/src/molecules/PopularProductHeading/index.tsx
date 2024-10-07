@@ -15,12 +15,12 @@ const ProductHeader = ({
 }: ProductHeaderProps) => {
   return (
     <div className="text-left">
-      <h2 className="font-bold text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold">
+      <h2 className="font-bold py-2 mt-20 text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold">
         {headingLabel}
       </h2>
-      <div className="mb-6 flex flex-col lg:flex-row lg:justify-between">
-        <div className="flex flex-col lg:flex-row items-start mt-4">
-          <Label className="mr-6 text-base text-slate-600 font-HeroNewLight">
+      <div className="mb-6 flex flex-col lg:flex-row lg:justify-between ">
+        <div className="flex flex-col lg:flex-row items-start py-2">
+          <Label className="mr-5 text-base text-slate-600 font-HeroNewLight">
             {description}
           </Label>
           {LogInButtonDisable ? (
@@ -33,7 +33,7 @@ const ProductHeader = ({
           ) : null}
         </div>
 
-        <div className="flex space-x-0.5 mt-3 lg:mt-0">
+        <div className="flex space-x-0.5 mt-2 lg:mt-[-9px]">
           <PrimaryButton
             className="w-10 h-10 hover:bg-appTheme relative overflow-hidden !p-0"
             onClick={() => handleScroll('left')}

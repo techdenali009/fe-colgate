@@ -30,16 +30,16 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   return (
     <>
       <div className={`mb-8 ${className}`}>
-        <p className={`text-[32px] pr-3 pl-3 font-HeroNewRegular text-black ${headclassname}`}>
+        <p className={`text-[32px] font-HeroNewRegular text-black ${headclassname}`}>
           Forgot Your Password?
         </p>
       </div>
-      <Paragraph className={`font-HeroNewRegular pr-3 pl-3 font-normal text-black ${className}`}>
+      <Paragraph className={`font-HeroNewRegular  font-normal text-black ${className}`}>
         Recover your password. Please enter your email address below to receive a password reset link.
       </Paragraph>
-      <Paragraph className={`font-HeroNewRegular pr-3 pl-3 font-normal text-black ${className}`}> Allow for 15 mins, and check spam/junk folders before trying again.</Paragraph>
+      <Paragraph className={`font-HeroNewRegular font-normal text-black ${className}`}> Allow for 15 mins, and check spam/junk folders before trying again.</Paragraph>
 
-      <form onSubmit={handleSubmit(onSubmit)} className={`flex flex-col pr-3 pl-3 space-y-1 ${className}`}>
+      <form onSubmit={handleSubmit(onSubmit)} className={`flex flex-col space-y-1 ${className}`}>
         <div className='flex text-xs font-heroNewLight'>
           <Label className="mt-2 text-xs font-HeroNewRegular">Email</Label>
           <Label className="mt-2 ml-0 text-s font-HeroNewRegular text-red-600"> *</Label>
@@ -65,8 +65,8 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
         <div className="flex justify-end items-center">
           <Button
             onClick={() => setIsForgotPassword(false)} // Go to Already Registered form
-            className="bg-none mb-8 text-[14px] text-blue-600"
-            type='button' // Changed to 'button' to prevent form submission
+            className="bg-none text-[14px] text-blue-600"
+            type='submit'
           >
             <span className='text-!sm mr-4 font-HeroNewRegular hover:font-semibold'>
               Return to Log In
@@ -74,7 +74,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           </Button>
           <Button
             type="submit"
-            className="bg-appTheme text-[14px] text-white p-3 mb-10 hover:bg-black hover:underline font-HeroNewBold"
+            className="bg-appTheme text-[14px] text-white p-3 h-[48px]  hover:bg-black hover:underline font-HeroNewBold"
           >
             Reset My Password
           </Button>
