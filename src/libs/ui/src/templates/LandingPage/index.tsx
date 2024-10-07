@@ -8,20 +8,27 @@ import {
   marketingBannerTwo,
   promotionBannersData,
 } from '@utils/banner';
-
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 import { products as initialProducts } from '@utils/test';
 import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { useState, useEffect } from 'react';
-
 import { ProductType } from '@utils/Product';
 import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
-
+import { useDispatch } from 'react-redux';
+import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 
 export const LandingTemplatePage = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
 
+  const dispatch = useDispatch();
+
+  
+  const modalSetToggle = () => {
+    dispatch(toggleLoginModel());
+  };
+
+  // Simulate product loading delay
   useEffect(() => {
     const timer = setTimeout(() => {
       setProducts(initialProducts);
@@ -30,21 +37,22 @@ export const LandingTemplatePage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
   return (
     <>
       <GreetRegister />
 
-      {/* marketing-Carousel*/}
+      {/* marketing-Carousel */}
       <Carousel slides={carouselData} />
 
-      {/* marketing-banner-1*/}
+      {/* marketing-banner-1 */}
       <div className="px-16 p-12">
         <MarketingBannerList marketingBannersData={marketingBannersData} />
       </div>
+
       {/* promotion-banner-1 */}
       <PromotionBannerSection banners={promotionBannersData} />
-      {/* marketing-banner-2" */}
+
+      {/* marketing-banner-2 */}
       <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
 
       {/* popular-products */}
@@ -52,7 +60,7 @@ export const LandingTemplatePage = () => {
         {products.length === 0 ? (
           <PopularProductSkeleton />
         ) : (
-          <PopularProducts products={products} />
+          <PopularProducts products={products} modalSetToggle={modalSetToggle} />
         )}
       </div>
     </>
