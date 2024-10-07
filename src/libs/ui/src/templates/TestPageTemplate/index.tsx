@@ -70,7 +70,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
 
   const handleRegisterClick = () => {
-    navigate('/register'); // Navigate to the /register route
+    navigate('auth/register'); // Navigate to the /register route
   };
 
   const removeFilter = (filterToRemove: string) => {

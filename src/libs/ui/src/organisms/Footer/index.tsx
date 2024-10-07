@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
 
         <div className='hidden flex-col items-center py-8 text-brand-white-100 lg:flex-row logo-wrapper h-3  lg:flex xl:flex pb-14 pr-1 -ml-1'>
           <Logo src={PCA_LOGO} alt={''} className=''></Logo>
-          <Paragraph className='p-8 mb-4 text-xs'>{APPOWNER}</Paragraph>
+          <Paragraph className='p-8 mb-4 text-[16px]'>{APPOWNER}</Paragraph>
         </div>
 
 

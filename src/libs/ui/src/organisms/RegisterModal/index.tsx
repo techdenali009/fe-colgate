@@ -258,7 +258,7 @@ const RegisterForm: React.FC = () => {
             }}
             render={({ field }) => (
               <PasswordFeild
-                label="Confirm Password*"
+                label=""
                 id="confirm-password"
                 type={showConfirmPassword ? 'text' : 'password'} // Toggle password visibility
                 placeholder="Confirm Password *"
