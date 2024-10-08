@@ -69,7 +69,7 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   return (
     <div className='appCarousel'>
       <ReactCarousel
-        // autoPlay
+        autoPlay
         infiniteLoop
         showThumbs={false}
         showStatus={false}
