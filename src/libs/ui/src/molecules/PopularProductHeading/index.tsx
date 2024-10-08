@@ -12,6 +12,7 @@ const ProductHeader = ({
   headingLabel,
   description,
   LogInButtonDisable,
+  modalSetToggle
 }: ProductHeaderProps) => {
   return (
     <div className="text-left">
@@ -27,6 +28,7 @@ const ProductHeader = ({
             <Button
               className="text-base font-bold text-appTheme hover:text-white hover:bg-appTheme font-HeroNewBold"
               type="submit"
+              onClick={modalSetToggle}
             >
               Log in to view prices
             </Button>

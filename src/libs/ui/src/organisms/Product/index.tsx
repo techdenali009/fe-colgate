@@ -6,7 +6,7 @@ import StarRating from '@ui/atoms/StarRating';
 import BestSellerBadge from '@ui/molecules/BestSeller';
 import { ProductProps } from '@utils/Product';
 
-function Product({ product }: ProductProps) {
+function Product({ product ,modalSetToggle}: ProductProps) {
   const { image, name, isBestSeller, rating } = product;
 
   return (
@@ -43,6 +43,7 @@ function Product({ product }: ProductProps) {
           hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white   
         "
           type={'submit'}
+          onClick={modalSetToggle}
         >
           {' Log In to Order'}
         </Button>
