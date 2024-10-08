@@ -91,7 +91,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
               className="flex hover:text-blue-600 items-center text-gray-600 justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
               onClick={() => handleToggleSubmenu(link.title)}
             >
-              <Label className="font-HeroNewRegular text-gray-600 text-base font-normal relative z-10  hover:text-blue-600  group-hover:underline transition-colors duration-300">
+              <Label className="font-HeroNewRegular text-gray-600 text-base font-normal relative z-10 group-hover:text-blue-600 group-hover:underline transition-colors duration-300">
                 {link.title}
               </Label>
               {link.submenu && (
