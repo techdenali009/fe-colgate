@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import { SecondaryButton } from '@ui/molecules/SecondaryButton';
 import { HeaderLabel } from '@ui/molecules/HeaderLabel';
@@ -32,7 +32,10 @@ import coursesData from '@utils/CoursesData';
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
-
+import { RecentProduct as initialProducts } from "@utils/test";
+import PopularProductSkeleton from "@ui/molecules/PopularProductSkeleton";
+import RecentlyViewedProducts from "@ui/organisms/RecentlyViewedProducts";
+import { ProductType } from "@utils/Product";
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -41,18 +44,31 @@ interface ISearchbar {
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
-  const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
+  const [filters, setFilters] = useState<string[]>([
+    "Body Treatments",
+    "Backbar",
+    "Sample",
+    "Retail",
+  ]);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
-
+  const [products, setProducts] = useState<ProductType[]>([]);
   const navigate = useNavigate();
   const breadcrumbs = [
-    { label: 'Home', href: '/' },
-    { label: 'All Products', href: '/products' },
-    { label: 'Treatment Enhancements' }
+    { label: "Home", href: "/" },
+    { label: "All Products", href: "/products" },
+    { label: "Treatment Enhancements" },
   ];
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setProducts(initialProducts);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleButtonClick = () => {
-    console.log('Learn more clicked!');
+    console.log("Learn more clicked!");
   };
 
   const handleMouseEnter = (button: string) => {
@@ -108,7 +124,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <form>
         <div className="flex justify-center mb-4">
-          <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
+          <PrimaryButton className="font-HeroNewBold">
+            Primary button
+          </PrimaryButton>
           <SecondaryButton>Secondary button</SecondaryButton>
           <ButtonWithTextAndIcon></ButtonWithTextAndIcon>
           <ButtonWithIcon>ButtonwithIcon</ButtonWithIcon>
@@ -149,7 +167,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex mb-4 space-x-4 justify-center">
         <div
           className="relative"
-          onMouseEnter={() => handleMouseEnter('button1')}
+          onMouseEnter={() => handleMouseEnter("button1")}
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
@@ -166,7 +184,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
         <div
           className="relative"
-          onMouseEnter={() => handleMouseEnter('button2')}
+          onMouseEnter={() => handleMouseEnter("button2")}
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
@@ -185,16 +203,26 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10">
         <h1 className="text-slate-950 text-3xl mb-5">Product Prices</h1>
         <p>
-          Price in USD: <Currency className="text-blue-900" value={price} currency="USD">(including tax)</Currency>
+          Price in USD:{" "}
+          <Currency className="text-blue-900" value={price} currency="USD">
+            (including tax)
+          </Currency>
         </p>
         <p>
-          Price in EUR: <Currency className="text-amber-600" value={price} currency="EUR">(excluding VAT)</Currency>
+          Price in EUR:{" "}
+          <Currency className="text-amber-600" value={price} currency="EUR">
+            (excluding VAT)
+          </Currency>
         </p>
         <p>
-          Price in JPY: <Currency className="text-red-950" value={price} currency="JPY">(no decimals)</Currency>
+          Price in JPY:{" "}
+          <Currency className="text-red-950" value={price} currency="JPY">
+            (no decimals)
+          </Currency>
         </p>
         <p>
-          Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+          Custom Decimal Places:{" "}
+          <Currency value={price} currency="USD" decimalPlaces={3} />
         </p>
       </div>
 
@@ -273,10 +301,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <FilterSkeleton />
       </div>
 
-
-
       <div>
-
         <PrimaryButton onClick={modalSetToggle}>Login</PrimaryButton>
         {toggle && <LoginModal closeModal={modalSetToggle} />}
         <button onClick={handleRegisterClick}>Register</button>
@@ -299,8 +324,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       />
 
       <div className="p-8">
-        <PageTitleHeader breadcrumbs={breadcrumbs}>
-        </PageTitleHeader>
+        <PageTitleHeader breadcrumbs={breadcrumbs}></PageTitleHeader>
       </div>
 
       <div className="flex justify-center mt-10">
@@ -332,6 +356,16 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="p-6">
         <StarRating totalStars={5} initialRating={4} />
         <ReviewBar reviews={reviews} />
+      </div>
+
+      <div className="bg-[#f3f3f3] ">
+        <div className="lg:px-[3.5rem] px-6 xl:w-[90rem] w-full  py-14 xl:mx-auto">
+          {products.length === 0 ? (
+            <PopularProductSkeleton />
+          ) : (
+            <RecentlyViewedProducts products={products} modalSetToggle={modalSetToggle} />
+          )}
+        </div>
       </div>
     </>
   );

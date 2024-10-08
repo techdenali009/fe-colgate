@@ -63,6 +63,7 @@ export const LandingTemplatePage = () => {
           <PopularProducts products={products} modalSetToggle={modalSetToggle} />
         )}
       </div>
+      
     </>
   );
 };

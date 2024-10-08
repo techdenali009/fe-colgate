@@ -12,19 +12,23 @@ const ProductHeader = ({
   headingLabel,
   description,
   LogInButtonDisable,
+  disableLeftButton,
+  disableRightButton,
   modalSetToggle
 }: ProductHeaderProps) => {
+  const buttonClass = 'w-10 h-10 hover:bg-appTheme relative overflow-hidden !p-0';
+
   return (
     <div className="text-left">
       <h2 className="font-bold py-2 mt-20 text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold">
         {headingLabel}
       </h2>
-      <div className="mb-6 flex flex-col lg:flex-row lg:justify-between ">
-        <div className="flex flex-col lg:flex-row items-start py-2">
-          <Label className="mr-5 text-base text-slate-600 font-HeroNewLight">
+      <div className="mb-6 flex flex-col lg:flex-row lg:justify-between pr-6">
+        <div className="flex flex-col lg:flex-row items-start mt-4">
+          <Label className="mr-6 text-base text-slate-600 font-HeroNewLight">
             {description}
           </Label>
-          {LogInButtonDisable ? (
+          {LogInButtonDisable && (
             <Button
               className="text-base font-bold text-appTheme hover:text-white hover:bg-appTheme font-HeroNewBold"
               type="submit"
@@ -32,13 +36,15 @@ const ProductHeader = ({
             >
               Log in to view prices
             </Button>
-          ) : null}
+          )}
         </div>
 
-        <div className="flex space-x-0.5 mt-2 lg:mt-[-9px]">
+        <div className="flex space-x-0.5 mt-3 lg:mt-0">
+          {/* Left Navigation Button */}
           <PrimaryButton
-            className="w-10 h-10 hover:bg-appTheme relative overflow-hidden !p-0"
+            className={`${buttonClass} ${disableLeftButton ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={() => handleScroll('left')}
+            disabled={disableLeftButton}
           >
             <img
               src={NavigatePrevBlue}
@@ -52,9 +58,11 @@ const ProductHeader = ({
             />
           </PrimaryButton>
 
+          {/* Right Navigation Button */}
           <PrimaryButton
-            className="w-10 h-10 hover:bg-appTheme relative overflow-hidden !p-0"
+            className={`${buttonClass} ${disableRightButton ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={() => handleScroll('right')}
+            disabled={disableRightButton}
           >
             <img
               src={NavigateNextBlue}

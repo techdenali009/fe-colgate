@@ -11,7 +11,7 @@ function Product({ product ,modalSetToggle}: ProductProps) {
 
   return (
    
-    <div className=" group relative p-2">
+    <div className=" group relative p-2 bg-white">
       <div>
         <ProductImage src={image} alt={name}></ProductImage>
         {isBestSeller && (

@@ -45,15 +45,15 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
 
   return (
     <div className="w-full">
-      <div className='mb-6'>
-        <ProductHeader
-          headingLabel="Popular Products"
-          description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
-          handleScroll={handleScroll}
-          LogInButtonDisable={true}
-          modalSetToggle={modalSetToggle}
-        />
-      </div> 
+      <ProductHeader
+        headingLabel="Popular Products"
+        description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
+        handleScroll={handleScroll}
+        LogInButtonDisable={true}
+        disableLeftButton={false}
+        disableRightButton={false}
+        modalSetToggle={modalSetToggle}
+      />
 
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
