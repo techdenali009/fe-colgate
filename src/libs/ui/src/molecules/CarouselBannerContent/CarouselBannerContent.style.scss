@@ -1,0 +1,23 @@
+@media (min-width: 1020px) {
+  .appCarousel-banner_button{
+    width: 139px;
+  }
+}
+@media (max-width: 1020px) {
+    .appCarousel-bannercontent{
+      font-size: 0rem !important;
+      line-height: 1 !important;
+      text-align: left;
+      padding: 0px !important;
+    }
+    .appCarousel-banner_button {
+        height: 43px;
+        font-size: 1rem;
+        font-family: sans-serif;
+        width: 113px;
+        font-weight: 700;
+        border-radius: 0px;
+        background-color: #1d4ed8;
+        color: white;
+      }
+}

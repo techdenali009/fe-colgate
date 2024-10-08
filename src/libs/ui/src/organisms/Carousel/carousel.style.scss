@@ -1,0 +1,142 @@
+.appCarousel{
+  .carousel {
+    &.carousel-slider {
+      position: relative;
+      margin: 0;
+    }
+
+    .control-dots {
+      position: absolute;
+      bottom: 0;
+      margin: 10px 0;
+      padding: 0;
+      text-align: center;
+      width: 100%;
+      z-index: 1;
+      padding-left: 10.5rem;
+      bottom: 5% !important;
+      left: 6px;
+    }
+
+    .slide img {
+      width: 100%;
+      vertical-align: top;
+      border: 0;
+    }
+  }
+
+  li {
+    &.dot {
+      &.dot-other {
+        transition: opacity 0.25s ease-in;
+        background-color: #fff !important;
+        opacity: 1 !important;
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 5px !important;
+        border: 0.5px solid black;
+        width: 10px !important;
+        height: 10px !important;
+      }
+
+      &.dot-black {
+        transition: opacity 0.25s ease-in;
+        background-color: #000000 !important;
+        opacity: 1 !important;
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 5px !important;
+        border: 0.5px solid white;
+        width: 10px !important;
+        height: 10px !important;
+      }
+
+      &.selected {
+        &.dot-other {
+          background-color: #000000 !important;
+          width: 8px !important;
+          height: 8px !important;
+        }
+
+        &.dot-black {
+          background-color: #fff !important;
+          width: 8px !important;
+          height: 8px !important;
+        }
+      }
+    }
+  }
+
+  .custom-prev-arrow-black,
+  .custom-next-arrow-black,
+  .custom-prev-arrow-other,
+  .custom-next-arrow-other {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: absolute;
+    padding: 30px;
+  }
+
+  .custom-prev-arrow-black {
+    background-image: url(../../../assets/white_prev.svg);
+    top: 220px;
+    z-index: 1;
+  }
+
+  .custom-next-arrow-black {
+    background-image: url(../../../assets/white_next.svg);
+    bottom: 217px;
+    right: 0;
+  }
+
+  .custom-prev-arrow-other {
+    background-image: url(../../../assets/blue_prev.svg);
+    top: 220px;
+    z-index: 1;
+  }
+
+  .custom-next-arrow-other {
+    background-image: url(../../../assets/blue_next.svg);
+    bottom: 217px;
+    right: 0;
+  }
+
+  @media (max-width: 1020px) {
+    .swiper-button-prev {
+      top: 102px;
+    }
+
+    .swiper-button-next {
+      bottom: 400px;
+    }
+
+    .carousel .control-dots {
+      position: absolute;
+      bottom: 0;
+      margin: 10px 0;
+      text-align: center;
+      width: 100%;
+      z-index: 1;
+      padding-left: 0px;
+      bottom: 0% !important;
+      align-items: center;
+    }
+
+    .custom-next-arrow-black,
+    .custom-next-arrow-other {
+      bottom: 398px !important;
+    }
+
+    .custom-prev-arrow-black,
+    .custom-prev-arrow-other {
+      top: 43px !important;
+    }
+
+    .slide img {
+      height: 140px;
+    }
+  }
+
+}
