@@ -32,7 +32,6 @@ import coursesData from '@utils/CoursesData';
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
-
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;

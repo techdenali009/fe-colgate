@@ -40,11 +40,13 @@ export default function MainModule() {
         <Footer />
         <ScrollToTop />
       </div>
-
+      {/* <ReviewModal></ReviewModal> */}
       {/* // Login MOdal  */}
       {isLoginModalOpen && (
         <LoginModal closeModal={modalSetToggle} />
+       
       )}
+
     </>
   );
 }

@@ -18,6 +18,12 @@
 }
 
 @font-face {
+  font-family: 'Hero New Medium';
+  src: url('/assets/fonts/Hero New Medium.otf') format('truetype');
+
+}
+
+@font-face {
   font-family: 'Hero New ExtraBold';
   src: url('/assets/fonts/Hero New ExtraBold.otf') format('truetype');
 

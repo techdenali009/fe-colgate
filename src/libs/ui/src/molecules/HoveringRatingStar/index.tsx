@@ -6,7 +6,7 @@ interface StarRatingProps {
   initialRating?: number;
 }
 
-const StarRating: React.FC<StarRatingProps> = ({ totalStars = 5, initialRating = 0 }) => {
+const HoverStarRating: React.FC<StarRatingProps> = ({ totalStars = 5, initialRating = 0 }) => {
   const [hoveredStar, setHoveredStar] = useState<number | null>(null);
   const [selectedStar, setSelectedStar] = useState<number | null>(initialRating);
 
@@ -55,4 +55,4 @@ const StarRating: React.FC<StarRatingProps> = ({ totalStars = 5, initialRating =
   );
 };
 
-export default StarRating;
+export default HoverStarRating;

@@ -30,7 +30,8 @@ module.exports = {
         HeroNewSemiBold: ['Hero New SemiBold'],
         HeroNewThin: ['Hero New Thin'],
         HeroNewUltraLight: ['Hero New UltraLight'],
-        SwiperIconns: ['swiper-icons']
+        SwiperIconns:['swiper-icons'],
+        HeroNewMedium:['Hero New Medium']
       },
       padding: {
         'appPaddingLeft': '6rem',
