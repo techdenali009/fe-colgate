@@ -32,6 +32,12 @@ import coursesData from '@utils/CoursesData';
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
+import SubscriptionTerms from '@ui/organisms/About/Subscriptions';
+import ContactUs from '@ui/organisms/About/ContactUs';
+import ReturnsAndExchange from '@ui/organisms/About/Returns&Exchange';
+import Culture from '@ui/organisms/About/Culture';
+import PeelLegacy from '@ui/organisms/About/OurPeelLegacy';
+import OurStory from '@ui/organisms/About/OurStory';
 
 interface ISearchbar {
   submitLabel: string;
@@ -332,6 +338,28 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="p-6">
         <StarRating totalStars={5} initialRating={4} />
         <ReviewBar reviews={reviews} />
+      </div>
+
+      <SubscriptionTerms></SubscriptionTerms>
+
+      <div className="mt-10">
+        <ContactUs></ContactUs>
+      </div>
+
+      <div className="mt-10">
+        <ReturnsAndExchange></ReturnsAndExchange>
+      </div>
+
+      <div className="mt-10">
+        <Culture></Culture>
+      </div>
+
+      <div className="mt-10">
+        <PeelLegacy></PeelLegacy>
+      </div>
+
+      <div className="mt-10">
+        <OurStory></OurStory>
       </div>
     </>
   );
