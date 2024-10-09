@@ -105,7 +105,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   return (
     <>
       <header id='header_shadow' className={`${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white' : ''}`}>
-        <div className='tm:py-0 tm:px-6 flex gap-4 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
+        <div className='tm:py-0 tm:px-6  flex gap-4 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
 
           <div className='tm:flex tl:hidden humburger'>
             <NavLinks onNavLinkActive={handleNavLinkActive} />
@@ -119,7 +119,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
             <NavLinks onNavLinkActive={handleNavLinkActive} />
           </div>
 
-          <div className=' tm:gap-0 tm:flex  Iconsnav items-center  flex space-x-4  tm:space-x-0 tm:pr-0 pr-16 gap-6'>
+          <div className=' tm:gap-0 tm:flex Iconsnav items-center  flex space-x-4  tm:space-x-0 lg:pr-[2rem] xl:pr-[5rem] xl:gap-2'>
             <div className='tm:ml-[-78px] tl:hidden logo_two tm:p-0'>
               <HeaderLogo />
             </div>
