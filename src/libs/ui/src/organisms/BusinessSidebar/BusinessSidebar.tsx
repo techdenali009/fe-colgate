@@ -7,7 +7,7 @@ interface CategoryListProps {
     className?: string;
     liClassName?: string; 
     buttonClassName?: string; 
-    selectedClassName?: string; 
+    selectedClassName?: string;  //classname for the selected option
     children?: React.ReactNode;
 }
 
