@@ -10,13 +10,13 @@ interface ReviewFilterDropdownsProps {
 }
 
 const ageGroups = [
-  "17 or under",
-  "18 to 24",
-  "25 to 34",
-  "35 to 44",
-  "45 to 54",
-  "55 to 64",
-  "65 or over",
+  '17 or under',
+  '18 to 24',
+  '25 to 34',
+  '35 to 44',
+  '45 to 54',
+  '55 to 64',
+  '65 or over',
 ];
 
 const ratings = [1, 2, 3, 4, 5];

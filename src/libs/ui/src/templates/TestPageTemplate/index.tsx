@@ -42,11 +42,11 @@ interface ISearchbar {
 }
 
 const reviewBarSelectOption = [
-  { description: "Amazing product!", ageGroup: "25 to 34", rating: 5 },
-  { description: "Not bad", ageGroup: "18 to 24", rating: 3 },
-  { description: "Could be better", ageGroup: "45 to 54", rating: 2 },
-  { description: "Loved it", ageGroup: "35 to 44", rating: 4 },
-  { description: "Would not recommend", ageGroup: "55 to 64", rating: 1 },
+  { description: 'Amazing product!', ageGroup: '25 to 34', rating: 5 },
+  { description: 'Not bad', ageGroup: '18 to 24', rating: 3 },
+  { description: 'Could be better', ageGroup: '45 to 54', rating: 2 },
+  { description: 'Loved it', ageGroup: '35 to 44', rating: 4 },
+  { description: 'Would not recommend', ageGroup: '55 to 64', rating: 1 },
 ];
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
@@ -124,9 +124,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const ratings = {
-    quality: { score: 4.3, label: "Quality" },
-    value: { score: 4.9, label: "Value" },
-    scent: { score: 3.5, label: "Scent" },
+    quality: { score: 4.3, label: 'Quality' },
+    value: { score: 4.9, label: 'Value' },
+    scent: { score: 3.5, label: 'Scent' },
   };
 
   return (
@@ -368,33 +368,33 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="container mx-auto p-4">
-      <h1>Filter Reviews</h1>
+        <h1>Filter Reviews</h1>
 
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <ReviewFilterDropdowns 
-        selectedRating={selectedRating}
-        setSelectedRating={setSelectedRating}
-        selectedAgeGroup={selectedAgeGroup}
-        setSelectedAgeGroup={setSelectedAgeGroup}
-      />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <ReviewFilterDropdowns 
+          selectedRating={selectedRating}
+          setSelectedRating={setSelectedRating}
+          selectedAgeGroup={selectedAgeGroup}
+          setSelectedAgeGroup={setSelectedAgeGroup}
+        />
 
-      <div className="mt-4">
-        <h3>Filtered Reviews</h3>
-        {filteredReviewsSearchBar.length > 0 ? (
-          <ul>
-            {filteredReviewsSearchBar.map((review, index) => (
-              <li key={index}>
-                <p>{review.description}</p>
-                <p>Age Group: {review.ageGroup}</p>
-                <p>Rating: {review.rating} Stars</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No reviews found.</p>
-        )}
+        <div className="mt-4">
+          <h3>Filtered Reviews</h3>
+          {filteredReviewsSearchBar.length > 0 ? (
+            <ul>
+              {filteredReviewsSearchBar.map((review, index) => (
+                <li key={index}>
+                  <p>{review.description}</p>
+                  <p>Age Group: {review.ageGroup}</p>
+                  <p>Rating: {review.rating} Stars</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No reviews found.</p>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };
