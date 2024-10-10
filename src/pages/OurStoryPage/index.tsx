@@ -1,5 +1,5 @@
 import React from 'react';
-import OurStory from '@ui/organisms/About/OurStory';
+import OurStory from '@ui/organisms/About/OurStory/OurStory';
 
 const OurStoryPage: React.FC = () => {
   return (

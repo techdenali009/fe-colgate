@@ -1,5 +1,5 @@
 import React from 'react';
-import Culture from '@ui/organisms/About/Culture';
+import Culture from '@ui/organisms/About/Culture/Culture';
 
 const CulturePage: React.FC = () => {
   return (

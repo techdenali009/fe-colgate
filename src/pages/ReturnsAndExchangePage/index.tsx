@@ -1,5 +1,5 @@
 import React from 'react';
-import ReturnsAndExchange from '@ui/organisms/About/Returns&Exchange';
+import ReturnsAndExchange from '@ui/organisms/About/ReturnsAndExchange/Returns&Exchange';
 
 const ReturnsAndExchangePage: React.FC = () => {
   return (
