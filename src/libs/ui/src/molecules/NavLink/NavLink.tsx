@@ -72,7 +72,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onNavLinkActive }) => {
       </button>
 
       <ul
-        className={`fixed grid  sm:gap-[1rem] hover:text-blue-600 md:gap-[1px] top-0 left-0 w-full bg-white lg:static lg:flex  text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
+        className={`fixed grid  sm:gap-[0rem] hover:text-blue-600 md:gap-[0rem] xl:gap-1 top-0 left-0 w-full bg-white lg:static lg:flex  text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
       >
         <span
           className="text-black cursor-pointer lg:hidden !hover:text-blue-600 flex justify-end relative right-[10px]"

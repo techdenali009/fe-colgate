@@ -7,5 +7,5 @@ export const HeaderLogo =() =>{
   return  <Logo src={logo} alt='logo' onClick={()=>{
     console.log('Header Logo clicked')
     navigate('')
-  }} className='p-4 mx-[80px] lg:p-0.5!important tm:p-0 tm:m-0'/>
+  }} className='p-4  mx-[80px] xl:mx-[80px] lg:p-0.5!important tm:p-0 tm:m-0 lg:mx-[41px]'/>
 }
