@@ -49,7 +49,7 @@ export const AppRoutes = () => (
         <Route  path=":id" element={<ProductDetailsPage/>}></Route>
       </Route> 
 
-     {/* About module */}
+      {/* About module */}
       <Route path="/about" element={<AboutModule />}>
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="our-story" element={<OurStory />} />
