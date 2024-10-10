@@ -10,7 +10,7 @@ const Anchor: React.FC<AnchorProps> = ({ href, children, className }) => {
   return (
     <a 
       href={href} 
-      className={`text-sm lg:text-sm text-blue-600 ${className}`} 
+      className={`text-sm lg:text-sm text-appTheme ${className}`} 
     >
       {children}
     </a>

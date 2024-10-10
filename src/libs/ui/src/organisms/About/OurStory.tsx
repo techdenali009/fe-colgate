@@ -18,7 +18,7 @@ const OurStory: React.FC = () => {
         </Heading>
 
         <Heading className='lg:text-base font-black'>
-          <StrongText className='lg:text-base text-blue-600'>Improving skin, improving lives since 1990</StrongText>
+          <StrongText className='lg:text-base text-appTheme'>Improving skin, improving lives since 1990</StrongText>
         </Heading>
 
         <StrongText>About PCA SKIN</StrongText>

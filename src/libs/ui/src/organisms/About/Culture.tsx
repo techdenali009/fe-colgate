@@ -12,7 +12,7 @@ const Culture: React.FC = () => {
       </Heading>
 
       <Heading className='lg:text-base font-black'>
-        <StrongText className='lg:text-base text-blue-600'>Our vision and mission</StrongText>
+        <StrongText className='lg:text-base text-appTheme'>Our vision and mission</StrongText>
       </Heading>
 
       <Paragraph className='font-HeroNewSemiBold text-black'>

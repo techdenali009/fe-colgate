@@ -18,7 +18,7 @@ const PeelLegacy: React.FC = () => {
         </Heading>
 
         <Heading className='lg:text-base font-black'>
-          <StrongText className='lg:text-base text-blue-600'>Revolutionizing professional treatments</StrongText>
+          <StrongText className='lg:text-base text-appTheme'>Revolutionizing professional treatments</StrongText>
         </Heading>
 
         <Paragraph>
