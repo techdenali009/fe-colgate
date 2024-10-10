@@ -339,28 +339,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <StarRating totalStars={5} initialRating={4} />
         <ReviewBar reviews={reviews} />
       </div>
-
-      <SubscriptionTerms></SubscriptionTerms>
-
-      <div className="mt-10">
-        <ContactUs></ContactUs>
-      </div>
-
-      <div className="mt-10">
-        <ReturnsAndExchange></ReturnsAndExchange>
-      </div>
-
-      <div className="mt-10">
-        <Culture></Culture>
-      </div>
-
-      <div className="mt-10">
-        <PeelLegacy></PeelLegacy>
-      </div>
-
-      <div className="mt-10">
-        <OurStory></OurStory>
-      </div>
     </>
   );
 };
