@@ -1,43 +1,63 @@
-// AgeAndRatingDropdown.tsx
+// src/components/molecules/ReviewFilterDropdowns.tsx
 import React from 'react';
-import AgeDropdown from '../AgeSelectDropdown';
-import RatingDropdown from '../RatingSelectDropdown';
+import BasicDropdown from '../../atoms/Dropdown';
 
-interface AgeAndRatingDropdownProps {
-  onAddFilter: (filter: string) => void;
-  ratingButtonClass?: string;   // Optional prop for Rating button classes
-  ratingDropdownClass?: string;  // Optional prop for Rating dropdown classes
-  ratingOptionClass?: string;    // Optional prop for Rating option classes
-  ageButtonClass?: string;       // Optional prop for Age button classes
-  ageDropdownClass?: string;     // Optional prop for Age dropdown classes
-  ageOptionClass?: string;       // Optional prop for Age option classes
+interface ReviewFilterDropdownsProps {
+  selectedRating: number | null;
+  setSelectedRating: (rating: number | null) => void;
+  selectedAgeGroup: string | null;
+  setSelectedAgeGroup: (ageGroup: string | null) => void;
 }
 
-const AgeAndRatingDropdown: React.FC<AgeAndRatingDropdownProps> = ({
-  onAddFilter,
-  ratingButtonClass,
-  ratingDropdownClass,
-  ratingOptionClass,
-  ageButtonClass,
-  ageDropdownClass,
-  ageOptionClass,
+const ageGroups = [
+  "17 or under",
+  "18 to 24",
+  "25 to 34",
+  "35 to 44",
+  "45 to 54",
+  "55 to 64",
+  "65 or over",
+];
+
+const ratings = [1, 2, 3, 4, 5];
+
+const ReviewFilterDropdowns: React.FC<ReviewFilterDropdownsProps> = ({
+  selectedRating,
+  setSelectedRating,
+  selectedAgeGroup,
+  setSelectedAgeGroup,
 }) => {
+
+  const handleAgeGroupChange = (value: string | number | null) => {
+    if (typeof value === 'string' || value === null) {
+      setSelectedAgeGroup(value);
+    }
+  };
+
+  const handleRatingChange = (value: string | number | null) => {
+    if (typeof value === 'string') {
+      setSelectedRating(Number(value) || null);
+    } else {
+      setSelectedRating(value);
+    }
+  };
+
   return (
-    <div className="flex items-center space-x-4 p-4">
-      <RatingDropdown
-        onAddFilter={onAddFilter}
-        buttonClass={ratingButtonClass}       // Pass custom Rating button class
-        dropdownClass={ratingDropdownClass}   // Pass custom Rating dropdown class
-        optionClass={ratingOptionClass}       // Pass custom Rating option class
+    <div className="flex space-x-4">
+      <BasicDropdown
+        options={ageGroups}
+        selectedValue={selectedAgeGroup}
+        onChange={handleAgeGroupChange}
+        placeholder="Select Age Group"
       />
-      <AgeDropdown
-        onAddFilter={onAddFilter}
-        buttonClass={ageButtonClass}          // Pass custom Age button class
-        dropdownClass={ageDropdownClass}      // Pass custom Age dropdown class
-        optionClass={ageOptionClass}          // Pass custom Age option class
+      <BasicDropdown
+        options={ratings}
+        selectedValue={selectedRating}
+        onChange={handleRatingChange}
+        placeholder="Select Rating"
       />
     </div>
   );
 };
 
-export default AgeAndRatingDropdown;
+export default ReviewFilterDropdowns;

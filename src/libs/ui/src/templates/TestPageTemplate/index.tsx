@@ -32,19 +32,20 @@ import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
-import RatingSelectDropdown from '@ui/molecules/RatingSelectDropdown';
-import AgeSelectDropdown from '@ui/molecules/AgeSelectDropdown';
+import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
 
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
 }
 
-interface ReviewSearchBar {
-  description: string;
-  ageGroup: string;
-  rating: number;
-}
+const reviewBarSelectOption = [
+  { description: "Amazing product!", ageGroup: "25 to 34", rating: 5 },
+  { description: "Not bad", ageGroup: "18 to 24", rating: 3 },
+  { description: "Could be better", ageGroup: "45 to 54", rating: 2 },
+  { description: "Loved it", ageGroup: "35 to 44", rating: 4 },
+  { description: "Would not recommend", ageGroup: "55 to 64", rating: 1 },
+];
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
@@ -52,26 +53,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
   
-  const reviewBarSelectOption: ReviewSearchBar[] = [
-    { description: "Amazing product!", ageGroup: "25 to 34", rating: 5 },
-    { description: "Not bad", ageGroup: "18 to 24", rating: 3 },
-    { description: "Could be better", ageGroup: "45 to 54", rating: 2 },
-    { description: "Loved it", ageGroup: "35 to 44", rating: 4 },
-    { description: "Would not recommend", ageGroup: "55 to 64", rating: 1 },
-  ];
-
-  // State variables for filters
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
 
-  // Filter reviews based on search, rating, and age group
-  const filteredReviewsSearchBar = reviewBarSelectOption.filter((review) => {
-    return (
-      (searchQuery ? review.description.toLowerCase().includes(searchQuery.toLowerCase()) : true) &&
-      (selectedRating ? review.rating === selectedRating : true) &&
-      (selectedAgeGroup ? review.ageGroup === selectedAgeGroup : true)
-    );
+  const filteredReviewsSearchBar = reviewBarSelectOption.filter(review => {
+    const matchesSearch = review.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesRating = selectedRating ? review.rating === selectedRating : true;
+    const matchesAgeGroup = selectedAgeGroup ? review.ageGroup === selectedAgeGroup : true;
+    return matchesSearch && matchesRating && matchesAgeGroup;
   });
 
   const navigate = useNavigate();
@@ -362,12 +352,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="container mx-auto p-4">
       <h1>Filter Reviews</h1>
 
-      {/* Render the search bar, rating select, and age select */}
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <RatingSelectDropdown selectedRating={selectedRating} setSelectedRating={setSelectedRating} />
-      <AgeSelectDropdown selectedAgeGroup={selectedAgeGroup} setSelectedAgeGroup={setSelectedAgeGroup} />
+      <ReviewFilterDropdowns 
+        selectedRating={selectedRating}
+        setSelectedRating={setSelectedRating}
+        selectedAgeGroup={selectedAgeGroup}
+        setSelectedAgeGroup={setSelectedAgeGroup}
+      />
 
-      {/* Display filtered reviews */}
       <div className="mt-4">
         <h3>Filtered Reviews</h3>
         {filteredReviewsSearchBar.length > 0 ? (
