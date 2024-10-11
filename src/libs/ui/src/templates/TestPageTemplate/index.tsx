@@ -398,12 +398,12 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
       <div className="p-6">
         <ResponseCard
-          title="Response from PCA SKIN" 
-          timeAgo="10 months ago" 
-          iconSrc={responsePCASkin} 
-          consumerAffairsText="Consumer Affairs" 
+          title="Response from PCA SKIN"
+          timeAgo="10 months ago"
+          iconSrc={responsePCASkin}
+          consumerAffairsText="Consumer Affairs"
         >
-        We're so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!
+          We&apos;re so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!
         </ResponseCard>
       </div>
     </>
