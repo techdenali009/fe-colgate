@@ -54,7 +54,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     <div className="relative inline-block" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className={`flex items-center px-1 py-3 min-w-44 bg-white border rounded-full shadow-sm focus:outline-none ${isOpen ? 'border-appTheme' : 'border-gray-300'} ${buttonClassName}`}
+        className={`flex items-center px-1 py-3 min-w-44 bg-white border rounded-full shadow-sm focus:outline-none ${isOpen ? 'border-appTheme' : 'border-black'} ${buttonClassName}`}
       >
         <Icon icon={Dropdown} className="h-4 w-4 text-blue-500 text-appTheme float-left" />
         <span className="text-sm font-medium ml-1 text-gray-700">{selectedOption}</span>
