@@ -2,7 +2,7 @@ import React from 'react';
 import LinkGroup from '@ui/molecules/FooterList'; // Adjust the path as needed
 import { Label } from '@ui/atoms/Label/index';
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
-import { Image } from '@ui/atoms/LogoImage/logoimg';
+import { Logo } from '@ui/atoms/Logo/logo';
 import { ABOUT, APPOWNER, CUSTOMER_SERVICE, LEARN, OTHERLINKS, SHOP_D, } from '@utils/constants';
 import { About, CustomerService, Learn, OtherLinks, shop } from '@utils/constants';
 import AccordionItem from '@ui/molecules/AccordianItem';
@@ -54,8 +54,8 @@ const Footer: React.FC = () => {
         </div>
 
         <div className='hidden flex-col items-center py-8 text-brand-white-100 lg:flex-row logo-wrapper h-3  lg:flex xl:flex pb-14 pr-1 -ml-1'>
-          <Image src={PCA_LOGO} alt={''} className=''></Image>
-          <Paragraph className='p-8 mb-4 text-xs'>{APPOWNER}</Paragraph>
+          <Logo src={PCA_LOGO} alt={''} className=''></Logo>
+          <Paragraph className='p-8 mb-4 text-[16px]'>{APPOWNER}</Paragraph>
         </div>
 
 
@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className='lg:hidden sm:text-left py-8 md:px-0 '>
-            <Image src={PCA_LOGO} alt={''} className=''></Image>
+            <Logo src={PCA_LOGO} alt={''} className=''></Logo>
             <Paragraph className='pt-4 text-xs font-HeroNewLight'>{APPOWNER}</Paragraph>
           </div>
         </div>

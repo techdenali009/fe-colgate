@@ -28,6 +28,8 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
+import coursesData from '@utils/CoursesData';
+import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
@@ -40,11 +42,11 @@ interface ISearchbar {
 }
 
 const reviewBarSelectOption = [
-  { description: "Amazing product!", ageGroup: "25 to 34", rating: 5 },
-  { description: "Not bad", ageGroup: "18 to 24", rating: 3 },
-  { description: "Could be better", ageGroup: "45 to 54", rating: 2 },
-  { description: "Loved it", ageGroup: "35 to 44", rating: 4 },
-  { description: "Would not recommend", ageGroup: "55 to 64", rating: 1 },
+  { description: 'Amazing product!', ageGroup: '25 to 34', rating: 5 },
+  { description: 'Not bad', ageGroup: '18 to 24', rating: 3 },
+  { description: 'Could be better', ageGroup: '45 to 54', rating: 2 },
+  { description: 'Loved it', ageGroup: '35 to 44', rating: 4 },
+  { description: 'Would not recommend', ageGroup: '55 to 64', rating: 1 },
 ];
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
@@ -52,7 +54,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
-  
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
@@ -92,7 +94,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
 
   const handleRegisterClick = () => {
-    navigate('/register'); // Navigate to the /register route
+    navigate('auth/register'); // Navigate to the /register route
   };
 
   const removeFilter = (filterToRemove: string) => {
@@ -118,11 +120,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const handleSortingSelect = (option: string) => {
     console.log('Selected sorting option:', option);
   };
+  // State for selected category in business side bar
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const ratings = {
-    quality: { score: 4.3, label: "Quality" },
-    value: { score: 4.9, label: "Value" },
-    scent: { score: 3.5, label: "Scent" },
+    quality: { score: 4.3, label: 'Quality' },
+    value: { score: 4.9, label: 'Value' },
+    scent: { score: 3.5, label: 'Scent' },
   };
 
   return (
@@ -224,6 +228,20 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <div className="flex">
         <Sidebar filterData={filterData} />
+      </div>
+
+      <h1 className='pl-28 pt-16 font-bold'>Business Sidebar</h1>
+
+      <div className='pl-24 pt-4'>
+        <BusinessSidebar
+          categories={coursesData.courseCategories}
+          selectedCategory={selectedCategory}
+          onCategorySelect={setSelectedCategory}
+        >
+          <div className="mt-4">
+            <p>Select a category to see more details.</p>
+          </div>
+        </BusinessSidebar>
       </div>
 
       <div className="mb-4">
@@ -350,40 +368,39 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
 
       <div className="container mx-auto p-4">
-      <h1>Filter Reviews</h1>
+        <h1>Filter Reviews</h1>
 
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <ReviewFilterDropdowns 
-        selectedRating={selectedRating}
-        setSelectedRating={setSelectedRating}
-        selectedAgeGroup={selectedAgeGroup}
-        setSelectedAgeGroup={setSelectedAgeGroup}
-      />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <ReviewFilterDropdowns
+          selectedRating={selectedRating}
+          setSelectedRating={setSelectedRating}
+          selectedAgeGroup={selectedAgeGroup}
+          setSelectedAgeGroup={setSelectedAgeGroup}
+        />
 
-      <div className="mt-4">
-        <h3>Filtered Reviews</h3>
-        {filteredReviewsSearchBar.length > 0 ? (
-          <ul>
-            {filteredReviewsSearchBar.map((review, index) => (
-              <li key={index}>
-                <p>{review.description}</p>
-                <p>Age Group: {review.ageGroup}</p>
-                <p>Rating: {review.rating} Stars</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No reviews found.</p>
-        )}
+        <div className="mt-4">
+          <h3>Filtered Reviews</h3>
+          {filteredReviewsSearchBar.length > 0 ? (
+            <ul>
+              {filteredReviewsSearchBar.map((review, index) => (
+                <li key={index}>
+                  <p>{review.description}</p>
+                  <p>Age Group: {review.ageGroup}</p>
+                  <p>Rating: {review.rating} Stars</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No reviews found.</p>
+          )}
+        </div>
       </div>
-    </div>
-
-    <div className="p-6">
-      <ResponseCard
-        content="We're so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!"
-        timeAgo="10 months ago"
-      />
-    </div>
+      <div className="p-6">
+        <ResponseCard
+          content="We're so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!"
+          timeAgo="10 months ago"
+        />
+      </div>
     </>
   );
 };

@@ -31,3 +31,4 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
 };
 
 export default React.memo(StarRating);
+  

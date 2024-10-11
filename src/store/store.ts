@@ -1,12 +1,12 @@
+// store.ts
+import { configureStore } from '@reduxjs/toolkit';
+import ModalSlice from './services/Slices/ModalSlice';
 
-// import { configureStore } from '@reduxjs/toolkit';
+export const store = configureStore({
+  reducer: {
+    modal: ModalSlice,
+  },
+});
 
-// const store = configureStore({
-//   reducer: {
-//     [PopularProductsEndpoints.reducerPath]: PopularProductsEndpoints.reducer,
-//   },
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware().concat(PopularProductsEndpoints.middleware), 
-// });
-
-// export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

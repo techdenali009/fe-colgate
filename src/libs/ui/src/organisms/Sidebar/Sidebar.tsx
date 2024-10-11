@@ -12,9 +12,12 @@ interface FilterData {
 
 interface SidebarProps {
   filterData: FilterData;
+  className?: string; // Classname for outer div
+  ulClassName?: string; // Classname for <ul>
+  liClassName?: string; // Classname for <li>
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ filterData }) => {
+const Sidebar: React.FC<SidebarProps> = ({ filterData, className, ulClassName, liClassName }) => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedProductCategory, setSelectedProductCategory] = useState<string | null>(null);
   const [checkedFilters, setCheckedFilters] = useState<{ [key: string]: boolean }>({});
@@ -35,19 +38,19 @@ const Sidebar: React.FC<SidebarProps> = ({ filterData }) => {
   };
 
   return (
-    <div className="w-full max-w-xs p-4 space-y-6 bg-white shadow-md rounded-lg hidden lg:block">
+    <div className={`w-full max-w-xs pl-2 space-y-6 bg-white shadow-md rounded-lg ${className}`}>
       {/* Product Category Accordion */}
       <AccordionItem title="Product Category" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7" contentClassName="bg-white" containerClassName="border-b">
-        <ul className="space-y-1">
+        <ul className={`space-y-1 ${ulClassName}`}>
           {(showAllCategories ? filterData.productCategory : filterData.productCategory.slice(0, 5)).map(
             (category, index) => (
               <li
                 key={index}
                 className={`${
                   selectedProductCategory === category
-                    ? 'text-black py-2 focus-visible:px-3 p-4 font-bold '
-                    : 'text-gray-700 py-2 hover:text-blue-800 p-4 hover:font-bold'
-                }  cursor-pointer`}
+                    ? 'text-black py-2 focus-visible:px-3 px-4 font-bold'
+                    : 'text-gray-700 py-2 hover:text-blue-800 px-4 hover:font-bold'
+                } cursor-pointer ${liClassName}`}
                 onClick={() => handleProductCategoryClick(category)}
               >
                 {category}
@@ -61,14 +64,14 @@ const Sidebar: React.FC<SidebarProps> = ({ filterData }) => {
       </AccordionItem>
 
       {/* Best Seller Accordion */}
-      <AccordionItem title="Best Seller" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7"  contentClassName="bg-white" containerClassName="border-b">
-        <ul className="space-y-1">
+      <AccordionItem title="Best Seller" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7" contentClassName="bg-white" containerClassName="border-b">
+        <ul className={`space-y-1 ${ulClassName}`}>
           {filterData.bestSeller.map((option, index) => (
             <li
               key={index}
               className={`${
                 checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
-              } cursor-pointer`}
+              } cursor-pointer ${liClassName}`}
             >
               <Checkbox className='mr-2'
                 checked={checkedFilters[option] || false}
@@ -82,14 +85,14 @@ const Sidebar: React.FC<SidebarProps> = ({ filterData }) => {
       </AccordionItem>
 
       {/* Product Types Accordion */}
-      <AccordionItem title="Product Types" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7"  contentClassName="bg-white" containerClassName="border-b">
-        <ul className="space-y-1">
+      <AccordionItem title="Product Types" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7" contentClassName="bg-white" containerClassName="border-b">
+        <ul className={`space-y-1 ${ulClassName}`}>
           {filterData.productTypes.map((option, index) => (
             <li
               key={index}
               className={`${
                 checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 hover:font-bold pl-2 pb-1 mr-2 hover:text-blue-800'
-              } cursor-pointer`}
+              } cursor-pointer ${liClassName}`}
             >
               <Checkbox className='mr-2'
                 checked={checkedFilters[option] || false}
@@ -104,13 +107,13 @@ const Sidebar: React.FC<SidebarProps> = ({ filterData }) => {
 
       {/* Skin Concern Accordion */}
       <AccordionItem title="Skin Concern" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7" contentClassName="bg-white" containerClassName="border-b">
-        <ul className="space-y-1">
+        <ul className={`space-y-1 ${ulClassName}`}>
           {filterData.skinConcern.map((option, index) => (
             <li
               key={index}
               className={`${
                 checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
-              } cursor-pointer`}
+              } cursor-pointer ${liClassName}`}
             >
               <Checkbox className='mr-2'
                 checked={checkedFilters[option] || false}
@@ -124,14 +127,14 @@ const Sidebar: React.FC<SidebarProps> = ({ filterData }) => {
       </AccordionItem>
 
       {/* Skin Type Accordion */}
-      <AccordionItem title="Skin Type" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7"  contentClassName="bg-white" containerClassName="border-b">
-        <ul className="space-y-1">
+      <AccordionItem title="Skin Type" titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7" contentClassName="bg-white" containerClassName="border-b">
+        <ul className={`space-y-1 ${ulClassName}`}>
           {filterData.skinType.map((option, index) => (
             <li
               key={index}
               className={`${
                 checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-800'
-              } cursor-pointer`}
+              } cursor-pointer ${liClassName}`}
             >
               <Checkbox className='mr-2'
                 checked={checkedFilters[option] || false}

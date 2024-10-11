@@ -8,7 +8,7 @@ import  './CarouselBannerslide.style.scss';
 
 export const BannerSlide: React.FC<BannerSlideProps> = ({ imgSrc, imgAlt, heading, subheading, buttonText, bgColor }) => {
   return (
-    <div className='appCarousel-container flex flex-row w-full h-[500px]'>
+    <div className='appCarousel-container flex flex-row w-full'>
       <div className='appCarousel-container-image w-1/2'>
         <Image src={imgSrc} alt={imgAlt} />
       </div>

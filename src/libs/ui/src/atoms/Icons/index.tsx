@@ -6,15 +6,15 @@ export const Icon: React.FC<{
   className?: string;
   onClick?: () => void;
 }> = ({ icon, className = '', onClick }) => (
-  <a 
-    href='#' 
+  <a
+    href='#'
     onClick={onClick}
     className=''
   >
-    <img 
-      src={icon} 
-      alt="Site Icon" 
-      className={`min-w-min ${className}`} 
+    <img
+      src={icon}
+      alt="Site Icon"
+      className={`min-w-min ${className}`}
     />
   </a>
 );

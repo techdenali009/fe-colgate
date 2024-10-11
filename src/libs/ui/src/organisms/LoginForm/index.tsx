@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@ui/atoms/Button';
 import { Label } from '@ui/atoms/Label';
-import { LoginForm, LoginForm as LoginFormEnum, ValidationForm } from '@utils/Login';
+import { LoginForm, ValidationForm } from '@utils/Login';
 import { PasswordFeild } from '@ui/atoms/PasswordField';
-import { InputField } from '@ui/molecules/FormField'
+import { InputField } from '@ui/molecules/FormField';
+
 interface FormValues {
   email: string;
   password: string;
@@ -19,7 +20,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
   const [showPassword, setShowPassword] = useState(false); // State to control password visibility
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true); // To track if the password field is empty
 
-  const { control, register, handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
+  const { control,handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
     mode: 'onChange',
   });
 
@@ -31,56 +32,58 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
   return (
     <>
       <div className="mb-8">
-        <p className="text-[32px] pl-3 font-normal font-HeroNewRegular">Customer Login</p>
+        <p className="text-[32px] font-normal font-HeroNewRegular">Customer Login</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex pl-3 pr-4 flex-col">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         {/* Email Input */}
         <div className="inline-grid">
-          <div className='flex text-xs' >
+          <div className="flex text-xs">
             <Label className="text-xs font-HeroNewUltraLight">Email</Label>
-
-            <Label className="ml-0 text-sm font-heroNewLight,font-sans text-red-600"> *</Label>
+            <Label className="ml-0 text-sm font-heroNewLight font-sans text-red-600"> *</Label>
           </div>
 
           <Controller
-            render={({ field }) =>
-              <InputField
-                className={`rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 h-[48px] text-base border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
-                } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
-                type="email"
-                placeholder="Email *" {...field}
-              />}
+            name="email"
             control={control}
-            {...register(LoginForm.Email, { required: ValidationForm.Required })}
-
+            rules={{ required: ValidationForm.Required }}
+            render={({ field }) => (
+              <InputField
+                className={`rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 h-[48px] text-base border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'} ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
+                type="email"
+                placeholder="Email *"
+                {...field}
+              />
+            )}
           />
+          {errors.email && (
+            <span className="text-appErrorMessage text-normal font-HeroNewBold">
+              {errors.email.message}
+            </span>
+          )}
         </div>
-        {/* {errors[LoginFormEnum.Email] && (
-          <span style={{ color: '#ce4635' }} className='text-appErrorMessage text-normal font-HeroNewBold'>
-            {errors[LoginFormEnum.Email]?.message}
-          </span>
-        )} */}
-        {errors.email && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.email.message}</span>}
 
         {/* Password Input with Visibility Toggle */}
         <div className="inline-grid">
-          <div className='flex text-xs'>
+          <div className="flex text-xs">
             <Label className="text-xs text-black font-HeroNewUltraLight">Password</Label>
-            <Label className="text-sm font-heroNewLight,font-sans text-red-600"> *</Label>
+            <Label className="text-sm font-heroNewLight font-sans text-red-600"> *</Label>
           </div>
           <Controller
-            render={({ field }) =>
+            name="password"
+            control={control}
+            rules={{ required: ValidationForm.Required }}
+            render={({ field }) => (
               <PasswordFeild
-                className={`rounded-none mt-3 mb-[13px]  pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] ${errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
-                } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
+                className={`rounded-none mt-3  pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
                 type={showPassword ? 'text' : 'password'} // Password visibility toggle
                 placeholder="Password *"
                 {...field}
-                onChange={(e: { target: { value: string; }; }) => {
+                onChange={(e) => {
                   field.onChange(e);
                   setIsPasswordFieldEmpty(e.target.value === ''); // Check if the field is empty
                 }}
-                suffix={(
+                suffix={
                   !isPasswordFieldEmpty && (
                     <button
                       type="button"
@@ -90,33 +93,33 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
                       {showPassword ? 'Hide' : 'Show'}
                     </button>
                   )
-                )}
-              />}
-            control={control}
-            {...register(LoginForm.Password, { required: ValidationForm.Required })}
+                }
+              />
+            )}
           />
-
           {errors.password && (
-            <span  className="text-appErrorMessage text-normal font-HeroNewBold   mt-3">
-              {errors[LoginFormEnum.Password]?.message}
+            <span className="text-appErrorMessage text-normal font-HeroNewBold mt-3">
+              {errors.password.message}
             </span>
           )}
         </div>
 
         <Button
           onClick={() => setIsForgotPassword(true)}
-          type={undefined}
-          className="mt-0 p-0 text-start"
+          type="button"
+          className="mt-[12px] p-0 text-start"
         >
-          <span className='bg-none text-blue-700 text-sm font-HeroNewRegular hover:font-semibold'>Forgot password?</span>
+          <span className="bg-none text-blue-700 mt-4 text-sm font-HeroNewRegular hover:font-semibold">
+            Forgot password?
+          </span>
         </Button>
 
-        <div className="flex justify-between items-center w-full">
-          <div className="flex-grow" /> {/* This empty div takes up space to push the login button to the right */}
+        <div className="flex h-[48px] mt-4 justify-between items-center w-full">
+          <div className="flex-grow mt-[40px]" /> {/* This empty div takes up space to push the login button to the right */}
 
           <Button
             type="submit"
-            className="bg-appTheme w-[75px] h-[48px] text-white p-3 m-1 mt-8 mb-10 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
+            className="bg-appTheme w-[75px] h-[48px] text-white p-3 m-1 mt-14 mb-12 hover:bg-black text-[14px] hover:underline font-HeroNewBold"
           >
             Log in
           </Button>

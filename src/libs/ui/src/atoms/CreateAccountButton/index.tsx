@@ -3,13 +3,19 @@ import React, { useState } from 'react';
 interface PrimaryButtonProps {
     children: React.ReactNode;
     className?: string;
+    onClick?: () => void;
 }
 
-export const CreateAccountButton: React.FC<PrimaryButtonProps> = ({ children, className = '' }) => {
+export const CreateAccountButton: React.FC<PrimaryButtonProps> = ({ children, className = '',onClick, }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
     setIsClicked(!isClicked);
+    if (onClick) {
+      setTimeout(()=>{
+        onClick(); 
+      }, 500)
+    }
   };
 
   return (

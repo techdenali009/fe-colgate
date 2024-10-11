@@ -19,8 +19,8 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true);
 
-  const { control, register, handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
-    mode: 'onSubmit', // Use onSubmit mode to trigger validation only on submit
+  const { control, handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
+    mode: 'onSubmit',
   });
 
   const togglePasswordVisibility = () => {
@@ -30,13 +30,16 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
   return (
     <>
       <div className="mb-8">
-        <p className="text-[32px] pr-3 pl-3 font-HeroNewRegular">Already registered?</p>
+        <p className="text-[32px] font-HeroNewRegular">Already registered?</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex pr-3 pl-3 flex-col pb-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col pb-2">
         {/* Email Input */}
         <div className="mb-8 inline-grid">
           <Controller
-            render={({ field }) =>
+            name={LoginFormEnum.Email}
+            control={control}
+            rules={{ required: ValidationForm.Required }}
+            render={({ field }) => (
               <InputField
                 className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] ${
                   errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
@@ -44,9 +47,8 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
                 type="email"
                 placeholder="Email *"
                 {...field}
-              />}
-            control={control}
-            {...register(LoginFormEnum.Email, { required: ValidationForm.Required})}
+              />
+            )}
           />
           {errors[LoginFormEnum.Email] && (
             <span className="text-normal text-appErrorMessage font-HeroNewBold">
@@ -58,15 +60,18 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
         {/* Password Input with Visibility Toggle */}
         <div className="inline-grid">
           <Controller
-            render={({ field }) =>
+            name={LoginFormEnum.Password}
+            control={control}
+            rules={{ required: ValidationForm.Required }}
+            render={({ field }) => (
               <PasswordFeild
-                className={`rounded-none h-[48px] pl-4 pb-1 pr-4  text-base border-[1px] ${
+                className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] ${
                   errors[LoginFormEnum.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                 } ${isSubmitted && errors[LoginFormEnum.Password] ? 'focus:outline-blue-700' : 'focus:outline-none'}`} // Conditional outline
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password *"
                 {...field}
-                onChange={(e: { target: { value: string; }; }) => {
+                onChange={(e) => {
                   field.onChange(e);
                   setIsPasswordFieldEmpty(e.target.value === '');
                 }}
@@ -81,9 +86,8 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
                     </button>
                   )
                 )}
-              />}
-            control={control}
-            {...register(LoginFormEnum.Password, { required: ValidationForm.Required })}
+              />
+            )}
           />
           {errors[LoginFormEnum.Password] && (
             <span className="text-normal text-appErrorMessage font-HeroNewBold mt-3">
@@ -105,7 +109,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
           <div className="flex-grow !h-[48px] !w-[75px]" />
           <Button
             type="submit"
-            className="bg-appTheme !w-[75px] !h-[48px] text-white p-3 m-1 mb-8 hover:bg-black hover:underline !text-[15px] font-HeroNewSemiBold"
+            className="bg-appTheme !w-[75px] !h-[48px] text-white p-3 m-1 hover:bg-black hover:underline !text-[15px] font-HeroNewSemiBold"
           >
             Log in
           </Button>
