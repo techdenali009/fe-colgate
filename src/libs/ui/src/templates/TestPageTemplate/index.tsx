@@ -413,10 +413,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         </ResponseCard>
       </div>
       <div>
-      <button onClick={openModal}>Open Review Modal</button>
+        <button onClick={openModal}>Open Review Modal</button>
 
-      {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
-    </div>
+        {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
+      </div>
     </>
   );
 };
