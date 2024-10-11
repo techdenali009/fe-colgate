@@ -37,6 +37,7 @@ import SearchBar from '@ui/molecules/SearchBar';
 import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import responsePCASkin from '../../../assets/responsePCASkin.svg';
+import ReviewBarModal from '@ui/organisms/ReviewStarModal';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -129,6 +130,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     value: { score: 4.9, label: 'Value' },
     scent: { score: 3.5, label: 'Scent' },
   };
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   return (
     <>
@@ -406,6 +412,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           We&apos;re so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!
         </ResponseCard>
       </div>
+      <div>
+      <button onClick={openModal}>Open Review Modal</button>
+
+      {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
+    </div>
     </>
   );
 };
