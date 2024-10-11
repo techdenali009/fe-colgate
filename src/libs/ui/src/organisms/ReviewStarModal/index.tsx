@@ -14,67 +14,67 @@ interface ReviewBarModalProps {
 }
 
 const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
-    const [isChecked, setIsChecked] = useState(false);
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
-    };
-    return (
-        <Modal onClose={closeModal}>
-            <ModalHeader onClose={closeModal}>
-                <h1>My Review</h1>
-            </ModalHeader>
-            <ModalBody title="">
-                <h1>Required fields are marked with *</h1>
-                <div>1 Your reviews</div>
-                <div className="p-6">
-                    <StarRating totalStars={5} initialRating={4} />
-                </div>
-                <p>Please provide your feedback.</p>
-                <div>
-                    <br />
-                    <h1>Review</h1>
-                    <InputField
-                        className=""
-                        type="text"
-                        placeholder="review"
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+  return (
+    <Modal onClose={closeModal}>
+      <ModalHeader onClose={closeModal}>
+        <h1>My Review</h1>
+      </ModalHeader>
+      <ModalBody title="">
+        <h1>Required fields are marked with *</h1>
+        <div>1 Your reviews</div>
+        <div className="p-6">
+          <StarRating totalStars={5} initialRating={4} />
+        </div>
+        <p>Please provide your feedback.</p>
+        <div>
+          <br />
+          <h1>Review</h1>
+          <InputField
+            className=""
+            type="text"
+            placeholder="review"
 
-                    />
-                    <br />
-                    <h1>Review Title</h1>
-                    <InputField
-                        className=""
-                        type="text"
-                        placeholder="review title"
+          />
+          <br />
+          <h1>Review Title</h1>
+          <InputField
+            className=""
+            type="text"
+            placeholder="review title"
 
-                    />
-                    <br />
-                    <h1>Nickname</h1>
-                    <InputField
-                        className=""
-                        type="text"
-                        placeholder="nickname"
+          />
+          <br />
+          <h1>Nickname</h1>
+          <InputField
+            className=""
+            type="text"
+            placeholder="nickname"
 
-                    />
-                    <br />
-                    <h1>Email</h1>
-                    <InputField
-                        className=""
-                        type="email"
-                        placeholder="Email"
+          />
+          <br />
+          <h1>Email</h1>
+          <InputField
+            className=""
+            type="email"
+            placeholder="Email"
 
-                    />
-                </div>
-            </ModalBody>
-            <ModalFooter>
-                <div className="flex m-10 justify-center bg-slate-300 text-blue-700">
-                    <Checkbox checked={isChecked} onChange={handleCheckboxChange}>
+          />
+        </div>
+      </ModalBody>
+      <ModalFooter>
+        <div className="flex m-10 justify-center bg-slate-300 text-blue-700">
+          <Checkbox checked={isChecked} onChange={handleCheckboxChange}>
                         I agree to the terms and conditions
-                    </Checkbox>
-                </div>
-                <PrimaryButton onClick={closeModal}>Submit</PrimaryButton>
-            </ModalFooter>
-        </Modal>
-    );
+          </Checkbox>
+        </div>
+        <PrimaryButton onClick={closeModal}>Submit</PrimaryButton>
+      </ModalFooter>
+    </Modal>
+  );
 };
 
 export default ReviewBarModal;
