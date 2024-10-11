@@ -3,7 +3,7 @@ import { Image } from '@ui/atoms/Image';
 
 interface ResponseCardProps {
   title: string; 
-  content: string; 
+  children ?: string; 
   timeAgo: string; 
   iconSrc: string; 
   consumerAffairsText: string; 
@@ -14,7 +14,7 @@ interface ResponseCardProps {
 
 const ResponseCard: React.FC<ResponseCardProps> = ({
   title,
-  content,
+  children,
   timeAgo,
   iconSrc,
   consumerAffairsText,
@@ -35,7 +35,7 @@ const ResponseCard: React.FC<ResponseCardProps> = ({
       </div>
       <div className={`p-4 ${contentClassName}`}>
         <h3 className="font-semibold text-base text-black mb-2">{consumerAffairsText}</h3> 
-        <p className="text-black mb-4">{content}</p>
+        <p className="text-black mb-4">{children}</p>
       </div>
     </div>
   );
