@@ -18,9 +18,9 @@ const ResponseCard: React.FC<ResponseCardProps> = ({
   timeAgo,
   iconSrc,
   consumerAffairsText,
-  containerClassName = "",
-  headerClassName = "", 
-  contentClassName = "", 
+  containerClassName = '',
+  headerClassName = '', 
+  contentClassName = '', 
 }) => {
   return (
     <div className={`border rounded-lg shadow-md bg-white text-sm w-2/3 ${containerClassName}`}>
