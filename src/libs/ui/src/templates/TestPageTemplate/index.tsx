@@ -35,7 +35,9 @@ import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
-
+import ResponseCard from '@ui/molecules/ResponsePCASkin';
+import responsePCASkin from '../../../assets/responsePCASkin.svg';
+import ReviewBarModal from '@ui/organisms/ReviewStarModal';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -59,7 +61,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     'Retail',
   ]);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
-  
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
@@ -133,6 +135,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     value: { score: 4.9, label: 'Value' },
     scent: { score: 3.5, label: 'Scent' },
   };
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   return (
     <>
@@ -386,7 +393,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <h1>Filter Reviews</h1>
 
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <ReviewFilterDropdowns 
+        <ReviewFilterDropdowns
           selectedRating={selectedRating}
           setSelectedRating={setSelectedRating}
           selectedAgeGroup={selectedAgeGroup}
@@ -409,6 +416,21 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             <p>No reviews found.</p>
           )}
         </div>
+      </div>
+      <div className="p-6">
+        <ResponseCard
+          title="Response from PCA SKIN"
+          timeAgo="10 months ago"
+          iconSrc={responsePCASkin}
+          consumerAffairsText="Consumer Affairs"
+        >
+          We&apos;re so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!
+        </ResponseCard>
+      </div>
+      <div>
+        <button onClick={openModal}>Open Review Modal</button>
+
+        {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
       </div>
     </>
   );
