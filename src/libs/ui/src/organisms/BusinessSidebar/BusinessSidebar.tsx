@@ -7,6 +7,7 @@ interface CategoryListProps {
     className?: string;
     liClassName?: string; 
     buttonClassName?: string; 
+    selectedClassName?: string;   
     children?: React.ReactNode;
 }
 
@@ -17,6 +18,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
   className,
   liClassName,
   buttonClassName,
+  selectedClassName,
   children,
 }) => {
   return (
@@ -28,7 +30,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
             <li
               key={index}
               className={`border-b-[0.063rem] list-none lg:border-b-0 lg:px-0 ${liClassName} ${
-                isSelected ? 'border-l-4 border-blue-700 text-blue-700' : 'border-l-2 border-gray-300'
+                isSelected ? `border-l-4 border-blue-700 text-blue-700 ${selectedClassName}` : 'border-l-2 border-gray-300'
               }`}
             >
               <button
