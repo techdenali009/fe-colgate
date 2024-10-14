@@ -1,6 +1,6 @@
 .billing-svgIconThickness{
     div span svg path {
-         stroke: #125ee0 !important;
+         stroke: var(--primary-color) !important;
          stroke-width: 4px !important;
        }
  }
