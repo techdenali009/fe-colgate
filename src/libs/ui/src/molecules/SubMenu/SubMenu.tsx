@@ -12,9 +12,14 @@ interface SubMenuProps {
   handleMouseEnter?: () => void;
   handleMouseLeave?: () => void;
   className?: string;
-
+  onNavLinkClick: (title: string) => void;
 }
-const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, handleMouseLeave, className }) => {
+const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, handleMouseLeave, className,onNavLinkClick }) => {
+ 
+  const handleLinkClick = (title: string) => {
+   
+    onNavLinkClick(title);
+  };
   return (
     <div
       className={` left-0 w-full z-[22] ${className} ${isActive ? 'block' : 'hidden'} absolute shadow-lg p-4 transition-all duration-300 z-[99999] bg-white`}
@@ -36,7 +41,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
                   <li
                     key={idx}
                     className={'text-gray-700 font-HeroNewRegular text-base transition-colors duration-200 cursor-pointer mb-2 hover:bg-blue-50 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-blue-600 hover:underline'}
-
+                    onClick={()=>handleLinkClick(item)}
                   >
                     {item}
                   </li>
