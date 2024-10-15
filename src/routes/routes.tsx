@@ -57,8 +57,8 @@ export const AppRoutes = () => (
         <Route path="our-story" element={<OurStoryPage />} />
         <Route path="culture" element={<CulturePage />} />
         <Route path="our-peel-legacy" element={<OurPeelLegacyPage />} />
-        <Route path="returns-exchange" element={<ReturnsAndExchangePage />} />
-        <Route path="subscription" element={<SubscriptionTermsPage />} />
+        <Route path="returns-exchanges" element={<ReturnsAndExchangePage />} />
+        <Route path="subscriptions" element={<SubscriptionTermsPage />} />
         <Route path="FAQs" element={<AboutPage />} />
       </Route>
 
