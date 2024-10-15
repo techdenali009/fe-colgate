@@ -15,6 +15,8 @@ import profile from '../../../assets/profile.svg';
 import cart from '../../../assets/cart.svg';
 import SearchModal from '@ui/molecules/SearchModal';
 import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
+import { useNavigate } from 'react-router-dom';
+import { appSetting } from '@utils/appSetting';
 
 interface headerProps {
   modalSetToggle: () => void;
@@ -31,8 +33,11 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   const [submenuData, setSubmenuData] = useState<any>(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
- 
 
+  const [selectNavLink,setSelectNavLink]=useState<string>('');
+
+
+  const navigate = useNavigate(); 
   const handleMouseEnterLogo = () => {
     setIsNavActive(false);
   };
@@ -101,6 +106,16 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
       setIsCartHovered(false);
     }
   };
+
+  const handleNavLinkClick = (title: string) => {
+    const catagory =  appSetting.find(link => link.title === selectNavLink);
+    const isNavigate = catagory && catagory?.canNavigate && catagory?.navigationPages.includes(title);
+    // const selectedLink = appSetting.find(link => link.title === selectNavLink)?.canNavigate;
+  
+    if (isNavigate) {
+      navigate(`${selectNavLink}/${title}`);
+    }
+  };
   
   return (
     <>
@@ -108,7 +123,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
         <div className='tm:py-0 tm:px-6  flex gap-4 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
 
           <div className='tm:flex tl:hidden humburger'>
-            <NavLinks onNavLinkActive={handleNavLinkActive} />
+            <NavLinks setSelectNavLink={setSelectNavLink}  onNavLinkActive={handleNavLinkActive}  onNavLinkClick={handleNavLinkClick}   />
           </div>
 
           <div className='tm:hidden logo_one' onMouseEnter={handleMouseEnterLogo}>
@@ -116,7 +131,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
           </div>
 
           <div className='tm:hidden tl:flex'>
-            <NavLinks onNavLinkActive={handleNavLinkActive} />
+            <NavLinks setSelectNavLink={setSelectNavLink}    onNavLinkActive={handleNavLinkActive} onNavLinkClick={handleNavLinkClick}  />
           </div>
 
           <div className=' tm:gap-0 tm:flex Iconsnav items-center  flex space-x-4  tm:space-x-0 lg:pr-[2rem] xl:pr-[5rem] xl:gap-2'>
@@ -188,6 +203,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               handleMouseLeave={() => {
                 setIsNavActive(false);
               }}
+              onNavLinkClick={handleNavLinkClick}
             />
           </div>
         )}
