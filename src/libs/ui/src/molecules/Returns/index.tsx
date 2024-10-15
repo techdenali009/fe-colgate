@@ -1,9 +1,10 @@
+import Paragraph from '@ui/atoms/Paragraph/paragraph'
 import AccordionItem from '../AccordianItem'
 import { HeaderLabel } from '../HeaderLabel'
 import './Returns.styles.scss'
 function Returns() {
   return (
-    <div className="mb-10">
+    <div className="mb-14">
       <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
       Returns
       </HeaderLabel>
@@ -16,7 +17,7 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>No, your client should not contact PCA directly for returns. You, as the seller, are responsible for processing the return as &quot;patient dissatisfaction&quot; within 4 months of purchase. You will cover the shipping costs, and a credit will be applied to your account for future purchases.</p>
+          <Paragraph>No, your client should not contact PCA directly for returns.You, as the seller, are responsible for processing the return as &quot;patient dissatisfaction&quot; within 4 months of purchase. You will cover the shipping costs, and a credit will be applied to your account for future purchases.</Paragraph>
             
         </div>
       </AccordionItem>
@@ -30,8 +31,7 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>Yes, unopened products can be returned within 60 days, but a 20% restocking fee will be deducted from the credit applied to your account.</p>
-            
+          <Paragraph>Yes, unopened products can be returned within 60 days, but a 20% restocking fee will be deducted from the credit applied to your account.</Paragraph>  
         </div>
       </AccordionItem>
       <AccordionItem
@@ -43,7 +43,7 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>Yes. We will need to receive the products back first. A return label will be sent to cover shipping costs, and we must receive the return first before sending the replacement.</p>
+          <Paragraph>Yes. We will need to receive the products back first. A return label will be sent to cover shipping costs, and we must receive the return first before sending the replacement.</Paragraph>
             
         </div>
       </AccordionItem>
@@ -56,7 +56,7 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>Yes, you can get a replacement or credit for the defective items in your shipment. We will provide an immediate replacement for the affected item(s) and do not require you to return the defective items. Please contact us as soon as possible to arrange for the replacement or credit.</p>
+          <Paragraph>Yes, you can get a replacement or credit for the defective items in your shipment. We will provide an immediate replacement for the affected item(s) and do not require you to return the defective items. Please contact us as soon as possible to arrange for the replacement or credit.</Paragraph>
             
         </div>
       </AccordionItem>
@@ -69,13 +69,13 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>Yes. A return label will be sent and we must receive the return first before sending replacement.</p>
+          <Paragraph>Yes. A return label will be sent and we must receive the return first before sending replacement.</Paragraph>
             
         </div>
       </AccordionItem>
        
       <AccordionItem
-        title=" I/my client experienced an adverse reaction (itching/rash/burning) to a product. Can I return it for a replacement/credit?"
+        title="I/my client experienced an adverse reaction (itching/rash/burning) to a product.Can I return it for a replacement/credit?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
         contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
@@ -83,8 +83,7 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>Yes, you can return the product for a replacement or credit if you or your client experienced an adverse reaction. We will send a return label, and we must receive the items back before issuing the credits or replacements.</p>
-            
+          <Paragraph>Yes, you can return the product for a replacement or credit if you or your client experienced an adverse reaction. We will send a return label, and we must receive the items back before issuing the credits or replacements.</Paragraph>
         </div>
       </AccordionItem>
        
@@ -97,8 +96,7 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>No</p>
-            
+          <Paragraph>No</Paragraph>
         </div>
       </AccordionItem>
 
@@ -112,7 +110,7 @@ function Returns() {
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>The lot number is a series of numbers located on the bottom of the packaging. We will need that to be able to process a return.</p>
+          <Paragraph>The lot number is a series of numbers located on the bottom of the packaging. We will need that to be able to process a return.</Paragraph>
             
         </div>
       </AccordionItem>
@@ -123,11 +121,11 @@ function Returns() {
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
         contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
-        className="!p-0 !pb-8 !px-4 "
+        className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
         <div>
-          <p>PCA SKIN, 15820 N 84th St. Suite 200, Scottsdale, AZ 85260</p>
+          <Paragraph>PCA SKIN, 15820 N 84th St. Suite 200, Scottsdale, AZ 85260</Paragraph>
             
         </div>
       </AccordionItem>
