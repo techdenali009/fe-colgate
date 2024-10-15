@@ -24,7 +24,7 @@ function SellingOnline() {
             <Paragraph>
             PCA SKIN sells high quality, clinical grade skincare products through physicians&apos; offices, spas and resorts in the United States. PCA SKIN wishes to protect the prestige and reputation of their products by ensuring they are only sold through reputable retail e-commerce sites.
             </Paragraph>
-           <br/>
+            <br/>
             <Paragraph>The PCA SKIN® online sales policy has been created to ensure consistent standards for PCA SKIN customers who are selling or would like to sell PCA SKIN daily care products over the internet. Please review the policy here for more information: Online Sales Policy PDF.</Paragraph>
           
           </div>
