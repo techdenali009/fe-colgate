@@ -4,7 +4,6 @@ import { AppSpinner } from '@ui/atoms/AppSpinner';
 import AboutPage from '@ui/templates/AboutPage';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AboutModule from 'src/modules/aboutModule/aboutModule';
 import ProductModule from 'src/modules/usersModule/usersModule';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
@@ -60,14 +59,12 @@ export const AppRoutes = () => (
         <Route path="our-peel-legacy" element={<OurPeelLegacyPage />} />
         <Route path="returns-exchange" element={<ReturnsAndExchangePage />} />
         <Route path="subscription" element={<SubscriptionTermsPage />} />
+        <Route path="FAQs" element={<AboutPage />} />
       </Route>
 
       <Route path="/test" element={<TestPage />}></Route>
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
 
-      <Route path="/about" element={<AboutModule />}>
-        <Route path="FAQs" element={<AboutPage />} />
-      </Route>
     </Route>
   </Routes>
 )
