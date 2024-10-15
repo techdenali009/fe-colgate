@@ -1,10 +1,11 @@
 
+import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './Education.styles.scss'
 function Education() {
   return (
-    <div className="mb-10">
+    <div className="mb-14">
       <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
         Education
       </HeaderLabel>
@@ -18,11 +19,11 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>
+            <Paragraph>
               You can sign up for the Advantage Class on our website. For all
               other classes please call 877.PCA.PEEL [722.7335] and one of our
               Education Specialists will assist you.
-            </p>
+            </Paragraph>
           </div>
         </AccordionItem>
         <AccordionItem
@@ -34,9 +35,9 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>
+            <Paragraph>
             To avoid our $100 cancellation fee please call 877.PCA.PEEL [722.7335] within 48 hours of your scheduled class.
-            </p>
+            </Paragraph>
           </div>
         </AccordionItem>
 
@@ -50,9 +51,9 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>
+            <Paragraph>
             You will receive your PCA SKIN Certified Professional certificate on the day of the class. If you did not, please call 877.PCA.PEEL [722.7335] and an education specialist will assist you.
-            </p>
+            </Paragraph>
           </div>
         </AccordionItem>
 
@@ -66,11 +67,11 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>
+            <Paragraph>
             In order for skin health professionals to purchase PCA SKIN professional products you must complete the PCA Skin Advantage Course. Once you have attended this 8 hour course, your certification with PCA Skin will never expire.
-            </p>
-            <p>&nbsp;</p>
-            <p>However, if you would like to continue to further your knowledge with PCA Skin products, the PCA Academy offers a variety of additional education courses to expand your skill set. Learn more about our exciting education offerings here: <a href="#" className="text-appTheme">Education page</a></p>
+            </Paragraph>
+            <Paragraph>&nbsp;</Paragraph>
+            <Paragraph>However, if you would like to continue to further your knowledge with PCA Skin products, the PCA Academy offers a variety of additional education courses to expand your skill set. Learn more about our exciting education offerings here: <a href="#" className="text-appTheme">Education page</a></Paragraph>
           </div>
         </AccordionItem>
 
@@ -84,7 +85,7 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>Your kit will be shipped out within 5 business days from when you attended the class.</p>
+            <Paragraph>Your kit will be shipped out within 5 business days from when you attended the class.</Paragraph>
           </div>
         </AccordionItem>
 
@@ -98,9 +99,9 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>Ensure that you are signing in with the email account you used during registration. Using a different email may prevent your online classes from appearing.</p>
-            <p>&nbsp;</p>
-            <p>If you are still unable to see your courses, please call 877.PCA.PEEL [722.7335] to speak with one of our education specialists. They will be able to assist you and help resolve any issues you may be experiencing with accessing your online courses.</p>
+            <Paragraph>Ensure that you are signing in with the email account you used during registration. Using a different email may prevent your online classes from appearing.</Paragraph>
+            <Paragraph>&nbsp;</Paragraph>
+            <Paragraph>If you are still unable to see your courses, please call 877.PCA.PEEL [722.7335] to speak with one of our education specialists. They will be able to assist you and help resolve any issues you may be experiencing with accessing your online courses.</Paragraph>
           </div>
         </AccordionItem>
 
@@ -115,7 +116,7 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>As a PCA SKIN Partnership and Associate School, we provide various education support options for your students. We have developed specific training courses to aid your undergraduate and masters level students in achieving success during their academic journey and beyond. By partnering with PCA SKIN, each of your students will graduate as PCA SKIN Certified Chemical Peel Experts, equipped with specialized knowledge and skills in this field. Our goal is to empower your students with valuable training and certifications to enhance their career prospects and expertise in the industry.</p>
+            <Paragraph>As a PCA SKIN Partnership and Associate School, we provide various education support options for your students. We have developed specific training courses to aid your undergraduate and masters level students in achieving success during their academic journey and beyond. By partnering with PCA SKIN, each of your students will graduate as PCA SKIN Certified Chemical Peel Experts, equipped with specialized knowledge and skills in this field. Our goal is to empower your students with valuable training and certifications to enhance their career prospects and expertise in the industry.</Paragraph>
           </div>
         </AccordionItem>
 
@@ -129,7 +130,7 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>We offer on campus training, as well as extensive online courses for your instructors to complete at their leisure. Your instructors are encouraged to attend every class we hold on your campus.</p>
+            <Paragraph>We offer on campus training, as well as extensive online courses for your instructors to complete at their leisure. Your instructors are encouraged to attend every class we hold on your campus.</Paragraph>
           </div>
         </AccordionItem>
 
@@ -143,7 +144,7 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>PCA SKIN Partnership and Associate schools are eligible for additional product discounts and promotions.</p>
+            <Paragraph>PCA SKIN Partnership and Associate schools are eligible for additional product discounts and promotions.</Paragraph>
           </div>
         </AccordionItem>
 
@@ -157,7 +158,7 @@ function Education() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>We offer three student kits for our Partnership Schools. The Introduction to Aesthetics Kits and Masters Kits are designed to assist your student to become familiar with PCA SKIN products and set them on a path to success during their training. PCA SKIN offers a third kit that will assist your students post-graduation, giving them a head start as a PCA SKIN Certified Professional. Associates Schools have access to condensed kits in conjunction with the purchase of training.</p>
+            <Paragraph>We offer three student kits for our Partnership Schools. The Introduction to Aesthetics Kits and Masters Kits are designed to assist your student to become familiar with PCA SKIN products and set them on a path to success during their training. PCA SKIN offers a third kit that will assist your students post-graduation, giving them a head start as a PCA SKIN Certified Professional. Associates Schools have access to condensed kits in conjunction with the purchase of training.</Paragraph>
           </div>
         </AccordionItem>
 
@@ -168,11 +169,11 @@ function Education() {
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
           contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
-          className="!p-0 !pb-8 !px-4 "
+          className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>Partnering with PCA SKIN will differentiate your esthetics program. We view education as the cornerstone to achieving success for every professional. PCA Skin is dedicated to helping not only you, but each of your students achieve that success through ever evolving educational courses and advanced scientific formulas.</p>
+            <Paragraph>Partnering with PCA SKIN will differentiate your esthetics program. We view education as the cornerstone to achieving success for every professional. PCA Skin is dedicated to helping not only you, but each of your students achieve that success through ever evolving educational courses and advanced scientific formulas.</Paragraph>
           </div>
         </AccordionItem>
 

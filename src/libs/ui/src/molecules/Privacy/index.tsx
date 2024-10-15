@@ -1,10 +1,12 @@
 
+import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './Privacy.styles.scss'
+import AnchorLink from '@ui/atoms/AnchorLink';
 function Privacy() {
   return (
-    <div className="mb-10">
+    <div className="mb-14">
       <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
         Privacy
       </HeaderLabel>
@@ -18,13 +20,13 @@ function Privacy() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>
+            <Paragraph>
               Yes. We follow industry standard terms. For full details please
               review our{' '}
-              <a href="#" className="text-appTheme">
+              <AnchorLink href="#" className="text-appTheme">
                 Privacy Policy.
-              </a>
-            </p>
+              </AnchorLink>
+            </Paragraph>
           </div>
         </AccordionItem>
       </div>

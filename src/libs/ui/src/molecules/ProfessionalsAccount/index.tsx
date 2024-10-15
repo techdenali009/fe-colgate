@@ -1,10 +1,14 @@
+import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './ProfessionalsAccount.styles.scss'
+import AnchorLink from '@ui/atoms/AnchorLink';
+const Forgot_password_url=import.meta.env.VITE_SCROLL_PCA_FORGOT_PASSWORD_URL;
+const websupport=import.meta.env.VITE_WEBSUPPORT;
 function ProfessionalsAccount() {
 
   return (
-    <div className="mb-10 w-full">
+    <div className="mb-14 w-full">
       <HeaderLabel className="lg:!text-[2.375rem] !text-[1.75rem] font-bold !font-HeroNewBold mb-6 leading-none text-[#555555]">
         Professionals Account
       </HeaderLabel>
@@ -13,13 +17,13 @@ function ProfessionalsAccount() {
         <AccordionItem
           title="Why does my professional account need to be confirmed?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
-          containerClassName="account-svgIconThickness"
+          containerClassName="account-svgIconThickness "
           contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
           className="!p-0 !py-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>We need to verify all professional licenses to create professional accounts.</p>
+            <Paragraph>We need to verify all professional licenses to create professional accounts.</Paragraph>
             
           </div>
         </AccordionItem>
@@ -32,12 +36,12 @@ function ProfessionalsAccount() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>You can reset your password by clicking on the link below:<br></br>
-              <a href="" className="text-appTheme not-italic ml-1"> https://www.pcaskinpro.com/auth/forgot-password</a>
-            </p>
-            <p className="py-6">
-            If you are still having issues resetting your password, email websupport at <a href="" className="text-appTheme ">websupport@pcaskin.com</a>
-            </p>
+            <Paragraph>You can reset your password by clicking on the link below:<br></br>
+              <AnchorLink href="#" className="text-appTheme not-italic ml-1">{Forgot_password_url}</AnchorLink>
+            </Paragraph>
+            <Paragraph className="py-6">
+            If you are still having issues resetting your password, email websupport at <AnchorLink href="#" className="text-appTheme ">{websupport}</AnchorLink>
+            </Paragraph>
             
           </div>
         </AccordionItem>
@@ -50,9 +54,9 @@ function ProfessionalsAccount() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>First you will need to contact professional sales at 1.877.722.7546 to ensure your changes are made in the main data base.</p>
+            <Paragraph>First you will need to contact professional sales at 1.877.722.7546 to ensure your changes are made in the main data base.</Paragraph>
             
-            <p className="py-6">Second, log into your professional online account and make changes. Go to &quot;My Account&quot; to make any changes.</p>
+            <Paragraph className="py-6">Second, log into your professional online account and make changes. Go to &quot;My Account&quot; to make any changes.</Paragraph>
           </div>
         </AccordionItem>
         <AccordionItem
@@ -60,17 +64,17 @@ function ProfessionalsAccount() {
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="account-svgIconThickness"
           contentClassName="pt-4 pb-6 px-6 bg-white border-t italic"
-          className="!p-0  !px-4 !pb-8"
+          className="!p-0  !px-4 !pb-4"
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <p>You can access your order history in two ways:</p>
-            <p>&nbsp;</p>
-            <p >1. Log into your online account and go to the &apos;Account Dashboard&apos; page. There, you should be able to find a section that displays your order history.</p>
-            <p>&nbsp;</p>
-            <p >2. Alternatively, click on the profile icon located in the top right corner of the navigation menu. From the dropdown menu, select &apos;Orders & Invoices&apos; to view your order history.</p>
-            <p>&nbsp;</p>
-            <p >Either of these methods should allow you to see a record of your past orders.</p>
+            <Paragraph>You can access your order history in two ways:</Paragraph>
+            <Paragraph>&nbsp;</Paragraph>
+            <Paragraph>1. Log into your online account and go to the &apos;Account Dashboard&apos; page. There, you should be able to find a section that displays your order history.</Paragraph>
+            <Paragraph>&nbsp;</Paragraph>
+            <Paragraph>2. Alternatively, click on the profile icon located in the top right corner of the navigation menu. From the dropdown menu, select &apos;Orders & Invoices&apos; to view your order history.</Paragraph>
+            <Paragraph>&nbsp;</Paragraph>
+            <Paragraph>Either of these methods should allow you to see a record of your past orders.</Paragraph>
           </div>
         </AccordionItem>
 
