@@ -53,7 +53,7 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
             <h1 className="text-lg font-bold text-black font-sans">My Review</h1>
           </div>
         </div>
-        
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <div title="Your Review" className="h-[500px] mb-4">
             <p className="text-black font-sans text-base leading-[19.5px] border-b border-gray-300 m-0 p-[10px_30px]">
@@ -82,7 +82,6 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
                     <StarRating
                       totalStars={5}
                       initialRating={field.value}
-                      onChange={(newRating: number) => field.onChange(newRating)}
                       width={35}
                       height={35}
                       className="bg-gray-300"
@@ -215,8 +214,8 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
               <Controller
                 name="agreeTerms"
                 control={control}
-                render={({ field }) => (
-                  <Checkbox {...field} checked={field.value}>
+                render={({ }) => (
+                  <Checkbox >
                     <span className="text-base text-black">
                       I agree to the <a href="#" className="text-blue-600">terms & conditions</a>
                     </span>
