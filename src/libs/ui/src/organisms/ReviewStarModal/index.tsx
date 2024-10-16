@@ -8,6 +8,7 @@ import { InputField } from '@ui/molecules/FormField';
 import responseProfile from '../../../assets/responsiveProfile.svg';
 import CloseModal from '../../../assets/CloseModal.svg';
 import { Image } from '@ui/atoms/Image';
+import StatusBadge from '@ui/molecules/StatusBadges';
 
 interface ReviewBarModalProps {
   closeModal: () => void;
@@ -62,8 +63,41 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
           <div title="Your Review" className="h-[500px] mb-4">
             {isFormSubmitted ? (
               <div className="">
-                <h2 className="">Thank you for your review!</h2>
-                <p className="">Your feedback helps us improve our products.</p>
+                <div>Your Reviews</div>
+                <div>
+                  <div>2</div>
+                  <div>Add Images</div>
+                </div>
+                <div>
+                  <h2 className='font-HeroNewBold'>Add images</h2>
+                  <a className='text-blue-600 text-base'>Photo Guidelines</a>
+                </div>
+                <div>
+                  <div>
+                    <PrimaryButton>Submit</PrimaryButton>
+                    <PrimaryButton>Skip</PrimaryButton>
+                  </div>
+                </div>
+                <div className="flex flex-col space-y-4 p-6 pl-8">
+                  <div className="flex items-center border-b border-gray-300 pb-4">
+                    <div className="w-8 h-8 flex items-center justify-center bg-black text-white rounded-full">
+                      3
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="">Personal/Product Information</h3>
+                      <p className="">(Optional)</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 flex items-center justify-center bg-black text-white rounded-full">
+                      4
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="">Product Rating</h3>
+                      <p className="">(Optional)</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
               <>
@@ -76,9 +110,7 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
                   </div>
                   <h2 className="text-base text-black">Your reviews</h2>
                   <div className="pl-96">
-                    <span className="px-2 py-1 ml-20 border border-pink-500 text-pink-600 rounded-md text-sm font-medium">
-                      In progress
-                    </span>
+                    <StatusBadge Children={'In progress'} />
                   </div>
                 </div>
 
@@ -242,11 +274,11 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
 
                 </div>
                 <div className="justify-end border-b border-gray-300 pl-8 pb-4">
-                  <PrimaryButton type="submit" className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 transition w-48 h-12">
+                  <PrimaryButton type="submit" className="px-6 py-2 font-bold bg-blue-600 text-white hover:bg-blue-700 transition w-48 h-12">
                     Submit
                   </PrimaryButton>
                 </div>
-                <div className="flex flex-col space-y-4 p-6 pl-4">
+                <div className="flex flex-col space-y-4 p-6 pl-8">
                   <div className="flex items-center border-b border-gray-300 pb-4 w-full">
                     <div className="w-8 h-8 flex items-center justify-center bg-black text-white rounded-full">
                       2
