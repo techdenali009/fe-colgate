@@ -14,7 +14,7 @@ interface ReviewBarModalProps {
 }
 
 const ratingMessages = [
-  "1 out of 5 stars selected. Product is Poor.",
+  '1 out of 5 stars selected. Product is Poor.',
 ];
 
 const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
@@ -47,7 +47,7 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
             <Image src={CloseModal} alt="Close modal" className="w-6 h-6" />
           </button>
           <div className="flex items-center border-b border-gray-400 w-full ">
-            <div className={`border-2 border-gray-300 px-3 pb-10 mr-1 flex items-start pt-2`}>
+            <div className={'border-2 border-gray-300 px-3 pb-10 mr-1 flex items-start pt-2'}>
               <Image src={responseProfile} alt="" className="mr-3 w-10 h-10" />
             </div>
             <h1 className="text-lg font-bold text-black font-sans">My Review</h1>
