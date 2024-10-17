@@ -1,4 +1,4 @@
-import Culture from '@ui/organisms/About/Culture/Culture';
+import Culture from '@ui/organisms/About/Culture';
 
 function CultureTemplate() {
   return (
