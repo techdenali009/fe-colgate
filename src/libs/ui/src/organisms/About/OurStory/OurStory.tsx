@@ -18,12 +18,12 @@ const OurStory: React.FC = () => {
         </Heading>
 
         <Heading className='lg:text-base font-black'>
-          <StrongText className='lg:text-base text-appTheme'>Improving skin, improving lives since 1990</StrongText>
+          <StrongText className='lg:text-base text-blue-700'>Improving skin, improving lives since 1990</StrongText>
         </Heading>
 
         <StrongText>About PCA SKIN</StrongText>
 
-        <Paragraph className='mt-7 text-xs'>For over 30 years, <StrongText>PCA SKIN</StrongText> has pioneered and perfected the science of skin health. We are founded in  the belief that delivering transformative solutions backed by science can improve not only skin, but lives also. PCA SKIN continues to be a trusted innovator in the development of highly effective professional treatments and daily care products that offer individualized solutions to deliver dramatic, visible results. </Paragraph>
+        <Paragraph className='mt-7 text-xs'>For over 30 years, <StrongText>PCA SKIN</StrongText> has pioneered and perfected the science of skin health. We are founded in  the belief that delivering transformative solutions backed by science can improve not only skin, but lives also. <StrongText>PCA SKIN</StrongText> continues to be a trusted innovator in the development of highly effective professional treatments and daily care products that offer individualized solutions to deliver dramatic, visible results. </Paragraph>
         <Paragraph  className='text-xs'>Whether experienced through a licensed skin health professional trained and certified by <StrongText>PCA SKIN</StrongText>, or as a part of daily care routine at home, we know skin health is personal, so we put our best into helping customers feel their best.</Paragraph>
         <StrongText>Innovators in healthy skin</StrongText>
         <Paragraph className='text-xs mt-7'><StrongText>PCA SKIN</StrongText> was founded in 1990 by aesthetician Margaret Ancira and developed by dermatologist Jennifer Linder M.D. Since our founding, professional partnerships have been an integral part of our identity. Our formulas are researched, designed, and executed by our expert Research and Development team to address the evolving needs of the skin health industry and patients. </Paragraph>

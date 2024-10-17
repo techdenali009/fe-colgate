@@ -28,7 +28,7 @@ const ContactUs: React.FC = () => {
       </Paragraph>
 
       <Paragraph>
-       See our FAQs <Anchor href='/'>here</Anchor>.
+       See our FAQs <Anchor href='/About/FAQs'>here</Anchor>.
       </Paragraph>
     </div>
   );
