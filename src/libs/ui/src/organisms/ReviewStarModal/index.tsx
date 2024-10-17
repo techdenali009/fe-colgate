@@ -5,20 +5,25 @@ import ReviewStarSubmit from '../ReviewStarSubmitModal';
 import { Image } from '@ui/atoms/Image';
 import CloseModal from '../../../assets/CloseModal.svg';
 import responseProfile from '../../../assets/responsiveProfile.svg';
+import ReviewStarPersonalInfo from '../ReviewStarPersonalInfoModal';
+import ReviewStarProductRating from '../ReviewStarProductRatModal';
+
 interface ReviewBarModalProps {
   closeModal: () => void;
 }
 
 const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0); 
 
-  const onSubmit = (data: any) => {
-    console.log('Form data:', data);
-    setIsFormSubmitted(true);
-  };
+  const steps = [
+    <ReviewStarSubmit onSubmit={() => setCurrentStep(1)} />, 
+    <ReviewStarAddImages onSubmit={() => setCurrentStep(2)} />, 
+    <ReviewStarPersonalInfo onSubmit={() => setCurrentStep(3)} />, 
+    <ReviewStarProductRating onSubmit={closeModal} />,
+  ];
 
   return (
-    <Modal onClose={closeModal} className=" bg-white rounded-lg shadow-lg relative h-full lg:!w-[780px] !p-0">
+    <Modal onClose={closeModal} className="bg-white rounded-lg shadow-lg relative h-full lg:!w-[780px] !p-0">
       <div className="flex items-center my-1.5 mx-1">
         <button
           role="button"
@@ -39,11 +44,7 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
         <p className="text-black font-sans text-base leading-[19.5px] border-b border-gray-300 m-0 p-[10px_30px]">
           Required fields are marked with *
         </p>
-        {isFormSubmitted ? (
-          <ReviewStarAddImages />
-        ) : (
-          <ReviewStarSubmit onSubmit={onSubmit} />
-        )}
+        {steps[currentStep]} {/* Render current step component */}
       </div>
     </Modal>
   );

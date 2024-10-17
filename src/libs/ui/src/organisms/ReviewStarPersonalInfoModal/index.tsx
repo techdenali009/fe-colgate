@@ -12,7 +12,7 @@ type ReviewData = {
   location: string;
 };
 
-const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
+const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   const [reviewText, setReviewText] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [readReviews, setReadReviews] = useState<boolean | null>(null);
@@ -36,16 +36,6 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
           value={reviewText}
           onChange={(e) => setReviewText(e.target.value)}
           required
-        />
-      </div>
-
-      {/* Add images */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">Add images (Optional)</label>
-        <input
-          type="file"
-          className="mt-1 block w-full text-sm text-gray-500"
-          onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
         />
       </div>
 
@@ -124,4 +114,4 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   );
 };
 
-export default ReviewForm;
+export default ReviewStarPersonalInfo;

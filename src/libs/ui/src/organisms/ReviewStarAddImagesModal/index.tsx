@@ -2,23 +2,20 @@ import React, { useState } from "react";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import StatusBadge from "@ui/molecules/StatusBadges";
 
-const ReviewStarAddImages: React.FC = () => {
-    const [images, setImages] = useState<File[]>([]); // State to store uploaded image files
-    const [imagePreviews, setImagePreviews] = useState<string[]>([]); // State for image previews
+const ReviewStarAddImages: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
+    const [images, setImages] = useState<File[]>([]); 
+    const [imagePreviews, setImagePreviews] = useState<string[]>([]); 
 
-    // Function to handle image selection
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = Array.from(event.target.files || []);
         if (selectedFiles.length + images.length <= 6) {
             setImages([...images, ...selectedFiles]);
 
-            // Create image preview URLs
             const previews = selectedFiles.map(file => URL.createObjectURL(file));
             setImagePreviews([...imagePreviews, ...previews]);
         }
     };
 
-    // Function to handle removing an image
     const handleRemoveImage = (index: number) => {
         const updatedImages = images.filter((_, i) => i !== index);
         const updatedPreviews = imagePreviews.filter((_, i) => i !== index);
@@ -40,8 +37,7 @@ const ReviewStarAddImages: React.FC = () => {
                     <h3 className="text-base text-black">Add images</h3>
                     <a href="#" className="text-base text-blue-600 hover:underline">Photo Guidelines</a>
                 </div>
-                <div className="flex space-x-2 overflow-x-auto"> {/* Use flex layout for images */}
-                    {/* Display uploaded images or placeholders */}
+                <div className="flex space-x-2 overflow-x-auto">
                     {Array.from({ length: 6 }).map((_, index) => {
                         if (index < imagePreviews.length) {
                             return (
@@ -77,7 +73,7 @@ const ReviewStarAddImages: React.FC = () => {
 
             {/* Buttons */}
             <div className="flex space-x-4">
-                <PrimaryButton className="w-full font-bold hover:bg-blue-700">Submit</PrimaryButton>
+                <PrimaryButton onClick={onSubmit} className="w-full font-bold hover:bg-blue-700">Submit</PrimaryButton>
                 <PrimaryButton className="w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400">Skip</PrimaryButton>
             </div>
 
