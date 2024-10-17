@@ -1,10 +1,9 @@
+import OurPeelLagacyTemplate from '@ui/templates/OurPeelLegacyPage';
 import React from 'react';
-import OurPeelLegacy from '@ui/organisms/About/OurPeelLegacy/OurPeelLegacy';
-
 const OurPeelLegacyPage: React.FC = () => {
   return (
     <div>
-      <OurPeelLegacy />
+      <OurPeelLagacyTemplate />
     </div>
   );
 };

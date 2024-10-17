@@ -1,10 +1,10 @@
+import ContactUsTemplate from '@ui/templates/ContactUsPage';
 import React from 'react';
-import ContactUs from '@ui/organisms/About/ContactUs/ContactUs';
 
 const ContactUsPage: React.FC = () => {
   return (
     <div>
-      <ContactUs />
+      <ContactUsTemplate />
     </div>
   );
 };

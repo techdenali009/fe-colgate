@@ -1,10 +1,10 @@
 import React from 'react';
-import ReturnsAndExchange from '@ui/organisms/About/ReturnsAndExchange/Returns&Exchange';
+import ReturnsAndExchangeTemplate from '@ui/templates/ReturnsAndExchangePage';
 
 const ReturnsAndExchangePage: React.FC = () => {
   return (
     <div>
-      <ReturnsAndExchange />
+      <ReturnsAndExchangeTemplate />
     </div>
   );
 };

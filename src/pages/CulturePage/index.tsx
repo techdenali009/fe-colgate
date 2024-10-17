@@ -1,10 +1,10 @@
 import React from 'react';
-import Culture from '@ui/organisms/About/Culture/Culture';
+import CultureTemplate from '@ui/templates/CulturePage';
 
 const CulturePage: React.FC = () => {
   return (
     <div>
-      <Culture />
+      <CultureTemplate />
     </div>
   );
 };

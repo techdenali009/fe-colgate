@@ -1,6 +1,6 @@
-import { Heading } from '@ui/molecules/Heading/Heading';
-import { Paragraph } from '@ui/molecules/Paragraph/Paragraph';
-import { StrongText } from '@ui/molecules/StrongText/StrongText';
+import { Heading } from '@ui/molecules/Heading';
+import { Paragraph } from '@ui/molecules/Paragraph';
+import { StrongText } from '@ui/molecules/StrongText';
 import React from 'react';
 
 

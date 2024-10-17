@@ -1,10 +1,10 @@
+import OurStoryTemplate from '@ui/templates/OurStoryPage';
 import React from 'react';
-import OurStory from '@ui/organisms/About/OurStory/OurStory';
 
 const OurStoryPage: React.FC = () => {
   return (
     <div>
-      <OurStory />
+      <OurStoryTemplate />
     </div>
   );
 };

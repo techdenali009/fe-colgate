@@ -1,10 +1,10 @@
 import React from 'react';
-import SubscriptionTerms from '@ui/organisms/About/Subscriptions/Subscriptions';
+import SubscriptionTermsTemplate from '@ui/templates/SubscriptionTermsPage';
 
 const SubscriptionTermsPage: React.FC = () => {
   return (
     <div>
-      <SubscriptionTerms />
+      <SubscriptionTermsTemplate />
     </div>
   );
 };
