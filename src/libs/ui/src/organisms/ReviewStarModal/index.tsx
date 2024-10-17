@@ -19,23 +19,26 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
 
   return (
     <Modal onClose={closeModal} className=" bg-white rounded-lg shadow-lg relative h-full lg:!w-[780px] !p-0">
-       <div className="flex items-center my-1.5 mx-1">
-          <button
-            role="button"
-            aria-label="Close My review modal."
-            onClick={closeModal}
-            className="absolute right-4"
-          >
-            <Image src={CloseModal} alt="Close modal" className="w-6 h-6" />
-          </button>
-          <div className="flex items-center border-b border-gray-400 w-full ">
-            <div className={`border-2 border-gray-300 px-3 pb-10 mr-1 flex items-start pt-2`}>
-              <Image src={responseProfile} alt="" className="mr-3 w-10 h-10" />
-            </div>
-            <h1 className="text-lg font-bold text-black font-sans">My Review</h1>
+      <div className="flex items-center my-1.5 mx-1">
+        <button
+          role="button"
+          aria-label="Close My review modal."
+          onClick={closeModal}
+          className="absolute right-4"
+        >
+          <Image src={CloseModal} alt="Close modal" className="w-6 h-6" />
+        </button>
+        <div className="flex items-center border-b border-gray-400 w-full ">
+          <div className={`border-2 border-gray-300 px-3 pb-10 mr-1 flex items-start pt-2`}>
+            <Image src={responseProfile} alt="" className="mr-3 w-10 h-10" />
           </div>
+          <h1 className="text-lg font-bold text-black font-sans">My Review</h1>
         </div>
+      </div>
       <div title="Your Review" className="h-[500px] mb-4">
+        <p className="text-black font-sans text-base leading-[19.5px] border-b border-gray-300 m-0 p-[10px_30px]">
+          Required fields are marked with *
+        </p>
         {isFormSubmitted ? (
           <ReviewStarAddImages />
         ) : (

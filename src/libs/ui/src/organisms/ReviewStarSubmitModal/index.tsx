@@ -31,9 +31,6 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <p className="text-black font-sans text-base leading-[19.5px] border-b border-gray-300 m-0 p-[10px_30px]">
-                Required fields are marked with *
-            </p>
             <div className="flex items-center space-x-4 pt-7 pl-8">
                 <div className="flex items-center justify-center w-6 h-6 border rounded-full text-sm font-semibold text-black">
                     1
