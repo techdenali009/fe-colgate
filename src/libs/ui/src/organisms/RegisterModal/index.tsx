@@ -190,10 +190,10 @@ const RegisterForm: React.FC = () => {
             render={({ field }) => (
               <div className="relative">
                 {isModalOpen && (
-                  <div className="mb-20 absolute z-10 left-0 bottom-full mb-2 w-full text-black bg-slate-300 text-sm border border-gray-200 rounded-lg shadow-md custom-modal">
+                  <div className="md:!mb-[6.5rem] 2xs:mb-[10rem] absolute z-10 left-0 bottom-full w-full text-black bg-slate-300 text-sm border border-gray-200 rounded-lg shadow-md custom-modal">
                     {/* Arrow pointing to the input */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 border-x-5 border-x-transparent border-b-5 border-b-slate-300" />
-                    <ValidationModal />
+                    <ValidationModal password={field.value} />
                   </div>
                 )}
                 <PasswordFeild
@@ -203,8 +203,10 @@ const RegisterForm: React.FC = () => {
                   {...field}
                   onClick={handleFocus}  // Open the modal on focus
                   onBlur={handleBlur}  // Close the modal on blur
+                   
                   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
                   onChange={(e: any) => {
+                    
                     field.onChange(e); // Call react-hook-form's onChange
                     setModalOpen(true);
                     setIsPasswordFieldEmpty(e.target.value === ''); // Open modal when typing
@@ -212,6 +214,7 @@ const RegisterForm: React.FC = () => {
                       clearErrors('password');  // Clear password error on input change
                     }
                   }}
+                  
                   // className="rounded-none mb-6 focus:outline-none p-3 text-base border-slate-200 border-2 w-full"
                   className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
                     ${errors.password ? 'border-formFieldBorder' : 'border-slate-200'}

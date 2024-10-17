@@ -1,6 +1,8 @@
 import React from 'react';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
+import RelatedProducts from '@ui/organisms/RelatedProducts';
+import { relatedProducts } from '@utils/test';
 
 interface PDPage {
     submitLabel: string;
@@ -18,6 +20,7 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
         <div className="flex flex-wrap space-x-2">
           <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
           <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
+          <RelatedProducts relatedProducts={relatedProducts} className='lg:pl-[96px] lg:pr-[96px] !m-0'/>
         </div>
       </div>
     </>
