@@ -35,6 +35,9 @@ import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
+import RelatedProducts from '@ui/organisms/RelatedProducts';
+import { relatedProducts } from '@utils/test';
+
 
 interface ISearchbar {
   submitLabel: string;
@@ -395,6 +398,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           )}
         </div>
       </div>
+      <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
     </>
   );
 };

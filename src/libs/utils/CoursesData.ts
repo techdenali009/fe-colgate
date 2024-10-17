@@ -17,6 +17,13 @@ const coursesData = {
     'Peel Application Videos',
   ],
 };
+
+export const ProductDescription ={
+  ProductDescription:[
+    'How to Apply',
+    'Regimen Information'
+  ]
+}
   
 export default coursesData;
   

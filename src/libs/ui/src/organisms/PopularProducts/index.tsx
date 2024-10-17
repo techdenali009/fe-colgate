@@ -47,6 +47,7 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
     <div className="w-full">
       <div className='mb-6'>
         <ProductHeader
+          className=''
           headingLabel="Popular Products"
           description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
           handleScroll={handleScroll}

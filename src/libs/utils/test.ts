@@ -66,3 +66,46 @@ export const products = [
     isBestSeller: true,
   },
 ];
+
+export const relatedProducts = [
+  {
+    id: 1,
+    name: 'Sensi Peel®',
+    image:
+      'https://pcaskin.vtexassets.com/arquivos/ids/156900-608-auto/sensi-peel.jpg?v=638579579116970000&width=608&height=auto&aspect=true',
+    rating: 5.0,
+    isBestSeller: true,
+  },
+  {
+    id: 2,
+    name: 'Collagen Hydrator',
+    image:
+      'https://pcaskin.vtexassets.com/arquivos/ids/156792-608-auto/collagen-hydrator.jpg?v=638578871156130000&width=608&height=auto&aspect=true',
+    rating: 4.8,
+    isBestSeller: false,
+  },
+  {
+    id: 3,
+    name: 'ExLinea® Pro Peptide Serum',
+    image:
+      'https://pcaskin.vtexassets.com/arquivos/ids/156810-608-auto/exlinea-pro.jpg?v=638578896004000000&width=608&height=auto&aspect=true',
+    rating: 5.0,
+    isBestSeller: false,
+  },
+  {
+    id: 4,
+    name: 'Hyaluronic Acid Boosting Serum',
+    image:
+      'https://pcaskin.vtexassets.com/arquivos/ids/156942-608-auto/hyalruonic-acid-boosting-serum.jpg?v=638579634152870000&width=608&height=auto&aspect=true',
+    rating: 4.6,
+    isBestSeller: true,
+  },
+  {
+    id: 5,
+    name: 'Brighten: Therapeutic Blackberry Mask',
+    image:
+      'https://pcaskin.vtexassets.com/arquivos/ids/156918-608-auto/Brighten-Therapeutic-Blackberry-Mask.jpg?v=638579600468300000&width=608&height=auto&aspect=true',
+    rating: 2.8,
+    isBestSeller: false,
+  },
+]
