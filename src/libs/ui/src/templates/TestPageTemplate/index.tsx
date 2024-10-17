@@ -37,7 +37,9 @@ import SearchBar from '@ui/molecules/SearchBar';
 import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
 import RelatedProducts from '@ui/organisms/RelatedProducts';
 import { relatedProducts } from '@utils/test';
-
+import ResponseCard from '@ui/molecules/ResponsePCASkin';
+import responsePCASkin from '../../../assets/responsePCASkin.svg';
+import ReviewBarModal from '@ui/organisms/ReviewStarModal';
 
 interface ISearchbar {
   submitLabel: string;
@@ -55,9 +57,14 @@ const reviewBarSelectOption = [
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
-  const [filters, setFilters] = useState<string[]>(['Body Treatments', 'Backbar', 'Sample', 'Retail']);
+  const [filters, setFilters] = useState<string[]>([
+    'Body Treatments',
+    'Backbar',
+    'Sample',
+    'Retail',
+  ]);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
-  
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
@@ -73,7 +80,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const breadcrumbs = [
     { label: 'Home', href: '/' },
     { label: 'All Products', href: '/products' },
-    { label: 'Treatment Enhancements' }
+    { label: 'Treatment Enhancements' },
   ];
 
   const handleButtonClick = () => {
@@ -131,6 +138,11 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     value: { score: 4.9, label: 'Value' },
     scent: { score: 3.5, label: 'Scent' },
   };
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   return (
     <>
@@ -216,16 +228,26 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10">
         <h1 className="text-slate-950 text-3xl mb-5">Product Prices</h1>
         <p>
-          Price in USD: <Currency className="text-blue-900" value={price} currency="USD">(including tax)</Currency>
+          Price in USD:{' '}
+          <Currency className="text-blue-900" value={price} currency="USD">
+            (including tax)
+          </Currency>
         </p>
         <p>
-          Price in EUR: <Currency className="text-amber-600" value={price} currency="EUR">(excluding VAT)</Currency>
+          Price in EUR:{' '}
+          <Currency className="text-amber-600" value={price} currency="EUR">
+            (excluding VAT)
+          </Currency>
         </p>
         <p>
-          Price in JPY: <Currency className="text-red-950" value={price} currency="JPY">(no decimals)</Currency>
+          Price in JPY:{' '}
+          <Currency className="text-red-950" value={price} currency="JPY">
+            (no decimals)
+          </Currency>
         </p>
         <p>
-          Custom Decimal Places: <Currency value={price} currency="USD" decimalPlaces={3} />
+          Custom Decimal Places:{' '}
+          <Currency value={price} currency="USD" decimalPlaces={3} />
         </p>
       </div>
 
@@ -374,7 +396,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <h1>Filter Reviews</h1>
 
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <ReviewFilterDropdowns 
+        <ReviewFilterDropdowns
           selectedRating={selectedRating}
           setSelectedRating={setSelectedRating}
           selectedAgeGroup={selectedAgeGroup}
@@ -397,6 +419,21 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             <p>No reviews found.</p>
           )}
         </div>
+      </div>
+      <div className="p-6">
+        <ResponseCard
+          title="Response from PCA SKIN"
+          timeAgo="10 months ago"
+          iconSrc={responsePCASkin}
+          consumerAffairsText="Consumer Affairs"
+        >
+          We&apos;re so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!
+        </ResponseCard>
+      </div>
+      <div>
+        <button onClick={openModal}>Open Review Modal</button>
+
+        {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
       </div>
       <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
     </>

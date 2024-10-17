@@ -22,14 +22,14 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
 
   // Swiper settings with responsive breakpoints
   const swiperSettings = {
-    slidesPerView: 1,
+    slidesPerView: 1.2,
     spaceBetween: 16,
     loop: true,
     modules: [Navigation],
     navigation: false, 
     breakpoints: {
       640: {
-        slidesPerView: 2,
+        slidesPerView: 2.2,
       
       },
       1024: {

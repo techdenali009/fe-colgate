@@ -56,6 +56,22 @@
   font-family: 'swiper-icons';
   src: url('/assets/fonts/swiper-icons.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Hero New Medium';
+  src: url('/assets/fonts/Hero New Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Hero New Super';
+  src: url('/assets/fonts/Hero New Super.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sans Serif';
+  src: url('/assets/fonts/Sans Serif.ttf') format('truetype');
+}
+
+
+
+
 
 body {
   font-family: 'Hero New Light';
