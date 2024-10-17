@@ -1,7 +1,9 @@
 
+import FrequentlyAskedQuestionsPage from '@pages/FrequentlyAskedQuestionsPage';
 import RegisterPage from '@pages/RegisterPage';
+import ShippingTermsPage from '@pages/ShippingTerms';
 import { AppSpinner } from '@ui/atoms/AppSpinner';
-import AboutPage from '@ui/templates/AboutPage';
+
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AboutModule from 'src/modules/aboutModule/aboutModule';
@@ -48,7 +50,8 @@ export const AppRoutes = () => (
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
 
       <Route path="/about" element={<AboutModule />}>
-        <Route path="FAQs" element={<AboutPage />} />
+        <Route path="FAQs" element={<FrequentlyAskedQuestionsPage />} />
+        <Route path="Shipping-terms" element={<ShippingTermsPage />} />
       </Route>
     </Route>
   </Routes>
