@@ -1,34 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useEffect } from 'react';
 
-interface AccordionItemProps {
+export interface AccordionItemProps {
   title: string;
   children: React.ReactNode;
   titleClassName?: string;
   containerClassName?: string;
   contentClassName?: string;
   className?: string;
+  accordianStatus?: (title: string) => void;
+  isActive?: boolean;
+  preventClose?: boolean; // Add preventClose as a prop
   ArrowIcon?: boolean;
   svgIconColor?: string; 
   svgIconClass?:string
 }
 
-const AccordionItem: React.FC<AccordionItemProps> = ({
+export interface AccordionItemRef {
+  isActive: boolean;
+ 
+}
+
+const AccordionItem = forwardRef<AccordionItemRef, AccordionItemProps>(({
   title,
   children,
   titleClassName = 'text-lg font-semibold',
   containerClassName = 'border-b',
   contentClassName = 'p-4 bg-gray-100',
   className = '',
+  accordianStatus,
+  isActive = false,
+  preventClose = false, // Default to false if not provided
   svgIconClass='',
   svgIconColor = 'black',
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(isActive);
+
+  useEffect(() => {
+    setIsOpen(isActive);
+  }, [isActive]);
+
+  const handleClick = () => {
+    if (isOpen && preventClose) return; // Prevent closing if preventClose is true
+    setIsOpen((prev) => {
+      const newState = !prev;
+      accordianStatus?.(title);
+      return newState;
+    });
+  };
 
   return (
     <div className={`mb-2 ${containerClassName}`}>
       <div
         className={`${className} p-4 cursor-pointer flex justify-between items-center`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleClick}
       >
         <h3 className={titleClassName}>{title}</h3>
         <span>
@@ -69,6 +93,8 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
       {isOpen && <div className={contentClassName}>{children}</div>}
     </div>
   );
-};
+});
+
+AccordionItem.displayName = 'AccordionItem';
 
 export default AccordionItem;
