@@ -4,7 +4,7 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import { CREATEACCOUNT, WELCOMEGREETPARA, WELCOMEMSG } from '@utils/constants';
 import WelcomeAlreadyRegistered from '@ui/molecules/WelcomeRegister';
 import { useState } from 'react';
-import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
+import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
 import { LoginConsts } from '@utils/Login';
 import { useNavigate } from 'react-router-dom';
 

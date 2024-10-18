@@ -29,6 +29,13 @@ const coursesData = {
     'Contact Us'
   ]
 };
+
+export const ProductDescription ={
+  ProductDescription:[
+    'How to Apply',
+    'Regimen Information'
+  ]
+}
   
 export default coursesData;
   
