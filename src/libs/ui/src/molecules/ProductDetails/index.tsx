@@ -3,6 +3,7 @@ import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import { ProductDescription } from '@utils/CoursesData';
 import React, { useState } from 'react';
 import AccordionItem from '../AccordianItem';
+import './ProductDetails.styles.scss'
 
 
 const ProductDetails: React.FC = () => {
@@ -69,6 +70,7 @@ const ProductDetails: React.FC = () => {
         <AccordionItem 
           className="2xs:!pb-0 "
           accordianStatus={handleAccordionStatus} 
+          containerClassName="container"
           titleClassName={activeTitle === 'How to Apply' ? 'text-appTheme text-[20px] font-HeroNewExtraBold ' : 'text-[20px] text-[#555555] 2xs:pb-[32px] font-HeroNewExtraBold'} 
           title="How to Apply" 
           isActive={activeTitle === 'How to Apply'} // Pass active state
@@ -83,11 +85,12 @@ const ProductDetails: React.FC = () => {
         <AccordionItem 
           title="Regimen Information"
           className="2xs:!pb-0 border:0 "
-          containerClassName="border:0"
+          containerClassName="container border:0"
           accordianStatus={handleAccordionStatus} 
           titleClassName={activeTitle === 'Regimen Information' ? 'text-appTheme text-[20px] font-HeroNewExtraBold' : 'text-[20px] text-[#555555] 2xs:pb-[32px]  font-HeroNewExtraBold'} 
           isActive={activeTitle === 'Regimen Information'} // Pass active state
           preventClose={preventClose}
+          svgIconClass="!text-blue-600"
         >
           <Paragraph className="font-HeroNewLight text-[#555555]">
           Morning & Night:
