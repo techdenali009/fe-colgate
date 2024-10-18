@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export interface AccordionItemProps {
   title: string;
@@ -15,12 +15,7 @@ export interface AccordionItemProps {
   svgIconClass?:string
 }
 
-export interface AccordionItemRef {
-  isActive: boolean;
- 
-}
-
-const AccordionItem = forwardRef<AccordionItemRef, AccordionItemProps>(({
+const AccordionItem: React.FC<AccordionItemProps> = ({
   title,
   children,
   titleClassName = 'text-lg font-semibold',
@@ -93,7 +88,7 @@ const AccordionItem = forwardRef<AccordionItemRef, AccordionItemProps>(({
       {isOpen && <div className={contentClassName}>{children}</div>}
     </div>
   );
-});
+};
 
 AccordionItem.displayName = 'AccordionItem';
 
