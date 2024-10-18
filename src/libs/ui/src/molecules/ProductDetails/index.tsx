@@ -1,8 +1,9 @@
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import { ProductDescription } from '@utils/CoursesData';
-import React, { useRef, useState } from 'react';
-import AccordionItem, { AccordionItemRef } from '../AccordianItem'; 
+import React, { useState } from 'react';
+import AccordionItem from '../AccordianItem';
+
 
 const ProductDetails: React.FC = () => {
   const [visibleParagraph, setVisibleParagraph] = useState<'How to Apply' | 'Regimen Information'>('How to Apply');
@@ -25,7 +26,7 @@ const ProductDetails: React.FC = () => {
     setVisibleParagraph(category as 'How to Apply' | 'Regimen Information');
   };
 
-  const accordionRef = useRef<AccordionItemRef>(null);
+ 
 
   return (
     <div className="pt-[37px] pb-[64px]">
@@ -66,7 +67,6 @@ const ProductDetails: React.FC = () => {
       <div className="lg:hidden p-[10px]">
       
         <AccordionItem 
-          ref={accordionRef}
           className="2xs:!pb-0 "
           accordianStatus={handleAccordionStatus} 
           titleClassName={activeTitle === 'How to Apply' ? 'text-appTheme text-[20px] font-HeroNewExtraBold ' : 'text-[20px] text-[#555555] 2xs:pb-[32px] font-HeroNewExtraBold'} 
@@ -84,7 +84,6 @@ const ProductDetails: React.FC = () => {
           title="Regimen Information"
           className="2xs:!pb-0 border:0 "
           containerClassName="border:0"
-          ref={accordionRef} 
           accordianStatus={handleAccordionStatus} 
           titleClassName={activeTitle === 'Regimen Information' ? 'text-appTheme text-[20px] font-HeroNewExtraBold' : 'text-[20px] text-[#555555] 2xs:pb-[32px]  font-HeroNewExtraBold'} 
           isActive={activeTitle === 'Regimen Information'} // Pass active state
