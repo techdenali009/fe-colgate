@@ -7,6 +7,7 @@ interface StarRatingProps {
   width?: number;
   height?: number;
   className?: string;
+  onChange?: (rating: number) => void; // Add the onChange prop
 }
 
 const StarRating: React.FC<StarRatingProps> = ({ 
@@ -14,7 +15,8 @@ const StarRating: React.FC<StarRatingProps> = ({
   initialRating = 0, 
   width = 20, 
   height = 20, 
-  className = '' 
+  className = '', 
+  onChange // Destructure onChange
 }) => {
   const [hoveredStar, setHoveredStar] = useState<number | null>(null);
   const [selectedStar, setSelectedStar] = useState<number | null>(initialRating);
@@ -33,6 +35,9 @@ const StarRating: React.FC<StarRatingProps> = ({
 
   const handleClick = (index: number) => {
     setSelectedStar(index);
+    if (onChange) {
+      onChange(index); // Call onChange when the star rating changes
+    }
   };
 
   return (

@@ -1,10 +1,13 @@
 // store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import ModalSlice from './services/Slices/ModalSlice';
+import ReviewFormModal from './services/Slices/ReviewFormModalSlice';
 
 export const store = configureStore({
   reducer: {
     modal: ModalSlice,
+    reviewFormModal: ReviewFormModal
+
   },
 });
 

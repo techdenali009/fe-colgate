@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import StatusBadge from "@ui/molecules/StatusBadges";
+import { useDispatch } from 'react-redux';
+import { setModalImages } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { AppDispatch } from '../../../../../store/store';
 
 const ReviewStarAddImages: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
+    const dispatch = useDispatch<AppDispatch>();
     const [images, setImages] = useState<File[]>([]); 
     const [imagePreviews, setImagePreviews] = useState<string[]>([]); 
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = Array.from(event.target.files || []);
         if (selectedFiles.length + images.length <= 6) {
-            setImages([...images, ...selectedFiles]);
-
+            const updatedImages = [...images, ...selectedFiles];
             const previews = selectedFiles.map(file => URL.createObjectURL(file));
+            setImages(updatedImages);
             setImagePreviews([...imagePreviews, ...previews]);
+
+            setModalImages(updatedImages); // Assuming this is a local state hook
+
+            // Dispatch only the images to Redux
+            dispatch(setModalImages(updatedImages));
         }
     };
 
@@ -21,6 +30,14 @@ const ReviewStarAddImages: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) =
         const updatedPreviews = imagePreviews.filter((_, i) => i !== index);
         setImages(updatedImages);
         setImagePreviews(updatedPreviews);
+
+        // Dispatch updated images to Redux
+        dispatch(setModalImages(updatedImages));
+    };
+
+    const handleSubmit = () => {
+        // Optionally handle submission logic here if needed
+        onSubmit();
     };
 
     return (
@@ -73,7 +90,7 @@ const ReviewStarAddImages: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) =
 
             {/* Buttons */}
             <div className="flex space-x-4">
-                <PrimaryButton onClick={onSubmit} className="w-full font-bold hover:bg-blue-700">Submit</PrimaryButton>
+                <PrimaryButton onClick={handleSubmit} className="w-full font-bold hover:bg-blue-700">Submit</PrimaryButton>
                 <PrimaryButton className="w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400">Skip</PrimaryButton>
             </div>
 

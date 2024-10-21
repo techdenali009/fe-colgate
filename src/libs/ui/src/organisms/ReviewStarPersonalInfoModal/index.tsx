@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import StatusBadge from "@ui/molecules/StatusBadges";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
+import { useDispatch } from 'react-redux';
+import { setPersonalInfoData } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { AppDispatch } from '../../../../../store/store';
 
 type ReviewFormProps = {
   onSubmit: (data: ReviewData) => void;
@@ -20,11 +23,19 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   const [readReviews, setReadReviews] = useState<boolean | null>(null);
   const [ageGroup, setAgeGroup] = useState<string>("");
   const [location, setLocation] = useState<string>("");
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const data: ReviewData = { reviewText, image, readReviews: readReviews || false, ageGroup, location };
     onSubmit(data);
+     dispatch(setPersonalInfoData({ 
+      readReviews: readReviews || false,
+      ageGroup,
+      location
+    }));
+    console.log(data);
+    
   };
 
   return (

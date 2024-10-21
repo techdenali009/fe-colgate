@@ -3,19 +3,32 @@ import StatusBadge from '@ui/molecules/StatusBadges';
 import { Controller, useForm } from "react-hook-form";
 import StarRating from "@ui/molecules/HoveringRatingStar";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
+import { useDispatch } from 'react-redux';
+import { setRatingData } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { AppDispatch } from '../../../../../store/store'; 
 
-const ProductRating: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
-    const { control } = useForm({
+interface FormValues {
+    quantity: number;
+    scent: number;
+    value: number;
+}
+
+const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void }> = ({ onSubmit }) => {
+    const dispatch: AppDispatch = useDispatch();
+    const { control, handleSubmit } = useForm<FormValues>({
         defaultValues: {
-            rating: 0,
-            reviewText: '',
-            reviewTitle: '',
-            nickname: '',
-            email: '',
-            agreeTerms: false,
+            quantity: 0,
+            scent: 0,
+            value: 0
         },
         mode: 'onChange',
     });
+
+    const handleFormSubmit = (data: FormValues) => {
+        dispatch(setRatingData(data));
+        onSubmit(data);
+    };
+
     return (
         <div className="p-4 space-y-4">
             <div>
@@ -24,47 +37,72 @@ const ProductRating: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
                 </div>
             </div>
             <h2 className="text-lg font-bold">Rate the Product</h2>
-            {/* Star Rating Section */}
+
+            {/* Quantity Rating Section */}
             <div className="mb-6 pt-7 pl-9">
                 <div className="text-lg text-black font-HeroNewBold">Quantity</div>
                 <div className="pt-5">
                     <Controller
-                        name="rating"
+                        name="quantity"
                         control={control}
                         render={({ field }) => (
-                            <StarRating totalStars={5} initialRating={field.value} width={35} height={35} className="bg-gray-300" />
+                            <StarRating
+                                totalStars={5}
+                                initialRating={field.value}
+                                width={35}
+                                height={35}
+                                className="bg-gray-300"
+                                onChange={field.onChange}
+                            />
                         )}
                     />
                 </div>
             </div>
-            {/* Star Rating Section */}
+
+            {/* Scent Rating Section */}
             <div className="mb-6 pt-7 pl-9">
-                <div className="text-lg text-black font-HeroNewBold">Value</div>
+                <div className="text-lg text-black font-HeroNewBold">value</div>
                 <div className="pt-5">
                     <Controller
-                        name="rating"
+                        name="value"
                         control={control}
                         render={({ field }) => (
-                            <StarRating totalStars={5} initialRating={field.value} width={35} height={35} className="bg-gray-300" />
+                            <StarRating
+                                totalStars={5}
+                                initialRating={field.value}
+                                width={35}
+                                height={35}
+                                className="bg-gray-300"
+                                onChange={field.onChange} // Pass the onChange prop
+                            />
                         )}
                     />
                 </div>
             </div>
-            {/* Star Rating Section */}
+
+            {/* Scent Rating Section */}
             <div className="mb-6 pt-7 pl-9">
                 <div className="text-lg text-black font-HeroNewBold">Scent</div>
                 <div className="pt-5">
                     <Controller
-                        name="rating"
+                        name="scent"
                         control={control}
                         render={({ field }) => (
-                            <StarRating totalStars={5} initialRating={field.value} width={35} height={35} className="bg-gray-300" />
+                            <StarRating
+                                totalStars={5}
+                                initialRating={field.value}
+                                width={35}
+                                height={35}
+                                className="bg-gray-300"
+                                onChange={field.onChange} // Pass the onChange prop
+                            />
                         )}
                     />
                 </div>
             </div>
+
             <div className="flex space-x-4">
-                <PrimaryButton onClick={onSubmit} className="w-full font-bold hover:bg-blue-700">Submit</PrimaryButton>
+                <PrimaryButton onClick={handleSubmit(handleFormSubmit)} className="w-full font-bold hover:bg-blue-700">Submit</PrimaryButton>
                 <PrimaryButton className="w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400">Skip</PrimaryButton>
             </div>
         </div>

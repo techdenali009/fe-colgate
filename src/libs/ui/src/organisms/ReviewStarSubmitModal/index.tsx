@@ -1,4 +1,3 @@
-// ReviewForm.tsx
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
@@ -6,10 +5,12 @@ import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { InputField } from '@ui/molecules/FormField';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import StatusBadge from '@ui/molecules/StatusBadges';
+import { useDispatch } from 'react-redux';
+import { setReviewData } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { AppDispatch } from '../../../../../store/store';
 
 const ratingMessages = [
     "1 out of 5 stars selected. Product is Poor.",
-    // Add other rating messages if needed
 ];
 
 interface ReviewFormProps {
@@ -29,8 +30,15 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
         mode: 'onChange',
     });
 
+    const dispatch = useDispatch<AppDispatch>(); // Define the dispatch
+
+    const handleFormSubmit = (data: any) => {
+        dispatch(setReviewData(data)); // Dispatch the form data to Redux
+        onSubmit(data); // Call the onSubmit callback if needed
+    };
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
             <div className="flex items-center space-x-4 pt-7 pl-8">
                 <div className="flex items-center justify-center w-6 h-6 border rounded-full text-sm font-semibold text-black">
                     1
