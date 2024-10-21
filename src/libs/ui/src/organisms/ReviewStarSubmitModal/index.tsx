@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
@@ -8,6 +8,7 @@ import StatusBadge from '@ui/molecules/StatusBadges';
 import { useDispatch } from 'react-redux';
 import { setReviewData } from '../../../../../store/services/Slices/ReviewFormModalSlice';
 import { AppDispatch } from '../../../../../store/store';
+import ReviewGuideLines from '../ReviewGuideLinesModal';
 
 const ratingMessages = [
     "1 out of 5 stars selected. Product is Poor.",
@@ -30,12 +31,15 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
         mode: 'onChange',
     });
 
-    const dispatch = useDispatch<AppDispatch>(); // Define the dispatch
-
+    const dispatch = useDispatch<AppDispatch>();
     const handleFormSubmit = (data: any) => {
-        dispatch(setReviewData(data)); // Dispatch the form data to Redux
-        onSubmit(data); // Call the onSubmit callback if needed
+        dispatch(setReviewData(data));
+        onSubmit(data);
     };
+    
+    const [isModalOpen, setModalOpen] = useState(false);
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
 
     return (
         <form onSubmit={handleSubmit(handleFormSubmit)}>
@@ -68,7 +72,8 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
             <div className="mb-2">
                 <div className="flex justify-between items-center">
                     <h3 className="text-lg text-black font-HeroNewBold pl-9">Review</h3>
-                    <a className="text-base text-blue-700 pr-8">Review guidelines</a>
+                    <a onClick={openModal} className="text-base text-blue-700 pr-8">Review guidelines</a>
+                    {isModalOpen && <ReviewGuideLines closeModal={closeModal} />}
                 </div>
 
                 <Controller
@@ -110,9 +115,9 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                                     {...field}
                                     className={`w-[700px] border ${errors.reviewTitle ? 'border-red-500' : 'border-gray-300'} p-2 mt-2 border-[#747474] rounded-[2px] shadow-[inset_0px_1px_3px_rgba(184,184,184,1)]`}
                                     placeholder="Example: Great features!"
-                                    onChange={(e) => field.onChange(e.target.value)} // Update the value correctly
-                                    value={field.value} // Ensure the value is correctly bound
-                                    maxLength={50} // Enforce max length directly on the input
+                                    onChange={(e) => field.onChange(e.target.value)}
+                                    value={field.value}
+                                    maxLength={50}
                                 />
                             </div>
                             <div className="flex justify-between mt-1 pl-96 ml-60">
@@ -124,7 +129,6 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                 />
             </div>
 
-            {/* Nickname Field */}
             <div className="mb-6">
                 <h3 className="text-lg text-black font-HeroNewBold pl-9">Nickname*</h3>
                 <Controller
@@ -138,8 +142,8 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                                     {...field}
                                     className={`w-[700px] border ${errors.nickname ? 'border-red-500' : 'border-gray-300'} p-2 mt-2 border-[#747474] rounded-[2px] shadow-[inset_0px_1px_3px_rgba(184,184,184,1)]`}
                                     placeholder="Example: bob27"
-                                    onChange={(e) => field.onChange(e.target.value)} // Update the value correctly
-                                    value={field.value} // Ensure the value is correctly bound
+                                    onChange={(e) => field.onChange(e.target.value)}
+                                    value={field.value}
                                 />
                             </div>
                             <div className="flex justify-between mt-1 pl-96 ml-60">
@@ -171,8 +175,8 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                                     {...field}
                                     className={`w-[700px] border ${errors.email ? 'border-red-500' : 'border-gray-300'} p-2 mt-2 border-[#747474] rounded-[2px] shadow-[inset_0px_1px_3px_rgba(184,184,184,1)]`}
                                     placeholder="Example: yourname@example.com"
-                                    onChange={(e) => field.onChange(e.target.value)} // Update the value correctly
-                                    value={field.value} // Ensure the value is correctly bound
+                                    onChange={(e) => field.onChange(e.target.value)}
+                                    value={field.value}
                                 />
                             </div>
                             {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
@@ -200,7 +204,6 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                         );
                     }}
                 />
-
             </div>
             <div className="justify-end border-b border-gray-300 pl-8 pb-4">
                 <PrimaryButton type="submit" className="px-6 py-2 font-bold bg-blue-600 text-white hover:bg-blue-700 transition w-48 h-12">
