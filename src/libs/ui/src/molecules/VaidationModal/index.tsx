@@ -1,4 +1,4 @@
-import { passwordRequirements } from "@utils/Login";
+import { passwordRequirements } from '@utils/Login';
 
 interface ValidationModalProps {
   password: string;
