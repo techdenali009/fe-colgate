@@ -1,20 +1,16 @@
+import { passwordRequirements } from "@utils/Login";
+
 interface ValidationModalProps {
   password: string;
 }
 
 const ValidationModal: React.FC<ValidationModalProps> = ({ password }) => {
-  const passwordRequirements = [
-    { label: 'At least 8 characters', regex: /.{8,}/ },
-    { label: 'Contains an uppercase letter', regex: /[A-Z]/ },
-    { label: 'Contains a lowercase letter', regex: /[a-z]/ },
-    { label: 'Contains a number', regex: /[0-9]/ },
-    { label: 'Contains a special symbol', regex: /[!@#$%^&*(),.?":{}|<>]/ },
-  ];
+  const passwordContains= passwordRequirements;
 
   // Calculate how many criteria are met
   const calculateStrength = () => {
     let strength = 0;
-    passwordRequirements.forEach((requirement) => {
+    passwordContains.forEach((requirement) => {
       if (requirement.regex.test(password)) strength++;
     });
     return strength;
@@ -24,8 +20,8 @@ const ValidationModal: React.FC<ValidationModalProps> = ({ password }) => {
 
   // Ensure the progress bar is only filled when all conditions are met
   const getProgressBarStyle = () => {
-    const width = strength === passwordRequirements.length ? '100%' : '20%';
-    const color = strength === passwordRequirements.length ? 'bg-blue-500' : 'bg-red-500';
+    const width = strength === passwordContains.length ? '100%' : '20%';
+    const color = strength === passwordContains.length ? 'bg-blue-500' : 'bg-red-500';
     return { width, color };
   };
 
@@ -42,8 +38,8 @@ const ValidationModal: React.FC<ValidationModalProps> = ({ password }) => {
       <div className="px-3 py-2 bg-slate-100 text-center border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
         <h3 className="font-HeroNewBold text-[11px] text-gray-900 dark:text-white">
           Password Strength:{' '}
-          <span className={`${strength === passwordRequirements.length ? 'text-blue-500' : 'text-red-500'}`}>
-            {strength === passwordRequirements.length ? 'very strong' : '  Too weak'}
+          <span className={`${strength === passwordContains.length ? 'text-blue-500' : 'text-red-500'}`}>
+            {strength === passwordContains.length ? 'very strong' : '  Too weak'}
           </span>
         </h3>
       </div>
