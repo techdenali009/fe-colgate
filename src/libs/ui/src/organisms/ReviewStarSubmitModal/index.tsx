@@ -228,11 +228,6 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                     </div>
                 </div>
             </div>
-            <div className="justify-end border-b border-gray-300 pl-8 pb-4">
-                <PrimaryButton type="submit" className="px-6 py-2 font-bold bg-blue-600 text-white hover:bg-blue-700 transition w-48 h-12">
-                    Submit
-                </PrimaryButton>
-            </div>
         </form>
     );
 };
