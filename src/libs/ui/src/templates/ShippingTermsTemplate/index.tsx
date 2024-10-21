@@ -2,7 +2,7 @@ import ShippingTerms from '@ui/organisms/ShippingTerms'
 
 function ShippingTermsTemplate() {
   return (
-    <div className=" p-10 xl:w-[90rem] w-auto mx-auto">
+    <div className="aboutPageLayout">
       <ShippingTerms></ShippingTerms>
     </div>
   )

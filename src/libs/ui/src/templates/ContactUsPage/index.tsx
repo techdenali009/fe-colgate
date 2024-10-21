@@ -2,7 +2,7 @@ import ContactUs from '@ui/organisms/About/ContactUs';
 
 function ContactUsTemplate() {
   return (
-    <div className="xl:w-[90rem] w-full p-10 mx-auto">
+    <div className="aboutPageLayout">
     
       <ContactUs></ContactUs>
     </div>
