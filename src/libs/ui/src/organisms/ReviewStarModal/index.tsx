@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Modal from '@ui/atoms/Modal';
+import ReviewStarPersonalInfo from '../ReviewStarPersonalInfoModal';
+import ReviewStarProductRating from '../ReviewStarProductRatModal';
 import ReviewStarAddImages from '../ReviewStarAddImagesModal';
 import ReviewStarSubmit from '../ReviewStarSubmitModal';
 import { Image } from '@ui/atoms/Image';
 import CloseModal from '../../../assets/CloseModal.svg';
 import responseProfile from '../../../assets/responsiveProfile.svg';
-import ReviewStarPersonalInfo from '../ReviewStarPersonalInfoModal';
-import ReviewStarProductRating from '../ReviewStarProductRatModal';
 
 interface ReviewBarModalProps {
   closeModal: () => void;
