@@ -2,7 +2,7 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './SellingOnline.styles.scss'
-import AnchorLink from '@ui/atoms/AnchorLink';
+import Anchor from '../Anchor';
 const INFO_EMAIL=import.meta.env.VITE_INFO_EMAIL;
 
 function SellingOnline() {
@@ -58,7 +58,7 @@ function SellingOnline() {
               </ul>
             </div>
             <Paragraph>&nbsp;</Paragraph>
-            <Paragraph>If you suspect that a seller is unauthorized, you can report them to us for investigation at <AnchorLink href="#" className="text-appTheme">{INFO_EMAIL}</AnchorLink></Paragraph>
+            <Paragraph>If you suspect that a seller is unauthorized, you can report them to us for investigation at <Anchor href="#" className="!text-[1rem]">{INFO_EMAIL}</Anchor></Paragraph>
           </div>
         </AccordionItem>
       </div>

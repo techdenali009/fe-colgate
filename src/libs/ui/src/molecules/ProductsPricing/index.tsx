@@ -2,7 +2,8 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph'
 import AccordionItem from '../AccordianItem'
 import { HeaderLabel } from '../HeaderLabel'
 import './ProductsPricing.styles.scss'
-import Strong from '@ui/atoms/Strong'
+
+import { StrongText } from '../StrongText'
 function ProductsPricing() {
   return (
     <div className="mb-14">
@@ -65,7 +66,7 @@ function ProductsPricing() {
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
           <div>
-            <Paragraph>Contact a <Strong className="font-bold font-HeroNewBold">PCA SKIN®</Strong>  Customer Service Representatives at 877.PCA.SKIN [877.722.7546]</Paragraph> 
+            <Paragraph>Contact a <StrongText className="font-bold font-HeroNewBold">PCA SKIN®</StrongText>  Customer Service Representatives at 877.PCA.SKIN [877.722.7546]</Paragraph> 
           </div>
         </AccordionItem>
       </div>

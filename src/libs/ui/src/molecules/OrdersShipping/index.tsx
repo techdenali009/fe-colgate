@@ -2,7 +2,8 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './OrdersShipping.styles.scss'
-import Strong from '@ui/atoms/Strong';
+
+import { StrongText } from '../StrongText';
 function OrdersShipping() {
   return (
     <div className="mb-14">
@@ -75,17 +76,17 @@ function OrdersShipping() {
             <Paragraph>&nbsp;</Paragraph>
             <Paragraph>BEFORE NOON:</Paragraph>
             <Paragraph>&nbsp;</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Standard Overnight: </Strong>Ships same day, arrives the next business day by 3:00 pm (metro) or 4:30 pm (rural).</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Second Day:</Strong> Ships same day, arrives in 2 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Express Saver:</Strong> Ships same day, arrives in 3 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Ground: Ships</Strong> same day, arrival time varies based on location and FedEx Transit time.</Paragraph>
+            <Paragraph><StrongText className="strong">Standard Overnight: </StrongText>Ships same day, arrives the next business day by 3:00 pm (metro) or 4:30 pm (rural).</Paragraph>
+            <Paragraph><StrongText className="strong">Second Day:</StrongText> Ships same day, arrives in 2 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
+            <Paragraph><StrongText className="strong">Express Saver:</StrongText> Ships same day, arrives in 3 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
+            <Paragraph><StrongText className="strong">Ground: Ships</StrongText> same day, arrival time varies based on location and FedEx Transit time.</Paragraph>
             <Paragraph>&nbsp;</Paragraph>
             <Paragraph>AFTER NOON:</Paragraph>
             <Paragraph>&nbsp;</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Standard Overnight: </Strong> Ships next day, arrives in 2 business days by 3:00 pm (metro) or 4:30 pm (rural).</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Second Day:</Strong> Ships next day, arrives in 3 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Express Saver:</Strong> Ships next day, arrives in 4 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
-            <Paragraph><Strong className="font-HeroNewBold">Ground: Ships</Strong>Ships next day, arrival time varies based on location and FedEx Transit Time.</Paragraph>
+            <Paragraph><StrongText className="strong">Standard Overnight: </StrongText> Ships next day, arrives in 2 business days by 3:00 pm (metro) or 4:30 pm (rural).</Paragraph>
+            <Paragraph><StrongText className="strong">Second Day:</StrongText> Ships next day, arrives in 3 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
+            <Paragraph><StrongText className="strong">Express Saver:</StrongText> Ships next day, arrives in 4 business days by 4:30 pm (metro) or 7:30 pm (rural).</Paragraph>
+            <Paragraph><StrongText className="strong">Ground: Ships</StrongText>Ships next day, arrival time varies based on location and FedEx Transit Time.</Paragraph>
             <Paragraph>&nbsp;</Paragraph>
             <Paragraph>Please note that Saturday delivery is not available for all shipping options and destinations. If you placed an expedited order after noon, it will be shipped the next day according to the corresponding timeframes mentioned above.</Paragraph>
           </div>
