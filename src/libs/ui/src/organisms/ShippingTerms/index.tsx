@@ -1,8 +1,10 @@
-import AnchorLink from '@ui/atoms/AnchorLink'
+
 import Paragraph from '@ui/atoms/Paragraph/paragraph'
-import Strong from '@ui/atoms/Strong'
+
 import { HeaderLabel } from '@ui/molecules/HeaderLabel'
 import './shippingTerms.style.scss'
+import Anchor from '@ui/molecules/Anchor'
+import { StrongText } from '@ui/molecules/StrongText'
 function ShippingTerms() {
   return (
     <div className="flex flex-col items-center">
@@ -10,10 +12,10 @@ function ShippingTerms() {
       <div className="w-[48rem] font-normal text-[1rem]  max-w-full mb-6">  
         <ul className="my-4 ml-6 list-disc mb-4">
           <li>Shipping terms only apply to domestic orders.</li>
-          <li>For questions on International orders, please <AnchorLink className="text-appTheme" href="#">contact us</AnchorLink></li>
+          <li>For questions on International orders, please <Anchor className="!text-[1rem]" href="/about/contact-us">contact us</Anchor></li>
           <li>Shipments are sent Monday through Friday each week, excluding major holidays.</li>
           <li>Orders are processed within two business days of being placed.</li>
-          <li>Delivery options are calculated based on <Strong className="font-HeroNewBold">business days</Strong>.</li>
+          <li>Delivery options are calculated based on <StrongText className="!font-HeroNewBold !text-[1rem]">business days</StrongText>.</li>
           <li>Saturday delivery not available for all shipping options and destinations.</li>
         </ul>
         <div className="text-center ">
@@ -51,7 +53,7 @@ function ShippingTerms() {
           </tbody>
         </table>
       </div>
-      <AnchorLink href="#"  className="font-HeroNewBold text-center font-bold leading-6 tracking-[0.3px] py-[0.625rem] px-6 bg-appTheme mb-6 text-white hover:!underline ">still need more help? contact us</AnchorLink>
+      <Anchor href="/about/contact-us"  className="font-HeroNewBold text-center font-bold !leading-6 !tracking-[0.3px] !text-[1rem] !py-[0.625rem] !px-6 bg-appTheme mb-6 text-white hover:!underline ">still need more help? contact us</Anchor>
     </div>
     
   )

@@ -3,7 +3,8 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './Privacy.styles.scss'
-import AnchorLink from '@ui/atoms/AnchorLink';
+
+import Anchor from '../Anchor';
 function Privacy() {
   return (
     <div className="mb-14">
@@ -23,9 +24,9 @@ function Privacy() {
             <Paragraph>
               Yes. We follow industry standard terms. For full details please
               review our{' '}
-              <AnchorLink href="#" className="text-appTheme">
+              <Anchor href="#" className="!text-[1rem]">
                 Privacy Policy.
-              </AnchorLink>
+              </Anchor>
             </Paragraph>
           </div>
         </AccordionItem>

@@ -2,8 +2,9 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './ContactUs.styles.scss'
-import Strong from '@ui/atoms/Strong';
-import AnchorLink from '@ui/atoms/AnchorLink';
+
+import { StrongText } from '../StrongText';
+import Anchor from '../Anchor';
 const WEBSITE_EMAIL=import.meta.env.VITE_WEBSITE_EMAIL;
 const PHONE_NO=import.meta.env.VITE_PHONE_NO;
 
@@ -24,11 +25,11 @@ function ContactUs() {
         >
           <div>
             <Paragraph>We’re proud to partner with you, no matter what comes your way! There’s no question too big or too small.</Paragraph>
-            <Paragraph><Strong className="font-bold font-HeroNewBold">PCA SKIN</Strong>  Customer Service Representatives are available Monday-Friday, 7am - 5pm AZ time. 
-              <Strong className="font-bold font-HeroNewBold">877.PCA.SKIN <br /> [{PHONE_NO}]</Strong>
+            <Paragraph><StrongText className="strong">PCA SKIN</StrongText>  Customer Service Representatives are available Monday-Friday, 7am - 5pm AZ time. 
+              <StrongText className="strong">877.PCA.SKIN <br /> [{PHONE_NO}]</StrongText>
             </Paragraph>
-            <Paragraph>Prefer to send a message? Email us at: <AnchorLink href="#" className="text-appTheme">{WEBSITE_EMAIL}</AnchorLink>. We’ll be sure to get back to you in under 2 business days.</Paragraph>
-            <Paragraph><AnchorLink href="#" className="text-appTheme">See our FAQs</AnchorLink> here</Paragraph>
+            <Paragraph>Prefer to send a message? Email us at: <Anchor href="#" className="!text-[1rem]">{WEBSITE_EMAIL}</Anchor>. We’ll be sure to get back to you in under 2 business days.</Paragraph>
+            <Paragraph><Anchor href="#" className="!text-[1rem]">See our FAQs</Anchor> here</Paragraph>
           </div>
         </AccordionItem>
       </div>

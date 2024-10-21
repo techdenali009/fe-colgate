@@ -13,7 +13,7 @@ function Product({ product ,modalSetToggle}: ProductProps) {
    
     <div className=" group relative p-2">
       <div>
-        <ProductImage src={image} alt={name}></ProductImage>
+        <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
         {isBestSeller && (
           <BestSellerBadge
             className={

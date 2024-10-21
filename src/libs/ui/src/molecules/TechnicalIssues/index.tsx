@@ -3,7 +3,8 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './TechnicalIssues.styles.scss'
-import AnchorLink from '@ui/atoms/AnchorLink';
+
+import Anchor from '../Anchor';
 const websupport=import.meta.env.VITE_WEBSUPPORT;
 const NEWWEBSITE=import.meta.env.VITE_NEW_WEBSITE;
 const PHONE_NO=import.meta.env.VITE_PHONE_NO;
@@ -38,7 +39,7 @@ function TechnicalIssues() {
           <div>
             <Paragraph>If you are experiencing issues with your online account please call {PHONE_NO} and select Option 1 for Professionals, then select Option 3 for Technical Assistance. If you are a licensed professional, you can reset your password by clicking on the link below in registration: </Paragraph>
             <Paragraph>{NEWWEBSITE}</Paragraph>
-            <Paragraph>If you are still having issues resetting your password, email websupport at <AnchorLink href="#" className="text-appTheme">{websupport}</AnchorLink></Paragraph>
+            <Paragraph>If you are still having issues resetting your password, email websupport at <Anchor href="#" className="!text-[1rem]">{websupport}</Anchor></Paragraph>
           </div>
         </AccordionItem>
       
