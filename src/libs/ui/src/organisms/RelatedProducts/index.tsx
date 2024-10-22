@@ -25,15 +25,13 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
           className='2xs:text-[20px] lg:!text-[28px]'
           headingLabel="Related Products"
           handleScroll={handleScroll}
-          LogInButtonDisable={false} description={''} modalSetToggle={console.log} />
+          LogInButtonDisable={false} description={''} modalSetToggle={()=>console.log('')} />
       </div>
       <Slider ref={sliderRef} {...sliderSettings}>
         {relatedProducts.map((relatedProducts) => (
           <div key={relatedProducts.id} className="mt-1">
 
-            <Product className='!h-[40px] text-center !py-[0.5rem]' product={relatedProducts} modalSetToggle={function (): void {
-              throw new Error('Function not implemented.');
-            }} />
+            <Product className='!h-[40px] text-center !py-[0.5rem]' product={relatedProducts} modalSetToggle={()=>console.log('')} />
           </div>
         ))}
       </Slider>
