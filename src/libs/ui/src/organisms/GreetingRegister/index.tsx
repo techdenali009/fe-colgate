@@ -3,7 +3,7 @@ import { Heading } from '@ui/atoms/Heading';
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import { CREATEACCOUNT, WELCOMEGREETPARA, WELCOMEMSG } from '@utils/constants';
 import { useState } from 'react';
-import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
+import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
 import { LoginConsts } from '@utils/Login';
 import { useNavigate } from 'react-router-dom';
 import AlreadyRegistered from '../AlreadyRegisteredForm';
