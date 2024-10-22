@@ -20,10 +20,10 @@ export const LoginConsts = {
   AlreadyRegistered:'alreadyRegistered'
 }
 export const passwordRequirements = [
-    { label: 'At least 8 characters', regex: /.{8,}/ },
-    { label: 'Contains an uppercase letter', regex: /[A-Z]/ },
-    { label: 'Contains a lowercase letter', regex: /[a-z]/ },
-    { label: 'Contains a number', regex: /[0-9]/ },
-    { label: 'Contains a special symbol', regex: /[!@#$%^&*(),.?":{}|<>]/ },
-  ];
+  { label: 'At least 8 characters', regex: /.{8,}/ },
+  { label: 'Contains an uppercase letter', regex: /[A-Z]/ },
+  { label: 'Contains a lowercase letter', regex: /[a-z]/ },
+  { label: 'Contains a number', regex: /[0-9]/ },
+  { label: 'Contains a special symbol', regex: /[!@#$%^&*(),.?":{}|<>]/ },
+];
   
