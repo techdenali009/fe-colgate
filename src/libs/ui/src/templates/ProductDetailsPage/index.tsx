@@ -23,14 +23,12 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
         <div className="flex flex-wrap space-x-2">
           <SkinTypeBadge active={true}>Combination</SkinTypeBadge>
           <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
-          {/* <RelatedProducts relatedProducts={relatedProducts} className='lg:pl-[96px] lg:pr-[96px] !m-0'/> */}
         </div>
         <div className={'w-full bg-[#f4f4f4] lg:pl-[96px] lg:pr-[96px] !m-0'}>
           <ProductDetails></ProductDetails>
           <RelatedProducts relatedProducts={relatedProducts} className={''} />
           <div className='pt-[7.5rem] lg:px-4 '>
             <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
-
           </div>
         </div>
       </div>

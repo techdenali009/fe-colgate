@@ -18,18 +18,14 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
     sliderRef.current.slickNext();
   };
 
-  return (
-   
-      
+  return (    
     <div className='2xs:ml-[10px] 2xs:mr-[10px] 2xs:pl-[30px] 2xs:pr-[30px] lg:!ml-0 lg:!mr-0 lg:!pl-0 lg:!pr-0'>
       <div className='mt-[60px]'>
         <ProductHeader
           className='2xs:text-[20px] lg:!text-[28px]'
           headingLabel="Related Products"
           handleScroll={handleScroll}
-          LogInButtonDisable={false} description={''} modalSetToggle={function (): void {
-            throw new Error('Function not implemented.');
-          }} />
+          LogInButtonDisable={false} description={''} modalSetToggle={console.log} />
       </div>
       <Slider ref={sliderRef} {...sliderSettings}>
         {relatedProducts.map((relatedProducts) => (
@@ -41,8 +37,7 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
           </div>
         ))}
       </Slider>
-    </div>
-       
+    </div>      
   );
 }
 
