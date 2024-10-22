@@ -1,6 +1,7 @@
 import Modal from "@ui/atoms/Modal";
 import React from 'react';
 import CloseModal from '../../../assets/CloseModal.svg';
+import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 
 interface ReviewBarModalProps {
     closeModal: () => void;
@@ -16,14 +17,15 @@ const ReviewGuideLines: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
                 </button>
             </div>
             <div className="mt-4">
-                <p className="text-gray-700">We want to publish your review, so please:</p>
-                <ul className="list-disc list-inside pl-5 text-gray-700 mt-2">
+                <p className="text-black">We want to publish your review, so please:</p>
+                <ul className="list-disc list-inside pl-5 text-black mt-2">
                     <li>Keep your review focused on the product.</li>
                     <li>Avoid writing about customer service; contact us instead if you have issues requiring immediate attention.</li>
                     <li>Refrain from mentioning competitors or the specific price you paid for the product.</li>
                     <li>Do not include any personally identifiable information, such as full names.</li>
                 </ul>
             </div>
+            <PrimaryButton onClick={closeModal} className="px-6 py-2 font-bold bg-blue-600 text-white hover:bg-blue-700 transition w-48 h-12">Close</PrimaryButton>
         </Modal>
     );
 };

@@ -12,6 +12,10 @@ import ReviewGuideLines from '../ReviewGuideLinesModal';
 
 const ratingMessages = [
     "1 out of 5 stars selected. Product is Poor.",
+    "2 out of 5 stars selected. Product is Fair.",
+    "3 out of 5 stars selected. Product is Average.",
+    "4 out of 5 stars selected. Product is Good.",
+    "5 out of 5 stars selected. Product is Excellent."
 ];
 
 interface ReviewFormProps {
@@ -32,6 +36,7 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
     });
 
     const dispatch = useDispatch<AppDispatch>();
+
     const handleFormSubmit = (data: any) => {
         dispatch(setReviewData(data));
         onSubmit(data);

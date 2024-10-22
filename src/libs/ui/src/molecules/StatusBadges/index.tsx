@@ -5,7 +5,6 @@ interface BadgeProps {
 }
 
 const StatusBadge: React.FC<BadgeProps> = ({ Children }) => {
-  // Define styles based on the status
   let styles = '';
 
   switch (Children) {
@@ -13,7 +12,7 @@ const StatusBadge: React.FC<BadgeProps> = ({ Children }) => {
       styles = 'border-pink-500 text-red-600';
       break;
     case 'completed':
-      styles = 'border-green-500 text-green-600';
+      styles = 'border-green-500 text-green-900';
       break;
     case 'skipped':
       styles = 'border-yellow-500 text-yellow-600';
