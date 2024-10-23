@@ -18,6 +18,7 @@ import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
 import { useNavigate } from 'react-router-dom';
 import { appSetting } from '@utils/appSetting';
 
+
 interface headerProps {
   modalSetToggle: () => void;
   handleRegisterClick: () => void;
@@ -34,10 +35,10 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
-  const [selectNavLink,setSelectNavLink]=useState<string>('');
+  const [selectNavLink, setSelectNavLink] = useState<string>('');
 
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const handleMouseEnterLogo = () => {
     setIsNavActive(false);
   };
@@ -108,24 +109,85 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   };
 
   const handleNavLinkClick = (title: string) => {
-    const catagory =  appSetting.find(link => link.title === selectNavLink);
-    const isNavigate = catagory && catagory?.canNavigate && catagory?.navigationPages.includes(title);
-    // const selectedLink = appSetting.find(link => link.title === selectNavLink)?.canNavigate;
-  
+    console.log('title', title, selectNavLink)
+    const catagory = appSetting.find(link => link.title.toLocaleLowerCase() === selectNavLink.toLocaleLowerCase());
+    console.log('encodedTitle', catagory)
+    const isNavigate = catagory && catagory?.canNavigate && (
+      catagory?.navigationPages.includes(title)
+      || selectNavLink === appSetting[0].title
+    );
     if (isNavigate) {
-      console.log('url',title)
-      const encodedTitle =  title.replace(/[\s&]+/g, '-');
-      navigate(`${selectNavLink}/${encodedTitle}`);
+      const encodedTitle = title.replace(/[\s&]+/g, '-');
+      if (selectNavLink === appSetting[3].title) {
+        navigate(`${selectNavLink}/${encodedTitle}`);
+      }
+
+      // const searchParams = new URLSearchParams(location.search); // Create a new instance of URLSearchParams
+
+      // Create an array of navigation links with their corresponding query parameters
+      const navLinkMap = [
+        { title: appSetting[0].title, category: encodedTitle },
+        { title: 'Best Seller', category: 'All Products' }, // Redirect to all products for Best Seller
+        // Add other navigation links here as needed
+      ];
+
+      // Check if the selected link exists in the map
+      const baseUrl = 'products?';
+
+      // Initialize an array to store category query parameters
+      const categoryParams = [];
+
+      // Check if the selected link exists in the map
+      const selectedLink = navLinkMap.find(link => link.title === selectNavLink);
+
+      if (selectedLink) {
+        console.log(selectedLink.category)
+        if (selectedLink.category === 'Best-Seller' || selectedLink.category === 'View-All') {
+          // Add the selected category to the params
+          categoryParams.push(`category=${selectedLink.category}`);
+
+          // If you want to add more predefined categories, do it here
+          const additionalCategories = [
+            'Antioxidants',
+            'Broad Spectrum SPF',
+            'Cleansers & toners',
+            'Solution Sets',
+            'Eye, Neck, Lip',
+            'Masks',
+            'Moisturizers',
+            'Retinols',
+            'Serums'
+          ];
+
+          // Add additional categories to the categoryParams
+          additionalCategories.forEach(cat => {
+            categoryParams.push(`category=${encodeURIComponent(cat)}`);
+          });
+
+          // Combine all category params into a single string
+          const finalUrl = `${baseUrl}${categoryParams.join('&')}&best-seller=best-seller`;
+          navigate(finalUrl);
+          window.location.reload(); // Optional: reload the page if needed
+        }
+        else {
+          navigate(`products?category=${selectedLink.category}`);
+          console.log('hello')
+          window.location.reload();
+        }
+      } else {
+        // Default case for other navigation options
+        navigate(`products?=${encodedTitle}`);
+      }
     }
   };
-  
+
   return (
     <>
       <header id='header_shadow' className={`${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white' : ''}`}>
         <div className='tm:py-0 tm:px-6  flex gap-4 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
 
           <div className='tm:flex tl:hidden humburger'>
-            <NavLinks setSelectNavLink={setSelectNavLink}  onNavLinkActive={handleNavLinkActive}  onNavLinkClick={handleNavLinkClick}   />
+            <NavLinks setSelectNavLink={setSelectNavLink} onNavLinkActive={handleNavLinkActive} onNavLinkClick={handleNavLinkClick} />
           </div>
 
           <div className='tm:hidden logo_one' onMouseEnter={handleMouseEnterLogo}>
@@ -133,7 +195,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
           </div>
 
           <div className='tm:hidden tl:flex'>
-            <NavLinks setSelectNavLink={setSelectNavLink}    onNavLinkActive={handleNavLinkActive} onNavLinkClick={handleNavLinkClick}  />
+            <NavLinks setSelectNavLink={setSelectNavLink} onNavLinkActive={handleNavLinkActive} onNavLinkClick={handleNavLinkClick} />
           </div>
 
           <div className=' tm:gap-0 tm:flex Iconsnav items-center  flex space-x-4  tm:space-x-0 lg:pr-[2rem] xl:pr-[5rem] xl:gap-2'>

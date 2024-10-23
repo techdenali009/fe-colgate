@@ -47,7 +47,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
                   </li>
                 ))}
                 {column.hasMore && (
-                  <li className="text-blue-600 hover:bg-blue-50 leading-[38px]  pl-[9px] font-semibold cursor-pointer mb-2 hover:underline">
+                  <li  onClick={()=>handleLinkClick('View All')} className="text-blue-600 hover:bg-blue-50 leading-[38px]  pl-[9px] font-semibold cursor-pointer mb-2 hover:underline">
                     View All
                   </li>
                 )}

@@ -3,10 +3,11 @@ import FrequentlyAskedQuestionsPage from '@pages/FrequentlyAskedQuestionsPage';
 import RegisterPage from '@pages/RegisterPage';
 import ShippingTermsPage from '@pages/ShippingTerms';
 import { AppSpinner } from '@ui/atoms/AppSpinner';
-
+import PlpPage from '@pages/ProductListPage';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ProductModule from 'src/modules/usersModule/usersModule';
+
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -40,7 +41,7 @@ export const AppRoutes = () => (
     }>
       <Route path="" element={<LandingPage />}></Route>
       <Route path = "auth/register" element={<RegisterPage/>}></Route>
-
+     
       {/* User Module */}
       {/* <Route path="/users" element={<UserModule />}>
                    <Route  path="/" element={<Users/>}></Route>
@@ -48,7 +49,9 @@ export const AppRoutes = () => (
                 </Route> */}
 
       {/* Product module */}
+     
       <Route path="/products" element={<ProductModule />}>
+        <Route path = "" element={<PlpPage/>}></Route>
         {/* <Route  path="/" element={<Products/>}></Route> */}
         <Route  path=":id" element={<ProductDetailsPage/>}></Route>
       </Route> 

@@ -4,6 +4,7 @@ export interface ProductType {
     image: string;
     rating: number;
     isBestSeller: boolean;
+    price?: number; 
   }
   
 
