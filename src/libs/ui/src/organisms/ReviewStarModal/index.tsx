@@ -14,10 +14,25 @@ interface ReviewBarModalProps {
 
 const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
   const [currentStep, setCurrentStep] = useState(0); 
+  const [inprogressStatus, setInprogressStatus] = useState('In progress'); // Initial status
+  const [completeStatus, setCompleteStatus] = useState('completed');
+  const [skippedStatus, setSkippedStatus] = useState('skipped')
+
+  const handleSkip = () => {
+    setSkippedStatus('skipped'); 
+  };
+
+  const handleSubmit = () => {
+    setCompleteStatus('completed');
+  }
+
+  const handleInProgress = () => {
+    setInprogressStatus('In progress');
+  }
 
   const steps = [
     <ReviewStarSubmit onSubmit={() => setCurrentStep(1)} />, 
-    <ReviewStarAddImages onSubmit={() => setCurrentStep(2)} />, 
+    <ReviewStarAddImages  onSubmit={() => setCurrentStep(2)} />, 
     <ReviewStarPersonalInfo onSubmit={() => setCurrentStep(3)} />, 
     <ReviewStarProductRating onSubmit={closeModal} />,
   ];

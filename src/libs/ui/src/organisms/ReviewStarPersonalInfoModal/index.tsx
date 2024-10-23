@@ -23,19 +23,37 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   const [readReviews, setReadReviews] = useState<boolean | null>(null);
   const [ageGroup, setAgeGroup] = useState<string>("");
   const [location, setLocation] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>(""); // State for error message
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate location
+    if (!location) {
+      setErrorMessage("Unable to submit the form. Please fill at least one optional field above."); // Set error message if location is empty
+      return; // Prevent submission if location is not filled
+    }
+
     const data: ReviewData = { reviewText, image, readReviews: readReviews || false, ageGroup, location };
     onSubmit(data);
-     dispatch(setPersonalInfoData({ 
+    dispatch(setPersonalInfoData({ 
       readReviews: readReviews || false,
       ageGroup,
       location
     }));
     console.log(data);
-    
+    setErrorMessage(""); // Clear any previous error message on successful submission
+  };
+
+  const handleSkip = () => {
+    setReviewText("");
+    setImage(null);
+    setReadReviews(null);
+    setAgeGroup("");
+    setLocation("");
+    setErrorMessage(""); // Clear any error message when skipping
+    onSubmit({ reviewText: "", image: null, readReviews: false, ageGroup: "", location: "" }); // Skip action
   };
 
   return (
@@ -51,8 +69,7 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
           Add Images (optional)
           <StatusBadge Children={'completed'} />
         </p>
-        <div className="pl-96">
-        </div>
+        <div className="pl-96"></div>
       </div>
 
       {/* Did you read product reviews? */}
@@ -103,6 +120,7 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
+        {errorMessage && <div className="text-red-600 mt-2">{errorMessage}</div>} {/* Display error message */}
       </div>
 
       <div className="flex justify-between">
@@ -113,15 +131,9 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
           Submit
         </PrimaryButton>
         <PrimaryButton
-          type="button"
+          type="button" // Ensure it is a button and not a submit
           className="w-60 bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400"
-          onClick={() => {
-            setReviewText("");
-            setImage(null);
-            setReadReviews(null);
-            setAgeGroup("");
-            setLocation("");
-          }}
+          onClick={handleSkip}
         >
           Skip
         </PrimaryButton>
