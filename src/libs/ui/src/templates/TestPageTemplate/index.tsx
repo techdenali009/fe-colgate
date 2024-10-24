@@ -47,6 +47,7 @@ import { Button } from '@ui/atoms/Button';
 import { RootState } from '@store/store';
 import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
+import { LandingPageSkeleton} from '../LandingPageSkeleton';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -155,7 +156,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo); 
   return (
     <>
-
+      <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
 
       <form>

@@ -66,6 +66,7 @@ module.exports = {
     animation: {
       slideIn: 'slideIn 0.8s forwards',
       slideOut: 'slideOut 0.8s forwards',
+      pulse: 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
     },
     keyframes: {
       slideIn: {
@@ -75,6 +76,10 @@ module.exports = {
       slideOut: {
         '0%': { transform: 'translateY(0)' },
         '100%': { transform: 'translateY(-100%)' },
+      },
+      pulse: {
+        '0%, 100%': { opacity: 1 },
+        '50%': { opacity: 0.5 },
       },
     },
   },
