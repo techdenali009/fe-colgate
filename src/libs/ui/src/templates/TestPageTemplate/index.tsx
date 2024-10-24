@@ -40,6 +40,9 @@ import responsePCASkin from '../../../assets/responsePCASkin.svg';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
 import RelatedProducts from '@ui/organisms/RelatedProducts';
 import { relatedProducts } from '@utils/test';
+import { LandingPageSkeleton} from '../LandingPageSkeleton';
+
+
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -145,7 +148,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   return (
     <>
-
+      <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
 
       <form>
@@ -435,6 +438,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
       </div>
       <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
+     
     </>
   );
 };
