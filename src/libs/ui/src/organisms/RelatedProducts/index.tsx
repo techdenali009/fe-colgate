@@ -31,7 +31,7 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
         {relatedProducts.map((relatedProducts) => (
           <div key={relatedProducts.id} className="mt-1">
 
-            <Product className='!h-[40px] text-center !py-[0.5rem]' product={relatedProducts} modalSetToggle={()=>console.log('')} />
+            <Product className='!h-[40px] text-center !py-[0.5rem]' product={relatedProducts} modalSetToggle={() => console.log('')} openQuickView={() => console.log('')} showQuickView={false}/>
           </div>
         ))}
       </Slider>

@@ -1,19 +1,26 @@
+
 import { Button } from '@ui/atoms/Button';
-
-
 import { ProductImage } from '@ui/atoms/ProductImage';
 import StarRating from '@ui/atoms/StarRating';
 import BestSellerBadge from '@ui/molecules/BestSeller';
+import QuickViewButton from '@ui/molecules/QuickViewButton';
 import { ProductProps } from '@utils/Product';
 
-function Product({ product ,modalSetToggle,className}: ProductProps) {
-  const { image, name, isBestSeller, rating } = product;
 
+function Product({ product ,modalSetToggle,className, openQuickView,showQuickView }: ProductProps) {
+  
+  const { image, name, isBestSeller, rating ,id} = product;
+
+
+ 
   return (
    
     <div className={'group relative p-2 '}>
       <div>
         <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
+        {showQuickView && (
+          <QuickViewButton onClick={() => openQuickView(id)}></QuickViewButton>
+        )}
         {isBestSeller && (
           <BestSellerBadge
             className={
@@ -48,6 +55,7 @@ function Product({ product ,modalSetToggle,className}: ProductProps) {
           {' Log In to Order'}
         </Button>
       </div>
+      
     </div>
   );
 }

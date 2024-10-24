@@ -12,7 +12,7 @@ import LoginModal from '@ui/organisms/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { LabelButton } from '@ui/molecules/LabelButton';
-import GreetRegister from '@ui/organisms/GreetingRegister';
+
 import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
 import BannerSkeleton from '@ui/molecules/BannerSkeleton';
 import FilterSkeleton from '@ui/molecules/FilterSkeleton/index';
@@ -40,6 +40,13 @@ import responsePCASkin from '../../../assets/responsePCASkin.svg';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
 import RelatedProducts from '@ui/organisms/RelatedProducts';
 import { relatedProducts } from '@utils/test';
+import QuickViewModal from '@ui/organisms/QuickView';
+import { products } from '@utils/test';
+import { Image } from '@ui/atoms/Image';
+import { Button } from '@ui/atoms/Button';
+import { RootState } from '@store/store';
+import { useSelector } from 'react-redux';
+import GreetRegister from '@ui/organisms/GreetingRegister';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -139,10 +146,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   };
 
   const [isModalOpen, setModalOpen] = useState(false);
-
+  const [QuickViewModalOpen,setQuickViewModalOpen]=useState(false)
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
+  const openQuickReviewModal=()=>setQuickViewModalOpen(true);
+  const closeQuickViewModal=()=>setQuickViewModalOpen(false);
 
+  const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo); 
   return (
     <>
 
@@ -435,6 +445,31 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
       </div>
       <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
+      <div>
+        <div className="relative group">
+          <Image
+            className=""
+            src={'https://pcaskin.vtexassets.com/arquivos/ids/156885-608-auto/4percent-retinol-peel.jpg?v=638579566473630000&width=608&height=auto&aspect=true'}
+            alt={'xyz'}
+            width={310}
+            height={'auto'}
+          />
+        
+     
+          {isLoggedIn && (
+            <div className="absolute flex inset-0 bg-[#1e293b82] invisible group-hover:visible w-[310px] justify-center items-center">
+              <Button
+                onClick={openQuickReviewModal}
+                className="w-2/3 absolute bg-appTheme text-[1rem] p-[.344rem ,.118rem] py-[0.625rem] px-[2.313rem] text-white leading-6 font-bold font-HeroNewBold hover:bg-[#555555] justify-center"
+              >
+              Quick View
+              </Button>
+            </div>
+          )}
+        </div>
+        <button onClick={openQuickReviewModal}>open Quick review Modal</button>
+        {QuickViewModalOpen && <QuickViewModal closeModal={closeQuickViewModal} product={products[0]} />}
+      </div>
     </>
   );
 };
