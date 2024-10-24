@@ -1,4 +1,3 @@
-///uncommited
 import { ButtonWithText } from '@ui/molecules/ButtonWithText';
 import { FilterContainer } from '@ui/molecules/FilterContainer';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
@@ -16,6 +15,14 @@ const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // Define sorting options as constants
+  const SortOptions = {
+    ALPHABETICAL_AZ: 'Alphabetical A - Z',
+    ALPHABETICAL_ZA: 'Alphabetical Z - A',
+    PRICE_LOW_HIGH: 'Price Low to High',
+    PRICE_HIGH_LOW: 'Price High to Low',
+  };
 
   const {
     selectedProductCategory,
@@ -27,66 +34,39 @@ const PlpPageTemplate: React.FC = () => {
 
   const [productsToShow, setProductsToShow] = useState<number>(9);
   const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical A - Z');
-  const [isBestSeller, setIsBestSellerState] = useState<boolean>(false); // Add state for isBestSeller
-  const [enableBestSeller,setEnableBestSeller]=useState<boolean>(false);
+  const [isBestSeller, setIsBestSellerState] = useState<boolean>(false);
+  const [enableBestSeller, setEnableBestSeller] = useState<boolean>(false);
+
   // Update URL params when a category is selected
   const handleCategorySelect = (category: string | null) => {
     const newCategory = category ?? 'all products';
 
-    // Check if the selected category is the same as the current one
-    if (newCategory === selectedProductCategory) {
-    
-      console.log(selectedProductCategory);
-    }
-
     if (newCategory === 'best seller') {
       setIsBestSellerState(true);
-      setFilters([]);
+      setFilters([]); // Clear filters
       navigate('products?category=best-seller');
-      setSelectedProductCategory(newCategory); // Set the selected category
+      setSelectedProductCategory(newCategory);
       return;
     }
 
-    // If "All Products" is selected, display all category badges
     if (newCategory === 'All Products' || newCategory === 'View All') {
-      setIsBestSellerState(false); // Ensure we are not in best-seller mode
-      const allCategories = [
-        'antioxidants', 
-        'broad spectrum SPF', 
-        'Cleansers & toners', 
-        'solution sets', 
-        'eye, neck, lip', 
-        'masks', 
-        'moisturizers', 
-        'retinols', 
-        'serums'
-      ];
+      setIsBestSellerState(false);
+      const allCategories = ['antioxidants', 'broad spectrum SPF', 'Cleansers & toners', 'solution sets', 'eye, neck, lip', 'masks', 'moisturizers', 'retinols', 'serums'];
       setFilters(allCategories);
-
-      // Update the URL to reflect "All Products"
       const searchParams = new URLSearchParams(location.search);
       searchParams.delete('category');
       navigate({ search: searchParams.toString() });
-      setSelectedProductCategory(newCategory); // Set the selected category
+      setSelectedProductCategory(newCategory);
       return;
     }
 
-    // For other specific categories
-  
     const searchParams = new URLSearchParams(location.search);
-  
-    // Only update the category in the URL if it's different from the currently selected one
     if (newCategory !== 'all products') {
       searchParams.set('category', newCategory);
-    } 
-
-
+      setFilters([...filters, newCategory]); // Add to filters
+    }
     navigate({ search: searchParams.toString() });
-  
   };
-
-  
-
 
   const loadMoreProducts = () => setProductsToShow(prev => prev + 9);
 
@@ -98,26 +78,23 @@ const PlpPageTemplate: React.FC = () => {
 
   const handleSortChange = (option: string) => {
     setSelectedSortOption(option);
-
-    // Update the URL with the selected sort option
     const searchParams = new URLSearchParams(location.search);
     searchParams.set('sort', option);
     navigate({ search: searchParams.toString() });
   };
 
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any 
   const sortProducts = (products: any[]) => {
     switch (selectedSortOption) {
-    case 'Alphabetical A - Z':
-      return products.sort((a, b) => a.name.localeCompare(b.name));
-    case 'Alphabetical Z - A':
-      return products.sort((a, b) => b.name.localeCompare(a.name));
-    case 'Price Low to High':
-      return products.sort((a, b) => a.price - b.price);
-    case 'Price High to Low':
-      return products.sort((a, b) => b.price - a.price);
-    default:
-      return products;
+      case SortOptions.ALPHABETICAL_AZ:
+        return products.sort((a, b) => a.name.localeCompare(b.name));
+      case SortOptions.ALPHABETICAL_ZA:
+        return products.sort((a, b) => b.name.localeCompare(a.name));
+      case SortOptions.PRICE_LOW_HIGH:
+        return products.sort((a, b) => a.price - b.price);
+      case SortOptions.PRICE_HIGH_LOW:
+        return products.sort((a, b) => b.price - a.price);
+      default:
+        return products;
     }
   };
 
@@ -128,12 +105,11 @@ const PlpPageTemplate: React.FC = () => {
     const searchParams = new URLSearchParams(location.search);
     const categoryFromUrl = searchParams.get('category');
     const sortFromUrl = searchParams.get('sort');
-    
-    // Check for Best Seller in URL
+
     if (categoryFromUrl === 'Best-Seller' || categoryFromUrl === 'View-All') {
       setEnableBestSeller(true);
-      setSelectedProductCategory('All Products'); // Set state to show all products
-      setIsBestSellerState(true); // Indicate best seller state
+      setSelectedProductCategory('All Products');
+      setIsBestSellerState(true);
       setFilters([]); // Clear filters to display all products
     } else if (categoryFromUrl) {
       setSelectedProductCategory(categoryFromUrl);
@@ -172,7 +148,12 @@ const PlpPageTemplate: React.FC = () => {
               <div className="flex gap-1"> {filteredProducts.length} <p>products</p></div>
               <div className='tm:hidden lg:relative'>
                 <FilterDropdown
-                  options={filterData.sortingOptions}
+                  options={[
+                    SortOptions.ALPHABETICAL_AZ,
+                    SortOptions.ALPHABETICAL_ZA,
+                    SortOptions.PRICE_LOW_HIGH,
+                    SortOptions.PRICE_HIGH_LOW,
+                  ]}
                   onSelect={handleSortChange}
                 />
               </div>
@@ -181,12 +162,10 @@ const PlpPageTemplate: React.FC = () => {
 
           <div className="productcard tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 tl:grid-cols-3 gap-[23px]">
             {isBestSeller ? (
-              // Show all products if best seller
               sortedProducts.map((product) => (
                 <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} />
               ))
             ) : (
-              // Show only filtered products otherwise
               sortedProducts.slice(0, productsToShow).map((product) => (
                 <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} />
               ))
@@ -215,4 +194,3 @@ const PlpPageTemplate: React.FC = () => {
 };
 
 export default PlpPageTemplate;
-

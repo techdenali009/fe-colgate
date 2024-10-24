@@ -41,21 +41,15 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>(''); // State for sort option
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // State for modal visibility
+ const sortOptions = ['Price: Low to High', 'Price: High to Low', 'New Arrivals'];
 
-  // Responsive check for small screens
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 1020);
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-
-  }, []);
+ // Define checkbox accordions
+ const checkboxAccordions = [
+   { title: 'Product Types', options: filterData.productTypes },
+   { title: 'Skin Concern', options: filterData.skinConcern },
+   { title: 'Skin Type', options: filterData.skinType },
+ ];
+  
 
   // Toggle category visibility
   const toggleShowCategories = () => {
@@ -88,16 +82,21 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     onSortChange(sortOption);
   };
 
-  // Sort options
-  const sortOptions = ['Price: Low to High', 'Price: High to Low', 'New Arrivals'];
+ 
+// Responsive check for small screens
+useEffect(() => {
+  const handleResize = () => {
+    setIsSmallScreen(window.innerWidth <= 1020);
+  };
 
-  // Define checkbox accordions
-  const checkboxAccordions = [
-    { title: 'Product Types', options: filterData.productTypes },
-    { title: 'Skin Concern', options: filterData.skinConcern },
-    { title: 'Skin Type', options: filterData.skinType },
-  ];
+  window.addEventListener('resize', handleResize);
+  handleResize(); // Initial check
 
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+
+}, []);
   return (
     <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} bg-white rounded-lg text-center tm:border-2 tm-border-blue-500 height-[37px] tracking-[.3px] font-bold ${className}`}>
       {/* Filter & Sort Button (only for small screens) */}

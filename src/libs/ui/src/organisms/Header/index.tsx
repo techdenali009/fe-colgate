@@ -167,12 +167,12 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
           // Combine all category params into a single string
           const finalUrl = `${baseUrl}${categoryParams.join('&')}&best-seller=best-seller`;
           navigate(finalUrl);
-          window.location.reload(); // Optional: reload the page if needed
+          // Optional: reload the page if needed
         }
         else {
           navigate(`products?category=${selectedLink.category}`);
-          console.log('hello')
-          window.location.reload();
+          
+         
         }
       } else {
         // Default case for other navigation options
