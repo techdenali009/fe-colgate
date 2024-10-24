@@ -38,6 +38,8 @@ import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import responsePCASkin from '../../../assets/responsePCASkin.svg';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
+import RelatedProducts from '@ui/organisms/RelatedProducts';
+import { relatedProducts } from '@utils/test';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -431,6 +433,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <button onClick={openModal}><StarRating totalStars={5} initialRating={4} /></button>
         {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
       </div>
+      <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
     </>
   );
 };

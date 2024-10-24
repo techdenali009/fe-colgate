@@ -2,7 +2,8 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './ProfessionalsAccount.styles.scss'
-import AnchorLink from '@ui/atoms/AnchorLink';
+
+import Anchor from '../Anchor';
 const Forgot_password_url=import.meta.env.VITE_SCROLL_PCA_FORGOT_PASSWORD_URL;
 const websupport=import.meta.env.VITE_WEBSUPPORT;
 function ProfessionalsAccount() {
@@ -37,10 +38,10 @@ function ProfessionalsAccount() {
         >
           <div>
             <Paragraph>You can reset your password by clicking on the link below:<br></br>
-              <AnchorLink href="#" className="text-appTheme not-italic ml-1">{Forgot_password_url}</AnchorLink>
+              <Anchor href="#" className="!text-[1rem] not-italic ml-1">{Forgot_password_url}</Anchor>
             </Paragraph>
             <Paragraph className="py-6">
-            If you are still having issues resetting your password, email websupport at <AnchorLink href="#" className="text-appTheme ">{websupport}</AnchorLink>
+            If you are still having issues resetting your password, email websupport at <Anchor href="#" className="!text-[1rem]">{websupport}</Anchor>
             </Paragraph>
             
           </div>

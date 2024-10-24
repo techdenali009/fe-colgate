@@ -3,7 +3,7 @@ import Modal from '@ui/atoms/Modal';
 import ModalHeader from '@ui/atoms/ModalHeader';
 import ModalBody from '@ui/atoms/ModalBody';
 import LoginForm from '@ui/organisms/LoginForm';
-import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
+import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
 import AlreadyRegistered from '@ui/organisms/AlreadyRegisteredForm';
 import { LoginConsts } from '@utils/Login';
 
@@ -33,7 +33,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
     };
   }, []);
 
-  const modalHeightClass = currentForm === LoginConsts.ForgotPassword || currentForm === LoginConsts.AlreadyRegistered ? 'h-[420px]' : 'h-auto'; // Adjust height
+  const modalHeightClass = currentForm === LoginConsts.ForgotPassword || currentForm === LoginConsts.AlreadyRegistered ? 'h-[420px] px-[40px] py-[30px]' : 'h-auto'; // Adjust height
 
   return (
     <Modal
@@ -60,9 +60,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
         )}
         {currentForm === LoginConsts.AlreadyRegistered && (
           <AlreadyRegistered 
-            onSubmit={onSubmit} 
+            onSubmit={onSubmit}
             setIsForgotPassword={() => setCurrentForm('forgotPassword')} // Go back to Login form
-          />
+            mode={'modal'}          />
         )}
       </ModalBody>
     </Modal>

@@ -113,6 +113,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
     // const selectedLink = appSetting.find(link => link.title === selectNavLink)?.canNavigate;
   
     if (isNavigate) {
+      console.log('url',title)
       const encodedTitle =  title.replace(/[\s&]+/g, '-');
       navigate(`${selectNavLink}/${encodedTitle}`);
     }

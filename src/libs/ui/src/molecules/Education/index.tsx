@@ -3,6 +3,7 @@ import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import AccordionItem from '../AccordianItem';
 import { HeaderLabel } from '../HeaderLabel';
 import './Education.styles.scss'
+import Anchor from '../Anchor';
 function Education() {
   return (
     <div className="mb-14">
@@ -71,7 +72,7 @@ function Education() {
             In order for skin health professionals to purchase PCA SKIN professional products you must complete the PCA Skin Advantage Course. Once you have attended this 8 hour course, your certification with PCA Skin will never expire.
             </Paragraph>
             <Paragraph>&nbsp;</Paragraph>
-            <Paragraph>However, if you would like to continue to further your knowledge with PCA Skin products, the PCA Academy offers a variety of additional education courses to expand your skill set. Learn more about our exciting education offerings here: <a href="#" className="text-appTheme">Education page</a></Paragraph>
+            <Paragraph>However, if you would like to continue to further your knowledge with PCA Skin products, the PCA Academy offers a variety of additional education courses to expand your skill set. Learn more about our exciting education offerings here: <Anchor href="#" className="!text-[1rem]">Education page</Anchor></Paragraph>
           </div>
         </AccordionItem>
 

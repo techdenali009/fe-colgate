@@ -10,7 +10,13 @@ export interface ProductType {
 export interface ProductProps {
     product: ProductType;
     modalSetToggle: () => void;
+    className?:string;
    }
+
+export interface RelatedProductsProps{
+  relatedProducts: ProductType[];
+  className:string
+}
 
 export interface PopularProductsProps {
     products: ProductType[];
@@ -22,5 +28,6 @@ export interface ProductHeaderProps {
   description: string;  // For the label text
   LogInButtonDisable:boolean
   modalSetToggle: () => void;
+  className:string
   }
   

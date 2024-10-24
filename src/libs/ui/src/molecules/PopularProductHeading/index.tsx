@@ -12,11 +12,12 @@ const ProductHeader = ({
   headingLabel,
   description,
   LogInButtonDisable,
-  modalSetToggle
+  modalSetToggle,
+  className,
 }: ProductHeaderProps) => {
   return (
     <div className="text-left">
-      <h2 className="font-bold py-2 mt-20 text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold">
+      <h2 className={`font-bold py-2 mt-20 text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold ${className}`}>
         {headingLabel}
       </h2>
       <div className="mb-6 flex flex-col lg:flex-row lg:justify-between ">
