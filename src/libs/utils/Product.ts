@@ -4,15 +4,22 @@ export interface ProductType {
     image: string;
     rating: number;
     isBestSeller: boolean;
-    discription: string;
+    discription?: string;
   }
   
 
 export interface ProductProps {
     product: ProductType;
     modalSetToggle: () => void;
+    className?:string;
     openQuickView: (id: number) => void;
+    showQuickView :boolean;
    }
+
+export interface RelatedProductsProps{
+  relatedProducts: ProductType[];
+  className:string
+}
 
 export interface PopularProductsProps {
     products: ProductType[];
@@ -24,5 +31,6 @@ export interface ProductHeaderProps {
   description: string;  // For the label text
   LogInButtonDisable:boolean
   modalSetToggle: () => void;
+  className:string
   }
   

@@ -14,7 +14,7 @@ interface Product {
   image: string;
   rating: number;
   isBestSeller: boolean;
-  discription: string;
+  discription?: string;
 }
 
 interface QuickViewProps {

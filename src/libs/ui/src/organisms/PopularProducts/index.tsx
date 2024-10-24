@@ -7,12 +7,16 @@ import Product from '../Product';
 import { PopularProductsProps, ProductType } from '@utils/Product';
 import ProductHeader from '@ui/molecules/PopularProductHeading';
 import QuickViewModal from '../QuickView';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/store';
 
 function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
   const swiperRef =  useRef<SwiperRef | null>(null);
   const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
+  const userInfo = useSelector((state: RootState) => state.authSlice.userInfo); 
 
+  const isLoggedIn = Boolean(userInfo);  
   const handleScroll = (direction: 'left' | 'right') => {
     if (swiperRef.current) {
       if (direction === 'left') {
@@ -62,6 +66,7 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
     <div className="w-full">
       <div className='mb-6'>
         <ProductHeader
+          className=''
           headingLabel="Popular Products"
           description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
           handleScroll={handleScroll}
@@ -73,7 +78,7 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
           <SwiperSlide key={product.id} className="  !items-start">
-            <Product product={product}  modalSetToggle={modalSetToggle}  openQuickView={openQuickReviewModal} />
+            <Product product={product}  modalSetToggle={modalSetToggle}  openQuickView={openQuickReviewModal}     showQuickView={isLoggedIn}  />
           </SwiperSlide>
         ))}
       </Swiper>

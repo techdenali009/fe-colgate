@@ -2,16 +2,16 @@ import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
 import { Heading } from '@ui/atoms/Heading';
 import Paragraph from '@ui/atoms/Paragraph/paragraph';
 import { CREATEACCOUNT, WELCOMEGREETPARA, WELCOMEMSG } from '@utils/constants';
-import WelcomeAlreadyRegistered from '@ui/molecules/WelcomeRegister';
 import { useState } from 'react';
-import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
+import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
 import { LoginConsts } from '@utils/Login';
 import { useNavigate } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '@store/services/Endpoints/AuthApi';
 import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
 import { AppSpinner } from '@ui/atoms/AppSpinner';
-
+import WelcomeAlreadyRegistered from '@ui/molecules/WelcomeRegister';
 interface LoginData {
   email?: string;
   password?: string;
@@ -42,11 +42,10 @@ const GreetRegister: React.FC = () => {
   function handleRegisterClick(): void {
     navigate('auth/register');
   }
-
   //Use this attribute  forshowing the  'invalid email and password' in modal
   console.log('isError',isError);
-  return (
-    <div className=" px-6 flex flex-col gap:4 lg:flex-row pb-8 p-16 lg:mx-8 lg:px-14  gap-8 pt-12 text-left">
+  return(
+    <div className=" px-6 flex flex-col gap:4 lg:flex-row 2xs:!pb-4 p-16 lg:mx-8 lg:px-14  gap-8 pt-12 text-left">
       <div className="basis-1/2 lg:pt-0 ">
         <Heading className="text-black text-[24px] font-normal font-HeroNewRegular">
           {WELCOMEMSG}
@@ -64,27 +63,30 @@ const GreetRegister: React.FC = () => {
 
       <hr className="border-gray-400  lg:hidden" />
 
-      <div className="basis-1/2  pt-6 lg:pt-0">
+      <div className="basis-1/2  pt-6 2xs:pt-0">
         {currentForm === LoginConsts.ForgotPassword && (
           <ForgotPasswordForm
             onSubmit={onSubmit}
             className={'font-HeroNewRegular !mb-0 2xs:!px-0'}
-            setIsForgotPassword={() => setCurrentForm('alreadyRegistered')}
-            headclassname="!text-2xl !px-0"
+            setIsForgotPassword={() => setCurrentForm('alreadyRegistered')} 
+            headclassname='!text-2xl !px-0'
           />
         )}
-        <div className="relative">
-          <div className={isLoading ? 'opacity-50' : 'opacity-100'}>
-            <WelcomeAlreadyRegistered
-              onSubmit={onSubmit}
-              setIsForgotPassword={() => setCurrentForm('forgotPassword')}
-            />
-          </div>
+        {currentForm === LoginConsts.AlreadyRegistered && (
+          <div className="relative">
+            <div className={isLoading ? 'opacity-50' : 'opacity-100'}>
+              <WelcomeAlreadyRegistered
+                onSubmit={onSubmit}
+                setIsForgotPassword={() => setCurrentForm('forgotPassword')}
+              />
+            </div>
 
-          {isLoading && (
-            <AppSpinner containerClassName="!h-[150px] flex justify-center items-center absolute inset-0" />
-          )}
-        </div>
+            {isLoading && (
+              <AppSpinner containerClassName="!h-[150px] flex justify-center items-center absolute inset-0" />
+            )}
+          </div>
+        )}
+       
       </div>
     </div>
   );

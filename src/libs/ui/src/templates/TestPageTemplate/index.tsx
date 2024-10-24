@@ -12,7 +12,7 @@ import LoginModal from '@ui/organisms/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { LabelButton } from '@ui/molecules/LabelButton';
-import GreetRegister from '@ui/organisms/GreetingRegister';
+
 import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
 import BannerSkeleton from '@ui/molecules/BannerSkeleton';
 import FilterSkeleton from '@ui/molecules/FilterSkeleton/index';
@@ -38,13 +38,15 @@ import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import responsePCASkin from '../../../assets/responsePCASkin.svg';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
-
+import RelatedProducts from '@ui/organisms/RelatedProducts';
+import { relatedProducts } from '@utils/test';
 import QuickViewModal from '@ui/organisms/QuickView';
 import { products } from '@utils/test';
 import { Image } from '@ui/atoms/Image';
 import { Button } from '@ui/atoms/Button';
 import { RootState } from '@store/store';
 import { useSelector } from 'react-redux';
+import GreetRegister from '@ui/organisms/GreetingRegister';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -442,7 +444,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
         {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
       </div>
-
+      <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
       <div>
         <div className="relative group">
           <Image

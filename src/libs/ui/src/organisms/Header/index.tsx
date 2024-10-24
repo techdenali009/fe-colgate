@@ -241,7 +241,7 @@ const Header: React.FC<headerProps> = ({
                           {isLoggedIn.firstName}
                         </h2>
                       </div>
-                      <hr  className='text-black'/>
+                      <hr  className='text-black mt-8'/>
                       <div className="pop_up p-4 flex gap-4">       
                        
                         <div className='text-black flex hover:text-appTheme text-[0.75rem] font-HeroNewRegular font-normal leading-5 mt-6 py-2 tracking-[0.3px] cursor-pointer' onClick={handleLogoutClick}> <Image src={`${logout_blue}`} alt={'logout'} className='mr-2'></Image>Logout</div>
