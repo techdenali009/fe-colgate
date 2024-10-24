@@ -38,6 +38,13 @@ import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import responsePCASkin from '../../../assets/responsePCASkin.svg';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
+
+import QuickViewModal from '@ui/organisms/QuickView';
+import { products } from '@utils/test';
+import { Image } from '@ui/atoms/Image';
+import { Button } from '@ui/atoms/Button';
+import { RootState } from '@store/store';
+import { useSelector } from 'react-redux';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -137,10 +144,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   };
 
   const [isModalOpen, setModalOpen] = useState(false);
-
+  const [QuickViewModalOpen,setQuickViewModalOpen]=useState(false)
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
+  const openQuickReviewModal=()=>setQuickViewModalOpen(true);
+  const closeQuickViewModal=()=>setQuickViewModalOpen(false);
 
+  const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo); 
   return (
     <>
 
@@ -431,6 +441,32 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <button onClick={openModal}>Open Review Modal</button>
 
         {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
+      </div>
+
+      <div>
+        <div className="relative group">
+          <Image
+            className=""
+            src={'https://pcaskin.vtexassets.com/arquivos/ids/156885-608-auto/4percent-retinol-peel.jpg?v=638579566473630000&width=608&height=auto&aspect=true'}
+            alt={'xyz'}
+            width={310}
+            height={'auto'}
+          />
+        
+     
+          {isLoggedIn && (
+            <div className="absolute flex inset-0 bg-[#1e293b82] invisible group-hover:visible w-[310px] justify-center items-center">
+              <Button
+                onClick={openQuickReviewModal}
+                className="w-2/3 absolute bg-appTheme text-[1rem] p-[.344rem ,.118rem] py-[0.625rem] px-[2.313rem] text-white leading-6 font-bold font-HeroNewBold hover:bg-[#555555] justify-center"
+              >
+              Quick View
+              </Button>
+            </div>
+          )}
+        </div>
+        <button onClick={openQuickReviewModal}>open Quick review Modal</button>
+        {QuickViewModalOpen && <QuickViewModal closeModal={closeQuickViewModal} product={products[0]} />}
       </div>
     </>
   );

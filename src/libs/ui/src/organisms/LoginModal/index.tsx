@@ -6,27 +6,50 @@ import LoginForm from '@ui/organisms/LoginForm';
 import ForgotPasswordForm from '@ui/molecules/ForgotPasswordModal';
 import AlreadyRegistered from '@ui/organisms/AlreadyRegisteredForm';
 import { LoginConsts } from '@utils/Login';
+import { useDispatch } from 'react-redux';
+import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
+import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
+import { useLoginMutation } from '@store/services/Endpoints/AuthApi';
+import { AppSpinner } from '@ui/atoms/AppSpinner';
 
 interface LoginModalProps {
   closeModal: () => void;
 }
+interface LoginData {
+  email?: string;
+  password?: string;
+}
 
 const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
   const [currentForm, setCurrentForm] = useState<'login' | 'forgotPassword' | 'alreadyRegistered'>('login');
+  const dispatch = useDispatch(); 
 
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  const onSubmit = (data:any) => {
-    console.log('data onSubmit', data);
+   
+  const [login, { isLoading ,isError}] = useLoginMutation();
+
+  const onSubmit = async (data: LoginData) => {
+    
+    try {
+      const result = await login(data).unwrap(); 
+      if (result.status) {
+        dispatch(userInfo(result.data.userInfo));
+        dispatch(setAuthToken(result.data.token))
+        dispatch(toggleLoginModel());
+      } else {
+        console.error('Login failed:', result);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+
+    }
   };
 
   const clearModel = () => {
-    console.log('clearModel');
-    setCurrentForm('login'); // Reset to login form on modal close
+    setCurrentForm('login'); 
   };
 
   //Reset form when modal closes
   useEffect(() => {
-    console.log('hitted');
     return () => {
       clearModel();
 
@@ -34,7 +57,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
   }, []);
 
   const modalHeightClass = currentForm === LoginConsts.ForgotPassword || currentForm === LoginConsts.AlreadyRegistered ? 'h-[420px]' : 'h-auto'; // Adjust height
-
+  
+  //Use this attribute  forshowing the  'invalid email and password' in modal
+  console.log('isError',isError);
   return (
     <Modal
       onClose={closeModal}
@@ -46,24 +71,32 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
         <p></p>
       </ModalHeader>
       <ModalBody title="">
-        {currentForm === LoginConsts.Login && (
-          <LoginForm 
-            onSubmit={onSubmit} 
-            setIsForgotPassword={() => setCurrentForm('forgotPassword')} // Open Forgot Password form
-          />
-        )}
-        {currentForm === LoginConsts.ForgotPassword && (
-          <ForgotPasswordForm 
-            onSubmit={onSubmit} 
-            setIsForgotPassword={() => setCurrentForm('alreadyRegistered')} // Go to Already Registered form
-          />
-        )}
-        {currentForm === LoginConsts.AlreadyRegistered && (
-          <AlreadyRegistered 
-            onSubmit={onSubmit} 
-            setIsForgotPassword={() => setCurrentForm('forgotPassword')} // Go back to Login form
-          />
-        )}
+        <div className="relative">
+          <div className={isLoading ? 'opacity-50' : 'opacity-100'}>
+            {currentForm === LoginConsts.Login && (
+              <LoginForm 
+                onSubmit={onSubmit} 
+                setIsForgotPassword={() => setCurrentForm('forgotPassword')}
+              />
+            )}
+            {currentForm === LoginConsts.ForgotPassword && (
+              <ForgotPasswordForm 
+                onSubmit={onSubmit} 
+                setIsForgotPassword={() => setCurrentForm('alreadyRegistered')}
+              />
+            )}
+            {currentForm === LoginConsts.AlreadyRegistered && (
+              <AlreadyRegistered 
+                onSubmit={onSubmit} 
+                setIsForgotPassword={() => setCurrentForm('forgotPassword')}
+              />
+            )}
+          </div>
+
+          {isLoading && (
+            <AppSpinner containerClassName="!h-[350px] flex justify-center items-center absolute inset-0" />
+          )}
+        </div>
       </ModalBody>
     </Modal>
   );

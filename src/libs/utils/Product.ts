@@ -4,12 +4,14 @@ export interface ProductType {
     image: string;
     rating: number;
     isBestSeller: boolean;
+    discription: string;
   }
   
 
 export interface ProductProps {
     product: ProductType;
     modalSetToggle: () => void;
+    openQuickView: (id: number) => void;
    }
 
 export interface PopularProductsProps {
