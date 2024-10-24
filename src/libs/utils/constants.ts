@@ -9,7 +9,7 @@ export const ABOUT='About'
 export const CUSTOMER_SERVICE='Customer Service'
 export const OTHERLINKS='OtherLinks'
 export const CREATEACCOUNT='Create Account'
-export const LOGIN='Login'
+export const LOGIN='Log in'
 export const FORGOTPASSWORD='Forgot your password?'
 export const AppAssets='src/libs/ui/assets'
 

@@ -1,19 +1,26 @@
+
 import { Button } from '@ui/atoms/Button';
-
-
 import { ProductImage } from '@ui/atoms/ProductImage';
 import StarRating from '@ui/atoms/StarRating';
 import BestSellerBadge from '@ui/molecules/BestSeller';
+import QuickViewButton from '@ui/molecules/QuickViewButton';
 import { ProductProps } from '@utils/Product';
 
-function Product({ product ,modalSetToggle}: ProductProps) {
-  const { image, name, isBestSeller, rating } = product;
 
+function Product({ product ,modalSetToggle,className, openQuickView,showQuickView }: ProductProps) {
+  
+  const { image, name, isBestSeller, rating ,id} = product;
+
+
+ 
   return (
    
-    <div className=" group relative p-2">
+    <div className={'group relative p-2 '}>
       <div>
-        <ProductImage src={image} alt={name}></ProductImage>
+        <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
+        {showQuickView && (
+          <QuickViewButton onClick={() => openQuickView(id)}></QuickViewButton>
+        )}
         {isBestSeller && (
           <BestSellerBadge
             className={
@@ -37,17 +44,18 @@ function Product({ product ,modalSetToggle}: ProductProps) {
       </div>
       <div className="flex pt-3 justify-center">
         <Button
-          className="py-[0.625rem] px-6
+          className={`py-[0.625rem] px-6
           w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
           group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
-          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white   
-        "
+          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white ${className}
+        `}
           type={'submit'}
           onClick={modalSetToggle}
         >
           {' Log In to Order'}
         </Button>
       </div>
+      
     </div>
   );
 }

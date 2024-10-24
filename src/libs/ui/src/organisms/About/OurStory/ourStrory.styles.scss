@@ -1,0 +1,9 @@
+.heading{
+    @apply font-HeroNewBold font-bold !text-[12pt]
+}
+.paragraph{
+    @apply   font-HeroNewLight !text-[10pt] !mb-0 !tracking-normal leading-6
+}
+.strong{
+    @apply text-[10pt] font-bold
+}

@@ -109,7 +109,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
               </span>
             </Button>
           </div>
-        </div>
+        </div> 
       </form>
     </div>
   );

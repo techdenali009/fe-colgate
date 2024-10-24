@@ -29,17 +29,17 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 
   return (
     <>
-      <div className={`mb-8 ${className}`}>
+      <div className={`mb-[26px] ${className}`}>
         <p className={`text-[32px] font-HeroNewRegular text-black ${headclassname}`}>
           Forgot Your Password?
         </p>
       </div>
-      <Paragraph className={`font-HeroNewRegular  font-normal text-black ${className}`}>
+      <Paragraph className={'font-HeroNewRegular  font-normal text-black '}>
         Recover your password. Please enter your email address below to receive a password reset link.
       </Paragraph>
-      <Paragraph className={`font-HeroNewRegular font-normal text-black ${className}`}> Allow for 15 mins, and check spam/junk folders before trying again.</Paragraph>
+      <Paragraph className={'font-HeroNewRegular font-normal text-black'}> Allow for 15 mins, and check spam/junk folders before trying again.</Paragraph>
 
-      <form onSubmit={handleSubmit(onSubmit)} className={`flex flex-col space-y-1 ${className}`}>
+      <form onSubmit={handleSubmit(onSubmit)} className={'flex flex-col space-y-1'}>
         <div className='flex text-xs font-heroNewLight'>
           <Label className="mt-2 text-xs font-HeroNewRegular">Email</Label>
           <Label className="mt-2 ml-0 text-s font-HeroNewRegular text-red-600"> *</Label>
@@ -65,7 +65,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
         <div className="flex justify-end items-center">
           <Button
             onClick={() => setIsForgotPassword(false)} // Go to Already Registered form
-            className="bg-none text-[14px] text-blue-600"
+            className="bg-none text-[14px] text-appTheme"
             type='submit'
           >
             <span className='text-!sm mr-4 font-HeroNewRegular hover:font-semibold'>
