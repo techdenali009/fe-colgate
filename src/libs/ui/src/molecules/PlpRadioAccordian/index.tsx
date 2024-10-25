@@ -8,6 +8,7 @@ interface RadioAccordionProps {
   onOptionChange: (option: string) => void;
   ulClassName?: string;
   liClassName?: string;
+  className?:string;
 
 }
 
@@ -18,12 +19,14 @@ const RadioAccordion: React.FC<RadioAccordionProps> = ({
   onOptionChange,
   ulClassName,
   liClassName,
+  className
 }) => (
   <AccordionItem
     title={title}
-    titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal lg:pr-0 lg:pl-0 leading-7"
-    contentClassName="bg-white "
-    containerClassName="border-b"
+    titleClassName={`text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal lg:pr-0 lg:pl-0 leading-7 ${className}`}
+    contentClassName="bg-white text-left"
+    containerClassName={`border-b ${className}`}
+    svgIconColor='blue'
   >
     <ul className={`space-y-1 ${ulClassName}`}>
       {options.map((option, index) => (

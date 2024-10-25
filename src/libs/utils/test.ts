@@ -115,7 +115,7 @@ export const viewAllProducts = [
     image: 'https://pcaskin.vtexassets.com/arquivos/ids/156785-1296-auto/CE-max.jpg?v=638578860503430000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
-    category: 'Antioxidants', // Add category here
+    category: 'Antioxidents', // Add category here
     price: 5000.00
   },
  
@@ -125,7 +125,7 @@ export const viewAllProducts = [
     image: 'https://pcaskin.vtexassets.com/arquivos/ids/156798-1296-auto/daily-defense-spf.jpg?v=638578876745900000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
-    category: 'Broad-spectrum-SPF', // Add category here
+    category: 'Broad+Spectrum', // Add category here
     price: 2000.00
   },
   {
@@ -154,7 +154,7 @@ export const viewAllProducts = [
     image: 'https://pcaskin.vtexassets.com/arquivos/ids/156740-1296-auto/HyaluronicAcidLipBooster-21191-NL-thumbnail-pro.jpg?v=638578737564870000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
-    category: 'Eye,-neck,-lip', // Add category here
+    category: 'Eye, neck, lip', // Add category here
     price: 2000.00
 
   },

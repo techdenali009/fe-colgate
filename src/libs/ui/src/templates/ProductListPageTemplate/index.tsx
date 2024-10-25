@@ -10,13 +10,13 @@ import { useProductContext } from '../../contexts/PlpContext';
 import { useDispatch } from 'react-redux';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { plpConstant } from '@utils/plpFilterData';
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  
-  // Define sorting options as constants
+  // Define sorting options as constants (you can also create this in a separate file)
   const SortOptions = {
     ALPHABETICAL_AZ: 'Alphabetical A - Z',
     ALPHABETICAL_ZA: 'Alphabetical Z - A',
@@ -34,38 +34,44 @@ const PlpPageTemplate: React.FC = () => {
 
   const [productsToShow, setProductsToShow] = useState<number>(9);
   const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical A - Z');
-  const [isBestSeller, setIsBestSellerState] = useState<boolean>(false);
+  const [isBestSeller, setIsBestSellerState] = useState<boolean>(false); // Add state for isBestSeller
   const [enableBestSeller, setEnableBestSeller] = useState<boolean>(false);
-
   // Update URL params when a category is selected
   const handleCategorySelect = (category: string | null) => {
     const newCategory = category ?? 'all products';
 
-    if (newCategory === 'best seller') {
+
+    if (newCategory ===  plpConstant.bestSeller) {
       setIsBestSellerState(true);
-      setFilters([]); // Clear filters
+      setFilters([]);
       navigate('products?category=best-seller');
-      setSelectedProductCategory(newCategory);
+      setSelectedProductCategory(newCategory); // Set the selected category
       return;
     }
 
-    if (newCategory === 'All Products' || newCategory === 'View All') {
-      setIsBestSellerState(false);
-      const allCategories = ['antioxidants', 'broad spectrum SPF', 'Cleansers & toners', 'solution sets', 'eye, neck, lip', 'masks', 'moisturizers', 'retinols', 'serums'];
+    // If "All Products" is selected, display all category badges
+    if (newCategory === plpConstant.AllProducts || newCategory === plpConstant.viewAll) {
+      setIsBestSellerState(true); // Ensure we are not in best-seller mode
+      const allCategories = ['Antioxidants', 'Broad spectrum SPF', 'Cleansers & toners', 'Solution sets', 'Eye, neck, lip', 'Masks', 'Moisturizers', 'Retinols', 'Serums'
+      ];
       setFilters(allCategories);
+
+      // Update the URL to reflect "All Products"
       const searchParams = new URLSearchParams(location.search);
       searchParams.delete('category');
       navigate({ search: searchParams.toString() });
-      setSelectedProductCategory(newCategory);
+      setSelectedProductCategory(newCategory); // Set the selected category
       return;
     }
 
     const searchParams = new URLSearchParams(location.search);
+
+    // Only update the category in the URL if it's different from the currently selected one
     if (newCategory !== 'all products') {
       searchParams.set('category', newCategory);
-      setFilters([...filters, newCategory]); // Add to filters
     }
     navigate({ search: searchParams.toString() });
+
   };
 
   const loadMoreProducts = () => setProductsToShow(prev => prev + 9);
@@ -73,28 +79,32 @@ const PlpPageTemplate: React.FC = () => {
   const breadcrumbs = useMemo(() => [
     { label: 'Home', href: '/' },
     { label: 'All Products', href: '/products' },
-    ...(selectedProductCategory && selectedProductCategory !== 'All Products' ? [{ label: selectedProductCategory, href: '#' }] : []),
+    ...(selectedProductCategory && selectedProductCategory !== plpConstant.AllProducts ? [{ label: selectedProductCategory, href: '#' }] : []),
   ], [selectedProductCategory]);
 
   const handleSortChange = (option: string) => {
     setSelectedSortOption(option);
+
+    // Update the URL with the selected sort option
     const searchParams = new URLSearchParams(location.search);
     searchParams.set('sort', option);
     navigate({ search: searchParams.toString() });
   };
 
+
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any 
   const sortProducts = (products: any[]) => {
     switch (selectedSortOption) {
-      case SortOptions.ALPHABETICAL_AZ:
-        return products.sort((a, b) => a.name.localeCompare(b.name));
-      case SortOptions.ALPHABETICAL_ZA:
-        return products.sort((a, b) => b.name.localeCompare(a.name));
-      case SortOptions.PRICE_LOW_HIGH:
-        return products.sort((a, b) => a.price - b.price);
-      case SortOptions.PRICE_HIGH_LOW:
-        return products.sort((a, b) => b.price - a.price);
-      default:
-        return products;
+    case SortOptions.ALPHABETICAL_AZ:
+      return products.sort((a, b) => a.name.localeCompare(b.name));
+    case SortOptions.ALPHABETICAL_ZA:
+      return products.sort((a, b) => b.name.localeCompare(a.name));
+    case SortOptions.PRICE_LOW_HIGH:
+      return products.sort((a, b) => a.price - b.price);
+    case SortOptions.PRICE_HIGH_LOW:
+      return products.sort((a, b) => b.price - a.price);
+    default:
+      return products;
     }
   };
 
@@ -106,14 +116,16 @@ const PlpPageTemplate: React.FC = () => {
     const categoryFromUrl = searchParams.get('category');
     const sortFromUrl = searchParams.get('sort');
 
-    if (categoryFromUrl === 'Best-Seller' || categoryFromUrl === 'View-All') {
+    // Check for Best Seller in URL
+    if (categoryFromUrl === plpConstant.bestSeller || categoryFromUrl === plpConstant.viewAll) {
       setEnableBestSeller(true);
-      setSelectedProductCategory('All Products');
-      setIsBestSellerState(true);
+      setSelectedProductCategory(plpConstant.AllProducts); // Set state to show all products
+      setIsBestSellerState(true); // Indicate best seller state
       setFilters([]); // Clear filters to display all products
     } else if (categoryFromUrl) {
       setSelectedProductCategory(categoryFromUrl);
       setFilters([categoryFromUrl]);
+      setEnableBestSeller(false);
     }
 
     if (sortFromUrl) {
@@ -139,7 +151,7 @@ const PlpPageTemplate: React.FC = () => {
         </div>
         <div>
           <div className='relative flex items-baseline justify-between'>
-            <FilterContainer
+            <FilterContainer 
               filters={filters}
               onRemoveFilter={(filterToRemove) => setFilters(filters.filter((filter: string) => filter !== filterToRemove))}
               onClearAll={() => setFilters([])}
@@ -156,16 +168,19 @@ const PlpPageTemplate: React.FC = () => {
                   ]}
                   onSelect={handleSortChange}
                 />
+
               </div>
             </div>
           </div>
 
           <div className="productcard tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 tl:grid-cols-3 gap-[23px]">
             {isBestSeller ? (
+              // Show all products if best seller
               sortedProducts.map((product) => (
                 <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} />
               ))
             ) : (
+              // Show only filtered products otherwise
               sortedProducts.slice(0, productsToShow).map((product) => (
                 <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} />
               ))
@@ -194,3 +209,4 @@ const PlpPageTemplate: React.FC = () => {
 };
 
 export default PlpPageTemplate;
+

@@ -3,6 +3,7 @@ import LabelAccordion from '../PlpLabelAccordian';
 import CheckboxAccordion from '../PlpCheckBoxAccordian';
 import RadioAccordion from '../PlpRadioAccordian';
 import Modal from '../PlpSortModal';
+import { plpFilters, AccordionType } from '@utils/plpFilterData';
 
 interface FilterData {
   productCategory: string[];
@@ -14,57 +15,49 @@ interface FilterData {
 
 interface SidebarProps {
   filterData: FilterData;
-  className?: string; // Classname for outer div
-  ulClassName?: string; // Classname for <ul>
-  liClassName?: string; // Classname for <li>
-  onBestSellerChange: (checked: boolean) => void; // New prop for best seller filter
-  onCategorySelect: (category: string | null) => void; // Update type to allow null
+  className?: string;
+  ulClassName?: string;
+  liClassName?: string;
+  onBestSellerChange: (checked: boolean) => void;
+  onCategorySelect: (category: string | null) => void;
   onSortChange: (sortOption: string) => void;
-  enableBestSeller: boolean; // Prop for sort change
+  enableBestSeller: boolean;
 }
 
 const PlpAccordians: React.FC<SidebarProps> = ({
-  filterData,
   className,
   ulClassName,
   liClassName,
   onBestSellerChange,
   onCategorySelect,
   onSortChange,
-  enableBestSeller
+  enableBestSeller,
 }) => {
-  
-
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedProductCategory, setSelectedProductCategory] = useState<string | null>(null);
   const [checkedFilters, setCheckedFilters] = useState<{ [key: string]: boolean }>({});
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-  const [selectedSort, setSelectedSort] = useState<string>(''); // State for sort option
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // State for modal visibility
- const sortOptions = ['Price: Low to High', 'Price: High to Low', 'New Arrivals'];
+  const [selectedSort, setSelectedSort] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
- // Define checkbox accordions
- const checkboxAccordions = [
-   { title: 'Product Types', options: filterData.productTypes },
-   { title: 'Skin Concern', options: filterData.skinConcern },
-   { title: 'Skin Type', options: filterData.skinType },
- ];
-  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 1020);
+    };
 
-  // Toggle category visibility
-  const toggleShowCategories = () => {
-    setShowAllCategories(!showAllCategories);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handleSortChange = (sortOption: string) => {
+    setSelectedSort(sortOption);
+    onSortChange(sortOption);
   };
 
-  // Handle product category click
-  const handleProductCategoryClick = (category: string) => {
-    console.log('category', category);
-    const isSelected = category === selectedProductCategory;
-    setSelectedProductCategory(isSelected ? null : category);
-    onCategorySelect(isSelected ? null : category);
-  };
-
-  // Handle checkbox changes
   const handleCheckboxChange = (option: string) => {
     setCheckedFilters((prev) => ({
       ...prev,
@@ -76,150 +69,106 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     }
   };
 
-  // Handle sort option change
-  const handleSortChange = (sortOption: string) => {
-    setSelectedSort(sortOption);
-    onSortChange(sortOption);
+  const handleProductCategoryClick = (category: string) => {
+    const isSelected = category === selectedProductCategory;
+    setSelectedProductCategory(isSelected ? null : category);
+    onCategorySelect(isSelected ? null : category);
   };
 
- 
-// Responsive check for small screens
-useEffect(() => {
-  const handleResize = () => {
-    setIsSmallScreen(window.innerWidth <= 1020);
+  const toggleShowCategories = () => {
+    setShowAllCategories(!showAllCategories);
   };
 
-  window.addEventListener('resize', handleResize);
-  handleResize(); // Initial check
+  // Filter to show "Best Seller" only when `enableBestSeller` is true
+  const displayFilters = enableBestSeller
+    ? plpFilters
+    : plpFilters.filter((filter) => filter.title !== 'Best Seller');
 
-  return () => {
-    window.removeEventListener('resize', handleResize);
-  };
-
-}, []);
   return (
-    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} bg-white rounded-lg text-center tm:border-2 tm-border-blue-500 height-[37px] tracking-[.3px] font-bold ${className}`}>
-      {/* Filter & Sort Button (only for small screens) */}
+    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center bg-white rounded-lg ${className}`}>
       {isSmallScreen && (
         <button
-          onClick={() => setIsModalOpen(true)} // Open modal on click
-          className="text-blue-600 tm:leading-2 tex-left tm:p-0 p-4 font-HeroNewBold font-bold"
+          onClick={() => setIsModalOpen(true)}
+          className="text-blue-600 font-bold"
         >
           Show Filters & Sort
         </button>
       )}
 
-      {/* Modal for Filter & Sort (only for small screens) */}
       {isSmallScreen ? (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)} // Close modal
-          title="Filter & Sort"
-        >
-          {/* Product Category Accordion */}
-          <LabelAccordion
-            title="Product Category"
-            items={showAllCategories ? filterData.productCategory : filterData.productCategory.slice(0, 5)}
-            selectedItem={selectedProductCategory}
-            onItemClick={handleProductCategoryClick}
-            ulClassName={ulClassName}
-            liClassName={liClassName}
-          >
-            <button onClick={toggleShowCategories} className="text-blue-600 mt-2">
-              {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
-            </button>
-          </LabelAccordion>
-
-          {/* Show Best Seller Accordion if enabled */}
-          {enableBestSeller && (
-            <CheckboxAccordion
-              title="Best Seller"
-              options={['Best Seller']} // Assuming this should show specific options related to Best Seller
-              checkedFilters={checkedFilters}
-              onCheckboxChange={handleCheckboxChange}
-              ulClassName={ulClassName}
-              liClassName={liClassName}
-            />
-          )}
-
-          {/* Render Checkboxes using the checkboxAccordions array */}
-          {checkboxAccordions.map((accordion, index) => (
-            <CheckboxAccordion
-              key={index}
-              title={accordion.title}
-              options={accordion.options}
-              checkedFilters={checkedFilters}
-              onCheckboxChange={handleCheckboxChange}
-              ulClassName={ulClassName}
-              liClassName={liClassName}
-            />
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Filter & Sort">
+          {displayFilters.map((filter, index) => (
+            <div key={index}>
+              {filter.AccordionType === AccordionType.Radio && (
+                <RadioAccordion
+                  title={filter.title}
+                  options={filter.options.map(option => option.title)}
+                  selectedOption={selectedSort}
+                  onOptionChange={handleSortChange}
+                  ulClassName={ulClassName}
+                  liClassName={liClassName}
+                  className=''
+                />
+              )}
+              {filter.AccordionType === AccordionType.Label && (
+                <LabelAccordion
+                  title={filter.title}
+                  selectedItem={selectedProductCategory}
+                  onItemClick={handleProductCategoryClick}
+                  ulClassName={ulClassName}
+                  liClassName={liClassName}
+                  items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
+                >
+                  <button onClick={toggleShowCategories} className="text-blue-600 mt-2">
+                    {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
+                  </button>
+                </LabelAccordion>
+              )}
+              
+              {filter.AccordionType === AccordionType.Checkbox && (
+                <CheckboxAccordion
+                  title={filter.title}
+                  options={filter.options.map(option => option.title)}
+                  checkedFilters={checkedFilters}
+                  onCheckboxChange={handleCheckboxChange}
+                  ulClassName={ulClassName}
+                  liClassName={liClassName}
+                />
+              )}
+            </div>
           ))}
-
-          {/* Sort Options */}
-          <div className='tl:hidden'>
-            <RadioAccordion
-              title="Sort By"
-              options={sortOptions}
-              selectedOption={selectedSort}
-              onOptionChange={handleSortChange}
-              ulClassName={ulClassName}
-              liClassName={liClassName}
-            />
-          </div>
         </Modal>
       ) : (
         <div>
-          {/* Desktop View - Filter Options */}
-          {/* Product Category Accordion */}
-          <LabelAccordion
-            title="Product Category"
-            items={showAllCategories ? filterData.productCategory : filterData.productCategory.slice(0, 5)}
-            selectedItem={selectedProductCategory}
-            onItemClick={handleProductCategoryClick}
-            ulClassName={ulClassName}
-            liClassName={liClassName}
-          >
-            <button onClick={toggleShowCategories} className="text-blue-600 mt-2 ">
-              {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
-            </button>
-          </LabelAccordion>
+          {displayFilters.map((filter, index) => (
+            <div key={index}>
+              {filter.AccordionType === AccordionType.Label && (
+                <LabelAccordion
+                  title={filter.title}
+                  selectedItem={selectedProductCategory}
+                  onItemClick={handleProductCategoryClick}
+                  ulClassName={ulClassName}
+                  liClassName={liClassName}
+                  items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
+                >
+                  <button onClick={toggleShowCategories} className="text-blue-600 mt-2">
+                    {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
+                  </button>
+                </LabelAccordion>
+              )}
 
-          {/* Show Best Seller Accordion if enabled */}
-          {enableBestSeller && (
-            <CheckboxAccordion
-              title="Best Seller"
-              options={['Best Seller']} // Assuming this should show specific options related to Best Seller
-              checkedFilters={checkedFilters}
-              onCheckboxChange={handleCheckboxChange}
-              ulClassName={ulClassName}
-              liClassName={liClassName}
-            />
-          )}
-
-          {/* Render Checkboxes using the checkboxAccordions array */}
-          {checkboxAccordions.map((accordion, index) => (
-            <CheckboxAccordion
-              key={index}
-              title={accordion.title}
-              options={accordion.options}
-              checkedFilters={checkedFilters}
-              onCheckboxChange={handleCheckboxChange}
-              ulClassName={ulClassName}
-              liClassName={liClassName}
-            />
+              {filter.AccordionType === AccordionType.Checkbox && (
+                <CheckboxAccordion
+                  title={filter.title}
+                  options={filter.options.map(option => option.title)}
+                  checkedFilters={checkedFilters}
+                  onCheckboxChange={handleCheckboxChange}
+                  ulClassName={ulClassName}
+                  liClassName={liClassName}
+                />
+              )}
+            </div>
           ))}
-
-          {/* Sort Options */}
-          <div className='lg:hidden'>
-            <RadioAccordion
-              title="Sort By"
-              options={sortOptions}
-              selectedOption={selectedSort}
-              onOptionChange={handleSortChange}
-              ulClassName={ulClassName}
-              liClassName={liClassName}
-            />
-          </div>
         </div>
       )}
     </div>

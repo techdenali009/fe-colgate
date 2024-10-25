@@ -171,8 +171,8 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
         }
         else {
           navigate(`products?category=${selectedLink.category}`);
-          
-         
+
+
         }
       } else {
         // Default case for other navigation options
