@@ -177,12 +177,12 @@ const PlpPageTemplate: React.FC = () => {
             {isBestSeller ? (
               // Show all products if best seller
               sortedProducts.map((product) => (
-                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} />
+                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false}/>
               ))
             ) : (
               // Show only filtered products otherwise
               sortedProducts.slice(0, productsToShow).map((product) => (
-                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} />
+                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false}/>
               ))
             )}
           </div>

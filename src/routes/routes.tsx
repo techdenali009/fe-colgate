@@ -2,7 +2,6 @@
 import FrequentlyAskedQuestionsPage from '@pages/FrequentlyAskedQuestionsPage';
 import RegisterPage from '@pages/RegisterPage';
 import ShippingTermsPage from '@pages/ShippingTerms';
-import { AppSpinner } from '@ui/atoms/AppSpinner';
 import PlpPage from '@pages/ProductListPage';
 import { LandingPageSkeleton } from '@ui/templates/LandingPageSkeleton';
 
