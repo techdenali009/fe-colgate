@@ -5,6 +5,7 @@ export interface ProductType {
     rating: number;
     isBestSeller: boolean;
     price?: number; 
+    discription?: string;
   }
   
 
@@ -12,6 +13,8 @@ export interface ProductProps {
     product: ProductType;
     modalSetToggle: () => void;
     className?:string;
+    openQuickView: (id: number) => void;
+    showQuickView :boolean;
    }
 
 export interface RelatedProductsProps{
