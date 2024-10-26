@@ -14,7 +14,7 @@ interface FormValues {
     value: number;
 }
 
-const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void }> = ({ onSubmit }) => {
+const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "completed" | "skipped" | "In progress" } > = ({ onSubmit,status }) => {
     const dispatch: AppDispatch = useDispatch();
     const { control, handleSubmit } = useForm<FormValues>({
         defaultValues: {
@@ -61,7 +61,7 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void }> = ({ onS
                     <div className="ml-4">
                         <h3 className="">Personal/Product Information</h3>
                         <p className="">(Optional)</p>
-                        <StatusBadge Children={'skipped'} />
+                        <StatusBadge Children={status} />
                     </div>
                 </div>
                 <div className="flex items-center">

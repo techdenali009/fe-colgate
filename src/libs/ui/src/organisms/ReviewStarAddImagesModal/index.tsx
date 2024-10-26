@@ -7,7 +7,12 @@ import { AppDispatch } from '../../../../../store/store';
 import { FaCheckCircle } from "react-icons/fa";
 import PhotoGuideLines from "../PhotoGuideLinesModal";
 
-const ReviewStarAddImages: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
+interface ReviewStarAddImagesProps {
+    onSubmit: () => void;
+    updateStatus: (status: "completed" | "skipped" | "In progress") => void;
+  }
+
+const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit, updateStatus }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [images, setImages] = useState<File[]>([]);
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
@@ -40,11 +45,13 @@ const ReviewStarAddImages: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) =
             setErrorMessage('Unable to submit the form. Please upload at least one image.'); // Set error message
         } else {
             setErrorMessage(''); // Clear error message if submission is valid
+            updateStatus('completed');
             onSubmit(); // Call the onSubmit prop
         }
     };
 
     const handleSkip = () => {
+        updateStatus('skipped');
         setErrorMessage(''); // Clear error message when skipping
         onSubmit(); // Call the onSubmit prop
     };

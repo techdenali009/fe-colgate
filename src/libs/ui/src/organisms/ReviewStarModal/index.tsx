@@ -13,14 +13,30 @@ interface ReviewBarModalProps {
 }
 
 const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
-  const [currentStep, setCurrentStep] = useState(0); 
+  const [currentStep, setCurrentStep] = useState(0);
+  const [status, setStatus] = useState<"completed" | "skipped" | "In progress">("In progress"); // Set initial status
+  
+
+  const updateStatus = (newStatus: "completed" | "skipped" | "In progress") => {
+    setStatus(newStatus); // Only allow specific values
+  };
 
   const steps = [
-    <ReviewStarSubmit onSubmit={() => setCurrentStep(1)} />, 
-    <ReviewStarAddImages  onSubmit={() => setCurrentStep(2)} />, 
-    <ReviewStarPersonalInfo onSubmit={() => setCurrentStep(3)} />, 
-    <ReviewStarProductRating onSubmit={closeModal} />,
+    <ReviewStarSubmit onSubmit={() => setCurrentStep(1)} />,
+    <ReviewStarAddImages
+      onSubmit={() => setCurrentStep(2)}
+      updateStatus={updateStatus}
+    />,
+    <ReviewStarPersonalInfo
+      onSubmit={() => setCurrentStep(3)}
+      status={status} // Change Children to status
+      updateStatus={updateStatus}
+    />,
+    <ReviewStarProductRating
+     onSubmit={closeModal}
+     status={status} />,
   ];
+
 
   return (
     <Modal onClose={closeModal} className="bg-white rounded-lg shadow-lg relative h-full lg:!w-[780px] !p-0">
@@ -34,8 +50,8 @@ const ReviewBarModal: React.FC<ReviewBarModalProps> = ({ closeModal }) => {
           <Image src={CloseModal} alt="Close modal" className="w-6 h-6" />
         </button>
         <div className="flex items-center border-b border-gray-400 w-full ">
-          <div className={`border-2 border-gray-300 px-3 pb-10 mr-1 flex items-start pt-2`}>
-            <Image src={responseProfile} alt="" className="mr-3 w-10 h-10" />
+          <div className="border-2 border-gray-300 px-3 pb-10 mr-1 flex items-start pt-2">
+            <Image src={responseProfile} alt="User Profile" className="mr-3 w-10 h-10" />
           </div>
           <h1 className="text-lg font-bold text-black font-sans">My Review</h1>
         </div>

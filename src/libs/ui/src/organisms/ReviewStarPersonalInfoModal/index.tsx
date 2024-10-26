@@ -7,6 +7,8 @@ import { AppDispatch } from '../../../../../store/store';
 
 type ReviewFormProps = {
   onSubmit: (data: ReviewData) => void;
+  updateStatus: (status: "completed" | "skipped" | "In progress") => void;
+  status: "completed" | "skipped" | "In progress";
 };
 
 type ReviewData = {
@@ -17,7 +19,7 @@ type ReviewData = {
   location: string;
 };
 
-const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
+const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit,status,updateStatus }) => {
   const [reviewText, setReviewText] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [readReviews, setReadReviews] = useState<boolean | null>(null);
@@ -26,15 +28,13 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   const [errorMessage, setErrorMessage] = useState<string>(""); // State for error message
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
+    updateStatus('completed');
     // Validate location
     if (!location) {
       setErrorMessage("Unable to submit the form. Please fill at least one optional field above."); // Set error message if location is empty
       return; // Prevent submission if location is not filled
     }
-
     const data: ReviewData = { reviewText, image, readReviews: readReviews || false, ageGroup, location };
     onSubmit(data);
     dispatch(setPersonalInfoData({ 
@@ -54,6 +54,8 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
     setLocation("");
     setErrorMessage(""); // Clear any error message when skipping
     onSubmit({ reviewText: "", image: null, readReviews: false, ageGroup: "", location: "" }); // Skip action
+    updateStatus('skipped');
+
   };
 
   return (
@@ -67,7 +69,7 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
       <div title="Your Review" className=" mb-4">
         <p className="text-black text-base border-b border-gray-300 m-0 p-[10px_30px]">
           Add Images (optional)
-          <StatusBadge Children={'completed'} />
+          <StatusBadge Children={status} />
         </p>
         <div className="pl-96"></div>
       </div>
@@ -92,7 +94,6 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
           </button>
         </div>
       </div>
-
       {/* Age group */}
       <div className="mb-4">
         <label className="text-lg font-bold text-black">How old are you?</label>
@@ -125,8 +126,9 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
 
       <div className="flex justify-between">
         <PrimaryButton
-          type="submit"
+          type="button"
           className="px-6 py-2 font-bold bg-blue-600 text-white hover:bg-blue-700 transition w-48 h-12"
+          onClick={handleSubmit}
         >
           Submit
         </PrimaryButton>
