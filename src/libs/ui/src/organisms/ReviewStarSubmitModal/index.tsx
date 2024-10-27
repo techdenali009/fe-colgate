@@ -6,7 +6,7 @@ import { InputField } from '@ui/molecules/FormField';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import StatusBadge from '@ui/molecules/StatusBadges';
 import { useDispatch } from 'react-redux';
-import { setReviewData } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { setReviewData,setReviewStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
 import { AppDispatch } from '../../../../../store/store';
 import ReviewGuideLines from '../ReviewGuideLinesModal';
 
@@ -39,9 +39,11 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
 
     const handleFormSubmit = (data: any) => {
         dispatch(setReviewData(data));
+        dispatch(setReviewStatus('completed'));
         onSubmit(data);
     };
 
+    const [badgeStatus] = useState('In progress');
     const [isModalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
@@ -58,7 +60,7 @@ const ReviewStarSubmit: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                 </div>
                 <h2 className="text-base text-black">Your reviews</h2>
                 <div className="pl-96">
-                    <StatusBadge Children={'In progress'} />
+                    <StatusBadge>{badgeStatus}</StatusBadge>
                 </div>
             </div>
 

@@ -14,6 +14,10 @@ interface ReviewState {
   quantity: number;
   value: number;
   scent: number;
+  badgeStatus: 'In progress' | 'completed' | 'skipped'; 
+  addImagebadgeStatus : 'In progress' | 'completed' | 'skipped'; 
+  personalInfobadgeStatus: 'In progress' | 'completed' | 'skipped';
+  personalProductStatus: 'In progress' | 'completed' | 'skipped';
 }
 
 const initialState: ReviewState = {
@@ -29,11 +33,15 @@ const initialState: ReviewState = {
   location: '',
   quantity: 0,
   value: 0,
-  scent: 0,  
+  scent: 0,
+  badgeStatus: 'In progress',
+  addImagebadgeStatus : 'In progress',
+  personalInfobadgeStatus: 'In progress',
+  personalProductStatus: 'In progress'
 };
 
 const reviewSlice = createSlice({
-  name: 'review',
+  name: 'reviewFormModal',
   initialState,
   reducers: {
     setReviewData(state, action: PayloadAction<ReviewState>) {
@@ -54,11 +62,23 @@ const reviewSlice = createSlice({
       state.value = value;
       state.scent = scent;
     },
+    setReviewStatus(state, action: PayloadAction<'In progress' | 'completed' | 'skipped'>) { // Add this reducer
+      state.badgeStatus = action.payload;
+    },
+    setReviewAddImagesStatus(state, action: PayloadAction<'In progress' | 'completed' | 'skipped'>){
+      state.addImagebadgeStatus = action.payload;
+    },
+    setReviewPersonalInfoStatus(state, action: PayloadAction<'In progress' | 'completed' | 'skipped'>){
+      state.personalInfobadgeStatus = action.payload;
+    },
+    setReviewProductRatingStatus(state, action: PayloadAction<'In progress' | 'completed' | 'skipped'>){
+      state.personalProductStatus = action.payload;
+    },
     resetReviewData() {
       return initialState;
     },
   },
 });
 
-export const { setReviewData, resetReviewData, setModalImages, setPersonalInfoData, setRatingData } = reviewSlice.actions;
+export const { setReviewData, resetReviewData, setModalImages, setPersonalInfoData, setRatingData, setReviewStatus,setReviewAddImagesStatus,setReviewPersonalInfoStatus,setReviewProductRatingStatus } = reviewSlice.actions;
 export default reviewSlice.reducer;

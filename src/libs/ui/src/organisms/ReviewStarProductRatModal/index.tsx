@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import StatusBadge from '@ui/molecules/StatusBadges';
 import { Controller, useForm } from "react-hook-form";
 import StarRating from "@ui/molecules/HoveringRatingStar";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
-import { useDispatch } from 'react-redux';
-import { setRatingData } from '../../../../../store/services/Slices/ReviewFormModalSlice';
-import { AppDispatch } from '../../../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRatingData,setReviewProductRatingStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { AppDispatch, RootState } from '../../../../../store/store';
 import { FaCheckCircle } from "react-icons/fa";
 
 interface FormValues {
@@ -14,7 +14,7 @@ interface FormValues {
     value: number;
 }
 
-const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "completed" | "skipped" | "In progress" } > = ({ onSubmit,status }) => {
+const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void } > = ({ onSubmit }) => {
     const dispatch: AppDispatch = useDispatch();
     const { control, handleSubmit } = useForm<FormValues>({
         defaultValues: {
@@ -28,7 +28,18 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "co
     const handleFormSubmit = (data: FormValues) => {
         dispatch(setRatingData(data));
         onSubmit(data);
+        dispatch(setReviewProductRatingStatus('completed'));
     };
+    const handleFormSkip = (data: FormValues) => {
+        dispatch(setRatingData(data));
+        onSubmit(data);
+        dispatch(setReviewProductRatingStatus('skipped'));
+    };
+
+    const [personalProductStatus] = useState('In progress');
+    const badgeStatus = useSelector((state: RootState) => state.reviewFormModal.badgeStatus);
+    const addImagebadgeStatus = useSelector((state: RootState) => state.reviewFormModal.addImagebadgeStatus);
+    const personalInfobadgeStatus = useSelector((state: RootState) => state.reviewFormModal.personalInfobadgeStatus);
 
     return (
         <div className="p-4 space-y-4">
@@ -40,7 +51,7 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "co
                 </div>
                 <h2 className="text-base text-black">Your reviews</h2>
                 <div className="pl-96">
-                    <StatusBadge Children={'completed'} />
+                    <StatusBadge>{badgeStatus}</StatusBadge>
                 </div>
             </div>
             <div className="flex flex-col space-y-4 p-6 pl-8">
@@ -51,7 +62,7 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "co
                     <div className="ml-4">
                         <h3 className="">Add images</h3>
                         <p className="">(Optional)</p>
-                        <StatusBadge Children={'completed'} />
+                        <StatusBadge>{addImagebadgeStatus}</StatusBadge>
                     </div>
                 </div>
                 <div className="flex items-center border-b border-gray-300 pb-4">
@@ -61,7 +72,7 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "co
                     <div className="ml-4">
                         <h3 className="">Personal/Product Information</h3>
                         <p className="">(Optional)</p>
-                        <StatusBadge Children={status} />
+                        <StatusBadge>{personalInfobadgeStatus}</StatusBadge>
                     </div>
                 </div>
                 <div className="flex items-center">
@@ -71,7 +82,7 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "co
                     <div className="ml-4">
                         <h3 className="">Product Rating</h3>
                         <p className="">(Optional)</p>
-                        <StatusBadge Children={'In progress'} />
+                        <StatusBadge>{personalProductStatus}</StatusBadge>
                     </div>
                 </div>
 
@@ -143,7 +154,7 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void;status: "co
 
             <div className="flex space-x-4">
                 <PrimaryButton onClick={handleSubmit(handleFormSubmit)} className="w-full font-bold hover:bg-blue-700">Submit</PrimaryButton>
-                <PrimaryButton onClick={handleSubmit(handleFormSubmit)} className="w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400">Skip</PrimaryButton>
+                <PrimaryButton onClick={handleSubmit(handleFormSkip)} className="w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400">Skip</PrimaryButton>
             </div>
         </div>
     );

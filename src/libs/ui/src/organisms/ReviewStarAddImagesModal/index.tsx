@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import StatusBadge from "@ui/molecules/StatusBadges";
-import { useDispatch } from 'react-redux';
-import { setModalImages } from '../../../../../store/services/Slices/ReviewFormModalSlice';
-import { AppDispatch } from '../../../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setModalImages,setReviewAddImagesStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { AppDispatch, RootState } from '../../../../../store/store';
 import { FaCheckCircle } from "react-icons/fa";
 import PhotoGuideLines from "../PhotoGuideLinesModal";
 
 interface ReviewStarAddImagesProps {
     onSubmit: () => void;
-    updateStatus: (status: "completed" | "skipped" | "In progress") => void;
   }
 
-const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit, updateStatus }) => {
+const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [images, setImages] = useState<File[]>([]);
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
@@ -20,7 +19,9 @@ const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit, upd
     const [isModalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
-
+    const [addImagebadgeStatus] = useState('In progress');
+    const badgeStatus = useSelector((state: RootState) => state.reviewFormModal.badgeStatus);
+    
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = Array.from(event.target.files || []);
         if (selectedFiles.length + images.length <= 6) {
@@ -45,15 +46,15 @@ const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit, upd
             setErrorMessage('Unable to submit the form. Please upload at least one image.'); // Set error message
         } else {
             setErrorMessage(''); // Clear error message if submission is valid
-            updateStatus('completed');
             onSubmit(); // Call the onSubmit prop
+            dispatch(setReviewAddImagesStatus('completed'));
         }
     };
 
     const handleSkip = () => {
-        updateStatus('skipped');
         setErrorMessage(''); // Clear error message when skipping
         onSubmit(); // Call the onSubmit prop
+        dispatch(setReviewAddImagesStatus('skipped'));
     };
 
     return (
@@ -66,7 +67,7 @@ const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit, upd
                 </div>
                 <h2 className="text-base text-black">Your reviews</h2>
                 <div className="pl-96">
-                    <StatusBadge Children={'completed'} />
+                    <StatusBadge>{badgeStatus}</StatusBadge>
                 </div>
             </div>
             <div>
@@ -76,7 +77,7 @@ const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit, upd
                     </div>
                     <h2 className="text-base text-black">Add Images</h2>
                     <div className="pl-96">
-                        <StatusBadge Children={'In progress'} />
+                        <StatusBadge>{addImagebadgeStatus}</StatusBadge>
                     </div>
                 </div>
                 <div className="flex items-center justify-between mb-4">

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import StatusBadge from "@ui/molecules/StatusBadges";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
-import { useDispatch } from 'react-redux';
-import { setPersonalInfoData } from '../../../../../store/services/Slices/ReviewFormModalSlice';
-import { AppDispatch } from '../../../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPersonalInfoData,setReviewPersonalInfoStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { AppDispatch, RootState } from '../../../../../store/store';
 
 type ReviewFormProps = {
   onSubmit: (data: ReviewData) => void;
-  updateStatus: (status: "completed" | "skipped" | "In progress") => void;
-  status: "completed" | "skipped" | "In progress";
 };
 
 type ReviewData = {
@@ -19,17 +17,20 @@ type ReviewData = {
   location: string;
 };
 
-const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit,status,updateStatus }) => {
+const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   const [reviewText, setReviewText] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [readReviews, setReadReviews] = useState<boolean | null>(null);
   const [ageGroup, setAgeGroup] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>(""); // State for error message
+  const [personalInfobadgeStatus] = ('In progress');
   const dispatch = useDispatch<AppDispatch>();
+  const badgeStatus = useSelector((state: RootState) => state.reviewFormModal.badgeStatus);
+  const addImagebadgeStatus = useSelector((state: RootState) => state.reviewFormModal.addImagebadgeStatus);
 
   const handleSubmit = () => {
-    updateStatus('completed');
+    dispatch(setReviewPersonalInfoStatus('completed'));
     // Validate location
     if (!location) {
       setErrorMessage("Unable to submit the form. Please fill at least one optional field above."); // Set error message if location is empty
@@ -54,7 +55,7 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit,status,upd
     setLocation("");
     setErrorMessage(""); // Clear any error message when skipping
     onSubmit({ reviewText: "", image: null, readReviews: false, ageGroup: "", location: "" }); // Skip action
-    updateStatus('skipped');
+    dispatch(setReviewPersonalInfoStatus('skipped'));
 
   };
 
@@ -63,20 +64,21 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit,status,upd
       <div title="Your Review" className="mb-4">
         <p className="text-black text-base border-b border-gray-300 m-0 p-[10px_30px]">
           Your Reviews
-          <StatusBadge Children={'completed'} />
+          <StatusBadge>{badgeStatus}</StatusBadge>
         </p>
       </div>
       <div title="Your Review" className=" mb-4">
         <p className="text-black text-base border-b border-gray-300 m-0 p-[10px_30px]">
           Add Images (optional)
-          <StatusBadge Children={status} />
+          <StatusBadge>{addImagebadgeStatus}</StatusBadge>
         </p>
         <div className="pl-96"></div>
       </div>
-
+      <StatusBadge>{personalInfobadgeStatus}</StatusBadge>
       {/* Did you read product reviews? */}
       <div className="mb-4">
         <label className="text-lg font-bold text-black">Did you read product reviews online before first purchasing this item?</label>
+        
         <div className="mt-2">
           <button
             type="button"
