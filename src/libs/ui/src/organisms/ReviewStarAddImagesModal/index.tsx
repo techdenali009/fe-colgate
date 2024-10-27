@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import StatusBadge from "@ui/molecules/StatusBadges";
 import { useDispatch, useSelector } from 'react-redux';
-import { setModalImages,setReviewAddImagesStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { setModalImages, setReviewAddImagesStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
 import { AppDispatch, RootState } from '../../../../../store/store';
 import { FaCheckCircle } from "react-icons/fa";
 import PhotoGuideLines from "../PhotoGuideLinesModal";
 
 interface ReviewStarAddImagesProps {
     onSubmit: () => void;
-  }
+}
 
 const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit }) => {
     const dispatch = useDispatch<AppDispatch>();
@@ -21,7 +21,7 @@ const ReviewStarAddImages: React.FC<ReviewStarAddImagesProps> = ({ onSubmit }) =
     const closeModal = () => setModalOpen(false);
     const [addImagebadgeStatus] = useState('In progress');
     const badgeStatus = useSelector((state: RootState) => state.reviewFormModal.badgeStatus);
-    
+
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = Array.from(event.target.files || []);
         if (selectedFiles.length + images.length <= 6) {

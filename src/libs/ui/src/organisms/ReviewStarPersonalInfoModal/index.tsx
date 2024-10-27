@@ -4,6 +4,7 @@ import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { useDispatch, useSelector } from 'react-redux';
 import { setPersonalInfoData,setReviewPersonalInfoStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
 import { AppDispatch, RootState } from '../../../../../store/store';
+import { useNavigate } from "react-router-dom";
 
 type ReviewFormProps = {
   onSubmit: (data: ReviewData) => void;
@@ -28,6 +29,7 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   const dispatch = useDispatch<AppDispatch>();
   const badgeStatus = useSelector((state: RootState) => state.reviewFormModal.badgeStatus);
   const addImagebadgeStatus = useSelector((state: RootState) => state.reviewFormModal.addImagebadgeStatus);
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     dispatch(setReviewPersonalInfoStatus('completed'));
@@ -56,7 +58,9 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
     setErrorMessage(""); // Clear any error message when skipping
     onSubmit({ reviewText: "", image: null, readReviews: false, ageGroup: "", location: "" }); // Skip action
     dispatch(setReviewPersonalInfoStatus('skipped'));
-
+  };
+  const handleResume = () => {
+    navigate("/review-add-images");
   };
 
   return (
@@ -71,6 +75,17 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
         <p className="text-black text-base border-b border-gray-300 m-0 p-[10px_30px]">
           Add Images (optional)
           <StatusBadge>{addImagebadgeStatus}</StatusBadge>
+          {addImagebadgeStatus === "skipped" && (
+                        <div className="mt-4">
+                            <PrimaryButton
+                                type="button"
+                                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+                                onClick={handleResume}
+                            >
+                                Resume
+                            </PrimaryButton>
+                        </div>
+                    )}
         </p>
         <div className="pl-96"></div>
       </div>
