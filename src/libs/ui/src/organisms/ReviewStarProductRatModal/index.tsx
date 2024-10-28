@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import StarRating from "@ui/molecules/HoveringRatingStar";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { useDispatch, useSelector } from 'react-redux';
-import { setRatingData,setReviewProductRatingStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { setRatingData, setReviewProductRatingStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
 import { AppDispatch, RootState } from '../../../../../store/store';
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -14,7 +14,7 @@ interface FormValues {
     value: number;
 }
 
-const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void } > = ({ onSubmit }) => {
+const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void }> = ({ onSubmit }) => {
     const dispatch: AppDispatch = useDispatch();
     const { control, handleSubmit } = useForm<FormValues>({
         defaultValues: {
@@ -63,6 +63,16 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void } > = ({ on
                         <h3 className="">Add images</h3>
                         <p className="">(Optional)</p>
                         <StatusBadge>{addImagebadgeStatus}</StatusBadge>
+                        {addImagebadgeStatus === "skipped" && (
+                            <div className="mt-4">
+                                <PrimaryButton
+                                    type="button"
+                                    className="w-24 bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+                                >
+                                    Resume
+                                </PrimaryButton>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="flex items-center border-b border-gray-300 pb-4">
@@ -73,6 +83,18 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void } > = ({ on
                         <h3 className="">Personal/Product Information</h3>
                         <p className="">(Optional)</p>
                         <StatusBadge>{personalInfobadgeStatus}</StatusBadge>
+                        <div>
+                            {personalInfobadgeStatus === "skipped" && (
+                                <div className="mt-4">
+                                    <PrimaryButton
+                                        type="button"
+                                        className="w-24 bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+                                    >
+                                        Resume
+                                    </PrimaryButton>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className="flex items-center">
@@ -83,6 +105,16 @@ const ProductRating: React.FC<{ onSubmit: (data: FormValues) => void } > = ({ on
                         <h3 className="">Product Rating</h3>
                         <p className="">(Optional)</p>
                         <StatusBadge>{personalProductStatus}</StatusBadge>
+                        {personalProductStatus === "skipped" && (
+                            <div className="mt-4">
+                                <PrimaryButton
+                                    type="button"
+                                    className="w-24 bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+                                >
+                                    Resume
+                                </PrimaryButton>
+                            </div>
+                        )}
                     </div>
                 </div>
 

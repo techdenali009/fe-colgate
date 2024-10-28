@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StatusBadge from "@ui/molecules/StatusBadges";
 import { PrimaryButton } from "@ui/molecules/PrimaryButton";
 import { useDispatch, useSelector } from 'react-redux';
-import { setPersonalInfoData,setReviewPersonalInfoStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
+import { setPersonalInfoData, setReviewPersonalInfoStatus } from '../../../../../store/services/Slices/ReviewFormModalSlice';
 import { AppDispatch, RootState } from '../../../../../store/store';
 import { useNavigate } from "react-router-dom";
 
@@ -40,7 +40,7 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
     }
     const data: ReviewData = { reviewText, image, readReviews: readReviews || false, ageGroup, location };
     onSubmit(data);
-    dispatch(setPersonalInfoData({ 
+    dispatch(setPersonalInfoData({
       readReviews: readReviews || false,
       ageGroup,
       location
@@ -76,24 +76,24 @@ const ReviewStarPersonalInfo: React.FC<ReviewFormProps> = ({ onSubmit }) => {
           Add Images (optional)
           <StatusBadge>{addImagebadgeStatus}</StatusBadge>
           {addImagebadgeStatus === "skipped" && (
-                        <div className="mt-4">
-                            <PrimaryButton
-                                type="button"
-                                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
-                                onClick={handleResume}
-                            >
-                                Resume
-                            </PrimaryButton>
-                        </div>
-                    )}
+            <div className="mt-4">
+              <PrimaryButton
+                type="button"
+                className="w-24 bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+                onClick={handleResume}
+              >
+                Resume
+              </PrimaryButton>
+            </div>
+          )}
         </p>
         <div className="pl-96"></div>
       </div>
-      <StatusBadge>{personalInfobadgeStatus}</StatusBadge>
+
       {/* Did you read product reviews? */}
       <div className="mb-4">
         <label className="text-lg font-bold text-black">Did you read product reviews online before first purchasing this item?</label>
-        
+        <StatusBadge>{personalInfobadgeStatus}</StatusBadge>
         <div className="mt-2">
           <button
             type="button"
