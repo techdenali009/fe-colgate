@@ -40,18 +40,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [selectedSort, setSelectedSort] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 1020);
-    };
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const handleSortChange = (sortOption: string) => {
     setSelectedSort(sortOption);
@@ -84,6 +73,18 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     ? plpFilters
     : plpFilters.filter((filter) => filter.title !== 'Best Seller');
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 1020);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center bg-white rounded-lg ${className}`}>
       {isSmallScreen && (
@@ -124,7 +125,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   </button>
                 </LabelAccordion>
               )}
-              
+
               {filter.AccordionType === AccordionType.Checkbox && (
                 <CheckboxAccordion
                   title={filter.title}

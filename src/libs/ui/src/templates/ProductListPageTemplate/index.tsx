@@ -10,7 +10,7 @@ import { useProductContext } from '../../contexts/PlpContext';
 import { useDispatch } from 'react-redux';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { plpConstant } from '@utils/plpFilterData';
+import { plpConstant, plpFilters } from '@utils/plpFilterData';
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const PlpPageTemplate: React.FC = () => {
     const newCategory = category ?? 'all products';
 
 
-    if (newCategory ===  plpConstant.bestSeller) {
+    if (newCategory === plpConstant.bestSeller) {
       setIsBestSellerState(true);
       setFilters([]);
       navigate('products?category=best-seller');
@@ -50,10 +50,15 @@ const PlpPageTemplate: React.FC = () => {
     }
 
     // If "All Products" is selected, display all category badges
+    // Function to extract category titles from plpFilters
+    const getAllCategories = () => {
+      const categoryFilter = plpFilters.find(filter => filter.title === 'Product Category');
+      return categoryFilter ? categoryFilter.options.map(option => option.title) : [];
+    };
+
     if (newCategory === plpConstant.AllProducts || newCategory === plpConstant.viewAll) {
       setIsBestSellerState(true); // Ensure we are not in best-seller mode
-      const allCategories = ['Antioxidants', 'Broad spectrum SPF', 'Cleansers & toners', 'Solution sets', 'Eye, neck, lip', 'Masks', 'Moisturizers', 'Retinols', 'Serums'
-      ];
+      const allCategories = getAllCategories(); // Dynamically get categories
       setFilters(allCategories);
 
       // Update the URL to reflect "All Products"
@@ -122,6 +127,7 @@ const PlpPageTemplate: React.FC = () => {
       setSelectedProductCategory(plpConstant.AllProducts); // Set state to show all products
       setIsBestSellerState(true); // Indicate best seller state
       setFilters([]); // Clear filters to display all products
+
     } else if (categoryFromUrl) {
       setSelectedProductCategory(categoryFromUrl);
       setFilters([categoryFromUrl]);
@@ -136,7 +142,7 @@ const PlpPageTemplate: React.FC = () => {
   return (
     <div className="relative pr-2 pl-2">
       <div className="!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1">
-        <PageTitleHeader className='!text-xs !leading-4 text-tertiary-400 font-HeroNewBold tm:text-[2.375rem] font-HeroNewExtraBold' breadcrumbs={breadcrumbs} />
+        <PageTitleHeader className='!text-xs !leading-4 text-tertiary-400 font-HeroNewBold tm:text-[2.375rem]' breadcrumbs={breadcrumbs} />
       </div>
       <div className="tm:block flex gap-[23px] py-0 xl:px-14 mt-5 mb-32 tm:pl-6 tm:pr-6 tl:px-5">
         <div className="relative tm:px-0 pl-[18px] pr-[18px]">
@@ -151,7 +157,7 @@ const PlpPageTemplate: React.FC = () => {
         </div>
         <div>
           <div className='relative flex items-baseline justify-between'>
-            <FilterContainer 
+            <FilterContainer
               filters={filters}
               onRemoveFilter={(filterToRemove) => setFilters(filters.filter((filter: string) => filter !== filterToRemove))}
               onClearAll={() => setFilters([])}
@@ -177,12 +183,12 @@ const PlpPageTemplate: React.FC = () => {
             {isBestSeller ? (
               // Show all products if best seller
               sortedProducts.map((product) => (
-                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false}/>
+                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false} />
               ))
             ) : (
               // Show only filtered products otherwise
               sortedProducts.slice(0, productsToShow).map((product) => (
-                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false}/>
+                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false} />
               ))
             )}
           </div>

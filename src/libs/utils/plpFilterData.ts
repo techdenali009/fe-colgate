@@ -4,10 +4,11 @@ export enum AccordionType {
     Checkbox = 'Checkbox',
     Label = 'Label'
 }
+
 export const plpConstant = {
-  bestSeller : 'Best-Seller',
-  viewAll : 'View-All',
-  AllProducts : 'All Products'
+  bestSeller: 'Best-Seller',
+  viewAll: 'View-All',
+  AllProducts: 'All Products'
 }
 export const plpFilters = [
   {

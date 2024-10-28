@@ -17,6 +17,7 @@ import SearchModal from '@ui/molecules/SearchModal';
 import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
 import { useNavigate } from 'react-router-dom';
 import { appSetting } from '@utils/appSetting';
+import { plpConstant, plpFilters } from '@utils/plpFilterData';
 
 
 interface headerProps {
@@ -122,13 +123,10 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
         navigate(`${selectNavLink}/${encodedTitle}`);
       }
 
-      // const searchParams = new URLSearchParams(location.search); // Create a new instance of URLSearchParams
-
       // Create an array of navigation links with their corresponding query parameters
       const navLinkMap = [
         { title: appSetting[0].title, category: encodedTitle },
         { title: 'Best Seller', category: 'All Products' }, // Redirect to all products for Best Seller
-        // Add other navigation links here as needed
       ];
 
       // Check if the selected link exists in the map
@@ -141,23 +139,15 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
       const selectedLink = navLinkMap.find(link => link.title === selectNavLink);
 
       if (selectedLink) {
-        console.log(selectedLink.category)
-        if (selectedLink.category === 'Best-Seller' || selectedLink.category === 'View-All') {
+        console.log(selectedLink.category);
+        if (selectedLink.category === plpConstant.bestSeller || selectedLink.category === plpConstant.viewAll) {
           // Add the selected category to the params
           categoryParams.push(`category=${selectedLink.category}`);
 
-          // If you want to add more predefined categories, do it here
-          const additionalCategories = [
-            'Antioxidants',
-            'Broad Spectrum SPF',
-            'Cleansers & toners',
-            'Solution Sets',
-            'Eye, Neck, Lip',
-            'Masks',
-            'Moisturizers',
-            'Retinols',
-            'Serums'
-          ];
+          // Extract additional categories dynamically from plpFilters
+          const additionalCategories = plpFilters[0].options
+            .map(option => option.title)
+            .filter(title => title !== 'All Products'); // Optional: filter out 'All Products'
 
           // Add additional categories to the categoryParams
           additionalCategories.forEach(cat => {
@@ -168,17 +158,14 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
           const finalUrl = `${baseUrl}${categoryParams.join('&')}&best-seller=best-seller`;
           navigate(finalUrl);
           // Optional: reload the page if needed
-        }
-        else {
+        } else {
           navigate(`products?category=${selectedLink.category}`);
-
-
         }
       } else {
         // Default case for other navigation options
         navigate(`products?=${encodedTitle}`);
       }
-    }
+    };
   };
 
   return (
