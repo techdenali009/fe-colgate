@@ -1,11 +1,19 @@
 
+export const SortOptions = {
+  ALPHABETICAL_AZ: 'Alphabetical A - Z',
+  ALPHABETICAL_ZA: 'Alphabetical Z - A',
+  PRICE_LOW_HIGH: 'Price Low to High',
+  PRICE_HIGH_LOW: 'Price High to Low',
+};
+
 export enum AccordionType {
     Radio = 'Radio',
     Checkbox = 'Checkbox',
     Label = 'Label'
 }
 
-export const plpConstant = {
+
+export const Plp_Constants = {
   bestSeller: 'Best-Seller',
   viewAll: 'View-All',
   AllProducts: 'All Products'

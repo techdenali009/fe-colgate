@@ -10,19 +10,13 @@ import { useProductContext } from '../../contexts/PlpContext';
 import { useDispatch } from 'react-redux';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { plpConstant, plpFilters } from '@utils/plpFilterData';
+import { Plp_Constants, plpFilters, SortOptions } from '@utils/plpFilterData';
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  // Define sorting options as constants (you can also create this in a separate file)
-  const SortOptions = {
-    ALPHABETICAL_AZ: 'Alphabetical A - Z',
-    ALPHABETICAL_ZA: 'Alphabetical Z - A',
-    PRICE_LOW_HIGH: 'Price Low to High',
-    PRICE_HIGH_LOW: 'Price High to Low',
-  };
+
 
   const {
     selectedProductCategory,
@@ -41,7 +35,7 @@ const PlpPageTemplate: React.FC = () => {
     const newCategory = category ?? 'all products';
 
 
-    if (newCategory === plpConstant.bestSeller) {
+    if (newCategory === Plp_Constants.bestSeller) {
       setIsBestSellerState(true);
       setFilters([]);
       navigate('products?category=best-seller');
@@ -56,7 +50,7 @@ const PlpPageTemplate: React.FC = () => {
       return categoryFilter ? categoryFilter.options.map(option => option.title) : [];
     };
 
-    if (newCategory === plpConstant.AllProducts || newCategory === plpConstant.viewAll) {
+    if (newCategory === Plp_Constants.AllProducts || newCategory === Plp_Constants.viewAll) {
       setIsBestSellerState(true); // Ensure we are not in best-seller mode
       const allCategories = getAllCategories(); // Dynamically get categories
       setFilters(allCategories);
@@ -84,7 +78,7 @@ const PlpPageTemplate: React.FC = () => {
   const breadcrumbs = useMemo(() => [
     { label: 'Home', href: '/' },
     { label: 'All Products', href: '/products' },
-    ...(selectedProductCategory && selectedProductCategory !== plpConstant.AllProducts ? [{ label: selectedProductCategory, href: '#' }] : []),
+    ...(selectedProductCategory && selectedProductCategory !== Plp_Constants.AllProducts ? [{ label: selectedProductCategory, href: '#' }] : []),
   ], [selectedProductCategory]);
 
   const handleSortChange = (option: string) => {
@@ -122,9 +116,9 @@ const PlpPageTemplate: React.FC = () => {
     const sortFromUrl = searchParams.get('sort');
 
     // Check for Best Seller in URL
-    if (categoryFromUrl === plpConstant.bestSeller || categoryFromUrl === plpConstant.viewAll) {
+    if (categoryFromUrl === Plp_Constants.bestSeller || categoryFromUrl === Plp_Constants.viewAll) {
       setEnableBestSeller(true);
-      setSelectedProductCategory(plpConstant.AllProducts); // Set state to show all products
+      setSelectedProductCategory(Plp_Constants.AllProducts); // Set state to show all products
       setIsBestSellerState(true); // Indicate best seller state
       setFilters([]); // Clear filters to display all products
 

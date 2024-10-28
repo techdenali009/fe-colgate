@@ -17,7 +17,7 @@ import SearchModal from '@ui/molecules/SearchModal';
 import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
 import { useNavigate } from 'react-router-dom';
 import { appSetting } from '@utils/appSetting';
-import { plpConstant, plpFilters } from '@utils/plpFilterData';
+import { Plp_Constants, plpFilters } from '@utils/plpFilterData';
 
 
 interface headerProps {
@@ -110,9 +110,9 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   };
 
   const handleNavLinkClick = (title: string) => {
-    console.log('title', title, selectNavLink)
+
     const catagory = appSetting.find(link => link.title.toLocaleLowerCase() === selectNavLink.toLocaleLowerCase());
-    console.log('encodedTitle', catagory)
+
     const isNavigate = catagory && catagory?.canNavigate && (
       catagory?.navigationPages.includes(title)
       || selectNavLink === appSetting[0].title
@@ -125,9 +125,10 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
 
       // Create an array of navigation links with their corresponding query parameters
       const navLinkMap = [
-        { title: appSetting[0].title, category: encodedTitle },
+        { title: appSetting[0]?.title || 'Default Title', category: encodedTitle },
         { title: 'Best Seller', category: 'All Products' }, // Redirect to all products for Best Seller
       ];
+
 
       // Check if the selected link exists in the map
       const baseUrl = 'products?';
@@ -139,8 +140,8 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
       const selectedLink = navLinkMap.find(link => link.title === selectNavLink);
 
       if (selectedLink) {
-        console.log(selectedLink.category);
-        if (selectedLink.category === plpConstant.bestSeller || selectedLink.category === plpConstant.viewAll) {
+
+        if (selectedLink.category === Plp_Constants.bestSeller || selectedLink.category === Plp_Constants.viewAll) {
           // Add the selected category to the params
           categoryParams.push(`category=${selectedLink.category}`);
 
