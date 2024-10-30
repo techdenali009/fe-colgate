@@ -6,27 +6,40 @@ interface ReviewBarProps {
   labelClassName?: string;
   countClassName?: string;
   className?: string;
+  onRatingClick: (stars: number) => void;
 }
 
-const ReviewBar: React.FC<ReviewBarProps> = ({ reviews,className, barClassName,labelClassName,countClassName,
+const ReviewBar: React.FC<ReviewBarProps> = ({
+  reviews,
+  className,
+  labelClassName,
+  countClassName,
+  onRatingClick,
 }) => {
   const totalReviews = reviews.reduce((total, review) => total + review.count, 0);
 
   return (
-    <div className="w-[357px] lg:w-[416px] px-[5px] pb-[5px] mx-[5px] mb-[5px]">
+    <div className="w-[357px] lg:w-[416px] px-[5px] pb-[5px] mx-[5px] mb-[5px] ">
       {reviews.map((review) => (
-        // eslint-disable-next-line  react/jsx-key
-        <div className={`flex items-center" key={review.stars} ${className}`}>
-          <div className={`w-16 ${labelClassName} text-black`}>{review.stars} stars</div>
-          <div className="flex-grow  h-4 bg-[#eff2f4] rounded-lg mx-2 relative shadow-[inset_0px_0px_0px_1px_rgb(204,204,204)]">
+        <div
+          key={review.stars} // Correctly set the key for each item
+          className={`flex items-center ${className} bg-rgb(247, 247, 247) hover:bg-gray-200 hover:cursor-pointer  `}
+          onClick={() => onRatingClick(review.stars)} // Call onRatingClick when clicked
+        >
+          <div className={`w-16 ${labelClassName} text-black font-SansSerif`}>
+            {review.stars} stars
+          </div>
+          <div className="flex-grow h-4 bg-[#eff2f4] rounded-lg mx-2 relative shadow-[inset_0px_0px_0px_1px_rgb(204,204,204)]">
             <div
-              className={`h-full ${barClassName} bg-blue-500 rounded-lg`}
+              className={`h-full ${className} bg-appTheme rounded-l-lg`}
               style={{
-                width: `${(review.count / totalReviews) * 100}%`,
+                width: totalReviews > 0 ? `${(review.count / totalReviews) * 100}%` : '0%',
               }}
             />
           </div>
-          <span className={`${countClassName} text-gray-600 `}>{review.count}</span>
+          <span className={`${countClassName} text-gray-600 font-SansSerif`}>
+            {review.count}
+          </span>
         </div>
       ))}
     </div>

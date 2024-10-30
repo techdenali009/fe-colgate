@@ -7,21 +7,20 @@ import { relatedProducts } from '@utils/test';
 import ProductDetails from '@ui/molecules/ProductDetails';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 import { marketingBannerTwo } from '@utils/banner';
-
+import { ReviewProvider } from '@ui/molecules/ReviewUseContext';
+import { Review } from '@utils/ReviewTypes';
 
 interface PDPage {
     submitLabel: string;
     onSubmit: (value: string) => void;
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-    productReviews: Array<any>; // Accept product reviews as prop
+     
+    productReviews: Array<Review>; // Accept product reviews as prop
 }
-export const ProductDetailsPage: React.FC<PDPage> = ({ productReviews }) => {
-
-
+export const ProductDetailsPage: React.FC<PDPage> = () => {
   return (
     <>
       <div>
-        <TwoCardsComponent />
+        <TwoCardsComponent/>
       </div>
 
       <div>
@@ -38,9 +37,12 @@ export const ProductDetailsPage: React.FC<PDPage> = ({ productReviews }) => {
           </div>
         </div>
       </div>
-      
       <div>
-        <ReviewSection productReviews={productReviews}></ReviewSection>
+
+        <ReviewProvider>
+          <ReviewSection ></ReviewSection>
+        </ReviewProvider>
+      
       </div>
     </>
   );

@@ -10,14 +10,14 @@ interface UserInfoProps {
 }
 
 const UserInfoReview: React.FC<UserInfoProps> = ({ name, location, ageGroup, reviewCount, votesCount }) => (
-  <div className='inline-block max-w-[22%] min-w-[22%] pt-2.5 mt-0'>
+  <div className='inline-block max-w-[22%] min-w-[22%] pt-2.5 mt-0 !font-SansSerif'>
     <div className='mb-[10px] '>
-      <Button className='hidden lg:block text-black font-HeroNewBold bg-transparent'>
+      <Button className='hidden lg:block font-bold bg-transparent'>
         <h3>{name}</h3>
       </Button>
     </div>
-    <div className='hidden lg:block'>
-      <div className='mt-[5px] mb-[10px] mr-[5px]'>
+    <div className='hidden lg:block '>
+      <div className='mt-[5px] mb-[10px] mr-[5px] '>
         <span>{location}</span>
       </div>
       <div className='mt-[5px] mb-[10px] block'>
