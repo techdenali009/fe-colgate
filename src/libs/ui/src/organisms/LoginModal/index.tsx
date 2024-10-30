@@ -88,7 +88,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
             {currentForm === LoginConsts.AlreadyRegistered && (
               <AlreadyRegistered 
                 onSubmit={onSubmit}
-                setIsForgotPassword={() => setCurrentForm('forgotPassword')} mode={''}              />
+                setIsForgotPassword={() => setCurrentForm('forgotPassword')}   mode={'modal'}               />
             )}
           </div>
 

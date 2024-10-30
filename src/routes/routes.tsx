@@ -2,7 +2,7 @@
 import FrequentlyAskedQuestionsPage from '@pages/FrequentlyAskedQuestionsPage';
 import RegisterPage from '@pages/RegisterPage';
 import ShippingTermsPage from '@pages/ShippingTerms';
-import { AppSpinner } from '@ui/atoms/AppSpinner';
+import { LandingPageSkeleton } from '@ui/templates/LandingPageSkeleton';
 
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -34,7 +34,7 @@ export const AppRoutes = () => (
     {/* <Route path="/" element={<LoginPage />} /> */}
     {/* <Route path="/" element={<RegisterPage />} /> */}
     <Route path="/" element={
-      <Suspense fallback={<AppSpinner />}>
+      <Suspense fallback={<LandingPageSkeleton />}>
         <MainModule />
       </Suspense>
     }>
