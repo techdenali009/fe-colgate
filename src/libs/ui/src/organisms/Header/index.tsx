@@ -125,7 +125,7 @@ const Header: React.FC<headerProps> = ({
     // const selectedLink = appSetting.find(link => link.title === selectNavLink)?.canNavigate;
 
     if (isNavigate) {
-      console.log('url', title);
+      console.log('url', title, selectNavLink);
       const encodedTitle = title.replace(/[\s&]+/g, '-');
       navigate(`${selectNavLink}/${encodedTitle}`);
     }
