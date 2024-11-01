@@ -3,9 +3,9 @@ import { Heading } from '@ui/molecules/Heading';
 import { Paragraph } from '@ui/molecules/Paragraph';
 import React from 'react';
 import './skinInternational.styles.scss'
+const imageUrl = import.meta.env.VITE_SCROLL_PCA_CMS_URL;
 
 const PCAskinInternational: React.FC = () => {
-  const imageUrl = import.meta.env.VITE_SCROLL_PCA_CMS_URL;
   return (
     <div className='flex flex-col items-center'>
       <div className="mb-6">

@@ -4,9 +4,9 @@ import { Paragraph } from '@ui/molecules/Paragraph';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import React from 'react';
 import './productExcellence.styles.scss'
+const imageUrl = import.meta.env.VITE_SCROLL_PCA_CMS_URL;
 
 const ProductExcellence: React.FC = () => {
-  const imageUrl = import.meta.env.VITE_SCROLL_PCA_CMS_URL;
   return (
     <div className='flex flex-col items-center'>
       <div className="mb-6">
