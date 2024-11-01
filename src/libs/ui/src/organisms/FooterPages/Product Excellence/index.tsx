@@ -6,11 +6,11 @@ import React from 'react';
 import './productExcellence.styles.scss'
 
 const ProductExcellence: React.FC = () => {
-  const imageUrl = import.meta.env.VITE_PRODUCT_IMAGE_URL;
+  const imageUrl = import.meta.env.VITE_SCROLL_PCA_CMS_URL;
   return (
     <div className='flex flex-col items-center'>
       <div className="mb-6">
-        <ProductImage src={imageUrl} alt={'Peels'}></ProductImage>
+        <ProductImage src={`${imageUrl}/846329ca-d3ee-4e69-8e8c-3d558404b6aa.jpg?key=pca-en-us-marketing-header-large`} alt={'Peels'}></ProductImage>
       </div>
 
       <div className="">
