@@ -5,10 +5,11 @@ import React from 'react';
 import './skinInternational.styles.scss'
 
 const PCAskinInternational: React.FC = () => {
+  const imageUrl = import.meta.env.VITE_INTERNATIONAL_IMAGE_URL;
   return (
     <div className='flex flex-col items-center'>
       <div className="mb-6">
-        <ProductImage src={'https://www.pcaskinpro.com/cms/assets/51256110-e59e-4407-a149-488123bd05e7.jpg?key=pca-en-us-marketing-header-large'} alt={'Peels'}></ProductImage>
+        <ProductImage src={imageUrl} alt={'Peels'}></ProductImage>
       </div>
           
       <div className="">

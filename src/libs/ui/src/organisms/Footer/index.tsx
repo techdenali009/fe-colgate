@@ -15,10 +15,8 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
   const redirection = (title: string, selectNavLink: string) => {
 
-   
     // let finalCatagory = selectNavLink;
     const catagory = appSetting.find((link) => link.title.toLocaleLowerCase() === selectNavLink.toLocaleLowerCase());
-    console.log('ffffffffffffffffffff',catagory,selectNavLink);
     const isNavigate =
       catagory &&
       catagory?.canNavigate &&
