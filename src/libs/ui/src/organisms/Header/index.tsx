@@ -118,6 +118,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
       || selectNavLink === appSetting[0].title
     );
     if (isNavigate) {
+      console.log('url', title, selectNavLink);
       const encodedTitle = title.replace(/[\s&]+/g, '-');
       if (selectNavLink === appSetting[3].title) {
         navigate(`${selectNavLink}/${encodedTitle}`);
