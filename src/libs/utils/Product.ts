@@ -1,11 +1,14 @@
 export interface ProductType {
-    id: number;
-    name: string;
-    image: string;
-    rating: number;
-    isBestSeller: boolean;
-    discription?: string;
-  }
+  id: number;
+  name: string;
+  image: string;
+  images: string[];
+  rating: number;
+  isBestSeller: boolean;
+  description: string;  // Add description property
+  features: string[];
+    
+}
   
 
 export interface ProductProps {

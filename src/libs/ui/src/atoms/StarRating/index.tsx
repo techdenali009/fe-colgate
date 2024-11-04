@@ -22,7 +22,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
       ); // Half sta3
     } else {
       stars.push(
-        <RxStarFilled key={i} className="text-gray-300  w-[23px] h-[23px]" />
+        <RxStarFilled key={i} className="text-gray  w-[23px] h-[23px]" />
       ); // Empty star
     }
   }

@@ -1,0 +1,20 @@
+.carousel .thumb.selected {
+  border-bottom: 5px solid #125ce0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: 6px solid #fff !important;
+}
+
+.carousel .thumb.selected,
+.carousel .thumb:hover {
+  border-bottom: 5px solid #125ce0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: 6px solid #fff !important;
+}
+
+@media (max-width: 1020px) {
+  .thumbs-wrapper.axis-vertical {
+    display: none;
+  }
+}
