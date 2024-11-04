@@ -41,6 +41,7 @@ function Product({ product ,modalSetToggle,className, openQuickView,showQuickVie
         <h3 className="mt-2.5  text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold">
           {name}
         </h3>
+        {/* <h2>${price}</h2> */}
       </div>
       <div className="flex pt-3 justify-center">
         <Button

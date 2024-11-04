@@ -5,7 +5,7 @@ interface NavLink {
 }
 
 export const appSetting: NavLink[] = [
-  { title: 'shop', canNavigate: false, navigationPages: [''] },
+  { title: 'Shop', canNavigate: true, navigationPages: [] },
   { title: 'Academy', canNavigate: false, navigationPages: [''] },
   { title: 'Events', canNavigate: false, navigationPages: [''] },
   { title: 'About', canNavigate: true, navigationPages: ['FAQs','Shipping terms','PCA SKIN International', 'Product Excellence','Contact us','Careers' ,'Terms & Conditions', 'Our story', 'Culture', 'Our peel legacy', 'Returns & exchanges', 'Subscriptions','Do Not Sell My Personal Information' ] },

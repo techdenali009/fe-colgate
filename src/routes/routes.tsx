@@ -5,12 +5,14 @@ import FrequentlyAskedQuestionsPage from '@pages/FrequentlyAskedQuestionsPage';
 import ProductExcellencePage from '@pages/ProductExcellence';
 import RegisterPage from '@pages/RegisterPage';
 import ShippingTermsPage from '@pages/ShippingTerms';
+import PlpPage from '@pages/ProductListPage';
 import PCAskinInternationalPage from '@pages/SkinInternationalPage';
 import { LandingPageSkeleton } from '@ui/templates/LandingPageSkeleton';
 
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ProductModule from 'src/modules/usersModule/usersModule';
+
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -52,7 +54,9 @@ export const AppRoutes = () => (
                 </Route> */}
 
       {/* Product module */}
+
       <Route path="/products" element={<ProductModule />}>
+        <Route path="" element={<PlpPage />}></Route>
         {/* <Route  path="/" element={<Products/>}></Route> */}
         <Route path=":id" element={<ProductDetailsPage />}></Route>
       </Route>
@@ -69,12 +73,12 @@ export const AppRoutes = () => (
         <Route path="faq" element={<FrequentlyAskedQuestionsPage />} />
         <Route path="Shipping-terms" element={<ShippingTermsPage />} />
         <Route path="terms-conditions" element={<TermsConditionPage />} />
-        <Route path="careers" element={<CareersPage/>} />
-        <Route path="product-excellence" element={<ProductExcellencePage/>} />
-        <Route path="pca-skin-international" element={<PCAskinInternationalPage/>} />
-        <Route path="do-not-sell-my-personal-information" element={<DoNotSellPersonalInfoPage/>} />
-       
-        
+        <Route path="careers" element={<CareersPage />} />
+        <Route path="product-excellence" element={<ProductExcellencePage />} />
+        <Route path="pca-skin-international" element={<PCAskinInternationalPage />} />
+        <Route path="do-not-sell-my-personal-information" element={<DoNotSellPersonalInfoPage />} />
+
+
       </Route>
 
       <Route path="/test" element={<TestPage />}></Route>
