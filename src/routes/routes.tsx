@@ -54,9 +54,9 @@ export const AppRoutes = () => (
                 </Route> */}
 
       {/* Product module */}
-     
+
       <Route path="/products" element={<ProductModule />}>
-        <Route path = "" element={<PlpPage/>}></Route>
+        <Route path="" element={<PlpPage />}></Route>
         {/* <Route  path="/" element={<Products/>}></Route> */}
         <Route path=":id" element={<ProductDetailsPage />}></Route>
       </Route>
@@ -73,12 +73,12 @@ export const AppRoutes = () => (
         <Route path="faq" element={<FrequentlyAskedQuestionsPage />} />
         <Route path="Shipping-terms" element={<ShippingTermsPage />} />
         <Route path="terms-conditions" element={<TermsConditionPage />} />
-        <Route path="careers" element={<CareersPage/>} />
-        <Route path="product-excellence" element={<ProductExcellencePage/>} />
-        <Route path="pca-skin-international" element={<PCAskinInternationalPage/>} />
-        <Route path="do-not-sell-my-personal-information" element={<DoNotSellPersonalInfoPage/>} />
-       
-        
+        <Route path="careers" element={<CareersPage />} />
+        <Route path="product-excellence" element={<ProductExcellencePage />} />
+        <Route path="pca-skin-international" element={<PCAskinInternationalPage />} />
+        <Route path="do-not-sell-my-personal-information" element={<DoNotSellPersonalInfoPage />} />
+
+
       </Route>
 
       <Route path="/test" element={<TestPage />}></Route>

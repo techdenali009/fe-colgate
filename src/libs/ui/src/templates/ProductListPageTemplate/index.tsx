@@ -116,7 +116,7 @@ const PlpPageTemplate: React.FC = () => {
     const sortFromUrl = searchParams.get('sort');
 
     // Check for Best Seller in URL
-    if (categoryFromUrl === Plp_Constants.bestSeller || categoryFromUrl === Plp_Constants.viewAll) {
+    if (categoryFromUrl === Plp_Constants.bestSeller || categoryFromUrl === Plp_Constants.viewAll|| categoryFromUrl === Plp_Constants.AllProducts) {
       setEnableBestSeller(true);
       setSelectedProductCategory(Plp_Constants.AllProducts); // Set state to show all products
       setIsBestSellerState(true); // Indicate best seller state
@@ -149,7 +149,7 @@ const PlpPageTemplate: React.FC = () => {
             enableBestSeller={enableBestSeller}
           />
         </div>
-        <div>
+        <div className='w-full'>
           <div className='relative flex items-baseline justify-between'>
             <FilterContainer
               filters={filters}

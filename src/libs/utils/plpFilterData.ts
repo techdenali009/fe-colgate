@@ -71,5 +71,6 @@ export const plpFilters = [
     title: 'Sort By',
     AccordionType: AccordionType.Radio,
     options: [{ title: 'Alphabetical A - Z' }, { title: 'Alphabetical Z - A' }, { title: 'Price Low to High' }, { title: 'Price High to Low' }]
-  },
+  }
+ 
 ]

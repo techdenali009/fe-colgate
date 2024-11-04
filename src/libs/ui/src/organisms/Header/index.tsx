@@ -17,7 +17,7 @@ import SearchModal from '@ui/molecules/SearchModal';
 import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
 import { useNavigate } from 'react-router-dom';
 import { appSetting } from '@utils/appSetting';
-import { Plp_Constants, plpFilters } from '@utils/plpFilterData';
+import { plpFilters } from '@utils/plpFilterData';
 
 
 interface headerProps {
@@ -118,56 +118,37 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
       || selectNavLink === appSetting[0].title
     );
     if (isNavigate) {
-      console.log('url', title, selectNavLink);
-      const encodedTitle = title.replace(/[\s&]+/g, '-');
-      if (selectNavLink === appSetting[3].title) {
-        navigate(`${selectNavLink}/${encodedTitle}`);
-      }
-
-      // Create an array of navigation links with their corresponding query parameters
-      const navLinkMap = [
-        { title: appSetting[0]?.title || 'Default Title', category: encodedTitle },
-        { title: 'Best Seller', category: 'All Products' }, // Redirect to all products for Best Seller
-      ];
-
-
-      // Check if the selected link exists in the map
-      const baseUrl = 'products?';
-
-      // Initialize an array to store category query parameters
-      const categoryParams = [];
-
-      // Check if the selected link exists in the map
-      const selectedLink = navLinkMap.find(link => link.title === selectNavLink);
-
-      if (selectedLink) {
-
-        if (selectedLink.category === Plp_Constants.bestSeller || selectedLink.category === Plp_Constants.viewAll) {
-          // Add the selected category to the params
-          categoryParams.push(`category=${selectedLink.category}`);
-
-          // Extract additional categories dynamically from plpFilters
+      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+      let queryParams: any[] = [];
+      let mainCatagory = selectNavLink;
+      let url = `${mainCatagory}`;
+      if (selectNavLink === appSetting[0].title) {
+        mainCatagory = 'products';
+        url = `${mainCatagory}`
+        if (['Best Seller', 'View All'].includes(title)) {
           const additionalCategories = plpFilters[0].options
-            .map(option => option.title)
-            .filter(title => title !== 'All Products'); // Optional: filter out 'All Products'
-
-          // Add additional categories to the categoryParams
-          additionalCategories.forEach(cat => {
-            categoryParams.push(`category=${encodeURIComponent(cat)}`);
-          });
-
-          // Combine all category params into a single string
-          const finalUrl = `${baseUrl}${categoryParams.join('&')}&best-seller=best-seller`;
-          navigate(finalUrl);
-          // Optional: reload the page if needed
+            .filter(option => option.title !== 'All Products')
+            .map(option => `category=${option.title}`);
+          queryParams = [...queryParams, ...additionalCategories];
+          url = `${url}?category=All Products&${queryParams.join('&')}&best-seller=best-seller`;
         } else {
-          navigate(`products?category=${selectedLink.category}`);
+          url = `${url}?category=${title}`;
         }
-      } else {
-        // Default case for other navigation options
-        navigate(`products?=${encodedTitle}`);
+        navigate(url);
+        return;
       }
-    };
+
+      if ([
+        appSetting[3].title,
+        appSetting[1].title,
+        appSetting[2].title
+      ].includes(selectNavLink)) {
+        const encodedTitle = title.replace(/[\s&]+/g, '-');
+        url = `${url}/${encodedTitle}`;
+        navigate(url);
+        return;
+      }
+    }
   };
 
   return (
