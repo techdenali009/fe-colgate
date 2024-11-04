@@ -45,7 +45,7 @@ export const CustomerService = [
 export const OtherLinks = [
   { url: '/home', label: 'PCA SKIN International' },
   { url: '/about', label: 'Privacy Policy' },
-  { url: '/services', label: 'Terms & Conditions' },
+  { url: '/Terms & Conditions', label: 'Terms & Conditions' },
   { url: '/contact', label: 'Do Not Sell My Personal Information' },
   { url: '/services', label: 'Product excellence' },
 ];

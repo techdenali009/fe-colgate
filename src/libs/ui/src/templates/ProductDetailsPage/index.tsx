@@ -93,3 +93,5 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
     </>
   );
 };
+
+export default ProductDetailsPage;

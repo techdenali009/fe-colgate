@@ -16,12 +16,12 @@ function Product({ product, modalSetToggle, className, openQuickView, showQuickV
         state={{ name, image, images, description, features, rating,  isBestSeller }} // Pass product details via state
       >
     <div className={'group relative p-2'}>
-      {/* <div>
+       <div>
         <ProductImage src={image} alt={name} className='h-[305px]' />
         {showQuickView && (
           <QuickViewButton onClick={() => openQuickView(id)} />
         )}
-      </div> */}
+      </div>
       
       
         <div>
