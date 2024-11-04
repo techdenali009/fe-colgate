@@ -6,7 +6,7 @@ import './header.styles.scss';
 import NavLinks from '@ui/molecules/NavLink/NavLink';
 import SubMenu from '@ui/molecules/SubMenu/SubMenu';
 import { HeaderLogo } from '@ui/atoms/HeaderLogo';
-
+import logout_blue from '../../../assets/logout_blue.5f7a5450.svg'
 import HoverCart from '../../../assets/HoverCart.svg';
 import HoverSearch from '../../../assets/HoverSearch.svg';
 import HoverProfile from '../../../assets/HoverProfile.svg';
@@ -18,6 +18,9 @@ import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
 import { useNavigate } from 'react-router-dom';
 import { appSetting } from '@utils/appSetting';
 import { plpFilters } from '@utils/plpFilterData';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/store';
+import { logout } from '@store/services/Slices/authSlice';
 
 
 interface headerProps {
@@ -37,9 +40,12 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
   const [selectNavLink, setSelectNavLink] = useState<string>('');
-
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.authSlice.userInfo
+  );
   const handleMouseEnterLogo = () => {
     setIsNavActive(false);
   };
@@ -150,7 +156,12 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
       }
     }
   };
+  const handleLogoutClick = () => {
 
+    dispatch(logout());
+
+
+  };
   return (
     <>
       <header id='header_shadow' className={`${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white' : ''}`}>
@@ -189,18 +200,54 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               </ButtonWithIcon>
 
               {isProfileHovered && (
-                <Popover className=' hover:bg-gray-200float-left right-[0px] w-[415px] pt-3 pb-3 boxshadow'>
-                  <h2 className='p-4 h-[128px] text-tertiary-400 tracking-wider font-bold text-base leading-24 w-full mt-6 HeroNewLight font-HeroNewRegular'>
-                    If you have a professional account, please login. If you would like to establish a professional account please click Create Account.
-                  </h2>
-                  <div className='pop_up p-4 flex gap-4'>
-                    {/* <PrimaryButton className='w-[152px] font-bold text-base  text-sm font-HeroNewBold'>Login In</PrimaryButton> */}
-                    <CreateAccountButton className='w-[90%] font-HeroNewBold text-sm' onClick={modalSetToggle}>Login</CreateAccountButton>
-                    {/* {toggle && <LoginModal closeModal={modalSetToggle} />} */}
-                    <CreateAccountButton className='w-[90%] font-HeroNewBold text-sm' onClick={handleRegisterClick}>Create Account</CreateAccountButton>
+                <>
+                  {!isLoggedIn ? (
+                    <Popover className=" hover:bg-gray-200float-left right-[0px] w-[415px] pt-3 pb-3 boxshadow">
+                      <h2 className="p-4 h-[128px] text-tertiary-400 tracking-wider font-bold text-base leading-24 w-full mt-6 HeroNewLight font-HeroNewRegular">
+                        If you have a professional account, please login. If you
+                        would like to establish a professional account please
+                        click Create Account.
+                      </h2>
+                      <div className="pop_up p-4 flex gap-4">
+                        {/* <PrimaryButton className='w-[152px] font-bold text-base  text-sm font-HeroNewBold'>Login In</PrimaryButton> */}
+                        <CreateAccountButton
+                          className="w-[90%] font-HeroNewBold text-sm"
+                          onClick={modalSetToggle}
+                        >
+                          Login
+                        </CreateAccountButton>
+                        {/* {toggle && <LoginModal closeModal={modalSetToggle} />} */}
+                        <CreateAccountButton
+                          className="w-[90%] font-HeroNewBold text-sm"
+                          onClick={handleRegisterClick}
+                        >
+                          Create Account
+                        </CreateAccountButton>
+                      </div>
+                    </Popover>
+                  ) : (
+                    <Popover className=" float-left right-[0px] w-[415px] pt-3 pb-3 boxshadow">
+                      <div className="p-4 flex items-center gap-4">
+                        {/* User's profile picture */}
+                        <img
+                          src={'https://img.freepik.com/premium-vector/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-vector-illustration_561158-4215.jpg?semt=ais_hybrid'} // default avatar if user doesn't have one
+                          alt="Profile Avatar"
+                          className="w-[40px] h-[40px] rounded-full"
+                        />
+                        {/* User's name */}
+                        <h2 className="text-tertiary-400 tracking-wider font-bold text-base leading-24 HeroNewLight font-HeroNewRegular">
+                          {isLoggedIn.firstName}
+                        </h2>
+                      </div>
+                      <hr className='text-black mt-8' />
+                      <div className="pop_up p-4 flex gap-4">
 
-                  </div>
-                </Popover>
+                        <div className='text-black flex hover:text-appTheme text-[0.75rem] font-HeroNewRegular font-normal leading-5 mt-6 py-2 tracking-[0.3px] cursor-pointer' onClick={handleLogoutClick}>
+                          <img src={`${logout_blue}`} alt={'logout'} className='mr-2'></img>Logout</div>
+                      </div>
+                    </Popover>
+                  )}
+                </>
               )}
             </div>
 
