@@ -107,7 +107,7 @@ const PlpPageTemplate: React.FC = () => {
     }
   };
 
-  const sortedProducts = sortProducts([...filteredProducts]);
+  const sortedProducts = useMemo(() => sortProducts([...filteredProducts]), [filteredProducts, selectedSortOption]);
 
   // Sync category and sort option with URL params
   useEffect(() => {
@@ -116,7 +116,7 @@ const PlpPageTemplate: React.FC = () => {
     const sortFromUrl = searchParams.get('sort');
 
     // Check for Best Seller in URL
-    if (categoryFromUrl === Plp_Constants.bestSeller || categoryFromUrl === Plp_Constants.viewAll|| categoryFromUrl === Plp_Constants.AllProducts) {
+    if (categoryFromUrl === Plp_Constants.bestSeller || categoryFromUrl === Plp_Constants.viewAll || categoryFromUrl === Plp_Constants.AllProducts) {
       setEnableBestSeller(true);
       setSelectedProductCategory(Plp_Constants.AllProducts); // Set state to show all products
       setIsBestSellerState(true); // Indicate best seller state
