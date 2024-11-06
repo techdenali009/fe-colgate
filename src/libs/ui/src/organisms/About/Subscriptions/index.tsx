@@ -27,7 +27,7 @@ const SubscriptionTerms: React.FC = () => {
         </Paragraph>
       
       </div>
-      <PrimaryButton className='font-HeroNewBold text-center font-bold leading-6 tracking-[0.3px] py-[0.625rem] px-6 bg-appTheme mb-6 text-white hover:!underline hover:!bg-appTheme'>Terms and conditions</PrimaryButton>
+      <PrimaryButton className='font-HeroNewBold  text-center font-bold leading-6 tracking-[0.3px] py-[0.625rem] px-6 !bg-appTheme mb-6 text-white hover:!underline hover:!bg-appTheme'>Terms and conditions</PrimaryButton>
     </div>
     
   );

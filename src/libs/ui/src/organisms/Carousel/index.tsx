@@ -4,6 +4,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { BannerSlide } from '../CarouselBannerSlide';
 import { CarouselProps } from '@utils/interface';
 import  './carousel.style.scss';
+import CarouselPrevArrow from '@ui/atoms/SvgAtoms/CarouselPrevArrow';
+import CarouselNextArrow from '@ui/atoms/SvgAtoms/CarouselNextArrow';
 
 export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,9 +20,10 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
       <button
         type="button"
         onClick={onClickHandler}
-        className={currentSlide.bgColor.includes('bg-black') ? 'custom-prev-arrow-black' : 'custom-prev-arrow-other'}
+        className='custom-prev-arrow-black'
         aria-label={label}
-      />
+      >  {currentSlide.bgColor.includes('bg-black') ? <CarouselPrevArrow  fillColor="#ffffff"/> : <CarouselPrevArrow  />}
+      </button>
     );
   };
   // @ts-expect-error hasPrev will use in future
@@ -30,9 +33,10 @@ export const Carousel: React.FC<CarouselProps> = ({ slides }) => {
       <button
         type="button"
         onClick={onClickHandler}
-        className={currentSlide.bgColor.includes('bg-black') ? 'custom-next-arrow-black' : 'custom-next-arrow-other'}
+        className='custom-next-arrow-black'
         aria-label={label}
-      />
+      >{currentSlide.bgColor.includes('bg-black') ? <CarouselNextArrow  fillColor="#ffffff"/> : <CarouselNextArrow  />}
+      </button>
     );
   };
 

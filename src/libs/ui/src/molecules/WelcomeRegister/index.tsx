@@ -96,7 +96,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
 
           {/* Buttons */}
           <div className="flex flex-row gap-4 row-span-1  justify-self-end lg:flex-row-reverse lg:items-center lg:row-span-1 col-span-2 lg:justify-self-end">
-            <Button type="submit" className=" bg-blue-700 text-white p-3 lg:m-1 mb-[10px] mt-[10px] hover:bg-black hover:underline font-bold">
+            <Button type="submit" className=" bg-appTheme text-white p-3 lg:m-1 mb-[10px] mt-[10px] hover:bg-black hover:underline font-bold">
               {LOGIN}
             </Button>
             <Button
@@ -104,7 +104,7 @@ const WelcomeAlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsFor
               type="button"
               className="p-0 text-start  "
             >
-              <span className="bg-none text-blue-700 text-sm font-HeroNewRegular font-medium hover:underline hover:font-bold   ">
+              <span className="bg-none text-appTheme text-sm font-HeroNewRegular font-medium hover:underline hover:font-bold  ">
                 {FORGOTPASSWORD}
               </span>
             </Button>

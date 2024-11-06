@@ -122,7 +122,7 @@ const RegisterForm: React.FC = () => {
                 {/* Conditionally render the checkmark icon */}
                 {watchFirstName && (
                   <FaCheckCircle
-                    className="absolute right-2.5 top-[30%] transform -translate-y-1/2 text-blue-600 text-base"
+                    className="absolute right-2.5 top-[30%] transform -translate-y-1/2 text-appTheme text-base"
                   />
 
                 )}
@@ -157,7 +157,7 @@ const RegisterForm: React.FC = () => {
                 />
                 {watchLasttName && (
                   <FaCheckCircle
-                    className="absolute right-2.5 top-[30%] transform -translate-y-1/2 text-blue-600 text-base"
+                    className="absolute right-2.5 top-[30%] transform -translate-y-1/2 text-appTheme text-base"
                   />
                 )}
               </div>
@@ -303,9 +303,9 @@ const RegisterForm: React.FC = () => {
           checked={checkPolicy}
           onChange={handlePolicyCheckbox}
           className={`text-left !m-0 font-HeroNewLight text-[#333333] text-xs pt-[11px] pb-6 !leading-6 rounded-none h-12 p-0  border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-none'}
-            ${isSubmitted && (errors[LoginForm.Email] || !checkPolicy) ? 'focus:outline-blue-700 border-formFieldBorder' : 'focus:outline-none'}`}
+            ${isSubmitted && (errors[LoginForm.Email] || !checkPolicy) ? 'focus:outline-appTheme border-formFieldBorder' : 'focus:outline-none'}`}
         >
-          <label>Kindly explore our <a className='text-[#125ce0] text-sm font-HeroNewRegular'>privacy policy</a> to understand how we utilize your information.<span className='text-red-700'>*</span> </label>
+          <label>Kindly explore our <a className='text-appTheme text-sm font-HeroNewRegular'>privacy policy</a> to understand how we utilize your information.<span className='text-red-700'>*</span> </label>
         </Checkbox>
 
         <div className="flex justify-between items-center w-full">
@@ -313,7 +313,7 @@ const RegisterForm: React.FC = () => {
 
           <Button
             type="submit"
-            className="bg-blue-600 text-white p-3 m-1 mt-10px text-sm hover:bg-black hover:underline font-HeroNewSemiBold"
+            className="bg-appTheme text-white p-3 m-1 mt-10px text-sm hover:bg-black hover:underline font-HeroNewSemiBold"
           >
             Create Account
           </Button>

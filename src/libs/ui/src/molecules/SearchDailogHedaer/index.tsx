@@ -1,9 +1,10 @@
 import React from 'react';
 import CloseSearch from '../../../assets/CloseSearch.svg';
-import searchIcon from '../../../assets/searchIcon.svg';
+
 import clearIcon from '../../../assets/clearIcon.svg';
 import { HeaderLogo } from '@ui/atoms/HeaderLogo';
 import { Image } from '@ui/atoms/Image';
+import SearchIcon from '@ui/atoms/SvgAtoms/SearchIcon';
 
 interface ModalHeaderProps {
     searchQuery: string;
@@ -15,15 +16,15 @@ interface ModalHeaderProps {
 
 const SearchModalHeader: React.FC<ModalHeaderProps> = ({ searchQuery, setSearchQuery, handleClear, handleSearch, onClose }) => (
   <div className="p-4 flex items-center justify-between">
-    <div className="tm:hidden">
+    <div className="tm:hidden lg:ml-[80px] ml-10">
       <HeaderLogo />
     </div>
-    <div className="relative flex-1 pb-[35px] tm:pb-0">
+    <div className="relative flex-1 pb-[35px] tm:pb-0 lg:ml-12">
       <input
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="lg:w-[45rem] xl:w-[53rem] border-b border-black focus:outline-none focus:border-b focus:border-black border-t-0 border-l-0 border-r-0 w-full py-2 px-4 font-HeroNewRegular tm:w-[90%]"
+        className="lg:w-[35rem] xl:w-[53rem] border-b border-black focus:outline-none focus:border-b focus:border-black border-t-0 border-l-0 border-r-0 w-full py-2 px-4 font-HeroNewRegular tm:w-[90%]"
         placeholder="Search..."
       />
 
@@ -33,7 +34,8 @@ const SearchModalHeader: React.FC<ModalHeaderProps> = ({ searchQuery, setSearchQ
         </span>
       )}
       <span className="absolute top-2 cursor-pointer tm:unset" onClick={handleSearch}>
-        <Image src={searchIcon} alt="searchIcon" className="relative right-[1.75rem]" />
+        {/* <Image src={searchIcon} alt="searchIcon" className="relative right-[1.75rem]" /> */}
+        <SearchIcon></SearchIcon>
       </span>
     </div>
     <span

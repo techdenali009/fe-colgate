@@ -31,7 +31,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
           {submenu.map((column, index) => (
             <div key={index}>
               <h3
-                className="font-semibold text-Black-700 mb-2 hover:bg-blue-50 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] font-HeroNewRegular"
+                className="font-semibold text-Black-700 mb-2 hover:bg-appTheme-opacity-10 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] font-HeroNewRegular"
                 style={{ letterSpacing: '0.3px' }}
               >
                 {column.title}
@@ -40,14 +40,14 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
                 {column.items.map((item, idx) => (
                   <li
                     key={idx}
-                    className={'text-gray-700 font-HeroNewRegular text-base transition-colors duration-200 cursor-pointer mb-2 hover:bg-blue-50 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-blue-600 hover:underline'}
+                    className={'text-gray-700 font-HeroNewRegular text-base transition-colors duration-200 cursor-pointer mb-2 hover:bg-appTheme-opacity-10 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-appTheme hover:underline'}
                     onClick={()=>handleLinkClick(item)}
                   >
                     {item}
                   </li>
                 ))}
                 {column.hasMore && (
-                  <li  onClick={()=>handleLinkClick('View All')} className="text-blue-600 hover:bg-blue-50 leading-[38px]  pl-[9px] font-semibold cursor-pointer mb-2 hover:underline">
+                  <li onClick={()=>handleLinkClick('View All')} className="text-appTheme hover:bg-appTheme-opacity-10 leading-[38px]  pl-[9px] font-semibold cursor-pointer mb-2 hover:underline">
                     View All
                   </li>
                 )}

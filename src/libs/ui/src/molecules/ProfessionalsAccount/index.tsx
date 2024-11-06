@@ -22,6 +22,7 @@ function ProfessionalsAccount() {
           contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
           className="!p-0 !py-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
+        
         >
           <div>
             <Paragraph>We need to verify all professional licenses to create professional accounts.</Paragraph>
