@@ -41,11 +41,22 @@ module.exports = {
         'appPaddingRight': '6rem',
       },
       colors: {
-        'appTheme': 'var(--primary-color)',
+        'appTheme': 'rgb(var(--primary-color))',
         'appBlackTheme': 'var(--secondary-color)',
-        'appTextColor': 'var(--app-text-color)',
+        'appTextColor': 'var(--secondary-color)',
         'appErrorMessage': 'var(--app-errorMessage-color)',
-        'formFieldBorder': 'var(--form-field-border)'
+        'formFieldBorder': 'var(--form-field-border)',
+        'hoverIconColor':'var(--hover-icon-color)',
+        'appTheme-opacity-10': 'rgba(var(--primary-color), 0.1)',
+        'appTheme-opacity-20': 'rgba(var(--primary-color), 0.2)',
+        'appTheme-opacity-30': 'rgba(var(--primary-color), 0.3)',
+        'appTheme-opacity-40': 'rgba(var(--primary-color), 0.4)',
+        'appTheme-opacity-50': 'rgba(var(--primary-color), 0.5)',
+        'appTheme-opacity-60': 'rgba(var(--primary-color-rgb), 0.6)',
+        'appTheme-opacity-70': 'rgba(var(--primary-color), 0.7)',
+        'appTheme-opacity-80': 'rgba(var(--primary-color), 0.8)',
+        'appTheme-opacity-90': 'rgba(var(--primary-color), 0.9)',
+        'appTheme-opacity-100': 'rgba(var(--primary-colo), 1)',
       }
 
     },

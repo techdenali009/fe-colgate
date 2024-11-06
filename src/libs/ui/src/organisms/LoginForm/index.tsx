@@ -109,7 +109,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
           className="mt-[12px] p-0 text-start"  
           // className="mt-0 p-0 text-start h-[48px]"
         >
-          <span className="bg-none text-blue-700 mt-4 text-sm font-HeroNewRegular hover:font-semibold">
+          <span className="bg-none text-appTheme mt-4 text-sm font-HeroNewRegular hover:font-semibold">
             Forgot password?
           </span>
         </Button>

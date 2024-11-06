@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { Label } from '@ui/atoms/Label';
 import { links } from '@utils/NavLinksConstants';
-import greaterArrow from '../../../assets/greaterArrow.svg';
-import straightArrow from '../../../assets/straightArrow.svg';
+
 import responsiveProfile from '../../../assets/responsiveProfile.svg';
 import Popover from '../Popover/Popover';
 import { PrimaryButton } from '../PrimaryButton';
+import GreaterArrow from '@ui/atoms/SvgAtoms/GreaterArrow';
+import StraightArrow from '@ui/atoms/SvgAtoms/StraightArrow';
 
 interface NavLinksProps {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -76,7 +77,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
   return (
     <div className="relative">
       <button
-        className="lg:hidden p-2 text-black hover:text-blue-600 "
+        className="lg:hidden p-2 text-black hover:text-appTheme "
         onClick={handleHamburgerClick}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
@@ -84,7 +85,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
       </button>
 
       <ul
-        className={`fixed grid  sm:gap-[0rem] hover:text-blue-600 md:gap-[0rem] xl:gap-1 top-0 left-0 w-full bg-white lg:static lg:flex  text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${
+        className={`fixed grid  sm:gap-[0rem] hover:text-appTheme md:gap-[0rem] xl:gap-1 top-0 left-0 w-full bg-white lg:static lg:flex  text-nowrap lg:p-0 p-4 transform lg:transform-none transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } z-20`}
       >
@@ -97,18 +98,18 @@ const NavLinks: React.FC<NavLinksProps> = ({
         {links.map((link) => (
           <li
             key={link.title}
-            className="relative border-b  lg:border-none group hover:text-blue-600 lg:hover:bg-[rgba(238,244,255,1)]"
+            className="relative border-b  lg:border-none group hover:text-appTheme "
             onMouseEnter={() => handleMouseEnter(link.title, link.submenu)}
             onMouseLeave={handleMouseLeave}
           >
             <div
-              className="flex hover:text-blue-600 items-center text-gray-600 justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"
+              className="flex hover:text-appTheme items-center text-gray-600 justify-between pt-3 pb-3 pl-4 pr-4 cursor-pointer lg:hover:bg-appTheme-opacity-10 transition-transform duration-300"
               onClick={() => {
                 handleToggleSubmenu(link.title);
                 
               }}
             >
-              <Label className="font-HeroNewRegular text-gray-600 text-base font-normal relative z-10 group-hover:text-blue-600 group-hover:underline transition-colors duration-300" >
+              <Label className="font-HeroNewRegular text-gray-600 text-base font-normal relative z-10 group-hover:text-appTheme group-hover:underline transition-colors duration-300" >
                 {link.title}
               </Label>
               {link.submenu && (
@@ -117,7 +118,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                     <span aria-label="collapse icon"></span>
                   ) : (
                     <span aria-label="expand icon">
-                      <img src={greaterArrow} alt="greaterArrow" className="" />
+                      <GreaterArrow></GreaterArrow>
                     </span>
                   )}
                 </span>
@@ -141,7 +142,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
           </div>
           <div className="arrow pr-5">
             <span onClick={togglePopover} aria-label="expand icon">
-              <img src={greaterArrow} alt="greaterArrow" className="" />
+              <GreaterArrow></GreaterArrow>
             </span>
           </div>
         </div>
@@ -150,11 +151,11 @@ const NavLinks: React.FC<NavLinksProps> = ({
           <Popover className="w-full h-[78%] rounded-none text-center   right-[0px] w-full pt-3 pb-3 boxshadow">
             <div className="flex justify-between">
               <span onClick={handleHamburgerClick} aria-label="back icon">
-                <img src={straightArrow} alt="straightArrow" className="" />
+                <StraightArrow></StraightArrow>
               </span>
               <h2 className="font-HeroNewBold">signIn</h2>
               <span
-                className="text-black cursor-pointer hover:text-blue-600"
+                className="text-black cursor-pointer hover:text-appTheme"
                 onClick={handleHamburgerClick}
               >
                 <HiX size={24} aria-label="back icon" />
@@ -180,7 +181,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
       {submenuOpen && window.innerWidth < 1024 && (
         <ul className="fixed inset-0 w-full h-full bg-white z-30 overflow-hidden" >
           <li className="relative h-full" >
-            <div className="flex items-center justify-between p-4 bg-white cursor-pointer hover:bg-[rgba(238,244,255,1)] transition-transform duration-300"  >
+            <div className="flex items-center justify-between p-4 bg-white cursor-pointer  transition-transform duration-300"  >
               <span
                 onClick={() => {
                   handleHamburgerClick(); 
@@ -189,7 +190,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                 aria-label="back icon"
                 
               >
-                <img src={straightArrow} alt="straightArrow" />
+                <StraightArrow></StraightArrow>
               </span>
               <Label className="text-black font-bold text-xl font-HeroNewBold"
               
@@ -197,7 +198,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                 {submenuOpen}
               </Label>
               <span
-                className="text-black cursor-pointer hover:text-blue-600"
+                className="text-black cursor-pointer hover:text-appTheme"
                 onClick={() => setSubmenuOpen(null)}
               >
                 <HiX size={24} aria-label="close icon"  />
@@ -208,7 +209,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                 .find((link) => link.title === submenuOpen)
                 ?.submenu.map((subItem) => (
                   <div key={subItem.title}>
-                    <Label className="pb-4 text-[1.08rem] font-bold leading-6 font-HeroNewBold tracking-[0.3px] text-black text-base hover:text-blue-600 cursor-pointer tm:leading-[3.5rem]">
+                    <Label className="pb-4 text-[1.08rem] font-bold leading-6 font-HeroNewBold tracking-[0.3px] text-black text-base hover:text-appTheme cursor-pointer tm:leading-[3.5rem]" >
                       {subItem.title}
                     </Label>
                     {subItem.items && (
@@ -216,7 +217,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                         {subItem.items.map((item) => (
                           <li key={item} className="py-1 bg-white">
                             <Label
-                              className="text-black hover:text-blue-600 cursor-pointer"
+                              className="text-black hover:text-appTheme  hover:underline cursor-pointer"
                               onClick={() => {
 
                                 handleLinkClick(item); 
@@ -227,7 +228,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                           </li>
                         ))}
                         {subItem.hasMore && (
-                          <li className="text-blue-600 pl-[9px] py-3 cursor-pointer hover:underline tm:pl-0 tm:font-bold tm:text-[rgb(18,92,224)] tm:tracking-tight tm:font-HeroNewBold">
+                          <li className="text-appTheme pl-[9px] py-3 cursor-pointer hover:underline tm:pl-0 tm:font-bold tm:text-appTheme tm:tracking-tight tm:font-HeroNewBold">
                             <Label>View All</Label>
                           </li>
                         )}

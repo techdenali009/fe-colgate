@@ -1,11 +1,12 @@
-import { Logo } from '../Logo/logo'
-import logo from '../../../assets/Logo.svg';
+
+import logo from '../../../assets/skinCareLogo.png';
 import { useNavigate } from 'react-router-dom';
+import { Logo } from '../Logo/logo';
 
 export const HeaderLogo =() =>{
   const navigate = useNavigate()
   return  <Logo src={logo} alt='logo' onClick={()=>{
     console.log('Header Logo clicked')
     navigate('')
-  }} className='p-4  mx-[80px] xl:mx-[80px] lg:p-0.5!important tm:p-0 tm:m-0 lg:mx-[41px]'/>
+  }} className='tl:scale-x-[1] scale-x-[1.5] scale-y-[1.3] tl:scale-y-[1]    lg:p-0.5!important tm:p-0 tm:m-0  max-w-[63.75em]  lg:w-[145px] w-24  '   />
 }

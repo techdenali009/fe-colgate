@@ -11,7 +11,7 @@ export const PrimaryButton: React.FC<IPrimaryButton> = ({ children, onClick, cla
   return (
     <Button
       onClick={onClick}
-      className={`bg-blue-700 text-white p-3 m-1 hover:bg-black hover:underline ${className}`}
+      className={`bg-appTheme text-white p-3 m-1 hover:bg-black hover:underline ${className}`}
       {...rest}
     >
       {children}

@@ -137,9 +137,9 @@ export function FrequentlyAskedQuestions({
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
             className=""
-            buttonClassName="font-HeroNewBold font-bold !px-4 !py-2.5 !text-[100%] !leading-[1.25rem]"
+            buttonClassName="font-HeroNewBold font-bold !px-4 !py-2.5 !text-[100%] !leading-[1.25rem] hover:!text-appTheme"
             liClassName="border-l-4 "
-            selectedClassName='bg-[#eef4ff]'
+            selectedClassName='bg-[#eef4ff] !text-appTheme '
           />
         </div>
       </div>

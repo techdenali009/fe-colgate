@@ -1,7 +1,4 @@
-import OrderManagementtIcon from '../ui/assets/OrderManagementtIcon.svg';
-import AcademyIcon from '../ui/assets/AcademyIcon.svg';
-import LoyaltyIcon from '../ui/assets/LoyaltyIcon.svg';
-import SubscribeIcon from '../ui/assets/SubscribeIcon.svg';
+
 const url=import.meta.env.VITE_SCROLL_PCA_CMS_URL;
 
 export const marketingBannersData = [
@@ -26,25 +23,25 @@ export const promotionBannersData=[
   {
     heading:'Order Management',
     subtext:'Effortlessly handle orders and invoices in your account and stay up-to-date on any and all business affairs.',
-    imageUrl:OrderManagementtIcon,
+    imageUrl:'',
 
   },
   {
     heading:'Academy',
     subtext:'Get access to the entire education library via the our new single sign-on. All the product knowledge is at your fingertips.',
-    imageUrl:AcademyIcon,
+    imageUrl:'',
       
   },
   {
     heading:'Loyalty',
     subtext:'Sign up to access exclusive perks, rewards, and special offers through our loyalty program. Your success is our success.',
-    imageUrl:LoyaltyIcon,
+    imageUrl:'',
         
   },
   {
     heading:'Subscriptions',
     subtext:'Keep your shelves stocked by auto-ordering all of your favorite products — just set it and forget it.',
-    imageUrl:SubscribeIcon,
+    imageUrl:'',
         
   },
 ]
