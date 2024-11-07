@@ -35,7 +35,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  
+
   const [, setProducts] = useState<string[]>([]);
   
 
