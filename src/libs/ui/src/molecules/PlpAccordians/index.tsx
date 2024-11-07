@@ -4,17 +4,12 @@ import CheckboxAccordion from '../PlpCheckBoxAccordian';
 import RadioAccordion from '../PlpRadioAccordian';
 import Modal from '../PlpSortModal';
 import { plpFilters, AccordionType } from '@utils/plpFilterData';
+import { viewAllProducts } from '@utils/test';
 
-interface FilterData {
-  productCategory: string[];
-  bestSeller: string[];
-  productTypes: string[];
-  skinConcern: string[];
-  skinType: string[];
-}
+
 
 interface SidebarProps {
-  filterData: FilterData;
+  currentProductCategory: string;
   className?: string;
   ulClassName?: string;
   liClassName?: string;
@@ -22,16 +17,17 @@ interface SidebarProps {
   onCategorySelect: (category: string | null) => void;
   onSortChange: (sortOption: string) => void;
   enableBestSeller: boolean;
+  onproduct: string;
 }
 
 const PlpAccordians: React.FC<SidebarProps> = ({
   className,
   ulClassName,
   liClassName,
-  onBestSellerChange,
   onCategorySelect,
   onSortChange,
   enableBestSeller,
+  currentProductCategory,
 }) => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedProductCategory, setSelectedProductCategory] = useState<string | null>(null);
@@ -39,8 +35,21 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  
+  const [, setProducts] = useState<string[]>([]);
+  
 
+  // Calculate counts for each category
+  const calculateCounts = () => {
+    const counts: { [key: string]: number } = {};
+    viewAllProducts.forEach(product => {
+      const category = product.category;
+      counts[category] = (counts[category] || 0) + 1;
+    });
+    return counts;
+  };
 
+  const counts = calculateCounts();
 
   const handleSortChange = (sortOption: string) => {
     setSelectedSort(sortOption);
@@ -53,10 +62,20 @@ const PlpAccordians: React.FC<SidebarProps> = ({
       [option]: !prev[option],
     }));
 
-    if (option === 'Best Seller') {
-      onBestSellerChange(!checkedFilters[option]);
-    }
+    setProducts((prevItems) => {
+      // If the option is already selected, remove it; otherwise, add it
+      if (prevItems.includes(option)) {
+        return prevItems.filter(item => item !== option);
+      } else {
+        return [...prevItems, option];
+      }
+    });
+
+    // Update the selected product categories without overriding existing selections
+    setSelectedProductCategory(null); // Clear the single selection
+    onCategorySelect(option); // Send updated selection to parent
   };
+
 
   const handleProductCategoryClick = (category: string) => {
     const isSelected = category === selectedProductCategory;
@@ -68,7 +87,12 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     setShowAllCategories(!showAllCategories);
   };
 
-  // Filter to show "Best Seller" only when `enableBestSeller` is true
+  useEffect(() => {
+    if (currentProductCategory) {
+      setSelectedProductCategory(currentProductCategory);
+    }
+  }, [currentProductCategory]);
+
   const displayFilters = enableBestSeller
     ? plpFilters
     : plpFilters.filter((filter) => filter.title !== 'Best Seller');
@@ -85,12 +109,13 @@ const PlpAccordians: React.FC<SidebarProps> = ({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   return (
     <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center bg-white rounded-lg ${className}`}>
       {isSmallScreen && (
         <button
           onClick={() => setIsModalOpen(true)}
-          className="text-blue-600 font-bold"
+          className="text-appTheme font-bold"
         >
           Show Filters & Sort
         </button>
@@ -120,7 +145,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   liClassName={liClassName}
                   items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
                 >
-                  <button onClick={toggleShowCategories} className="text-blue-600 mt-2">
+                  <button onClick={toggleShowCategories} className="text-appTheme mt-2">
                     {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
                   </button>
                 </LabelAccordion>
@@ -134,6 +159,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onCheckboxChange={handleCheckboxChange}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
+                  counts={counts} // Pass the counts to the CheckboxAccordion
                 />
               )}
             </div>
@@ -152,7 +178,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   liClassName={liClassName}
                   items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
                 >
-                  <button onClick={toggleShowCategories} className="text-blue-600 mt-2">
+                  <button onClick={toggleShowCategories} className="text-appTheme mt-2">
                     {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
                   </button>
                 </LabelAccordion>
@@ -166,6 +192,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onCheckboxChange={handleCheckboxChange}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
+                  counts={counts} // Pass the counts to the CheckboxAccordion
                 />
               )}
             </div>

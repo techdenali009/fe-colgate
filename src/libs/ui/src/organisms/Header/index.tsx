@@ -136,6 +136,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
         } else {
           url = `${url}?category=${title}`;
         }
+        
         navigate(url);
         return;
       }

@@ -7,9 +7,9 @@ export const SortOptions = {
 };
 
 export enum AccordionType {
-    Radio = 'Radio',
-    Checkbox = 'Checkbox',
-    Label = 'Label'
+  Radio = 'Radio',
+  Checkbox = 'Checkbox',
+  Label = 'Label'
 }
 
 
@@ -25,8 +25,8 @@ export const plpFilters = [
     options: [
       { title: 'All Products', count: 1 },
       { title: 'Antioxidants', count: 2 },
-      { title: 'Broad Spectrum SPF', count: 3 },
-      { title: 'Cleansers & Toners', count: 4 },
+      { title: 'Broad spectrum SPF', count: 3 },
+      { title: 'Cleansers & toners', count: 4 },
       { title: 'Eye, neck, lip', count: 5 },
       { title: 'Masks', count: 6 },
       { title: 'Moisturizers', count: 7 },
@@ -44,21 +44,21 @@ export const plpFilters = [
     ]
   },
 
-
-  {
-    title: 'Product Types',
-    AccordionType: AccordionType.Checkbox,
-    options: [{ title: 'Backbar', count: 1 }, { title: 'Retail', count: 2 }, { title: 'Sample', count: 3 }]
-  },
   {
     title: 'Best Seller',
     AccordionType: AccordionType.Checkbox,
     options: [{ title: 'Best Seller', count: 1 }]
   },
   {
-    title: 'Skin Concer',
+    title: 'Product Types',
     AccordionType: AccordionType.Checkbox,
-    options: [{ title: 'Acne', count: 1 }, { title: 'Discolorations', count: 2 }, { title: 'Sensitive Skin', count: 3 }]
+    options: [{ title: 'Backbar', count: 1 }, { title: 'Retail', count: 2 }, { title: 'Sample', count: 3 }]
+  },
+
+  {
+    title: 'Skin Concern',
+    AccordionType: AccordionType.Checkbox,
+    options: [{ title: 'Brightening', count: 1 }, { title: 'Acne', count: 2 }, { title: 'Aging', count: 3 }, { title: 'Discolorations', count: 5 }, { title: 'Preventative', count: 6 }, { title: 'Sensitive Skin', count: 7 }]
   },
 
   {
@@ -72,5 +72,5 @@ export const plpFilters = [
     AccordionType: AccordionType.Radio,
     options: [{ title: 'Alphabetical A - Z' }, { title: 'Alphabetical Z - A' }, { title: 'Price Low to High' }, { title: 'Price High to Low' }]
   }
- 
+
 ]
