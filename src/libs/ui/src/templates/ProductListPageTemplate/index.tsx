@@ -142,16 +142,16 @@ const PlpPageTemplate: React.FC = () => {
     }
   }, [location.search, setFilters, setSelectedProductCategory]);
 
-    //USed to fetch the products from api call but now  we are fetching from test page
-    const openQuickReviewModal = async (id: number) => {
-      console.log('product id',id);
-      const product = sortedProducts.find(p => p.id === id);
-      console.log('product id',product);
-      if (product) {
-        setSelectedProduct(product);
-        setQuickViewModalOpen(true);
-      }
-    };
+  //USed to fetch the products from api call but now  we are fetching from test page
+  const openQuickReviewModal = async (id: number) => {
+    console.log('product id',id);
+    const product = sortedProducts.find(p => p.id === id);
+    console.log('product id',product);
+    if (product) {
+      setSelectedProduct(product);
+      setQuickViewModalOpen(true);
+    }
+  };
   return (
     <div className="relative pr-2 pl-2">
       <div className="!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1">
