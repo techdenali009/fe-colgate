@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 
-interface ArrowPrevIconProps {
+interface ArrowPrevIconProps extends SVGProps<SVGSVGElement> {
   fillColor?: string; // Optional fillColor prop for the rect
 }
 
 const LoyaltyIcon: React.FC<ArrowPrevIconProps> = ({
-  fillColor = 'rgb(var(--primary-color))', // Default to primary color variable
+  fillColor = 'rgb(var(--primary-color))',
+  width='104',
+  height='104',
+  ...rest
 }) => {
   return (
     <svg
       version="1.1"
       viewBox="0 0 1664 1664"
-      width="104"
-      height="104"
+      width={width}
+      height={height}
       xmlns="http://www.w3.org/2000/svg"
+      {...rest}
     >
       <path transform="translate(0)" d="m0 0h1664v1664h-1664z" fill="#FCFDFD" />
       <path
