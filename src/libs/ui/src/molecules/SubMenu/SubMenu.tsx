@@ -22,7 +22,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
   };
   return (
     <div
-      className={` left-0 w-full z-[22] ${className} ${isActive ? 'block' : 'hidden'} absolute shadow-lg p-4 transition-all duration-300 z-[99999] bg-white`}
+      className={` left-0 w-full z-[22] ${className} ${isActive ? 'block' : 'hidden'} absolute shadow-lg p-4 transition-all duration-300 z-[99999] bg-white dark:bg-appModalColor`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -40,7 +40,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
                 {column.items.map((item, idx) => (
                   <li
                     key={idx}
-                    className={'text-gray-700 font-HeroNewRegular text-base transition-colors duration-200 cursor-pointer mb-2 hover:bg-appTheme-opacity-10 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-appTheme hover:underline'}
+                    className={'text-appTextColor font-HeroNewRegular text-base transition-colors duration-200 cursor-pointer mb-2 hover:bg-appTheme-opacity-10 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-appTheme hover:underline'}
                     onClick={()=>handleLinkClick(item)}
                   >
                     {item}

@@ -7,10 +7,14 @@ import Product from '@ui/organisms/Product';
 import filterData from '@utils/FilterData';
 import { useMemo, useState, useEffect } from 'react';
 import { useProductContext } from '../../contexts/PlpContext';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Plp_Constants, plpFilters, SortOptions } from '@utils/plpFilterData';
+import { ProductType } from '@utils/Product';
+
+import QuickViewModal from '@ui/organisms/QuickView';
+import { RootState } from '@store/store';
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,6 +34,11 @@ const PlpPageTemplate: React.FC = () => {
   const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical A - Z');
   const [isBestSeller, setIsBestSellerState] = useState<boolean>(false); // Add state for isBestSeller
   const [enableBestSeller, setEnableBestSeller] = useState<boolean>(false);
+  const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
+  const userInfo = useSelector((state: RootState) => state.authSlice.userInfo); 
+  const isLoggedIn = Boolean(userInfo); 
+  const closeQuickViewModal = () => setQuickViewModalOpen(false);
   // Update URL params when a category is selected
   const handleCategorySelect = (category: string | null) => {
     const newCategory = category ?? 'all products';
@@ -133,6 +142,14 @@ const PlpPageTemplate: React.FC = () => {
     }
   }, [location.search, setFilters, setSelectedProductCategory]);
 
+  //USed to fetch the products from api call but now  we are fetching from test page
+  const openQuickReviewModal = async (id: number) => {
+    const product = sortedProducts.find(p => p.id === id);
+    if (product) {
+      setSelectedProduct(product);
+      setQuickViewModalOpen(true);
+    }
+  };
   return (
     <div className="relative pr-2 pl-2">
       <div className="!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1">
@@ -177,16 +194,17 @@ const PlpPageTemplate: React.FC = () => {
             {isBestSeller ? (
               // Show all products if best seller
               sortedProducts.map((product) => (
-                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false} />
+                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())}  openQuickView={openQuickReviewModal}     showQuickView={isLoggedIn} />
               ))
             ) : (
               // Show only filtered products otherwise
               sortedProducts.slice(0, productsToShow).map((product) => (
-                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())} openQuickView={() => console.log('')} showQuickView={false} />
+                <Product key={`${product.id}-${product.name}`} product={product} modalSetToggle={() => dispatch(toggleLoginModel())}  openQuickView={openQuickReviewModal}     showQuickView={isLoggedIn}/>
               ))
             )}
+            
           </div>
-
+       
           {productsToShow < sortedProducts.length && !isBestSeller && (
             <div className="text-center mt-5">
               <ButtonWithText
@@ -196,14 +214,22 @@ const PlpPageTemplate: React.FC = () => {
               </ButtonWithText>
             </div>
           )}
-
+         
           <div className="text-center mt-4">
             {sortedProducts.length > 0
               ? `Viewing ${Math.min(productsToShow, sortedProducts.length)} out of ${sortedProducts.length} products`
               : 'No products found for this category.'}
           </div>
+
         </div>
+       
       </div>
+      {QuickViewModalOpen && selectedProduct && (
+        <QuickViewModal
+          closeModal={closeQuickViewModal}
+          product={selectedProduct} 
+        />
+      )}
     </div>
   );
 };

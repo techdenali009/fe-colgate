@@ -56,15 +56,15 @@ const RegisterForm: React.FC = () => {
   const watchPassword = watch('password'); // Watch for password field for validation
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit(onSubmit)} className="min-lg:w-[67%] w-[648px] max-md:w-[100%] bg-white p-9 shadow-normal inline-grid !my-16">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100  dark:bg-appdarkcolor">
+      <form onSubmit={handleSubmit(onSubmit)} className="min-lg:w-[67%] w-[648px] max-md:w-[100%] bg-white p-9 shadow-normal inline-grid !my-16 dark:bg-appModalColor">
         {/* Header */}
         <div className="text-start">
-          <p className="text-[32px] mb-[32px] font-HeroNewRegular text-black">Register Your Profile</p>
+          <p className="text-[32px] mb-[32px] font-HeroNewRegular text-appTextColor">Register Your Profile</p>
         </div>
         {/* Primary Contact Subtitle */}
         <div className="mb-1  text-left">
-          <SubtitleLabel className="font-HeroNewLight !text-black text-left !text-[16px]" >Primary Contact</SubtitleLabel>
+          <SubtitleLabel className="font-HeroNewLight !text-appTextColor text-left !text-[16px]" >Primary Contact</SubtitleLabel>
         </div>
 
         <div className="inline-grid text-start ">
@@ -87,9 +87,9 @@ const RegisterForm: React.FC = () => {
               <InputField
                 type='email'
                 id="email"
-                placeholder=""
+                placeholder="Email"
                 {...field}
-                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 text-base border-[1px] w-full 
+                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 text-base border-[1px] w-full  text-black bg-appInputFieldColor
                   ${errors.email ? 'border-formFieldBorder' : 'border-slate-200'}
                   ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
               />
@@ -115,7 +115,7 @@ const RegisterForm: React.FC = () => {
                   id="firstname"
                   placeholder="First Name *"
                   {...field}
-                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full text-black bg-appInputFieldColor
                     ${errors.firstName ? 'border-formFieldBorder' : 'border-slate-200'}
                     ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 />
@@ -151,7 +151,7 @@ const RegisterForm: React.FC = () => {
                   id="lastname"
                   placeholder="Last Name *"
                   {...field}
-                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full text-black bg-appInputFieldColor
                     ${errors.lastName ? 'border-formFieldBorder' : 'border-slate-200'}
                     ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 />
@@ -216,7 +216,7 @@ const RegisterForm: React.FC = () => {
                   }}
                   
                   // className="rounded-none mb-6 focus:outline-none p-3 text-base border-slate-200 border-2 w-full"
-                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                  className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full text-black bg-appInputFieldColor
                     ${errors.password ? 'border-formFieldBorder' : 'border-slate-200'}
                     ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 />
@@ -232,7 +232,7 @@ const RegisterForm: React.FC = () => {
                   <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="absolute inset-y-1/3 right-3 transform -translate-y-1/2 focus:outline-none font-light text-black"
+                    className="absolute inset-y-1/3 right-3 transform -translate-y-1/2 focus:outline-none font-light text-black "
                   >
                     {showPassword ? 'hide' : 'show'}
                   </button>
@@ -270,7 +270,9 @@ const RegisterForm: React.FC = () => {
                   field.onChange(e);
                   setIsConfirmPasswordFieldEmpty(e.target.value === ''); // Check if the field is empty
                 }}
-                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full 
+                className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6  text-base border-[1px] w-full text-black bg-appInputFieldColor
+Confirm Password
+
                   ${errors.confirmPassword ? 'border-formFieldBorder' : 'border-slate-200'}
                   ${isSubmitted && errors.email ? 'focus:outline-none' : 'focus:outline-none'}`}
                 suffix={(
@@ -293,7 +295,7 @@ const RegisterForm: React.FC = () => {
         <Checkbox
           checked={isChecked}
           onChange={handleCheckboxChange}
-          className='text-left text-[#333333] font-HeroNewLight text-xs pt-[11px] pb-6 !leading-6  '
+          className='text-left text-[#333333] font-HeroNewLight text-xs pt-[11px] pb-6 !leading-6  dark:text-appWhiteTheme-opacity-70'
         >
           <label>Please send me exclusive offers and updates from PCA SKIN. You have the freedom to unsubscribe whenever you wish.</label>
 
@@ -302,7 +304,7 @@ const RegisterForm: React.FC = () => {
         <Checkbox
           checked={checkPolicy}
           onChange={handlePolicyCheckbox}
-          className={`text-left !m-0 font-HeroNewLight text-[#333333] text-xs pt-[11px] pb-6 !leading-6 rounded-none h-12 p-0  border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-none'}
+          className={`text-left !m-0 font-HeroNewLight text-[#333333] text-xs pt-[11px] pb-6 !leading-6 rounded-none h-12 p-0  border-[1px] dark:text-appWhiteTheme-opacity-70 ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-none'}
             ${isSubmitted && (errors[LoginForm.Email] || !checkPolicy) ? 'focus:outline-appTheme border-formFieldBorder' : 'focus:outline-none'}`}
         >
           <label>Kindly explore our <a className='text-appTheme text-sm font-HeroNewRegular'>privacy policy</a> to understand how we utilize your information.<span className='text-red-700'>*</span> </label>

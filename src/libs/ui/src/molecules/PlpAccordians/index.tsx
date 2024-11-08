@@ -86,7 +86,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     };
   }, []);
   return (
-    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center bg-white rounded-lg ${className}`}>
+    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center  rounded-lg ${className}`}>
       {isSmallScreen && (
         <button
           onClick={() => setIsModalOpen(true)}

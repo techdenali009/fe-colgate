@@ -9,5 +9,8 @@
     @apply text-[16px] !font-normal ;
 }
 .table-row-color{
-    @apply bg-[#eff2f4]
+    @apply bg-[#eff2f4] dark:bg-[#8e8e8e]
+}
+.table-row{
+    @apply dark:bg-[#cecece]
 }

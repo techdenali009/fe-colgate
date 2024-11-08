@@ -20,8 +20,8 @@ export const PromotionBanner: React.FC<IPromotionBanner> = ({
       
         <IconDisplay heading={heading}></IconDisplay>
       </div>
-      <ProductName name={heading} className="!text-[16px] font-HeroNewBold text-black leading-6 font-bold" />
-      <Subheading className="font-HeroNewLight text-[#555555] leading-6 tracking-wi text-base font-light !px-0">{subtext}</Subheading> 
+      <ProductName name={heading} className="!text-[16px] font-HeroNewBold text-appTextColor leading-6 font-bold" />
+      <Subheading className="font-HeroNewLight text-[#555555] leading-6 tracking-wi text-base font-light !px-0 dark:text-appWhiteTheme-opacity-50">{subtext}</Subheading> 
     </div>
   );
 };
