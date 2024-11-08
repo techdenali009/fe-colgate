@@ -17,13 +17,13 @@ const ProductHeader = ({
   return (
     <div className="text-left  ">
       <h2
-        className={`font-bold py-2 mt-20 text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold ${className}`}
+        className={`font-bold py-2 mt-20 text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold dark:text-appTextColor${className}`}
       >
         {headingLabel}
       </h2>
       <div className="mb-6 flex flex-col lg:flex-row lg:justify-between ">
         <div className="flex flex-col lg:flex-row items-start py-2">
-          <Label className="mr-5 text-base text-slate-600 font-HeroNewLight">
+          <Label className="mr-5 text-base text-slate-600 font-HeroNewLight dark:text-appTextColor">
             {description}
           </Label>
           {LogInButtonDisable ? (

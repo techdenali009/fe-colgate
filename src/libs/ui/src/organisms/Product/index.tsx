@@ -48,7 +48,7 @@ function Product({ product ,modalSetToggle,className, openQuickView,showQuickVie
           className={`py-[0.625rem] px-6
           w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
           group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
-          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white ${className}
+          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white ${className} dark:group-hover:text-black 
         `}
           type={'submit'}
           onClick={modalSetToggle}

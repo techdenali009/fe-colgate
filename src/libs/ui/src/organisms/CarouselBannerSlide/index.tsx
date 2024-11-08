@@ -12,7 +12,7 @@ export const BannerSlide: React.FC<BannerSlideProps> = ({ imgSrc, imgAlt, headin
       <div className='appCarousel-container-image w-1/2'>
         <Image src={imgSrc} alt={imgAlt} />
       </div>
-      <div className={`appCarousel-container-content w-1/2  p-8 ${bgColor}`}>
+      <div className={`appCarousel-container-content w-1/2  p-8 ${bgColor} dark:bg-black`}>
         <BannerContent heading={heading} subheading={subheading} buttonText={buttonText} />
         
       </div>

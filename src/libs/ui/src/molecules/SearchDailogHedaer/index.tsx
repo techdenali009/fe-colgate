@@ -24,7 +24,7 @@ const SearchModalHeader: React.FC<ModalHeaderProps> = ({ searchQuery, setSearchQ
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="lg:w-[35rem] xl:w-[53rem] border-b border-black focus:outline-none focus:border-b focus:border-black border-t-0 border-l-0 border-r-0 w-full py-2 px-4 font-HeroNewRegular tm:w-[90%]"
+        className="lg:w-[35rem] xl:w-[53rem] border-b border-appTextColor focus:outline-none focus:border-b focus:border-black border-t-0 border-l-0 border-r-0 w-full py-2 px-4 font-HeroNewRegular tm:w-[90%] dark:bg-appModalColor"
         placeholder="Search..."
       />
 

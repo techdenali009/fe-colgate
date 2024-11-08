@@ -116,7 +116,7 @@ export function FrequentlyAskedQuestions({
           <select
             value={selectedCategory || ''}
             onChange={handleCategoryChange}
-            className="font-HeroNewBold font-bold w-full text-left border border-black rounded-3xl px-4 py-2.5 text-appTheme appearance-none"
+            className="font-HeroNewBold font-bold w-full text-left border border-black rounded-3xl px-4 py-2.5 text-appTheme appearance-none dark:bg-appModalColor dark:border-none"
           >
             {coursesData.aboutCategories.map((category) => (
               <option key={category} value={category} className="text-appTheme">
