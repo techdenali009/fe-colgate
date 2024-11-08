@@ -144,9 +144,7 @@ const PlpPageTemplate: React.FC = () => {
 
   //USed to fetch the products from api call but now  we are fetching from test page
   const openQuickReviewModal = async (id: number) => {
-    console.log('product id',id);
     const product = sortedProducts.find(p => p.id === id);
-    console.log('product id',product);
     if (product) {
       setSelectedProduct(product);
       setQuickViewModalOpen(true);
