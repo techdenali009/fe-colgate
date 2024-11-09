@@ -24,13 +24,13 @@ function ShippingTerms() {
         <Paragraph>&nbsp;</Paragraph>
         <table className="w-[1260.02px] text-start max-w-full table-fixed  font-SansSerif ">
           <thead className=''>
-            <tr className="bg-appBlackTheme text-white ">
+            <tr className="bg-appBlackTheme text-white  dark:bg-white dark:text-appdarkcolor ">
               <th className="table-heading">Shipping Method</th>
               <th className="table-heading">Delivery Time</th>
             </tr>
           </thead>
-          <tbody className='text-slate-700'>
-            <tr>
+          <tbody className='text-slate-700 dark:text-appdarkcolor'>
+            <tr className='table-row'>
               <th className="table-data"><span className="table-span ">Standard</span></th>
               <th className="table-data"><span className="table-span">3-7 business days</span></th>
             </tr>
@@ -38,7 +38,7 @@ function ShippingTerms() {
               <th className="table-data"><span className="table-span">Express Saver</span></th>
               <th className="table-data"><span className="table-span">3 business days</span></th>
             </tr>
-            <tr className="">
+            <tr className="table-row">
               <th className="table-data"><span className="table-span">2 Day</span></th>
               <th className="table-data"><span className="table-span">2 business days</span></th>
             </tr>
@@ -46,7 +46,7 @@ function ShippingTerms() {
               <th className="table-data"><span className="table-span">Standard Overnight</span></th>
               <th className="table-data"><span className="table-span">1 business days</span></th>
             </tr>
-            <tr className="">
+            <tr className="table-row">
               <th className="table-data"><span className="table-span">Priority Overnight</span></th>
               <th className="table-data"><span className="table-span">Next Day</span></th>
             </tr>

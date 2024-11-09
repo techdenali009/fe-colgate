@@ -3,6 +3,7 @@ import { viewAllProducts } from '@utils/test'; // Adjust the import as necessary
 
 // Define the Product interface
 interface Product {
+    includes(filter: string): unknown;
     id: number;
     name: string;
     image: string;
@@ -21,13 +22,12 @@ interface ProductContextType {
     filters: string[];
     setFilters: (filters: string[]) => void;
     filteredProducts: Product[]; // Expose filteredProducts here
-
     productsToShow: number;  // Add productsToShow
     loadMoreProducts: () => void;  // Add loadMoreProducts
     selectedSortOption: string; // Add the sort option state here
     setSelectedSortOption: (option: string) => void; // Provide setter function
     sortProducts: (products: Product[]) => Product[];
-
+    sortedProducts:Product[];
 
 }
 
@@ -69,6 +69,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
       return products;
     }
   };
+  const sortedProducts = useMemo(() => sortProducts(filteredProducts), [filteredProducts, selectedSortOption]);
   return (
     <ProductContext.Provider value={{
       selectedProductCategory,
@@ -77,8 +78,9 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
       setIsBestSeller,
       filters,
       setFilters,
-      filteredProducts,
+      filteredProducts :sortedProducts,
       productsToShow,
+      sortedProducts,
       loadMoreProducts,// Include filteredProducts in context
       selectedSortOption,
       setSelectedSortOption,

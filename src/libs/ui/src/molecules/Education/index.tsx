@@ -7,7 +7,7 @@ import Anchor from '../Anchor';
 function Education() {
   return (
     <div className="mb-14">
-      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
+      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555] dark:text-appTextColor">
         Education
       </HeaderLabel>
       <div className="items-center">
@@ -15,7 +15,7 @@ function Education() {
           title="How do I sign up for classes?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !py-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -31,7 +31,7 @@ function Education() {
           title="I need to cancel a class I'm signed up for. How do I do that?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -47,7 +47,7 @@ function Education() {
           title="  I took the Advantage Class. When will I receive my Certificate?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -63,7 +63,7 @@ function Education() {
           title="When will my PCA SKIN Certification expire?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -81,7 +81,7 @@ function Education() {
           title="I attend the Advantage class on Sunday. When will I receive my kit?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -95,7 +95,7 @@ function Education() {
           title=" I used to be able to see my online courses when I logged into my professional account but I am no longer able to see them."
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -112,7 +112,7 @@ function Education() {
           title="What education support do you offer for my students?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -126,7 +126,7 @@ function Education() {
           title="  Do you offer training for my instructors?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -140,7 +140,7 @@ function Education() {
           title="Do I get product discounts?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -154,7 +154,7 @@ function Education() {
           title=" Do you offer student kits?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -169,7 +169,7 @@ function Education() {
           title="What makes you different from the other skincare lines?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="education-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >

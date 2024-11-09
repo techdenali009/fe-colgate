@@ -38,7 +38,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
         {/* Email Input */}
         <div className="inline-grid">
           <div className="flex text-xs">
-            <Label className="text-xs font-HeroNewUltraLight">Email</Label>
+            <Label className="text-xs font-HeroNewUltraLight text-appTextColor">Email</Label>
             <Label className="ml-0 text-sm font-heroNewLight font-sans text-red-600"> *</Label>
           </div>
 
@@ -48,7 +48,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
             rules={{ required: ValidationForm.Required }}
             render={({ field }) => (
               <InputField
-                className={`rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 h-[48px] text-base border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'} ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
+                className={`rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 mb-6 h-[48px] text-base border-[1px] text-black  bg-appInputFieldColor ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'} ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
                 type="email"
                 placeholder="Email *"
                 {...field}
@@ -65,7 +65,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
         {/* Password Input with Visibility Toggle */}
         <div className="inline-grid">
           <div className="flex text-xs">
-            <Label className="text-xs text-black font-HeroNewUltraLight">Password</Label>
+            <Label className="text-xs text-appTextColor font-HeroNewUltraLight">Password</Label>
             <Label className="text-sm font-heroNewLight font-sans text-red-600"> *</Label>
           </div>
           <Controller
@@ -74,7 +74,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
             rules={{ required: ValidationForm.Required }}
             render={({ field }) => (
               <PasswordFeild
-                className={`rounded-none mt-3 pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'} ${isSubmitted && errors[LoginForm.Password] ? 'focus:outline-none' : 'focus:outline-none'}`}
+                className={`rounded-none mt-3 pt-1 pb-1 pl-4 pr-4 h-[48px] text-base border-[1px] text-black  bg-appInputFieldColor ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'} ${isSubmitted && errors[LoginForm.Password] ? 'focus:outline-none' : 'focus:outline-none'}`}
                 type={showPassword ? 'text' : 'password'} // Password visibility toggle
                 placeholder="Password *"
                 {...field}

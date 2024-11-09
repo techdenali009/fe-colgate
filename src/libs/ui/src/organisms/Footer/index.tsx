@@ -6,7 +6,7 @@ import { Logo } from '@ui/atoms/Logo/logo';
 import { ABOUT, APPOWNER, CUSTOMER_SERVICE, LEARN, OTHERLINKS, SHOP_D, } from '@utils/constants';
 import { About, CustomerService, Learn, OtherLinks, shop } from '@utils/constants';
 import AccordionItem from '@ui/molecules/AccordianItem';
-import PCA_LOGO from '../../../assets/appSvgs/PCA_LOGO.svg';
+import PCA_LOGO from '../../../assets/logo.svg';
 import { appSetting } from '@utils/appSetting';
 import { useNavigate } from 'react-router-dom';
 
@@ -71,8 +71,8 @@ const Footer: React.FC = () => {
         </div>
 
         <div className='hidden flex-col items-center py-8 text-brand-white-100 lg:flex-row logo-wrapper h-3  lg:flex xl:flex pb-14 pr-1 -ml-1'>
-          <Logo src={PCA_LOGO} alt={''} className=''></Logo>
-          <Paragraph className='p-8 mb-4 text-[16px]'>{APPOWNER}</Paragraph>
+          <Logo src={PCA_LOGO} alt={''} className='scale-y-[1] h-24'></Logo>
+          <Paragraph className='p-8  text-[16px]'>{APPOWNER}</Paragraph>
         </div>
 
 
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className='lg:hidden sm:text-left py-8 md:px-0 '>
-            <Logo src={PCA_LOGO} alt={''} className=''></Logo>
+            <Logo src={PCA_LOGO} alt={''} className='w-48 h-24'></Logo>
             <Paragraph className='pt-4 text-xs font-HeroNewLight'>{APPOWNER}</Paragraph>
           </div>
         </div>

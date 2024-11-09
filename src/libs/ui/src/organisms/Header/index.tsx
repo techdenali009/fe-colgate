@@ -161,8 +161,8 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
   };
   return (
     <>
-      <header id='header_shadow' className={`${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white' : ''}`}>
-        <div className='tm:py-0 tm:px-6  flex gap-0 items-center justify-between font-serif shadow-[3px_3px_0_#fafcfd]'>
+      <header id='header_shadow' className={`${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white dark:bg-appModalColor' : ''}`}>
+        <div className='tm:py-0 tm:px-6  flex gap-0 items-center justify-between font-serif shadow-[3px_2px_0_#e8eced] dark:shadow-[3px_3px_0_#242528] dark:bg-appModalColor'>
 
           <div className='tm:flex tl:hidden humburger'>
             <NavLinks setSelectNavLink={setSelectNavLink} onNavLinkActive={handleNavLinkActive} onNavLinkClick={handleNavLinkClick} />
@@ -185,16 +185,16 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               onMouseEnter={handleMouseEnterSearch}
               onMouseLeave={handleMouseLeaveSearch}
               onClick={() => setSearchModalOpen(true)}
-              className=' hover:bg-gray-200  w-[40px]  h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] sm:ml-0'>
-              {isSearchHovered ?<SearchIcon></SearchIcon>:<SearchIcon fillColor='#333333'></SearchIcon>}
+              className=' hover:bg-gray-200   w-[40px]  h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] sm:ml-0 dark:hover:bg-appTheme-opacity-10'>
+              {isSearchHovered ?<SearchIcon></SearchIcon>:<SearchIcon fillColor='var(--secondary-color)'></SearchIcon>}
             </ButtonWithIcon>
             <SearchModal isOpen={isSearchModalOpen} onClose={() => setSearchModalOpen(false)} />
             <div
               onMouseEnter={handleMouseEnterProfile}
               onMouseLeave={handleMouseLeaveProfile}
             >
-              <ButtonWithIcon className="hover:bg-gray-200 tm:hidden profile w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem]">
-                {isProfileHovered ? <ProfileIcon></ProfileIcon>:<ProfileIcon fillColor='#333333'></ProfileIcon>}
+              <ButtonWithIcon className="hover:bg-gray-200 tm:hidden profile w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] dark:hover:bg-appTheme-opacity-10">
+                {isProfileHovered ? <ProfileIcon></ProfileIcon>:<ProfileIcon fillColor='var(--secondary-color)'></ProfileIcon>}
               </ButtonWithIcon>
 
               {isProfileHovered && (
@@ -255,9 +255,9 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               onMouseEnter={handleMouseEnterCart}
               onMouseLeave={handleMouseLeaveCart}
             >
-              <ButtonWithIcon className="w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem]  pr-[39px] pb-[2.5rem] pl-[18px]"    onClick={handleCartClick}>
+              <ButtonWithIcon className="w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem]  pr-[39px] pb-[2.5rem] pl-[18px] dark:hover:bg-appTheme-opacity-10"    onClick={handleCartClick}>
                
-                {isCartHovered ? <CartIcon ></CartIcon> :<CartIcon fillColor='#333333'></CartIcon>}
+                {isCartHovered ? <CartIcon ></CartIcon> :<CartIcon fillColor='var(--secondary-color)'></CartIcon>}
               </ButtonWithIcon>
 
               {isCartHovered && (

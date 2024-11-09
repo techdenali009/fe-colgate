@@ -25,7 +25,7 @@ export const PromotionBannerSection: React.FC<PromotionBannerSectionProps> = ({
       <div className="flex justify-center lg:pt-4">
         <SecondaryButton
           onClick={() => console.log('Button clicked!')}
-          className="flex items-center justify-center font-HeroNewBold hover:underline text-[1rem] !m-0 !text-appTheme border !border-appTheme font-bold px-6 py-2.5 hover:!bg-black hover:!border-transparent group hover:!text-white tracking-[0.3px] leading-6"
+          className="flex items-center justify-center font-HeroNewBold hover:underline text-[1rem] !m-0 !text-appTheme border !border-appTheme font-bold px-6 py-2.5 hover:!bg-black hover:!border-transparent group hover:!text-white tracking-[0.3px] leading-6 dark:bg-appdarkcolor dark:hover:!border-appTextColor "
         >
           <span className="flex items-center">Learn More</span>
 
@@ -34,7 +34,7 @@ export const PromotionBannerSection: React.FC<PromotionBannerSectionProps> = ({
               <RightArrow></RightArrow>
             </div>
             <div  className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100">
-              <RightArrow fillColor='var(--app-White-color)'></RightArrow>
+              <RightArrow fillColor='rgb(var(--app-White))'></RightArrow>
 
             </div>
           </div>

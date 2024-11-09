@@ -7,7 +7,7 @@ interface StrongTextProps {
 
 export const StrongText: React.FC<StrongTextProps> = ({ children, className }) => {
   return (
-    <strong className={`font-HeroNewBold text-black text-sm ${className}`}>
+    <strong className={`font-HeroNewBold  text-appTextColor text-sm ${className}`}>
       {children}
     </strong>
   );

@@ -1,3 +1,4 @@
+
 const url = import.meta.env.VITE_SCROLL__PCA_VTEXASSETS;
 
 export const products = [
@@ -123,8 +124,10 @@ export const viewAllProducts = [
     image: 'https://pcaskin.vtexassets.com/arquivos/ids/156785-1296-auto/CE-max.jpg?v=638578860503430000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: true,
-    category: 'Antioxidents', // Add category here
-    price: 5000.00
+    category: 'Antioxidents',
+    Value:'product-catagory', // Add category here
+    price: 5000.00,
+     
 
   },
 
@@ -134,7 +137,8 @@ export const viewAllProducts = [
     image: 'https://pcaskin.vtexassets.com/arquivos/ids/156798-1296-auto/daily-defense-spf.jpg?v=638578876745900000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
-    category: 'Broad+Spectrum', // Add category here
+    category: 'Broad+Spectrum',
+    Value:'skin-type', 
     price: 2000.00
   },
   {
@@ -144,6 +148,7 @@ export const viewAllProducts = [
     rating: 0.0,
     isBestSeller: false,
     category: 'Broad spectrum SPF', // Add category here
+    Value:'skin-concern', 
     price: 2550.00
 
   },
@@ -375,7 +380,8 @@ export const viewAllProducts = [
     rating: 0.0,
     isBestSeller: false,
     category: 'Normal', // Add category hereSensitive SkinCoombination
-    price: 5100.00
+    price: 5100.00,
+    // skit
 
   },
   {
@@ -407,4 +413,15 @@ export const viewAllProducts = [
     price: 6000.00
 
   },
+  {
+    id: 128,
+    name: 'Active Broad Spectrum',
+    image: 'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
+    rating: 0.0,
+    isBestSeller: false,
+    category: 'By Treatment', // Add category hereSensitive SkinCoombination
+    price: 6000.00
+
+  },
+  
 ];

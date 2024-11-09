@@ -8,7 +8,7 @@ import Anchor from '../Anchor';
 function Privacy() {
   return (
     <div className="mb-14">
-      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
+      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555] dark:text-appTextColor">
         Privacy
       </HeaderLabel>
       <div className="items-center pb-2">
@@ -16,7 +16,7 @@ function Privacy() {
           title="Is my account information secure?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="privacy-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !py-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >

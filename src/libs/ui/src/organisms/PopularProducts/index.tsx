@@ -1,22 +1,17 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Product from '../Product';
-import { PopularProductsProps, ProductType } from '@utils/Product';
+import { PopularProductsProps } from '@utils/Product';
 import ProductHeader from '@ui/molecules/PopularProductHeading';
-import QuickViewModal from '../QuickView';
-import { useSelector } from 'react-redux';
-import { RootState } from '@store/store';
 
 function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
   const swiperRef =  useRef<SwiperRef | null>(null);
-  const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
-  const userInfo = useSelector((state: RootState) => state.authSlice.userInfo); 
 
-  const isLoggedIn = Boolean(userInfo);  
+
+ 
   const handleScroll = (direction: 'left' | 'right') => {
     if (swiperRef.current) {
       if (direction === 'left') {
@@ -27,18 +22,9 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
     }
   };
 
-  //USed to fetch the products from api call but now  we are fetching from test page
-  const openQuickReviewModal = async (id: number) => {
-   
-    const product = products.find(p => p.id === id);
 
-    if (product) {
-      setSelectedProduct(product);
-      setQuickViewModalOpen(true);
-    }
-  };
 
-  const closeQuickViewModal = () => setQuickViewModalOpen(false);
+ 
   // Swiper settings with responsive breakpoints
   const swiperSettings = {
     slidesPerView: 1.2,
@@ -78,17 +64,11 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
           <SwiperSlide key={product.id} className="  !items-start">
-            <Product product={product}  modalSetToggle={modalSetToggle}  openQuickView={openQuickReviewModal}     showQuickView={isLoggedIn}  />
+            <Product product={product}  modalSetToggle={modalSetToggle}  openQuickView={() => console.log('')} showQuickView={false}/>
           </SwiperSlide>
         ))}
       </Swiper>
-      {/* This is Quickmodal component */}
-      {QuickViewModalOpen && selectedProduct && (
-        <QuickViewModal
-          closeModal={closeQuickViewModal}
-          product={selectedProduct} 
-        />
-      )}
+    
     </div>
   );
 }

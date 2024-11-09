@@ -5,14 +5,14 @@ import './Returns.styles.scss'
 function Returns() {
   return (
     <div className="mb-14">
-      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
+      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555] dark:text-appTextColor">
       Returns
       </HeaderLabel>
       <AccordionItem
         title="My client purchased a product through me and wants to return it, do they contact PCA directly?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !py-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -26,7 +26,7 @@ function Returns() {
         title=" Can I return products that haven't been opened?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -38,7 +38,7 @@ function Returns() {
         title="My shipment arrived damaged, can I get a replacement?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -51,7 +51,7 @@ function Returns() {
         title="My shipment arrived and the packaging is defective (leaking/cracked/not dispensing), can I get a replacement/credit?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -64,7 +64,7 @@ function Returns() {
         title="My shipment arrived and the quality of the formula is questionable (consistency/smell etc.). Can I get a replacement/credit?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -78,7 +78,7 @@ function Returns() {
         title="I/my client experienced an adverse reaction (itching/rash/burning) to a product.Can I return it for a replacement/credit?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -91,7 +91,7 @@ function Returns() {
         title=" Do you refund or exchange expired product?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -105,7 +105,7 @@ function Returns() {
         title="   What is a lot number and where can I can find it?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -120,7 +120,7 @@ function Returns() {
         title="   What is a lot number and where can I can find it?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="return-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >

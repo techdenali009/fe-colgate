@@ -25,11 +25,11 @@ const LabelAccordion: React.FC<LabelAccordionProps> = ({
 }) => (
   <AccordionItem
     title={title}
-    titleClassName=" font-bold lg:text-xl text-xl  !text-gray tracking-normal leading-7"
-    contentClassName="bg-white text-left tm:pr-4 tm:pl-4 "
+    titleClassName="text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal leading-7"
+    contentClassName="bg-white text-left tm:pr-4 tm:pl-4"
     containerClassName="border-b pt-3 pb-3"
-    className='font-HeroNewBold text-gray-700  lg:pr-0 lg:pl-0'
-    svgIconColor='blue'
+    className='font-HeroNewBold text-gray-700 lg:pr-0 lg:pl-0'
+    svgIconColor='rgb(var(--primary-color))'
   >
     <ul className={`space-y-1  ${ulClassName}`}>
       {items.map((item, index) => (
@@ -37,7 +37,7 @@ const LabelAccordion: React.FC<LabelAccordionProps> = ({
           key={index}
           className={`${selectedItem === item.title // Use item.title
             ? 'text-black-700 py-2 focus-visible:px-3 font-HeroNewBold'
-            : '!text-black-700 py-2 hover:text--appTheme  hover:font-HeroNewBold'
+            : '!text-black-700 py-2 hover:text-appTheme  hover:font-HeroNewBold'
           } cursor-pointer ${liClassName}`}
           onClick={() => onItemClick(item.title)} // Pass item.title
         >

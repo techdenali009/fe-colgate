@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 
-interface ArrowPrevIconProps {
+interface ArrowPrevIconProps extends SVGProps<SVGSVGElement> {
   fillColor?: string;
 }
 
 const ArrowNextIcon: React.FC<ArrowPrevIconProps> = ({
   fillColor = 'rgb(var(--primary-color))',
+  width='48',
+  height='48',
+  ...rest
 }) => {
   return (
     <svg
-      width="48"
-      height="48"
+      width={width}
+      height={height}
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...rest}
     >
-      <rect width="48" height="48" fill={fillColor} />
+      <rect width={width} height={height} fill={fillColor} />
       <mask
         id="mask0_7455_69960"
         style={{ maskType: 'alpha' }}

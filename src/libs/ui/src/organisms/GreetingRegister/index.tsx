@@ -47,10 +47,10 @@ const GreetRegister: React.FC = () => {
   return(
     <div className=" px-6 flex flex-col gap:4 lg:flex-row 2xs:!pb-4 p-16 lg:mx-8 lg:px-14  gap-8 pt-12 text-left">
       <div className="basis-1/2 lg:pt-0 ">
-        <Heading className="text-black text-[24px] font-normal font-HeroNewRegular">
+        <Heading className="text-appTextColor text-[24px] font-normal font-HeroNewRegular">
           {WELCOMEMSG}
         </Heading>
-        <Paragraph className="text-[14px]  text-[rgb(85,85,85)] mt-2 mb-6">
+        <Paragraph className="text-[14px]  text-[rgb(85,85,85)] mt-2 mb-6 dark:text-appTextColor">
           {WELCOMEGREETPARA}
         </Paragraph>
         <CreateAccountButton
