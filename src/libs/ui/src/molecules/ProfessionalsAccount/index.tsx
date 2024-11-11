@@ -10,7 +10,7 @@ function ProfessionalsAccount() {
 
   return (
     <div className="mb-14 w-full">
-      <HeaderLabel className="lg:!text-[2.375rem] !text-[1.75rem] font-bold !font-HeroNewBold mb-6 leading-none text-[#555555]">
+      <HeaderLabel className="lg:!text-[2.375rem] !text-[1.75rem] font-bold !font-HeroNewBold mb-6 leading-none text-[#555555] dark:text-appTextColor">
         Professionals Account
       </HeaderLabel>
 
@@ -19,9 +19,10 @@ function ProfessionalsAccount() {
           title="Why does my professional account need to be confirmed?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="account-svgIconThickness "
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !py-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
+        
         >
           <div>
             <Paragraph>We need to verify all professional licenses to create professional accounts.</Paragraph>
@@ -32,7 +33,7 @@ function ProfessionalsAccount() {
           title="I forgot the password to my account. What do I do?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="account-svgIconThickness"
-          contentClassName="pt-4  px-6 bg-white border-t italic"
+          contentClassName="pt-4  px-6  border-t italic"
           className="!p-0 !px-4 !pb-4" 
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -50,7 +51,7 @@ function ProfessionalsAccount() {
           title="I need to update my account information. How do I do that?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="account-svgIconThickness"
-          contentClassName="pt-4 px-6 bg-white border-t italic"
+          contentClassName="pt-4 px-6  border-t italic"
           className="!p-0  !px-4 !pb-4"
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -64,7 +65,7 @@ function ProfessionalsAccount() {
           title="Where can I see my order history?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="account-svgIconThickness"
-          contentClassName="pt-4 pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4 pb-6 px-6  border-t italic"
           className="!p-0  !px-4 !pb-4"
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >

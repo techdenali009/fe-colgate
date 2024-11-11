@@ -1,26 +1,27 @@
-.twocards-card-two{
-    width: 224px;
-}
-.twocards-card-one {
-    width: 224px;
-}
-@media (max-width: 1020px) {
-.twocards-card-two {
-    margin:0px !important;
-}
-.twocards-card-one{
-    margin:0px 0px 20px 0px !important;
-    width: 100%;
-}
-.twocards{
-    align-items: center !important;
-    width: 100%;
-}
-.twocards-card-two {
-    width: 100%;
-}
-.text-sm{
-    margin-bottom: 20px;
-}
-
+.Product-detailspage{
+  .twocards-card-two{
+  width: 224px;
+  }
+  .twocards-card-one {
+  width: 224px;
+  }
+  @media (max-width: 1020px) {
+  .twocards-card-two {
+  margin:0px !important;
+  }
+  .twocards-card-one{
+  margin:0px 0px 20px 0px !important;
+  width: 100%;
+  }
+  .twocards{
+  align-items: center !important;
+  width: 100%;
+  }
+  .twocards-card-two {
+  width: 100%;
+  }
+  .text-sm{
+  margin-bottom: 20px;
+  }
+  }
 }

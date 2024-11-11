@@ -30,14 +30,14 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   return (
     <>
       <div className={`mb-[26px] ${className}`}>
-        <p className={`text-[32px] font-HeroNewRegular text-black ${headclassname}`}>
+        <p className={`text-[32px] font-HeroNewRegular text-appTextColor ${headclassname}`}>
           Forgot Your Password?
         </p>
       </div>
-      <Paragraph className={'font-HeroNewRegular  font-normal text-black '}>
+      <Paragraph className={'font-HeroNewRegular  font-normal text-appTextColor '}>
         Recover your password. Please enter your email address below to receive a password reset link.
       </Paragraph>
-      <Paragraph className={'font-HeroNewRegular font-normal text-black'}> Allow for 15 mins, and check spam/junk folders before trying again.</Paragraph>
+      <Paragraph className={'font-HeroNewRegular font-normal text-appTextColor'}> Allow for 15 mins, and check spam/junk folders before trying again.</Paragraph>
 
       <form onSubmit={handleSubmit(onSubmit)} className={'flex flex-col space-y-1'}>
         <div className='flex text-xs font-heroNewLight'>
@@ -52,7 +52,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
             <InputField
               {...field}
               type="email"
-              className={`rounded-none pt-1 pb-1 pl-4 pr-4 !mt-3 !mb-6 h-[48px] text-base border-[1px] ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+              className={`rounded-none pt-1 pb-1 pl-4 pr-4 !mt-3 !mb-6 h-[48px] text-base border-[1px] text-black  bg-appInputFieldColor ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
               } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`}
               placeholder=""
             />

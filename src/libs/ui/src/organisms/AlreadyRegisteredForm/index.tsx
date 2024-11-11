@@ -46,7 +46,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
               render={({ field }) => (
                 <InputField
                   {...field}
-                  className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] ${mode === 'modal'? '' :'placeholder-slate-700 text-black font-HeroNewRegular mb-[20px]'} ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                  className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal'? '' :'placeholder-slate-700 text-black font-HeroNewRegular mb-[20px]'} ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                   } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`} // Conditional outline
                   type="email"
                   placeholder="Email *"
@@ -67,7 +67,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
               rules={{ required: ValidationForm.Required }}
               render={({ field }) => (
                 <PasswordFeild
-                  className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] ${mode === 'modal'? '' :'placeholder-slate-700 font-HeroNewRegular mb-[12px]'} ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                  className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal'? '' :'placeholder-slate-700 font-HeroNewRegular mb-[12px]'} ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                   } ${isSubmitted && errors[LoginForm.Password] ? 'focus:outline-none' : 'focus:outline-none'}`} // Conditional outline
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password *"

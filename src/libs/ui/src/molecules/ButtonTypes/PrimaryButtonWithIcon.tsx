@@ -14,7 +14,7 @@ export const PrimaryButtonWithIcon: React.FC<IPrimaryButtonWithIcon> = ({ childr
     <Button
       type="button"
       onClick={onClick}
-      className={`bg-blue-600 font-bold  text-sm text-white p-2 m-1 hover:bg-black hover:underline flex items-center border-2 border-transparent ${className} hover:border-white`}
+      className={`!bg-appTheme font-bold  text-sm text-white p-2 m-1 hover:bg-black hover:underline flex items-center border-2 border-transparent ${className} hover:border-white`}
     >
       {children}
       <Icon icon={arrowIcon} className="h-6 w-6 ml-2" />

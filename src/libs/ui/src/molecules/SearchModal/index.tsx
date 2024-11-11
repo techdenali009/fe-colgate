@@ -52,7 +52,7 @@ const SearchModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       {isOpen && (
         <div className={`fixed !ml-0 h-[360px] inset-0 flex items-start justify-center z-50 overflow-y-scroll ${closing ? 'animate-slideOut' : 'animate-slideIn'}`}>
           <ModalBackground onClick={handleClose} />
-          <div className={`bg-white w-full h-[24rem] max-h-[119vh] tm:max-h-[114vh] tm:h-[55rem] shadow-lg transform duration-300 ${closing ? 'slide-out' : 'slide-in'}`}>
+          <div className={`bg-white w-full h-[24rem] max-h-[119vh] tm:max-h-[114vh] tm:h-[55rem] shadow-lg transform duration-300 dark:bg-appModalColor ${closing ? 'slide-out' : 'slide-in'}`}>
             <ModalHeader
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}

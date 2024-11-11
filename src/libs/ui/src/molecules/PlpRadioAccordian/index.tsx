@@ -23,8 +23,8 @@ const RadioAccordion: React.FC<RadioAccordionProps> = ({
 }) => (
   <AccordionItem
     title={title}
-    titleClassName={`text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal lg:pr-0 lg:pl-0 leading-7 ${className}`}
-    contentClassName="bg-white text-left"
+    titleClassName={`text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal lg:pr-0 lg:pl-0 leading-7 dark:text-appTextColor ${className}`}
+    contentClassName="text-left"
     containerClassName={`border-b ${className}`}
     svgIconColor='blue'
   >
@@ -32,7 +32,7 @@ const RadioAccordion: React.FC<RadioAccordionProps> = ({
       {options.map((option, index) => (
         <li
           key={index}
-          className={`${selectedOption === option ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-600'
+          className={`${selectedOption === option ? 'text-appTextColor font-bold pl-2 pb-1 mr-2 ' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-600 dark:text-appWhiteTheme-opacity-50'
           } cursor-pointer ${liClassName}`}
         >
           <input

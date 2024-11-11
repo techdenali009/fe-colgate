@@ -11,14 +11,14 @@ const INFO_EMAIL=import.meta.env.VITE_INFO_EMAIL;
 function Billing() {
   return (
     <div className="mb-10  pt-4">
-      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
+      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555] dark:text-appTextColor">
        Billing
       </HeaderLabel>
       <AccordionItem
         title="How do I set-up credit terms with PCA SKIN?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="billing-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !py-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -39,7 +39,7 @@ function Billing() {
         title="How do I submit my Resellers Certificate with PCA SKIN?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="billing-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >
@@ -60,7 +60,7 @@ function Billing() {
         title="How do I get a copy of my invoice?"
         titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
         containerClassName="billing-svgIconThickness"
-        contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+        contentClassName="pt-4  pb-6 px-6  border-t italic"
         className="!p-0 !pb-4 !px-4 "
         svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
       >

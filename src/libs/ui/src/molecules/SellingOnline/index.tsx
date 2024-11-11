@@ -8,7 +8,7 @@ const INFO_EMAIL=import.meta.env.VITE_INFO_EMAIL;
 function SellingOnline() {
   return (
     <div className="mb-10" >
-      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555]">
+      <HeaderLabel className="lg:!text-[2.375rem] text-2xl font-bold font-HeroNewBold mb-6 leading-none text-[#555555] dark:text-appTextColor">
         Selling Online
       </HeaderLabel>
       <div className="items-center">
@@ -16,7 +16,7 @@ function SellingOnline() {
           title="Can I sell PCA SKIN products on my website?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="sellingonline-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !py-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >
@@ -34,7 +34,7 @@ function SellingOnline() {
           title="Why are your products being sold on websites like ebay.com or Walmart.com at a fraction of the price?"
           titleClassName="text-base font-HeroNewLight !pb-0 !pt-6 !px-2 lg:w-full w-56"
           containerClassName="sellingonline-svgIconThickness"
-          contentClassName="pt-4  pb-6 px-6 bg-white border-t italic"
+          contentClassName="pt-4  pb-6 px-6  border-t italic"
           className="!p-0 !pb-4 !px-4 "
           svgIconClass='!w-[2rem] !h-[0.85rem] mt-6 pl-1.5'
         >

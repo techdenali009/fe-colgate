@@ -21,12 +21,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 20 },
       { stars: 4, count: 30 },
       { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 55 },
     ],
+    restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 2,
@@ -50,12 +51,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 10 },
       { stars: 4, count: 30 },
       { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 2, count: 60 },
+      { stars: 1, count: 50 },
     ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 3,
@@ -79,12 +81,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 60 },
       { stars: 4, count: 30 },
       { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 2, count: 20 },
+      { stars: 1, count: 57 },
     ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 4,
@@ -106,12 +109,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 60 },
       { stars: 4, count: 30 },
       { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 2, count: 70 },
+      { stars: 1, count: 50 },
     ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 5,
@@ -133,12 +137,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 60 },
       { stars: 4, count: 30 },
       { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 2, count: 40 },
+      { stars: 1, count: 80 },
     ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
 
   {
@@ -161,12 +166,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 10 },
       { stars: 4, count: 30 },
       { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 50 },
     ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 7,
@@ -188,12 +194,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 10 },
       { stars: 4, count: 30 },
-      { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 3, count: 70 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 80 },
     ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 8,
@@ -215,12 +222,13 @@ export const products = [
       "Enhances skin smoothness"
     ],
     reviews: [
-      { stars: 5, count: 100 },
+      { stars: 5, count: 60 },
       { stars: 4, count: 30 },
       { stars: 3, count: 10 },
-      { stars: 2, count: 5 },
-      { stars: 1, count: 5 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 40 },
     ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
 ];
 export const relatedProducts = [
@@ -243,7 +251,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
-   
+    reviews: [
+      { stars: 5, count: 20 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 10 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 55 },
+    ],
+    restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 2,
@@ -266,7 +281,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
-    
+    reviews: [
+      { stars: 5, count: 10 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 10 },
+      { stars: 2, count: 60 },
+      { stars: 1, count: 50 },
+    ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 3,
@@ -289,7 +311,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
-   
+    reviews: [
+      { stars: 5, count: 60 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 10 },
+      { stars: 2, count: 20 },
+      { stars: 1, count: 57 },
+    ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 4,
@@ -310,7 +339,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
-    
+    reviews: [
+      { stars: 5, count: 60 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 10 },
+      { stars: 2, count: 70 },
+      { stars: 1, count: 50 },
+    ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 5,
@@ -331,7 +367,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
-    
+    reviews: [
+      { stars: 5, count: 60 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 10 },
+      { stars: 2, count: 40 },
+      { stars: 1, count: 80 },
+    ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
 
   {
@@ -353,6 +396,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
+    reviews: [
+      { stars: 5, count: 10 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 10 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 50 },
+    ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 7,
@@ -373,7 +424,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
-   
+    reviews: [
+      { stars: 5, count: 10 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 70 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 80 },
+    ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
   {
     id: 8,
@@ -394,7 +452,14 @@ export const relatedProducts = [
       "Improves skin elasticity",
       "Enhances skin smoothness"
     ],
-   
+    reviews: [
+      { stars: 5, count: 60 },
+      { stars: 4, count: 30 },
+      { stars: 3, count: 10 },
+      { stars: 2, count: 50 },
+      { stars: 1, count: 40 },
+    ],
+     restrictedmessage:'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
   },
    
 ]

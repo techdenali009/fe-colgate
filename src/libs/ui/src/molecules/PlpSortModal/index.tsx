@@ -14,7 +14,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50 h-[91%]">
-      <div className="bg-white  w-full shadow-lg    max-h-[114vh] overflow-hidden"> {/* Constrained height */}
+      <div className="bg-white  w-full shadow-lg  dark:bg-appModalColor  max-h-[114vh] overflow-hidden"> {/* Constrained height */}
         <div className="flex justify-between items-center pl-[13px] p-4 !pt-[80px] ">
           <button onClick={onClose} className="text-gray-500">
             {/* Back Arrow Icon (can be replaced with an SVG or library icon) */}

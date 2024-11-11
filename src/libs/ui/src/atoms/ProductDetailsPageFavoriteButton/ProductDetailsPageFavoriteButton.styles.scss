@@ -1,0 +1,64 @@
+.favorite-icon {
+  height: 23px;
+  width: 24px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Default outline icon */
+.favorite-icon-outline {
+  background-image: url('https://www.pcaskinpro.com/products/_next/static/media/favorite-blue.4800f7c0.svg');
+}
+
+/* Filled icon when favorite is clicked */
+.favorite-icon-filled {
+  background-image: url('https://www.pcaskinpro.com/products/_next/static/media/favorite-blue-filled.ea8abfb4.svg');
+}
+
+/* Hover effect: swaps outline icon with filled icon */
+button:hover .favorite-icon-outline {
+  background-image: url('https://www.pcaskinpro.com/products/_next/static/media/favorite-blue-filled.ea8abfb4.svg');
+}
+
+
+.add-favorite-label {
+  font-family: 'Hero New Bold';
+}
+
+button:hover .add-favorite-label {
+  color: white;
+  background-color: black;
+  text-decoration: underline;
+}
+.favorite-button-container {
+  position: relative;
+}
+
+.popup-content {
+  position: absolute;
+  bottom: 189px;
+  right: -37%;
+  padding: 12px 12px;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  border: 1px solid black;
+  opacity: 0;
+  animation: slideIn 0.5s forwards;
+  height: 65px;
+  width: 305px;
+  border-radius: 4px;
+  align-content: center;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+

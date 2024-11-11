@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
-import Dropdown from '../../../assets/Dropdown.svg';
-import { Icon } from '@ui/atoms/Icons';
+
+import DropDownIcon from '@ui/atoms/SvgAtoms/DropDownIcon';
 
 interface FilterDropdownProps {
   options: string[];
@@ -54,20 +54,20 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     <div className="relative inline-block" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className={`flex items-center px-1 py-3 min-w-44 bg-white border rounded-full shadow-sm focus:outline-none ${isOpen ? 'border-appTheme' : 'border-black'} ${buttonClassName}`}
+        className={`flex items-center px-1 py-3 min-w-44 bg-white  dark:bg-appModalColor border rounded-full shadow-sm focus:outline-none ${isOpen ? 'border-appTheme' : 'border-appTextColor '} ${buttonClassName}`}
       >
-        <Icon icon={Dropdown} className="h-4 w-4 text-blue-500 text-appTheme float-left" />
-        <span className="text-sm font-medium ml-1 text-gray-700">{selectedOption}</span>
+        <DropDownIcon></DropDownIcon>
+        <span className="text-sm font-medium ml-1 text-gray-700 dark:text-appTextColor">{selectedOption}</span>
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 w-full bg-white border border-black rounded-md shadow-lg">
+        <div className="absolute z-10 w-full bg-white dark:bg-appModalColor  border border-black dark:border-appTextColor rounded-md shadow-lg">
           <ul className={`py-1 max-h-60 overflow-y-auto ${ulClassName}`}>
             {options.map((option) => (
               <li
                 key={option}
                 onClick={() => handleOptionSelect(option)}
-                className={`cursor-pointer px-4 py-2 text-sm text-gray-700 ${selectedOption === option ? 'bg-appTheme text-white' : 'hover:bg-appTheme hover:text-white'} ${liClassName}`}
+                className={`cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-appTextColor ${selectedOption === option ? 'bg-appTheme text-white' : 'hover:bg-appTheme hover:text-white'} ${liClassName}`}
               >
                 {option}
               </li>

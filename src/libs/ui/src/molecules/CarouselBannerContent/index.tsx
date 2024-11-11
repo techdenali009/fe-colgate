@@ -13,7 +13,7 @@ export const BannerContent: React.FC<BannerContentProps> = ({ heading, subheadin
       <Heading  text={heading} />
       <Subheading text={subheading} />
       <Button type='button' 
-        className='appCarousel-banner_button h-11 text-base w-34 font-bold rounded-none font-sans text-[#125ce0] bg-white py-2 px-4 hover:bg-appTheme hover:text-white'>
+        className='appCarousel-banner_button h-11 text-base w-34 font-bold rounded-none font-sans text-appTheme bg-white py-2 px-4 hover:bg-appTheme hover:text-white'>
         {buttonText} 
       </Button>
     </div>

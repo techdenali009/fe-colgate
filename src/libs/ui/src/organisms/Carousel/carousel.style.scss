@@ -77,29 +77,31 @@
     background-repeat: no-repeat;
     position: absolute;
     padding: 30px;
+    top: 220px;
+    z-index: 1;
   }
 
   .custom-prev-arrow-black {
-    background-image: url(../../../assets/white_prev.svg);
+  
     top: 220px;
     z-index: 1;
   }
 
   .custom-next-arrow-black {
-    background-image: url(../../../assets/white_next.svg);
-    bottom: 217px;
+   
+    bottom: 220px;
     right: 0;
   }
 
   .custom-prev-arrow-other {
-    background-image: url(../../../assets/blue_prev.svg);
+   
     top: 220px;
     z-index: 1;
   }
 
   .custom-next-arrow-other {
-    background-image: url(../../../assets/blue_next.svg);
-    bottom: 217px;
+   
+    bottom: 220px;
     right: 0;
   }
 
@@ -126,7 +128,7 @@
 
     .custom-next-arrow-black,
     .custom-next-arrow-other {
-      bottom: 398px !important;
+      top: -115px !important;
     }
 
     .custom-prev-arrow-black,

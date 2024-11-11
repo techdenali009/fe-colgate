@@ -43,7 +43,7 @@ export const MarketingBannerTwo: React.FC<MarketingBannerTwoProps> = ({ bannerDa
           <div className="relative items-center">
             <PrimaryButton
               onClick={() => console.log('Button clicked!')}
-              className=" flex !m-0 text-[1rem] !bg-[#125ce0]  hover:!bg-black font-HeroNewBold items-center font-bold border border-transparent group hover:border-white !py-[13px] !px-4 tracking-[0.3px] leading-[145%]">
+              className=" flex !m-0 text-[1rem] !bg-appTheme  hover:!bg-black font-HeroNewBold items-center font-bold border border-transparent group hover:border-white !py-[13px] !px-4 tracking-[0.3px] leading-[145%]">
               {buttonText}
               <Icon icon={arrowIcon} className="h-8 w-8 ml-2 items-center" />
             </PrimaryButton>

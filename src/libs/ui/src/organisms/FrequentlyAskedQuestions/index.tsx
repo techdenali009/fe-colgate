@@ -116,7 +116,7 @@ export function FrequentlyAskedQuestions({
           <select
             value={selectedCategory || ''}
             onChange={handleCategoryChange}
-            className="font-HeroNewBold font-bold w-full text-left border border-black rounded-3xl px-4 py-2.5 text-appTheme appearance-none"
+            className="font-HeroNewBold font-bold w-full text-left border border-black rounded-3xl px-4 py-2.5 text-appTheme appearance-none dark:bg-appModalColor dark:border-none"
           >
             {coursesData.aboutCategories.map((category) => (
               <option key={category} value={category} className="text-appTheme">
@@ -137,9 +137,9 @@ export function FrequentlyAskedQuestions({
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
             className=""
-            buttonClassName="font-HeroNewBold font-bold !px-4 !py-2.5 !text-[100%] !leading-[1.25rem]"
+            buttonClassName="font-HeroNewBold font-bold !px-4 !py-2.5 !text-[100%] !leading-[1.25rem] hover:!text-appTheme"
             liClassName="border-l-4 "
-            selectedClassName='bg-[#eef4ff]'
+            selectedClassName='bg-[#eef4ff] !text-appTheme '
           />
         </div>
       </div>

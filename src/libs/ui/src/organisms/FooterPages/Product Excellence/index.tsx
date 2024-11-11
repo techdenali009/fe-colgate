@@ -23,7 +23,8 @@ const ProductExcellence: React.FC = () => {
         </Heading>
         <div className='lg:max-w-3xl font-normal text-[1rem] font-HeroNewRegular mb-6'>
           <Paragraph className='excellenceParagraph'>
-            PCA SKIN<sup>®</sup>, the originator of advanced blended professional peels, has been and continues to be a trusted industry leader in the development of effective treatments for professional use and products for patient use for over 30 years. Our vision is to improve people’s lives; we do so on a daily basis by partnering with physicians and clinicians to provide a proven process of aesthetic science for healthy, beautiful skin. We set the bar high when it comes to skin care, having some of the highest standards in the industry for quality and efficacy.          </Paragraph>
+            PCA SKIN<sup>®</sup>, the originator of advanced blended professional peels, has been and continues to be a trusted industry leader in the development of effective treatments for professional use and products for patient use for over 30 years. Our vision is to improve people’s lives; we do so on a daily basis by partnering with physicians and clinicians to provide a proven process of aesthetic science for healthy, beautiful skin. We set the bar high when it comes to skin care, having some of the highest standards in the industry for quality and efficacy.          
+          </Paragraph>
         </div>
       </div>
       <PrimaryButton className='font-HeroNewBold text-center font-bold leading-6 tracking-[0.3px] py-[0.625rem] px-6 bg-appTheme mb-6 text-white hover:!underline hover:!bg-appTheme'>Contact Us</PrimaryButton>
