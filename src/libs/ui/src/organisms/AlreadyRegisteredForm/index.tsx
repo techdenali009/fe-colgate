@@ -27,7 +27,7 @@ interface LoginData {
 }
 
 const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode }) => {
-  const [login, { isLoading,isError }] = useLoginMutation();
+  const [login, { isLoading, isError }] = useLoginMutation();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true);
@@ -53,7 +53,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
   };
   const { formClassName, textClassName, buttonClassName, modalButtonClassName, welcomepagebutton, LoginForgotPassword, LoginButton, mainDivClass } = AlreadyRegisteredConstants(mode);
   return (
-    <>
+    <div className={`relative ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
       <div className={textClassName}>
         <p >Already registered?</p>
       </div>
@@ -68,17 +68,22 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
               render={({ field }) => (
                 <InputField
                   {...field}
-                  className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal'? '' :'placeholder-slate-700 text-black font-HeroNewRegular mb-[20px]'} ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                  className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal' ? '' : 'placeholder-slate-700 text-black font-HeroNewRegular mb-[20px]'} ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                   } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`} // Conditional outline
                   type="email"
                   placeholder="Email *"
-                  
+
                 />
               )}
             />
             {errors.email && (
               <span className="text-appErrorMessage text-normal font-HeroNewBold">{ValidationForm.Required}</span>
             )}
+            <div className={`${!isError ? 'hidden' : 'h-0 2xs:mb-5 lg:!mb-0'}`}>
+              <span className="text-normal text-appErrorMessage font-HeroNewBold mt-1 ">
+                {ValidationForm.EmailPasswordFailed}
+              </span>
+            </div>
           </div>
 
           {/* Password Input with Visibility Toggle */}
@@ -89,7 +94,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
               rules={{ required: ValidationForm.Required }}
               render={({ field }) => (
                 <PasswordFeild
-                  className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal'? '' :'placeholder-slate-700 font-HeroNewRegular mb-[12px]'} ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                  className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal' ? '' : 'placeholder-slate-700 font-HeroNewRegular mb-[12px]'} ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
                   } ${isSubmitted && errors[LoginForm.Password] ? 'focus:outline-none' : 'focus:outline-none'}`} // Conditional outline
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password *"
@@ -99,7 +104,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
                     setIsPasswordFieldEmpty(e.target.value === '');
                   }}
                   suffix={(
-                    !isPasswordFieldEmpty && mode==='modal'? (
+                    !isPasswordFieldEmpty && mode === 'modal' ? (
                       <button
                         type="button"
                         onClick={togglePasswordVisibility}
@@ -107,7 +112,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
                       >
                         {showPassword ? 'hide' : 'show'}
                       </button>
-                    ):''
+                    ) : ''
                   )}
                 />
               )}
@@ -117,31 +122,26 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
                 {errors[LoginForm.Password]?.message}
               </span>
             )}
-           
+
           </div>
         </div>
-       
         {isLoading && (
-          <div className='opacity-50 bg-transparent'>
-            <AppSpinner containerClassName="!h-[150px] !w-[100%] !bg-transparent flex justify-center items-center absolute inset-0" />
+          <div className='opacity-60 '>
+            <AppSpinner containerClassName="!h-[150px] !w-[100%] !bg-transparent flex justify-center items-center absolute inset-0" spinnerClassName="!bg-red-300 w-[10%]" />
           </div>
-        )}
-            
-        {isError && (
-          <span className="text-normal text-appErrorMessage font-HeroNewBold mt-1">{ValidationForm.EmailPasswordFailed}</span>
         )}
         {/* Forgot Password button */}
         <div className={buttonClassName}>
           <div className={modalButtonClassName}>
             <Button
-            
+
               type="submit"
               className={LoginButton}
             >
               {LOGIN}
             </Button>
           </div>
-         
+
           <Button
             onClick={() => setIsForgotPassword(false)}
             type='button'
@@ -160,9 +160,8 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
             {LOGIN}
           </Button>
         </div>
-          
       </form>
-    </>
+    </div>
   );
 };
 
