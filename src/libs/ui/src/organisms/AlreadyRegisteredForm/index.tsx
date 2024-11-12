@@ -6,6 +6,10 @@ import { LoginForm, ValidationForm } from '@utils/Login';
 import { PasswordFeild } from '@ui/atoms/PasswordField';
 import { AlreadyRegisteredConstants } from './AlreadyRegisteredConts';
 import { FORGOTPASSWORD, LOGIN } from '@utils/constants';
+import { useLoginMutation } from '@store/services/Endpoints/AuthApi';
+import { useDispatch } from 'react-redux';
+import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
+import { AppSpinner } from '@ui/atoms/AppSpinner';
 
 interface FormValues {
   email: string;
@@ -17,11 +21,29 @@ interface LoginFormProps {
   setIsForgotPassword: (value: boolean) => void;
   mode: string;
 }
+interface LoginData {
+  email?: string;
+  password?: string;
+}
 
-const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword, mode }) => {
+const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode }) => {
+  const [login, { isLoading,isError }] = useLoginMutation();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true);
-
+  const onSubmit = async (data: LoginData) => {
+    try {
+      const result = await login(data).unwrap();
+      if (result.status) {
+        dispatch(userInfo(result.data.userInfo));
+        dispatch(setAuthToken(result.data.token));
+      } else {
+        console.error('Login failed:', result);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
   const { control, handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
     mode: 'onChange',
   });
@@ -95,8 +117,19 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
                 {errors[LoginForm.Password]?.message}
               </span>
             )}
+           
           </div>
         </div>
+       
+        {isLoading && (
+          <div className='opacity-50 bg-transparent'>
+            <AppSpinner containerClassName="!h-[150px] !w-[100%] !bg-transparent flex justify-center items-center absolute inset-0" />
+          </div>
+        )}
+            
+        {isError && (
+          <span className="text-normal text-appErrorMessage font-HeroNewBold mt-1">{ValidationForm.EmailPasswordFailed}</span>
+        )}
         {/* Forgot Password button */}
         <div className={buttonClassName}>
           <div className={modalButtonClassName}>
@@ -108,6 +141,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPass
               {LOGIN}
             </Button>
           </div>
+         
           <Button
             onClick={() => setIsForgotPassword(false)}
             type='button'

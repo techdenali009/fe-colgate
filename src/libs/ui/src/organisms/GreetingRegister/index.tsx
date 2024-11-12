@@ -6,12 +6,11 @@ import { useState } from 'react';
 import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
 import { LoginConsts } from '@utils/Login';
 import { useNavigate } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '@store/services/Endpoints/AuthApi';
 import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
 import { AppSpinner } from '@ui/atoms/AppSpinner';
-import WelcomeAlreadyRegistered from '@ui/molecules/WelcomeRegister';
+import AlreadyRegistered from '../AlreadyRegisteredForm';
 interface LoginData {
   email?: string;
   password?: string;
@@ -75,15 +74,17 @@ const GreetRegister: React.FC = () => {
         {currentForm === LoginConsts.AlreadyRegistered && (
           <div className="relative">
             <div className={isLoading ? 'opacity-50' : 'opacity-100'}>
-              <WelcomeAlreadyRegistered
+              <AlreadyRegistered
                 onSubmit={onSubmit}
-                setIsForgotPassword={() => setCurrentForm('forgotPassword')}
-              />
+                setIsForgotPassword={() => setCurrentForm('forgotPassword')} mode={'welcome'}              />
+               
             </div>
-
+           
             {isLoading && (
               <AppSpinner containerClassName="!h-[150px] flex justify-center items-center absolute inset-0" />
             )}
+            
+            
           </div>
         )}
        
