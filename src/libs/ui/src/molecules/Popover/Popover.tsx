@@ -24,7 +24,7 @@ const Popover: React.FC<PopoverProps> = ({ children, className='', position = ''
   return (
     <div
       ref={popoverRef}
-      className={`absolute ${position} bg-white p-4 shadow-lg rounded-lg min-w-72 ${maxWidth} z-[10000] ${className}`}
+      className={`absolute ${position} bg-white p-4 shadow-lg rounded-lg min-w-72  dark:bg-appModalColor ${maxWidth} z-[10000] ${className}`}
       onMouseEnter={handleMouseEnter} 
       onMouseLeave={handleMouseLeave}
     >

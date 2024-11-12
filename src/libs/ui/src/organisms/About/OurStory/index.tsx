@@ -6,8 +6,8 @@ import React from 'react';
 import './ourStrory.styles.scss'
 const OurStory: React.FC = () => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="bg-white mb-6">
+    <div className="flex flex-col items-center " >
+      <div className=" mb-6">
         <ProductImage
           src={
             'https://www.pcaskinpro.com/cms/assets/266fbe2f-f27b-494a-8901-d4c371ce1eed.png?key=pca-en-us-marketing-header-large'
@@ -20,7 +20,7 @@ const OurStory: React.FC = () => {
         </ProductImage>
       </div>
 
-      <div className="bg-white mb-6 ">
+      <div className=" mb-6 ">
         <Heading className="lg:!text-[2.375rem] text-appTheme leading-10 font-extralight !text-[1.75rem] font-HeroNewUltraLight text-center items-center w-full mb-6">
           Our journey of improving people’s lives
         </Heading>
@@ -28,8 +28,8 @@ const OurStory: React.FC = () => {
         <Heading className="lg:text-[1.25rem] text-appTheme leading-10 !font-bold !font-HeroNewBold justify-center mb-6">
           Improving skin, improving lives since 1990
         </Heading>
-        <div className="lg:max-w-[48rem]   max-w-full">
-          <StrongText className="heading">About PCA SKIN&nbsp;</StrongText>
+        <div className="lg:max-w-[48rem]   max-w-full ">
+          <StrongText className="heading  text-appTextColor">About PCA SKIN&nbsp;</StrongText>
           <p>&nbsp;</p>
 
           <Paragraph className="paragraph">

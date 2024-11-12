@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 interface PromotionBannerData {
   heading: string;
   subtext: string;
-  imageUrl: string;
+ 
 }
 
 interface PromotionBannerListProps {
@@ -27,7 +27,7 @@ const PrevArrow: React.FC<ArrowProps> = ({ onClick, currentSlide }) => (
     }`}
     onClick={currentSlide === 0 ? undefined : onClick} 
   >
-    <span className="font-SwiperIconns text-[44px] text-[#007aff]">prev</span>
+    <span className="font-SwiperIconns text-[44px] text-appTheme">prev</span>
   </div>
 );
 
@@ -38,7 +38,7 @@ const NextArrow: React.FC<ArrowProps> = ({ onClick, currentSlide, slideCount }) 
     }`}
     onClick={currentSlide === slideCount - 1 ? undefined : onClick} 
   >
-    <span className="font-SwiperIconns text-[44px] text-[#007aff]">next</span>
+    <span className="font-SwiperIconns text-[44px] text-appTheme">next</span>
   </div>
 );
 
@@ -71,7 +71,7 @@ export const PromotionBannerList: React.FC<PromotionBannerListProps> = ({ banner
             key={index}
             heading={banner.heading}
             subtext={banner.subtext}
-            imageUrl={banner.imageUrl}
+          
           />
         ))}
       </div>
@@ -86,7 +86,6 @@ export const PromotionBannerList: React.FC<PromotionBannerListProps> = ({ banner
               key={index}
               heading={banner.heading}
               subtext={banner.subtext}
-              imageUrl={banner.imageUrl}
             />
           ))}
         </Slider>
