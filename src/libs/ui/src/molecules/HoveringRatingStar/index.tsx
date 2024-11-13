@@ -28,16 +28,16 @@ const HoverStarRating: React.FC<StarRatingProps> = ({ totalStars = 5, initialRat
 
   return (
     <div>
-      <h3 className="text-lg font-SansSerif mb-4 ">Review this Product</h3>
+      <h3 className="text-base font-SansSerif mb-4 ">Review this Product</h3>
       <div className="flex">
         {Array.from({ length: totalStars }, (_, index) => {
           const isFilled = index < (hoveredStar ?? selectedStar ?? 0);
           return (
             <span
               key={index}
-              className={`cursor-pointer transition-colors p-2 mx-1 border-[1px] rounded-lg w-[59px] h-[59px] flex justify-center ${isFilled
-                ? 'bg-blue-500 border-blue-500' // Blue background for filled stars
-                : 'bg-white border-blue-500' // White background for empty stars
+              className={` w-[63px] h-[50px] cursor-pointer transition-colors p-2 mx-1 border-[1px] rounded-[4px] lg:w-[55px] lg:h-[50px] flex justify-center md:w-[72px]  ${isFilled
+                ? 'bg-appTheme border-appTheme' // Blue background for filled stars
+                : 'bg-white border-appTheme' // White background for empty stars
               }`}
               onMouseEnter={() => handleMouseEnter(index + 1)}
               onMouseLeave={handleMouseLeave}
@@ -48,7 +48,7 @@ const HoverStarRating: React.FC<StarRatingProps> = ({ totalStars = 5, initialRat
           );
         })}
       </div>
-      <p className="mt-4 text-[18px] text-gray-600  font-SansSerif">
+      <p className="mt-4 text-[18px] text-black  font-SansSerif">
         Adding a review will require a valid email for verification.
       </p>
     </div>

@@ -9,28 +9,36 @@ import { Heading } from '@ui/atoms/Heading';
 import { useReviewContext } from '@ui/molecules/ReviewUseContext';
 import HoverStarRating from '@ui/molecules/HoveringRatingStar';
 import { reviews } from '@utils/test';
+import ReviewCustomImages from '@ui/molecules/ReviewCustomImages';
 
 const ReviewSection: React.FC = () => {
   const { filteredReviews } = useReviewContext();
+  const reviewId = filteredReviews.length > 0 ? filteredReviews[0].id : 0;
 
   return (
-    <div className="px-[24px] my-2 flex-col lg:px-14 lg:appPaddingRight lg:my-2 lg:mx-10">
-      <div className='lg:mx-2.5 flex'>
-        <Heading className='lg:text-xl font-HeroNewBold mt-4'>Reviews</Heading>
-      </div>
-      <div className='flex flex-col lg:flex-row mx-2.5 border-b border-[#EAEAEA]'>
-        <SnapShotRating className='w-[357px] lg:w-[436px] h-[214px]' reviews={reviews} />
-        <OverallRatingReview className='w-[357px] h-[109px] lg:w-[436px] lg:h-[214px]'></OverallRatingReview>
-        < HoverStarRating></HoverStarRating>
-      </div>
-      <div className='border-b'>
-        <AverageCustomerRatings className='sm:w-[357px] lg:w-[1308px]'></AverageCustomerRatings>
-      </div>
-      <div className='border-b'>
-        <FilterReviews></FilterReviews>
+    <div className="px-[24px] my-2 flex-col lg:px-14 lg:appPaddingRight lg:my-2 lg:mx-10 md:flex-row">
+      <div className=''>
+        <div className='lg:mx-2.5 flex'>
+          <Heading className='text-xl font-HeroNewBold mt-4'>Reviews</Heading>
+        </div>
+        <div className='flex flex-col lg:flex-row mx-2.5 border-b border-[#EAEAEA]'>
+          <SnapShotRating className='' reviews={reviews} />
+          <OverallRatingReview className='w-[357px] h-[109px] lg:w-[436px] lg:h-[214px]'></OverallRatingReview>
+          < HoverStarRating></HoverStarRating>
+        </div>
       </div>
       <div className='border-b'>
-        <ReviewFeedbackDetails productReviews={filteredReviews}/> {/* Use filtered reviews */}
+        <AverageCustomerRatings className=''></AverageCustomerRatings>
+      </div>
+      <div className=''>
+        <h3 className='text-center font-SansSerif p-[10px]'>Customer Images</h3>
+        <ReviewCustomImages reviewId={reviewId} />
+      </div>
+      <div className='border-b'>
+        <FilterReviews productReviews={filteredReviews}></FilterReviews>
+      </div>
+      <div className='border-b'>
+        <ReviewFeedbackDetails className='lg:!p-0' productReviews={filteredReviews} />
       </div>
     </div>
   );

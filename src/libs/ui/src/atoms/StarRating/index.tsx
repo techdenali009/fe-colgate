@@ -7,9 +7,10 @@ import { RxStarFilled } from 'react-icons/rx';
 interface StarRatingProps {
   rating: number;
   className?: string;
+  starclassName?: string;
 }
 
-const StarRating: React.FC<StarRatingProps> = ({ rating,className }) => {
+const StarRating: React.FC<StarRatingProps> = ({ rating,className,starclassName }) => {
   const stars = [];
 
   for (let i = 0; i < 5; i++) {
@@ -28,7 +29,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating,className }) => {
     }
   }
 
-  return <div className={'flex -space-x-0.5 '}>{stars}</div>;
+  return <div className={`flex -space-x-0.5 ${starclassName}`}>{stars}</div>;
 };
 
 export default React.memo(StarRating);

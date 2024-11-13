@@ -1,6 +1,5 @@
 import React from 'react';
-import { Image } from '@ui/atoms/Image';
-import ConsumerAffairslogo from '../../../assets/appSvgs/ConsumerAffairslogo.svg';
+import ConsumerAffairsLogo from '@ui/atoms/SvgAtoms/ConsumerAffairsLogo.svg';
 
 interface ResponseCardProps {
   title: string; 
@@ -27,8 +26,8 @@ const ResponseCard: React.FC<ResponseCardProps> = ({
     <div className={`border rounded-lg  bg-white text-sm  ${containerClassName}`}>
       <div className={`flex items-center justify-between px-4 py-2 bg-[#f1f1f1] border-b ${headerClassName}`}>
         <div className="flex items-center font-medium text-black">
-          <Image src={ConsumerAffairslogo} alt="Response Icon" className="mr-1" />
-          <span>{title}:</span> 
+          <ConsumerAffairsLogo className="mr-1"></ConsumerAffairsLogo>
+          <span className='font-HeroNewLight text-[16px] ml-[10px]'>{title}:</span> 
         </div>
         <div className="text-black">
           {pcaTimeAgo}

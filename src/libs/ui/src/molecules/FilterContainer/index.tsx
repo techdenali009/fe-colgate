@@ -7,6 +7,7 @@ interface FilterContainerProps {
   onRemoveFilter: (filter: string) => void;
   onClearAll: () => void;
   showClearButton?: boolean;
+  showStarText?: boolean;
   className?: string;
 }
 
@@ -16,19 +17,20 @@ export const FilterContainer: React.FC<FilterContainerProps> = ({
   onClearAll,
   className,
   showClearButton = true,
+  showStarText = false,
 }) => {
   return (
-    <div className={`flex flex-wrap items-center ${className} `}>
-      {filters.map((filter, index) => (
+    <div className={`flex flex-wrap items-center ${className}`}>
+      {filters.map((filter) => (
         <FilterBadge
           key={filter}
           onRemove={() => onRemoveFilter(filter)}
-          className='gap-1.25 cursor-pointer mt-1.25 rounded-md !bg-appTheme text-white-500 py-2 px-4'
-          spanclassName='!text-white '
-          imgclassName=''
-          useAltSvg={index % 2 === 0} // Conditionally display alternate SVG based on index
+          className="gap-1.25 cursor-pointer mt-1.25 rounded-md !bg-appTheme text-white-500 py-2 px-4"
+          spanclassName="!text-white"
+          imgclassName=""
+          useAltSvg={true} // Always display alternate SVG in FilterContainer
         >
-          {filter}
+          {filter} {showStarText && (<> {filter === '1' ? 'star' : 'stars'}</>)}
         </FilterBadge>
       ))}
 

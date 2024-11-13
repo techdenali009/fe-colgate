@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReviewDropdown from '../ReviewDropdown';
-import { sortByOptions } from '@utils/test'; // Import sorting options like ['Price', 'Newest', 'Highest Rating']
-import { useReviewContext } from '../ReviewUseContext'; // Adjust path as needed
+import RelevancyInfo from '../RelevancyInfoReviewsection'; // Import the new component
+import { sortByOptions } from '@utils/constants';
+import { useReviewContext } from '../ReviewUseContext';
 
 interface SortByDropdownsProps {
   selectedSortBy: string[];
@@ -12,47 +13,44 @@ const SortByReview: React.FC<SortByDropdownsProps> = ({
   selectedSortBy,
   setSelectedSortBy,
 }) => {
-  const { updateSortByFilter } = useReviewContext(); // Assuming there's a sort filter function in context
-
-  // Set default sorting option (e.g., 'Price')
-  const defaultSortOption = sortByOptions[0];
+  const { updateSortByFilter } = useReviewContext();
+  const defaultSortOption = sortByOptions[4];
 
   const [isSortOpen, setIsSortOpen] = useState(false);
-  const [currentSortOption, setCurrentSortOption] = useState<string>(defaultSortOption); // Default option
+  const [currentSortOption, setCurrentSortOption] = useState<string>(defaultSortOption);
 
-  // Handle item selection for sorting options
   const handleSortBySelected = (sortBy: string) => {
-    if (selectedSortBy.includes(sortBy)) {
-      setSelectedSortBy(selectedSortBy.filter(s => s !== sortBy));
-      setCurrentSortOption(''); // Reset current option if deselected
-    } else {
-      const updatedSortBy = [sortBy]; // Only allow one selection at a time
-      setSelectedSortBy(updatedSortBy);
-      setCurrentSortOption(sortBy);
-      updateSortByFilter(sortBy); // Update filter in context
-    }
+    const updatedSortBy = [sortBy];
+    setSelectedSortBy(updatedSortBy);
+    setCurrentSortOption(sortBy);
+    updateSortByFilter(sortBy);
+    setIsSortOpen(false);
   };
 
-  // Set default sort option when the component first renders
   useEffect(() => {
     if (!selectedSortBy.length) {
       setSelectedSortBy([defaultSortOption]);
       setCurrentSortOption(defaultSortOption);
-      updateSortByFilter(defaultSortOption); // Ensure the default option is applied in the context
+      updateSortByFilter(defaultSortOption);
     }
   }, [defaultSortOption, setSelectedSortBy, updateSortByFilter, selectedSortBy]);
 
   return (
-    <div className="flex items-center space-x-4 relative left-[66%] ">
-      {/* Sort By Dropdown */}
-      <ReviewDropdown
+    <div className="relative lg:flex-col items-center space-x-4  md:-mr-[20px]">
       
-        className="w-[280px] px-4 py-2.5"
+      {/* Tooltip Element */}
+      {currentSortOption === 'Most Relevant' && <RelevancyInfo/>}
+
+      {/* Dropdown Element */}
+     
+      <ReviewDropdown
+        className="w-[357px] lg:px-4 py-2.5 lg:w-[280px] 2xs:!ml-0"
         FaCheckCircleclassName="hidden"
+        sortdropclassName="text-gray-100 p-2"
         IoMdAddCircleOutlineclassName="hidden"
         labelclassName="text-[15px] !font-SansSerif"
-        selectdropclassName="w-[280px] text-[16px] "
-        label={`Sort by ${currentSortOption || ''}`} // Dynamically pass the label
+        selectdropclassName="w-[357px] lg:w-[280px] text-[16px]"
+        label={`Sort by ${currentSortOption || ''}`}
         items={sortByOptions as string[]}
         selectedItems={selectedSortBy}
         onItemClick={handleSortBySelected}
@@ -60,6 +58,7 @@ const SortByReview: React.FC<SortByDropdownsProps> = ({
         setIsOpen={setIsSortOpen}
       />
     </div>
+    
   );
 };
 

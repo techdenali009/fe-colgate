@@ -153,7 +153,7 @@ export const Reviewproducts = [
     rating: 5.0,
     reviewTitle: 'Works like a charm!',
     reviewerName: 'Kim W',
-    timeAgo: '2024-10-22',
+    timeAgo: '2024-11-11',
     reviewContent: 'Absolutely love this product. I\'ve tested skincare it on clients as well as myself and it definitely calms down the red!',
     like: 0,
     dislike: 0,
@@ -163,7 +163,28 @@ export const Reviewproducts = [
       date: '2024-10-20',
       response: 'Thank you for your feedback! We strive to improve our products and appreciate your input. Please reach out if you have any further questions.'
     },
-    productName:'Collagen Hydrator'
+    productName:'Collagen Hydrator',
+    Customimages: [
+      {
+        id: 1,
+        url: 'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86cGNhc2tpbg/e80a7d41-7931-5f5f-948b-85eeaba3be2f',
+        alt: 'Product image showing the Collagen Hydrator'
+      },
+      {
+        id: 2,
+        url: 'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86cGNhc2tpbg/ef2ae810-a0fc-53c6-86a8-534b272c9d96',
+        alt: 'Collagen Hydrator in use'
+      },{
+        id: 3,
+        url: 'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86cGNhc2tpbg/451e7db2-8e10-5f34-8ab3-d718727ec493',
+        alt: 'Product image showing the Collagen Hydrator'
+      }
+    ],
+    ratings: {
+      quality: { score: 3.5, label: 'Quality' },
+      value: { score: 4.0, label: 'Value' },
+      scent: { score: 2.5, label: 'Scent' },
+    }
   },
   {
     id: 2,
@@ -180,6 +201,12 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [] ,
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: { score: 4.0, label: 'Value' },
+      scent: { score: 2.5, label: 'Scent' },
+    },
     productName:'Sensi Peel®'
   },
   {
@@ -202,6 +229,16 @@ export const Reviewproducts = [
       date: '2024-10-23',
       response: 'We are so sorry our Dual Action Redness Relief was not a good fit for you and your skin. Please feel free to contact us at customer_care@pcaskin.com regarding your experience and for assistance with finding a product possibly better suited for you. Thanks!'
     },
+    Customimages: [{
+      id: 3,
+      url: 'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86cGNhc2tpbg/451e7db2-8e10-5f34-8ab3-d718727ec493',
+      alt: 'Product image showing the Collagen Hydrator'
+    },],
+    ratings: {
+      quality: {score: 4.0, label: 'quality'}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: { score: 2.5, label: 'Scent' },
+    },
     productName:'Sensi Peel®'
   },
   {
@@ -219,6 +256,12 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [],
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: { score: 4.0, label: 'Value' },
+      scent: {},
+    },
     productName:'Sensi Peel®'
   },
   {
@@ -236,6 +279,12 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [],
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: {},
+    },
     productName:'Sensi Peel®'
   },
   {
@@ -253,6 +302,12 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [] ,
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: {},
+    },
     productName:'Sensi Peel®'
   },
   {
@@ -274,6 +329,17 @@ export const Reviewproducts = [
       id: 7,
       date: '2024-10-23',
       response: 'Thank you for your feedback! We strive to improve our products and appreciate your input. Please reach out if you have any further questions.'
+    },
+    Customimages: [
+      {
+        id: 7,
+        url: 'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86cGNhc2tpbg/e80a7d41-7931-5f5f-948b-85eeaba3be2f',
+        alt: 'Product image showing the Collagen Hydrator'
+      }] ,
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: { },
+      scent: { },
     },
     productName:'Sensi Peel®'
   },
@@ -297,6 +363,12 @@ export const Reviewproducts = [
       date: '2024-10-01',
       response: 'We are so sorry for your experience with our Dual Action Redness Relief. If you purchased from pcaskin.com please contact us with your order information and a description of your experience. If you purchased from another authorized retailer, please contact them regarding their return/refund policies. '
     },
+    Customimages: [] ,
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: {},
+    },
     productName:'Advanced Treatment Booster'
   },
   {
@@ -314,6 +386,17 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [
+      {
+        id: 9,
+        url: 'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86cGNhc2tpbg/7a52f769-7a3a-5dc5-9da8-c8159c85465a',
+        alt: 'Product image showing the Collagen Hydrator'
+      }],
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: {},
+    },
     productName:'Sensi Peel®'
   },
   {
@@ -331,6 +414,12 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [] ,
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: { score: 2.5, label: 'Scent' },
+    },
     productName:'Nutrient Toner'
   },
   {
@@ -348,6 +437,12 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [] ,
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: { score: 4.0, label: 'Value' },
+      scent: {},
+    },
     productName:'ExLinea® Pro Peptide Serum'
   },
   {
@@ -365,6 +460,12 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
+    Customimages: [] ,
+    ratings: {
+      quality: {}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: {},
+    },
     productName:'Sensi Peel®'
   },
   {
@@ -386,6 +487,12 @@ export const Reviewproducts = [
       id: 13,
       date: '2024-10-23',
       response: 'Thank you for your feedback! We strive to improve our products and appreciate your input. Please reach out if you have any further questions.'
+    },
+    Customimages: [] ,
+    ratings: {
+      quality:{}, // Empty object, can be omitted or set to null
+      value: {},
+      scent: {},
     },
     productName:'Hyaluronic Acid Boosting Serum'
   }
@@ -411,38 +518,8 @@ export const reviews = [
   { stars: 1, count: 4 },
 ];
 
-export const sortByOptions = [
-  'Most Relevant',
-  'Most Helpful',
-  'Highest to Lowest Rating',
-  'Lowest to Highest Rating',
-  'Most Recent',
-]
 
 
-export const formatTimeAgo = (dateString: string): string => {
-  const date = new Date(dateString);
-  const now = new Date();
-  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-  
-  const intervals = [
-    { label: 'year', seconds: 31536000 },
-    { label: 'month', seconds: 2592000 },
-    { label: 'week', seconds: 604800 },
-    { label: 'day', seconds: 86400 },
-    { label: 'hour', seconds: 3600 },
-    { label: 'minute', seconds: 60 },
-  ];
-
-  for (const interval of intervals) {
-    const count = Math.floor(seconds / interval.seconds);
-    if (count >= 1) {
-      return `${count} ${interval.label}${count > 1 ? 's' : ''} ago`;
-    }
-  }
-
-  return 'just now';
-};
 
 
 

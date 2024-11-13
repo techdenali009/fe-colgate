@@ -45,7 +45,7 @@ const AgeRatingDropdowns: React.FC<RatingAgeDropdownsProps> = ({
   };
 
   return (
-    <div className="flex space-x-4 font-SansSerif">
+    <div className="flex flex-col md:flex-row md:space-x-4 md:mb-4 lg:flex-row  space-x-4 font-SansSerif mb-4 md:gap-[10px] ">
       {/* Rating Dropdown */}
       <ReviewDropdown
         label="Rating"
@@ -55,7 +55,13 @@ const AgeRatingDropdowns: React.FC<RatingAgeDropdownsProps> = ({
         isOpen={isRatingOpen}
         setIsOpen={setIsRatingOpen}
         isRatingDropdown={true} // Pass true for rating dropdown
-        
+        className='py-2 w-[357px] lg:w-[145px] md:!w-[145px]'
+        selectdropclassName='w-[357px] lg:w-[149px] md:!w-[145px] '
+        isOpenArrowclassName='hidden lg:block'
+        FaCheckCircleclassName='hidden lg:block'
+        IoMdAddCircleOutlineclassName='hidden lg:block'
+        sortdropclassName='hidden'
+        dropclassName=''
       />
       {/* Age Group Dropdown */}
       <ReviewDropdown
@@ -65,7 +71,14 @@ const AgeRatingDropdowns: React.FC<RatingAgeDropdownsProps> = ({
         onItemClick={handleAgeGroupSelected}
         isOpen={isAgeOpen}
         setIsOpen={setIsAgeOpen}
-        // No need to pass isRatingDropdown, it defaults to false
+        className='py-2 w-[357px] !ml-0 lg:w-[145px] lg:!ml-2 md:!w-[145px]'
+        isRatingDropdown={true}
+        selectdropclassName='w-[357px] lg:w-[149px] md:!w-[145px] lg:!ml-[10px]'
+        isOpenArrowclassName='hidden lg:block'
+        FaCheckCircleclassName='hidden lg:block'
+        IoMdAddCircleOutlineclassName='hidden lg:block'
+        sortdropclassName='hidden'
+        dropclassName=''
       />
     </div>
   );

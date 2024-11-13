@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useReviewContext } from '../ReviewUseContext';
 import ReviewBar from '../ReviewBar';
 
@@ -8,26 +8,13 @@ interface ReviewMoleculeProps {
 }
 
 const SnapShotRating: React.FC<ReviewMoleculeProps> = ({ className, reviews }) => {
-  const { updateBarRatingFilter, setSelectedRatings } = useReviewContext();
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  const [, setSelectedRatingsLocal] = useState<string[]>([]);
+  const { updateBarRatingFilter } = useReviewContext();
+   
 
   function handleRatingClick(stars: number): void {
     const starString = stars.toString();
     // Update the context with the selected rating
     updateBarRatingFilter(starString);
-
-    // Update local selected ratings state
-    setSelectedRatingsLocal((prev) => {
-      const updatedRatings = prev.includes(starString)
-        ? prev.filter((rating) => rating !== starString) // Remove if already selected
-        : [...prev, starString]; // Add if not selected
-
-      // Update the context with the new selected ratings
-      setSelectedRatings(updatedRatings); // Update context
-
-      return updatedRatings; // Return updated local state
-    });
   }
 
   return (
@@ -38,7 +25,6 @@ const SnapShotRating: React.FC<ReviewMoleculeProps> = ({ className, reviews }) =
       </h3>
 
       {/* Removed selected filter badges */}
-
       <div>
         <ReviewBar reviews={reviews} onRatingClick={handleRatingClick} />
       </div>

@@ -136,7 +136,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [QuickViewModalOpen,setQuickViewModalOpen]=useState(false)
   const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
   const openQuickReviewModal=()=>setQuickViewModalOpen(true);
   const closeQuickViewModal=()=>setQuickViewModalOpen(false);
 
@@ -401,7 +400,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div>
         <button onClick={openModal}>Open Review Modal</button>
 
-        {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
+        {isModalOpen && <ReviewBarModal isVisible={false} onClose={function (): void {
+          throw new Error('Function not implemented.');
+        }} />}
       </div>
       <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
       <div>
