@@ -25,7 +25,10 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
           className='2xs:text-[20px] lg:!text-[28px]'
           headingLabel="Related Products"
           handleScroll={handleScroll}
-          LogInButtonDisable={false} description={''} modalSetToggle={()=>console.log('')} />
+          LogInButtonDisable={false} description={''} modalSetToggle={()=>console.log('')} 
+          disableLeftButton={false}
+          disableRightButton={false}
+        />
       </div>
       <Slider ref={sliderRef} {...sliderSettings}>
         {relatedProducts.map((relatedProducts) => (

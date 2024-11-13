@@ -15,6 +15,10 @@ import { ProductType } from '@utils/Product';
 
 import QuickViewModal from '@ui/organisms/QuickView';
 import { RootState } from '@store/store';
+import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
+import RecentlyViewedProducts from '@ui/organisms/RecentlyViewedProducts';
+import { RecentProduct as products } from '@utils/test';
+import LoginModal from '@ui/organisms/LoginModal';
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,6 +43,7 @@ const PlpPageTemplate: React.FC = () => {
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo); 
   const isLoggedIn = Boolean(userInfo); 
   const closeQuickViewModal = () => setQuickViewModalOpen(false);
+  const [toggle, SetToggle] = useState(false);
   // Update URL params when a category is selected
   const handleCategorySelect = (category: string | null) => {
     const newCategory = category ?? 'all products';
@@ -150,6 +155,10 @@ const PlpPageTemplate: React.FC = () => {
       setQuickViewModalOpen(true);
     }
   };
+  const modalSetToggle = () => {
+    SetToggle(!toggle)
+  }
+
   return (
     <div className="relative pr-2 pl-2">
       <div className="!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1">
@@ -224,6 +233,16 @@ const PlpPageTemplate: React.FC = () => {
         </div>
        
       </div>
+      <div className="bg-[#f3f3f3] dark:bg-appModalColor">
+        <div className="lg:px-[3.5rem] px-6 xl:w-[90rem] w-full  py-14 xl:mx-auto">
+          {products.length === 0 ? (
+            <PopularProductSkeleton />
+          ) : (
+            <RecentlyViewedProducts products={products} modalSetToggle={modalSetToggle} />
+          )}
+        </div>
+      </div>
+      {toggle && <LoginModal closeModal={modalSetToggle} />}
       {QuickViewModalOpen && selectedProduct && (
         <QuickViewModal
           closeModal={closeQuickViewModal}

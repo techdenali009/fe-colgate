@@ -263,3 +263,46 @@ export const viewAllProducts = [
   },
   
 ];
+
+export const RecentProduct=[
+  {
+    id: 1,
+    name: 'Sensi Peel®',
+    image:
+      `${url}/ids/156900-608-auto/sensi-peel.jpg?v=638579579116970000&width=608&height=auto&aspect=true`,
+    rating: 5.0,
+    isBestSeller: true,
+  },
+  {
+    id: 2,
+    name: 'Collagen Hydrator',
+    image:
+      `${url}/ids/156792-608-auto/collagen-hydrator.jpg?v=638578871156130000&width=608&height=auto&aspect=true`,
+    rating: 4.8,
+    isBestSeller: false,
+  },
+  {
+    id: 3,
+    name: 'ExLinea® Pro Peptide Serum',
+    image:
+      `${url}/ids/156810-608-auto/exlinea-pro.jpg?v=638578896004000000&width=608&height=auto&aspect=true`,
+    rating: 5.0,
+    isBestSeller: false,
+  },
+  {
+    id:4 ,
+    name: 'ExLinea® Pro Peptide Serum',
+    image:
+        `${url}/ids/156810-608-auto/exlinea-pro.jpg?v=638578896004000000&width=608&height=auto&aspect=true`,
+    rating: 5.0,
+    isBestSeller: false,
+  },
+  {
+    id:5 ,
+    name: 'ExLinea® Pro Peptide Serum',
+    image:
+      `${url}/ids/156810-608-auto/exlinea-pro.jpg?v=638578896004000000&width=608&height=auto&aspect=true`,
+    rating: 5.0,
+    isBestSeller: false,
+  }
+]
