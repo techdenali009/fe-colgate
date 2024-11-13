@@ -17,7 +17,7 @@ import QuickViewModal from '@ui/organisms/QuickView';
 import { RootState } from '@store/store';
 import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
 import RecentlyViewedProducts from '@ui/organisms/RecentlyViewedProducts';
-import { RecentProduct as products } from "@utils/test";
+import { RecentProduct as products } from '@utils/test';
 import LoginModal from '@ui/organisms/LoginModal';
 
 const PlpPageTemplate: React.FC = () => {
@@ -233,7 +233,7 @@ const PlpPageTemplate: React.FC = () => {
         </div>
        
       </div>
-      <div className="bg-[#f3f3f3] ">
+      <div className="bg-[#f3f3f3] dark:bg-appModalColor">
         <div className="lg:px-[3.5rem] px-6 xl:w-[90rem] w-full  py-14 xl:mx-auto">
           {products.length === 0 ? (
             <PopularProductSkeleton />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import { SecondaryButton } from '@ui/molecules/SecondaryButton';
 import { HeaderLabel } from '@ui/molecules/HeaderLabel';
@@ -93,7 +93,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
 
   const handleButtonClick = () => {
-    console.log("Learn more clicked!");
+    console.log('Learn more clicked!');
   };
 
   const handleMouseEnter = (button: string) => {
@@ -206,7 +206,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex mb-4 space-x-4 justify-center">
         <div
           className="relative"
-          onMouseEnter={() => handleMouseEnter("button1")}
+          onMouseEnter={() => handleMouseEnter('button1')}
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
@@ -223,7 +223,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
         <div
           className="relative"
-          onMouseEnter={() => handleMouseEnter("button2")}
+          onMouseEnter={() => handleMouseEnter('button2')}
           onMouseLeave={handleMouseLeave}
         >
           <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">

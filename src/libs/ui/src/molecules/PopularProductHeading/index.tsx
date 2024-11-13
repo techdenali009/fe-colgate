@@ -16,7 +16,6 @@ const ProductHeader = ({
   modalSetToggle,
   className,
 }: ProductHeaderProps) => {
-  const buttonClass = 'w-10 h-10 hover:bg-appTheme relative overflow-hidden !p-0';
 
   return (
     <div className="text-left  ">

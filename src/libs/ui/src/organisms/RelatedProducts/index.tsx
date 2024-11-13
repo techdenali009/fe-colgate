@@ -28,7 +28,7 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
           LogInButtonDisable={false} description={''} modalSetToggle={()=>console.log('')} 
           disableLeftButton={false}
           disableRightButton={false}
-          />
+        />
       </div>
       <Slider ref={sliderRef} {...sliderSettings}>
         {relatedProducts.map((relatedProducts) => (
