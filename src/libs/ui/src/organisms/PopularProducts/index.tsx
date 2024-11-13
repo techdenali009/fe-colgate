@@ -10,6 +10,8 @@ import ProductHeader from '@ui/molecules/PopularProductHeading';
 function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
   const swiperRef =  useRef<SwiperRef | null>(null);
 
+
+ 
   const handleScroll = (direction: 'left' | 'right') => {
     if (swiperRef.current) {
       if (direction === 'left') {
@@ -20,16 +22,19 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
     }
   };
 
+
+
+ 
   // Swiper settings with responsive breakpoints
   const swiperSettings = {
-    slidesPerView: 1,
+    slidesPerView: 1.2,
     spaceBetween: 16,
     loop: true,
     modules: [Navigation],
     navigation: false, 
     breakpoints: {
       640: {
-        slidesPerView: 2,
+        slidesPerView: 2.2,
       
       },
       1024: {
@@ -45,23 +50,27 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
 
   return (
     <div className="w-full">
-      <ProductHeader
-        headingLabel="Popular Products"
-        description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
-        handleScroll={handleScroll}
-        LogInButtonDisable={true}
-        disableLeftButton={false}
-        disableRightButton={false}
-        modalSetToggle={modalSetToggle}
-      />
+      <div className='mb-6'>
+        <ProductHeader
+          className=''
+          headingLabel="Popular Products"
+          description="A selection of our highly recommended products, endorsed by industry professionals, to initiate your professional journey."
+          handleScroll={handleScroll}
+          LogInButtonDisable={true}
+          modalSetToggle={modalSetToggle}
+          disableLeftButton={false}
+          disableRightButton={false}
+        />
+      </div> 
 
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
           <SwiperSlide key={product.id} className="  !items-start">
-            <Product product={product}  modalSetToggle={modalSetToggle}/>
+            <Product product={product}  modalSetToggle={modalSetToggle}  openQuickView={() => console.log('')} showQuickView={false}/>
           </SwiperSlide>
         ))}
       </Swiper>
+    
     </div>
   );
 }

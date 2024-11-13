@@ -16,7 +16,26 @@ const coursesData = {
     'Multicultural Skin',
     'Peel Application Videos',
   ],
+  aboutCategories:[
+    'Professionals Account',
+    'Orders & Shipping',
+    'Billing',
+    'Returns',
+    'Products & Pricing',
+    'Privacy',
+    'Selling Online',
+    'Education',
+    'Technical Issues',
+    'Contact Us'
+  ]
 };
+
+export const ProductDescription ={
+  ProductDescription:[
+    'How to Apply',
+    'Regimen Information'
+  ]
+}
   
 export default coursesData;
   

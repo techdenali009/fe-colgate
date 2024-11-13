@@ -1,0 +1,16 @@
+
+.table-heading{
+    @apply text-left align-bottom py-[1em] px-[15px] tracking-[0.65px] !font-semibold;
+}
+.table-data{
+    @apply text-left align-top py-[1em] px-[15px] text-[1.4rem];
+}
+.table-span{
+    @apply text-[16px] !font-normal ;
+}
+.table-row-color{
+    @apply bg-[#eff2f4] dark:bg-[#8e8e8e]
+}
+.table-row{
+    @apply dark:bg-[#cecece]
+}

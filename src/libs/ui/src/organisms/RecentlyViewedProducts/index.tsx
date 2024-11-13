@@ -53,20 +53,30 @@ const RecentlyViewedProducts = ({ products ,modalSetToggle}: PopularProductsProp
   // Enable loop only if there are more than 4 products
   const isLoopEnabled = products.length > 4;
 
+
   const swiperSettings = {
-    modules: [Navigation],
-    navigation: false,
+    slidesPerView: 1.2,
+    spaceBetween: 16,
     loop: isLoopEnabled,
-    breakpoints: {
-      640: { slidesPerView: 1 },
-      670: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-      1280: { slidesPerView: 4 },
-    },
+    modules: [Navigation],
+    navigation: false, 
     onSlideChange: updateButtonState,
     onInit: updateButtonState,
+    breakpoints: {
+      640: {
+        slidesPerView: 2.2,
+      
+      },
+      1024: {
+        slidesPerView: 3,
+      
+      },
+      1280: {
+        slidesPerView: 4,
+  
+      },
+    },
   };
-
   return (
     <div className="w-full">
       <ProductHeader
@@ -77,12 +87,13 @@ const RecentlyViewedProducts = ({ products ,modalSetToggle}: PopularProductsProp
         disableLeftButton={disablePrev}
         disableRightButton={disableNext} 
         modalSetToggle={modalSetToggle}
+        className=''
       />
 
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
           <SwiperSlide key={product.id} className="mt-1 px-2 !items-start">
-            <Product product={product} modalSetToggle={modalSetToggle}/>
+            <Product product={product} modalSetToggle={modalSetToggle} openQuickView={() => console.log('')} showQuickView={false}/>
           </SwiperSlide>
         ))}
       </Swiper>

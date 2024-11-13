@@ -1,15 +1,24 @@
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
-import Dropdown from '../../../assets/Dropdown.svg';
-import { Icon } from '@ui/atoms/Icons';
 
+import DropDownIcon from '@ui/atoms/SvgAtoms/DropDownIcon';
 
 interface FilterDropdownProps {
   options: string[];
   onSelect: (option: string) => void;
+  buttonClassName?: string; 
+  ulClassName?: string; 
+  liClassName?: string;
   children?: ReactNode;
 }
 
-const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect, children }) => {
+const FilterDropdown: React.FC<FilterDropdownProps> = ({
+  options,
+  onSelect,
+  buttonClassName = '',
+  ulClassName = '',
+  liClassName = '',
+  children
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [prevOption, setPrevOption] = useState(options[0]);
@@ -45,22 +54,20 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ options, onSelect, chil
     <div className="relative inline-block" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className={`flex items-center px-4 py-2 bg-white border rounded-full shadow-sm focus:outline-none ${isOpen ? 'border-blue-500' : 'border-gray-300'}`}
+        className={`flex items-center px-1 py-3 min-w-44 bg-white  dark:bg-appModalColor border rounded-full shadow-sm focus:outline-none ${isOpen ? 'border-appTheme' : 'border-appTextColor '} ${buttonClassName}`}
       >
-
-        <Icon icon={Dropdown} className= "mr-2 h-4 w-4 text-blue-500" />
-       
-        <span className="text-sm font-medium text-gray-700">{selectedOption}</span>
+        <DropDownIcon></DropDownIcon>
+        <span className="text-sm font-medium ml-1 text-gray-700 dark:text-appTextColor">{selectedOption}</span>
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg">
-          <ul className="py-1 max-h-60 overflow-y-auto">
+        <div className="absolute z-10 w-full bg-white dark:bg-appModalColor  border border-black dark:border-appTextColor rounded-md shadow-lg">
+          <ul className={`py-1 max-h-60 overflow-y-auto ${ulClassName}`}>
             {options.map((option) => (
               <li
                 key={option}
                 onClick={() => handleOptionSelect(option)}
-                className={`cursor-pointer px-4 py-2 text-sm text-gray-700 ${selectedOption === option ? 'bg-blue-800 text-white' : 'hover:bg-blue-800 hover:text-white'}`}
+                className={`cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-appTextColor ${selectedOption === option ? 'bg-appTheme text-white' : 'hover:bg-appTheme hover:text-white'} ${liClassName}`}
               >
                 {option}
               </li>

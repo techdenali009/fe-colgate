@@ -1,6 +1,6 @@
-@media (max-width: 2560px) {
+@media (min-width: 1201px) {
     .appCarousel-container {
-      max-width: 100% !important;
+      height: 100%;
     }
   }
 
@@ -8,6 +8,7 @@
     .appCarousel-container {
       flex-direction: column !important;
       max-width: 100% !important;
+      height: 500px !important;
     }
 
     .appCarousel-container-image {

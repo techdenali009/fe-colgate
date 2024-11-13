@@ -31,7 +31,7 @@ export const MarketingBanner: React.FC<IMarketingBanner> = ({
           <div className="group inline-block mt-6">
             <PrimaryButton
               onClick={onButtonClick}
-              className="flex !m-0 font-HeroNewBold !bg-[#125ce0] items-center hover:!bg-black text-[0.75rem] border border-transparent hover:border-white px-3 py-2 leading-[150%] font-bold tracking-[0.3px]" >                  
+              className="flex !m-0 font-HeroNewBold !bg-appTheme items-center hover:!bg-black text-[0.75rem] border border-transparent hover:border-white px-3 py-2 leading-[150%] font-bold tracking-[0.3px]" >                  
               {buttonText}
               <Icon icon={arrowIcon} className="h-6 w-6 ml-2" />
             </PrimaryButton>

@@ -12,7 +12,7 @@ import LoginModal from '@ui/organisms/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { LabelButton } from '@ui/molecules/LabelButton';
-import GreetRegister from '@ui/organisms/GreetingRegister';
+
 import ProductCardSkeleton from '@ui/molecules/ProductCardSkeleton/index';
 import BannerSkeleton from '@ui/molecules/BannerSkeleton';
 import FilterSkeleton from '@ui/molecules/FilterSkeleton/index';
@@ -32,40 +32,65 @@ import coursesData from '@utils/CoursesData';
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
-import { RecentProduct as initialProducts } from "@utils/test";
-import PopularProductSkeleton from "@ui/molecules/PopularProductSkeleton";
-import RecentlyViewedProducts from "@ui/organisms/RecentlyViewedProducts";
-import { ProductType } from "@utils/Product";
+import ReviewRatings from '@ui/molecules/QuantityValueScent';
+import SearchBar from '@ui/molecules/SearchBar';
+import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
+import ResponseCard from '@ui/molecules/ResponsePCASkin';
+import responsePCASkin from '../../../assets/responsePCASkin.svg';
+import ReviewBarModal from '@ui/organisms/ReviewStarModal';
+import RelatedProducts from '@ui/organisms/RelatedProducts';
+import { relatedProducts } from '@utils/test';
+import QuickViewModal from '@ui/organisms/QuickView';
+import { products } from '@utils/test';
+import { Image } from '@ui/atoms/Image';
+import { Button } from '@ui/atoms/Button';
+import { RootState } from '@store/store';
+import { useSelector } from 'react-redux';
+import GreetRegister from '@ui/organisms/GreetingRegister';
+import { LandingPageSkeleton} from '../LandingPageSkeleton';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
 }
 
+const reviewBarSelectOption = [
+  { description: 'Amazing product!', ageGroup: '25 to 34', rating: 5 },
+  { description: 'Not bad', ageGroup: '18 to 24', rating: 3 },
+  { description: 'Could be better', ageGroup: '45 to 54', rating: 2 },
+  { description: 'Loved it', ageGroup: '35 to 44', rating: 4 },
+  { description: 'Would not recommend', ageGroup: '55 to 64', rating: 1 },
+];
+
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
   const [filters, setFilters] = useState<string[]>([
-    "Body Treatments",
-    "Backbar",
-    "Sample",
-    "Retail",
+    'Body Treatments',
+    'Backbar',
+    'Sample',
+    'Retail',
   ]);
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
-  const [products, setProducts] = useState<ProductType[]>([]);
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
+
+  const filteredReviewsSearchBar = reviewBarSelectOption.filter(review => {
+    const matchesSearch = review.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesRating = selectedRating ? review.rating === selectedRating : true;
+    const matchesAgeGroup = selectedAgeGroup ? review.ageGroup === selectedAgeGroup : true;
+    return matchesSearch && matchesRating && matchesAgeGroup;
+  });
+
   const navigate = useNavigate();
   const breadcrumbs = [
-    { label: "Home", href: "/" },
-    { label: "All Products", href: "/products" },
-    { label: "Treatment Enhancements" },
+    { label: 'Home', href: '/' },
+    { label: 'All Products', href: '/products' },
+    { label: 'Treatment Enhancements' },
   ];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setProducts(initialProducts);
-    }, 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleButtonClick = () => {
     console.log("Learn more clicked!");
@@ -117,9 +142,23 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   // State for selected category in business side bar
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  const ratings = {
+    quality: { score: 4.3, label: 'Quality' },
+    value: { score: 4.9, label: 'Value' },
+    scent: { score: 3.5, label: 'Scent' },
+  };
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [QuickViewModalOpen,setQuickViewModalOpen]=useState(false)
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+  const openQuickReviewModal=()=>setQuickViewModalOpen(true);
+  const closeQuickViewModal=()=>setQuickViewModalOpen(false);
+
+  const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo); 
   return (
     <>
-
+      <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
 
       <form>
@@ -203,25 +242,25 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <div className="flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10">
         <h1 className="text-slate-950 text-3xl mb-5">Product Prices</h1>
         <p>
-          Price in USD:{" "}
+          Price in USD:{' '}
           <Currency className="text-blue-900" value={price} currency="USD">
             (including tax)
           </Currency>
         </p>
         <p>
-          Price in EUR:{" "}
+          Price in EUR:{' '}
           <Currency className="text-amber-600" value={price} currency="EUR">
             (excluding VAT)
           </Currency>
         </p>
         <p>
-          Price in JPY:{" "}
+          Price in JPY:{' '}
           <Currency className="text-red-950" value={price} currency="JPY">
             (no decimals)
           </Currency>
         </p>
         <p>
-          Custom Decimal Places:{" "}
+          Custom Decimal Places:{' '}
           <Currency value={price} currency="USD" decimalPlaces={3} />
         </p>
       </div>
@@ -358,14 +397,79 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <ReviewBar reviews={reviews} />
       </div>
 
-      <div className="bg-[#f3f3f3] ">
-        <div className="lg:px-[3.5rem] px-6 xl:w-[90rem] w-full  py-14 xl:mx-auto">
-          {products.length === 0 ? (
-            <PopularProductSkeleton />
+      <div className="p-4">
+        <h1 className="text-lg font-bold mb-4">Product Ratings</h1>
+        <ReviewRatings ratings={ratings} />
+      </div>
+
+      <div className="container mx-auto p-4">
+        <h1>Filter Reviews</h1>
+
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <ReviewFilterDropdowns
+          selectedRating={selectedRating}
+          setSelectedRating={setSelectedRating}
+          selectedAgeGroup={selectedAgeGroup}
+          setSelectedAgeGroup={setSelectedAgeGroup}
+        />
+
+        <div className="mt-4">
+          <h3>Filtered Reviews</h3>
+          {filteredReviewsSearchBar.length > 0 ? (
+            <ul>
+              {filteredReviewsSearchBar.map((review, index) => (
+                <li key={index}>
+                  <p>{review.description}</p>
+                  <p>Age Group: {review.ageGroup}</p>
+                  <p>Rating: {review.rating} Stars</p>
+                </li>
+              ))}
+            </ul>
           ) : (
-            <RecentlyViewedProducts products={products} modalSetToggle={modalSetToggle} />
+            <p>No reviews found.</p>
           )}
         </div>
+      </div>
+      <div className="p-6">
+        <ResponseCard
+          title="Response from PCA SKIN"
+          timeAgo="10 months ago"
+          iconSrc={responsePCASkin}
+          consumerAffairsText="Consumer Affairs"
+        >
+          We&apos;re so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!
+        </ResponseCard>
+      </div>
+      <div>
+        <button onClick={openModal}>Open Review Modal</button>
+
+        {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
+      </div>
+      <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
+      <div>
+        <div className="relative group">
+          <Image
+            className=""
+            src={'https://pcaskin.vtexassets.com/arquivos/ids/156885-608-auto/4percent-retinol-peel.jpg?v=638579566473630000&width=608&height=auto&aspect=true'}
+            alt={'xyz'}
+            width={310}
+            height={'auto'}
+          />
+        
+     
+          {isLoggedIn && (
+            <div className="absolute flex inset-0 bg-[#1e293b82] invisible group-hover:visible w-[310px] justify-center items-center">
+              <Button
+                onClick={openQuickReviewModal}
+                className="w-2/3 absolute bg-appTheme text-[1rem] p-[.344rem ,.118rem] py-[0.625rem] px-[2.313rem] text-white leading-6 font-bold font-HeroNewBold hover:bg-[#555555] justify-center"
+              >
+              Quick View
+              </Button>
+            </div>
+          )}
+        </div>
+        <button onClick={openQuickReviewModal}>open Quick review Modal</button>
+        {QuickViewModalOpen && <QuickViewModal closeModal={closeQuickViewModal} product={products[0]} />}
       </div>
     </>
   );

@@ -1,3 +1,8 @@
+@media (min-width: 1020px) {
+  .appCarousel-banner_button{
+    width: 139px;
+  }
+}
 @media (max-width: 1020px) {
     .appCarousel-bannercontent{
       font-size: 0rem !important;
@@ -12,7 +17,7 @@
         width: 113px;
         font-weight: 700;
         border-radius: 0px;
-        background-color: #1d4ed8;
+        background-color: var(--primary-color);
         color: white;
       }
 }

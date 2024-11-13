@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@ui/atoms/Button';
 import { InputField } from '@ui/molecules/FormField';
-import { LoginForm as LoginFormEnum, ValidationForm } from '@utils/Login';
+import { LoginForm, ValidationForm } from '@utils/Login';
 import { PasswordFeild } from '@ui/atoms/PasswordField';
+import { AlreadyRegisteredConstants } from './AlreadyRegisteredConts';
+import { FORGOTPASSWORD, LOGIN } from '@utils/constants';
+import { useLoginMutation } from '@store/services/Endpoints/AuthApi';
+import { useDispatch } from 'react-redux';
+import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
+import { AppSpinner } from '@ui/atoms/AppSpinner';
 
 interface FormValues {
   email: string;
@@ -13,109 +19,149 @@ interface FormValues {
 interface LoginFormProps {
   onSubmit: (data: FormValues) => void;
   setIsForgotPassword: (value: boolean) => void;
+  mode: string;
+}
+interface LoginData {
+  email?: string;
+  password?: string;
 }
 
-const AlreadyRegistered: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword }) => {
+const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode }) => {
+  const [login, { isLoading, isError }] = useLoginMutation();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true);
-
+  const onSubmit = async (data: LoginData) => {
+    try {
+      const result = await login(data).unwrap();
+      if (result.status) {
+        dispatch(userInfo(result.data.userInfo));
+        dispatch(setAuthToken(result.data.token));
+      } else {
+        console.error('Login failed:', result);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
   const { control, handleSubmit, formState: { errors, isSubmitted } } = useForm<FormValues>({
-    mode: 'onSubmit',
+    mode: 'onChange',
   });
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
-
+  const { formClassName, textClassName, buttonClassName, modalButtonClassName, welcomepagebutton, LoginForgotPassword, LoginButton, mainDivClass } = AlreadyRegisteredConstants(mode);
   return (
-    <>
-      <div className="mb-8">
-        <p className="text-[32px] font-HeroNewRegular">Already registered?</p>
+    <div className={`relative ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
+      <div className={textClassName}>
+        <p >Already registered?</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col pb-2">
         {/* Email Input */}
-        <div className="mb-8 inline-grid">
-          <Controller
-            name={LoginFormEnum.Email}
-            control={control}
-            rules={{ required: ValidationForm.Required }}
-            render={({ field }) => (
-              <InputField
-                className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] ${
-                  errors[LoginFormEnum.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
-                } ${isSubmitted && errors[LoginFormEnum.Email] ? 'focus:outline-blue-700' : 'focus:outline-none'}`} // Conditional outline
-                type="email"
-                placeholder="Email *"
-                {...field}
-              />
-            )}
-          />
-          {errors[LoginFormEnum.Email] && (
-            <span className="text-normal text-appErrorMessage font-HeroNewBold">
-              {errors[LoginFormEnum.Email]?.message}
-            </span>
-          )}
-        </div>
+        <div className={formClassName}>
+          <div className={mainDivClass}>
+            <Controller
+              name={LoginForm.Email}
+              control={control}
+              rules={{ required: ValidationForm.Required }}
+              render={({ field }) => (
+                <InputField
+                  {...field}
+                  className={`rounded-none mb-2 h-[48px] pt-1 pl-4 pb-1 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal' ? '' : 'placeholder-slate-700 text-black font-HeroNewRegular mb-[20px]'} ${errors[LoginForm.Email] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                  } ${isSubmitted && errors[LoginForm.Email] ? 'focus:outline-none' : 'focus:outline-none'}`} // Conditional outline
+                  type="email"
+                  placeholder="Email *"
 
-        {/* Password Input with Visibility Toggle */}
-        <div className="inline-grid">
-          <Controller
-            name={LoginFormEnum.Password}
-            control={control}
-            rules={{ required: ValidationForm.Required }}
-            render={({ field }) => (
-              <PasswordFeild
-                className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] ${
-                  errors[LoginFormEnum.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
-                } ${isSubmitted && errors[LoginFormEnum.Password] ? 'focus:outline-blue-700' : 'focus:outline-none'}`} // Conditional outline
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password *"
-                {...field}
-                onChange={(e) => {
-                  field.onChange(e);
-                  setIsPasswordFieldEmpty(e.target.value === '');
-                }}
-                suffix={(
-                  !isPasswordFieldEmpty && (
-                    <button
-                      type="button"
-                      onClick={togglePasswordVisibility}
-                      className="text-gray-600 focus:outline-none"
-                    >
-                      {showPassword ? 'Hide' : 'Show'}
-                    </button>
-                  )
-                )}
-              />
+                />
+              )}
+            />
+            {errors.email && (
+              <span className="text-appErrorMessage text-normal font-HeroNewBold">{ValidationForm.Required}</span>
             )}
-          />
-          {errors[LoginFormEnum.Password] && (
-            <span className="text-normal text-appErrorMessage font-HeroNewBold mt-3">
-              {errors[LoginFormEnum.Password]?.message}
-            </span>
-          )}
-        </div>
+            <div className={`${!isError ? 'hidden' : 'h-0 2xs:mb-5 lg:!mb-0'}`}>
+              <span className="text-normal text-appErrorMessage font-HeroNewBold mt-1 ">
+                {ValidationForm.EmailPasswordFailed}
+              </span>
+            </div>
+          </div>
 
+          {/* Password Input with Visibility Toggle */}
+          <div className="inline-grid">
+            <Controller
+              name={LoginForm.Password}
+              control={control}
+              rules={{ required: ValidationForm.Required }}
+              render={({ field }) => (
+                <PasswordFeild
+                  className={`rounded-none h-[48px] pb-1 pl-4 pr-4 text-base border-[1px] text-black bg-appInputFieldColor ${mode === 'modal' ? '' : 'placeholder-slate-700 font-HeroNewRegular mb-[12px]'} ${errors[LoginForm.Password] ? 'border-[#595959]' : 'border-[#d6d6d6]'
+                  } ${isSubmitted && errors[LoginForm.Password] ? 'focus:outline-none' : 'focus:outline-none'}`} // Conditional outline
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password *"
+                  {...field}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    setIsPasswordFieldEmpty(e.target.value === '');
+                  }}
+                  suffix={(
+                    !isPasswordFieldEmpty && mode === 'modal' ? (
+                      <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className="text-gray-600 focus:outline-none"
+                      >
+                        {showPassword ? 'hide' : 'show'}
+                      </button>
+                    ) : ''
+                  )}
+                />
+              )}
+            />
+            {errors[LoginForm.Password] && (
+              <span className="text-normal text-appErrorMessage font-HeroNewBold mt-3">
+                {errors[LoginForm.Password]?.message}
+              </span>
+            )}
+
+          </div>
+        </div>
+        {isLoading && (
+          <div className='opacity-60 '>
+            <AppSpinner containerClassName="!h-[150px] !w-[100%] !bg-transparent flex justify-center items-center absolute inset-0" spinnerClassName="!bg-red-300 w-[10%]" />
+          </div>
+        )}
         {/* Forgot Password button */}
-        <Button
-          onClick={() => setIsForgotPassword(false)}
-          type={undefined}
-          className="mt-2 p-0 text-start"
-        >
-          <span className='bg-none text-appTheme mb-1 text-sm font-HeroNewRegular font-medium hover:font-semibold'>Forgot your Password?</span>
-        </Button>
+        <div className={buttonClassName}>
+          <div className={modalButtonClassName}>
+            <Button
 
-        <div className="flex justify-between items-center w-full">
-          <div className="flex-grow !h-[48px] !w-[75px]" />
+              type="submit"
+              className={LoginButton}
+            >
+              {LOGIN}
+            </Button>
+          </div>
+
           <Button
-            type="submit"
-            className="bg-appTheme !w-[75px] !h-[48px] text-white p-3 m-1 hover:bg-black hover:underline !text-[15px] font-HeroNewSemiBold"
+            onClick={() => setIsForgotPassword(false)}
+            type='button'
           >
-            Log in
+            <span className={LoginForgotPassword}>
+              {FORGOTPASSWORD}
+            </span>
+          </Button>
+
+        </div>
+        <div className={welcomepagebutton}>
+          <Button
+            type='submit'
+            className={LoginButton}
+          >
+            {LOGIN}
           </Button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

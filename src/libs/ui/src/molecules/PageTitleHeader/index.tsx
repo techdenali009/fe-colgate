@@ -3,19 +3,21 @@ import React from 'react';
 interface Breadcrumb {
     label: string;
     href?: string;
+
 }
 
 interface PageTitleHeaderProps {
     breadcrumbs: Breadcrumb[];
     children?: React.ReactNode;
+    className?: string;
 }
 
-const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children }) => {
+const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children, className }) => {
   const title = breadcrumbs[breadcrumbs.length - 1]?.label;
 
   return (
-    <div className="mb-6">
-      <div className="text-sm text-gray-500 mb-2">
+    <div className={`mb-6 ${className || ''}`}>
+      <div className="text-xs font-HeroNewLight text-gray-500 mb-2">
         {breadcrumbs.map((crumb, index) => (
           <span key={index}>
             {index < breadcrumbs.length - 1 ? (
