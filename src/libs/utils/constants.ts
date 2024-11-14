@@ -58,4 +58,4 @@ export const sortByOptions = [
   'Most Recent',
 ]
 
-
+export const reviewsPerPage = 8;

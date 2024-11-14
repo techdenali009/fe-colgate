@@ -1,4 +1,6 @@
-.popover-content {
+
+ .popover{
+ .popover-content {
     position: relative;
     background-color: white;
     top: 24px;
@@ -14,7 +16,7 @@
     content: '';
     position: absolute;
     bottom: 100%; 
-    left: 50%;
+    left: 85%;
     
     transform: translateX(-50%);
     border-width: 8px;
@@ -26,7 +28,7 @@
     content: '';
     position: absolute;
     bottom: 100%;
-    left: 50%;
+    left: 85%;
    
     transform: translateX(-50%);
     border-width: 9px;
@@ -34,3 +36,4 @@
     border-color: transparent transparent black transparent;
     z-index: -1; 
   }
+ }

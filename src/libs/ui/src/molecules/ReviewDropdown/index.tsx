@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { FaCheckCircle } from 'react-icons/fa';
@@ -65,7 +66,7 @@ const ReviewDropdown: React.FC<DropdownProps> = ({
               <div
                 key={index}
                 className={`flex items-center cursor-pointer p-2  font-SansSerif ${dropclassName} 
-                            hover:text-white 
+                            hover:!text-white 
                             hover:bg-[#ade1f5] 
                             sm:hover:bg-[#ade1f5] 
                             lg:hover:bg-appTheme`}
@@ -74,8 +75,7 @@ const ReviewDropdown: React.FC<DropdownProps> = ({
                 {selectedItems.includes(item) ? (
                   <>
                     {isRatingDropdown ? (
-                      <FaCheckCircle className={`mr-2 w-5 h-5   text-formFieldBorder ${FaCheckCircleclassName}`} />
-                     
+                      <FaCheckCircle className={`mr-2 w-5 h-5 text-formFieldBorder  ${FaCheckCircleclassName}`} />
                     ) : (
                       <div className={`${sortdropclassName}`}>
                         
@@ -85,7 +85,7 @@ const ReviewDropdown: React.FC<DropdownProps> = ({
                     )}
                   </>
                 ) : (
-                  <IoMdAddCircleOutline className={`mr-2 w-[22px] h-[22px] text-formFieldBorder ${IoMdAddCircleOutlineclassName}`} />
+                  <IoMdAddCircleOutline className={`mr-2 w-[22px] h-[22px] text-formFieldBorder   ${IoMdAddCircleOutlineclassName}`} />
                  
                 )}
                 {isRatingDropdown ? `${starCount} ${displayText}` : item}

@@ -57,11 +57,12 @@ const AgeRatingDropdowns: React.FC<RatingAgeDropdownsProps> = ({
         isRatingDropdown={true} // Pass true for rating dropdown
         className='py-2 w-[357px] lg:w-[145px] md:!w-[145px]'
         selectdropclassName='w-[357px] lg:w-[149px] md:!w-[145px] '
-        isOpenArrowclassName='hidden lg:block'
+
         FaCheckCircleclassName='hidden lg:block'
         IoMdAddCircleOutlineclassName='hidden lg:block'
+        isOpenArrowclassName='hidden lg:block'
         sortdropclassName='hidden'
-        dropclassName=''
+
       />
       {/* Age Group Dropdown */}
       <ReviewDropdown
@@ -74,11 +75,11 @@ const AgeRatingDropdowns: React.FC<RatingAgeDropdownsProps> = ({
         className='py-2 w-[357px] !ml-0 lg:w-[145px] lg:!ml-2 md:!w-[145px]'
         isRatingDropdown={true}
         selectdropclassName='w-[357px] lg:w-[149px] md:!w-[145px] lg:!ml-[10px]'
-        isOpenArrowclassName='hidden lg:block'
-        FaCheckCircleclassName='hidden lg:block'
+        FaCheckCircleclassName='hidden lg:!block'
         IoMdAddCircleOutlineclassName='hidden lg:block'
+        isOpenArrowclassName='hidden lg:block'
         sortdropclassName='hidden'
-        dropclassName=''
+
       />
     </div>
   );

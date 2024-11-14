@@ -7,6 +7,7 @@ import AgeRatingDropdowns from '../AgeAndRatingDropdown';
 import { useReviewContext } from '../ReviewUseContext';
 import SortByReview from '../SortbyReview';
 import ReviewSearchIcon from '@ui/atoms/SvgAtoms/ReviewSearchIcon';
+import { reviewsPerPage } from '@utils/constants';
 
 interface FilterReviewsProps {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -45,11 +46,11 @@ const FilterReviews: React.FC<FilterReviewsProps> = ({ productReviews }) => {
       setSelectedAgeGroups(selectedAgeGroups.filter((ageGroup) => ageGroup !== filter));
     }
   };
-  const reviewsPerPage = 8;
+  
   const [currentPage, setCurrentPage] = useState(0);
   const startIndex = currentPage * reviewsPerPage;
   const endIndex = startIndex + reviewsPerPage;
-  
+
   const handleNextPage = () => {
     if (endIndex < productReviews.length) {
       setCurrentPage(currentPage + 1);
@@ -65,25 +66,25 @@ const FilterReviews: React.FC<FilterReviewsProps> = ({ productReviews }) => {
   return (
     <div className="mx-2.5  ">
       <h3 className="p-2.5 font-SansSerif text-[16px] pt-[30px] ">Filter Reviews</h3>
-      {/* Pass searchQuery and setSearchQuery from context */}
+
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchclassName='h-12'>
-        {/* <img src={Search} alt="Search Icon" className="w-5 h-5" aria-hidden="true" /> */}
+
         <ReviewSearchIcon></ReviewSearchIcon>
       </SearchBar>
 
       <div>
         <AgeRatingDropdowns
           selectedRatings={selectedRatings}
-          setSelectedRatings={setSelectedRatings} 
+          setSelectedRatings={setSelectedRatings}
           selectedAgeGroups={selectedAgeGroups}
           setSelectedAgeGroups={setSelectedAgeGroups}
         />
-        <FilterContainer filters={filters} onRemoveFilter={removeFilter} showStarText={false} onClearAll={clearFilters} className=''/>
+        <FilterContainer filters={filters} onRemoveFilter={removeFilter} showStarText={false} onClearAll={clearFilters} className='' />
       </div>
 
       <div className="flex flex-row lg:flex-row-reverse lg:justify-between mr-6 md:!mr-0 md:!flex-row-reverse md:!justify-between 2xs:flex-col">
         <SortByReview selectedSortBy={selectedSortBy} setSelectedSortBy={setSelectedSortBy} />
-        <ScrollBarReview className="mr-auto self-center" totalReviews={productReviews.length} showArrows={false} extraClassName='hidden' visibleRangeclassName='mt-[10px]' 
+        <ScrollBarReview className="mr-auto self-center" totalReviews={productReviews.length} showArrows={false} extraClassName='hidden' visibleRangeclassName='mt-[10px]'
           onNext={handleNextPage}
           onPrev={handlePrevPage}
           currentPage={currentPage}

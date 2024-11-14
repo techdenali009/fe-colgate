@@ -11,7 +11,7 @@ interface ProgressBarProps {
 const ProgressBar: React.FC<ProgressBarProps> = ({
   percentage,
   backgroundColor = '#eff2f4',
-  barColor = 'bg-blue-500',
+  barColor = 'bg-appTheme',
   barClassName = '',
   wrapperClassName = '',
 }) => {

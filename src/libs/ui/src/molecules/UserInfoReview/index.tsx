@@ -32,7 +32,7 @@ const UserInfoReview: React.FC<UserInfoProps> = ({ name, location, ageGroup, rev
   };
 
   return (
-    <div className='inline-block max-w-[22%] lg:min-w-[22%] pt-2.5 mt-0 !font-SansSerif'>
+    <div className='inline-block max-w-[22%] lg:min-w-[22%] pt-2.5 mt-0 !font-SansSerif  UserInfoReviewContainer'>
       <div className='mb-[10px]'>
         <Button className='hidden lg:block font-bold bg-transparent ' onClick={openModal}>
           <h3>{name}</h3>
@@ -45,7 +45,7 @@ const UserInfoReview: React.FC<UserInfoProps> = ({ name, location, ageGroup, rev
         <div className='location block'>
           <div>
             <span className='reviewlabel'>Review</span>
-            <span className='reviewspan'>{reviewCount}</span>
+            <span className=''>{reviewCount}</span>
           </div>
           <div>
             <span className='reviewlabel'>Votes</span>
