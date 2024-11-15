@@ -5,7 +5,7 @@ import ModalBody from '@ui/atoms/ModalBody';
 import LoginForm from '@ui/organisms/LoginForm';
 import ForgotPasswordForm from '@ui/molecules/ForgotPasswordForm';
 import AlreadyRegistered from '@ui/organisms/AlreadyRegisteredForm';
-import { LoginConsts } from '@utils/Login';
+import { LoginConsts, ValidationForm } from '@utils/Login';
 import { useDispatch } from 'react-redux';
 import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
@@ -78,6 +78,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
                 onSubmit={onSubmit} 
                 setIsForgotPassword={() => setCurrentForm('forgotPassword')}
               />
+            )}
+            {isError && (
+              <span className="text-normal text-appErrorMessage font-HeroNewBold mt-1">{ValidationForm.EmailPasswordFailed}</span>
             )}
             {currentForm === LoginConsts.ForgotPassword && (
               <ForgotPasswordForm 

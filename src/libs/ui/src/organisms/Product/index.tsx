@@ -12,9 +12,8 @@ function Product({ product, modalSetToggle, className, openQuickView, showQuickV
   const handaleClick=(id:number)=>{
     navigate(`/products/${id}/${name}`)
   }
-  return (
-
-    <div className={'group relative p-2'} onClick={()=>handaleClick(id)}>
+  return (  
+    <div className={'group relative p-2 bg-white dark:bg-appdarkcolor'} onClick={()=>handaleClick(id)}>
       <div>
         <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
         {showQuickView && (

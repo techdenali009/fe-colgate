@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import { SecondaryButton } from '@ui/molecules/SecondaryButton';
 import { HeaderLabel } from '@ui/molecules/HeaderLabel';
@@ -91,6 +91,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     { label: 'Treatment Enhancements' },
   ];
 
+
+
   const handleButtonClick = () => {
     console.log('Learn more clicked!');
   };
@@ -162,7 +164,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <form>
         <div className="flex justify-center mb-4">
-          <PrimaryButton className='font-HeroNewBold'>Primary button</PrimaryButton>
+          <PrimaryButton className="font-HeroNewBold">
+            Primary button
+          </PrimaryButton>
           <SecondaryButton>Secondary button</SecondaryButton>
           <ButtonWithTextAndIcon></ButtonWithTextAndIcon>
           <ButtonWithIcon>ButtonwithIcon</ButtonWithIcon>
@@ -337,10 +341,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <FilterSkeleton />
       </div>
 
-
-
       <div>
-
         <PrimaryButton onClick={modalSetToggle}>Login</PrimaryButton>
         {toggle && <LoginModal closeModal={modalSetToggle} />}
         <button onClick={handleRegisterClick}>Register</button>
@@ -363,8 +364,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       />
 
       <div className="p-8">
-        <PageTitleHeader breadcrumbs={breadcrumbs}>
-        </PageTitleHeader>
+        <PageTitleHeader breadcrumbs={breadcrumbs}></PageTitleHeader>
       </div>
 
       <div className="flex justify-center mt-10">

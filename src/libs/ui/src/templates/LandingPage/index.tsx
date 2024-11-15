@@ -15,13 +15,15 @@ import GreetRegister from '@ui/organisms/GreetingRegister';
 import { useState, useEffect } from 'react';
 import { ProductType } from '@utils/Product';
 import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
+import { RootState } from '@store/store';
 
 export const LandingTemplatePage = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
-
+  const isLoggedIn = useSelector((state:RootState)=> state.authSlice.userInfo)
   const dispatch = useDispatch();
+
 
   
   const modalSetToggle = () => {
@@ -39,7 +41,7 @@ export const LandingTemplatePage = () => {
 
   return (
     <>
-      <GreetRegister />
+      {!isLoggedIn && <GreetRegister />} 
 
       {/* marketing-Carousel */}
       <Carousel slides={carouselData} />
@@ -63,6 +65,7 @@ export const LandingTemplatePage = () => {
           <PopularProducts products={products} modalSetToggle={modalSetToggle} />
         )}
       </div>
+      
     </>
   );
 };
