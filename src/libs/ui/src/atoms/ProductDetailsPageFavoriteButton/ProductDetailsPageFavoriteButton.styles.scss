@@ -1,3 +1,4 @@
+.Product-detailspage{
 .favorite-icon {
   height: 23px;
   width: 24px;
@@ -5,19 +6,16 @@
   background-position: center;
 }
 
-/* Default outline icon */
 .favorite-icon-outline {
-  background-image: url('https://www.pcaskinpro.com/products/_next/static/media/favorite-blue.4800f7c0.svg');
+  background-image: url('../../../assets/favouriteIcon-blue.svg');
 }
 
-/* Filled icon when favorite is clicked */
 .favorite-icon-filled {
-  background-image: url('https://www.pcaskinpro.com/products/_next/static/media/favorite-blue-filled.ea8abfb4.svg');
+  background-image: url('../../../assets/favouriteIcon-blue-filled.svg');
 }
 
-/* Hover effect: swaps outline icon with filled icon */
 button:hover .favorite-icon-outline {
-  background-image: url('https://www.pcaskinpro.com/products/_next/static/media/favorite-blue-filled.ea8abfb4.svg');
+  background-image: url('../../../assets/favouriteIcon-blue-filled.svg');
 }
 
 
@@ -60,5 +58,6 @@ button:hover .add-favorite-label {
     opacity: 1;
     transform: translateX(0);
   }
+}
 }
 

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@ui/atoms/Button';
 import { ProductImage } from '@ui/atoms/ProductImage';
 import StarRating from '@ui/atoms/StarRating';
@@ -7,7 +7,7 @@ import QuickViewButton from '@ui/molecules/QuickViewButton';
 import { ProductProps } from '@utils/Product';
 
 function Product({ product, modalSetToggle, className, openQuickView, showQuickView }: ProductProps) {
-  const { image, images, name, isBestSeller, description, features, rating, id } = product;
+  const { image, name, isBestSeller, rating, id } = product;
   const navigate=useNavigate();
   const handaleClick=(id:number)=>{
     navigate(`/products/${id}/${name}`)
@@ -15,7 +15,7 @@ function Product({ product, modalSetToggle, className, openQuickView, showQuickV
   return (
 
     <div className={'group relative p-2'} onClick={()=>handaleClick(id)}>
-        <div>
+      <div>
         <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
         {showQuickView && (
           <QuickViewButton onClick={() => openQuickView(id)}></QuickViewButton>

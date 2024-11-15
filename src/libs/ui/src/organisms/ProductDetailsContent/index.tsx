@@ -22,9 +22,7 @@ const ProductDetailsContent: React.FC<ProductDetailsContentProps> = ({
   reviews,
   restrictedmessage,
 }) => {
-  // Move the useSelector inside the component
   const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo);
-
   return (
     <div className='productdetailspage-container flex flex-col lg:flex-row w-full lg:w-full'>
       <div className='mobile-container'>
@@ -33,29 +31,34 @@ const ProductDetailsContent: React.FC<ProductDetailsContentProps> = ({
         </h2>
         <p className='text-mobile text-[#555] font-normal text-sm mb-6'>Item #{id}</p>
       </div>
-      <div className='productdetailspage-media py-3 px-[55px]'>
+      <div className='productdetailspage-media py-3 px-[55px] w-1/2 '>
         <ProductCarousel images={images} name={name} />
       </div>
-      <div className='productdetailspage-info py-2.5 px-20 lg:w-full'>
+      <div className='productdetailspage-info py-2.5 pl-[7rem] pr-[3rem] lg:w-full'>
         <div className='desktop-container'>
-          <h2 className='heading-desktop text-appTheme font-bold font-sans lg:text-4xl lg:leading-10 leading-8 mb-4 product-name'>
+          <h2 className='heading-desktop text-appTheme font-bold font-sans  text-[2.875rem]  lg:leading-10 leading-8 mb-4 product-name'>
             {name}
           </h2>
           <p className='text-desktop text-[#555] font-normal text-sm mb-6'>Item #{id}</p>
         </div>
-        <div className='rating-icons-container flex'>
+        <div className='rating-icons-container flex mb-[20px]'>
           <div className='rating flex '>
             <div className='rating-stars flex mb-12 lg:mb-2'>
               <StarRatingPopover rating={rating} reviews={reviews} /> 
             </div>
             <a href='/' className='text-appTheme pl-2.5'>Write a Review</a>        
           </div>
-          <FavoriteButton />
+          {isLoggedIn ? (
+            <FavoriteButton />
+          ) : (
+            <></> 
+          )}
+          
         </div>
         
         {isLoggedIn ? (
           <div className='loggedInContent'>
-           <div  className='restrictedmessage text-[14px] leading-6 italic font-semibold restricted-message-section'>{restrictedmessage}</div>
+            <div  className='restrictedmessage text-[14px] leading-6 italic font-semibold restricted-message-section'>{restrictedmessage}</div>
           </div>
         ) : (
           <TwoCardsComponent /> 

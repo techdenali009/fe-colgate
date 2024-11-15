@@ -21,9 +21,11 @@ const StarRatingPopover: React.FC<StarRatingPopoverProps> = ({ rating, reviews }
             </span>
           </button>
         }
-        content={<div className="popover-content ">
-          <CustomReviewContent reviews={reviews} />
-        </div>}
+        content={
+          <div className="popover-content ">
+            <CustomReviewContent reviews={reviews} />
+          </div>
+        }
         positions={['bottom']}
         align="center"
       />

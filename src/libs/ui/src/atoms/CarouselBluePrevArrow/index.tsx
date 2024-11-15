@@ -1,27 +1,21 @@
 import React from 'react';
-import './CarouselBluePrevArrow.styles.scss';
+import './CarouselBluePrevArrow.styles.scss'; // Make sure this file has correct styles
 import ArrowPrevIcon from '../SvgAtoms/ArrowPrevIcon';
 
 interface PrevButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-const PrevButton: React.FC<PrevButtonProps> = ({ onClick }) => (
+const PrevButton = React.forwardRef<HTMLButtonElement, PrevButtonProps>(({ onClick }, ref) => (
   <button
+    ref={ref} // Forward ref here
     onClick={onClick}
-    className="prevbutton"
-    style={{
-      position: 'absolute',
-      top: '40%',
-      left: '2px',
-      zIndex: 10,
-      background: 'transparent',
-      border: 'none',
-      cursor: 'pointer',
-    }}
+    className='prevbutton'
   >
-    <ArrowPrevIcon/>
+    <ArrowPrevIcon />
   </button>
-);
+));
+
+PrevButton.displayName = 'PrevButton'; // For debugging in React DevTools
 
 export default PrevButton;

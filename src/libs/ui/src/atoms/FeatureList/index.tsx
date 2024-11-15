@@ -7,7 +7,7 @@ interface FeatureListProps {
 }
 
 const FeatureList: React.FC<FeatureListProps> = ({ features }) => (
-  <ul className="list-disc pl-5">
+  <ul className='list-disc pl-5'>
     {features.map((feature, index) => (
       <li key={index}>{feature}</li>
     ))}

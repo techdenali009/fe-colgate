@@ -45,7 +45,7 @@ const CustomPopover: React.FC<CustomPopoverProps> = ({
       onClickOutside={() => setIsPopoverOpen(false)}
       content={
         <div
-          className="custom-popover-content"
+          className='custom-popover-content'
           onMouseEnter={handlePopoverMouseEnter}
           onMouseLeave={handlePopoverMouseLeave}
         >

@@ -13,9 +13,9 @@ const BasicDropdown: React.FC<BasicDropdownProps> = ({ options, selectedValue, o
     <select
       value={selectedValue ?? ''}
       onChange={(e) => onChange(e.target.value || null)}
-      className="p-2 border rounded"
+      className='p-2 border rounded'
     >
-      <option value="">{placeholder}</option>
+      <option value=''>{placeholder}</option>
       {options.map((option) => (
         <option key={option} value={option}>
           {option}

@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import './ProductCarousel.styles.scss';
-import NextButton from '../../atoms/CarouselBlueNextArrow';
-import PrevButton from '../../atoms/CarouselBluePrevArrow';
+import React, { useState, useEffect } from 'react';
+import SwiperCarousel from '../../molecules/ProductDetailsPageSwiperCarousel';
+import ResponsiveCarousel from '../../molecules/ProductDetailsPageResponsiveCarousel';
 
 interface ProductCarouselProps {
   images: string[];
@@ -11,43 +8,27 @@ interface ProductCarouselProps {
 }
 
 const ProductCarousel: React.FC<ProductCarouselProps> = ({ images, name }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 1020); // Initialize with 1020px
 
-  const renderArrowNext = (onClickHandler: () => void, hasNext: boolean) => {
-    return hasNext && <NextButton onClick={onClickHandler} />;
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1020); // Adjust isMobile state to 1020px
+    };
 
-  const renderArrowPrev = (onClickHandler: () => void, hasPrev: boolean) => {
-    return hasPrev && <PrevButton onClick={onClickHandler} />;
-  };
+    window.addEventListener('resize', handleResize);
 
-  const renderThumbs = () => {
-    return images.map((image, index) => (
-      <img key={index} src={image} alt={`${name} thumbnail ${index + 1}`} />
-    ));
-  };
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
-    <div className='Product-detailspage'>
-      <div className="product-carousel-container">
-        <Carousel
-          selectedItem={currentIndex}
-          onChange={setCurrentIndex}
-          showArrows={true}
-          renderArrowPrev={renderArrowPrev}
-          renderArrowNext={renderArrowNext}
-          showStatus={false}
-          showIndicators={false}
-          renderThumbs={renderThumbs}
-          thumbWidth={100}
-        >
-          {images.map((image, index) => (
-            <div key={index}>
-              <img src={image} alt={`${name} - slide ${index + 1}`} />
-            </div>
-          ))}
-        </Carousel>
-      </div>
+    <div>
+      {isMobile ? (
+        <ResponsiveCarousel images={images} />
+      ) : (
+        <SwiperCarousel images={images} name={name} />
+      )}
     </div>
   );
 };
