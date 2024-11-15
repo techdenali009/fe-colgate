@@ -1,4 +1,4 @@
-import ProductDetailsContentSkeleton from "@ui/molecules/ProductDetailsContentSkeleton"
+import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton'
 
 export const ProductDetailsPageSkeleton = () => {
   return (

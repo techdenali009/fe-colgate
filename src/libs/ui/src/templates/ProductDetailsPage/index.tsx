@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import './ProductDetailsPage.styles.scss';
 import { ProductDetailsContentProps } from '@utils/Product';
 import PageTitleHeader from '@ui/molecules/PageTitleHeader';
-import ProductDetailsContentSkeleton from "@ui/molecules/ProductDetailsContentSkeleton";
+import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 
 interface PDPage {
   submitLabel: string;
