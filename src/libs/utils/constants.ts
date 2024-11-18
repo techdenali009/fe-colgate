@@ -50,5 +50,12 @@ export const OtherLinks = [
   { url: '/services', label: 'Product excellence' },
 ];
   
+export const sortByOptions = [
+  'Most Relevant',
+  'Most Helpful',
+  'Highest to Lowest Rating',
+  'Lowest to Highest Rating',
+  'Most Recent',
+]
 
-
+export const reviewsPerPage = 8;

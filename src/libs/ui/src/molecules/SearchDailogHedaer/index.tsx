@@ -1,10 +1,10 @@
 import React from 'react';
-import CloseSearch from '../../../assets/CloseSearch.svg';
 
 import clearIcon from '../../../assets/clearIcon.svg';
 import { HeaderLogo } from '@ui/atoms/HeaderLogo';
 import { Image } from '@ui/atoms/Image';
 import SearchIcon from '@ui/atoms/SvgAtoms/SearchIcon';
+import ReviewCloseSearch from '@ui/atoms/SvgAtoms/ReviewCloseSearch';
 
 interface ModalHeaderProps {
     searchQuery: string;
@@ -39,15 +39,12 @@ const SearchModalHeader: React.FC<ModalHeaderProps> = ({ searchQuery, setSearchQ
       </span>
     </div>
     <span
-      className="lg:mr-10 cursor-pointer hover:bg-[#f2f2f2] lg:rounded-[13rem] pt-[15px] pl-[15px] pr-0 pb-0"
+      className="lg:mr-10 cursor-pointer hover:bg-[#f2f2f2] lg:rounded-[13rem] pt-[15px] pl-[15px] pr-0 pb-0 "
       onClick={onClose}
     >
-      <Image
-        src={CloseSearch}
-        alt="Close Search"
-        className="tm:grid tm:relative tm:pr-0 relative"
-      />
-            
+      <div className="tm:grid tm:relative tm:pr-0 relative left:[3px] top: [2px] w-[40px] h-[40px]">
+        <ReviewCloseSearch></ReviewCloseSearch>  
+      </div> 
     </span>
         
   </div>
