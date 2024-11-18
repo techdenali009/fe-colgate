@@ -23,7 +23,7 @@ const ResponseCard: React.FC<ResponseCardProps> = ({
   contentClassName = '', 
 }) => {
   return (
-    <div className={`border rounded-lg  bg-white text-sm  ${containerClassName}`}>
+    <div className={` ${containerClassName}`}>
       <div className={`flex items-center justify-between px-4 py-2 bg-[#f1f1f1] border-b ${headerClassName}`}>
         <div className="flex items-center font-medium text-black">
           <ConsumerAffairsLogo className="mr-1"></ConsumerAffairsLogo>

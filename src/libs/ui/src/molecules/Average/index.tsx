@@ -1,5 +1,5 @@
 
-import AverageRatings from '../AverageRatings';
+import AverageCustomerRate from '../AverageRatings'; // Assuming the component path
 import { Reviewproducts } from '@utils/test'; // Reviewproducts is imported from the test module
 
 
@@ -7,13 +7,11 @@ interface AverageCustomerRatingsProps {
     className?: string; // Optional prop for additional class names
     ReviewRatingclassName?:string;
     headClassName?:string;
-    
   }
   
 // Function to calculate the average ratings
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 const calculateAverageRatings = (Reviewproducts: any) => {
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const total = Reviewproducts.reduce(
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     (acc: any, review: any) => {
@@ -37,7 +35,7 @@ const calculateAverageRatings = (Reviewproducts: any) => {
 };
 
 const AverageCustomerRatings: React.FC<AverageCustomerRatingsProps> = ({ className, headClassName }) => {
-
+  // Calculate average ratings using the Reviewproducts from the imported module
   const averageRatings = calculateAverageRatings(Reviewproducts);
 
   return (
@@ -46,7 +44,7 @@ const AverageCustomerRatings: React.FC<AverageCustomerRatingsProps> = ({ classNa
       <h3 className={`text-left p-2.5  font-[16px] text-base  lg:text-center font-SansSerif ${headClassName}`}>Average Customer Ratings</h3>
       <div className='!text-left   lg:flex  flex- mx-[10px]  mt-[10px]  border-[#EAEAEA] lg:justify-center !lg:items-center'>
         {/* Pass the average ratings to the AverageCustomerRatings component */}
-        <AverageRatings
+        <AverageCustomerRate
           ratings={averageRatings}  // The calculated average ratings
           className=""  // Custom class for styling the component
           ReviewRatingclassName=""  // Custom class for the review rating section

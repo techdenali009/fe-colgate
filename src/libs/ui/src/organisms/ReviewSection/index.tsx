@@ -3,12 +3,12 @@ import React from 'react';
 import ReviewFeedbackDetails from '@ui/molecules/ReviewFeedbackDetails';
 import SnapShotRating from '@ui/molecules/SnapShotRating';
 import OverallRatingReview from '@ui/molecules/OverallRatingReview';
-import AverageCustomerRatings from '@ui/molecules/AverageCustomerRatings';
 import FilterReviews from '@ui/molecules/FilterReviews';
 import { Heading } from '@ui/atoms/Heading';
 import { useReviewContext } from '@ui/molecules/ReviewUseContext';
 import HoverStarRating from '@ui/molecules/HoveringRatingStar';
 import { reviews } from '@utils/test';
+import AverageCustomerRatings from '@ui/molecules/AverageCustomerRatings';
 import ReviewCustomImages from '@ui/molecules/ReviewCustomImages';
 
 const ReviewSection: React.FC = () => {
@@ -28,11 +28,12 @@ const ReviewSection: React.FC = () => {
         </div>
       </div>
       <div className='border-b'>
-        <AverageCustomerRatings className=''></AverageCustomerRatings>
+        <AverageCustomerRatings></AverageCustomerRatings>
+        
       </div>
       <div className=''>
-        <h3 className='text-center font-SansSerif p-[10px]'>Customer Images</h3>
-        <ReviewCustomImages reviewId={reviewId} />
+        {/* <h3 className='text-center font-SansSerif p-[10px]'>Customer Images</h3> */}
+        <ReviewCustomImages reviewId={reviewId} customImage='w-[170px] h-[170px] ' />
       </div>
       <div className='border-b'>
         <FilterReviews productReviews={filteredReviews}></FilterReviews>

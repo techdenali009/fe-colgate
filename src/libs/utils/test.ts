@@ -181,9 +181,9 @@ export const Reviewproducts = [
       }
     ],
     ratings: {
-      quality: { score: 3.5, label: 'Quality' },
+      quality: { score: 5.0, label: 'Quality' },
       value: { score: 4.0, label: 'Value' },
-      scent: { score: 2.5, label: 'Scent' },
+      scent: { score: 5.0, label: 'Scent' },
     }
   },
   {
@@ -203,9 +203,9 @@ export const Reviewproducts = [
     report: false,
     Customimages: [] ,
     ratings: {
-      quality: {}, // Empty object, can be omitted or set to null
-      value: { score: 4.0, label: 'Value' },
-      scent: { score: 2.5, label: 'Scent' },
+      quality: {score:5.0, label: 'quality'}, // Empty object, can be omitted or set to null
+      value: { score: 5.0, label: 'Value' },
+      scent: { score: 5.0, label: 'Scent' },
     },
     productName:'Sensi Peel®'
   },
@@ -235,7 +235,7 @@ export const Reviewproducts = [
       alt: 'Product image showing the Collagen Hydrator'
     },],
     ratings: {
-      quality: {score: 4.0, label: 'quality'}, // Empty object, can be omitted or set to null
+      quality: {score: 5.0, label: 'quality'}, // Empty object, can be omitted or set to null
       value: {},
       scent: { score: 2.5, label: 'Scent' },
     },
@@ -256,11 +256,15 @@ export const Reviewproducts = [
     like: 0,
     dislike: 0,
     report: false,
-    Customimages: [],
+    Customimages: [ {
+      id: 1,
+      url: 'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86cGNhc2tpbg/7a52f769-7a3a-5dc5-9da8-c8159c85465a',
+      alt: 'Product image showing the Collagen Hydrator'
+    }],
     ratings: {
-      quality: {}, // Empty object, can be omitted or set to null
-      value: { score: 4.0, label: 'Value' },
-      scent: {},
+      quality: { score: 5.0, label: 'Value'}, // Empty object, can be omitted or set to null
+      value: { score: 5.0, label: 'Value' },
+      scent: { score: 5.0, label: 'Value'},
     },
     productName:'Sensi Peel®'
   },
@@ -337,9 +341,9 @@ export const Reviewproducts = [
         alt: 'Product image showing the Collagen Hydrator'
       }] ,
     ratings: {
-      quality: {}, // Empty object, can be omitted or set to null
-      value: { },
-      scent: { },
+      quality: {score: 5.0, label: 'Value'}, // Empty object, can be omitted or set to null
+      value: { score: 5.0, label: 'Value'},
+      scent: {score: 5.0, label: 'Value' },
     },
     productName:'Sensi Peel®'
   },

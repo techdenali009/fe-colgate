@@ -38,7 +38,7 @@ const ReviewRatings: React.FC<ReviewRatingsProps> = ({ ratings, className, barCl
                 {Array.from({ length: 5 }, (_, index) => {
                   if (index < fullSegments) {
                     return (
-                      <div key={index} className={`h-4 w-[30px] bg-appTheme ${barClassName}`}></div>
+                      <div key={index} className={`h-4  bg-appTheme ${barClassName}`}></div>
                     ); // Full segment
                   } else if (index === fullSegments && hasPartialSegment) {
                     return (

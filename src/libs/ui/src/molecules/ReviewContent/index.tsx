@@ -70,13 +70,13 @@ const ReviewContent: React.FC<ReviewContentProps> = ({
       </div>
       <Paragraph className='mt-[10px]'>{content}</Paragraph>
       <div className='flex'>
-        <ReviewCustomImages reviewId={reviewId} className='flex-nowrap'  />
+        <ReviewCustomImages reviewId={reviewId} className='flex-nowrap'customImage='w-[175px] h-[175px] '  />
       </div>
       <OriginallyPostReview/>
       <LikeAndReport className="hidden lg:flex" initialLikeCount={like} initialDislikeCount={dislike} reviewId={reviewId} onReport={handleReport} />
       {PCA_Responses && (
         <ResponseCard
-          containerClassName='2xs:w-[327px] md:!w-[680px]  xl:!w-[1000px]'
+          containerClassName='2xs:w-[327px] md:!w-[680px] xl:!w-[1000px]'
           title="Response from PCA SKIN"
           reviewId={reviewId}
           pcaTimeAgo={formatTimeAgo(PCA_Responses.date)}

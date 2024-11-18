@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ReviewDropdown from '../ReviewDropdown';
 import RelevancyInfo from '../RelevancyInfoReviewsection'; // Import the new component
 import { sortByOptions } from '@utils/constants';
 import { useReviewContext } from '../ReviewUseContext';
+import ReviewDropdown from '../ReviewDropdown';
 
 interface SortByDropdownsProps {
   selectedSortBy: string[];
@@ -36,7 +36,7 @@ const SortByReview: React.FC<SortByDropdownsProps> = ({
   }, [defaultSortOption, setSelectedSortBy, updateSortByFilter, selectedSortBy]);
 
   return (
-    <div className="relative lg:flex-col items-center space-x-4  md:-mr-[20px]">
+    <div className="relative lg:flex-col items-center space-x-4  md:-mr-[20px] ">
       
       {/* Tooltip Element */}
       {currentSortOption === 'Most Relevant' && <RelevancyInfo/>}
@@ -46,7 +46,7 @@ const SortByReview: React.FC<SortByDropdownsProps> = ({
       <ReviewDropdown
         className="w-[357px] lg:px-4 py-2.5 lg:w-[280px] 2xs:!ml-0"
         FaCheckCircleclassName="hidden"
-        sortdropclassName="text-gray-100 p-2"
+        sortdropclassName="!text-black !hover:text-white"
         IoMdAddCircleOutlineclassName="hidden"
         labelclassName="text-[15px] !font-SansSerif"
         selectdropclassName="w-[357px] lg:w-[280px] text-[16px]"
@@ -56,6 +56,7 @@ const SortByReview: React.FC<SortByDropdownsProps> = ({
         onItemClick={handleSortBySelected}
         isOpen={isSortOpen}
         setIsOpen={setIsSortOpen}
+        dropclassName='lg:py-[8px] lg:px-[30px]'
       />
     </div>
     

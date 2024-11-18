@@ -40,7 +40,7 @@ const ScrollBarReview: React.FC<ScrollBarReviewProps> = ({
       )}
 
       <div className={`relative flex flex-nowrap mb-1 text-base font-sans text-black leading-[19.5px] mr-2.5 pr-0 ml-2.5 pl-0 ${className}`}>
-        <div className={`relative float-left py-2 mr-auto self-center outline-none font-SansSerif ${visibleRangeclassName}`}>
+        <div className={`relative float-left py-2 pl-2 mr-auto self-center outline-none font-SansSerif ${visibleRangeclassName}`}>
           {visibleRange} of {totalReviews} Reviews
         </div>
 

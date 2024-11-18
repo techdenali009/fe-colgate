@@ -61,10 +61,10 @@ const ReviewFeedbackDetails: React.FC<ReviewFeedbackProps> = ({ className, produ
 
           <ReviewRatings
             ratings={review.ratings}
-            barClassName="2xs:w-[59px] md:!w-[37px] xl:!w-[52px]"
-            className="lg:w-[52px] 2xs:!px-[10px]"
-            partialClassName="2xs:w-[59px] md:!w-[37px] xl:!w-[52px]"
-            EmptyClassName="2xs:w-[59px] md:!w-[37px]  xl:!w-[52px]"
+            barClassName="2xs:w-[59px] sm:!w-[36px] sm:px-[0px] md:!w-[37px] xl:!w-[52px]"
+            className="lg:w-[52px] sm:!w-[36px] sm:px-[0px]  md:!w-[37px]  2xs:!px-[10px]"
+            partialClassName="2xs:w-[59px] sm:!w-[36px]  sm:px-[0px] md:!w-[37px] xl:!w-[52px]"
+            EmptyClassName="2xs:w-[59px] sm:!w-[36px] sm:px-[0px] md:!w-[37px]  xl:!w-[52px]"
           />
         </div>
       ))}
