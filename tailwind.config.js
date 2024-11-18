@@ -46,6 +46,8 @@ module.exports = {
         'appTextColor': 'var(--secondary-color)',
         'appErrorMessage': 'var(--app-errorMessage-color)',
         'formFieldBorder': 'var(--form-field-border)',
+        'lightGray':'var(--app-light-gray-color)',
+        'darkGray':'var(--app-dark-gray-color)',
         'hoverIconColor':'var(--hover-icon-color)',
         'appdarkcolor':'var(--app-dark-color)',
         'appModalColor':'var(--app-modal-color)',

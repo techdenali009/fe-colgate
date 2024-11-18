@@ -16,7 +16,7 @@ function Product({ product ,modalSetToggle,className, openQuickView,showQuickVie
   return (
    
     <div className={'group relative p-2 bg-white dark:bg-appdarkcolor'}>
-      <div>
+      <div> 
         <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
         {showQuickView && (
           <QuickViewButton onClick={() => openQuickView(id)}></QuickViewButton>
