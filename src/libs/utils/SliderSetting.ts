@@ -18,7 +18,7 @@ export const sliderSettings = {
     {
       breakpoint: 1020,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.099,
         centerPadding: '10px',
       },
     },
@@ -26,7 +26,7 @@ export const sliderSettings = {
     {
       breakpoint: 670,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 1.09,
         centerPadding: '5px',
       },
     },

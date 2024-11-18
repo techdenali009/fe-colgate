@@ -20,7 +20,7 @@ const ProductHeader = ({
   return (
     <div className="text-left  ">
       <h2
-        className={`font-bold py-2 mt-20 text-[28px] text-[#555555] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold dark:text-appTextColor ${className}`}
+        className={`font-bold py-2 mt-20 text-[28px] text-[#555555] h-[10px] font-HeroNewExtraBold leading-8 hover:font-HeroNewBold dark:text-appTextColor ${className}`}
       >
         {headingLabel}
       </h2>
