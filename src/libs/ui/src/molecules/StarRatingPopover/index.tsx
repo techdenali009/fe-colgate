@@ -16,8 +16,8 @@ const StarRatingPopover: React.FC<StarRatingPopoverProps> = ({ rating, reviews }
         trigger={
           <button className="flex">
             <StarRating rating={rating} />
-            <span className="rating p-[0.15em] text-base text-appTheme leading-5 font-HeroNewRegular  font-hero font-thin">
-              {rating} (150)
+            <span className="rating p-[0.15em] text-base !text-appTheme leading-5 font-HeroNewRegular  font-hero font-thin">
+              <span className=' text-appTheme'>{rating} (150)</span>
             </span>
           </button>
         }

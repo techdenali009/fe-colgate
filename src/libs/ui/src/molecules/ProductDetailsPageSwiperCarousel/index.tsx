@@ -16,18 +16,20 @@ interface SwiperCarouselProps {
 }
 
 const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const [activeThumb, setActiveThumb] = useState<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Refs for the custom buttons
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null);
 
   // Refs for the thumbnail swiper buttons
   const thumbPrevRef = useRef(null);
   const thumbNextRef = useRef(null);
-
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleSlideChange = (swiper: any) => {
     setCurrentIndex(swiper.realIndex);
   };
