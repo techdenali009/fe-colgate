@@ -2,13 +2,13 @@ export interface ProductType {
   id: number;
   name: string;
   image: string;
-  images: string[];
+  images?: string[];
   rating: number;
   isBestSeller: boolean;
-  description: string;  
-  features: string[];
-  reviews: { stars: number; count: number }[];
-  restrictedmessage:string;
+  description?: string;  
+  features?: string[];
+  reviews?: { stars: number; count: number }[];
+  restrictedmessage?:string;
 }
   
 

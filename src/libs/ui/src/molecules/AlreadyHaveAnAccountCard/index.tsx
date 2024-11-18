@@ -20,7 +20,7 @@ const TwoCardsComponent: React.FC = () => {
         <div className="twocards-card-two border border-thin border-gray-500 rounded-3xl p-5 text-center w-[224px] ">
           <strong className="text-xl text-gray-600 font-semibold font-HeroNewBold mb-4">New to PCA?</strong>
           <p className="text-sm text-gray-500 mt-2.5 "  style={{  marginBottom: '70px' }} >Register to save on products and receive subscription offers.</p>
-          <SecondaryButton className="py-2 px-6 w-full text-appTheme font-HeroNewBold border border-appTheme hover:border-black">
+          <SecondaryButton className="py-2 px-6 w-full text-appTheme font-HeroNewBold border border-appTheme !hover:border-black">
             Join
           </SecondaryButton>
         </div>
