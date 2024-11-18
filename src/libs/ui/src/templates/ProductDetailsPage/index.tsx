@@ -15,7 +15,6 @@ interface PDPage {
   submitLabel: string;
   onSubmit: (value: string) => void;
 }
-
 export const ProductDetailsPage: React.FC<PDPage> = () => {
   const [selectedProduct, setSelectedProduct] = useState<ProductDetailsContentProps | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Added loading state
@@ -75,17 +74,19 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
         ) : (
           <div>Loading...</div>
         )}
-        
-        <div className="w-full bg-[#f4f4f4] lg:pl-[96px] lg:pr-[96px] !m-0">
-          <ProductDetails />
-          <RelatedProducts relatedProducts={relatedProducts} className={''} />
-          <div className="pt-[7.5rem] lg:px-4">
+        <div className={'w-full bg-lightGray '}>
+          <div className='xl:!px-[96px] md:!px-[56px] '>
+            <ProductDetails></ProductDetails>
+          </div>
+          <div className={'w-full  xl:!px-[96px] md:!px-[50px] 2xs:px-[24px]  !m-0'}>
+            <RelatedProducts relatedProducts={relatedProducts} className={'xl:!px-[5rem]'} />
+          </div>
+          <div className='pt-[7.5rem] lg:px-4 !w-full xl:!px-[96px] '>
             <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
           </div>
+         
         </div>
       </div>
     </>
   );
 };
-
-export default ProductDetailsPage;

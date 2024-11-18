@@ -19,7 +19,7 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
   };
 
   return (    
-    <div className='2xs:ml-[10px] 2xs:mr-[10px] 2xs:pl-[30px] 2xs:pr-[30px] lg:!ml-0 lg:!mr-0 lg:!pl-0 lg:!pr-0'>
+    <div className='2xs:ml-[10px] lg:!ml-0 lg:!mr-0 lg:!pl-0 lg:!pr-0'>
       <div className='mt-[60px]'>
         <ProductHeader
           className='2xs:text-[20px] lg:!text-[28px]'
@@ -30,9 +30,9 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
           disableRightButton={false}
         />
       </div>
-      <Slider ref={sliderRef} {...sliderSettings}>
+      <Slider ref={sliderRef} {...sliderSettings}  >
         {relatedProducts.map((relatedProducts) => (
-          <div key={relatedProducts.id} className="mt-1">
+          <div key={relatedProducts.id} className="mt-1 2xs:px-[9px] lg:!px-[15px] md:!px-[17px]" >
 
             <Product className='!h-[40px] text-center !py-[0.5rem]' product={relatedProducts} modalSetToggle={() => console.log('')} openQuickView={() => console.log('')} showQuickView={false}/>
           </div>
