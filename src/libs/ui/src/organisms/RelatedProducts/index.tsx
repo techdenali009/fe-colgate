@@ -22,7 +22,7 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
     <div className='2xs:ml-[10px] lg:!ml-0 lg:!mr-0 lg:!pl-0 lg:!pr-0'>
       <div className='mt-[60px]'>
         <ProductHeader
-          className='2xs:text-[20px] lg:!text-[28px]'
+          className='2xs:text-[20px] lg:!text-[28px] !h-[10px]'
           headingLabel="Related Products"
           handleScroll={handleScroll}
           LogInButtonDisable={false} description={''} modalSetToggle={()=>console.log('')} 
