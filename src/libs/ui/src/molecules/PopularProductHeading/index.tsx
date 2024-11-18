@@ -3,17 +3,20 @@ import { Label } from '@ui/atoms/Label';
 import { ProductHeaderProps } from '@utils/Product';
 import { PrimaryButton } from '../PrimaryButton';
 
-
 import ArrowPrevIcon from '@ui/atoms/SvgAtoms/ArrowPrevIcon';
 import ArrowNextIcon from '@ui/atoms/SvgAtoms/ArrowNextIcon';
+
 const ProductHeader = ({
   handleScroll,
   headingLabel,
   description,
   LogInButtonDisable,
+  disableLeftButton,
+  disableRightButton,
   modalSetToggle,
   className,
 }: ProductHeaderProps) => {
+
   return (
     <div className="text-left  ">
       <h2
@@ -26,7 +29,7 @@ const ProductHeader = ({
           <Label className="mr-5 text-base text-slate-600 font-HeroNewLight dark:text-appTextColor">
             {description}
           </Label>
-          {LogInButtonDisable ? (
+          {LogInButtonDisable && (
             <Button
               className="text-base font-bold text-appTheme hover:text-white hover:bg-appTheme font-HeroNewBold"
               type="submit"
@@ -34,31 +37,55 @@ const ProductHeader = ({
             >
               Log in to view prices
             </Button>
-          ) : null}
+          )}
         </div>
 
-        <div className="flex space-x-0.5 mt-2 lg:mt-[-9px]">
+        <div className="flex space-x-0.5 mt-3 lg:mt-0">
+          {/* Left Navigation Button */}
           <PrimaryButton
-            className="w-11 h-12  relative overflow-hidden !p-0 "
+            className={`w-11 h-12 relative overflow-hidden !p-0 ${
+              disableLeftButton ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             onClick={() => handleScroll('left')}
+            disabled={disableLeftButton}
           >
-            <div className="absolute inset-0 opacity-100 hover:opacity-0 transition-opacity duration-100">
+            <div
+              className={`absolute inset-0 ${
+                disableLeftButton ? '' : 'opacity-100 hover:opacity-0'
+              } transition-opacity duration-100`}
+            >
               <ArrowPrevIcon />
             </div>
-            <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-100">
-              <ArrowPrevIcon fillColor="var( --hover-icon-color)" />
+            <div
+              className={`absolute inset-0 ${
+                disableLeftButton ? '' : 'opacity-0 hover:opacity-100'
+              } transition-opacity duration-100`}
+            >
+              <ArrowPrevIcon fillColor="var(--hover-icon-color)" />
             </div>
           </PrimaryButton>
 
+          {/* Right Navigation Button */}
           <PrimaryButton
-            className="w-11 h-12 hover:bg-appTheme relative overflow-hidden !p-0"
+            className={`w-11 h-12 relative overflow-hidden !p-0 ${
+              disableRightButton ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             onClick={() => handleScroll('right')}
+            disabled={disableRightButton}
           >
-            <div className="absolute inset-0 opacity-100 hover:opacity-0 transition-opacity duration-100">
+            <div
+              className={`absolute inset-0 ${
+                disableRightButton ? '' : 'opacity-100 hover:opacity-0'
+              } transition-opacity duration-100`}
+            >
               <ArrowNextIcon />
             </div>
-            <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-100">
-              <ArrowNextIcon fillColor="var( --hover-icon-color)" />
+            <div
+              className={`absolute inset-0 ${
+                disableRightButton ? '' : 'opacity-0 hover:opacity-100'
+              } transition-opacity duration-100`}
+            >
+              <ArrowNextIcon fillColor="var(--hover-icon-color)" />
             </div>
           </PrimaryButton>
         </div>

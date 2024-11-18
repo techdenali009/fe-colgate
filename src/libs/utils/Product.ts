@@ -32,6 +32,8 @@ export interface ProductHeaderProps {
   description: string;  // For the label text
   LogInButtonDisable:boolean
   modalSetToggle: () => void;
+  disableLeftButton:boolean
+  disableRightButton:boolean
   className:string
   }
   

@@ -1,41 +1,41 @@
 import React from 'react';
-import { Image } from '@ui/atoms/Image';
+import ConsumerAffairsLogo from '@ui/atoms/SvgAtoms/ConsumerAffairsLogo.svg';
 
 interface ResponseCardProps {
   title: string; 
   children ?: string; 
-  timeAgo: string; 
+  pcaTimeAgo: string; 
   iconSrc: string; 
   consumerAffairsText: string; 
   containerClassName?: string;
   headerClassName?: string; 
   contentClassName?: string; 
+  reviewId: number;
 }
 
 const ResponseCard: React.FC<ResponseCardProps> = ({
   title,
   children,
-  timeAgo,
-  iconSrc,
+  pcaTimeAgo,
   consumerAffairsText,
   containerClassName = '',
   headerClassName = '', 
   contentClassName = '', 
 }) => {
   return (
-    <div className={`border rounded-lg shadow-md bg-white text-sm w-2/3 ${containerClassName}`}>
-      <div className={`flex items-center justify-between px-4 py-2 bg-gray-200 border-b ${headerClassName}`}>
+    <div className={` ${containerClassName}`}>
+      <div className={`flex items-center justify-between px-4 py-2 bg-[#f1f1f1] border-b ${headerClassName}`}>
         <div className="flex items-center font-medium text-black">
-          <Image src={iconSrc} alt="Response Icon" className="mr-1" />
-          <span>{title}:</span> 
+          <ConsumerAffairsLogo className="mr-1"></ConsumerAffairsLogo>
+          <span className='font-HeroNewLight text-[16px] ml-[10px]'>{title}:</span> 
         </div>
         <div className="text-black">
-          {timeAgo}
+          {pcaTimeAgo}
         </div>
       </div>
       <div className={`p-4 ${contentClassName}`}>
-        <h3 className="font-semibold text-base text-black mb-2">{consumerAffairsText}</h3> 
-        <p className="text-black mb-4">{children}</p>
+        <h3 className="text-base text-black mb-2">{consumerAffairsText}</h3> 
+        <p className="text=[10px] text-black mb-4 font-HeroNewRegular leading-5">{children}</p>
       </div>
     </div>
   );

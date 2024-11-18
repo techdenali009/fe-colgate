@@ -13,6 +13,8 @@
   --app-dark-color:#242528;
   --app-modal-color:#2b2c2d;
   --app-inputField-color:#ffffff;
+  --app-light-gray-color:#f4f4f4;
+  --app-dark-gray-color:#555555;
 }
 @media (prefers-color-scheme: dark) {
   #appBody {
@@ -35,6 +37,12 @@
 @font-face {
   font-family: 'Hero New Bold';
   src: url('/assets/fonts/Hero New Bold.otf') format('truetype');
+
+}
+
+@font-face {
+  font-family: 'Hero New Medium';
+  src: url('/assets/fonts/Hero New Medium.otf') format('truetype');
 
 }
 

@@ -11,7 +11,8 @@ export const ValidationForm = {
   PasswordRequirementFailed : 'Password does not meet complexity requirements',
   EmailValidationRule : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/,
   EmailRuleFailed :'E-mail address is invalid.',
-  PasswordValidationRule:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+  PasswordValidationRule:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+  EmailPasswordFailed : 'Invalid login or password'
 }
 
 export const LoginConsts = {

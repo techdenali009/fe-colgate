@@ -67,7 +67,7 @@ const RegisterForm: React.FC = () => {
           <SubtitleLabel className="font-HeroNewLight !text-appTextColor text-left !text-[16px]" >Primary Contact</SubtitleLabel>
         </div>
 
-        <div className="inline-grid text-start ">
+        <div className="mb-2 inline-grid text-start ">
           <div className='flex text-xs font-heroNewLight,font-sans'>
             <Label className="text-xs font-HeroNewUltraLight">Email Address</Label>
             <Label className="ml-0 text-s font-HeroNewLight text-red-600"> *</Label>

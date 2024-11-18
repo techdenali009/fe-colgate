@@ -16,7 +16,7 @@ export const ButtonWithText: React.FC<ButtonWithTextProps> = ({
   return (
     <Button
       onClick={onClick}
-      className={`text-text-appTheme p-2 m-1 transition-all duration-300 ${className}`}
+      className={`text-appTheme  p-2 m-1 transition-all duration-300 ${className}`}
       {...rest} // Spread additional props
     >
       {children}

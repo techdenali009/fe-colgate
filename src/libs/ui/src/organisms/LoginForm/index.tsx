@@ -89,7 +89,7 @@ const LoginForms: React.FC<LoginFormProps> = ({ onSubmit, setIsForgotPassword })
                       onClick={togglePasswordVisibility}
                       className="text-gray-600 focus:outline-none"
                     >
-                      {showPassword ? 'Hide' : 'Show'}
+                      {showPassword ? 'hide' : 'show'}
                     </button>
                   )
                 }

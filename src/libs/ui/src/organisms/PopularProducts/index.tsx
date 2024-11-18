@@ -58,6 +58,8 @@ function PopularProducts({ products,modalSetToggle }: PopularProductsProps) {
           handleScroll={handleScroll}
           LogInButtonDisable={true}
           modalSetToggle={modalSetToggle}
+          disableLeftButton={false}
+          disableRightButton={false}
         />
       </div> 
 
