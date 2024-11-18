@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Popover, PopoverPosition } from 'react-tiny-popover';
-import './CustomPopover.styles.scss';
+import './CustomPopOver.styles.scss';
 
 interface CustomPopoverProps {
   trigger: React.ReactNode;
