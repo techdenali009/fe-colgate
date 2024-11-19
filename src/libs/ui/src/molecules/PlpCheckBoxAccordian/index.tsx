@@ -9,7 +9,10 @@ interface CheckboxAccordionProps {
   onCheckboxChange: (option: string) => void;
   ulClassName?: string;
   liClassName?: string;
-  counts: { [key: string]: number }; // New prop for counts
+  counts: { [key: string]: number };
+  activecheckcategory: string | null; // New prop for active category
+  onChange?: () => void;
+  
 }
 
 const CheckboxAccordion: React.FC<CheckboxAccordionProps> = ({
@@ -20,6 +23,7 @@ const CheckboxAccordion: React.FC<CheckboxAccordionProps> = ({
   ulClassName,
   liClassName,
   counts,
+  activecheckcategory,
 }) => (
   <AccordionItem
     title={title}
@@ -33,12 +37,12 @@ const CheckboxAccordion: React.FC<CheckboxAccordionProps> = ({
       {options.map((option, index) => (
         <li
           key={index}
-          className={`${checkedFilters[option] ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-appTheme'
+          className={`${checkedFilters[option] || activecheckcategory === option ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-appTheme'
           } cursor-pointer ${liClassName}`}
         >
           <Checkbox
             className="mr-2"
-            checked={checkedFilters[option] || false}
+            checked={checkedFilters[option] || activecheckcategory === option} // Check if the option matches active category
             onChange={() => onCheckboxChange(option)}
           >
             {option} {counts[option] !== undefined && ` (${counts[option]})`}

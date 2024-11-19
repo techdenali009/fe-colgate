@@ -9,7 +9,7 @@ import SearchModal from '@ui/molecules/SearchModal';
 import { CreateAccountButton } from '@ui/atoms/CreateAccountButton';
 import { useNavigate } from 'react-router-dom';
 import { appSetting } from '@utils/appSetting';
-import { plpFilters } from '@utils/plpFilterData';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { logout } from '@store/services/Slices/authSlice';
@@ -18,6 +18,7 @@ import logout_blue from '../../../assets/logout_blue.5f7a5450.svg'
 import CartIcon from '@ui/atoms/SvgAtoms/CartIcon';
 import ProfileIcon from '@ui/atoms/SvgAtoms/ProfileIcon';
 import SearchIcon from '@ui/atoms/SvgAtoms/SearchIcon';
+import { plpFilters } from '@utils/plpFilterData';
 
 interface headerProps {
   modalSetToggle: () => void;
@@ -111,7 +112,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
     }
   };
 
-  const handleNavLinkClick = (title: string) => {
+  const handleNavLinkClick = (title: string, parentCatagory: string = '') => {
 
     const catagory = appSetting.find(link => link.title.toLocaleLowerCase() === selectNavLink.toLocaleLowerCase());
 
@@ -119,27 +120,62 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
       catagory?.navigationPages.includes(title)
       || selectNavLink === appSetting[0].title
     );
+
     if (isNavigate) {
-      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-      let queryParams: any[] = [];
-      let mainCatagory = selectNavLink;
-      let url = `${mainCatagory}`;
+      let mainCategory = selectNavLink;
+      let url = `${mainCategory}`;
+
       if (selectNavLink === appSetting[0].title) {
-        mainCatagory = 'products';
-        url = `${mainCatagory}`
-        if (['Best Seller', 'View All'].includes(title)) {
-          const additionalCategories = plpFilters[0].options
-            .filter(option => option.title !== 'All Products')
-            .map(option => `category=${option.title}`);
-          queryParams = [...queryParams, ...additionalCategories];
-          url = `${url}?category=All Products&${queryParams.join('&')}&best-seller=best-seller`;
-        } else {
-          url = `${url}?category=${title}`;
+
+
+        // Default main category for products page
+        mainCategory = 'products';
+        url = `${mainCategory}`;
+
+        // Helper function for encoding and formatting based on parent category
+        const getCategoryParam = (parentCat: string, optionTitle: string) => {
+          switch (parentCat) {
+          case 'Professional treatments':
+          case 'Daily care':
+            return `category=${encodeURIComponent(optionTitle)}`;
+          case 'By skin type':
+            return `skin-type=${encodeURIComponent(optionTitle)}`;
+          case 'By skin concern':
+            return `skin-concern=${encodeURIComponent(optionTitle)}`;
+          default:
+            return `${parentCat.replace(/ /g, '-').toLowerCase()}=${encodeURIComponent(optionTitle)}`;
+          }
+        };
+
+        // Construct URL with different formats based on parent category
+        if (title === 'View All' || title === 'Best Seller') {
+          const additionalCategories = plpFilters
+            .filter(filter => filter.mainCatagory === parentCatagory)
+            .flatMap(filter => filter.options)
+            .filter(option => option.title)
+            .map(option => getCategoryParam(parentCatagory, option.title));
+
+          if (title === 'Best Seller') {
+            // Ensure a proper separator for the query string
+            url = `${url}?${additionalCategories.join('&')}&category=Best Seller`;
+          } else {
+            url = `${url}?${additionalCategories.join('&')}`;
+          }
+        } else if (parentCatagory && title) {
+          // Specific option selection
+          const paramKey = getCategoryParam(parentCatagory, title);
+          url = `${url}?${paramKey}`;
         }
-        
+
+        // Update breadcrumbs and navigate
         navigate(url);
         return;
       }
+
+
+
+
+
 
       if ([
         appSetting[3].title,
@@ -170,7 +206,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
 
           <div className='tm:hidden logo_one  lg:ml-[80px] ' onMouseEnter={handleMouseEnterLogo}>
             <HeaderLogo />
-          
+
           </div>
 
           <div className='tm:hidden tl:flex'>
@@ -186,7 +222,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               onMouseLeave={handleMouseLeaveSearch}
               onClick={() => setSearchModalOpen(true)}
               className=' hover:bg-gray-200   w-[40px]  h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] sm:ml-0 dark:hover:bg-appTheme-opacity-10'>
-              {isSearchHovered ?<SearchIcon></SearchIcon>:<SearchIcon fillColor='var(--secondary-color)'></SearchIcon>}
+              {isSearchHovered ? <SearchIcon></SearchIcon> : <SearchIcon fillColor='var(--secondary-color)'></SearchIcon>}
             </ButtonWithIcon>
             <SearchModal isOpen={isSearchModalOpen} onClose={() => setSearchModalOpen(false)} />
             <div
@@ -194,7 +230,7 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               onMouseLeave={handleMouseLeaveProfile}
             >
               <ButtonWithIcon className="hover:bg-gray-200 tm:hidden profile w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem] pr-[2.3rem] pb-[2.5rem] pl-[1.1rem] dark:hover:bg-appTheme-opacity-10">
-                {isProfileHovered ? <ProfileIcon></ProfileIcon>:<ProfileIcon fillColor='var(--secondary-color)'></ProfileIcon>}
+                {isProfileHovered ? <ProfileIcon></ProfileIcon> : <ProfileIcon fillColor='var(--secondary-color)'></ProfileIcon>}
               </ButtonWithIcon>
 
               {isProfileHovered && (
@@ -255,9 +291,9 @@ const Header: React.FC<headerProps> = ({ modalSetToggle, handleRegisterClick }) 
               onMouseEnter={handleMouseEnterCart}
               onMouseLeave={handleMouseLeaveCart}
             >
-              <ButtonWithIcon className="w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem]  pr-[39px] pb-[2.5rem] pl-[18px] dark:hover:bg-appTheme-opacity-10"    onClick={handleCartClick}>
-               
-                {isCartHovered ? <CartIcon ></CartIcon> :<CartIcon fillColor='var(--secondary-color)'></CartIcon>}
+              <ButtonWithIcon className="w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem]  pr-[39px] pb-[2.5rem] pl-[18px] dark:hover:bg-appTheme-opacity-10" onClick={handleCartClick}>
+
+                {isCartHovered ? <CartIcon ></CartIcon> : <CartIcon fillColor='var(--secondary-color)'></CartIcon>}
               </ButtonWithIcon>
 
               {isCartHovered && (

@@ -1,7 +1,8 @@
 import React from 'react';
-import CancelIcon from '../../../assets/close-bluebg.aa950da4.svg';
+
 import ReviewDropClose from '@ui/atoms/SvgAtoms/ReviewDropclose';
 
+import FilterCloseIcon from '@ui/atoms/SvgAtoms/BadgeClose';
 
 interface FilterBadgeProps {
   onRemove: () => void;
@@ -11,14 +12,15 @@ interface FilterBadgeProps {
   spanclassName?: string;
   ReviewimgclassName?: string;
   imgclassName?: string;
+  
 }
 
-export const FilterBadge: React.FC<FilterBadgeProps> = ({ children, onRemove, useAltSvg, className, spanclassName,imgclassName }) => {
+export const FilterBadge: React.FC<FilterBadgeProps> = ({ children, onRemove, useAltSvg, className, spanclassName }) => {
   return (
     <div
       className={`flex items-center justify-between bg-gray-200 px-3 py-1 rounded-full m-2 transition-all duration-200 ease-in-out hover:bg-gray-300 hover:scale-110 min-w-[100px] ${className}`}
     >
-      <span className={`text-blue-700 hover:font-bold text-sm ${spanclassName}`}>
+      <span className={`text-appTheme hover:font-bold text-xs leading-[1.6rem] ${spanclassName}`}>
         {children} 
       </span>
       <button
@@ -29,8 +31,11 @@ export const FilterBadge: React.FC<FilterBadgeProps> = ({ children, onRemove, us
         {useAltSvg ? (
           <ReviewDropClose></ReviewDropClose>
         ) : (
-          <img src={CancelIcon} alt="cancelff Logo" className={`w-4 h-4 ${imgclassName}`} />
+       
+          <FilterCloseIcon/>
         )}
+       
+        
       </button>
     </div>
   );

@@ -23,12 +23,12 @@ const RadioAccordion: React.FC<RadioAccordionProps> = ({
 }) => (
   <AccordionItem
     title={title}
-    titleClassName={`text-tertiary-400 font-bold lg:text-xl text-xl text-gray-700 tracking-normal lg:pr-0 lg:pl-0 leading-7 dark:text-appTextColor ${className}`}
+    titleClassName={`text-tertiary-400 font-bold lg:text-xl text-xl  tracking-normal lg:pr-0 lg:pl-0 leading-7 dark:text-appTextColor ${className}`}
     contentClassName="text-left"
     containerClassName={`border-b ${className}`}
     svgIconColor='rgb(var(--primary-color))'
   >
-    <ul className={`space-y-1 ${ulClassName}`}>
+    <ul className={`space-y-1 grid gap-y-[9px] ${ulClassName}`}>
       {options.map((option, index) => (
         <li
           key={index}

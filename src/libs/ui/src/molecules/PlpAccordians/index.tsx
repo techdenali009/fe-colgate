@@ -5,7 +5,7 @@ import RadioAccordion from '../PlpRadioAccordian';
 import Modal from '../PlpSortModal';
 import { plpFilters, AccordionType } from '@utils/plpFilterData';
 import { viewAllProducts } from '@utils/test';
-
+import { useLocation } from 'react-router-dom';
 
 
 interface SidebarProps {
@@ -34,9 +34,20 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [checkedFilters, setCheckedFilters] = useState<{ [key: string]: boolean }>({});
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>('');
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [, setProducts] = useState<string[]>([]);
+
+
+  // Get the current category from the URL
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+  const categoryFromUrl = urlParams.get('skin-type');
+  const skinConcernFromUrl = urlParams.get('skin-concern');
+
+  const activecheckcategory = categoryFromUrl || skinConcernFromUrl || selectedProductCategory;
+
+  console.log('Active check category:', activecheckcategory);
 
 
   // Calculate counts for each category
@@ -76,7 +87,6 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     onCategorySelect(option); // Send updated selection to parent
   };
 
-
   const handleProductCategoryClick = (category: string) => {
     const isSelected = category === selectedProductCategory;
     setSelectedProductCategory(isSelected ? null : category);
@@ -110,8 +120,14 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     };
   }, []);
 
+  // Combine both "Daily care" and "Professional treatments" categories into a single label accordion
+  const combinedCategories = [
+    ...plpFilters.find(filter => filter.mainCatagory === 'Daily care')?.options || [],
+    ...plpFilters.find(filter => filter.mainCatagory === 'Professional treatments')?.options || []
+  ];
+
   return (
-    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center  rounded-lg ${className}`}>
+    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center bg-white rounded-lg ${className}`}>
       {isSmallScreen && (
         <button
           onClick={() => setIsModalOpen(true)}
@@ -123,6 +139,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
 
       {isSmallScreen ? (
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Filter & Sort">
+          <div></div><p>products</p>
           {displayFilters.map((filter, index) => (
             <div key={index}>
               {filter.AccordionType === AccordionType.Radio && (
@@ -134,6 +151,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   ulClassName={ulClassName}
                   liClassName={liClassName}
                   className=''
+
                 />
               )}
               {filter.AccordionType === AccordionType.Label && (
@@ -143,7 +161,8 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onItemClick={handleProductCategoryClick}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
+                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)} // Use combined categories
+                  activeCategory={categoryFromUrl || selectedProductCategory}
                 >
                   <button onClick={toggleShowCategories} className="text-appTheme mt-2">
                     {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
@@ -159,7 +178,8 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onCheckboxChange={handleCheckboxChange}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  counts={counts} // Pass the counts to the CheckboxAccordion
+                  counts={counts}
+                  activecheckcategory={activecheckcategory}
                 />
               )}
             </div>
@@ -176,7 +196,8 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onItemClick={handleProductCategoryClick}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
+                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)} // Use combined categories
+                  activeCategory={categoryFromUrl || selectedProductCategory}
                 >
                   <button onClick={toggleShowCategories} className="text-appTheme mt-2">
                     {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
@@ -192,7 +213,9 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onCheckboxChange={handleCheckboxChange}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  counts={counts} // Pass the counts to the CheckboxAccordion
+                  counts={counts}
+                  activecheckcategory={activecheckcategory}
+
                 />
               )}
             </div>
@@ -204,3 +227,5 @@ const PlpAccordians: React.FC<SidebarProps> = ({
 };
 
 export default PlpAccordians;
+
+

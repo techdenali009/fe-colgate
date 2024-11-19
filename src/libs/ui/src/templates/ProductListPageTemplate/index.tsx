@@ -1,11 +1,10 @@
 import { ButtonWithText } from '@ui/molecules/ButtonWithText';
-import { FilterContainer } from '@ui/molecules/FilterContainer';
+import { PlpFilterContainer } from '@ui/molecules/PlpFilterContainer';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import PageTitleHeader from '@ui/molecules/PageTitleHeader';
 import PlpAccordians from '@ui/molecules/PlpAccordians';
 import Product from '@ui/organisms/Product';
-import { useMemo, useState, useEffect } from 'react';
-
+import { useState } from 'react';
 
 import { ProductType } from '@utils/Product';
 
@@ -16,9 +15,9 @@ import RecentlyViewedProducts from '@ui/organisms/RecentlyViewedProducts';
 import { RecentProduct as products } from '@utils/test';
 import LoginModal from '@ui/organisms/LoginModal';
 
-import { useProductContext } from 'src/libs/contexts/PlpContext';
+import { useProductContext } from 'src/libs/ui/src/contexts/PlpContext';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
-import { Plp_Constants, plpFilters, SortOptions } from '@utils/plpFilterData';
+import {  SortOptions } from '@utils/plpFilterData';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -35,108 +34,79 @@ const PlpPageTemplate: React.FC = () => {
     filteredProducts,
     productsToShow,
     loadMoreProducts,
-    selectedSortOption,
     setSelectedSortOption,
-    sortProducts,
-  } = useProductContext();
+    breadcrumbs,
+    enableBestSeller,
+    // eslint-disable-next-line no-empty-pattern
+    sortedProducts: [] } = useProductContext();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [, setIsBestSellerState] = useState<boolean>(false);
-  const [enableBestSeller, setEnableBestSeller] = useState<boolean>(false);
   const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
+
   const isLoggedIn = Boolean(userInfo);
+  // Close the QuickView modal
   const closeQuickViewModal = () => setQuickViewModalOpen(false);
   const [toggle, SetToggle] = useState(false);
   // Update URL params when a category is selected
 
   const handleCategorySelect = (category: string | null) => {
-    const newCategory = category ?? 'all products';
+    const newCategory = category ?? 'All Products';
+    const searchParams = new URLSearchParams(location.search);
 
-    if (newCategory === Plp_Constants.bestSeller) {
-      setIsBestSellerState(true);
-      setFilters([]);
-      navigate('products?category=best-seller');
-      setSelectedProductCategory(newCategory);
-      return;
-    }
 
-    const getAllCategories = () => {
-      const categoryFilter = plpFilters.find(filter => filter.title === 'Product Category');
-      return categoryFilter ? categoryFilter.options.map(option => option.title) : [];
+    const categoryGroups = {
+      'skin-type': ['Dry', 'Normal', 'Combination', 'Sensitive', 'Oily'],
+      'skin-concern': ['Brightening', 'Acne', 'Aging', 'Discolorations'],
+      'product-type': ['Backbar', 'Retail', 'Sample']
     };
 
-    if (newCategory === Plp_Constants.AllProducts || newCategory === Plp_Constants.viewAll) {
-      setIsBestSellerState(false);
-      setFilters(getAllCategories());
-      const searchParams = new URLSearchParams(location.search);
-      searchParams.delete('category');
-      navigate({ search: searchParams.toString() });
-      setSelectedProductCategory(newCategory);
-      return;
+    // Find which category group the new category belongs to
+    let categoryParam;
+    for (const [param, values] of Object.entries(categoryGroups)) {
+      if (values.includes(newCategory)) {
+        categoryParam = param;
+        break;
+      }
     }
 
-    // Toggle category in filters
-    const updatedFilters = filters.includes(newCategory)
-      ? filters.filter(filter => filter !== newCategory)
-      : [...filters, newCategory];
+    if (categoryParam) {
+      const existingCategories = searchParams.getAll(categoryParam);
+      const updatedCategories = existingCategories.includes(newCategory)
+        ? existingCategories.filter(item => item !== newCategory)
+        : [...existingCategories, newCategory];
 
-    setFilters(updatedFilters);
-
-    // Update URL with selected categories as comma-separated list
-    const searchParams = new URLSearchParams(location.search);
-    if (updatedFilters.length > 0) {
-      searchParams.set('category', updatedFilters.join(','));
+      searchParams.delete(categoryParam);
+      updatedCategories.forEach(item => searchParams.append(categoryParam, item));
     } else {
-      searchParams.delete('category');
+      searchParams.set('category', newCategory);
     }
-    navigate({ search: searchParams.toString() });
 
+    navigate({ search: searchParams.toString() });
     setSelectedProductCategory(newCategory);
-    setIsBestSellerState(false);
+    if (newCategory === 'All Products') {
+
+      // Redirect to /products if "All Products" is selected
+      navigate('/products');
+    }
   };
 
-  const breadcrumbs = useMemo(() => [
-    { label: 'Home', href: '/' },
-    { label: 'All Products', href: '/products' },
-    ...(selectedProductCategory && selectedProductCategory !== Plp_Constants.AllProducts ? [{ label: selectedProductCategory, href: '#' }] : []),
-  ], [selectedProductCategory]);
 
+
+  // Handle sorting options change
   const handleSortChange = (option: string) => {
     setSelectedSortOption(option);
-
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('sort', option);
-    navigate({ search: searchParams.toString() });
   };
 
-  const sortedProducts = useMemo(() => sortProducts([...filteredProducts]), [filters, filteredProducts, selectedSortOption]);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const categoryFromUrl = searchParams.get('category');
-    const sortFromUrl = searchParams.get('sort');
-
-    if (categoryFromUrl) {
-      const categories = categoryFromUrl.split(',');
-      setSelectedProductCategory(categories[0]);
-      setFilters(categories);
-    } else if (!categoryFromUrl && enableBestSeller) {
-      setEnableBestSeller(false);
-      setSelectedProductCategory('All Products');
-      setFilters([]);
-    }
-
-    if (sortFromUrl && selectedSortOption !== sortFromUrl) {
-      setSelectedSortOption(sortFromUrl);
-    }
-  }, [location.search]);
-
-  //USed to fetch the products from api call but now  we are fetching from test page
-   
+  // Open the Quick View modal with a selected product
   const openQuickReviewModal = async (id: number) => {
-    const product = sortedProducts.find(p => p.id === id);
-    if (product) {
+    // Find the product by ID
+    const product = filteredProducts.find(p => p.id === id);
+
+    // Ensure the product exists and set it only if it's a new product
+    if (product && selectedProduct?.id !== product.id) {
       setSelectedProduct(product);
       setQuickViewModalOpen(true);
     }
@@ -163,25 +133,10 @@ const PlpPageTemplate: React.FC = () => {
         </div>
         <div className='w-full'>
           <div className='relative flex items-baseline justify-between'>
-            <FilterContainer
+            <PlpFilterContainer
               filters={filters}
-              onRemoveFilter={(filterToRemove) => {
-                const updatedFilters = filters.filter((filter: string) => filter !== filterToRemove);
-                setFilters(updatedFilters);
-                const searchParams = new URLSearchParams(location.search);
-                if (updatedFilters.length > 0) {
-                  searchParams.set('category', updatedFilters.join(','));
-                } else {
-                  searchParams.delete('category');
-                }
-                navigate({ search: searchParams.toString() });
-              }}
-              onClearAll={() => {
-                setFilters([]);
-                const searchParams = new URLSearchParams(location.search);
-                searchParams.delete('category');
-                navigate({ search: searchParams.toString() });
-              }}
+              onRemoveFilter={(filterToRemove) => setFilters(filters.filter((filter: string) => filter !== filterToRemove))}
+              onClearAll={() => setFilters([])}
             />
             <div className='flex gap-8 items-baseline pr-12 pl-12 tm:pr-0 tm:pl-0 tm:absolute'>
               <div className="flex gap-1"> {filteredProducts.length} <p>products</p></div>
@@ -200,7 +155,7 @@ const PlpPageTemplate: React.FC = () => {
           </div>
 
           <div className="productcard tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
-            {sortedProducts
+            {filteredProducts
               .map((product, index) => {
                 if (index < productsToShow) {
                   return (
@@ -210,7 +165,6 @@ const PlpPageTemplate: React.FC = () => {
                       modalSetToggle={() => dispatch(toggleLoginModel())}
                       openQuickView={() => openQuickReviewModal(product.id)}
                       showQuickView={isLoggedIn}
-
                     />
                   );
                 }
@@ -218,7 +172,7 @@ const PlpPageTemplate: React.FC = () => {
               })}
           </div>
 
-          {productsToShow < sortedProducts.length && (
+          {productsToShow < filteredProducts.length && (
             <div className="text-center mt-5">
               <ButtonWithText
                 onClick={loadMoreProducts}
@@ -228,8 +182,8 @@ const PlpPageTemplate: React.FC = () => {
             </div>
           )}
           <div className="text-center mt-4">
-            {sortedProducts.length > 0
-              ? `Viewing ${Math.min(productsToShow, sortedProducts.length)} out of ${sortedProducts.length} products`
+            {filteredProducts.length > 0
+              ? `Viewing ${Math.min(productsToShow, filteredProducts.length)} out of ${filteredProducts.length} products`
               : 'No products found for this category.'}
           </div>
 
@@ -249,12 +203,9 @@ const PlpPageTemplate: React.FC = () => {
       {QuickViewModalOpen && selectedProduct && (
         <QuickViewModal
           closeModal={closeQuickViewModal}
-          product={selectedProduct}
-          aria-hidden={!QuickViewModalOpen}
-          aria-modal="true"
+          product={selectedProduct} 
         />
       )}
-
     </div>
   );
 };
