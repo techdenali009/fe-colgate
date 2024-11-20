@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import ProductDetailsContent from '@ui/organisms/ProductDetailsContent';
 import ProductDetails from '@ui/molecules/ProductDetails';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
@@ -10,6 +9,9 @@ import './ProductDetailsPage.styles.scss';
 import { ProductDetailsContentProps } from '@utils/Product';
 import PageTitleHeader from '@ui/molecules/PageTitleHeader';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
+import { useEffect, useState } from 'react';
+import { ReviewProvider } from '@ui/molecules/ReviewUseContext';
+import ReviewSection from '@ui/organisms/ReviewSection';
 
 interface PDPage {
   submitLabel: string;
@@ -86,6 +88,13 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
           </div>
          
         </div>
+      </div>
+      <div>
+
+        <ReviewProvider>
+          <ReviewSection ></ReviewSection>
+        </ReviewProvider>
+      
       </div>
     </>
   );

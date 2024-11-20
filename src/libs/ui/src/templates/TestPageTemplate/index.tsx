@@ -30,13 +30,10 @@ import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
 import coursesData from '@utils/CoursesData';
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
-import ReviewBar from '@ui/molecules/ReviewBar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
-import ReviewFilterDropdowns from '@ui/molecules/AgeAndRatingDropdown';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
-import responsePCASkin from '../../../assets/responsePCASkin.svg';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
 import RelatedProducts from '@ui/organisms/RelatedProducts';
 import { relatedProducts } from '@utils/test';
@@ -54,13 +51,15 @@ interface ISearchbar {
   onSubmit: (value: string) => void;
 }
 
-const reviewBarSelectOption = [
-  { description: 'Amazing product!', ageGroup: '25 to 34', rating: 5 },
-  { description: 'Not bad', ageGroup: '18 to 24', rating: 3 },
-  { description: 'Could be better', ageGroup: '45 to 54', rating: 2 },
-  { description: 'Loved it', ageGroup: '35 to 44', rating: 4 },
-  { description: 'Would not recommend', ageGroup: '55 to 64', rating: 1 },
-];
+
+
+
+
+
+
+
+
+  
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
@@ -74,15 +73,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
+ 
 
-  const filteredReviewsSearchBar = reviewBarSelectOption.filter(review => {
-    const matchesSearch = review.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesRating = selectedRating ? review.rating === selectedRating : true;
-    const matchesAgeGroup = selectedAgeGroup ? review.ageGroup === selectedAgeGroup : true;
-    return matchesSearch && matchesRating && matchesAgeGroup;
-  });
+  
 
   const navigate = useNavigate();
   const breadcrumbs = [
@@ -128,13 +121,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   const price = 1234.567;
 
-  const reviews = [
-    { stars: 5, count: 9 },
-    { stars: 4, count: 0 },
-    { stars: 3, count: 0 },
-    { stars: 2, count: 0 },
-    { stars: 1, count: 0 },
-  ];
 
   // Handle sorting option selection
   const handleSortingSelect = (option: string) => {
@@ -152,7 +138,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [QuickViewModalOpen,setQuickViewModalOpen]=useState(false)
   const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
   const openQuickReviewModal=()=>setQuickViewModalOpen(true);
   const closeQuickViewModal=()=>setQuickViewModalOpen(false);
 
@@ -395,7 +380,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
       <div className="p-6">
         <StarRating totalStars={5} initialRating={4} />
-        <ReviewBar reviews={reviews} />
       </div>
 
       <div className="p-4">
@@ -403,48 +387,22 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <ReviewRatings ratings={ratings} />
       </div>
 
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 ">
         <h1>Filter Reviews</h1>
-
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <ReviewFilterDropdowns
-          selectedRating={selectedRating}
-          setSelectedRating={setSelectedRating}
-          selectedAgeGroup={selectedAgeGroup}
-          setSelectedAgeGroup={setSelectedAgeGroup}
-        />
-
-        <div className="mt-4">
-          <h3>Filtered Reviews</h3>
-          {filteredReviewsSearchBar.length > 0 ? (
-            <ul>
-              {filteredReviewsSearchBar.map((review, index) => (
-                <li key={index}>
-                  <p>{review.description}</p>
-                  <p>Age Group: {review.ageGroup}</p>
-                  <p>Rating: {review.rating} Stars</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No reviews found.</p>
-          )}
+        <div>
+          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </div>
+        
       </div>
       <div className="p-6">
-        <ResponseCard
-          title="Response from PCA SKIN"
-          timeAgo="10 months ago"
-          iconSrc={responsePCASkin}
-          consumerAffairsText="Consumer Affairs"
-        >
-          We&apos;re so sorry to hear about your experience with our BPO 5% Cleanser and want to learn more to best assist you. Our customer support team is here to help with the return process and any additional concerns at 844.722.2428. We look forward to hearing from you!
-        </ResponseCard>
+        <ResponseCard title={'Response from PCA SKIN:'} pcaTimeAgo={'3 weeks ago'} iconSrc={'responsePCASkin'} consumerAffairsText={'Thank you for your feedback! We strive to improve our products and appreciate your input. Please reach out if you have any further questions.'} reviewId={1}></ResponseCard>
       </div>
       <div>
         <button onClick={openModal}>Open Review Modal</button>
 
-        {isModalOpen && <ReviewBarModal closeModal={closeModal} />}
+        {isModalOpen && <ReviewBarModal isVisible={false} onClose={function (): void {
+          throw new Error('Function not implemented.');
+        }} />}
       </div>
       <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
       <div>
