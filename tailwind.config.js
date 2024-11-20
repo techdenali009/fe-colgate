@@ -22,6 +22,9 @@ module.exports = {
       backgroundImage: {
 
       },
+      boxShadow: {
+        'custom': '0px 7px 29px rgba(100, 100, 111, 0.2)', // Custom shadow
+      },
       fontFamily: {
         HeroNewBold: ['Hero New Bold'],
         HeroNewExtraBold: ['Hero New ExtraBold'],
@@ -51,13 +54,14 @@ module.exports = {
         'hoverIconColor':'var(--hover-icon-color)',
         'appdarkcolor':'var(--app-dark-color)',
         'appModalColor':'var(--app-modal-color)',
+        'appHoverColor':'var(--hover-icon-color)',
         'appInputFieldColor':'var(--app-inputField-color)',
         'appTheme-opacity-10': 'rgba(var(--primary-color), 0.1)',
         'appTheme-opacity-20': 'rgba(var(--primary-color), 0.2)',
         'appTheme-opacity-30': 'rgba(var(--primary-color), 0.3)',
         'appTheme-opacity-40': 'rgba(var(--primary-color), 0.4)',
         'appTheme-opacity-50': 'rgba(var(--primary-color), 0.5)',
-        'appTheme-opacity-60': 'rgba(var(--primary-color-rgb), 0.6)',
+        'appTheme-opacity-60': 'rgba(var(--primary-color), 0.6)',
         'appTheme-opacity-70': 'rgba(var(--primary-color), 0.7)',
         'appTheme-opacity-80': 'rgba(var(--primary-color), 0.8)',
         'appTheme-opacity-90': 'rgba(var(--primary-color), 0.9)',
