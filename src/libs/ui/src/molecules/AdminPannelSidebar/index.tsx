@@ -12,6 +12,7 @@ import Feedbackicon from '@ui/atoms/SvgAtoms/feedbackicon';
 
 const AdminPannelSidebar: React.FC = () => {
   return (
+    <div className="admin-pannel">
     <div className='sidebar h-full bg-[#DBE6F6] w-1/5'>
       <nav className='sidebar-nav p-4 font-HeroNewSemiBold'>
         <ul>
@@ -71,6 +72,7 @@ const AdminPannelSidebar: React.FC = () => {
           </li>
         </ul>
       </nav>
+    </div>
     </div>
   );
 };
