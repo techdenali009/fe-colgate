@@ -13,6 +13,8 @@
   "dependencies": {
     "@midudev/tailwind-animations": "^0.1.0",
     "@reduxjs/toolkit": "^2.2.7",
+    "lucide-react": "^0.460.0",
+    "pca_skin_pro": "file:",
     "query-string": "^9.1.1",
     "react": "^18.3.1",
     "react-device-detect": "^2.2.3",
