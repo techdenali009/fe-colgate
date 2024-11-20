@@ -21,7 +21,7 @@ const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children
         {breadcrumbs.map((crumb, index) => (
           <span key={index}>
             {index < breadcrumbs.length - 1 ? (
-              <a href={crumb.href} className="text-blue-600 hover:underline">
+              <a href={crumb.href} className="text-appTheme hover:underline">
                 {crumb.label}
               </a>
             ) : (
@@ -32,7 +32,7 @@ const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children
         ))}
       </div>
 
-      <h1 className="text-3xl lg:text-[2.375rem] font-extrabold text-blue-600">{title}</h1>
+      <h1 className="text-3xl lg:text-[2.375rem] font-extrabold text-appTheme">{title}</h1>
 
       {children && <div className="mt-4">{children}</div>}
     </div>

@@ -15,10 +15,10 @@ interface ImageProps {
   url: string;
   alt: string;
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className}) => {
   const { productReviews } = useReviewContext();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const [, setSelectedImage] = useState<ImageProps | null>(null);
 
   // Find the review based on the provided reviewId

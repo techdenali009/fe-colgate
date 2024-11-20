@@ -7,12 +7,12 @@ import QuickViewButton from '@ui/molecules/QuickViewButton';
 import { ProductProps } from '@utils/Product';
 
 
-function Product({ product ,modalSetToggle,className, openQuickView,showQuickView }: ProductProps) {
-  
-  const { image, name, isBestSeller, rating ,id} = product;
+function Product({ product, modalSetToggle, className, openQuickView, showQuickView }: ProductProps) {
+
+  const { image, name, isBestSeller, rating, id } = product;
 
 
- 
+
   return (
    
     <div className={'group relative p-2 bg-white dark:bg-appdarkcolor'}>
@@ -39,6 +39,7 @@ function Product({ product ,modalSetToggle,className, openQuickView,showQuickVie
           </span>
         </div>
         <h3 className="mt-2.5  text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold">
+
           {name}
         </h3>
         {/* <h2>${price}</h2> */}
@@ -56,7 +57,7 @@ function Product({ product ,modalSetToggle,className, openQuickView,showQuickVie
           {' Log In to Order'}
         </Button>
       </div>
-      
+
     </div>
   );
 }
