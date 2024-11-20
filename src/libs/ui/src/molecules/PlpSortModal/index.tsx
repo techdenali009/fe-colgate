@@ -2,12 +2,16 @@ import React from 'react';
 import closeIcon from '../../../assets/close-icon.svg';
 import straightArrow from '../../../assets/straightArrow.svg';
 
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: React.ReactNode; // Title can accept nodes like JSX elements
   children: React.ReactNode; // Content inside the modal
+  productCount?: number;
+  
 }
+
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
@@ -20,7 +24,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
             {/* Back Arrow Icon (can be replaced with an SVG or library icon) */}
             <img src={straightArrow} alt="straightArrow" className="" />
           </button>
-          <h2 className="text-lg font-bold">{title}</h2>
+          <h2 className=" text-base font-hero font-HeroNewRegular">{title} </h2>
+          
           <button onClick={onClose} className="text-gray-500">
             {/* Close Icon (can be replaced with an SVG or library icon) */}
             <span><img src={closeIcon} alt="closeIcon" className="pr-[20px]" /></span>

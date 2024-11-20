@@ -23,7 +23,7 @@ export const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({
 
   return (
     <button
-      id="scrollToTopBtns"
+      id='scrollToTopBtns'
       onClick={handleClick}
       className={`fixed  z-50 right-3 bottom-10 md:right-10 md:bottom-10 w-10 h-10 rounded-full shadow-lg transition duration-400  ${
         isVisible
@@ -34,7 +34,7 @@ export const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({
       }`}
       style={{ display: isVisible ? 'block' : 'none' }}
     >
-      <IoIosArrowUp className="w-10 h-6 text-white !text-xs" />
+      <IoIosArrowUp className='w-10 h-6 text-white !text-xs' />
     </button>
   );
 };

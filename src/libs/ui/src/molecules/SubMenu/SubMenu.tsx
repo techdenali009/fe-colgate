@@ -4,6 +4,7 @@ interface SubMenuProps {
 
   isActive: boolean;
   submenu: Array<{
+    value: string;
     hasMore: boolean;
     title: string;
     items: string[];
@@ -12,13 +13,13 @@ interface SubMenuProps {
   handleMouseEnter?: () => void;
   handleMouseLeave?: () => void;
   className?: string;
-  onNavLinkClick: (title: string) => void;
+  onNavLinkClick: (title: string, mainCatagory:string) => void;
 }
 const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, handleMouseLeave, className,onNavLinkClick }) => {
  
-  const handleLinkClick = (title: string) => {
+  const handleLinkClick = (title: string,  mainCatagory:string) => {
    
-    onNavLinkClick(title);
+    onNavLinkClick(title, mainCatagory);
   };
   return (
     <div
@@ -35,19 +36,20 @@ const SubMenu: React.FC<SubMenuProps> = ({ isActive, submenu, handleMouseEnter, 
                 style={{ letterSpacing: '0.3px' }}
               >
                 {column.title}
+                
               </h3>
               <ul >
                 {column.items.map((item, idx) => (
                   <li
                     key={idx}
                     className={'text-appTextColor font-HeroNewRegular text-base transition-colors duration-200 cursor-pointer mb-2 hover:bg-appTheme-opacity-10 pb-0 pt-0 h-[35px] leading-[38px] pl-[9px] hover:text-appTheme hover:underline'}
-                    onClick={()=>handleLinkClick(item)}
+                    onClick={()=>handleLinkClick(item, column.value )}
                   >
                     {item}
                   </li>
                 ))}
                 {column.hasMore && (
-                  <li onClick={()=>handleLinkClick('View All')} className="text-appTheme hover:bg-appTheme-opacity-10 leading-[38px]  pl-[9px] font-semibold cursor-pointer mb-2 hover:underline">
+                  <li onClick={()=>handleLinkClick('View All', column.value)} className="text-appTheme hover:bg-appTheme-opacity-10 leading-[38px]  pl-[9px] font-semibold cursor-pointer mb-2 hover:underline">
                     View All
                   </li>
                 )}

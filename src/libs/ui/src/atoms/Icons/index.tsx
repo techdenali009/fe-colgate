@@ -13,7 +13,7 @@ export const Icon: React.FC<{
   >
     <img
       src={icon}
-      alt="Site Icon"
+      alt='Site Icon'
       className={`min-w-min ${className}`}
     />
   </a>
