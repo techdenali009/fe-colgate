@@ -6,7 +6,7 @@ import { useReviewContext } from '../ReviewUseContext'; // Adjust the path based
 interface CustomImagesProps {
   reviewId: number;
   className?: string;
-  customImage?:string;
+  customImage?: string;
 }
 
 // Define the structure of each image
@@ -15,10 +15,10 @@ interface ImageProps {
   url: string;
   alt: string;
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className}) => {
+
+const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className }) => {
   const { productReviews } = useReviewContext();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const [, setSelectedImage] = useState<ImageProps | null>(null);
 
   // Find the review based on the provided reviewId
