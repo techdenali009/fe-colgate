@@ -52,15 +52,6 @@ interface ISearchbar {
 }
 
 
-
-
-
-
-
-
-
-  
-
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
