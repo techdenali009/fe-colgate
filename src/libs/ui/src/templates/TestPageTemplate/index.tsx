@@ -46,12 +46,13 @@ import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton} from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
+import AdminPannelHeader from '@ui/molecules/AdminPannelHeader';
+import AdminPannelSidebar from '@ui/molecules/AdminPannelSidebar';
+
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
 }
-
-
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState<string | null>(null);
@@ -135,7 +136,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo); 
   return (
     <>
-      <LandingPageSkeleton/>
+      <AdminPannelHeader/>
+      <AdminPannelSidebar/>
+       <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
 
       <form>
