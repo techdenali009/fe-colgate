@@ -18,6 +18,7 @@ function Product({
   const handaleClick = (id: number) => {
     navigate(`/products/${id}/${name}`);
   };
+  
   return (
     <div
       className={'group relative p-2 bg-white dark:bg-appdarkcolor'}
@@ -28,14 +29,14 @@ function Product({
           src={image}
           alt={name}
           className='h-[305px]'
-        ></ProductImage>
+        />
         {showQuickView && (
-          <QuickViewButton onClick={() => openQuickView(id)}></QuickViewButton>
+          <QuickViewButton onClick={() => openQuickView(id)} />
         )}
         {isBestSeller && (
           <BestSellerBadge
             className={
-              'absolute top-1 left-1 !bg-appTheme !text-appWhiteTheme !font-HeroNewBold w-[100px]  text-xs text-center leading-3  !tracking-[0.3px] !rounded-xl '
+              'absolute top-1 left-1 !bg-appTheme !text-appWhiteTheme !font-HeroNewBold w-[100px] text-xs text-center leading-3 !tracking-[0.3px] !rounded-xl '
             }
           >
             Best-seller
@@ -43,13 +44,13 @@ function Product({
         )}
       </div>
       <div className=''>
-        <div className='flex my-2 '>
-          <StarRating rating={rating}></StarRating>
-          <span className=' p-[0.15em] text-base leading-5  font-HeroNewRegular text-appTextColor'>
+        <div className='flex my-2'>
+          <StarRating rating={rating} />
+          <span className=' p-[0.15em] text-base leading-5 font-HeroNewRegular text-appTextColor'>
             {rating} (150)
           </span>
         </div>
-        <h3 className='mt-2.5  text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold'>
+        <h3 className='mt-2.5 text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold'>
           {name}
         </h3>
         {/* <h2>${price}</h2> */}

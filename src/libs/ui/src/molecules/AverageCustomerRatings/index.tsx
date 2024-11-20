@@ -1,5 +1,5 @@
-import AverageRatings from "../AverageRatings";
-import { Reviewproducts } from "@utils/test"; // Reviewproducts is imported from the test module
+import AverageRatings from '../AverageRatings';
+import { Reviewproducts } from '@utils/test'; // Reviewproducts is imported from the test module
 
 interface AverageCustomerRatingsProps {
   className?: string; // Optional prop for additional class names
@@ -46,12 +46,12 @@ const AverageCustomerRatings: React.FC<AverageCustomerRatingsProps> = ({
       >
         Average Customer Ratings
       </h3>
-      <div className="!text-left   lg:flex  flex- mx-[10px]  mt-[10px]  border-[#EAEAEA] lg:justify-center !lg:items-center">
+      <div className='!text-left   lg:flex  flex- mx-[10px]  mt-[10px]  border-[#EAEAEA] lg:justify-center !lg:items-center'>
         {/* Pass the average ratings to the AverageCustomerRatings component */}
         <AverageRatings
           ratings={averageRatings} // The calculated average ratings
-          className="" // Custom class for styling the component
-          ReviewRatingclassName="" // Custom class for the review rating section
+          className='' // Custom class for styling the component
+          ReviewRatingclassName='' // Custom class for the review rating section
         />
       </div>
     </div>
