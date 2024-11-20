@@ -1,0 +1,29 @@
+/* src/components/molecules/ProductDetailsPageResponsiveCarousel.styles.scss */
+
+.responsive-carousel-container {
+  position: relative;
+
+  .custom-arrows {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 44px;
+    right: 43px;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
+
+  .prev-arrow,
+  .next-arrow {
+    cursor: pointer;
+  }
+
+  .prev-arrow {
+    /* Additional styles for the prev arrow */
+  }
+
+  .next-arrow {
+    /* Additional styles for the next arrow */
+  }
+}

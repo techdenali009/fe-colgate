@@ -45,21 +45,12 @@ import { RootState } from '@store/store';
 import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton} from '../LandingPageSkeleton';
-
+import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
 }
 
-
-
-
-
-
-
-
-
-  
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
@@ -430,6 +421,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <button onClick={openQuickReviewModal}>open Quick review Modal</button>
         {QuickViewModalOpen && <QuickViewModal closeModal={closeQuickViewModal} product={products[0]} />}
       </div>
+      <ProductDetailsContentSkeleton/>
     </>
   );
 };
