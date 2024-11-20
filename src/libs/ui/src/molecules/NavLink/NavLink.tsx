@@ -15,7 +15,7 @@ interface NavLinksProps {
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   setSelectNavLink: (link: string) => void;
-  onNavLinkClick: (title: string) => void;
+  onNavLinkClick: (title: string, mainCatagory:string) => void;
 }
 
 const NavLinks: React.FC<NavLinksProps> = ({
@@ -69,8 +69,8 @@ const NavLinks: React.FC<NavLinksProps> = ({
     };
   }, [isOpen]);
 
-  const handleLinkClick = (title: string) => {
-    onNavLinkClick(title);
+  const handleLinkClick = (title: string, mainCatagory:string) => {
+    onNavLinkClick(title, mainCatagory);
   };
 
 
@@ -212,6 +212,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                   <div key={subItem.title}>
                     <Label className="pb-4 text-[1.08rem] font-bold leading-6 font-HeroNewBold tracking-[0.3px] text-appTextColor text-base hover:text-appTheme cursor-pointer tm:leading-[3.5rem]" >
                       {subItem.title}
+                      {subItem.value}
                     </Label>
                     {subItem.items && (
                       <ul className="pl-4 border-b border-gray-500 p-2 bg-white grid gap-y-2 text-[1rem] font-HeroNewLight dark:bg-appModalColor">
@@ -221,7 +222,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                               className="text-appTextColor hover:text-appTheme  hover:underline cursor-pointer"
                               onClick={() => {
 
-                                handleLinkClick(item); 
+                                handleLinkClick(item, subItem.value); 
                               }}
                             >
                               {item}

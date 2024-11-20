@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useReviewContext } from '../ReviewUseContext'; // Adjust the path based on your project structure
+import React, { useState } from "react";
+import { useReviewContext } from "../ReviewUseContext"; // Adjust the path based on your project structure
 // Adjust the path based on your project structure
 
 // Define props for the CustomImages component

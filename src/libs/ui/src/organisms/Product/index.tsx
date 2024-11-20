@@ -1,28 +1,41 @@
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@ui/atoms/Button';
-import { ProductImage } from '@ui/atoms/ProductImage';
-import StarRating from '@ui/atoms/StarRating';
-import BestSellerBadge from '@ui/molecules/BestSeller';
-import QuickViewButton from '@ui/molecules/QuickViewButton';
-import { ProductProps } from '@utils/Product';
+import { useNavigate } from "react-router-dom";
+import { Button } from "@ui/atoms/Button";
+import { ProductImage } from "@ui/atoms/ProductImage";
+import StarRating from "@ui/atoms/StarRating";
+import BestSellerBadge from "@ui/molecules/BestSeller";
+import QuickViewButton from "@ui/molecules/QuickViewButton";
+import { ProductProps } from "@utils/Product";
 
-function Product({ product, modalSetToggle, className, openQuickView, showQuickView }: ProductProps) {
+function Product({
+  product,
+  modalSetToggle,
+  className,
+  openQuickView,
+  showQuickView,
+}: ProductProps) {
   const { image, name, isBestSeller, rating, id } = product;
-  const navigate=useNavigate();
-  const handaleClick=(id:number)=>{
-    navigate(`/products/${id}/${name}`)
-  }
-  return (  
-    <div className={'group relative p-2 bg-white dark:bg-appdarkcolor'} onClick={()=>handaleClick(id)}>
+  const navigate = useNavigate();
+  const handaleClick = (id: number) => {
+    navigate(`/products/${id}/${name}`);
+  };
+  return (
+    <div
+      className={"group relative p-2 bg-white dark:bg-appdarkcolor"}
+      onClick={() => handaleClick(id)}
+    >
       <div>
-        <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
+        <ProductImage
+          src={image}
+          alt={name}
+          className="h-[305px]"
+        ></ProductImage>
         {showQuickView && (
           <QuickViewButton onClick={() => openQuickView(id)}></QuickViewButton>
         )}
         {isBestSeller && (
           <BestSellerBadge
             className={
-              'absolute top-1 left-1 !bg-appTheme !text-appWhiteTheme !font-HeroNewBold w-[100px]  text-xs text-center leading-3  !tracking-[0.3px] !rounded-xl '
+              "absolute top-1 left-1 !bg-appTheme !text-appWhiteTheme !font-HeroNewBold w-[100px]  text-xs text-center leading-3  !tracking-[0.3px] !rounded-xl "
             }
           >
             Best-seller
@@ -48,14 +61,13 @@ function Product({ product, modalSetToggle, className, openQuickView, showQuickV
           group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
           hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white  dark:group-hover:text-black  ${className}
         `}
-          type={'submit'}
+          type={"submit"}
           onClick={modalSetToggle}
         >
-          {' Log In to Order'}
+          {" Log In to Order"}
         </Button>
       </div>
     </div>
-      
   );
 }
 
