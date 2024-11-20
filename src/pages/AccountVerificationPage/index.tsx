@@ -1,5 +1,5 @@
-import { AccountVerificationTemplate } from "@ui/templates/AccountVerification";
+import { AccountVerificationTemplate } from '@ui/templates/AccountVerification';
 
 export const AccountVerificationPage =() =>{
-    return <AccountVerificationTemplate></AccountVerificationTemplate>
+  return <AccountVerificationTemplate></AccountVerificationTemplate>
 }

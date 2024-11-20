@@ -1,6 +1,6 @@
-import AccountVerification from "@ui/organisms/AccountVerified"
+import AccountVerification from '@ui/organisms/AccountVerified'
 
 
 export const AccountVerificationTemplate = () =>{
-    return <AccountVerification></AccountVerification>
+  return <AccountVerification></AccountVerification>
 }
