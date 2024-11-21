@@ -14,6 +14,12 @@ import { Route, Routes } from 'react-router-dom';
 import ProductModule from 'src/modules/usersModule/usersModule';
 import { AccountVerificationPage } from '@pages/AccountVerificationPage';
 
+import AdminModule from 'src/modules/adminModule/adminModule';
+import AdminProduct from '@ui/organisms/AdminProduct';
+import UserDate from '@ui/templates/UserDateTemplate';
+
+import AddUserTemplate from '@ui/templates/AddUserTemplate';
+import EditUserTemplate from '@ui/templates/EditUserTemplate';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -85,6 +91,13 @@ export const AppRoutes = () => (
       <Route path="/test" element={<TestPage />}></Route>
      
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
+     
+    </Route>
+    <Route path="/admin" element={<AdminModule />}>
+      <Route path="products" element={<AdminProduct />} />
+      <Route path="users" element={<UserDate />} />
+      <Route path='adduser' element={<AddUserTemplate/>}/>
+      <Route path='users/:id' element={<EditUserTemplate/>}/>
     </Route>
     <Route path="/verifyToken" element={<AccountVerificationPage></AccountVerificationPage>}> </Route>
   </Routes>
