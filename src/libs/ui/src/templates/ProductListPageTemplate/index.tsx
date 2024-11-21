@@ -15,11 +15,13 @@ import RecentlyViewedProducts from '@ui/organisms/RecentlyViewedProducts';
 import { RecentProduct as products } from '@utils/test';
 import LoginModal from '@ui/organisms/LoginModal';
 
-import { useProductContext } from 'src/libs/ui/src/contexts/PlpContext';
+
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
-import {  SortOptions } from '@utils/plpFilterData';
+import { SortOptions } from '@utils/plpFilterData';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useProductContext } from '../../../../contexts/PlpContext';
+
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,15 +39,14 @@ const PlpPageTemplate: React.FC = () => {
     setSelectedSortOption,
     breadcrumbs,
     enableBestSeller,
-    // eslint-disable-next-line no-empty-pattern
-    sortedProducts: [] } = useProductContext();
+  } = useProductContext();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [, setIsBestSellerState] = useState<boolean>(false);
   const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
-
+  const [clicked, setClicked] = useState(false);
   const isLoggedIn = Boolean(userInfo);
   // Close the QuickView modal
   const closeQuickViewModal = () => setQuickViewModalOpen(false);
@@ -92,34 +93,34 @@ const PlpPageTemplate: React.FC = () => {
       navigate('/products');
     }
   };
-
-
-
+  
   // Handle sorting options change
   const handleSortChange = (option: string) => {
     setSelectedSortOption(option);
   };
 
   // Open the Quick View modal with a selected product
-  const openQuickReviewModal = async (id: number) => {
+  const openQuickReviewModal = async (id: string) => {
     // Find the product by ID
-    const product = filteredProducts.find(p => p.id === id);
+    const product = filteredProducts.find(p => p._id === id);
 
     // Ensure the product exists and set it only if it's a new product
-    if (product && selectedProduct?.id !== product.id) {
-      setSelectedProduct(product);
-      setQuickViewModalOpen(true);
-    }
+    // if (product && selectedProduct?.id !== product.id) {
+    //   setSelectedProduct(product);
+    //   setQuickViewModalOpen(true);
+    // }
   };
   const modalSetToggle = () => {
     SetToggle(!toggle)
   }
 
   return (
+
     <div className="relative pr-2 pl-2">
       <div className="!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1">
         <PageTitleHeader className='!text-xs !leading-4 text-tertiary-400 font-HeroNewBold tm:text-[2.375rem]' breadcrumbs={breadcrumbs} />
       </div>
+
       <div className="tm:block flex gap-[23px] py-0 xl:px-14 mt-5 mb-32 tm:pl-6 tm:pr-6 tl:px-5">
         <div className="relative tm:px-0 pl-[18px] pr-[18px]">
           <PlpAccordians
@@ -160,10 +161,17 @@ const PlpPageTemplate: React.FC = () => {
                 if (index < productsToShow) {
                   return (
                     <Product
-                      key={`${product.id}-${product.name}`}
-                      product={product}
+                      key={`${product._id}-${product.name}`}
+                      product={{
+                        id: product._id,
+                        name: product.name,
+                        image: product?.images?.length > 0 ? product.images[0]?.url : '',
+                        rating: product?.rating || 0,
+                        price: product?.price,
+                        isBestSeller: product?.isBestSeller || false
+                      }}
                       modalSetToggle={() => dispatch(toggleLoginModel())}
-                      openQuickView={() => openQuickReviewModal(product.id)}
+                      openQuickView={() => openQuickReviewModal(product._id)}
                       showQuickView={isLoggedIn}
                     />
                   );
@@ -195,16 +203,18 @@ const PlpPageTemplate: React.FC = () => {
           {products.length === 0 ? (
             <PopularProductSkeleton />
           ) : (
+            // <></>
             <RecentlyViewedProducts products={products} modalSetToggle={modalSetToggle} />
           )}
         </div>
       </div>
       {toggle && <LoginModal closeModal={modalSetToggle} />}
       {QuickViewModalOpen && selectedProduct && (
-        <QuickViewModal
-          closeModal={closeQuickViewModal}
-          product={selectedProduct} 
-        />
+        <></>
+        // <QuickViewModal
+        //   closeModal={closeQuickViewModal}
+        //   product={selectedProduct}
+        // />
       )}
     </div>
   );

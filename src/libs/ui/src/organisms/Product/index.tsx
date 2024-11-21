@@ -19,7 +19,7 @@ function Product({ product, modalSetToggle, className, openQuickView, showQuickV
       <div> 
         <ProductImage src={image} alt={name} className='h-[305px]'></ProductImage>
         {showQuickView && (
-          <QuickViewButton onClick={() => openQuickView(id)}></QuickViewButton>
+          <QuickViewButton onClick={() => openQuickView(id as string)}></QuickViewButton>
         )}
         {isBestSeller && (
           <BestSellerBadge

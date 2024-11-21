@@ -1,5 +1,5 @@
 export interface ProductType {
-    id: number;
+    id: string | number;
     name: string;
     image: string;
     rating: number;
@@ -13,7 +13,7 @@ export interface ProductProps {
     product: ProductType;
     modalSetToggle: () => void;
     className?:string;
-    openQuickView: (id: number) => void;
+    openQuickView: (id: string) => void;
     showQuickView :boolean;
    }
 
