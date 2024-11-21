@@ -10,6 +10,7 @@ import ValidationModal from '@ui/molecules/VaidationModal';
 import { LoginForm, ValidationForm } from '@utils/Login';
 import { Checkbox } from '@ui/molecules/CheckBox/Checkbox';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useAddUserMutation } from '@store/services/Endpoints/UserApi';
 
 interface FormValues {
   firstName: string;
@@ -35,10 +36,20 @@ const RegisterForm: React.FC = () => {
   const [checkPolicy, setIsCheckedPolicy] = useState(false);
   const watchFirstName = watch('firstName'); // Similarly for first name
   const watchLasttName = watch('lastName');
+  const [addUser, { isLoading }] = useAddUserMutation();
 
+  const onSubmit = async(data: FormValues) => {
+    console.log('Registering:', data.firstName);
+    const { email, password, firstName, lastName } = data;
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Registering:', data);
+    const userData = { email, password, firstName, lastName };
+    try {
+      const response =   await addUser(userData).unwrap();
+      console.log('User created successfully:', response);
+   
+    } catch (err) {
+      console.error('Failed to create user:', err);
+    }
   };
   const handleFocus = () => {
     setModalOpen(true);
