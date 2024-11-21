@@ -7,6 +7,7 @@ import LoginModal from '@ui/organisms/LoginModal';
 import TopHeader from '@ui/organisms/TopHeader/TopHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 // App level Module
 export default function MainModule() {
@@ -28,6 +29,7 @@ export default function MainModule() {
 
   return (
     <>
+      <ToastContainer></ToastContainer>
       {/* Header */}
       <div>
         <TopHeader />
