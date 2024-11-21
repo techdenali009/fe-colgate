@@ -36,7 +36,7 @@ const RegisterForm: React.FC = () => {
   const [checkPolicy, setIsCheckedPolicy] = useState(false);
   const watchFirstName = watch('firstName'); // Similarly for first name
   const watchLasttName = watch('lastName');
-  const [addUser, { isLoading }] = useAddUserMutation();
+  const [addUser] = useAddUserMutation();
 
   const onSubmit = async(data: FormValues) => {
     console.log('Registering:', data.firstName);
