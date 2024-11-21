@@ -12,6 +12,7 @@ import { LandingPageSkeleton } from '@ui/templates/LandingPageSkeleton';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ProductModule from 'src/modules/usersModule/usersModule';
+import { AccountVerificationPage } from '@pages/AccountVerificationPage';
 
 import AdminModule from 'src/modules/adminModule/adminModule';
 import AdminProduct from '@ui/organisms/AdminProduct';
@@ -88,6 +89,7 @@ export const AppRoutes = () => (
       </Route>
 
       <Route path="/test" element={<TestPage />}></Route>
+     
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
      
     </Route>
@@ -97,5 +99,6 @@ export const AppRoutes = () => (
       <Route path='adduser' element={<AddUserTemplate/>}/>
       <Route path='users/:id' element={<EditUserTemplate/>}/>
     </Route>
+    <Route path="/verifyToken" element={<AccountVerificationPage></AccountVerificationPage>}> </Route>
   </Routes>
 )
