@@ -121,7 +121,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
       let queryString = `${hasValue ? '&' : ''}${curr[0]}=${curr[1]}`
       return `${acc}${queryString}`;
     }, '');
-    allFilters = `${allFilters.replace(/skin-type/g, 'skin-types')}`;
+    allFilters = `${allFilters}&sortBy=${sortBy}`;
     // &sortBy=${sortBy}
     console.log('filters Test curr allFilters', allFilters)
     const getProducts = async () => {

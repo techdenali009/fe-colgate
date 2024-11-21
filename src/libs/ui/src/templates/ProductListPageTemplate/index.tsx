@@ -113,6 +113,11 @@ const PlpPageTemplate: React.FC = () => {
   const modalSetToggle = () => {
     SetToggle(!toggle)
   }
+  const handleClearAll = () => {
+    setFilters([]); // Clear all filters.
+    navigate('/products'); // Redirect to the /products page.
+  };
+
 
   return (
 
@@ -135,10 +140,12 @@ const PlpPageTemplate: React.FC = () => {
         <div className='w-full'>
           <div className='relative flex items-baseline justify-between'>
             <PlpFilterContainer
-              filters={filters}
-              onRemoveFilter={(filterToRemove) => setFilters(filters.filter((filter: string) => filter !== filterToRemove))}
-              onClearAll={() => setFilters([])}
-            />
+      filters={filters}
+      onRemoveFilter={(filterToRemove) =>
+        setFilters(filters.filter((filter: string) => filter !== filterToRemove))
+      }
+      onClearAll={handleClearAll} // Use the enhanced function.
+    />
             <div className='flex gap-8 items-baseline pr-12 pl-12 tm:pr-0 tm:pl-0 tm:absolute'>
               <div className="flex gap-1"> {filteredProducts.length} <p>products</p></div>
               <div className='tm:hidden lg:relative'>
