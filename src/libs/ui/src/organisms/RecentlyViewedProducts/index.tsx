@@ -93,7 +93,8 @@ const RecentlyViewedProducts = ({ products ,modalSetToggle}: PopularProductsProp
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
           <SwiperSlide key={product.id} className="mt-1 px-2 !items-start">
-            <Product product={product} modalSetToggle={modalSetToggle} openQuickView={() => console.log('')} showQuickView={false}/>
+            <Product product={product} modalSetToggle={modalSetToggle} 
+              openQuickView={() => console.log('')} showQuickView={false}/>
           </SwiperSlide>
         ))}
       </Swiper>

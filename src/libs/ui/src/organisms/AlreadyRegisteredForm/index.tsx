@@ -27,10 +27,14 @@ interface LoginData {
 }
 
 const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode }) => {
+
   const [login, { isLoading, isError }] = useLoginMutation();
+
   const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordFieldEmpty, setIsPasswordFieldEmpty] = useState(true);
+  
   const onSubmit = async (data: LoginData) => {
     try {
       const result = await login(data).unwrap();

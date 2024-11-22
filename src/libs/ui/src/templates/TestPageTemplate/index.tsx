@@ -45,8 +45,7 @@ import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
-import AdminPannelHeader from '@ui/molecules/AdminPannelHeader';
-import AdminPannelSidebar from '@ui/molecules/AdminPannelSidebar';
+import PersonalProfile from '@ui/organisms/PersonalProfile';
 
 interface ISearchbar {
   submitLabel: string;
@@ -130,9 +129,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   );
   return (
     <>
-      <AdminPannelHeader />
-      <AdminPannelSidebar />
-      <LandingPageSkeleton />
+      <PersonalProfile></PersonalProfile>
+      <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
 
       <form>

@@ -884,6 +884,15 @@ export const reviews = [
   { stars: 1, count: 4 },
 ];
 
+export const fieldsData = [
+  { label: 'Email', value: 'h37904139@gmail.com', editable: false },
+  { label: 'Customer Number', value: '10103688', editable: false },
+  { label: 'First Name', value: 'hari', editable: true },
+  { label: 'Last Name', value: 'hara', editable: true },
+  { label: 'Mobile Phone Number', value: '6364384220', editable: true, isMobileNumber: true },
+];
+
+
 export const viewAllProducts = [
   {
     id: 100,
