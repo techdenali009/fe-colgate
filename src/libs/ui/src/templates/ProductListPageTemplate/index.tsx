@@ -42,16 +42,16 @@ const PlpPageTemplate: React.FC = () => {
     totalProducts
   } = useProductContext();
 
-  
+
   const [, setIsBestSellerState] = useState<boolean>(false);
   const [QuickViewModalOpen] = useState(false);
-  
+
   const [selectedProduct] = useState<ProductType | null>(null);
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
- 
- 
+
+
   const isLoggedIn = Boolean(userInfo);
- 
+
   const [toggle, SetToggle] = useState(false);
   // Update URL params when a category is selected
 
@@ -95,7 +95,7 @@ const PlpPageTemplate: React.FC = () => {
       navigate('/products');
     }
   };
-  
+
   // Handle sorting options change
   const handleSortChange = (option: string) => {
     setSelectedSortOption(option);
@@ -104,13 +104,7 @@ const PlpPageTemplate: React.FC = () => {
   // Open the Quick View modal with a selected product
   // eslint-disable-next-line  @typescript-eslint/no-unused-vars
   const openQuickReviewModal = async (_id: string) => {
-   
 
-    // Ensure the product exists and set it only if it's a new product
-    // if (product && selectedProduct?.id !== product.id) {
-    //   setSelectedProduct(product);
-    //   setQuickViewModalOpen(true);
-    // }
   };
   const modalSetToggle = () => {
     SetToggle(!toggle)
@@ -165,7 +159,7 @@ const PlpPageTemplate: React.FC = () => {
 
           <div className="tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
             {filteredProducts
-              .map((product) => ( <Product
+              .map((product) => (<Product
                 key={`${product._id}-${product.name}`}
                 product={{
                   id: product._id,
@@ -212,10 +206,6 @@ const PlpPageTemplate: React.FC = () => {
       {toggle && <LoginModal closeModal={modalSetToggle} />}
       {QuickViewModalOpen && selectedProduct && (
         <></>
-        // <QuickViewModal
-        //   closeModal={closeQuickViewModal}
-        //   product={selectedProduct}
-        // />
       )}
     </div>
   );
