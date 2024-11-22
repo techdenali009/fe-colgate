@@ -6,7 +6,7 @@ import { ageGroups, ratings } from '@utils/test';
 import AgeRatingDropdowns from '../AgeAndRatingDropdown';
 import { useReviewContext } from '../ReviewUseContext';
 import SortByReview from '../SortbyReview';
-import ReviewSearchIcon from '@ui/atoms/SvgAtoms/ReviewSearchIcon';
+
 import { reviewsPerPage } from '@utils/constants';
 
 interface FilterReviewsProps {
@@ -67,9 +67,9 @@ const FilterReviews: React.FC<FilterReviewsProps> = ({ productReviews }) => {
     <div className="mx-2.5  ">
       <h3 className="p-2.5 font-SansSerif text-[16px] pt-[30px] ">Filter Reviews</h3>
 
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchclassName='h-12'>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchclassName='h-12' placeholder='Search topics and reviews'>
 
-        <ReviewSearchIcon></ReviewSearchIcon>
+       
       </SearchBar>
 
       <div>

@@ -3,8 +3,9 @@ import ModalSlice from './services/Slices/ModalSlice';
 import authSlice from './services/Slices/authSlice'; 
 import { AuthApi } from './services/Endpoints/AuthApi';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // default to localStorage for web
+import storage from 'redux-persist/lib/storage'; 
 import { combineReducers } from 'redux';
+import { UserApi } from './services/Endpoints/UserApi';
 import { PlpProductsEndpoints } from './services/Endpoints/PlpProductsEndPoint';
 
 
@@ -13,12 +14,14 @@ const rootReducer = combineReducers({
   authSlice: authSlice,
   [AuthApi.reducerPath]: AuthApi.reducer,
   [PlpProductsEndpoints.reducerPath]: PlpProductsEndpoints.reducer,
+  [UserApi.reducerPath]: UserApi.reducer, 
 });
 
 const persistConfig = {
   key: 'root',
   storage, 
-  blacklist: [AuthApi.reducerPath, PlpProductsEndpoints.reducerPath]
+  blacklist: [AuthApi.reducerPath, UserApi.reducerPath], 
+  
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -29,7 +32,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false, 
-    }).concat(AuthApi.middleware, PlpProductsEndpoints.middleware),
+    }).concat(AuthApi.middleware, UserApi.middleware),
 });
 
 export const persistor = persistStore(store);

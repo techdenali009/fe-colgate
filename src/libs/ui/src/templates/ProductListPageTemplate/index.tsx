@@ -41,7 +41,7 @@ const PlpPageTemplate: React.FC = () => {
     enableBestSeller,
   } = useProductContext();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  
   const [, setIsBestSellerState] = useState<boolean>(false);
   const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);

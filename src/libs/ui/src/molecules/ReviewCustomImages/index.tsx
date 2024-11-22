@@ -6,7 +6,7 @@ import { useReviewContext } from '../ReviewUseContext'; // Adjust the path based
 interface CustomImagesProps {
   reviewId: number;
   className?: string;
-  customImage?:string;
+  customImage?: string;
 }
 
 // Define the structure of each image
@@ -15,10 +15,10 @@ interface ImageProps {
   url: string;
   alt: string;
 }
- 
-const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className}) => {
+
+const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className }) => {
   const { productReviews } = useReviewContext();
-   
+
   const [, setSelectedImage] = useState<ImageProps | null>(null);
 
   // Find the review based on the provided reviewId
@@ -45,7 +45,7 @@ const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className}) => {
         <div
           key={image.id}
           onClick={() => openModal(image)}
-          className="lg:w-[171px] p-[2px] cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+          className='lg:w-[171px] p-[2px] cursor-pointer transition duration-300 ease-in-out transform hover:scale-105'
         >
           {/* <Image src={image.url} alt={image.alt} className={`${customImage}`}  /> */}
         </div>

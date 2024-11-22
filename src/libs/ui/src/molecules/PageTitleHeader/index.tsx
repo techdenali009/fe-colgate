@@ -7,12 +7,13 @@ interface Breadcrumb {
 }
 
 interface PageTitleHeaderProps {
-    breadcrumbs: Breadcrumb[];
-    children?: React.ReactNode;
-    className?: string;
+  breadcrumbs: Breadcrumb[];
+  children?: React.ReactNode;
+  className?: string;
+  showTitle?: boolean;  // Add this prop
 }
 
-const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children, className }) => {
+const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children, className, showTitle = true }) => {
   const title = breadcrumbs[breadcrumbs.length - 1]?.label;
 
   return (
@@ -32,7 +33,8 @@ const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children
         ))}
       </div>
 
-      <h1 className="text-3xl lg:text-[2.375rem] font-extrabold text-appTheme">{title}</h1>
+      {/* Conditionally render the title based on the showTitle prop */}
+      {showTitle && <h1 className="text-3xl lg:text-[2.375rem] font-extrabold text-appTheme">{title}</h1>}
 
       {children && <div className="mt-4">{children}</div>}
     </div>
@@ -40,3 +42,4 @@ const PageTitleHeader: React.FC<PageTitleHeaderProps> = ({ breadcrumbs, children
 };
 
 export default PageTitleHeader;
+
