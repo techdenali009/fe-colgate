@@ -47,7 +47,7 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
   };
 
   return (
-    <div className="Product-detailspage">
+    <div className='Product-detailspage'>
       {/* Main Image Slider */}
       <Swiper
         ref={swiperRef}
@@ -57,7 +57,7 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
         modules={[Navigation, Thumbs]}
         grabCursor={true}
         thumbs={{ swiper: activeThumb }}
-        className="product-images-slider"
+        className='product-images-slider'
         onSlideChange={handleSlideChange}
       >
         {images.map((image, index) => (
@@ -74,7 +74,7 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
         spaceBetween={10}
         slidesPerView={5}
         modules={[Navigation, Thumbs]}
-        className="product-images-slider-thumbs"
+        className='product-images-slider-thumbs'
         navigation={{
           prevEl: thumbPrevRef.current,
           nextEl: thumbNextRef.current,
@@ -82,7 +82,7 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="product-images-slider-thumbs-wrapper">
+            <div className='product-images-slider-thumbs-wrapper'>
               <img src={image} alt={`${name} thumbnail ${index + 1}`} />
             </div>
           </SwiperSlide>
@@ -90,22 +90,22 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
       </Swiper>
 
       {/* Custom Navigation Buttons */}
-      <div className="Product-arrows flex place-content-between">
-        <div className="product-prev absolute top-[400px] z-10">
+      <div className='Product-arrows flex place-content-between'>
+        <div className='product-prev absolute top-[400px] z-10'>
           {currentIndex > 0 && <PrevButton ref={prevRef} onClick={goToPrevSlide} />}
         </div>
-        <div className="product-next absolute top-[400px] left-[572px] z-10">
+        <div className='product-next absolute top-[400px] left-[572px] z-10'>
           {currentIndex < images.length - 1 && <NextButton ref={nextRef} onClick={goToNextSlide} />}
         </div>
       </div>
 
       {/* Thumbnail Navigation Arrows */}
       {images.length > 5 && (
-        <div className="thumb-arrows">
-          <div className="thumb-prev absolute top-[743px] left-[78px] z-10">
+        <div className='thumb-arrows'>
+          <div className='thumb-prev absolute top-[717px] left-[78px] z-10'>
             <PrevButton ref={thumbPrevRef} />
           </div>
-          <div className="thumb-next absolute top-[743px] left-[572px] z-10">
+          <div className='thumb-next absolute top-[717px] left-[572px] z-10'>
             <NextButton ref={thumbNextRef} />
           </div>
         </div>
