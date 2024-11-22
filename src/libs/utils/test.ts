@@ -1088,16 +1088,7 @@ export const viewAllProducts = [
     category: 'Sample', // Add category here
     price: 35000.0,
   },
-  {
-    id: 120,
-    name: 'Hyaluronic Acid Overnight Mask',
-    image:
-      'https://pcaskin.vtexassets.com/arquivos/ids/156746-1296-auto/HyaluronicOvernightMask_21107_1.8oz.jpg?v=638578743196700000&width=1296&height=auto&aspect=true',
-    rating: 0.0,
-    isBestSeller: false,
-    category: 'Brightening',
-    price: 55000.0,
-  },
+ 
   {
     id: 119,
     name: 'Acne Cream',
@@ -1106,17 +1097,17 @@ export const viewAllProducts = [
     rating: 0.0,
     isBestSeller: false,
     category: 'Acne', // Add category here
-    price: 55000.0,
-  },
-  {
+    price: 55000.00
+
+  }, {
     id: 120,
-    name: 'Hyaluronic Acid Boosting Serum',
-    image:
-      'https://pcaskin.vtexassets.com/arquivos/ids/156810-1296-auto/exlinea-pro.jpg?v=638578896004000000&width=1296&height=auto&aspect=true',
+    name: 'Hyaluronic Acid Overnight Mask',
+    image: 'https://pcaskin.vtexassets.com/arquivos/ids/156746-1296-auto/HyaluronicOvernightMask_21107_1.8oz.jpg?v=638578743196700000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
-    category: 'Discolorations', // Add category here
-    price: 50400.0,
+    category: 'Brightening',
+    price: 55000.00
+
   },
   {
     id: 121,
@@ -1179,20 +1170,9 @@ export const viewAllProducts = [
     price: 1000.0,
   },
   {
-    id: 126,
-    name: 'Active Broad Spectrum SPF 45',
-    image:
-      'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
-    rating: 0.0,
-    isBestSeller: false,
-    category: 'Sensitive', // Add category hereSensitive SkinCoombination
-    price: 6000.0,
-  },
-  {
     id: 127,
-    name: 'Active Broad Spectrum',
-    image:
-      'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
+    name: 'Active Broad Spectrum SPF 45',
+    image: 'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
     category: 'Sensitive', // Add category hereSensitive SkinCoombination
@@ -1205,8 +1185,9 @@ export const viewAllProducts = [
       'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
-    category: 'By Treatment', // Add category hereSensitive SkinCoombination
-    price: 6000.0,
+    category: 'Sensitive', // Add category hereSensitive SkinCoombination
+    price: 6000.00
+
   },
   {
     id: 129,
@@ -1215,8 +1196,9 @@ export const viewAllProducts = [
       'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
-    category: 'Oily', // Add category hereSensitive SkinCoombination
-    price: 6000.0,
+    category: 'By Treatment', // Add category hereSensitive SkinCoombination
+    price: 6000.00
+
   },
   {
     id: 130,
@@ -1225,8 +1207,28 @@ export const viewAllProducts = [
       'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
     rating: 0.0,
     isBestSeller: false,
+    category: 'Oily', // Add category hereSensitive SkinCoombination
+    price: 6000.00
+
+  },
+  {
+    id: 131,
+    name: 'Active Broad Spectrum',
+    image: 'https://pcaskin.vtexassets.com/arquivos/ids/156780-1296-auto/Active-broad-spectrum-spf.jpg?v=638578847631000000&width=1296&height=auto&aspect=true',
+    rating: 0.0,
+    isBestSeller: false,
     category: 'Discoloration', // Add category hereSensitive SkinCoombination
-    price: 6000.0,
+    price: 6000.00
+
+  },{
+    id: 132,
+    name: 'Hyaluronic Acid Boosting Serum',
+    image: 'https://pcaskin.vtexassets.com/arquivos/ids/156810-1296-auto/exlinea-pro.jpg?v=638578896004000000&width=1296&height=auto&aspect=true',
+    rating: 0.0,
+    isBestSeller: false,
+    category: 'Discolorations', // Add category here
+    price: 50400.00
+
   },
 ];
 

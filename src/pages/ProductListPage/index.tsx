@@ -1,6 +1,6 @@
 import React from 'react'; // Import React
 import PlpPageTemplate from '@ui/templates/ProductListPageTemplate'; // Import the template component
-import { ProductProvider } from 'src/libs/ui/src/contexts/PlpContext';
+import { ProductProvider } from 'src/libs/contexts/PlpContext';
 
 
 // Define the PlpPage component as a functional component

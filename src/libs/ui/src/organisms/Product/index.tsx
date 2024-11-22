@@ -27,10 +27,19 @@ function Product({
     (state: RootState) => state.authSlice.userInfo
   );
   return (
-    <div className={'group relative p-2 bg-white dark:bg-appdarkcolor'}>
+    <div
+      className={'group relative p-2 bg-white dark:bg-appdarkcolor'}
+      onClick={() => handaleClick(Number(id))}
+    >
       <div>
-        <ProductImage src={image} alt={name} className="h-[305px]" />
-        {showQuickView && <QuickViewButton onClick={() => openQuickView(id)} />}
+        <ProductImage
+          src={image}
+          alt={name}
+          className='h-[305px]'
+        />
+        {showQuickView && (
+          <QuickViewButton onClick={() => openQuickView(Number(id))}></QuickViewButton>
+        )}
         {isBestSeller && (
           <BestSellerBadge
             className={
@@ -50,7 +59,7 @@ function Product({
         </div>
         <h3
           className="mt-2.5 text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold"
-          onClick={() => handaleClick(id)}
+          onClick={() => handaleClick(Number(id))}
         >
           {name}
         </h3>
