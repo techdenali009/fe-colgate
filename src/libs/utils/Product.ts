@@ -24,12 +24,13 @@ export interface ProductDetailsContentProps {
 }
 
 export interface ProductProps {
-    product: ProductType;
-    modalSetToggle: () => void;
-    className?:string;
-    openQuickView: (id: string) => void;
-    showQuickView :boolean;
-   }
+  product: ProductType;
+  modalSetToggle: () => void;
+  className?:string;
+  openQuickView: (id: number) => void;
+  showQuickView :boolean;
+  footerContent?: React.ReactNode
+}
 
 export interface RelatedProductsProps{
   relatedProducts: ProductType[];

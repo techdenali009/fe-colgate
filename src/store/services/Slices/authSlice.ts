@@ -9,6 +9,7 @@ interface UserInfo {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
+  isVerified:boolean;
 }
 
 interface LoginState {
