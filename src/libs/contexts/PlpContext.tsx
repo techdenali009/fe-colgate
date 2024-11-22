@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState, ReactNode, useMemo, useEffe
 import { useLocation } from 'react-router-dom';
 // Adjust the import as necessary
 import { useLazyGetProductsQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
-import { SortOptions } from '@utils/plpFilterData';
 import { getSortOption } from '@utils/appFunctions';
 
 // Define the Product interface
 interface Product {
+  id: string | number | undefined;
   _id: string;
   name: string;
   description: string;
@@ -34,14 +34,14 @@ interface ProductContextType {
   filters: string[];
   setFilters: (filters: string[]) => void;
   filteredProducts: Product[];
-  productsToShow: number;
   loadMoreProducts: () => void;
   selectedSortOption: string;
   setSelectedSortOption: (option: string) => void;
-  // sortedProducts: Product[];
-  // sortProducts: (products: Product[]) => Product[];
   breadcrumbs: { label: string; href: string }[];
   enableBestSeller: boolean;
+  hasMore:boolean;
+  totalProducts:number;
+
 }
 
 // Create the context
@@ -53,30 +53,21 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [isBestSeller, setIsBestSeller] = useState<boolean>(false);
   const [filters, setFilters] = useState<string[]>([]);
   const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical A - Z');
-  const [productsToShow, setProductsToShow] = useState<number>(9);
   const [enableBestSeller, setEnableBestSeller] = useState<boolean>(false);
   const [allProducts, SetAllProducts] = useState<Product[]>([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [totalProducts, SettotalProducts] = useState(0);
   const location = useLocation();
 
   // Trigger the lazy query to fetch products
-  const [triggerGetProducts, { data, isLoading, error }] = useLazyGetProductsQuery();
+  const [triggerGetProducts, { isLoading, error }] = useLazyGetProductsQuery();
 
-  // Map the fetched data to the product structure
-  // const products = useMemo(() => {
-  //   if (!data) return [];
-  //   return data.data.products.map((product: any) => ({
-  //     id: product._id,
-  //     name: product.name,
-  //     image: product.images[0]?.url || '',
-  //     category: product.category.name,
-  //     price: product.price,
-  //     isBestSeller: false, // Adjust if needed
-  //   }));
-  // }, [data]);
+  
 
-  // Update selectedProductCategory and filters based on URL changes
-
-  const loadMoreProducts = () => setProductsToShow(prev => prev + 9);
+  const loadMoreProducts = () => {
+    setPage(page+1)
+  };
 
   // Define breadcrumbs
   const breadcrumbs = useMemo(() => [
@@ -103,9 +94,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     } else {
       setEnableBestSeller(false);
     }
-
-    // Trigger the product fetch when category or filters change
-    // triggerGetProducts({ category: categoryParam, filters: allFilters });
+    SetAllProducts([])
   }, [location]);
 
   useEffect(() => {
@@ -113,65 +102,31 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
 
     const filtersParam = Array.from(urlParams.entries());
 
-    // console.log('filters Test' ,allFilters)
     const sortBy = getSortOption(selectedSortOption)
 
     let allFilters = filtersParam.reduce((acc, curr) => {
       const hasValue = !!acc;
-      let queryString = `${hasValue ? '&' : ''}${curr[0]}=${curr[1]}`
+      const queryString = `${hasValue ? '&' : ''}${curr[0]}=${curr[1]}`
       return `${acc}${queryString}`;
     }, '');
-    allFilters = `${allFilters}&sortBy=${sortBy}`;
-    // &sortBy=${sortBy}
-    console.log('filters Test curr allFilters', allFilters)
+    allFilters = `${allFilters}&sortBy=${sortBy}&page=${page}&limit=10`;
+
     const getProducts = async () => {
       try {
         const productsData = await triggerGetProducts(allFilters).unwrap();
-        const { products } = productsData;
+        const { products, hasMore , totalCount} = productsData;
         console.log('products', products);
-        SetAllProducts(products);
+        SetAllProducts([...allProducts, ...products]);
+        setHasMore(hasMore);
+        SettotalProducts(totalCount)
       } catch (err) {
-        console.log('err')
+        console.log('err',err);
       }
     }
     getProducts();
-  }, [filters, selectedSortOption])
-
-  // Filter products based on category, best seller, and filters
-  // const filteredProducts = useMemo(() => {
-  //   if (!products) return [];
-  //   return products.filter((product: { category: string; }) => {
-  //     const matchesCategory = selectedProductCategory === 'All Products' || product.category === selectedProductCategory;
-  //     const matchesFilters = filters.length === 0 || filters.includes(product.category);
-  //     return matchesCategory && matchesFilters;
-  //   });
-  // }, [filters]);
+  }, [filters, selectedSortOption, page])
 
 
-
-  // Sort products based on selected sort option
-  // const sortProducts = (products: Product[]) => {
-  //   const sorted = [...products];
-  //   switch (selectedSortOption) {
-  //     case 'Alphabetical A - Z':
-  //       sorted.sort((a, b) => a.name.localeCompare(b.name));
-  //       break;
-  //     case 'Alphabetical Z - A':
-  //       sorted.sort((a, b) => b.name.localeCompare(a.name));
-  //       break;
-  //     case 'Price Low - High':
-  //       sorted.sort((a, b) => a.price - b.price);
-  //       break;
-  //     case 'Price High - Low':
-  //       sorted.sort((a, b) => b.price - a.price);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   return sorted;
-  // };
-
-  // const sortedProducts = useMemo(() => sortProducts(filteredProducts), [filteredProducts, selectedSortOption]);
 
   return (
     <ProductContext.Provider value={{
@@ -182,12 +137,13 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
       filters,
       setFilters,
       filteredProducts: allProducts,
-      productsToShow,
       loadMoreProducts,
       selectedSortOption,
       setSelectedSortOption,
       breadcrumbs,
       enableBestSeller,
+      hasMore,
+      totalProducts
     }}>
       {isLoading ? <div>Loading...</div> : error ? <div>Error loading products</div> : children}
     </ProductContext.Provider>

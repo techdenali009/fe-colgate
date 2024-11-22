@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { makeUrlWithQueryParams } from '@utils/appFunctions';
 
 // Define the API service
@@ -10,7 +11,7 @@ export const PlpProductsEndpoints = createApi({
     getProducts: builder.query({
       query: (params) => {
         console.log('params', params)
-        // makeUrlWithQueryParams('/products', params)
+        makeUrlWithQueryParams('/products', params)
         return `/products?${params}` ; // Append formatted query string to the endpoint
       },
       transformResponse: (response: {

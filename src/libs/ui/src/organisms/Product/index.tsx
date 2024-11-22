@@ -22,7 +22,7 @@ function Product({
   return (
     <div
       className={'group relative p-2 bg-white dark:bg-appdarkcolor'}
-      onClick={() => handaleClick(id)}
+      onClick={() => handaleClick(Number(id))}
     >
       <div>
         <ProductImage

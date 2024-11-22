@@ -1109,7 +1109,7 @@ export const viewAllProducts = [
     price: 55000.00
 
   },
-   {
+  {
     id: 121,
     name: 'ExLinea® Pro Peptide Serum',
     image:

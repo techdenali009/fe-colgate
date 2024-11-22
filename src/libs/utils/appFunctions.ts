@@ -1,4 +1,4 @@
-import { SortOptions } from "./plpFilterData";
+import { SortOptions } from './plpFilterData';
 
 export const formatTimeAgo = (dateString: string): string => {
   const date = new Date(dateString);
@@ -24,29 +24,33 @@ export const formatTimeAgo = (dateString: string): string => {
   return 'just now';
 };
 
-export const makeUrlWithQueryParams = (url: string, params: {
-}) => {
-  let newUrl = url;
-  const queryString = new URLSearchParams(params).toString();
-  console.log('queryString', queryString)
-  if (queryString) {
-    return `${newUrl}?${queryString}`
-  }
+export const makeUrlWithQueryParams = (
+  url: string,
+  params: Record<string, string | number | boolean | undefined>
+): string => {
+  const queryString = new URLSearchParams(
+    Object.entries(params)
+      .filter(([, value]) => value !== undefined) // Exclude undefined values
+      .map(([key, value]) => [key, String(value)]) // Convert values to strings
+  ).toString();
 
-  return newUrl
-}
+  console.log('queryString:', queryString);
+
+  return queryString ? `${url}?${queryString}` : url;
+};
+
 
 export const getSortOption = (currentOption: string) => {
   switch (currentOption) {
-    case SortOptions.ALPHABETICAL_AZ:
-      return 'nameAToZ';
-    case SortOptions.ALPHABETICAL_ZA:
-      return 'nameZToA'
-    case SortOptions.PRICE_LOW_HIGH:
-      return 'priceLowToHigh';
-    case SortOptions.PRICE_HIGH_LOW:
-      return 'priceHighToLow';
-    default :
-     return 'nameAToZ';
+  case SortOptions.ALPHABETICAL_AZ:
+    return 'nameAToZ';
+  case SortOptions.ALPHABETICAL_ZA:
+    return 'nameZToA'
+  case SortOptions.PRICE_LOW_HIGH:
+    return 'priceLowToHigh';
+  case SortOptions.PRICE_HIGH_LOW:
+    return 'priceHighToLow';
+  default :
+    return 'nameAToZ';
   }
 }
