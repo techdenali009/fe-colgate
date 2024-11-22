@@ -24,7 +24,7 @@ const FavoriteButton: React.FC = () => {
     <div className="Product-detailspage favorite-button-container">
       <button
         type="button"
-        className=" group flex gap-2 items-center justify-center px-2 py-2 fav-icon font-bold text-primary-400 text-sm favorite-cta favorite_favorite-button__XiNVR default-favorite-button relative bottom-3 ml-[53px]"
+        className=" group flex gap-2 items-center justify-center px-2 py-2 fav-icon font-bold text-primary-400 text-sm favorite-cta favorite_favorite-button__XiNVR default-favorite-button relative bottom-3 "
         aria-label="Add to Favorite"
         onClick={handleClick}
         onMouseEnter={() => setIsHovered(true)} 
