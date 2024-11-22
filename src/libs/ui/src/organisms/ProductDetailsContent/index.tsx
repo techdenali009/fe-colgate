@@ -49,7 +49,9 @@ const ProductDetailsContent: React.FC<ProductDetailsContentProps> = ({
             <a href='/' className='text-appTheme pl-2.5'>Write a Review</a>        
           </div>
           {isLoggedIn ? (
-            <FavoriteButton />
+            <div className='ml-[53px]'>
+              <FavoriteButton />
+            </div>
           ) : (
             <></> 
           )}

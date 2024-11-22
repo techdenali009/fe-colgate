@@ -29,6 +29,7 @@ export interface ProductProps {
   className?:string;
   openQuickView: (id: number) => void;
   showQuickView :boolean;
+  footerContent?: React.ReactNode
 }
 
 export interface RelatedProductsProps{

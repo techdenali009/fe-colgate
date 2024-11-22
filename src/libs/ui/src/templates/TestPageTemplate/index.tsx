@@ -46,8 +46,8 @@ import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
+import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
-
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -133,6 +133,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   return (
     <>
       <LandingPageSkeleton />
+      <PersonalProfile></PersonalProfile>
+      <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
       <form>
         <div className="flex justify-center mb-4">

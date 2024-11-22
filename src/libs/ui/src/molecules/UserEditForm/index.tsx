@@ -301,7 +301,7 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
                         onItemClick={(item) => onChange(item)} // Update field value on selection
                         isOpen={isOpen}
                         setIsOpen={setIsOpen}
-                        className={`w-full !rounded-lg mt-3 mb-3 ${
+                        className={`w-full !rounded-lg mt-3 ${
                           errors.userType ? 'border-red-500' : 'border-gray-200'
                         }`}
                         selectdropclassName="w-full max-h-40 overflow-y-auto"
@@ -323,30 +323,41 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
                     Account Status
                   </label>
                   <div className="flex flex-wrap gap-4">
-                    <label className="inline-flex items-center">
-                      <input
-                        type="radio"
-                        name="status"
-                        value="active"
-                        defaultChecked={userData.status === 'active'}
-                        className="form-radio h-4 w-4 text-appTheme"
-                      />
-                      <span className="ml-2 text-sm sm:text-base text-gray-700">
-                        Active
-                      </span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input
-                        type="radio"
-                        name="status"
-                        value="inactive"
-                        defaultChecked={userData.status === 'inactive'}
-                        className="form-radio h-4 w-4 text-appTheme mt-4 mb-4"
-                      />
-                      <span className="ml-2 text-sm sm:text-base text-gray-700">
-                        Inactive
-                      </span>
-                    </label>
+                    <Controller
+                      name="status"
+                      control={control}
+                      render={({ field }) => (
+                        <>
+                          {/* Radio Button for Active */}
+                          <label className="inline-flex items-center">
+                            <input
+                              type="radio"
+                              value="active"
+                              checked={field.value === 'active'} // Dynamically checked
+                              onChange={(e) => field.onChange(e.target.value)} // Update state on change
+                              className="form-radio h-4 w-4 text-appTheme"
+                            />
+                            <span className="ml-2 text-sm sm:text-base text-gray-700">
+                              Active
+                            </span>
+                          </label>
+
+                          {/* Radio Button for Inactive */}
+                          <label className="inline-flex items-center">
+                            <input
+                              type="radio"
+                              value="inactive"
+                              checked={field.value === 'inactive'} // Dynamically checked
+                              onChange={(e) => field.onChange(e.target.value)} // Update state on change
+                              className="form-radio h-4 w-4 text-appTheme mt-4 mb-4"
+                            />
+                            <span className="ml-2 text-sm sm:text-base text-gray-700">
+                              Inactive
+                            </span>
+                          </label>
+                        </>
+                      )}
+                    />
                   </div>
                 </div>
               </div>
