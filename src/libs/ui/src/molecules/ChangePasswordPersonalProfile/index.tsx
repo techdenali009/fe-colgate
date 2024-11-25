@@ -15,19 +15,20 @@ interface ChangePasswordProps {
   className?: string;
   labelclassName?: string;
   paraclassName?: string;
+  onSubmit: (formData: { currentPassword: string; newPassword: string; confirmPassword: string }) => void;
 
 }
 interface FormValues {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
-  confirmPassword: string;
   checkbox: boolean;
   currentpassword: string
+  password: string;
+  confirmPassword: string;
 }
 
-const ChangePassword: React.FC<ChangePasswordProps> = ({ className }) => {
+const ChangePassword: React.FC<ChangePasswordProps> = ({ className, onSubmit }) => {
   const { handleSubmit,control, clearErrors, formState: { errors, isSubmitted }, watch } = useForm<FormValues>({
     mode: 'onChange',
   });
@@ -50,15 +51,19 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ className }) => {
 
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
   const [isConfirmPasswordFieldEmpty, setIsConfirmPasswordFieldEmpty] = useState(true);
-  const onSubmit = (data: FormValues) => {
-    console.log('Current Password:', data.currentpassword);
-    console.log('New Password:', data.password);
-    console.log('Confirm Password:', data.confirmPassword);
+  const handleFormSubmit = (formData: FormValues) => {
+    // Map FormValues to the expected structure for onSubmit
+    const mappedData = {
+      currentPassword: formData.currentpassword,
+      newPassword: formData.password,
+      confirmPassword: formData.confirmPassword,
+    };
+    onSubmit(mappedData); 
   };
   return (
     <div className={`col-span-full w-[97%] ml-2 mt-8  ${className}`}>
       <Heading className='text-[32px] font-HeroNewRegular'>Change Password</Heading>
-      <form  onSubmit={handleSubmit(onSubmit)} className=" w-[100%] bg-white shadow-normal inline-grid  dark:bg-appModalColor">
+      <form  onSubmit={handleSubmit(handleFormSubmit)} className=" w-[100%] bg-white shadow-normal inline-grid  dark:bg-appModalColor">
         <div className=''>
           <div className='lg:w-full pb-8'>
             <Checkbox></Checkbox>
