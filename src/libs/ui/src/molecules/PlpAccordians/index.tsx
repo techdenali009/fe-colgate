@@ -7,7 +7,6 @@ import { plpFilters, AccordionType } from '@utils/plpFilterData';
 import { viewAllProducts } from '@utils/test';
 import { useLocation } from 'react-router-dom';
 
-
 interface SidebarProps {
   currentProductCategory: string;
   className?: string;
@@ -18,6 +17,8 @@ interface SidebarProps {
   onSortChange: (sortOption: string) => void;
   enableBestSeller: boolean;
   onproduct: string;
+  filters: string[];
+  onFilterChange: (filters: string[]) => void;
 }
 
 const PlpAccordians: React.FC<SidebarProps> = ({
@@ -28,18 +29,18 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   onSortChange,
   enableBestSeller,
   currentProductCategory,
+  filters,
+  onFilterChange,
 }) => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedProductCategory, setSelectedProductCategory] = useState<string | null>(null);
   const [checkedFilters, setCheckedFilters] = useState<{ [key: string]: boolean }>({});
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>('');
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+ 
   const [, setProducts] = useState<string[]>([]);
 
-
-  // Get the current category from the URL
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const categoryFromUrl = urlParams.get('skin-type');
@@ -47,10 +48,6 @@ const PlpAccordians: React.FC<SidebarProps> = ({
 
   const activecheckcategory = categoryFromUrl || skinConcernFromUrl || selectedProductCategory;
 
-  console.log('Active check category:', activecheckcategory);
-
-
-  // Calculate counts for each category
   const calculateCounts = () => {
     const counts: { [key: string]: number } = {};
     viewAllProducts.forEach(product => {
@@ -68,13 +65,22 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   };
 
   const handleCheckboxChange = (option: string) => {
-    setCheckedFilters((prev) => ({
-      ...prev,
-      [option]: !prev[option],
-    }));
+    setCheckedFilters((prev) => {
+      const newCheckedFilters = {
+        ...prev,
+        [option]: !prev[option],
+      };
+
+      // Update filters array based on checked state
+      const newFilters = Object.entries(newCheckedFilters)
+        .filter(([, isChecked]) => isChecked)
+        .map(([key]) => key);
+
+      onFilterChange(newFilters);
+      return newCheckedFilters;
+    });
 
     setProducts((prevItems) => {
-      // If the option is already selected, remove it; otherwise, add it
       if (prevItems.includes(option)) {
         return prevItems.filter(item => item !== option);
       } else {
@@ -82,9 +88,8 @@ const PlpAccordians: React.FC<SidebarProps> = ({
       }
     });
 
-    // Update the selected product categories without overriding existing selections
-    setSelectedProductCategory(null); // Clear the single selection
-    onCategorySelect(option); // Send updated selection to parent
+    setSelectedProductCategory(null);
+    onCategorySelect(option);
   };
 
   const handleProductCategoryClick = (category: string) => {
@@ -96,6 +101,15 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const toggleShowCategories = () => {
     setShowAllCategories(!showAllCategories);
   };
+
+  // Sync checkedFilters with external filters prop
+  useEffect(() => {
+    const newCheckedFilters: { [key: string]: boolean } = {};
+    filters.forEach(filter => {
+      newCheckedFilters[filter] = true;
+    });
+    setCheckedFilters(newCheckedFilters);
+  }, [filters]);
 
   useEffect(() => {
     if (currentProductCategory) {
@@ -120,7 +134,6 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     };
   }, []);
 
-  // Combine both "Daily care" and "Professional treatments" categories into a single label accordion
   const combinedCategories = [
     ...plpFilters.find(filter => filter.mainCatagory === 'Daily care')?.options || [],
     ...plpFilters.find(filter => filter.mainCatagory === 'Professional treatments')?.options || []
@@ -151,7 +164,6 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   ulClassName={ulClassName}
                   liClassName={liClassName}
                   className=''
-
                 />
               )}
               {filter.AccordionType === AccordionType.Label && (
@@ -161,7 +173,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onItemClick={handleProductCategoryClick}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)} // Use combined categories
+                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)}
                   activeCategory={categoryFromUrl || selectedProductCategory}
                 >
                   <button onClick={toggleShowCategories} className="text-appTheme mt-2">
@@ -169,7 +181,6 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   </button>
                 </LabelAccordion>
               )}
-
               {filter.AccordionType === AccordionType.Checkbox && (
                 <CheckboxAccordion
                   title={filter.title}
@@ -196,7 +207,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onItemClick={handleProductCategoryClick}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)} // Use combined categories
+                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)}
                   activeCategory={categoryFromUrl || selectedProductCategory}
                 >
                   <button onClick={toggleShowCategories} className="text-appTheme mt-2">
@@ -204,7 +215,6 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   </button>
                 </LabelAccordion>
               )}
-
               {filter.AccordionType === AccordionType.Checkbox && (
                 <CheckboxAccordion
                   title={filter.title}
@@ -215,7 +225,6 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   liClassName={liClassName}
                   counts={counts}
                   activecheckcategory={activecheckcategory}
-
                 />
               )}
             </div>
@@ -227,5 +236,3 @@ const PlpAccordians: React.FC<SidebarProps> = ({
 };
 
 export default PlpAccordians;
-
-
