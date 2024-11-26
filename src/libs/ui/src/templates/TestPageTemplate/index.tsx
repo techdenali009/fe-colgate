@@ -46,8 +46,8 @@ import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
+import QuantityButton from '@ui/atoms/QuantityButton';
 import AdminLayout from '@ui/molecules/AdminPannelLayout';
-
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -128,13 +128,14 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
   );
+  console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
-      <AdminLayout/>
+    <AdminLayout/>
+      <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
-
       <form>
         <div className='flex justify-center mb-4'>
           <PrimaryButton className='font-HeroNewBold'>
@@ -154,10 +155,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </Checkbox>
         </div>
       </form>
-
       <HeaderLabel className='m-4'>Title component</HeaderLabel>
       <SubtitleLabel className='m-4'>Subtitle component</SubtitleLabel>
-
       {/* Filter Dropdown */}
       <div className='m-5'>
         <FilterDropdown
@@ -168,7 +167,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             'Price High to Low',
           ]}
           onSelect={handleSortingSelect}
-        ></FilterDropdown>
+        >
+        </FilterDropdown>
         <FilterDropdown
           options={[
             'Alphabetical A - Z',
@@ -184,7 +184,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </FilterDropdown>
       </div>
-
       {/* Popover buttons */}
       <div className='flex mb-4 space-x-4 justify-center'>
         <div
@@ -221,7 +220,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           )}
         </div>
       </div>
-
       <div className='flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10'>
         <h1 className='text-slate-950 text-3xl mb-5'>Product Prices</h1>
         <p>
@@ -247,13 +245,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <Currency value={price} currency='USD' decimalPlaces={3} />
         </p>
       </div>
-
       <div className='flex'>
         <Sidebar filterData={filterData} />
       </div>
-
       <h1 className='pl-28 pt-16 font-bold'>Business Sidebar</h1>
-
       <div className='pl-24 pt-4'>
         <BusinessSidebar
           categories={coursesData.courseCategories}
@@ -265,7 +260,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </BusinessSidebar>
       </div>
-
       <div className='mb-4'>
         <ProductCard
           name='Stylish Chair'
@@ -274,12 +268,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           className='p-4 border rounded-lg shadow-lg'
         />
       </div>
-
       <div className='mb-4'>
         Rating Component:
         <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
       </div>
-
       <div className='mb-4'>
         <ProductCard
           name='Stylish Chair'
@@ -289,7 +281,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           isBestSeller={true}
         />
       </div>
-
       <div className='mb-4'>
         <AccordionItem
           title='Product Category'
@@ -307,7 +298,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
-
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
@@ -322,7 +312,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <h3>Filter skeleton</h3>
         <FilterSkeleton />
       </div>
-
       <div>
         <PrimaryButton onClick={modalSetToggle}>Login</PrimaryButton>
         {toggle && <LoginModal closeModal={modalSetToggle} />}
@@ -344,11 +333,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
       />
-
       <div className='p-8'>
         <PageTitleHeader breadcrumbs={breadcrumbs}></PageTitleHeader>
       </div>
-
       <div className='flex justify-center mt-10'>
         <BusinessCard
           imageSrc='https://pcaskin.vtexassets.com/arquivos/ids/155951-956-auto/15277-Enhanced-Merchandising--1--1.jpg?v=638307165671830000&width=956&height=auto&aspect=true'
@@ -358,15 +345,12 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           onButtonClick={handleButtonClick}
         />
       </div>
-
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6'>
         <BusinessCardSkeleton />
       </div>
-
       <div>
         <TwoCardsComponent />
       </div>
-
       <div>
         <h3 className='font-semibold mb-4'>Skin Types</h3>
         <div className='flex flex-wrap space-x-2'>
@@ -374,16 +358,13 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
         </div>
       </div>
-
       <div className='p-6'>
         <StarRating totalStars={5} initialRating={4} />
       </div>
-
       <div className='p-4'>
         <h1 className='text-lg font-bold mb-4'>Product Ratings</h1>
         <ReviewRatings ratings={ratings} />
       </div>
-
       <div className='container mx-auto p-4 '>
         <h1>Filter Reviews</h1>
         <div>
@@ -402,7 +383,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             'Thank you for your feedback! We strive to improve our products and appreciate your input. Please reach out if you have any further questions.'
           }
           reviewId={1}
-        ></ResponseCard>
+        >
+        </ResponseCard>
       </div>
       <div>
         <button onClick={openModal}>Open Review Modal</button>
@@ -450,9 +432,50 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             product={products[0]}
           />
         )}
-      </div>
+      </div>{' '}
+    
       <ProductDetailsContentSkeleton />
-      
+      <div >
+        {isLoggedIn ? (
+          isLoggedIn.isVerified ? (
+            <div>
+              <QuantityButton
+                initialQuantity={0}
+                onQuantityChange={() => {
+                  console.log('quqantity updated');
+                }}
+              />
+              <Button
+                className={`py-[0.625rem] px-6
+          w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
+          group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
+          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white  dark:group-hover:text-black  
+        `}
+                type={'submit'}
+              >
+                {'Add To Cart'}
+              </Button>
+            </div>
+          ) : (
+            <div className=''>
+              <div className='text-xs font-bold text-appTheme my-4 '>
+                Must be a verified professional to access wholesale pricing
+              </div>
+            </div>
+          )
+        ) : (
+          <Button
+            className={`py-[0.625rem] px-6
+          w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
+          group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
+          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white  dark:group-hover:text-black  
+        `}
+            type={'submit'}
+          >
+            {' Log In to Order'}
+          </Button>
+        )}
+      </div>
     </>
   );
 };

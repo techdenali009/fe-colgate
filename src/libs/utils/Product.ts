@@ -1,15 +1,15 @@
 export interface ProductType {
-  id: number;
-  name: string;
-  image: string;
-  images?: string[];
-  rating: number;
-  isBestSeller: boolean;
-  description?: string;  
-  features?: string[];
-  reviews?: { stars: number; count: number }[];
-  restrictedmessage?:string;
-}
+    id: string | number;
+    name: string;
+    image: string;
+    rating: number;
+    isBestSeller: boolean;
+    price?: number; 
+    discription?: string;
+    features?: string[];
+    reviews?: { stars: number; count: number }[];
+    restrictedmessage?:string;
+  }
   
 
 export interface ProductDetailsContentProps {
@@ -29,6 +29,7 @@ export interface ProductProps {
   className?:string;
   openQuickView: (id: number) => void;
   showQuickView :boolean;
+  footerContent?: React.ReactNode
 }
 
 export interface RelatedProductsProps{

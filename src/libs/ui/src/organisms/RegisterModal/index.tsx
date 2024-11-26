@@ -52,7 +52,7 @@ const RegisterForm: React.FC = () => {
 
   const navigate = useNavigate();
   const onSubmit = async (data: FormValues) => {
-    console.log('Registering:', data.firstName);
+  
     const { email, password, firstName, lastName } = data;
 
     const userData = { email, password, firstName, lastName };

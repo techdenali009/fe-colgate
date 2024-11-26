@@ -8,18 +8,20 @@ import { useState } from 'react';
 
 import { ProductType } from '@utils/Product';
 
-import QuickViewModal from '@ui/organisms/QuickView';
+
 import { RootState } from '@store/store';
 import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
 import RecentlyViewedProducts from '@ui/organisms/RecentlyViewedProducts';
 import { RecentProduct as products } from '@utils/test';
 import LoginModal from '@ui/organisms/LoginModal';
 
-import { useProductContext } from 'src/libs/ui/src/contexts/PlpContext';
+
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
-import {  SortOptions } from '@utils/plpFilterData';
+import { SortOptions } from '@utils/plpFilterData';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useProductContext } from '../../../../contexts/PlpContext';
+
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,23 +34,24 @@ const PlpPageTemplate: React.FC = () => {
     filters,
     setFilters,
     filteredProducts,
-    productsToShow,
     loadMoreProducts,
     setSelectedSortOption,
     breadcrumbs,
     enableBestSeller,
-    // eslint-disable-next-line no-empty-pattern
-    sortedProducts: [] } = useProductContext();
+    hasMore,
+    totalProducts
+  } = useProductContext();
 
-  
+
   const [, setIsBestSellerState] = useState<boolean>(false);
-  const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
+  const [QuickViewModalOpen] = useState(false);
+
+  const [selectedProduct] = useState<ProductType | null>(null);
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
 
+
   const isLoggedIn = Boolean(userInfo);
-  // Close the QuickView modal
-  const closeQuickViewModal = () => setQuickViewModalOpen(false);
+
   const [toggle, SetToggle] = useState(false);
   // Update URL params when a category is selected
 
@@ -93,33 +96,32 @@ const PlpPageTemplate: React.FC = () => {
     }
   };
 
-
-
   // Handle sorting options change
   const handleSortChange = (option: string) => {
     setSelectedSortOption(option);
   };
 
   // Open the Quick View modal with a selected product
-  const openQuickReviewModal = async (id: number) => {
-    // Find the product by ID
-    const product = filteredProducts.find(p => p.id === id);
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+  const openQuickReviewModal = async (_id: string) => {
 
-    // Ensure the product exists and set it only if it's a new product
-    if (product && selectedProduct?.id !== product.id) {
-      setSelectedProduct(product);
-      setQuickViewModalOpen(true);
-    }
   };
   const modalSetToggle = () => {
     SetToggle(!toggle)
   }
+  const handleClearAll = () => {
+    setFilters([]); // Clear all filters.
+    navigate('/products'); // Redirect to the /products page.
+  };
+
 
   return (
+
     <div className="relative pr-2 pl-2">
       <div className="!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1">
         <PageTitleHeader className='!text-xs !leading-4 text-tertiary-400 font-HeroNewBold tm:text-[2.375rem]' breadcrumbs={breadcrumbs} />
       </div>
+
       <div className="tm:block flex gap-[23px] py-0 xl:px-14 mt-5 mb-32 tm:pl-6 tm:pr-6 tl:px-5">
         <div className="relative tm:px-0 pl-[18px] pr-[18px]">
           <PlpAccordians
@@ -135,8 +137,9 @@ const PlpPageTemplate: React.FC = () => {
           <div className='relative flex items-baseline justify-between'>
             <PlpFilterContainer
               filters={filters}
-              onRemoveFilter={(filterToRemove) => setFilters(filters.filter((filter: string) => filter !== filterToRemove))}
-              onClearAll={() => setFilters([])}
+              onRemoveFilter={(filterToRemove) =>
+                setFilters(filters.filter((filter: string) => filter !== filterToRemove))}
+              onClearAll={handleClearAll} // Use the enhanced function.
             />
             <div className='flex gap-8 items-baseline pr-12 pl-12 tm:pr-0 tm:pl-0 tm:absolute'>
               <div className="flex gap-1"> {filteredProducts.length} <p>products</p></div>
@@ -154,25 +157,25 @@ const PlpPageTemplate: React.FC = () => {
             </div>
           </div>
 
-          <div className="productcard tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
+          <div className="tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
             {filteredProducts
-              .map((product, index) => {
-                if (index < productsToShow) {
-                  return (
-                    <Product
-                      key={`${product.id}-${product.name}`}
-                      product={product}
-                      modalSetToggle={() => dispatch(toggleLoginModel())}
-                      openQuickView={() => openQuickReviewModal(product.id)}
-                      showQuickView={isLoggedIn}
-                    />
-                  );
-                }
-                return null;
-              })}
+              .map((product) => (<Product
+                key={`${product._id}-${product.name}`}
+                product={{
+                  id: product._id,
+                  name: product.name,
+                  image: product?.images?.length > 0 ? product.images[0]?.url : '',
+                  rating: product?.rating || 0,
+                  price: product?.price,
+                  isBestSeller: product?.isBestSeller || false
+                }}
+                modalSetToggle={() => dispatch(toggleLoginModel())}
+                openQuickView={() => openQuickReviewModal(product._id)}
+                showQuickView={isLoggedIn}
+              />))}
           </div>
 
-          {productsToShow < filteredProducts.length && (
+          {hasMore && (
             <div className="text-center mt-5">
               <ButtonWithText
                 onClick={loadMoreProducts}
@@ -183,7 +186,7 @@ const PlpPageTemplate: React.FC = () => {
           )}
           <div className="text-center mt-4">
             {filteredProducts.length > 0
-              ? `Viewing ${Math.min(productsToShow, filteredProducts.length)} out of ${filteredProducts.length} products`
+              ? `Viewing ${filteredProducts.length} out of ${totalProducts} products`
               : 'No products found for this category.'}
           </div>
 
@@ -195,16 +198,14 @@ const PlpPageTemplate: React.FC = () => {
           {products.length === 0 ? (
             <PopularProductSkeleton />
           ) : (
+            // <></>
             <RecentlyViewedProducts products={products} modalSetToggle={modalSetToggle} />
           )}
         </div>
       </div>
       {toggle && <LoginModal closeModal={modalSetToggle} />}
       {QuickViewModalOpen && selectedProduct && (
-        <QuickViewModal
-          closeModal={closeQuickViewModal}
-          product={selectedProduct} 
-        />
+        <></>
       )}
     </div>
   );

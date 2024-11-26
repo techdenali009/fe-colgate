@@ -6,12 +6,14 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; 
 import { combineReducers } from 'redux';
 import { UserApi } from './services/Endpoints/UserApi';
+import { PlpProductsEndpoints } from './services/Endpoints/PlpProductsEndPoint';
 
 
 const rootReducer = combineReducers({
   modal: ModalSlice,
   authSlice: authSlice,
   [AuthApi.reducerPath]: AuthApi.reducer,
+  [PlpProductsEndpoints.reducerPath]: PlpProductsEndpoints.reducer,
   [UserApi.reducerPath]: UserApi.reducer, 
 });
 
