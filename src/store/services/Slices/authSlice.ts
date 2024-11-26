@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ReactNode } from 'react';
 
 interface UserInfo {
+  customerId: ReactNode;
+  mobileNumber: string;
   _id: string;
   email: string;
   firstName: string;
@@ -9,7 +12,7 @@ interface UserInfo {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
-  isVerified:boolean;
+  isVerified?:boolean;
 }
 
 interface LoginState {
@@ -30,6 +33,9 @@ const authSlice = createSlice({
     userInfo: (state, action: PayloadAction<UserInfo>) => {
       state.userInfo = action.payload; 
     },
+    updateUserProfile: (state, action: PayloadAction<UserInfo>) => {
+      state.userInfo = action.payload;
+    },
     setAuthToken:(state, action:PayloadAction<string>)=>{
       state.authToken = action.payload
     },
@@ -41,5 +47,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { userInfo, logout ,setAuthToken} = authSlice.actions;
+export const { userInfo, logout ,setAuthToken, updateUserProfile} = authSlice.actions;
 export default authSlice.reducer;

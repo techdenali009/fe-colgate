@@ -1,151 +1,342 @@
-import React, { useState } from 'react';
-import Paragraph from '@ui/atoms/Paragraph/paragraph';
+import React, { useEffect, useState } from 'react';
 import { ButtonWithTextAndIcon } from '../ButtonWithTextAndIcon';
+import { showSuccessToast } from '@utils/toastUtils';
+import { Label } from '@ui/atoms/Label';
+import { Controller, useForm } from 'react-hook-form';
+import { InputField } from '../FormField';
+import { ValidationForm } from '@utils/Login';
+import { Paragraph } from '../Paragraph';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '@store/store'; // Import RootState to access the redux store state
+import { updateUserProfile } from '@store/services/Slices/authSlice';
+// Import your action for updating the user profile
 
-interface Field {
-    label: string;
-    value: string;
-    editable?: boolean; // Add editable property
-    isMobileNumber?: boolean;
-    className?: string;
+interface FormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: string;
+  customerId: string;
 }
 
 interface PersonalProfileFieldsProps {
-    className?: string;
-    labelclassName?: string;
-    paraclassName?: string;
-    fields: Field[];
+  className?: string;
 }
 
-const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({
-  fields,
-  className,
-  paraclassName,
-  labelclassName,
-}) => {
-  // State to manage fields and edit mode
+const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className }) => {
+  const dispatch = useDispatch(); // Use dispatch to send actions to Redux
+  const {
+    control,
+   
+    formState: { errors},
+    handleSubmit,
+    setValue, // Allows you to manually set form values
+    getValues,
+  } = useForm<FormValues>({
+    mode: 'onBlur',
+    defaultValues: {
+      email: '', // Default values will be populated from Redux
+      customerId: '',
+      firstName: '',
+      lastName: '',
+      mobileNumber: '',
+    },
+  });
+
+  const [isFieldChanged, setIsFieldChanged] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [updatedFields, setUpdatedFields] = useState(fields);
-  const [fieldErrors, setFieldErrors] = useState<string[]>([]);
-  const [isFieldChanged, setIsFieldChanged] = useState(false); // Track if any field is changed
-  const [hasInitialEditStarted, setHasInitialEditStarted] = useState(false); // Track initial edit state
-
-  // Handle change in the input field
-  const handleFieldChange = (index: number, value: string) => {
-    const updated = [...updatedFields];
-    updated[index].value = value;
-    // Validate only if isMobileNumber is true
-    if (updated[index].isMobileNumber) {
-      if (!/^\d{10}$/.test(value)) {
-        const errors = [...fieldErrors];
-        errors[index] = 'Mobile Phone Number is invalid';
-        setFieldErrors(errors);
-      } else {
-        const errors = [...fieldErrors];
-        errors[index] = ''; // Clear the error
-        setFieldErrors(errors);
-      }
-    } else {
-      // Clear any previous error for non-mobile fields
-      const errors = [...fieldErrors];
-      errors[index] = '';
-      setFieldErrors(errors);
+  const [hasInitialEditStarted, setHasInitialEditStarted] = useState(false);
+  // Fetching user info from the redux store
+  const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
+  const isLoggedIn = userInfo && userInfo.email;
+  
+  useEffect(() => {
+    if (isLoggedIn) {
+      // Set the form fields from the redux store when user info is loaded
+      setValue('email', userInfo.email ?? '');
+      setValue('customerId', userInfo._id ?? '');
+      setValue('firstName', userInfo.firstName ?? '');
+      setValue('lastName', userInfo.lastName ?? '');
+      setValue('mobileNumber', userInfo.mobileNumber ?? '');
     }
-    setUpdatedFields(updated);
-    setIsFieldChanged(true);
-  };
+  }, [isLoggedIn, userInfo, setValue]); // Only run when user info or login status changes
 
-  // Toggle between view and edit mode
+  
+
+
   const toggleEditMode = () => {
-    if (!isEditMode) {
-      console.log('Fields before editing:', updatedFields);
-      setHasInitialEditStarted(true); // Enable "inactive" Save button
-    }
+   
+    setHasInitialEditStarted(true);
+   
     setIsEditMode(!isEditMode);
-    setIsFieldChanged(false); // Reset field changed status when switching to view mode
+    setIsFieldChanged(false);
+    if (isEditMode) setIsFieldChanged(false);
   };
 
-  // Handle close button click
-  const handleCloseEditMode = () => {
+  const handleSaveChanges = (data: FormValues) => {
+    if (!userInfo) return;
+    const userData = {
+      ...data,
+      _id: userInfo._id, // Add any missing fields
+      status: userInfo.status,
+      isActive: userInfo.isActive,
+      createdAt: userInfo.createdAt,
+      updatedAt: new Date().toISOString(),
+    };
+    // Dispatch the action to update the profile in Redux
+    dispatch(updateUserProfile(userData));
+
+    showSuccessToast('Profile updated successfully', 'top-right');
+    setIsFieldChanged(false);
     setIsEditMode(false);
-    setIsFieldChanged(false); // Reset field change status when closing edit mode
   };
 
-  // Log data when saving the changes
-  const handleSaveChanges = () => {
-    console.log('Fields after editing:', updatedFields);
-    setIsFieldChanged(false); // Disable save button after saving
-    setHasInitialEditStarted(false); // Reset initial edit state
-  };
+  useEffect(() => {
+    const isChanged =
+      userInfo &&
+      (userInfo.email !== getValues('email') ||
+        userInfo._id !== getValues('customerId') ||
+        userInfo.firstName !== getValues('firstName') ||
+        userInfo.lastName !== getValues('lastName') ||
+        userInfo.mobileNumber !== getValues('mobileNumber'));
+  
+    setIsFieldChanged(Boolean(isChanged));
+  },  [getValues, userInfo]);
+  
 
   return (
     <div>
-      <div className={`lg:grid-cols-2 grid lg:pt-8 gap-6 ${className}`}>
-        {updatedFields.map((field, index) => (
-          <div className={`email-wrapper ${isEditMode ? 'border-0' : ''} `} key={index}>
-            <Paragraph
-              className={`font-normal text-rgb(85 85 85 / var(--tw-bg-opacity)) leading-6 text-sm capitalize ${labelclassName}`}
-            >
-              {field.label}
-            </Paragraph>
-
-            {isEditMode && field.editable ? (
-              <>
-                <input
-                  type="text"
-                  value={field.value}
-                  onChange={(e) => handleFieldChange(index, e.target.value)}
-                  className={`font-normal leading-6 p-2 border  ${
-                    fieldErrors[index] ? 'border-red-500' : 'border-neutral-400'
-                  } bg-appInputFieldColor w-[100%] `}
-                               
-                />
-                {fieldErrors[index] && (
-                  <span className="text-red-500 text-[16px] font-HeroNewBold ">{fieldErrors[index]}</span>
-                )}
-              </>
+      <form >
+        <div className={`lg:grid-cols-2 grid lg:pt-8 gap-6 ${className}`}>
+          {/* Email */}
+          <div className="mb-2 inline-grid text-start">
+            <div className="flex text-xs font-heroNewLight">
+              <Label className="text-xs font-HeroNewRegular">Email</Label>
+            </div>
+            {!isEditMode ? (
+              <p className="py-2  mt-1 text-base text-black border-[1px] border-transparent bg-transparent">
+                {isLoggedIn ? userInfo.email : ''}
+              </p>
             ) : (
-              <Paragraph className={`font-normal leading-6 ${paraclassName}`}>
-                {field.value}
-              </Paragraph>
+              <Controller
+                name="email"
+                control={control}
+                rules={{
+                  required: ValidationForm.Required,
+                  pattern: {
+                    value: ValidationForm.EmailValidationRule,
+                    message: ValidationForm.EmailRuleFailed,
+                  },
+                }}
+                render={({ field }) => (
+                  <InputField
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    {...field}
+                    className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
+                    ${errors.email ? 'border-formFieldBorder' : 'border-black'}
+                    ${isEditMode ? 'border-black' : 'border-transparent'}`}
+                    disabled={!isEditMode || !isFieldChanged}
+                  />
+                )}
+              />
             )}
+            {errors.email && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.email.message}</span>}
           </div>
-        ))}
-      </div>
 
-      <div className="request-info-update-wrapper">
-        <div className={`w-full mt-8 bg-[#e6e7eb] ${className}`}>
-          <div className="w-full p-8 lg:w-[672px]">
-            <Paragraph className={`mb-6 ${paraclassName}`}>
-                            Need to make changes to your information shown above? Submit a request form and our customer service team will make the changes.
-            </Paragraph>
-
-            <ButtonWithTextAndIcon
-              onClick={() => {
-                if (isEditMode) {
-                  handleSaveChanges(); // Log the updated data when saving
-                }
-                toggleEditMode();
-              }}
-              className={`${isEditMode
-                ? isFieldChanged
-                  ? '!bg-appTheme text-white'
-                  : 'bg-[#9a9998] text-white'
-                : '!bg-appTheme text-white'
-              } !border-none hover:!bg-black hover:!border-none font-HeroNewBold   ${isEditMode ? 'w-[140px] h-[48px]' : ''} `}
-              disabled={!isFieldChanged && isEditMode && hasInitialEditStarted} // Disable the button if no field is changed in edit mode
-            >
-              {isEditMode ? 'Save Changes' : 'Request Information Update'}
-            </ButtonWithTextAndIcon>
-            {/* Close button, visible only in edit mode */}
-            {isEditMode && (
-              <ButtonWithTextAndIcon
-                onClick={handleCloseEditMode}
-                className="ml-4 w-[144px] h-[48px] border-none !bg-appTheme text-white hover:!bg-black hover:!border-none font-HeroNewBold"
-              >
-                                Close
-              </ButtonWithTextAndIcon>
+          {/* Customer ID */}
+          <div className="mb-2 inline-grid text-start">
+            <div className="flex text-xs font-heroNewLight">
+              <Label className="text-xs font-HeroNewRegular">Customer Number</Label>
+            </div>
+            {!isEditMode ? (
+              <p className="py-2  mt-1 text-base text-black border-[1px] border-transparent bg-transparent">
+                {isLoggedIn ? userInfo._id : ''}
+              </p>
+            ) : (
+              <Controller
+                name="customerId"
+                control={control}
+                rules={{
+                  required: 'Customer ID is required.',
+                  pattern: {
+                    value: /^[A-Za-z0-9]+$/,
+                    message: 'Customer ID must be alphanumeric.',
+                  },
+                  minLength: {
+                    value: 5,
+                    message: 'Customer ID must be at least 5 characters long.',
+                  },
+                  maxLength: {
+                    value: 40,
+                    message: 'Customer ID must not exceed 20 characters.',
+                  },
+                }}
+                render={({ field }) => (
+                  <InputField
+                    type="text"
+                    id="customerId"
+                    placeholder="Customer ID *"
+                    {...field}
+                    className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
+                    ${errors.customerId ? 'border-formFieldBorder' : 'border-black'} 
+                    ${isEditMode ? 'border-black' : 'border-transparent px-0'}`}
+                    disabled={!isEditMode || !isFieldChanged}
+                  />
+                )}
+              />
             )}
+            {errors.customerId && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.customerId.message}</span>}
+          </div>
+
+          {/* First Name */}
+          <div className="mb-2 inline-grid text-start">
+            <div className="flex text-xs font-heroNewLight">
+              <Label className="text-xs font-HeroNewRegular">First Name</Label>
+            </div>
+            {!isEditMode ? (
+              <p className="py-2  mt-1 text-base text-black border-[1px] border-transparent bg-transparent">
+                {isLoggedIn ? userInfo.firstName : ''}
+              </p>
+            ) : (
+              <Controller
+                name="firstName"
+                control={control}
+                rules={{ required: ValidationForm.Required }}
+                render={({ field }) => (
+                  <InputField
+                    type="text"
+                    id="firstName"
+                    placeholder="First Name *"
+                    {...field}
+                    className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
+                    ${errors.firstName ? 'border-formFieldBorder' : 'border-black'} 
+                    ${isEditMode ? 'border-black' : 'border-transparent'}`}
+                    disabled={!isEditMode}
+                  />
+                )}
+              />
+            )}
+            {errors.firstName && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.firstName.message}</span>}
+          </div>
+
+          {/* Last Name */}
+          <div className="mb-2 inline-grid text-start">
+            <div className="flex text-xs font-heroNewLight">
+              <Label className="text-xs font-HeroNewRegular">Last Name</Label>
+            </div>
+            {!isEditMode ? (
+              <p className="py-2  mt-1 text-base text-black border-[1px] border-transparent bg-transparent">
+                {isLoggedIn ? userInfo.lastName : ''}
+              </p>
+            ) : (
+              <Controller
+                name="lastName"
+                control={control}
+                rules={{ required: ValidationForm.Required }}
+                render={({ field }) => (
+                  <InputField
+                    type="text"
+                    id="lastName"
+                    placeholder="Last Name *"
+                    {...field}
+                    className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
+                    ${errors.lastName ? 'border-formFieldBorder' : 'border-black'} 
+                    ${isEditMode ? 'border-black' : 'border-transparent'}`}
+                    disabled={!isEditMode}
+                  />
+                )}
+              />
+            )}
+            {errors.lastName && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.lastName.message}</span>}
+          </div>
+
+          {/* Mobile Phone Number */}
+          <div className="mb-2 inline-grid text-start">
+            <div className="flex text-xs font-heroNewLight">
+              <Label className="text-xs font-HeroNewRegular">Mobile Phone Number</Label>
+            </div>
+            {!isEditMode ? (
+              <p className="py-2  mt-1 text-base text-black border-[1px] border-transparent bg-transparent">
+                {isLoggedIn ? userInfo.mobileNumber : ''}
+              </p>
+            ) : (
+              <Controller
+                name="mobileNumber"
+                control={control}
+                rules={{
+                  required: 'Mobile number is required.',
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: 'Mobile number must be numeric.',
+                  },
+                  minLength: {
+                    value: 10,
+                    message: 'Mobile number must be at least 10 digits long.',
+                  },
+                }}
+                render={({ field }) => (
+                  <InputField
+                    type="text"
+                    id="mobileNumber"
+                    placeholder="Mobile Number"
+                    {...field}
+                    className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
+                    ${errors.mobileNumber ? 'border-formFieldBorder' : 'border-black'} 
+                    ${isEditMode ? 'border-black' : 'border-transparent'}`}
+                    disabled={!isEditMode}
+                  />
+                )}
+              />
+            )}
+            {errors.mobileNumber && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.mobileNumber.message}</span>}
+          </div>
+        </div>
+      </form>
+      {/* Button to toggle edit mode and save changes */}
+      {/* Toggle Edit Mode Button */}
+      <div className="mb-2">
+        <div className="request-info-update-wrapper">
+          <div className={`w-full mt-8 bg-[#e6e7eb] ${className}`}>
+            <div className="w-full p-8 lg:w-[672px]">
+              <Paragraph className={`mb-6 ${className}`}>
+                Need to make changes to your information shown above? Submit a request form and our customer service team
+                will make the changes.
+              </Paragraph>
+
+              <ButtonWithTextAndIcon
+                onClick={handleSubmit((data) => {
+                  if (isEditMode) {
+                    handleSaveChanges(data); // Pass form data to the function
+                  }
+                  toggleEditMode();
+                })}
+                className={`${isEditMode
+                  ? isFieldChanged
+                    ? '!bg-appTheme text-white'
+                    : '!bg-[#9a9998] text-white'
+                  : '!bg-appTheme text-white'
+                } !border-none hover:!bg-black hover:!border-none font-HeroNewBold   ${isEditMode ? 'w-[140px] h-[48px]' : ''}`}
+                disabled={!isFieldChanged && isEditMode && hasInitialEditStarted}
+              >
+                {isEditMode ? 'Save Request' : 'Request Information Update'}
+              </ButtonWithTextAndIcon>
+
+              {isEditMode && (
+                <ButtonWithTextAndIcon
+                  onClick={handleSubmit((data) => {
+                    if (isEditMode) {
+                      handleSaveChanges(data); // Pass form data to the function
+                    }
+                    toggleEditMode();
+                  })}
+                  className="ml-4 w-[144px] h-[48px] border-none !bg-appTheme text-white hover:!bg-black hover:!border-none font-HeroNewBold"
+                >
+                  Close
+                </ButtonWithTextAndIcon>
+              )}
+            </div>
           </div>
         </div>
       </div>
