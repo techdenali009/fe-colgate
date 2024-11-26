@@ -5,31 +5,31 @@ import StarRating from '@ui/atoms/StarRating';
 import BestSellerBadge from '@ui/molecules/BestSeller';
 import QuickViewButton from '@ui/molecules/QuickViewButton';
 import { ProductProps } from '@utils/Product';
-import { useSelector } from 'react-redux';
-import { RootState } from '@store/store';
-
 import FavoriteButton from '@ui/atoms/ProductDetailsPageFavoriteButton';
 
 function Product({
-  product,
+  id,
+  name,
+  images,
+  isBestSeller,
+  rating,
   modalSetToggle,
   className,
   openQuickView,
   showQuickView,
   footerContent,
+  isLoggedIn
 }: ProductProps) {
-  const { image, name, isBestSeller, rating, id } = product;
+
   const navigate = useNavigate();
-  const handaleClick = (id: number) => {
+  const handaleClick = (id: string | undefined) => {
     navigate(`/products/${id}/${name}`);
   };
-  const isLoggedIn = useSelector(
-    (state: RootState) => state.authSlice.userInfo
-  );
+ 
   return (
     <div className={'group relative p-2 bg-white dark:bg-appdarkcolor'}>
       <div>
-        <ProductImage src={image} alt={name} className="h-[305px]" />
+        <ProductImage src={images} alt={name} className="h-[305px]" />
         {showQuickView && <QuickViewButton onClick={() => openQuickView(id)} />}
         {isBestSeller && (
           <BestSellerBadge

@@ -1,8 +1,10 @@
+import { UserInfo } from "@store/services/Slices/authSlice";
+
 export interface ProductType {
-  id: number;
+  id: string | undefined;
   name: string;
   image: string;
-  images?: string[];
+  images?: {url:string}[];
   rating: number;
   isBestSeller: boolean;
   description?: string;  
@@ -13,7 +15,7 @@ export interface ProductType {
   
 
 export interface ProductDetailsContentProps {
-  id: string | undefined;
+  id: string | undefined  ;
   name: string ;
   images: string[];
   description: string;
@@ -24,23 +26,42 @@ export interface ProductDetailsContentProps {
 }
 
 export interface ProductProps {
-  product: ProductType;
+  id: string | undefined   ;
+  name: string;
+  images: string;
+  isBestSeller: boolean;
+  rating: number;
   modalSetToggle: () => void;
   className?:string;
-  openQuickView: (id: number) => void;
+  openQuickView: (id: string | undefined) => void;
   showQuickView :boolean;
   footerContent?: React.ReactNode
+  isLoggedIn ?:  UserInfo | null ;
+  
 }
 
 export interface RelatedProductsProps{
   relatedProducts: ProductType[];
   className:string
 }
-
 export interface PopularProductsProps {
-  products: ProductType[];
+  products: {
+   
+    data: {
+     
+      products: ProductType[];
+    };
+  };
   modalSetToggle: () => void;
+ 
+  onNextPage: () => void;
+  hasMore: boolean;
+ 
 }
+ export interface RecentlyViewedProductsProps{
+  products: ProductType[]; // Array of product objects
+  modalSetToggle: () => void; // Function to toggle the modal
+ }
 export interface ProductHeaderProps {
   handleScroll: (direction: 'left' | 'right') => void;
   headingLabel: string; // For the heading text

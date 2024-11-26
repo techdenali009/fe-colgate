@@ -6,19 +6,20 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; 
 import { combineReducers } from 'redux';
 import { UserApi } from './services/Endpoints/UserApi';
-
+import { ProductsApi } from './services/Endpoints/ProductEndPoint';
 
 const rootReducer = combineReducers({
   modal: ModalSlice,
   authSlice: authSlice,
   [AuthApi.reducerPath]: AuthApi.reducer,
   [UserApi.reducerPath]: UserApi.reducer, 
+  [ProductsApi.reducerPath]:ProductsApi.reducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage, 
-  blacklist: [AuthApi.reducerPath, UserApi.reducerPath], 
+  blacklist: [AuthApi.reducerPath, UserApi.reducerPath,ProductsApi.reducerPath], 
   
 };
 
@@ -30,7 +31,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false, 
-    }).concat(AuthApi.middleware, UserApi.middleware),
+    }).concat(AuthApi.middleware, UserApi.middleware,ProductsApi.middleware),
 });
 
 export const persistor = persistStore(store);
