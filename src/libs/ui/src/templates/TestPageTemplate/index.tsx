@@ -46,6 +46,7 @@ import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
+import AdminLayout from '@ui/molecules/AdminPannelLayout';
 
 interface ISearchbar {
   submitLabel: string;
@@ -129,6 +130,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   );
   return (
     <>
+      <AdminLayout/>
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
@@ -450,6 +452,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         )}
       </div>
       <ProductDetailsContentSkeleton />
+      
     </>
   );
 };
