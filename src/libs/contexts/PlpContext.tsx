@@ -1,8 +1,15 @@
-import React, { createContext, useContext, useState, ReactNode, useMemo, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useMemo,
+  useEffect,
+} from 'react';
 import { useLocation } from 'react-router-dom';
-// Adjust the import as necessary
 import { useLazyGetProductsQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
 import { getSortOption } from '@utils/appFunctions';
+
 
 // Define the Product interface
 interface Product {
@@ -39,9 +46,10 @@ interface ProductContextType {
   setSelectedSortOption: (option: string) => void;
   breadcrumbs: { label: string; href: string }[];
   enableBestSeller: boolean;
-  hasMore:boolean;
-  totalProducts:number;
-
+  hasMore: boolean;
+  totalProducts: number;
+  isLoading: boolean,
+  isProductLoading: boolean
 }
 
 // Create the context
@@ -59,93 +67,95 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [hasMore, setHasMore] = useState(false);
   const [totalProducts, SettotalProducts] = useState(0);
   const location = useLocation();
-
-  // Trigger the lazy query to fetch products
-  const [triggerGetProducts, { isLoading, error }] = useLazyGetProductsQuery();
-
-  
+  const [isProductLoading, setProductloading] = useState<boolean>(true);
+  const [triggerGetProducts, { isLoading }] = useLazyGetProductsQuery();
 
   const loadMoreProducts = () => {
-    setPage(page+1)
+    setPage((prev) => prev + 1);
   };
 
   // Define breadcrumbs
-  const breadcrumbs = useMemo(() => [
-    { label: 'Home', href: '/' },
-    { label: 'All Products', href: '/products' },
-    ...(selectedProductCategory !== 'All Products'
-      ? [{ label: selectedProductCategory, href: '#' }]
-      : []),
-  ], [selectedProductCategory]);
-
-
+  const breadcrumbs = useMemo(
+    () => [
+      { label: 'Home', href: '/' },
+      { label: 'All Products', href: '/products' },
+      ...(selectedProductCategory !== 'All Products'
+        ? [{ label: selectedProductCategory, href: '#' }]
+        : []),
+    ],
+    [selectedProductCategory]
+  );
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const categoryParam = urlParams.get('category') || 'All Products';
     const filtersParam = Array.from(urlParams.entries()).filter(([key]) => key !== 'category');
     const allFilters = filtersParam.map(([, value]) => value);
-    console.log('filtersParam', filtersParam)
+
+
     setSelectedProductCategory(categoryParam);
     setFilters(allFilters);
 
-    if (categoryParam === 'All Products' || categoryParam === 'Best Seller') {
-      setEnableBestSeller(true);
-    } else {
-      setEnableBestSeller(false);
-    }
-    SetAllProducts([])
+    setEnableBestSeller(categoryParam === 'All Products' || categoryParam === 'Best Seller');
+    SetAllProducts([]); // Clear products when category changes
+    setPage(1); // Reset page when filters or category change
   }, [location]);
 
-  useEffect(() => {
+  const allFilters = useMemo(() => {
     const urlParams = new URLSearchParams(location.search);
-
     const filtersParam = Array.from(urlParams.entries());
+    const sortBy = getSortOption(selectedSortOption);
+    const queryString = filtersParam
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+    return `${queryString}&sortBy=${sortBy}&page=${page}&limit=10`;
+  }, [filters, selectedSortOption, page, location.search]);
 
-    const sortBy = getSortOption(selectedSortOption)
-
-    let allFilters = filtersParam.reduce((acc, curr) => {
-      const hasValue = !!acc;
-      const queryString = `${hasValue ? '&' : ''}${curr[0]}=${curr[1]}`
-      return `${acc}${queryString}`;
-    }, '');
-    allFilters = `${allFilters}&sortBy=${sortBy}&page=${page}&limit=10`;
-
+  useEffect(() => {
     const getProducts = async () => {
       try {
+        setProductloading(true);
         const productsData = await triggerGetProducts(allFilters).unwrap();
-        const { products, hasMore , totalCount} = productsData;
-        console.log('products', products);
-        SetAllProducts([...allProducts, ...products]);
-        setHasMore(hasMore);
-        SettotalProducts(totalCount)
+        if (productsData) {
+          const { products, hasMore, totalCount } = productsData;
+          SetAllProducts((prev) => [...prev, ...products]); // Append new products
+          setHasMore(hasMore);
+          SettotalProducts(totalCount);
+          setProductloading(false);
+
+        }
       } catch (err) {
-        console.log('err',err);
+        console.error('Error fetching products:', err);
+
       }
-    }
+    };
+
     getProducts();
-  }, [filters, selectedSortOption, page])
-
-
+  }, [allFilters, triggerGetProducts]); // Make sure triggerGetProducts is included in dependencies
 
   return (
-    <ProductContext.Provider value={{
-      selectedProductCategory,
-      setSelectedProductCategory,
-      isBestSeller,
-      setIsBestSeller,
-      filters,
-      setFilters,
-      filteredProducts: allProducts,
-      loadMoreProducts,
-      selectedSortOption,
-      setSelectedSortOption,
-      breadcrumbs,
-      enableBestSeller,
-      hasMore,
-      totalProducts
-    }}>
-      {isLoading ? <div>Loading...</div> : error ? <div>Error loading products</div> : children}
+    <ProductContext.Provider
+      value={{
+        selectedProductCategory,
+        setSelectedProductCategory,
+        isBestSeller,
+        setIsBestSeller,
+        filters,
+        setFilters,
+        filteredProducts: allProducts,
+        loadMoreProducts,
+        selectedSortOption,
+        setSelectedSortOption,
+        breadcrumbs,
+        enableBestSeller,
+        hasMore,
+        totalProducts,
+        isLoading,
+        isProductLoading
+      }}
+    >
+
+      {children}
     </ProductContext.Provider>
   );
 };

@@ -49,6 +49,7 @@ import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSk
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -479,6 +480,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       
       </div>
       <PlpPageSkeleton/>
+      
     </>
   );
 };
