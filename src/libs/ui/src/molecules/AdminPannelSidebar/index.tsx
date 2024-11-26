@@ -46,12 +46,11 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
 
   return (
     <aside
-      className={`Admin-Pannel bg-white border-r fixed left-0 top-16 h-[calc(100vh-4rem)] transition-all duration-300 z-40
-        ${
-          isSidebarOpen
-            ? 'w-64 translate-x-0'
-            : 'w-64 -translate-x-full lg:w-20 lg:translate-x-0'
-        }`}
+      className={`Admin-Pannel bg-white border-r fixed left-0 top-16 h-[calc(100vh-4rem)] transition-all duration-300 z-40 ${
+        isSidebarOpen
+          ? 'w-64 translate-x-0'
+          : 'w-64 -translate-x-full lg:w-20 lg:translate-x-0'
+      }`}
     >
       <nav className='p-4 flex flex-col h-full'>
         {/* User Profile Section in Sidebar - Only show on mobile/tablet */}
@@ -117,4 +116,5 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     </aside>
   );
 };
+
 export default DesktopSidebar;

@@ -131,7 +131,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
-    <AdminLayout/>
+      <AdminLayout/>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
