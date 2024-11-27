@@ -48,6 +48,8 @@ import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSk
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import AdminLayout from '@ui/organisms/AdminPannelLayout';
+import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -474,7 +476,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             {' Log In to Order'}
           </Button>
         )}
+      
       </div>
+      <PlpPageSkeleton/>
+      
     </>
   );
 };

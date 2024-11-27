@@ -34,7 +34,7 @@ export const makeUrlWithQueryParams = (
       .map(([key, value]) => [key, String(value)]) // Convert values to strings
   ).toString();
 
-  console.log('queryString:', queryString);
+
 
   return queryString ? `${url}?${queryString}` : url;
 };
@@ -50,7 +50,7 @@ export const getSortOption = (currentOption: string) => {
     return 'priceLowToHigh';
   case SortOptions.PRICE_HIGH_LOW:
     return 'priceHighToLow';
-  default :
+  default:
     return 'nameAToZ';
   }
 }

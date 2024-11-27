@@ -32,7 +32,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false, 
-    }).concat(AuthApi.middleware, UserApi.middleware),
+    }).concat(AuthApi.middleware, UserApi.middleware, PlpProductsEndpoints.middleware),
 });
 
 export const persistor = persistStore(store);
