@@ -46,13 +46,13 @@ const RecentOrdersTable: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Delivered':
+    case 'Delivered':
       return 'text-green-600';
-      case 'Pending':
+    case 'Pending':
       return 'text-yellow-600';
-      case 'Processing':
+    case 'Processing':
       return 'text-blue-600';
-      default:
+    default:
       return 'text-gray-600';
     }
   };
