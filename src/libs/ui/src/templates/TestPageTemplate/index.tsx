@@ -48,6 +48,7 @@ import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -132,6 +133,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
+    <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>

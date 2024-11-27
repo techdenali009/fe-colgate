@@ -17,11 +17,13 @@ function Product({
   openQuickView,
   showQuickView,
   footerContent,
+ 
+  
 }: ProductProps) {
   const { image, name, isBestSeller, rating, id } = product;
   const navigate = useNavigate();
   const handaleClick = (id: number) => {
-    navigate(`/products/${id}/${name}`);
+    // navigate(`/products/${id}/${name}`);
   };
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
@@ -86,7 +88,7 @@ function Product({
           {isLoggedIn && (
             <>
               {/* This  is the FavoriteButton  add to favorite */}
-              <FavoriteButton></FavoriteButton>
+              <FavoriteButton productId={id?.toString() || ''} isFav={false} ></FavoriteButton>
               {isLoggedIn.isVerified && (
                 <div className="w-full space-y-2">
 

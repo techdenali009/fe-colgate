@@ -13,7 +13,7 @@ export interface ProductType {
   
 
 export interface ProductDetailsContentProps {
-  id: string | undefined;
+  id: string ;
   name: string ;
   images: string[];
   description: string;
@@ -29,7 +29,8 @@ export interface ProductProps {
   className?:string;
   openQuickView: (id: number) => void;
   showQuickView :boolean;
-  footerContent?: React.ReactNode
+  footerContent?: React.ReactNode,
+  isFav?:boolean
 }
 
 export interface RelatedProductsProps{

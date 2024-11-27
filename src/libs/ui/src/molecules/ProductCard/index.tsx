@@ -11,6 +11,7 @@ interface ProductCardProps {
     isBestSeller?: boolean; 
     imageWidth?: string | number;
     imageHeight?: string | number;
+    productId: string; 
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -21,6 +22,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   imageWidth = '100%',
   imageHeight = 'auto',
   isBestSeller = true,
+  productId
 }) => {
   return (
     <div className={`relative flex flex-col items-center ${className}`}>
@@ -40,6 +42,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         name={name}
         className="mt-2 text-center text-lg font-semibold"
       />
+       <div>Product ID: {productId}</div>
     </div>
   );
 };

@@ -169,6 +169,7 @@ const PlpPageTemplate: React.FC = () => {
                   price: product?.price,
                   isBestSeller: product?.isBestSeller || false
                 }}
+                isFav={userInfo?.favoriteProducts.includes(product._id) || false}
                 modalSetToggle={() => dispatch(toggleLoginModel())}
                 openQuickView={() => openQuickReviewModal(product._id)}
                 showQuickView={isLoggedIn}
