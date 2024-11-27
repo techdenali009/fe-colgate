@@ -47,7 +47,7 @@ import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
-import AdminLayout from '@ui/molecules/AdminPannelLayout';
+import AdminLayout from '@ui/organisms/AdminPannelLayout';
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -131,10 +131,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
-      <AdminLayout/>
+      <AdminLayout />
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
-      <LandingPageSkeleton/>
+      <LandingPageSkeleton />
       <GreetRegister></GreetRegister>
       <form>
         <div className='flex justify-center mb-4'>
@@ -433,9 +433,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           />
         )}
       </div>{' '}
-    
       <ProductDetailsContentSkeleton />
-      <div >
+      <div>
         {isLoggedIn ? (
           isLoggedIn.isVerified ? (
             <div>

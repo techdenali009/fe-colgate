@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Home,
-  Users,
   Settings,
-  BarChart2,
-  Mail,
   UserCircle,
   KeyRound,
   LogOut,
+  UserPlus,
+  Package,
+  ShoppingCart,
+  Box,
+  Star,
 } from 'lucide-react';
 import {
   SidebarProps,
@@ -18,11 +20,15 @@ import {
 const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const isDesktop = window.innerWidth > 1020;
 
+  const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
+
   const menuItems: MenuItem[] = [
     { icon: Home, label: 'Dashboard' },
-    { icon: Users, label: 'Users' },
-    { icon: BarChart2, label: 'Analytics' },
-    { icon: Mail, label: 'Messages' },
+    { icon: UserPlus, label: 'User Management' },
+    { icon: Package, label: 'Product Management' },
+    { icon: ShoppingCart, label: 'Order Management' },
+    { icon: Box, label: 'Inventory Management' },
+    { icon: Star, label: 'Review and Feedback' },
     { icon: Settings, label: 'Settings' },
   ];
 
@@ -44,15 +50,19 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     },
   ];
 
+  const handleMenuClick = (label: string) => {
+    setActiveMenuItem(label);
+  };
+
   return (
     <aside
-      className={`Admin-Pannel bg-white border-r fixed left-0 top-16 h-[calc(100vh-4rem)] transition-all duration-300 z-40 ${
+      className={`Admin-Pannel bg-white border-r w-[300px] fixed left-0 top-16 h-[100%] transition-all duration-300 z-40 ${
         isSidebarOpen
           ? 'w-64 translate-x-0'
           : 'w-64 -translate-x-full lg:w-20 lg:translate-x-0'
       }`}
     >
-      <nav className='p-4 flex flex-col h-full'>
+      <nav className='p-4 flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100'>
         {/* User Profile Section in Sidebar - Only show on mobile/tablet */}
         {!isDesktop && (
           <div className='mb-6 pb-6 border-b'>
@@ -70,7 +80,12 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
               return (
                 <button
                   key={index}
-                  className='w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1'
+                  onClick={() => handleMenuClick(item.label)}
+                  className={`w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1 ${
+                    activeMenuItem === item.label
+                      ? 'bg-appTheme' // Highlight active item
+                      : ''
+                  }`}
                 >
                   <IconComponent size={20} />
                   <span className={`${!isSidebarOpen ? 'lg:hidden' : ''}`}>
@@ -87,7 +102,7 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
                 <button
                   key={index}
                   onClick={option.action}
-                  className='w-full flex items-center gap-3 p-3 text-sm text-gray-700 hover:bg-gray-100 rounded-lg'
+                  className='w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1'
                 >
                   <IconComponent size={18} className='text-gray-500' />
                   {option.label}
@@ -98,20 +113,26 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
         )}
 
         {/* Regular Menu Items */}
-        {menuItems.map((item, index) => {
-          const IconComponent = item.icon;
-          return (
-            <button
-              key={index}
-              className='w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1'
-            >
-              <IconComponent size={20} />
-              <span className={`${!isSidebarOpen ? 'lg:hidden' : ''}`}>
-                {item.label}
-              </span>
-            </button>
-          );
-        })}
+        {isDesktop &&
+          menuItems.map((item, index) => {
+            const IconComponent = item.icon;
+            return (
+              <button
+                key={index}
+                onClick={() => handleMenuClick(item.label)}
+                className={`w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1 ${
+                  activeMenuItem === item.label
+                    ? 'bg-appTheme' // Highlight active item
+                    : ''
+                }`}
+              >
+                <IconComponent size={20} />
+                <span className={`${!isSidebarOpen ? 'lg:hidden' : ''}`}>
+                  {item.label}
+                </span>
+              </button>
+            );
+          })}
       </nav>
     </aside>
   );
