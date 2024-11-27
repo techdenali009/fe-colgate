@@ -1,15 +1,7 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useMemo,
-  useEffect,
-} from 'react';
+import React, { createContext, useContext, useState, ReactNode, useMemo, useEffect, } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLazyGetProductsQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
 import { getSortOption } from '@utils/appFunctions';
-
 
 // Define the Product interface
 interface Product {
@@ -48,30 +40,35 @@ interface ProductContextType {
   enableBestSeller: boolean;
   hasMore: boolean;
   totalProducts: number;
-  isLoading: boolean,
-  isProductLoading: boolean
+  isLoading: boolean;
+  isProductLoading: boolean;
 }
 
 // Create the context
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 // Create a provider component
-export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [selectedProductCategory, setSelectedProductCategory] = useState<string>('All Products');
+export const ProductProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [selectedProductCategory, setSelectedProductCategory] =
+    useState<string>('All Products');
   const [isBestSeller, setIsBestSeller] = useState<boolean>(false);
   const [filters, setFilters] = useState<string[]>([]);
   const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical A - Z');
   const [enableBestSeller, setEnableBestSeller] = useState<boolean>(false);
-  const [allProducts, SetAllProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
-  const [totalProducts, SettotalProducts] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
   const location = useLocation();
-  const [isProductLoading, setProductloading] = useState<boolean>(true);
+  const [isProductLoading, setProductLoading] = useState<boolean>(true);
   const [triggerGetProducts, { isLoading }] = useLazyGetProductsQuery();
 
   const loadMoreProducts = () => {
+
     setPage((prev) => prev + 1);
+    window.scrollTo(0, 0);
   };
 
   // Define breadcrumbs
@@ -89,16 +86,21 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const categoryParam = urlParams.get('category') || 'All Products';
-    const filtersParam = Array.from(urlParams.entries()).filter(([key]) => key !== 'category');
+    const filtersParam = Array.from(urlParams.entries()).filter(
+      ([key]) => key !== 'category'
+    );
     const allFilters = filtersParam.map(([, value]) => value);
-
 
     setSelectedProductCategory(categoryParam);
     setFilters(allFilters);
 
-    setEnableBestSeller(categoryParam === 'All Products' || categoryParam === 'Best Seller');
-    SetAllProducts([]); // Clear products when category changes
-    setPage(1); // Reset page when filters or category change
+    setEnableBestSeller(
+      categoryParam === 'All Products' || categoryParam === 'Best Seller'
+    );
+
+    // Reset products and page on category/filter change
+    setAllProducts([]);
+    setPage(1);
   }, [location]);
 
   const allFilters = useMemo(() => {
@@ -108,31 +110,40 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     const queryString = filtersParam
       .map(([key, value]) => `${key}=${value}`)
       .join('&');
-    return `${queryString}&sortBy=${sortBy}&page=${page}&limit=10`;
+    return `${queryString}&sortBy=${sortBy}&page=${page}&limit=9`;
   }, [filters, selectedSortOption, page, location.search]);
 
   useEffect(() => {
     const getProducts = async () => {
       try {
-        setProductloading(true);
+        setProductLoading(true);
+
+        // Fetch products from API
         const productsData = await triggerGetProducts(allFilters).unwrap();
         if (productsData) {
           const { products, hasMore, totalCount } = productsData;
-          SetAllProducts((prev) => [...prev, ...products]); // Append new products
-          setHasMore(hasMore);
-          SettotalProducts(totalCount);
-          setProductloading(false);
 
+          // Replace products if page is 1 (new filters/sort) or append otherwise
+          setAllProducts((prev) =>
+            page === 1 ? products : [...prev, ...products]
+          );
+
+          setHasMore(hasMore);
+          setTotalProducts(totalCount);
         }
       } catch (err) {
         console.error('Error fetching products:', err);
-
+      } finally {
+        setProductLoading(false);
       }
     };
 
     getProducts();
-  }, [allFilters, triggerGetProducts]); // Make sure triggerGetProducts is included in dependencies
-
+  }, [allFilters, page, triggerGetProducts]);
+  useEffect(() => {
+    setAllProducts([]); // Clear existing products
+    setPage(1); // Reset page to 1
+  }, [selectedSortOption, page]);
   return (
     <ProductContext.Provider
       value={{
@@ -151,10 +162,9 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
         hasMore,
         totalProducts,
         isLoading,
-        isProductLoading
+        isProductLoading,
       }}
     >
-
       {children}
     </ProductContext.Provider>
   );

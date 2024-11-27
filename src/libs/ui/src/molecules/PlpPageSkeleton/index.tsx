@@ -13,7 +13,7 @@ const PlpFilterSkeleton: React.FC = () => (
 
 const PlpHeaderSkeleton: React.FC = () => (
   <div className="animate-pulse mb-8">
-    
+
     <div className="flex justify-between items-center">
       <div className="h-8 w-24 bg-gray-200 rounded-[16.25rem]" />
       <div className="h-10 w-44 bg-gray-200 rounded-[16.25rem]" />
@@ -44,7 +44,7 @@ const PlpPageSkeleton: React.FC = () => (
         <PlpFilterSkeleton />
       </div>
 
-      <div className="w-full">bg-[#e4e6eb]  
+      <div className="w-full">
         <PlpHeaderSkeleton />
 
         <div className="tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
