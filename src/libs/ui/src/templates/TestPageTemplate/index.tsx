@@ -49,6 +49,8 @@ import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSk
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import AddFavouritePage from '@ui/organisms/AddFavouritePage';
+import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
@@ -267,8 +269,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           name="Stylish Chair"
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
-          className="p-4 border rounded-lg shadow-lg"
-        />
+          className="p-4 border rounded-lg shadow-lg" productId={''}        />
       </div>
       <div className="mb-4">
         Rating Component:
@@ -280,8 +281,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
           className="p-4 border rounded-lg shadow-lg"
-          isBestSeller={true}
-        />
+          isBestSeller={true} productId={''}        />
       </div>
       <div className="mb-4">
         <AccordionItem
@@ -477,7 +477,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             {' Log In to Order'}
           </Button>
         )}
+      
       </div>
+      <PlpPageSkeleton/>
+      
     </>
   );
 };
