@@ -179,8 +179,8 @@ const PlpPageTemplate: React.FC = () => {
             </div>
 
             <div className="tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
-              {isProductLoading ? (
-                // Skeleton loader grid
+              {isProductLoading && !hasMore ? (
+                // Skeleton loader grid only appears when initial products are being loaded
                 Array.from({ length: 9 }).map((_, index) => (
                   <PlpProductCardSkeleton key={index} />
                 ))
@@ -205,20 +205,24 @@ const PlpPageTemplate: React.FC = () => {
               )}
             </div>
 
-            {hasMore && (
-              <div className="text-center mt-5">
-                <ButtonWithText
-                  onClick={loadMoreProducts}
-                  className="px-4 py-2 min-w-[144px] text-appTheme hover:bg-black hover:text-white h-[47px] border-2 hover:underline border-appTheme bg-white text-base font-bold">
-                  Load More
-                </ButtonWithText>
-              </div>
-            )}
             <div className="text-center mt-4">
               {filteredProducts.length > 0
                 ? `Viewing ${filteredProducts.length} out of ${totalProducts} products`
                 : 'No products found for this category.'}
             </div>
+            {hasMore && (
+              <div className="text-center mt-5">
+                <ButtonWithText
+                  onClick={loadMoreProducts}
+                  className="px-4 py-2 min-w-[144px] text-appTheme hover:bg-black hover:text-white h-[47px] border-2 hover:underline border-appTheme bg-white text-base font-bold"
+                  disabled={isProductLoading} // Disable button while loading
+                >
+                  {isProductLoading ? 'Please Wait...' : 'Load More'}
+                </ButtonWithText>
+              </div>
+            )}
+
+
 
           </div>
 

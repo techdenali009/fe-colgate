@@ -66,10 +66,13 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   const [triggerGetProducts, { isLoading }] = useLazyGetProductsQuery();
 
   const loadMoreProducts = () => {
+    // Save the current scroll position
 
     setPage((prev) => prev + 1);
-    window.scrollTo(0, 0);
+
+
   };
+
 
   // Define breadcrumbs
   const breadcrumbs = useMemo(
@@ -101,7 +104,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
     // Reset products and page on category/filter change
     setAllProducts([]);
     setPage(1);
-  }, [location]);
+  }, [location, selectedSortOption]);
 
   const allFilters = useMemo(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -113,6 +116,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
     return `${queryString}&sortBy=${sortBy}&page=${page}&limit=9`;
   }, [filters, selectedSortOption, page, location.search]);
 
+
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -123,10 +127,8 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
         if (productsData) {
           const { products, hasMore, totalCount } = productsData;
 
-          // Replace products if page is 1 (new filters/sort) or append otherwise
-          setAllProducts((prev) =>
-            page === 1 ? products : [...prev, ...products]
-          );
+          // Append products for "Load More", replace on new filter/sort
+          setAllProducts((prev) => (page === 1 ? products : [...prev, ...products]));
 
           setHasMore(hasMore);
           setTotalProducts(totalCount);
@@ -140,10 +142,9 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
 
     getProducts();
   }, [allFilters, page, triggerGetProducts]);
-  useEffect(() => {
-    setAllProducts([]); // Clear existing products
-    setPage(1); // Reset page to 1
-  }, [selectedSortOption, page]);
+
+
+
   return (
     <ProductContext.Provider
       value={{
