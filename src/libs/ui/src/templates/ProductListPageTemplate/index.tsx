@@ -250,7 +250,8 @@ const PlpPageTemplate: React.FC = () => {
         {QuickViewModalOpen && selectedProduct && (
           <></>
         )}
-      </div>}
+      </div>
+      }
     </>
 
 
