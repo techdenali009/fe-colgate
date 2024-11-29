@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Home,
   Settings,
@@ -15,12 +15,17 @@ import {
   SidebarProps,
   MenuItem,
   ProfileOption,
-} from '@utils/AdminPannerUserProfileData';
+} from '@utils/AdminPannelUserProfileData';
+import { API_ENDPOINTS } from '@utils/AdminPanelHeaderSideBardata';
 
 const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const isDesktop = window.innerWidth > 1020;
 
   const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
+  const [userData, setUserData] = useState<{ name: string; email: string }>({
+    name: '',
+    email: '',
+  });
 
   const menuItems: MenuItem[] = [
     { icon: Home, label: 'Dashboard' },
@@ -54,9 +59,28 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     setActiveMenuItem(label);
   };
 
+  // Fetch user data
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.USER_DATA);
+        if (response.ok) {
+          const data = await response.json();
+          setUserData({ name: data.name, email: data.email });
+        } else {
+          console.error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <aside
-      className={`Admin-Pannel bg-white border-r w-[300px] fixed left-0 top-16 h-[100%] transition-all duration-300 z-40 ${
+      className={`Admin-Pannel bg-white border-r fixed left-0 top-16 h-[100%] transition-all duration-300 z-40 ${
         isSidebarOpen
           ? 'w-64 translate-x-0'
           : 'w-64 -translate-x-full lg:w-20 lg:translate-x-0'
@@ -69,70 +93,48 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
             <div className='flex items-center gap-3 px-3 mb-4'>
               <div className='w-10 h-10 bg-gray-200 rounded-full'></div>
               <div>
-                <p className='text-sm font-medium'>John Doe</p>
-                <p className='text-xs text-gray-500'>john.doe@example.com</p>
+                <p className='text-sm font-medium'>{userData.name || 'User'}</p>
+                <p className='text-xs text-gray-500'>
+                  {userData.email || 'Email not available'}
+                </p>
               </div>
             </div>
-
-            {/* Menu Items */}
-            {menuItems.map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleMenuClick(item.label)}
-                  className={`w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1 ${
-                    activeMenuItem === item.label
-                      ? 'bg-appTheme' // Highlight active item
-                      : ''
-                  }`}
-                >
-                  <IconComponent size={20} />
-                  <span className={`${!isSidebarOpen ? 'lg:hidden' : ''}`}>
-                    {item.label}
-                  </span>
-                </button>
-              );
-            })}
-
-            {/* Profile Options */}
-            {profileOptions.map((option, index) => {
-              const IconComponent = option.icon;
-              return (
-                <button
-                  key={index}
-                  onClick={option.action}
-                  className='w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1'
-                >
-                  <IconComponent size={18} className='text-gray-500' />
-                  {option.label}
-                </button>
-              );
-            })}
           </div>
         )}
 
-        {/* Regular Menu Items */}
-        {isDesktop &&
-          menuItems.map((item, index) => {
-            const IconComponent = item.icon;
-            return (
-              <button
-                key={index}
-                onClick={() => handleMenuClick(item.label)}
-                className={`w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1 ${
-                  activeMenuItem === item.label
-                    ? 'bg-appTheme' // Highlight active item
-                    : ''
-                }`}
-              >
-                <IconComponent size={20} />
-                <span className={`${!isSidebarOpen ? 'lg:hidden' : ''}`}>
-                  {item.label}
-                </span>
-              </button>
-            );
-          })}
+        {/* Menu Items */}
+        {menuItems.map((item, index) => {
+          const IconComponent = item.icon;
+          return (
+            <button
+              key={index}
+              onClick={() => handleMenuClick(item.label)}
+              className={`w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1 ${
+                activeMenuItem === item.label ? 'bg-appTheme' : ''
+              }`}
+            >
+              <IconComponent size={20} />
+              <span className={`${!isSidebarOpen ? 'lg:hidden' : ''}`}>
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
+
+        {/* Profile Options */}
+        {profileOptions.map((option, index) => {
+          const IconComponent = option.icon;
+          return (
+            <button
+              key={index}
+              onClick={option.action}
+              className='w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1'
+            >
+              <IconComponent size={18} className='text-gray-500' />
+              {option.label}
+            </button>
+          );
+        })}
       </nav>
     </aside>
   );

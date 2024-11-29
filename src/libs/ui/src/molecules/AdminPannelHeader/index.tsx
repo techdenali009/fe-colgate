@@ -1,7 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Menu, X, Bell, UserCircle, KeyRound, LogOut } from 'lucide-react';
-import { HeaderProps, ProfileOption } from '@utils/AdminPannerUserProfileData';
+import { Menu, X, Bell } from 'lucide-react';
+import { HeaderProps } from '@utils/AdminPannelUserProfileData';
 import { HeaderLogo } from '@ui/atoms/HeaderLogo';
+import {
+  API_ENDPOINTS,
+  PROFILE_OPTIONS,
+} from '@utils/AdminPanelHeaderSideBardata';
 
 const DesktopHeader: React.FC<HeaderProps> = ({
   isSidebarOpen,
@@ -12,17 +16,15 @@ const DesktopHeader: React.FC<HeaderProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isDesktop = window.innerWidth > 1020;
 
-  // State to store user data
   const [userData, setUserData] = useState<{ name: string; email: string }>({
     name: '',
     email: '',
   });
 
-  // Fetch user data on component mount
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('/api/user'); // Replace with your API endpoint
+        const response = await fetch(API_ENDPOINTS.USER_DATA);
         if (response.ok) {
           const data = await response.json();
           setUserData({ name: data.name, email: data.email });
@@ -51,24 +53,6 @@ const DesktopHeader: React.FC<HeaderProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [setIsProfileOpen]);
 
-  const profileOptions: ProfileOption[] = [
-    {
-      icon: UserCircle,
-      label: 'My Profile',
-      action: () => console.log('Profile clicked'),
-    },
-    {
-      icon: KeyRound,
-      label: 'Change Password',
-      action: () => console.log('Change password clicked'),
-    },
-    {
-      icon: LogOut,
-      label: 'Logout',
-      action: () => console.log('Logout clicked'),
-    },
-  ];
-
   return (
     <header className='Admin-Pannel bg-white border-b h-16 fixed w-full top-0 z-50'>
       <div className='h-full max-w-[1920px] mx-auto flex items-center justify-between px-4'>
@@ -93,14 +77,13 @@ const DesktopHeader: React.FC<HeaderProps> = ({
 
         {/* Right Section */}
         <div className='flex items-center justify-end w-1/3 gap-2'>
-          {/* Bell Icon - Hidden on smaller screens */}
           <button className='p-2 hover:bg-appTheme rounded-full relative hidden lg:block'>
             <Bell size={20} />
             <span className='absolute top-1 right-1 bg-red-500 rounded-full w-2 h-2'></span>
           </button>
           <div className='h-8 border-l mx-2 hidden lg:block'></div>
 
-          {/* Profile Section - Hidden on smaller screens */}
+          {/* Profile Section */}
           {isDesktop ? (
             <div className='relative' ref={dropdownRef}>
               <button
@@ -118,7 +101,6 @@ const DesktopHeader: React.FC<HeaderProps> = ({
                 <div className='w-8 h-8 bg-gray-200 rounded-full tm:hidden'></div>
               </button>
 
-              {/* Desktop Profile Dropdown */}
               {isProfileOpen && (
                 <div className='absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border py-2 z-50'>
                   <div className='px-4 py-3 border-b'>
@@ -129,7 +111,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({
                       {userData.email || 'Email not available'}
                     </p>
                   </div>
-                  {profileOptions.map((option, index) => {
+                  {PROFILE_OPTIONS.map((option, index) => {
                     const IconComponent = option.icon;
                     return (
                       <button
