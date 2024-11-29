@@ -37,23 +37,25 @@ const StatsCards: React.FC = () => {
   ];
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8'>
-      {stats.map((stat, index) => (
-        <Card key={index} className='border-2 border-gray-200 rounded-[10px]'>
-          <CardContent className='p-6'>
-            <div className='flex items-center justify-between'>
-              <div>
-                <p className='text-sm font-medium text-gray-500'>
-                  {stat.label}
-                </p>
-                <h3 className='text-2xl font-bold'>{stat.value}</h3>
-                <p className={`text-sm ${stat.changeColor}`}>{stat.change}</p>
+    <div className='AdminPannel-DashBoard'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8'>
+        {stats.map((stat, index) => (
+          <Card key={index} className='border-2 border-gray-200 rounded-[10px]'>
+            <CardContent className='p-6'>
+              <div className='flex items-center justify-between'>
+                <div>
+                  <p className='text-sm font-medium text-gray-500'>
+                    {stat.label}
+                  </p>
+                  <h3 className='text-2xl font-bold'>{stat.value}</h3>
+                  <p className={`text-sm ${stat.changeColor}`}>{stat.change}</p>
+                </div>
+                {stat.icon}
               </div>
-              {stat.icon}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };
