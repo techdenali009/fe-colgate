@@ -192,29 +192,29 @@ const PlpPageTemplate: React.FC = () => {
               <div className='tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]'>
                 {isProductLoading && !hasMore
                   ? // Skeleton loader grid only appears when initial products are being loaded
-                    Array.from({ length: 9 }).map((_, index) => (
-                      <PlpProductCardSkeleton key={index} />
-                    ))
+                  Array.from({ length: 9 }).map((_, index) => (
+                    <PlpProductCardSkeleton key={index} />
+                  ))
                   : // Actual product grid
-                    filteredProducts.map((product) => (
-                      <Product
-                        key={`${product._id}-${product.name}`}
-                        product={{
-                          id: product._id,
-                          name: product.name,
-                          image:
+                  filteredProducts.map((product) => (
+                    <Product
+                      key={`${product._id}-${product.name}`}
+                      product={{
+                        id: product._id,
+                        name: product.name,
+                        image:
                             product?.images?.length > 0
                               ? product.images[0]?.url
                               : '',
-                          rating: product?.rating || 0,
-                          price: product?.price,
-                          isBestSeller: product?.isBestSeller || false,
-                        }}
-                        modalSetToggle={() => dispatch(toggleLoginModel())}
-                        openQuickView={() => openQuickReviewModal(product._id)}
-                        showQuickView={isLoggedIn}
-                      />
-                    ))}
+                        rating: product?.rating || 0,
+                        price: product?.price,
+                        isBestSeller: product?.isBestSeller || false,
+                      }}
+                      modalSetToggle={() => dispatch(toggleLoginModel())}
+                      openQuickView={() => openQuickReviewModal(product._id)}
+                      showQuickView={isLoggedIn}
+                    />
+                  ))}
               </div>
 
               {hasMore && (
