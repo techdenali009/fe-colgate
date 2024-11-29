@@ -89,9 +89,34 @@ const PlpPageTemplate: React.FC = () => {
     setFilters(newFilters);
   };
 
+  // In PlpPageTemplate.tsx - modify handleRemoveFilter
   const handleRemoveFilter = (filterToRemove: string) => {
     const newFilters = filters.filter(filter => filter !== filterToRemove);
     setFilters(newFilters);
+
+    // Update URL parameters
+    const searchParams = new URLSearchParams(location.search);
+
+    // Find which parameter group the filter belongs to
+    const categoryGroups = {
+      'skin-type': ['Dry', 'Normal', 'Combination', 'Sensitive', 'Oily'],
+      'skin-concern': ['Brightening', 'Acne', 'Aging', 'Discolorations'],
+      'product-type': ['Backbar', 'Retail', 'Sample']
+    };
+
+    for (const [param, values] of Object.entries(categoryGroups)) {
+      if (values.includes(filterToRemove)) {
+        // Remove the specific filter from its parameter group
+        const existingValues = searchParams.getAll(param);
+        searchParams.delete(param);
+        existingValues
+          .filter(value => value !== filterToRemove)
+          .forEach(value => searchParams.append(param, value));
+      }
+    }
+
+    // Update URL without reloading the page
+    navigate({ search: searchParams.toString() }, { replace: true });
   };
 
   const handleSortChange = (option: string) => {
@@ -133,12 +158,12 @@ const PlpPageTemplate: React.FC = () => {
           <div className='w-full'>
             <div className='relative flex items-baseline justify-between'>
               <PlpFilterContainer
-                filters={filters}
+                filters={filters} // This should now update correctly
                 onRemoveFilter={handleRemoveFilter}
                 onClearAll={handleClearAll}
               />
               <div className='flex gap-8 items-baseline pr-12 pl-12 tm:pr-0 tm:pl-0 tm:absolute'>
-                <div className="flex gap-1"> {filteredProducts.length} <p>products</p></div>
+                <div className="flex gap-1"> {totalProducts} <p>products</p></div>
                 <div className='tm:hidden lg:relative'>
                   <FilterDropdown
                     options={[
@@ -154,8 +179,8 @@ const PlpPageTemplate: React.FC = () => {
             </div>
 
             <div className="tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
-              {isProductLoading ? (
-                // Skeleton loader grid
+              {isProductLoading && !hasMore ? (
+                // Skeleton loader grid only appears when initial products are being loaded
                 Array.from({ length: 9 }).map((_, index) => (
                   <PlpProductCardSkeleton key={index} />
                 ))
@@ -180,20 +205,24 @@ const PlpPageTemplate: React.FC = () => {
               )}
             </div>
 
-            {hasMore && (
-              <div className="text-center mt-5">
-                <ButtonWithText
-                  onClick={loadMoreProducts}
-                  className="px-4 py-2 min-w-[144px] text-appTheme hover:bg-black hover:text-white h-[47px] border-2 hover:underline border-appTheme bg-white text-base font-bold">
-                  Load More
-                </ButtonWithText>
-              </div>
-            )}
             <div className="text-center mt-4">
               {filteredProducts.length > 0
                 ? `Viewing ${filteredProducts.length} out of ${totalProducts} products`
                 : 'No products found for this category.'}
             </div>
+            {hasMore && (
+              <div className="text-center mt-5">
+                <ButtonWithText
+                  onClick={loadMoreProducts}
+                  className="px-4 py-2 min-w-[144px] text-appTheme hover:bg-black hover:text-white h-[47px] border-2 hover:underline border-appTheme bg-white text-base font-bold"
+                  disabled={isProductLoading} // Disable button while loading
+                >
+                  {isProductLoading ? 'Please Wait...' : 'Load More'}
+                </ButtonWithText>
+              </div>
+            )}
+
+
 
           </div>
 
