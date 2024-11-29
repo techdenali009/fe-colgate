@@ -20,6 +20,10 @@ import UserDate from '@ui/templates/UserDateTemplate';
 
 import AddUserTemplate from '@ui/templates/AddUserTemplate';
 import EditUserTemplate from '@ui/templates/EditUserTemplate';
+import ProductList from '@ui/templates/ProductList';
+import AddProduct from '@ui/organisms/AddProduct';
+import AddProductTemplate from '@ui/templates/AddProductTemplate';
+import EditProductTemplate from '@ui/templates/EditProductTemplate';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -94,10 +98,12 @@ export const AppRoutes = () => (
      
     </Route>
     <Route path="/admin" element={<AdminModule />}>
-      <Route path="products" element={<AdminProduct />} />
+      <Route path="products" element={<ProductList />} />
       <Route path="users" element={<UserDate />} />
       <Route path='adduser' element={<AddUserTemplate/>}/>
       <Route path='users/:id' element={<EditUserTemplate/>}/>
+      <Route path="addProducts" element={<AddProductTemplate />} />
+      <Route path='product/:id' element={<EditProductTemplate/>}/>
     </Route>
     <Route path="/verifyToken" element={<AccountVerificationPage></AccountVerificationPage>}> </Route>
   </Routes>

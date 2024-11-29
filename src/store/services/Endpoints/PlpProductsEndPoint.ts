@@ -11,8 +11,8 @@ export const PlpProductsEndpoints = createApi({
     getProducts: builder.query({
       query: (params) => {
         console.log('params', params)
-        makeUrlWithQueryParams('/products', params)
-        return `/products?${params}` ; // Append formatted query string to the endpoint
+        return  makeUrlWithQueryParams('/products', params)
+          // Append formatted query string to the endpoint
       },
       transformResponse: (response: {
         data: {
@@ -36,8 +36,25 @@ export const PlpProductsEndpoints = createApi({
       //   return resizeBy;
       // })
     }),
+    getProductById: builder.query({
+      query: (id: string) => `/products/${id}`,
+      transformResponse: (response: {
+        data: {
+          product: {
+            id: string;
+            name: string;
+            price: number;
+            description: string;
+            [key: string]: any; // Allow for other dynamic fields
+          };
+        };
+      }) => {
+        console.log('transform product', response);
+        return response?.data?.product || null;
+      },
+    }),
   }),
 });
 
 // Export the auto-generated hook for use in components
-export const { useLazyGetProductsQuery } = PlpProductsEndpoints;
+export const { useLazyGetProductsQuery,useLazyGetProductByIdQuery } = PlpProductsEndpoints;

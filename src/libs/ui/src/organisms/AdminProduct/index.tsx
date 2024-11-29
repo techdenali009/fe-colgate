@@ -1,14 +1,276 @@
+import React, { useState } from "react";
+import { Trash2, Edit, Eye, Menu } from "lucide-react";
+import { Product } from "@utils/ProductConstant";
+import AdminProductSkeleton from "@ui/molecules/AdminProductSkeleton";
+import ReactPaginate from "react-paginate";
+import CarouselPrevArrow from "@ui/atoms/SvgAtoms/CarouselPrevArrow";
+import CarouselNextArrow from "@ui/atoms/SvgAtoms/CarouselNextArrow";
+import { useNavigate } from "react-router-dom";
+import { Image } from "@ui/atoms/Image";
 
-function AdminProduct() {
-  return (
-    <div>
-      <h2 >
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil repellat, quam est provident animi voluptatibus. Quasi in, accusamus mollitia facere quo recusandae praesentium corrupti, exercitationem sit suscipit, expedita adipisci sint.
-      
-      </h2>
-      <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio et asperiores est, quae labore sequi laborum odio ratione esse impedit repellendus laboriosam voluptatum mollitia quibusdam id totam cum sint repudiandae officiis? Modi placeat excepturi, consequatur, perspiciatis optio ea, officia numquam ipsa sint dolorem eos. Repellendus quidem necessitatibus quos distinctio sed totam, dicta earum omnis iusto, aliquam sapiente id ullam quod dignissimos laudantium laborum sit atque impedit natus neque nihil rerum officiis. Debitis, natus suscipit. Quos sapiente sunt dolores quisquam. Saepe odio fuga nesciunt veritatis, ad eligendi non! Rerum sint illo suscipit aut animi mollitia dolore itaque, dignissimos nemo ex hic obcaecati reiciendis architecto aperiam fugit magnam officia molestiae error temporibus blanditiis quasi eaque? Dicta aut fugiat magni doloribus provident! Perspiciatis nemo impedit, eum inventore sunt consectetur. Nam id dolorum expedita provident asperiores fugit minus nobis alias adipisci nostrum animi in ipsam corrupti reiciendis ex veritatis perspiciatis sequi voluptas nemo illum, accusantium doloremque vel officia? Esse laborum nam, quae, delectus quaerat incidunt rem nesciunt expedita ab beatae magnam nihil, quia eaque ut? In nemo aliquid, modi fuga laboriosam voluptate minus iste accusamus alias sed sequi minima voluptates dicta explicabo earum quibusdam nulla ducimus. Ad quaerat minima reiciendis eveniet quas eligendi amet maxime soluta inventore architecto accusamus labore, officia laboriosam nihil, omnis veniam consequuntur exercitationem, adipisci totam quo libero sunt ipsam. Quasi aut accusantium ipsum tenetur dolore temporibus similique eligendi quo accusamus modi amet molestias ullam ipsam, facere quas, perferendis alias ad! Perspiciatis fugit natus quae ad dolorem itaque atque, et ea vel repellat laudantium nesciunt labore, nihil impedit officiis quam dolore a tempora, architecto optio excepturi distinctio. Ducimus vitae soluta neque alias libero ut nemo, praesentium odit eos, corrupti, deserunt labore natus molestiae aperiam cupiditate sequi laudantium illum aliquam. Ullam suscipit nulla animi quod neque numquam rerum, officia, iste vitae quam illo eligendi a tenetur distinctio temporibus quas, minus veritatis deserunt illum nisi. Accusantium nostrum quod quis officiis impedit quas voluptatem beatae, sunt harum molestias totam! Similique, sint facere? Dolorem soluta reprehenderit beatae, omnis deleniti odit quia ipsa quidem mollitia expedita ut, rem doloremque! Enim assumenda sequi repellendus dolorum, veritatis voluptatum totam inventore recusandae error praesentium, necessitatibus adipisci cumque neque reprehenderit sunt nisi temporibus deleniti saepe, repellat impedit velit reiciendis aliquam! Velit eos perspiciatis officiis? Repellendus eaque blanditiis magni sint possimus dolorem esse dicta recusandae minima vel culpa sunt nihil perspiciatis quaerat perferendis sed harum beatae in, accusamus ipsum architecto. Facilis dolorem ducimus quod corrupti amet suscipit sunt quaerat totam odio, dolore excepturi aspernatur hic, nisi in voluptas, asperiores illum ab tenetur iusto. Modi nihil enim reprehenderit iure beatae facilis placeat rem? Aspernatur optio aliquam assumenda quam, libero, tenetur sit molestiae similique laborum quasi quia, vero molestias harum? Perferendis, eligendi atque. Doloremque animi provident magni, ea cum officia eos quasi, illum obcaecati illo dignissimos voluptatum quisquam maiores nulla maxime! Minus ipsum explicabo minima maxime soluta ab libero incidunt amet dolorum tempore expedita non hic rem dicta cumque iste, nobis accusamus atque! Reiciendis esse architecto labore sunt rem voluptate molestias iste magni doloremque eos iusto vero amet, sit saepe delectus a sequi nam, sapiente cum! Itaque nihil in odio, aliquam vitae quibusdam distinctio, voluptas nam omnis esse quaerat accusamus impedit doloribus harum dignissimos blanditiis adipisci magnam modi non quis eius eum corporis molestias? Vitae quisquam autem quae possimus. Esse facilis libero laboriosam error perferendis minima voluptas, repellendus tenetur fuga eos, doloremque modi eligendi, culpa laborum vel! Autem amet dolorum assumenda, nobis iure dicta id dolorem porro expedita voluptatum consectetur beatae architecto officia facere corporis sunt iusto perferendis aut recusandae laudantium praesentium labore illum ab eos. Deserunt excepturi inventore quia vel, sit alias modi repudiandae obcaecati architecto tempora aliquam ab? Iste sint sunt temporibus placeat cum ratione minima reiciendis a repudiandae porro obcaecati dicta incidunt deleniti necessitatibus quod alias deserunt cupiditate, non officia qui laborum id rerum sit blanditiis! Itaque officia culpa rerum dolores dolor voluptas, natus explicabo in aperiam magni aspernatur accusamus. Atque aliquid quis, laboriosam sit commodi expedita aspernatur, doloribus iusto sed iste nam reiciendis. Iure, iste. Harum veniam similique, rerum quam non ipsa ad error consequuntur sapiente, pariatur at vel quibusdam repudiandae? Fugit eos doloribus debitis repellat, voluptatem reprehenderit accusantium alias deserunt mollitia vitae? Libero, ea earum. Quod, nemo saepe?</h2>
-    </div>
-  )
+interface AdminProductProps {
+  products: Product[];
+  isLoading: boolean;
+  totalPages: number;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  handleDelete: (id: string,name:string) => void;
 }
 
-export default AdminProduct
+const AdminProduct: React.FC<AdminProductProps> = ({
+  products,
+  isLoading,
+  totalPages,
+  page,
+  setPage,
+  handleDelete,
+}) => {
+const navigate=useNavigate();
+  const handleEdit = (product: Product) => {
+    navigate(`/admin/product/${product._id}`);
+  };
+
+  const handleView = (product: Product) => {
+    console.log("View product", product);
+  };
+
+  const handlePageClick = (selectedItem: { selected: number }) => {
+    setPage(selectedItem.selected + 1);
+  };
+
+  const renderProductCard = (product: Product) => (
+    <div
+      key={product._id}
+      className="bg-white shadow-md rounded-lg p-4 mb-4 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4"
+    >
+      <div className="flex-shrink-0">
+        <Image
+           src={
+            product.images && product.images.length > 0
+              ? product.images[0].url
+              : "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
+          }
+          alt={
+            product.images && product.images.length > 0
+              ? product.images[0].altText || product.name
+              : "Default image"
+          }
+          className="w-24 h-24 object-cover rounded-md"
+        />
+      </div>
+      <div className="flex-grow w-full">
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="font-bold text-gray-900">{product.name}</h3>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => handleView(product)}
+              className="text-blue-500 hover:text-blue-600 transition-colors"
+              title="View Details"
+            >
+              <Eye size={20} />
+            </button>
+            <button
+              onClick={() => handleEdit(product)}
+              className="text-green-500 hover:text-green-600 transition-colors"
+              title="Edit Product"
+            >
+              <Edit size={20} />
+            </button>
+            <button
+              onClick={() => handleDelete(product._id,product.name)}
+              className="text-red-500 hover:text-red-600 transition-colors"
+              title="Delete Product"
+            >
+              <Trash2 size={20} />
+            </button>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
+          <div>
+            <span className="font-medium">Price:</span>$
+            {product.price.toFixed(2)}
+            {product.discount > 0 && (
+              <span className="ml-2 text-green-600 text-xs">
+                {product.discount}% OFF
+              </span>
+            )}
+          </div>
+          <div>
+            <span className="font-medium">Category:</span>
+            {product.category.name}
+          </div>
+          <div>
+            <span className="font-medium">Stock:</span>
+            <span
+              className={`ml-2 px-2 py-1 rounded-full text-xs font-medium ${
+                product.stock > 20
+                  ? "bg-green-100 text-green-800"
+                  : product.stock > 10
+                  ? "bg-yellow-100 text-yellow-800"
+                  : "bg-red-100 text-red-800"
+              }`}
+            >
+              {product.stock} in stock
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-0">
+          Product Management
+        </h1>
+        <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md flex items-center" onClick={()=>{navigate('/admin/addProducts')}}>
+          + Add New Product
+        </button>
+      </div>
+
+      {isLoading ? (
+        <AdminProductSkeleton />
+      ) : (
+        <>
+          {/* Desktop Table View */}
+          <div className="hidden md:block bg-white shadow-md rounded-lg overflow-hidden">
+            <table className="w-full font-HeroNewRegular">
+              <thead className="bg-gray-100 border-b">
+                <tr>
+                  <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Image
+                  </th>
+                  <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Price
+                  </th>
+                  <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Category
+                  </th>
+                  <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Stock
+                  </th>
+                  <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {products.map((product) => (
+                  <tr
+                    key={product._id}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="p-3">
+                      <img
+                        src={product.images[0]?.url || "/placeholder-image.png"}
+                        alt={product.images[0]?.altText || product.name}
+                        className="w-16 h-16 object-cover rounded-md"
+                      />
+                    </td>
+                    <td className="p-3 font-medium text-gray-900">
+                      {product.name}
+                    </td>
+                    <td className="p-3 text-gray-500">
+                      ${product.price.toFixed(2)}
+                      {product.discount > 0 && (
+                        <span className="ml-2 text-green-600 text-xs">
+                          {product.discount}% OFF
+                        </span>
+                      )}
+                    </td>
+                    <td className="p-3 text-gray-500">
+                      {product.category.name}
+                      {product.subCategories &&
+                        product.subCategories.length > 0 && (
+                          <div className="text-xs text-gray-400">
+                            {product.subCategories[0].name}
+                          </div>
+                        )}
+                    </td>
+                    <td className="p-3 text-gray-500">
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          product.stock > 20
+                            ? "bg-green-100 text-green-800"
+                            : product.stock > 10
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {product.stock} in stock
+                      </span>
+                    </td>
+                    <td className="p-3">
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => handleView(product)}
+                          className="text-blue-500 hover:text-blue-600 transition-colors"
+                          title="View Details"
+                        >
+                          <Eye size={20} />
+                        </button>
+                        <button
+                          onClick={() => handleEdit(product)}
+                          className="text-green-500 hover:text-green-600 transition-colors"
+                          title="Edit Product"
+                        >
+                          <Edit size={20} />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(product._id,product.name)}
+                          className="text-red-500 hover:text-red-600 transition-colors"
+                          title="Delete Product"
+                        >
+                          <Trash2 size={20} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="md:hidden">{products.map(renderProductCard)}</div>
+
+          {/* Pagination */}
+          <div className="flex flex-col sm:flex-row justify-between items-center mt-6 space-y-4 sm:space-y-0">
+            <span className="text-gray-600 text-sm">
+              Page {page} of {totalPages}
+            </span>
+            <ReactPaginate
+              pageCount={totalPages}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={0}
+              forcePage={page - 1}
+              breakLabel="..."
+              onPageChange={handlePageClick}
+              containerClassName="flex flex-wrap justify-center items-center space-x-2"
+              pageClassName="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 dark:text-black dark:hover:bg-gray-600 text-xs"
+              activeClassName="!bg-appTheme-opacity-70 !text-white"
+              previousLabel={<CarouselPrevArrow />}
+              nextLabel={<CarouselNextArrow />}
+              previousClassName={`px-2 py-1 rounded bg-gray-100 text-xs ${
+                page === 1
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-gray-400 text-appTheme cursor-pointer hover:!bg-appTheme-opacity-10"
+              }`}
+              nextClassName={`px-2 py-1 rounded bg-gray-100 text-xs ${
+                page === totalPages
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-gray-400 text-appTheme cursor-pointer hover:!bg-appTheme-opacity-10"
+              }`}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default AdminProduct;

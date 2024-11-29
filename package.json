@@ -14,6 +14,8 @@
     "@midudev/tailwind-animations": "^0.1.0",
     "@reduxjs/toolkit": "^2.2.7",
     "lucide-react": "^0.460.0",
+    "multiselect-react-dropdown": "^2.0.25",
+    "ng-multiselect-dropdown": "^1.0.0",
     "pca_skin_pro": "file:",
     "query-string": "^9.1.1",
     "react": "^18.3.1",
@@ -22,6 +24,7 @@
     "react-hook-form": "^7.53.0",
     "react-horizontal-scrolling-menu": "^7.1.7",
     "react-icons": "^5.3.0",
+    "react-multiple-select-dropdown-lite": "^2.0.6",
     "react-paginate": "^8.2.0",
     "react-popover": "^0.5.10",
     "react-redux": "^9.1.2",
@@ -36,7 +39,8 @@
     "sass-embedded": "^1.79.1",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.14",
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite-tsconfig-paths": "^5.0.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.10.0",

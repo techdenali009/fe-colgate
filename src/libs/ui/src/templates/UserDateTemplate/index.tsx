@@ -83,7 +83,8 @@ const UserDateTemplate: React.FC = () => {
         />
 
         {showModal && (
-          <ConfirmationModal onClose={cancelDelete} onConfirm={confirmDelete} />
+          <ConfirmationModal onClose={cancelDelete} onConfirm={confirmDelete}  message="Do you really want to delete these records? This process cannot be
+          undone."/>
         )}
       </div>
     </div>
