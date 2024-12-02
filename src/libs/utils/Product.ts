@@ -1,7 +1,6 @@
 import { Product } from '@ui/templates/LandingPage';
 
 export interface ProductType {
-
   id: string | number;
   name: string;
   image: string;
