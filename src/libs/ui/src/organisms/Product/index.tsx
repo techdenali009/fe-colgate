@@ -27,7 +27,7 @@ function Product({
   const navigate = useNavigate();
    
   const handaleClick = (id: number) => {
-    navigate(`/products/${id}/${name}`);
+    // navigate(`/products/${id}/${name}`);
   };
 
   // const handaleClick = (id: number) => {
