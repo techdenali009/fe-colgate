@@ -2,17 +2,11 @@ import { useChangepasswordMutation } from '@store/services/Endpoints/AuthApi';
 import { RootState } from '@store/store';
 import ChangePassword from '@ui/molecules/ChangePasswordPersonalProfile';
 import PersonalProfileFields from '@ui/molecules/PersonalProfileFields';
-
-
 import { showErrorToast, showSuccessToast } from '@utils/toastUtils';
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-
-
 interface PersonalProfileProps {
   className?: string;
-  
 }
 
 const PersonalProfile: React.FC<PersonalProfileProps> = ({

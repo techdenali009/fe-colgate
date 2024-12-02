@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const AuthUrl = import.meta.env.VITE_AUTH_URL;
 
 export const PlpProductsEndpoints = createApi({
-  reducerPath: 'productsApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://be-colgate.onrender.com/api',
-  }),
+  reducerPath: 'productsApi', // Reducer name for Redux store
+  baseQuery: fetchBaseQuery({ baseUrl: AuthUrl ,credentials:'include'}), // Base URL for API
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (queryString) => {
@@ -33,10 +32,36 @@ export const PlpProductsEndpoints = createApi({
         );
       },
     }),
-    
+
+    getProductById: builder.query({
+      query: (id: string) => `/products/${id}`,
+      transformResponse: (response: {
+        data: {
+          product: {
+            id: string;
+            name: string;
+            price: number;
+            description: string;
+            // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+            [key: string]: any; // Allow for other dynamic fields
+          };
+        };
+      }) => {
+        console.log('transform product', response);
+        return response?.data?.product || null;
+      },
+    }),
+
+    addfavourite : builder.mutation({
+      query: (data) => ({
+        url: '/users/addProductToFavorite',
+        method: 'POST',
+        body: data, // Payload for changing the password
+      }),
+    }),
+
   }),
 });
 
-// Export the auto-generated hooks for both APIs
-export const {  useLazyGetProductsQuery } =
-  PlpProductsEndpoints;
+// Export the auto-generated hook for use in components
+export const { useLazyGetProductsQuery,useAddfavouriteMutation ,useLazyGetProductByIdQuery} = PlpProductsEndpoints;
