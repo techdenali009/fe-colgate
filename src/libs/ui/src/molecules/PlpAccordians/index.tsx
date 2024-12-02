@@ -38,11 +38,10 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
- 
-  const [, setProducts] = useState<string[]>([]);
 
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
+
   const categoryFromUrl = urlParams.get('skin-type');
   const skinConcernFromUrl = urlParams.get('skin-concern');
 
@@ -64,6 +63,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     onSortChange(sortOption);
   };
 
+  // In PlpAccordians.tsx - modify handleCheckboxChange
   const handleCheckboxChange = (option: string) => {
     setCheckedFilters((prev) => {
       const newCheckedFilters = {
@@ -71,31 +71,27 @@ const PlpAccordians: React.FC<SidebarProps> = ({
         [option]: !prev[option],
       };
 
-      // Update filters array based on checked state
+      // Update filters array
       const newFilters = Object.entries(newCheckedFilters)
         .filter(([, isChecked]) => isChecked)
         .map(([key]) => key);
 
-      onFilterChange(newFilters);
+      onFilterChange(newFilters); // This triggers parent update
+
+      // Don't set selectedProductCategory to null here
+      // setSelectedProductCategory(null); - Remove this line
+
+      onCategorySelect(option);
       return newCheckedFilters;
     });
-
-    setProducts((prevItems) => {
-      if (prevItems.includes(option)) {
-        return prevItems.filter(item => item !== option);
-      } else {
-        return [...prevItems, option];
-      }
-    });
-
-    setSelectedProductCategory(null);
-    onCategorySelect(option);
   };
 
   const handleProductCategoryClick = (category: string) => {
     const isSelected = category === selectedProductCategory;
     setSelectedProductCategory(isSelected ? null : category);
+
     onCategorySelect(isSelected ? null : category);
+
   };
 
   const toggleShowCategories = () => {
@@ -115,7 +111,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
     if (currentProductCategory) {
       setSelectedProductCategory(currentProductCategory);
     }
-  }, [currentProductCategory]);
+  }, [currentProductCategory, filters]);
 
   const displayFilters = enableBestSeller
     ? plpFilters
