@@ -48,7 +48,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ productId,showClose = f
       const response = await addFavourite(favoriteData).unwrap();
       if (response?.status === 'Success') {
         dispatch(action === 'add' ? addFavorite(productId) : removeFavorite(productId));
-        showSuccessToast(`${action === 'add' ? 'Added to' : 'Removed from'} Favorites`, 'top-right');
+        // showSuccessToast(`${action === 'add' ? 'Added to' : 'Removed from'} Favorites`, 'top-right');
       }
       // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     } catch (err: any) {
