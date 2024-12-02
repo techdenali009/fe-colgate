@@ -3,11 +3,12 @@ import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Product from '../Product';
-import { PopularProductsProps, ProductType } from '@utils/Product';
+
+import {  PopularProductsProps } from '@utils/Product';
 import ProductHeader from '@ui/molecules/PopularProductHeading';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/store';
+import Product from '../Product';
 
 function PopularProducts({
   products,
@@ -19,7 +20,7 @@ function PopularProducts({
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
   );
-
+  console.log('products',products);
   const [disableLeftButton, setDisableLeftButton] = useState(true);
   const [disableRightButton, setDisableRightButton] = useState(!hasMore);
 
@@ -32,7 +33,7 @@ function PopularProducts({
       }
     }
   };
-
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleSlideChange = (swiper: any) => {
     // Check if Swiper is at the start or end
     const atStart = swiper.activeIndex === 0;
@@ -41,12 +42,14 @@ function PopularProducts({
     setDisableLeftButton(atStart); // Disable left button if at the start
     setDisableRightButton(atEnd && !hasMore); // Disable right button if at the end and no more items
   };
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleSlideChangeEnd = (swiper: any) => {
     if (swiper.isEnd) {
       console.log('Reached the end of the swiper');
       onNextPage();
     }
   };
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleSlideChangeWrapper = (swiper: any) => {
     handleSlideChange(swiper);
     handleSlideChangeEnd(swiper);
@@ -92,18 +95,21 @@ function PopularProducts({
         onSlideChange={handleSlideChangeWrapper} // Handle slide change dynamically
         className="mySwiper"
       >
-        {products.data.products.map((product: ProductType) => (
-          <SwiperSlide key={product.id} className="!items-start">
+        {products.map((product) => (
+          <SwiperSlide key={product._id} className="!items-start">
             <Product
-              id={product.id}
-              name={product.name}
-              images={product.images![0]?.url! || ''}
-              isBestSeller={product.isBestSeller}
-              rating={product.rating}
+              key={`${product._id}-${product.name}`}
+              product={{
+                id: product._id,
+                name: product.name,
+                image: product?.images?.length > 0 ? product.images[0]?.url : '',
+                rating: product?.rating || 0,
+                price: product?.price,
+                isBestSeller: product?.isBestSeller || false,
+              }}
               modalSetToggle={modalSetToggle}
-              openQuickView={() => console.log('')}
+              openQuickView={() => {console.log()}}
               showQuickView={false}
-              isLoggedIn={isLoggedIn}
             />
           </SwiperSlide>
         ))}

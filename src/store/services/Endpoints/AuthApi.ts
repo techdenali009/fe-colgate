@@ -19,14 +19,27 @@ export const AuthApi = createApi({
     verifyAccount: builder.query({
       query: (token) => `/users/email/verifyToken?token=${token}`,
     }),
+    
     logout: builder.mutation({
       query: () => ({
         url: '/logout',
         method: 'GET', // Adjusted to GET if necessary, or you can change it to POST if needed.
+      }),
+
+    }),
+    
+    changepassword: builder.mutation({
+      query: (data) => ({
+        url: '/changepassword',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: data, // Payload for changing the password
       }),
     }),
   }),
 });
 
 
-export const { useLoginMutation, useLazyVerifyAccountQuery, useLogoutMutation  } = AuthApi;
+export const { useLoginMutation, useLazyVerifyAccountQuery, useLogoutMutation,useChangepasswordMutation} = AuthApi;

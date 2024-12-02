@@ -11,13 +11,33 @@ import {
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 import { PromotionBannerSection } from '@ui/organisms/PromotionaBannerSection';
 import GreetRegister from '@ui/organisms/GreetingRegister';
-import { useState, useEffect } from 'react';
-import { ProductType } from '@utils/Product';
-import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
+import { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 import { RootState } from '@store/store';
-import { useLazyGetProductsQuery } from '@store/services/Endpoints/ProductEndPoint';
+
+import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
+import { useLazyGetProductsQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
+
+export interface Product {
+  id: string | number | undefined;
+  _id: string;
+  name: string;
+  description: string;
+  category: {
+    name: string;
+    description: string;
+  };
+  images: {
+    url: string;
+    altText: string;
+  }[];
+  rating?: number;
+  isBestSeller?: boolean;
+  discount: number;
+  stock: number;
+  price: number;
+}
 
 export const LandingTemplatePage = () => {
   const isLoggedIn = useSelector(
@@ -33,7 +53,7 @@ export const LandingTemplatePage = () => {
   };
 
   const [page, setPage] = useState(1);
-  const [productsList, setProductsList] = useState<ProductType[]>([]); // Store all products
+  const [productsList, setProductsList] = useState<Product[]>([]); // Store all products
   const [hasMore, setHasMore] = useState<boolean>(true); // State to track if there are more products
 
   const limit = 10;
@@ -43,25 +63,36 @@ export const LandingTemplatePage = () => {
       setPage((prevPage) => prevPage + 1); // Increment page number only if there are more products
     }
   };
+  const queryParams = useMemo(() => {
+    const filters = { isPopular: true, page, limit };
+    return Object.entries(filters)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+  }, [page, limit]);
 
   useEffect(() => {
     if (page === 1) {
       setProductsList([]); // Reset the products list when on the first page
     }
-    trigger({ page, limit });
-  }, [page, trigger]);
+    trigger(queryParams);
+  }, [page, trigger, queryParams]);
 
   useEffect(() => {
     if (newProducts) {
       setProductsList((prevProducts) => [
         ...prevProducts,
-        ...newProducts.data.products,
+        ...newProducts.products,
       ]);
-      
+
       // Set the hasMore state based on the response data
-      setHasMore(newProducts.data.products.length === limit); // If fewer products are returned than the limit, no more pages
+      setHasMore(newProducts.hasMore); // If fewer products are returned than the limit, no more pages
     }
   }, [newProducts]);
+
+  // Error handling for failed data fetching
+  if (error) {
+    return <div>Error loading products. Please try again later.</div>;
+  }
 
   return (
     <>
@@ -87,11 +118,10 @@ export const LandingTemplatePage = () => {
           <PopularProductSkeleton />
         ) : (
           <PopularProducts
-            products={{ data: { products: productsList } }} // Pass the combined products list to PopularProducts
+            products={productsList} // Pass the combined products list to PopularProducts
             modalSetToggle={modalSetToggle}
             onNextPage={handleNextPage}
             hasMore={hasMore} // Pass the hasMore flag to the child component
-          
           />
         )}
       </div>

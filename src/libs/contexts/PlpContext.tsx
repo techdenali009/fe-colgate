@@ -1,91 +1,171 @@
-import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react';
-import { viewAllProducts } from '@utils/test'; // Adjust the import as necessary
+import React, { createContext, useContext, useState, ReactNode, useMemo, useEffect, } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useLazyGetProductsQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
+import { getSortOption } from '@utils/appFunctions';
 
 // Define the Product interface
 interface Product {
-    includes(filter: string): unknown;
-    id: number;
+  id: string | number | undefined;
+  _id: string;
+  name: string;
+  description: string;
+  category: {
     name: string;
-    image: string;
-    rating: number;
-    isBestSeller: boolean;
-    category: string;
-    price: number;
+    description: string;
+  };
+  images: {
+    url: string;
+    altText: string;
+  }[];
+  rating?: number;
+  isBestSeller?: boolean;
+  discount: number;
+  stock: number;
+  price: number;
 }
 
 // Define the context interface
 interface ProductContextType {
-    selectedProductCategory: string;
-    setSelectedProductCategory: (category: string) => void;
-    isBestSeller: boolean;
-    setIsBestSeller: (checked: boolean) => void;
-    filters: string[];
-    setFilters: (filters: string[]) => void;
-    filteredProducts: Product[]; // Expose filteredProducts here
-    productsToShow: number;  // Add productsToShow
-    loadMoreProducts: () => void;  // Add loadMoreProducts
-    selectedSortOption: string; // Add the sort option state here
-    setSelectedSortOption: (option: string) => void; // Provide setter function
-    sortProducts: (products: Product[]) => Product[];
-    sortedProducts:Product[];
-
+  selectedProductCategory: string;
+  setSelectedProductCategory: (category: string) => void;
+  isBestSeller: boolean;
+  setIsBestSeller: (checked: boolean) => void;
+  filters: string[];
+  setFilters: (filters: string[]) => void;
+  filteredProducts: Product[];
+  loadMoreProducts: () => void;
+  selectedSortOption: string;
+  setSelectedSortOption: (option: string) => void;
+  breadcrumbs: { label: string; href: string }[];
+  enableBestSeller: boolean;
+  hasMore: boolean;
+  totalProducts: number;
+  isLoading: boolean;
+  isProductLoading: boolean;
 }
 
 // Create the context
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 // Create a provider component
-export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [selectedProductCategory, setSelectedProductCategory] = useState<string>('All Products');
+export const ProductProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [selectedProductCategory, setSelectedProductCategory] =
+    useState<string>('All Products');
   const [isBestSeller, setIsBestSeller] = useState<boolean>(false);
   const [filters, setFilters] = useState<string[]>([]);
-  const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical Z - A');
-  const [productsToShow, setProductsToShow] = useState<number>(9);
+  const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical A - Z');
+  const [enableBestSeller, setEnableBestSeller] = useState<boolean>(false);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const location = useLocation();
+  const [isProductLoading, setProductLoading] = useState<boolean>(true);
+  const [triggerGetProducts, { isLoading }] = useLazyGetProductsQuery();
+
+  const loadMoreProducts = () => {
+    // Save the current scroll position
+
+    setPage((prev) => prev + 1);
 
 
-  const loadMoreProducts = () => setProductsToShow(prev => prev + 9);
-  // Calculate filtered products based on context values
-  const filteredProducts = useMemo(() => {
-    return viewAllProducts.filter(product => {
-      const matchesCategory = selectedProductCategory === 'All Products' || product.category === selectedProductCategory;
-      const matchesBestSeller = !isBestSeller || product.isBestSeller;
-
-      // Ensure that we are only returning products with a rating
-      return (matchesCategory && matchesBestSeller && typeof product.rating === 'number') || filters.includes(product.category);
-    }) as Product[]; // Assert the type here
-  }, [selectedProductCategory, isBestSeller, filters]);
-
-  const sortProducts = (products: Product[]) => {
-    switch (selectedSortOption) {
-    case 'Alphabetical A - Z':
-      return products.sort((a, b) => a.name.localeCompare(b.name));
-    case 'Alphabetical Z - A':
-      return products.sort((a, b) => b.name.localeCompare(a.name));
-    case 'Price Low - High':
-      return products.sort((a, b) => a.price - b.price);
-    case 'Price High - Low':
-      return products.sort((a, b) => b.price - a.price);
-    default:
-      return products;
-    }
   };
-  const sortedProducts = useMemo(() => sortProducts(filteredProducts), [filteredProducts, selectedSortOption]);
+
+
+  // Define breadcrumbs
+  const breadcrumbs = useMemo(
+    () => [
+      { label: 'Home', href: '/' },
+      { label: 'All Products', href: '/products' },
+      ...(selectedProductCategory !== 'All Products'
+        ? [{ label: selectedProductCategory, href: '#' }]
+        : []),
+    ],
+    [selectedProductCategory]
+  );
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const categoryParam = urlParams.get('category') || 'All Products';
+    const filtersParam = Array.from(urlParams.entries()).filter(
+      ([key]) => key !== 'category'
+    );
+    const allFilters = filtersParam.map(([, value]) => value);
+
+    setSelectedProductCategory(categoryParam);
+    setFilters(allFilters);
+
+    setEnableBestSeller(
+      categoryParam === 'All Products' || categoryParam === 'Best Seller'
+    );
+
+    // Reset products and page on category/filter change
+    setAllProducts([]);
+    setPage(1);
+  }, [location, selectedSortOption]);
+
+  const allFilters = useMemo(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const filtersParam = Array.from(urlParams.entries());
+    const sortBy = getSortOption(selectedSortOption);
+    const queryString = filtersParam
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+    return `${queryString}&sortBy=${sortBy}&page=${page}&limit=9`;
+  }, [filters, selectedSortOption, page, location.search]);
+
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        setProductLoading(true);
+
+        // Fetch products from API
+        const productsData = await triggerGetProducts(allFilters).unwrap();
+        if (productsData) {
+          const { products, hasMore, totalCount } = productsData;
+
+          // Append products for "Load More", replace on new filter/sort
+          setAllProducts((prev) => (page === 1 ? products : [...prev, ...products]));
+
+          setHasMore(hasMore);
+          setTotalProducts(totalCount);
+        }
+      } catch (err) {
+        console.error('Error fetching products:', err);
+      } finally {
+        setProductLoading(false);
+      }
+    };
+
+    getProducts();
+  }, [allFilters, page, triggerGetProducts]);
+
+
+
   return (
-    <ProductContext.Provider value={{
-      selectedProductCategory,
-      setSelectedProductCategory,
-      isBestSeller,
-      setIsBestSeller,
-      filters,
-      setFilters,
-      filteredProducts :sortedProducts,
-      productsToShow,
-      sortedProducts,
-      loadMoreProducts,// Include filteredProducts in context
-      selectedSortOption,
-      setSelectedSortOption,
-      sortProducts, // Provide the sort function to the context
-    }}>
+    <ProductContext.Provider
+      value={{
+        selectedProductCategory,
+        setSelectedProductCategory,
+        isBestSeller,
+        setIsBestSeller,
+        filters,
+        setFilters,
+        filteredProducts: allProducts,
+        loadMoreProducts,
+        selectedSortOption,
+        setSelectedSortOption,
+        breadcrumbs,
+        enableBestSeller,
+        hasMore,
+        totalProducts,
+        isLoading,
+        isProductLoading,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );

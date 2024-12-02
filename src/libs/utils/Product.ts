@@ -1,18 +1,20 @@
-import { UserInfo } from "@store/services/Slices/authSlice";
+import { Product } from '@ui/templates/LandingPage';
 
 export interface ProductType {
-  id: string | undefined;
+
+  id: string | number;
   name: string;
   image: string;
-  images?: {url:string}[];
   rating: number;
   isBestSeller: boolean;
-  description?: string;  
+  price?: number; 
+  discription?: string;
   features?: string[];
   reviews?: { stars: number; count: number }[];
   restrictedmessage?:string;
+  images?: {url:string}[];
 }
-  
+
 
 export interface ProductDetailsContentProps {
   id: string | undefined  ;
@@ -24,20 +26,13 @@ export interface ProductDetailsContentProps {
   reviews: { stars: number; count: number }[];
   restrictedmessage:string;
 }
-
 export interface ProductProps {
-  id: string | undefined   ;
-  name: string;
-  images: string;
-  isBestSeller: boolean;
-  rating: number;
+  product: ProductType;
   modalSetToggle: () => void;
   className?:string;
-  openQuickView: (id: string | undefined) => void;
+  openQuickView: (id: number) => void;
   showQuickView :boolean;
   footerContent?: React.ReactNode
-  isLoggedIn ?:  UserInfo | null ;
-  
 }
 
 export interface RelatedProductsProps{
@@ -45,20 +40,14 @@ export interface RelatedProductsProps{
   className:string
 }
 export interface PopularProductsProps {
-  products: {
-   
-    data: {
-     
-      products: ProductType[];
-    };
-  };
+  products:Product[];
   modalSetToggle: () => void;
  
   onNextPage: () => void;
   hasMore: boolean;
  
 }
- export interface RecentlyViewedProductsProps{
+export interface RecentlyViewedProductsProps{
   products: ProductType[]; // Array of product objects
   modalSetToggle: () => void; // Function to toggle the modal
  }
