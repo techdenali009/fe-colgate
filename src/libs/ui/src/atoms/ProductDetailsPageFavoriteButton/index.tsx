@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import FavouriteIcon from '../SvgAtoms/FavouriteIcon';
 import FavouriteIconFilled from '../SvgAtoms/FavouriteIconFilled';
 import { RootState } from '@store/store';
-import { showErrorToast, showSuccessToast } from '@utils/toastUtils';
+import { showErrorToast } from '@utils/toastUtils';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useAddfavouriteMutation } from '@store/services/Endpoints/UserApi';

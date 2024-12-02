@@ -1,16 +1,19 @@
+import { Product } from '@ui/templates/LandingPage';
+
 export interface ProductType {
-    id: string | number;
-    name: string;
-    image: string;
-    rating: number;
-    isBestSeller: boolean;
-    price?: number; 
-    discription?: string;
-    features?: string[];
-    reviews?: { stars: number; count: number }[];
-    restrictedmessage?:string;
-  }
-  
+  id: string | number;
+  name: string;
+  image: string;
+  rating: number;
+  isBestSeller: boolean;
+  price?: number; 
+  discription?: string;
+  features?: string[];
+  reviews?: { stars: number; count: number }[];
+  restrictedmessage?:string;
+  images?: {url:string}[];
+}
+
 
 export interface ProductDetailsContentProps {
   id: string ;
@@ -22,7 +25,6 @@ export interface ProductDetailsContentProps {
   reviews: { stars: number; count: number }[];
   restrictedmessage:string;
 }
-
 export interface ProductProps {
   product: ProductType;
   modalSetToggle: () => void;
@@ -41,11 +43,18 @@ export interface RelatedProductsProps{
   relatedProducts: ProductType[];
   className:string
 }
-
 export interface PopularProductsProps {
-  products: ProductType[];
+  products:Product[];
   modalSetToggle: () => void;
+ 
+  onNextPage: () => void;
+  hasMore: boolean;
+ 
 }
+export interface RecentlyViewedProductsProps{
+  products: ProductType[]; // Array of product objects
+  modalSetToggle: () => void; // Function to toggle the modal
+ }
 export interface ProductHeaderProps {
   handleScroll: (direction: 'left' | 'right') => void;
   headingLabel: string; // For the heading text

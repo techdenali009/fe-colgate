@@ -1,9 +1,9 @@
 import ProductDetailsContent from '@ui/organisms/ProductDetailsContent';
 import ProductDetails from '@ui/molecules/ProductDetails';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
-import RelatedProducts from '@ui/organisms/RelatedProducts';
+
 import { marketingBannerTwo } from '@utils/banner';
-import { products, relatedProducts } from '@utils/test';
+import { products } from '@utils/test';
 import { useParams } from 'react-router-dom';
 import './ProductDetailsPage.styles.scss';
 import { ProductDetailsContentProps } from '@utils/Product';
@@ -12,6 +12,8 @@ import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSk
 import { useEffect, useState } from 'react';
 import { ReviewProvider } from '@ui/molecules/ReviewUseContext';
 import ReviewSection from '@ui/organisms/ReviewSection';
+import { useDispatch } from 'react-redux';
+import { addVisitedProduct } from '@store/services/Slices/visitedProductsSlice';
 
 interface PDPage {
   submitLabel: string;
@@ -21,8 +23,11 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
   const [selectedProduct, setSelectedProduct] = useState<ProductDetailsContentProps | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Added loading state
   const { id } = useParams<{ id: string }>();
-
+  const dispatch = useDispatch();
   useEffect(() => {
+    if (id) {
+      dispatch(addVisitedProduct(id));
+    }
     const product = products.find((item) => item.id === Number(id)); 
     if (product) {
       const productDetails: ProductDetailsContentProps = {
@@ -81,7 +86,7 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
             <ProductDetails></ProductDetails>
           </div>
           <div className={'w-full  xl:!px-[96px] md:!px-[50px] 2xs:px-[24px]  !m-0'}>
-            <RelatedProducts relatedProducts={relatedProducts} className={'xl:!px-[5rem]'} />
+            {/* <RelatedProducts relatedProducts={relatedProducts} className={'xl:!px-[5rem]'} /> */}
           </div>
           <div className='pt-[7.5rem] lg:px-4 !w-full xl:!px-[96px] '>
             <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />

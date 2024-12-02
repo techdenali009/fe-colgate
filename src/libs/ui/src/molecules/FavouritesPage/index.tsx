@@ -39,7 +39,7 @@ const FavouritesPage: React.FC<FavouritesPageProps> = ({
   const handleRedirect = () => {
     navigate('/products');
   };
-  // eslint-disable-next-line   @typescript-eslint/no-unused-vars
+   
   // const handleTabClick = (tabName: string) => {
   //   setActiveTab(tabName);
   // };

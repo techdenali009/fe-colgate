@@ -25,7 +25,7 @@ function Product({
   const { image, name, isBestSeller, rating, id } = product;
  
   const navigate = useNavigate();
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+   
   const handaleClick = (id: number) => {
     navigate(`/products/${id}/${name}`);
   };
@@ -37,6 +37,7 @@ function Product({
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
   );
+
   return (
     <div
       className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName} `}
@@ -135,5 +136,4 @@ function Product({
     </div>
   );
 }
-
 export default Product;

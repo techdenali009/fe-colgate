@@ -7,17 +7,20 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { UserApi } from './services/Endpoints/UserApi';
 import { PlpProductsEndpoints } from './services/Endpoints/PlpProductsEndPoint';
+import visitedProductsSlice from './services/Slices/visitedProductsSlice'
 import favoritesSlice from './services/Slices/Favourite'
-
 const rootReducer = combineReducers({
   modal: ModalSlice,
   authSlice: authSlice,
+  visitedProducts: visitedProductsSlice,
   favorites: favoritesSlice,
   [AuthApi.reducerPath]: AuthApi.reducer,
   [PlpProductsEndpoints.reducerPath]: PlpProductsEndpoints.reducer,
   [UserApi.reducerPath]: UserApi.reducer, 
+ 
 });
 
+// Persist config
 const persistConfig = {
   key: 'root',
   storage, 

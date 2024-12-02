@@ -1,40 +1,36 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const AuthUrl = import.meta.env.VITE_AUTH_URL;
 
-import { makeUrlWithQueryParams } from '@utils/appFunctions';
-
-// Define the API service
 export const PlpProductsEndpoints = createApi({
   reducerPath: 'productsApi', // Reducer name for Redux store
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://be-colgate.onrender.com/api' ,credentials:'include'}), // Base URL for API
+  baseQuery: fetchBaseQuery({ baseUrl: AuthUrl ,credentials:'include'}), // Base URL for API
   endpoints: (builder) => ({
-    // Define the getProducts query
     getProducts: builder.query({
-      query: (params) => {
-        console.log('params', params)
-        makeUrlWithQueryParams('/products', params)
-        return `/products?${params}` ; // Append formatted query string to the endpoint
+      query: (queryString) => {
+        console.log('params', queryString);
+        // makeUrlWithQueryParams("/products", params); // Assuming this function formats the query parameters
+        return `/products?${queryString}`; // Append formatted query string to the endpoint
       },
       transformResponse: (response: {
         data: {
-          currentPage: number,
-          hasMore: boolean,
-          products: []
-          totalCount: number
-          totalPages: number
-        }
+          currentPage: number;
+          hasMore: boolean;
+          products: [];
+          totalCount: number;
+          totalPages: number;
+        };
       }) => {
         console.log('transform', response);
-        return response?.data || {
-          currentPage: 0,
-          hasMore: false,
-          products: [],
-          totalCount: 0,
-          totalPages: 0
-        };
+        return (
+          response?.data || {
+            currentPage: 0,
+            hasMore: false,
+            products: [],
+            totalCount: 0,
+            totalPages: 0,
+          }
+        );
       },
-      // transformResponse((res)=>{
-      //   return resizeBy;
-      // })
     }),
 
     getProductById: builder.query({
