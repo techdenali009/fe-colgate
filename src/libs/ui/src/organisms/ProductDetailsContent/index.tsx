@@ -1,4 +1,3 @@
-// src/ui/organisms/ProductDetailsContent.tsx
 
 import React from 'react';
 import ProductCarousel from '@ui/organisms/ProductCarousel';
@@ -50,7 +49,7 @@ const ProductDetailsContent: React.FC<ProductDetailsContentProps> = ({
           </div>
           {isLoggedIn ? (
             <div className='ml-[53px]'>
-              <FavoriteButton />
+              <FavoriteButton productId={id?.toString() || ''} isFav={false} />
             </div>
           ) : (
             <></> 

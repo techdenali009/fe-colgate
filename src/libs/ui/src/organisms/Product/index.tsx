@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { Button } from '@ui/atoms/Button';
 import { ProductImage } from '@ui/atoms/ProductImage';
 import StarRating from '@ui/atoms/StarRating';
@@ -9,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 
 import FavoriteButton from '@ui/atoms/ProductDetailsPageFavoriteButton';
+import { useNavigate } from 'react-router-dom';
 
 function Product({
   product,
@@ -17,21 +17,32 @@ function Product({
   openQuickView,
   showQuickView,
   footerContent,
-}: ProductProps) {
+  overallclassName,
+  ProductImageClassName,
+ 
+  showAddToCartButton = true,
+}: ProductProps & { showAddToCartButton?: boolean }) {
   const { image, name, isBestSeller, rating, id } = product;
+ 
   const navigate = useNavigate();
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
   const handaleClick = (id: number) => {
     navigate(`/products/${id}/${name}`);
   };
+
+  // const handaleClick = (id: number) => {
+  //   navigate(`/products/${id}/${name}`);
+  // };
+
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
   );
   return (
     <div
-      className={'group relative p-2 bg-white dark:bg-appdarkcolor'}
+      className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName} `}
       onClick={() => handaleClick(Number(id))}
     >
-      <div>
+      <div className={`${ProductImageClassName}`}>
         <ProductImage
           src={image}
           alt={name}
@@ -86,7 +97,7 @@ function Product({
           {isLoggedIn && (
             <>
               {/* This  is the FavoriteButton  add to favorite */}
-              <FavoriteButton></FavoriteButton>
+              <FavoriteButton productId={id?.toString() || ''}  ></FavoriteButton>
               {isLoggedIn.isVerified && (
                 <div className="w-full space-y-2">
 
@@ -96,16 +107,18 @@ function Product({
                       console.log("quqantity updated");
                     }}
                   /> */}
-                  <Button
-                    className={`py-[0.625rem] px-6
+                  {showAddToCartButton && (
+                    <Button
+                      className={`py-[0.625rem] px-6
         w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
         group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
         hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white  dark:group-hover:text-black  ${className}
       `}
-                    type={'submit'}
-                  >
-                    {'Add To Cart'}
-                  </Button>
+                      type={'submit'}
+                    >
+                      {'Add To Cart'}
+                    </Button>
+                  )}
                 </div>
               )}
               {!isLoggedIn.isVerified && (

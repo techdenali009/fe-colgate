@@ -9,7 +9,6 @@ import { Paragraph } from '../Paragraph';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@store/store'; // Import RootState to access the redux store state
 import { updateUserProfile } from '@store/services/Slices/authSlice';
-// Import your action for updating the user profile
 
 interface FormValues {
   firstName: string;
@@ -61,13 +60,8 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
     }
   }, [isLoggedIn, userInfo, setValue]); // Only run when user info or login status changes
 
-  
-
-
   const toggleEditMode = () => {
-   
     setHasInitialEditStarted(true);
-   
     setIsEditMode(!isEditMode);
     setIsFieldChanged(false);
     if (isEditMode) setIsFieldChanged(false);
@@ -82,6 +76,7 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
       isActive: userInfo.isActive,
       createdAt: userInfo.createdAt,
       updatedAt: new Date().toISOString(),
+      favoriteProducts: userInfo.favoriteProducts,
     };
     // Dispatch the action to update the profile in Redux
     dispatch(updateUserProfile(userData));

@@ -48,6 +48,7 @@ import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
 
 interface ISearchbar {
@@ -134,6 +135,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
+      <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
@@ -267,8 +269,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           name="Stylish Chair"
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
-          className="p-4 border rounded-lg shadow-lg"
-        />
+          className="p-4 border rounded-lg shadow-lg" productId={''}        />
       </div>
       <div className="mb-4">
         Rating Component:
@@ -280,8 +281,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
           className="p-4 border rounded-lg shadow-lg"
-          isBestSeller={true}
-        />
+          isBestSeller={true} productId={''}        />
       </div>
       <div className="mb-4">
         <AccordionItem

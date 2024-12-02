@@ -26,9 +26,6 @@ function PopularProducts({ products, modalSetToggle }: PopularProductsProps) {
     }
   };
 
-
-
-
   // Swiper settings with responsive breakpoints
   const swiperSettings = {
     slidesPerView: 1.2,
@@ -69,7 +66,7 @@ function PopularProducts({ products, modalSetToggle }: PopularProductsProps) {
 
       <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
         {products.map((product) => (
-          <SwiperSlide key={product.id} className="  !items-start">
+          <SwiperSlide key={product.id} className="!items-start">
             <Product product={product} modalSetToggle={modalSetToggle} openQuickView={() => console.log('')} showQuickView={false} />
           </SwiperSlide>
         ))}
