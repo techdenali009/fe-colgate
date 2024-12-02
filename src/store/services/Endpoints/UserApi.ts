@@ -8,7 +8,7 @@ export const UserApi = createApi({
     baseUrl: UserUrl,
     credentials: 'include',
   }),
-  tagTypes: ['User'], 
+  tagTypes: ['User', 'MyFavList'], 
   endpoints: (builder) => ({
     // Fetch users
     getUsers: builder.query({
@@ -55,6 +55,23 @@ export const UserApi = createApi({
       }),
       providesTags: [{ type: 'User', id: 'LIST' }],
     }),
+
+    getFavouriteProducts: builder.query({
+      query: (id) => ({
+        url: `/users/favorite/${id}`,
+      }),
+      providesTags: ['MyFavList'],
+    }),
+    
+    addfavourite : builder.mutation({
+      query: (data) => ({
+        url: '/users/addProductToFavorite',
+        method: 'POST',
+        body: data, // Payload for changing the password
+      }),
+      invalidatesTags:['MyFavList']
+    }),
+
   }),
 });
 
@@ -64,5 +81,7 @@ export const {
   useAddUserMutation,
   useEditUserMutation,
   useGetUserByIdQuery,
-  useLazyGetUserByIdQuery
+  useLazyGetUserByIdQuery,
+  useLazyGetFavouriteProductsQuery,
+  useAddfavouriteMutation
 } = UserApi;

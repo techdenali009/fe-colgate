@@ -4,6 +4,7 @@ import { ProductImage } from '@ui/atoms/ProductImage';
 import Badge from '@ui/molecules/BestSeller/index';
 
 interface ProductCardProps {
+  
     name: string;
     imageSrc: string;
     altText: string;
@@ -42,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         name={name}
         className="mt-2 text-center text-lg font-semibold"
       />
-       <div>Product ID: {productId}</div>
+      <div>Product ID: {productId}</div>
     </div>
   );
 };

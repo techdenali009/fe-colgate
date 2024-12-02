@@ -39,16 +39,7 @@ export const AuthApi = createApi({
       }),
     }),
 
-      addfavourite : builder.mutation({
-      query: (data) => ({
-        url: '/users/addProductToFavorite',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: data, // Payload for changing the password
-      }),
-    }),
+      
 
    
 
@@ -57,4 +48,4 @@ export const AuthApi = createApi({
 });
 
 
-export const { useLoginMutation, useLazyVerifyAccountQuery, useLogoutMutation,useChangepasswordMutation,useAddfavouriteMutation} = AuthApi;
+export const { useLoginMutation, useLazyVerifyAccountQuery, useLogoutMutation,useChangepasswordMutation} = AuthApi;

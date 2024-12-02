@@ -30,7 +30,11 @@ export interface ProductProps {
   openQuickView: (id: number) => void;
   showQuickView :boolean;
   footerContent?: React.ReactNode,
-  isFav?:boolean
+  isFav?:boolean,
+  customIconUrl?: string;
+  overallclassName?:string;
+  ProductImageClassName?:string;
+  
 }
 
 export interface RelatedProductsProps{
