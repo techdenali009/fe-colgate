@@ -12,6 +12,7 @@ export interface ProductType {
   }
   
 
+ 
 export interface ProductDetailsContentProps {
   id: string ;
   name: string ;
