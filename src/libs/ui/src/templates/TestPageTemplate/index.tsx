@@ -50,6 +50,9 @@ import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+import { profileMenuItems } from '@ui/molecules/AccountMenu';
+
+
 
 interface ISearchbar {
   submitLabel: string;
@@ -254,15 +257,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
       <h1 className="pl-28 pt-16 font-bold">Business Sidebar</h1>
       <div className="pl-24 pt-4">
-        <BusinessSidebar
-          categories={coursesData.courseCategories}
-          selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        >
-          <div className="mt-4">
-            <p>Select a category to see more details.</p>
-          </div>
-        </BusinessSidebar>
+        <BusinessSidebar categories={profileMenuItems}
+         selectedCategory={selectedCategory}
+         onCategorySelect={setSelectedCategory} />
+        
       </div>
       <div className="mb-4">
         <ProductCard

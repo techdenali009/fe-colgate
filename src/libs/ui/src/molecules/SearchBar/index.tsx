@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { Input } from '@ui/atoms/Input';
 import { Button } from '@ui/atoms/Button';
 import ReviewCloseSearch from '@ui/atoms/SvgAtoms/ReviewCloseSearch';
@@ -20,11 +20,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
   searchQuery,
   setSearchQuery,
   searchclassName = '',
-
   placeholder = '',
 }) => {
-  const [localQuery, setLocalQuery] = useState<string>(searchQuery); 
-  const debouncedQuery = useDebounce(localQuery, 2000); 
+  const [localQuery, setLocalQuery] = useState<string>(searchQuery);
+  const debouncedQuery = useDebounce(localQuery, 2000);
 
 
   React.useEffect(() => {
@@ -33,7 +32,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   const handleClear = () => {
     setLocalQuery('');
-    setSearchQuery(''); 
+    setSearchQuery('');
   };
 
   return (
@@ -50,7 +49,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         />
         {localQuery ? (
           <Button onClick={handleClear} className="ml-2">
-            <ReviewCloseSearch size={12}/>
+            <ReviewCloseSearch size={12} />
           </Button>
         ) : (
           <ReviewSearchIcon></ReviewSearchIcon>
