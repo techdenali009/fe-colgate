@@ -49,6 +49,7 @@ import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSk
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 
 interface ISearchbar {
   submitLabel: string;
@@ -134,6 +135,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
+      <DropshipAddresses/>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
