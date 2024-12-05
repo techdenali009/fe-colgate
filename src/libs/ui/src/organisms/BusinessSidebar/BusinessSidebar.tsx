@@ -1,5 +1,5 @@
 interface CategoryListProps {
-  categories: { title: string; icon: string }[];
+  categories: { title: string; icon?: string }[]; // Icon is now optional
   selectedCategory: string | null;
   onCategorySelect: (category: string) => void;
   onCategoryActive: (category: string) => void;
@@ -30,7 +30,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
             <li
               key={index}
               className={`border-b-[0.063rem] list-none lg:border-b-0 lg:px-0 ${liClassName} ${isSelected ? `border-l-4 border-appTheme text-appTheme ${selectedClassName}` : 'border-l-2 border-gray-300'
-                }`}
+              }`}
             >
               <button
                 type="button"
@@ -38,12 +38,20 @@ const CategoryList: React.FC<CategoryListProps> = ({
                 aria-label={category.title}
                 onClick={() => {
                   onCategorySelect(category.title);
-                  onCategoryActive(category.title); // Add this line
+                  onCategoryActive(category.title);
                 }}
               >
-                <div className='flex'>
-                  <img src={category.icon} alt={category.title} className="mr-2 inline-block" />
-                  <span className='font-HeroNewRegular text-xs leading-7 font-normal'>{category.title}</span>
+                <div className="flex items-center">
+                  {category.icon && (
+                    <img
+                      src={category.icon}
+                      alt={category.title}
+                      className="mr-2 inline-block"
+                    />
+                  )}
+                  <span className="font-HeroNewRegular text-xs leading-7 font-normal">
+                    {category.title}
+                  </span>
                 </div>
               </button>
             </li>

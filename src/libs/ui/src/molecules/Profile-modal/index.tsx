@@ -10,13 +10,14 @@ interface profileModalProps {
 }
 
 const profileModal: React.FC<profileModalProps> = ({ handleLogoutClick, }) => {
-  const [isHovered, setIsHovered] = useState(false);
-const navigate=useNavigate();
+ 
+  const [, setIsHovered] = useState(false);
+  const navigate=useNavigate();
   const handleClick = (title: string) => {
     navigate(`/myaccount/${title}`);
     
-    if (title === "Favorites") {
-      console.log("Favorites clicked");
+    if (title === 'Favorites') {
+      console.log('Favorites clicked');
     }
 
   };
@@ -47,7 +48,8 @@ const navigate=useNavigate();
           ))}
         </ul>
         <div className='text-black flex hover:text-appTheme text-[0.75rem] font-HeroNewRegular font-normal leading-5 mt-6 py-2 tracking-[0.3px] cursor-pointer' onClick={handleLogoutClick}>
-          <Image src={`${logout_blue}`} alt={'logout'} className='mr-2'></Image>Logout</div>
+          <Image src={`${logout_blue}`} alt={'logout'} className='mr-2'></Image>Logout
+        </div>
       </div>
 
 

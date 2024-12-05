@@ -102,19 +102,19 @@ export const AppRoutes = () => (
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
      
       <Route path="/myaccount" element={<ProfileModule />}>
-          {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
-           <Route path="" element={<MyAccountPage/>}>
-             <Route path="Orders" element={<p>my orders</p>} />
-             <Route path="overview" element={<p>My Fav</p>} />
-             <Route path="Invoices" element={<p>my Invoices</p>} />
-             <Route path="Shipping" element={<p>my Shipping</p>} />
-             <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
-             <Route path="Favorites" element={<p>my Favorites</p>} />
-           </Route>
+        {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
+        <Route path="" element={<MyAccountPage/>}>
+          <Route path="Orders" element={<p>my orders</p>} />
+          <Route path="overview" element={<p>My Fav</p>} />
+          <Route path="Invoices" element={<p>my Invoices</p>} />
+          <Route path="Shipping" element={<p>my Shipping</p>} />
+          <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
+          <Route path="Favorites" element={<p>my Favorites</p>} />
+        </Route>
           
       </Route> 
       <Route path="/" element={<CartModule />}>
-          <Route path="cart" element={<ViewCartModal/>} />
+        <Route path="cart" element={<ViewCartModal/>} />
       </Route> 
     </Route>
     <Route path="/admin" element={<AdminModule />}>

@@ -13,7 +13,7 @@ import { appSetting } from '@utils/appSetting';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { logout } from '@store/services/Slices/authSlice';
-import logout_blue from '../../../assets/logout_blue.5f7a5450.svg';
+
 
 import CartIcon from '@ui/atoms/SvgAtoms/CartIcon';
 import ProfileIcon from '@ui/atoms/SvgAtoms/ProfileIcon';
@@ -22,7 +22,7 @@ import { plpFilters } from '@utils/plpFilterData';
 import { useLogoutMutation } from '@store/services/Endpoints/AuthApi';
 
 import CartModal from '@ui/molecules/Cart-modal';
-import AccountButton from '@ui/molecules/Profile-modal';
+
 import ProfileModal from '@ui/molecules/Profile-modal';
 interface headerProps {
   modalSetToggle: () => void;
@@ -141,17 +141,17 @@ const Header: React.FC<headerProps> = ({
         // Helper function for encoding and formatting based on parent category
         const getCategoryParam = (parentCat: string, optionTitle: string) => {
           switch (parentCat) {
-            case 'Professional treatments':
-            case 'Daily care':
-              return `category=${encodeURIComponent(optionTitle)}`;
-            case 'By skin type':
-              return `skin-type=${encodeURIComponent(optionTitle)}`;
-            case 'By skin concern':
-              return `skin-concern=${encodeURIComponent(optionTitle)}`;
-            default:
-              return `${parentCat
-                .replace(/ /g, '-')
-                .toLowerCase()}=${encodeURIComponent(optionTitle)}`;
+          case 'Professional treatments':
+          case 'Daily care':
+            return `category=${encodeURIComponent(optionTitle)}`;
+          case 'By skin type':
+            return `skin-type=${encodeURIComponent(optionTitle)}`;
+          case 'By skin concern':
+            return `skin-concern=${encodeURIComponent(optionTitle)}`;
+          default:
+            return `${parentCat
+              .replace(/ /g, '-')
+              .toLowerCase()}=${encodeURIComponent(optionTitle)}`;
           }
         };
 
@@ -205,9 +205,9 @@ const Header: React.FC<headerProps> = ({
       <header
         id="header_shadow"
         className={`${isFixed
-            ? 'fixed top-0 left-0 w-full z-50 bg-white dark:bg-appModalColor'
-            : ''
-          }`}
+          ? 'fixed top-0 left-0 w-full z-50 bg-white dark:bg-appModalColor'
+          : ''
+        }`}
       >
         <div className="tm:py-0 tm:px-6  flex gap-0 items-center justify-between font-serif shadow-[3px_2px_0_#e8eced] dark:shadow-[3px_3px_0_#242528] dark:bg-appModalColor">
           <div className="tm:flex tl:hidden humburger">

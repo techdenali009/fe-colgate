@@ -1,10 +1,6 @@
-import React from "react";
+import React from 'react';
 
-interface ViewCartModalProps {
-  handleLogoutClick?: () => void; // Optional prop for future extensibility
-}
-
-const ViewCartModal: React.FC<ViewCartModalProps> = ({ }) => {
+const ViewCartModal: React.FC = () => {
   return (
     <div className="pr-14 pl-14 mt-22 ml-[42px] mr-[42px] mt-16">
       <h1 className="text-[45px] mb-8">Cart</h1>

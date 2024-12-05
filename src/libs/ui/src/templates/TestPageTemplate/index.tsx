@@ -28,7 +28,7 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
-import coursesData from '@utils/CoursesData';
+
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
@@ -258,8 +258,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       <h1 className="pl-28 pt-16 font-bold">Business Sidebar</h1>
       <div className="pl-24 pt-4">
         <BusinessSidebar categories={profileMenuItems}
-         selectedCategory={selectedCategory}
-         onCategorySelect={setSelectedCategory} />
+          selectedCategory={selectedCategory}
+          onCategorySelect={setSelectedCategory} onCategoryActive={setSelectedCategory}  />
         
       </div>
       <div className="mb-4">

@@ -7,7 +7,7 @@ module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
   ],
-// src/custom.d.ts
+  // src/custom.d.ts
 
 
   theme: {

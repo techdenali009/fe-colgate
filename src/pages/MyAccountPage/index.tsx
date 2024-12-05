@@ -1,10 +1,10 @@
-import MyAccountPageTemplate from "@ui/templates/MyAccountPageTemplate"
+import MyAccountPageTemplate from '@ui/templates/MyAccountPageTemplate'
 
 
 
 function MyAccountPage() {
   return (
-  <MyAccountPageTemplate />
+    <MyAccountPageTemplate />
   )
 }
 

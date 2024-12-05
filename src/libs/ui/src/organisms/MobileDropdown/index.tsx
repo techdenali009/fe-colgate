@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { profileMenuItems } from '@ui/molecules/AccountMenu';
 
 const AccountDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); // Track selected item
-
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const handleItemClick = (item: { title: any; href?: string; icon?: string; }) => {
     setSelectedItem(item.title); // Set the selected item
     setIsOpen(false); // Close the dropdown when an item is clicked
