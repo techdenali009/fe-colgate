@@ -1,9 +1,9 @@
-import OrderModalTemplate from "@ui/templates/OrderHistoryTemplate"
+import OrderModalTemplate from '@ui/templates/OrderHistoryTemplate'
 
 
 function OrderHistoryPage() {
   return (
-   <OrderModalTemplate/>
+    <OrderModalTemplate/>
   )
 }
 

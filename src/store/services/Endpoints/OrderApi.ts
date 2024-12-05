@@ -20,6 +20,7 @@ export const OrderApi = createApi({
   endpoints: (builder) => ({
     getOrders: builder.query({
       query: ({ userId, page = 1, limit = 10, orderStatus,orderId }) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const params: Record<string, any> = { 
           page, 
           limit,
