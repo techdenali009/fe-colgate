@@ -9,7 +9,7 @@ interface StarRatingPopoverProps {
   reviews: { stars: number; count: number }[];
 }
 
-const StarRatingPopover: React.FC<StarRatingPopoverProps> = ({ rating, reviews }) => {
+const StarRatingPopover: React.FC<StarRatingPopoverProps> = ({ reviews }) => {
   return (
     <div className='product-detailspage'>
       <CustomPopover

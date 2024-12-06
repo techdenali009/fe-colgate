@@ -19,7 +19,7 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const [activeThumb, setActiveThumb] = useState<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-console.log('images',images);
+    console.log('images',images);
   // Refs for the custom buttons
   const prevRef = useRef(null);
   const nextRef = useRef(null);

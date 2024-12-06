@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import './ProductDetailsPage.styles.scss';
 import PageTitleHeader from '@ui/molecules/PageTitleHeader';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ReviewProvider } from '@ui/molecules/ReviewUseContext';
 import ReviewSection from '@ui/organisms/ReviewSection';
 import { useDispatch } from 'react-redux';
