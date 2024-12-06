@@ -67,7 +67,7 @@ const ProductDetailsContent: React.FC<ProductDetailsContentProps> = ({
 
         {isLoggedIn ? (
           <div className='loggedInContent'>
-            <div className='restrictedmessage text-[14px] leading-6 italic font-semibold restricted-message-section'>
+            <div className='restrictedmessage pr-[10px] text-[14px] leading-6 italic font-semibold restricted-message-section'>
               {restrictedmessage}
             </div>
           </div>
