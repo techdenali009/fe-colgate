@@ -15,8 +15,8 @@ const CartModal: React.FC = () => {
       onMouseEnter={() => setIsVisible(true)}  // Show on hover
       onMouseLeave={() => setIsVisible(false)} // Hide on leave
     >
-           
-          
+
+
       <div className="absolute float-right right-0 h-auto bg-white px-4 py-4  
                      bg-brand-white-100 
                     shadow-md rounded-b-3xl flex flex-col !rounded-none -mr-[80px] z-[999]"
@@ -30,8 +30,8 @@ const CartModal: React.FC = () => {
             className="text-blue-600 relative gap-1 flex font-bold text-base font-HeroNewBold py-1 px-4 -ml-4 mr-4 light"
             href="/products"
           >
-            <h2>Start Shopping</h2><CartRightArrow  className='mt-1'/>
-                           
+            <h2>Start Shopping</h2><CartRightArrow className='mt-1' />
+
           </a>
         </div>
 
@@ -43,14 +43,14 @@ const CartModal: React.FC = () => {
                                  font-HeroNewBold !m-0 !w-40 justify-center hover:!bg-black hover:!underline hover:!bg-brand-black-100 global-cart-view-button"
             href="/cart"
           >
-                            View Cart
+            View Cart
           </a>
           <div className="flex flex-col mr-5 global-cart-subtotal py-4 px-4">
             <span className="text-base font-HeroNewRegular">Subtotal</span>
           </div>
         </div>
       </div>
-          
+
     </div>
   );
 };

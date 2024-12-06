@@ -88,21 +88,11 @@ const OrderHistoryTemplate: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('All Orders');
   const [currentPage, setCurrentPage] = useState(1);
-
   const [, setIsModalOpen] = useState(false);
-  
   const [, setSelectedOrder] = useState<Order | null>(null);
-
-  const [, setStatusCounts] = useState({
-    allOrders: 0,
-    pending: 0,
-    shipped: 0,
-    cancelled: 0,
-  });
-
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
-  const userId = userInfo?._id;
 
+  const userId = userInfo?._id;
   const [getOrders, { data: orderResponse }] = useLazyGetOrdersQuery<OrderResponse>();
   const totalPages = orderResponse?.data?.meta.totalPages || 1;
 
@@ -132,24 +122,6 @@ const OrderHistoryTemplate: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  useEffect(() => {
-    if (orderResponse?.data?.orders) {
-      const counts = {
-        allOrders: orderResponse.data.meta.totalRecords || 0,
-        pending: 0,
-        shipped: 0,
-        cancelled: 0,
-      };
-
-      orderResponse.data.orders.forEach((order: Order) => {
-        if (order.orderStatus === 'Pending') counts.pending += 1;
-        else if (order.orderStatus === 'Shipped') counts.shipped += 1;
-        else if (order.orderStatus === 'Cancelled') counts.cancelled += 1;
-      });
-
-      setStatusCounts(counts);
-    }
-  }, [orderResponse]);
 
   useEffect(() => {
     if (userId) {
