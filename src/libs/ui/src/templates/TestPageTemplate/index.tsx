@@ -35,8 +35,8 @@ import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
-import RelatedProducts from '@ui/organisms/RelatedProducts';
-import { relatedProducts } from '@utils/test';
+// import RelatedProducts from '@ui/organisms/RelatedProducts';
+// import { relatedProducts } from '@utils/test';
 import QuickViewModal from '@ui/organisms/QuickView';
 import { products } from '@utils/test';
 import { Image } from '@ui/atoms/Image';
@@ -48,6 +48,7 @@ import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
 import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 
@@ -136,6 +137,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   return (
     <>
       <DropshipAddresses/>
+      <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
@@ -269,8 +271,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           name="Stylish Chair"
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
-          className="p-4 border rounded-lg shadow-lg"
-        />
+          className="p-4 border rounded-lg shadow-lg" productId={''}        />
       </div>
       <div className="mb-4">
         Rating Component:
@@ -282,8 +283,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
           className="p-4 border rounded-lg shadow-lg"
-          isBestSeller={true}
-        />
+          isBestSeller={true} productId={''}        />
       </div>
       <div className="mb-4">
         <AccordionItem
@@ -402,10 +402,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           />
         )}
       </div>
-      <RelatedProducts
+      {/* <RelatedProducts
         relatedProducts={relatedProducts}
         className="pl-appPaddingLeft pr-appPaddingRight"
-      />
+      /> */}
       <div>
         <div className="relative group">
           <Image
