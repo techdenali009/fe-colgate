@@ -6,7 +6,7 @@ import PrevButton from '@ui/atoms/CarouselBluePrevArrow';
 import NextButton from '@ui/atoms/CarouselBlueNextArrow';
 
 interface ResponsiveCarouselProps {
-  images: string[];
+  images: {url:string, alt:string}[];
 }
 
 const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({ images }) => {
@@ -35,7 +35,7 @@ const ResponsiveCarousel: React.FC<ResponsiveCarouselProps> = ({ images }) => {
       >
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image} alt={`carousel-image-${index}`} />
+            <img src={image?.url} alt={`carousel-image-${index}`} />
           </div>
         ))}
       </Carousel>

@@ -1,7 +1,7 @@
 import { Product } from '@ui/templates/LandingPage';
 
 export interface ProductType {
-  id: string | number;
+  id: string ;
   name: string;
   image: string;
   rating: number;
@@ -18,12 +18,14 @@ export interface ProductType {
 export interface ProductDetailsContentProps {
   id: string ;
   name: string ;
-  images: string[];
-  description: string;
+  images: {url:string, alt:string}[];
+  description: string ;
   features: string[];
   rating: number;
   reviews: { stars: number; count: number }[];
   restrictedmessage:string;
+  bySkinConcern: string[];
+  bySkinType: string[];
 }
 export interface ProductProps {
   product: ProductType;

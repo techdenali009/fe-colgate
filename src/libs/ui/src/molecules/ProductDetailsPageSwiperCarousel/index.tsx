@@ -11,15 +11,15 @@ import PrevButton from '@ui/atoms/CarouselBluePrevArrow';
 import NextButton from '@ui/atoms/CarouselBlueNextArrow';
 
 interface SwiperCarouselProps {
-  images: string[];
-  name: string;
+  images: {url:string, alt:string}[];
+  name: string ;
 }
 
 const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const [activeThumb, setActiveThumb] = useState<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+console.log('images',images);
   // Refs for the custom buttons
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -62,7 +62,7 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <img src={image} alt={`${name} - slide ${index + 1}`} />
+            <img src={image?.url} alt={`${name} - slide ${index + 1}`} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -83,7 +83,7 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ images, name }) => {
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className='product-images-slider-thumbs-wrapper'>
-              <img src={image} alt={`${name} thumbnail ${index + 1}`} />
+              <img src={image?.url} alt={`${image.alt} thumbnail ${index + 1}`} />
             </div>
           </SwiperSlide>
         ))}
