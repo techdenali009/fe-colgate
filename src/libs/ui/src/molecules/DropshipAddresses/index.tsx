@@ -40,15 +40,15 @@ const DropshipAddresses: React.FC = () => {
           country: data.Address1
         },
       };
-        if(userId?._id){
-      await editUser({ id: userId?._id, updatedUser });
-      setAddedAddress(data); // Save the submitted address
-      setIsEditing(false); // Hide the form
-      toast.success('Address updated successfully!');
-        }
-        else{
-          toast.error('User has to be login first');
-        }
+      if(userId?._id){
+        await editUser({ id: userId?._id, updatedUser });
+        setAddedAddress(data); // Save the submitted address
+        setIsEditing(false); // Hide the form
+        toast.success('Address updated successfully!');
+      }
+      else{
+        toast.error('User has to be login first');
+      }
     } catch {
       toast.error('Failed to update address. Please try again.');
     }
