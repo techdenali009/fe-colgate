@@ -23,6 +23,7 @@ function Product({
   showAddToCartButton = true,
 }: ProductProps & { showAddToCartButton?: boolean }) {
   const { image, name, isBestSeller, rating, id } = product;
+
  
   const navigate = useNavigate();
    
