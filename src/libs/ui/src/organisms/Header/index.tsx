@@ -13,7 +13,7 @@ import { appSetting } from '@utils/appSetting';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { logout } from '@store/services/Slices/authSlice';
-import logout_blue from '../../../assets/logout_blue.5f7a5450.svg';
+
 
 import CartIcon from '@ui/atoms/SvgAtoms/CartIcon';
 import ProfileIcon from '@ui/atoms/SvgAtoms/ProfileIcon';
@@ -21,6 +21,9 @@ import SearchIcon from '@ui/atoms/SvgAtoms/SearchIcon';
 import { plpFilters } from '@utils/plpFilterData';
 import { useLogoutMutation } from '@store/services/Endpoints/AuthApi';
 
+import CartModal from '@ui/molecules/Cart-modal';
+
+import ProfileModal from '@ui/molecules/Profile-modal';
 interface headerProps {
   modalSetToggle: () => void;
   handleRegisterClick: () => void;
@@ -201,10 +204,9 @@ const Header: React.FC<headerProps> = ({
     <>
       <header
         id="header_shadow"
-        className={`${
-          isFixed
-            ? 'fixed top-0 left-0 w-full z-50 bg-white dark:bg-appModalColor'
-            : ''
+        className={`${isFixed
+          ? 'fixed top-0 left-0 w-full z-50 bg-white dark:bg-appModalColor'
+          : ''
         }`}
       >
         <div className="tm:py-0 tm:px-6  flex gap-0 items-center justify-between font-serif shadow-[3px_2px_0_#e8eced] dark:shadow-[3px_3px_0_#242528] dark:bg-appModalColor">
@@ -290,36 +292,11 @@ const Header: React.FC<headerProps> = ({
                       </div>
                     </Popover>
                   ) : (
-                    <Popover className=" float-left right-[0px] w-[415px] pt-3 pb-3 boxshadow">
-                      <div className="p-4 flex items-center gap-4">
-                        {/* User's profile picture */}
-                        <img
-                          src={
-                            'https://img.freepik.com/premium-vector/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-vector-illustration_561158-4215.jpg?semt=ais_hybrid'
-                          } // default avatar if user doesn't have one
-                          alt="Profile Avatar"
-                          className="w-[40px] h-[40px] rounded-full"
-                        />
-                        {/* User's name */}
-                        <h2 className="text-tertiary-400 tracking-wider font-bold text-base leading-24 HeroNewLight font-HeroNewRegular">
-                          {isLoggedIn.firstName}
-                        </h2>
-                      </div>
-                      <hr className="text-black mt-8" />
-                      <div className="pop_up p-4 flex gap-4">
-                        <div
-                          className="text-black flex hover:text-appTheme text-[0.75rem] font-HeroNewRegular font-normal leading-5 mt-6 py-2 tracking-[0.3px] cursor-pointer"
-                          onClick={handleLogoutClick}
-                        >
-                          <img
-                            src={`${logout_blue}`}
-                            alt={'logout'}
-                            className="mr-2"
-                          >
-                          </img>
-                          Logout
-                        </div>
-                      </div>
+                    <Popover className=" w-1/4 mr-10 ml-2 rounded-none float-left right-[0px] pt-3 pb-3 boxshadow">
+                     
+
+                      <ProfileModal handleLogoutClick={handleLogoutClick} />
+
                     </Popover>
                   )}
                 </>
@@ -343,27 +320,34 @@ const Header: React.FC<headerProps> = ({
               </ButtonWithIcon>
 
               {isCartHovered && (
-                <Popover className="float-left right-[0px] w-[371px] pt-3 pb-3 boxshadow tm:pl-9">
-                  <h2 className="p-4 h-[128px]  text-tertiary-400 tracking-wider font-bold tm:pr-[18px] tm:pl-[52px] text-base leading-24 w-full mt-6 font-HeroNewRegular">
-                    If you have a professional account, please login. If you
-                    would like to establish a professional account please click
-                    Create Account.
-                  </h2>
-                  <div className="pop_up p-4 m-1 flex gap-[3] tm:pr-[5px] tm:pl-[24px] gap-4 text-nowrap">
-                    <CreateAccountButton
-                      className="w-[148px] font-HeroNewBold text-sm"
-                      onClick={modalSetToggle}
-                    >
-                      Login In
-                    </CreateAccountButton>
-                    <CreateAccountButton
-                      className="w-[148px] font-HeroNewBold text-sm"
-                      onClick={handleRegisterClick}
-                    >
-                      Register Now
-                    </CreateAccountButton>
-                  </div>
-                </Popover>
+                <>
+                  {isLoggedIn ? (
+                    <CartModal />
+
+                  ) : (
+                    <Popover className="float-left right-[0px] w-[371px] pt-3 pb-3 boxshadow tm:pl-9">
+                      <h2 className="p-4 h-[128px]  text-tertiary-400 tracking-wider font-bold tm:pr-[18px] tm:pl-[52px] text-base leading-24 w-full mt-6 font-HeroNewRegular">
+                        If you have a professional account, please login. If you
+                        would like to establish a professional account please click
+                        Create Account.
+                      </h2>
+                      <div className="pop_up p-4 m-1 flex gap-[3] tm:pr-[5px] tm:pl-[24px] gap-4 text-nowrap">
+                        <CreateAccountButton
+                          className="w-[148px] font-HeroNewBold text-sm"
+                          onClick={modalSetToggle}
+                        >
+                          Login In
+                        </CreateAccountButton>
+                        <CreateAccountButton
+                          className="w-[148px] font-HeroNewBold text-sm"
+                          onClick={handleRegisterClick}
+                        >
+                          Register Now
+                        </CreateAccountButton>
+                      </div>
+                    </Popover>
+                  )}
+                </>
               )}
             </div>
           </div>
