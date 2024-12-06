@@ -40,11 +40,15 @@ const DropshipAddresses: React.FC = () => {
           country: data.Address1
         },
       };
-
+        if(userId?._id){
       await editUser({ id: userId?._id, updatedUser });
       setAddedAddress(data); // Save the submitted address
       setIsEditing(false); // Hide the form
       toast.success('Address updated successfully!');
+        }
+        else{
+          toast.error('User has to be login first');
+        }
     } catch {
       toast.error('Failed to update address. Please try again.');
     }
@@ -67,7 +71,7 @@ const DropshipAddresses: React.FC = () => {
   };
 
   return (
-    <div className="w-[90rem] py-14 px-14 mx-4">
+    <div className="lg:px-14 mx-5">
       {!addedAddress || isEditing ? (
         <form onSubmit={handleSubmit(onSubmit)} className="inline-grid w-full">
           {/* Form Header */}
@@ -281,7 +285,7 @@ const DropshipAddresses: React.FC = () => {
           />
   
           {/* Submit Button */}
-          <PrimaryButton onClick={handleSubmit(onSubmit)}>
+          <PrimaryButton className='w-40 !m-0' onClick={handleSubmit(onSubmit)}>
             {isEditing ? 'Save Changes' : 'Add Address'}
           </PrimaryButton>
         </form>
