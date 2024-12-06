@@ -28,15 +28,15 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
-import coursesData from '@utils/CoursesData';
+
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
-import RelatedProducts from '@ui/organisms/RelatedProducts';
-import { relatedProducts } from '@utils/test';
+// import RelatedProducts from '@ui/organisms/RelatedProducts';
+// import { relatedProducts } from '@utils/test';
 import QuickViewModal from '@ui/organisms/QuickView';
 import { products } from '@utils/test';
 import { Image } from '@ui/atoms/Image';
@@ -51,6 +51,9 @@ import QuantityButton from '@ui/atoms/QuantityButton';
 import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
 import AddToCartPageProducts from '@ui/molecules/AddToCartPageProducts';
+import { profileMenuItems } from '@ui/molecules/AccountMenu';
+
+
 
 interface ISearchbar {
   submitLabel: string;
@@ -256,15 +259,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
       <h1 className="pl-28 pt-16 font-bold">Business Sidebar</h1>
       <div className="pl-24 pt-4">
-        <BusinessSidebar
-          categories={coursesData.courseCategories}
+        <BusinessSidebar categories={profileMenuItems}
           selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        >
-          <div className="mt-4">
-            <p>Select a category to see more details.</p>
-          </div>
-        </BusinessSidebar>
+          onCategorySelect={setSelectedCategory} onCategoryActive={setSelectedCategory}  />
+        
       </div>
       <div className="mb-4">
         <ProductCard
@@ -402,10 +400,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           />
         )}
       </div>
-      <RelatedProducts
+      {/* <RelatedProducts
         relatedProducts={relatedProducts}
         className="pl-appPaddingLeft pr-appPaddingRight"
-      />
+      /> */}
       <div>
         <div className="relative group">
           <Image

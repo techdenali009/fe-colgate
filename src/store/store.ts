@@ -9,17 +9,22 @@ import { UserApi } from './services/Endpoints/UserApi';
 import { PlpProductsEndpoints } from './services/Endpoints/PlpProductsEndPoint';
 import favoritesSlice from './services/Slices/Favourite';
 import cartSlice from './services/Slices/AddToCartSlice'; 
-
+import visitedProductsSlice from './services/Slices/visitedProductsSlice'
+import { OrderApi } from './services/Endpoints/OrderApi';
 const rootReducer = combineReducers({
   modal: ModalSlice,
   authSlice: authSlice,
+  visitedProducts: visitedProductsSlice,
   favorites: favoritesSlice,
   addtocart: cartSlice,
   [AuthApi.reducerPath]: AuthApi.reducer,
   [PlpProductsEndpoints.reducerPath]: PlpProductsEndpoints.reducer,
   [UserApi.reducerPath]: UserApi.reducer, 
+ 
+  [OrderApi.reducerPath]:OrderApi.reducer,
 });
 
+// Persist config
 const persistConfig = {
   key: 'root',
   storage, 
