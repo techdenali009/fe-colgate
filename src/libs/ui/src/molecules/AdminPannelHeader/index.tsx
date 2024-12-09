@@ -2,10 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import { Menu, X, Bell } from 'lucide-react';
 import { HeaderProps } from '@utils/AdminPannelUserProfileData';
 import { HeaderLogo } from '@ui/atoms/HeaderLogo';
-import {
-  API_ENDPOINTS,
-  PROFILE_OPTIONS,
-} from '@utils/AdminPanelHeaderSideBardata';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 
