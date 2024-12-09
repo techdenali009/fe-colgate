@@ -2,7 +2,7 @@ import SwiperCarousel from '../../molecules/ProductDetailsPageSwiperCarousel';
 import ResponsiveCarousel from '../../molecules/ProductDetailsPageResponsiveCarousel';
 
 interface ProductCarouselProps {
-  images: string[];
+  images: {url:string, alt:string}[];
   name: string;
 }
 

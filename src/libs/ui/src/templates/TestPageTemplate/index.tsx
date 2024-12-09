@@ -28,15 +28,15 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
-import coursesData from '@utils/CoursesData';
+
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
-import RelatedProducts from '@ui/organisms/RelatedProducts';
-import { relatedProducts } from '@utils/test';
+// import RelatedProducts from '@ui/organisms/RelatedProducts';
+// import { relatedProducts } from '@utils/test';
 import QuickViewModal from '@ui/organisms/QuickView';
 import { products } from '@utils/test';
 import { Image } from '@ui/atoms/Image';
@@ -48,7 +48,11 @@ import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+import { profileMenuItems } from '@ui/molecules/AccountMenu';
+
+
 
 interface ISearchbar {
   submitLabel: string;
@@ -134,6 +138,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
+      <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
@@ -252,23 +257,17 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
       <h1 className="pl-28 pt-16 font-bold">Business Sidebar</h1>
       <div className="pl-24 pt-4">
-        <BusinessSidebar
-          categories={coursesData.courseCategories}
+        <BusinessSidebar categories={profileMenuItems}
           selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        >
-          <div className="mt-4">
-            <p>Select a category to see more details.</p>
-          </div>
-        </BusinessSidebar>
+          onCategorySelect={setSelectedCategory} onCategoryActive={setSelectedCategory}  />
+        
       </div>
       <div className="mb-4">
         <ProductCard
           name="Stylish Chair"
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
-          className="p-4 border rounded-lg shadow-lg"
-        />
+          className="p-4 border rounded-lg shadow-lg" productId={''}        />
       </div>
       <div className="mb-4">
         Rating Component:
@@ -280,8 +279,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
           className="p-4 border rounded-lg shadow-lg"
-          isBestSeller={true}
-        />
+          isBestSeller={true} productId={''}        />
       </div>
       <div className="mb-4">
         <AccordionItem
@@ -400,10 +398,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           />
         )}
       </div>
-      <RelatedProducts
+      {/* <RelatedProducts
         relatedProducts={relatedProducts}
         className="pl-appPaddingLeft pr-appPaddingRight"
-      />
+      /> */}
       <div>
         <div className="relative group">
           <Image

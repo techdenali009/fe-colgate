@@ -149,10 +149,10 @@ const PlpPageTemplate: React.FC = () => {
             />
           </div>
 
-          <div className='tm:block flex gap-[23px] py-0 xl:px-14 mt-5 mb-32 tm:pl-6 tm:pr-6 tl:px-5'>
-            <div className='relative tm:px-0 pl-[18px] pr-[18px]'>
+          <div className="tm:block flex gap-[23px] py-0 xl:px-14 mt-5 mb-32 tm:pl-6 tm:pr-6 tl:px-5">
+            <div className="relative tm:px-0 pl-[18px] pr-[18px]">
               <PlpAccordians
-                className='tm:w-full xl:px-[8px] tl:w-[250px] xl:w-[324px] tm:h-[31px] tm:line[1px] tm:border-2 tm:border-appTheme tm:rounded-none'
+                className="tm:w-full xl:px-[8px] tl:w-[250px] xl:w-[324px] tm:h-[31px] tm:line[1px] tm:border-2 tm:border-appTheme tm:rounded-none"
                 onBestSellerChange={setIsBestSellerState}
                 onCategorySelect={handleCategorySelect}
                 onSortChange={handleSortChange}
@@ -163,19 +163,19 @@ const PlpPageTemplate: React.FC = () => {
                 onproduct={''}
               />
             </div>
-            <div className='w-full'>
-              <div className='relative flex items-baseline justify-between'>
+            <div className="w-full">
+              <div className="relative flex items-baseline justify-between">
                 <PlpFilterContainer
                   filters={filters} // This should now update correctly
                   onRemoveFilter={handleRemoveFilter}
                   onClearAll={handleClearAll}
                 />
-                <div className='flex gap-8 items-baseline pr-12 pl-12 tm:pr-0 tm:pl-0 tm:absolute'>
-                  <div className='flex gap-1'>
+                <div className="flex gap-8 items-baseline pr-12 pl-12 tm:pr-0 tm:pl-0 tm:absolute">
+                  <div className="flex gap-1">
                     {' '}
                     {totalProducts} <p>products</p>
                   </div>
-                  <div className='tm:hidden lg:relative'>
+                  <div className="tm:hidden lg:relative">
                     <FilterDropdown
                       options={[
                         SortOptions.ALPHABETICAL_AZ,
@@ -189,7 +189,7 @@ const PlpPageTemplate: React.FC = () => {
                 </div>
               </div>
 
-              <div className='tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]'>
+              <div className="tm:py-[49px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[23px]">
                 {isProductLoading && !hasMore
                   ? // Skeleton loader grid only appears when initial products are being loaded
                   Array.from({ length: 9 }).map((_, index) => (
@@ -217,26 +217,16 @@ const PlpPageTemplate: React.FC = () => {
                   ))}
               </div>
 
-              {hasMore && (
-                <div className='text-center mt-5'>
-                  <ButtonWithText
-                    onClick={loadMoreProducts}
-                    className='px-4 py-2 min-w-[144px] text-appTheme hover:bg-black hover:text-white h-[47px] border-2 hover:underline border-appTheme bg-white text-base font-bold'
-                  >
-                    Load More
-                  </ButtonWithText>
-                </div>
-              )}
-              <div className='text-center mt-4'>
+              <div className="text-center mt-4">
                 {filteredProducts.length > 0
                   ? `Viewing ${filteredProducts.length} out of ${totalProducts} products`
                   : 'No products found for this category.'}
               </div>
               {hasMore && (
-                <div className='text-center mt-5'>
+                <div className="text-center mt-5">
                   <ButtonWithText
                     onClick={loadMoreProducts}
-                    className='px-4 py-2 min-w-[144px] text-appTheme hover:bg-black hover:text-white h-[47px] border-2 hover:underline border-appTheme bg-white text-base font-bold'
+                    className="px-4 py-2 min-w-[144px] text-appTheme hover:bg-black hover:text-white h-[47px] border-2 hover:underline border-appTheme bg-white text-base font-bold"
                     disabled={isProductLoading} // Disable button while loading
                   >
                     {isProductLoading ? 'Please Wait...' : 'Load More'}
@@ -245,15 +235,16 @@ const PlpPageTemplate: React.FC = () => {
               )}
             </div>
           </div>
-          <div className='bg-[#f3f3f3] dark:bg-appModalColor'>
-            <div className='lg:px-[3.5rem] px-6 xl:w-[90rem] w-full  py-14 xl:mx-auto'>
+          <div className="bg-[#f3f3f3] dark:bg-appModalColor">
+            <div className="lg:px-[3.5rem] px-6 xl:w-[90rem] w-full  py-14 xl:mx-auto">
               {products.length === 0 ? (
                 <PopularProductSkeleton />
               ) : (
-                // <></>
                 <RecentlyViewedProducts
-                  products={products}
+                  products={filteredProducts}
                   modalSetToggle={modalSetToggle}
+                  hasMore={true}
+                  onNextPage={() => {}}
                 />
               )}
             </div>

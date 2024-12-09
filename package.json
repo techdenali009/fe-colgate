@@ -11,6 +11,7 @@
     "json-server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
     "@midudev/tailwind-animations": "^0.1.0",
     "@reduxjs/toolkit": "^2.2.7",
     "lucide-react": "^0.460.0",
