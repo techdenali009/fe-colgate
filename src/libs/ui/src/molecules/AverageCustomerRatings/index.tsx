@@ -13,7 +13,7 @@ interface AverageCustomerRatingsProps {
 // Function to calculate the average ratings
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 const calculateAverageRatings = (Reviewproducts: any) => {
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+   
   const total = Reviewproducts.reduce(
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     (acc: any, review: any) => {
