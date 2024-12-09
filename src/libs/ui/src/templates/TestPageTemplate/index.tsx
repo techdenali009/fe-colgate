@@ -138,6 +138,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
+      
       <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
