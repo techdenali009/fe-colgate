@@ -44,6 +44,11 @@ export const PlpProductsEndpoints = createApi({
             description: string;
             // eslint-disable-next-line  @typescript-eslint/no-explicit-any
             [key: string]: any; // Allow for other dynamic fields
+            images: {url:string, alt:string}[];
+            restrictedmessage: string;
+            features: string[];
+            bySkinConcern: string[];
+            bySkinType: string[];
           };
         };
       }) => {

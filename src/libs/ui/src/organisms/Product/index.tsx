@@ -27,7 +27,7 @@ function Product({
  
   const navigate = useNavigate();
    
-  const handaleClick = (id: number) => {
+  const handaleClick = (id: string) => {
     navigate(`/products/${id}/${name}`);
   };
 
@@ -42,7 +42,7 @@ function Product({
   return (
     <div
       className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName} `}
-      onClick={() => handaleClick(Number(id))}
+      onClick={() => handaleClick(id)}
     >
       <div className={`${ProductImageClassName}`}>
         <ProductImage
@@ -72,7 +72,7 @@ function Product({
         </div>
         <h3
           className="mt-2.5 text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold"
-          onClick={() => handaleClick(Number(id))}
+          onClick={() => handaleClick(id)}
         >
           {name}
         </h3>

@@ -3,63 +3,43 @@ import ProductDetails from '@ui/molecules/ProductDetails';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 
 import { marketingBannerTwo } from '@utils/banner';
-import { products } from '@utils/test';
+
 import { useParams } from 'react-router-dom';
 import './ProductDetailsPage.styles.scss';
-import { ProductDetailsContentProps } from '@utils/Product';
 import PageTitleHeader from '@ui/molecules/PageTitleHeader';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ReviewProvider } from '@ui/molecules/ReviewUseContext';
 import ReviewSection from '@ui/organisms/ReviewSection';
 import { useDispatch } from 'react-redux';
 import { addVisitedProduct } from '@store/services/Slices/visitedProductsSlice';
+import { useLazyGetProductByIdQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
 
 interface PDPage {
   submitLabel: string;
   onSubmit: (value: string) => void;
 }
 export const ProductDetailsPage: React.FC<PDPage> = () => {
-  const [selectedProduct, setSelectedProduct] = useState<ProductDetailsContentProps | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // Added loading state
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
+  const [trigger, { data: product, isLoading }] = useLazyGetProductByIdQuery();
   useEffect(() => {
     if (id) {
       dispatch(addVisitedProduct(id));
+      trigger(id); // Fetch product data on demand
     }
-    const product = products.find((item) => item.id === Number(id)); 
-    if (product) {
-      const productDetails: ProductDetailsContentProps = {
-        id: String(product.id), 
-        name: product.name,
-        images: product.images,
-        description: product.description,
-        features: product.features,
-        rating: product.rating,
-        reviews: product.reviews,
-        restrictedmessage: product.restrictedmessage,
-      };
-      setSelectedProduct(productDetails);
-    }
-    
-    // Simulate loading delay of 3 seconds
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, [id]);
+  }, [id, trigger, dispatch]);
 
   // Breadcrumbs array, updated dynamically based on the selected product
   const breadcrumbs = [
     { label: 'Home', href: '/' },
     { label: 'All Products', href: '/products' },
-    { label: selectedProduct?.name || '' } // Current product name
+    { label: product?.name || '' }, // Current product name
   ];
-
+  console.log('product', product);
   return (
     <>
-      <div className="Product-detailspage">
-
+      <div className='Product-detailspage'>
         <div className='bread-crumbs pt-[40px] px-[50px]'>
           <PageTitleHeader breadcrumbs={breadcrumbs} showTitle={false} />
         </div>
@@ -67,16 +47,20 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
         {isLoading ? (
           // Show skeleton loader while loading
           <ProductDetailsContentSkeleton />
-        ) : selectedProduct ? (
+        ) : product ? (
           <ProductDetailsContent
-            id={selectedProduct.id}
-            name={selectedProduct.name}
-            images={selectedProduct.images}
-            description={selectedProduct.description}
-            features={selectedProduct.features}
-            rating={selectedProduct.rating}
-            reviews={selectedProduct.reviews}
-            restrictedmessage={selectedProduct.restrictedmessage}
+            id={product?._id}
+            name={product?.name ?? 'Unknown Product'}
+            images={product.images}
+            description={product?.description ?? 'No description available'}
+            features={product.features ?? 'No description available'}
+            rating={product?.averageRating}
+            reviews={product.reviews ?? 'No description available'}
+            restrictedmessage={
+              product.restrictedmessage ?? 'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
+            }
+            bySkinConcern={product.bySkinConcern ?? 'No description available'}
+            bySkinType={product.bySkinType ?? 'No description available'}
           />
         ) : (
           <div>Loading...</div>
@@ -85,21 +69,22 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
           <div className='xl:!px-[96px] md:!px-[56px] '>
             <ProductDetails></ProductDetails>
           </div>
-          <div className={'w-full  xl:!px-[96px] md:!px-[50px] 2xs:px-[24px]  !m-0'}>
+          <div
+            className={
+              'w-full  xl:!px-[96px] md:!px-[50px] 2xs:px-[24px]  !m-0'
+            }
+          >
             {/* <RelatedProducts relatedProducts={relatedProducts} className={'xl:!px-[5rem]'} /> */}
           </div>
           <div className='pt-[7.5rem] lg:px-4 !w-full xl:!px-[96px] '>
             <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
           </div>
-         
         </div>
       </div>
       <div>
-
         <ReviewProvider>
-          <ReviewSection ></ReviewSection>
+          <ReviewSection></ReviewSection>
         </ReviewProvider>
-      
       </div>
     </>
   );
