@@ -11,7 +11,7 @@ import { RootState } from '@store/store';
 import { ValidationForm } from '@utils/Login';
 
 interface FormValues {
-  Address1: string;
+  Address: string;
   Address2: string;
   name: string;
   city: string;
@@ -35,9 +35,9 @@ const DropshipAddresses: React.FC = () => {
           city: data.city,
           phone: data.Phone,
           state: data.state,
-          street: data.Address1,
+          street: data.Address,
           zipCode: data.pinCode,
-          country: data.Address1
+          country: data.Address
         },
       };
       if(userId?._id){
@@ -112,25 +112,25 @@ const DropshipAddresses: React.FC = () => {
   
           {/* Address Fields */}
           <Controller
-            name="Address1"
+            name="Address"
             control={control}
             rules={{ required: ValidationForm.AddressIsRequired }}
             render={({ field }) => (
               <div className="relative w-full mb-6">
                 <div className="flex items-center">
-                  <Label>Address 1</Label>
+                  <Label>Address</Label>
                   <Label className="ml-1 text-s font-HeroNewLight text-red-600"> *</Label>
                 </div>
                 <InputField
                   type="text"
-                  id="Address1"
+                  id="Address"
                   placeholder=""
                   {...field}
                   className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 text-base border-[1px] w-full text-black bg-appInputFieldColor
-                    ${errors.Address1 ? 'border-formFieldBorder' : 'border-slate-300'}
+                    ${errors.Address ? 'border-formFieldBorder' : 'border-slate-300'}
                     focus:outline-none`}
                 />
-                {errors.Address1 && (
+                {errors.Address && (
                   <span className="text-appErrorMessage text-normal font-HeroNewBold">
                     {ValidationForm.AddressIsRequired}
                   </span>
@@ -146,11 +146,11 @@ const DropshipAddresses: React.FC = () => {
               <div className="relative w-full mb-6">
                 <InputField
                   type="text"
-                  id="Address1"
+                  id="Address"
                   placeholder=""
                   {...field}
                   className={`h-12 rounded-none pt-1 pb-1 pl-4 pr-4 mt-3 text-base border-[1px] w-full text-black bg-appInputFieldColor
-                    ${errors.Address1 ? 'border-formFieldBorder' : 'border-slate-300'}
+                    ${errors.Address ? 'border-formFieldBorder' : 'border-slate-300'}
                     focus:outline-none`}
                 />
                
@@ -290,10 +290,12 @@ const DropshipAddresses: React.FC = () => {
           </PrimaryButton>
         </form>
       ) : (
+        
         <div className="mt-6">
           <h2 className="text-xl font-semibold">Added Address</h2>
+          <PrimaryButton>Add new Address</PrimaryButton>
           <p><strong>Name:</strong> {addedAddress.name}</p>
-          <p><strong>Address:</strong> {addedAddress.Address1}, {addedAddress.Address2}</p>
+          <p><strong>Address:</strong> {addedAddress.Address}, {addedAddress.Address2}</p>
           <p><strong>City:</strong> {addedAddress.city}</p>
           <p><strong>State:</strong> {addedAddress.state}</p>
           <p><strong>Pin Code:</strong> {addedAddress.pinCode}</p>

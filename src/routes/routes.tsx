@@ -30,6 +30,7 @@ import ViewCartModal from '@ui/organisms/ViewCartModal';
 
 import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
+import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -111,6 +112,7 @@ export const AppRoutes = () => (
           <Route path="Shipping" element={<p>my Shipping</p>} />
           <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
           <Route path="Favorites" element={<p>my Favorites</p>} />
+          <Route path="Dropshipaddresses" element={<DropshipAddresses/>} /> 
         </Route>
           
       </Route> 

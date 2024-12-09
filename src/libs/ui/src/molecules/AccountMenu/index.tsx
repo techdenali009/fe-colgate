@@ -14,7 +14,8 @@ export const profileMenuItems = [
   // { title: "Person", href: "/myaccount/Person", icon: Person },
   // { title: "Company-user", href: "/myaccount/Company-user", icon: CompanyUser },
   // { title: "Company-profile", href: "/myaccount/Company-profile", icon: CompanyProfile },
-  { title: 'Shipping', href: '/myaccount/Shipping', icon: Shipping },
+  // { title: 'Shipping', href: '/myaccount/Shipping', icon: Shipping },
   { title: 'PaytmMethod', href: '/myaccount/PaytmMethod', icon: PaytmMethod },
   { title: 'Favorites', href: '/myaccount/Favorites', icon: Favorites },
+  { title: 'DropshipAddresses', href: '/myaccount/Dropshipaddresses', icon: Shipping },
 ];
