@@ -35,13 +35,16 @@ const ProductDetails: React.FC = () => {
       <div className="hidden lg:grid grid-cols-4 gap-[9rem] ">
         <div className="col-span-1 flex flex-col w-[236px] h-[136px]">
           <BusinessSidebar
-            categories={ProductDescription.ProductDescription}
+            categories={ProductDescription.ProductDescription.map((category) => ({
+              title: category, // Map string to title property
+              icon: undefined, // Optional, or assign a default icon if needed
+            }))}
             selectedCategory={selectedCategory}
             onCategorySelect={handleCategorySelect}
             buttonClassName="pt-[1.25rem] pb-[1.25rem] !pl-[1.5rem] !pr-[3rem] !text-[16px] hover:!text-black hover:!font-thin"
             liClassName="w-[248px] h-[67px]"
-            selectedClassName="!font-HeroNewBold !text-black"
-          />
+            selectedClassName="!font-HeroNewBold !text-black" 
+            onCategoryActive={setSelectedCategory}/>
         </div>
 
         <div className="col-span-2 content-center pl-[30px]">

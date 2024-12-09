@@ -133,9 +133,13 @@ export function FrequentlyAskedQuestions({
         <div className="hidden lg:block">
           {/* Sidebar of FAQ's */}
           <BusinessSidebar
-            categories={coursesData.aboutCategories}
+            categories={coursesData.aboutCategories.map((category) => ({
+              title: category, // Map the string to the `title` property
+              icon: undefined, // Optional, or provide a default icon if needed
+            }))}
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
+            onCategoryActive={setSelectedCategory}
             className=""
             buttonClassName="font-HeroNewBold font-bold !px-4 !py-2.5 !text-[100%] !leading-[1.25rem] hover:!text-appTheme"
             liClassName="border-l-4 "

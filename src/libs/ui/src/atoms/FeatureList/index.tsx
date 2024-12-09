@@ -8,9 +8,11 @@ interface FeatureListProps {
 
 const FeatureList: React.FC<FeatureListProps> = ({ features }) => (
   <ul className='list-disc pl-5'>
-    {features.map((feature, index) => (
-      <li key={index}>{feature}</li>
-    ))}
+    {features.length > 0 ? (
+      features.map((feature, index) => <li key={index}>{feature}</li>)
+    ) : (
+      <li>No features available</li>
+    )}
   </ul>
 );
 

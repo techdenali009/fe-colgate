@@ -20,7 +20,6 @@ import { API_ENDPOINTS } from '@utils/AdminPanelHeaderSideBardata';
 
 const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const isDesktop = window.innerWidth > 1020;
-
   const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
   const [userData, setUserData] = useState<{ name: string; email: string }>({
     name: '',
@@ -29,11 +28,11 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
 
   const menuItems: MenuItem[] = [
     { icon: Home, label: 'Dashboard' },
-    { icon: UserPlus, label: 'User Management' },
-    { icon: Package, label: 'Product Management' },
-    { icon: ShoppingCart, label: 'Order Management' },
-    { icon: Box, label: 'Inventory Management' },
-    { icon: Star, label: 'Review and Feedback' },
+    { icon: UserPlus, label: 'Users' },
+    { icon: Package, label: 'Products' },
+    { icon: ShoppingCart, label: 'Orders' },
+    { icon: Box, label: 'Inventory' },
+    { icon: Star, label: 'Review' },
     { icon: Settings, label: 'Settings' },
   ];
 
@@ -59,7 +58,6 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     setActiveMenuItem(label);
   };
 
-  // Fetch user data
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -87,7 +85,7 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
       }`}
     >
       <nav className='p-4 flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100'>
-        {/* User Profile Section in Sidebar - Only show on mobile/tablet */}
+        {/* User Profile Section */}
         {!isDesktop && (
           <div className='mb-6 pb-6 border-b'>
             <div className='flex items-center gap-3 px-3 mb-4'>
@@ -109,12 +107,27 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
             <button
               key={index}
               onClick={() => handleMenuClick(item.label)}
-              className={`w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1 ${
-                activeMenuItem === item.label ? 'bg-appTheme' : ''
+              className={`group w-full flex items-center gap-4 p-3 rounded-lg mb-1 transition-colors ${
+                activeMenuItem === item.label
+                  ? 'bg-appTheme text-white'
+                  : 'text-black hover:bg-appTheme'
               }`}
             >
-              <IconComponent size={20} />
-              <span className={`${!isSidebarOpen ? 'lg:hidden' : ''}`}>
+              <IconComponent
+                size={20}
+                className={`transition-colors ${
+                  activeMenuItem === item.label
+                    ? 'text-white'
+                    : 'text-black group-hover:text-white'
+                }`}
+              />
+              <span
+                className={`transition-colors ${
+                  activeMenuItem === item.label
+                    ? 'text-white'
+                    : 'text-black group-hover:text-white'
+                } ${!isSidebarOpen ? 'lg:hidden' : ''}`}
+              >
                 {item.label}
               </span>
             </button>
@@ -122,19 +135,26 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
         })}
 
         {/* Profile Options */}
-        {profileOptions.map((option, index) => {
-          const IconComponent = option.icon;
-          return (
-            <button
-              key={index}
-              onClick={option.action}
-              className='w-full flex items-center gap-4 p-3 text-gray-700 hover:bg-appTheme rounded-lg mb-1'
-            >
-              <IconComponent size={18} className='text-gray-500' />
-              {option.label}
-            </button>
-          );
-        })}
+        <div className='hidden tm:block'>
+          {profileOptions.map((option, index) => {
+            const IconComponent = option.icon;
+            return (
+              <button
+                key={index}
+                onClick={option.action}
+                className='group w-full flex items-center gap-4 p-3 rounded-lg mb-1 transition-colors hover:bg-appTheme'
+              >
+                <IconComponent
+                  size={18}
+                  className='text-gray-500 transition-colors group-hover:text-white'
+                />
+                <span className='text-gray-700 transition-colors group-hover:text-white'>
+                  {option.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </nav>
     </aside>
   );

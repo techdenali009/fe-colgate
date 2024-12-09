@@ -13,6 +13,7 @@ interface UserInfo {
   createdAt: string;
   updatedAt: string;
   isVerified?:boolean;
+  favoriteProducts:string[]
 }
 
 interface LoginState {
