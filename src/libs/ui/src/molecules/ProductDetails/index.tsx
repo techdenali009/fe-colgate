@@ -49,7 +49,7 @@ const ProductDetails: React.FC = () => {
 
         <div className="col-span-2 content-center pl-[30px]">
           {visibleParagraph === 'How to Apply' && (
-            <Paragraph className="w-[660px] font-HeroNewLight text-darkGray text-[16.5]">
+            <Paragraph className="w-[660px] font-HeroNewLight text-darkGray text-[16.5px]">
                After cleansing, apply to the entire face and neck in the morning and evening for barrier repair and redness reduction. Follow with the appropriate  <span className="font-HeroNewBold">PCA SKIN</span> broad spectrum SPF product in the daytime and moisturizer in the evening.
             </Paragraph>
           )}

@@ -37,9 +37,13 @@ const AddTocartSlice = createSlice({
     updateQuantity: (state, action: PayloadAction<{ id: string; quantity: number }>) => {
       const item = state.items.find(item => item.id === action.payload.id);
       if (item) {
-        item.quantity = Math.max(action.payload.quantity, 1);
-      }
-      
+        if (action.payload.quantity < 1) {
+          // Remove item if quantity drops to 0
+          state.items = state.items.filter(i => i.id !== item.id);
+        } else {
+          item.quantity = action.payload.quantity;
+        }
+      }  
     },
     clearCart: (state) => {
       state.items = [];

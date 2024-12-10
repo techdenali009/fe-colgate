@@ -35,8 +35,6 @@ import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
-// import RelatedProducts from '@ui/organisms/RelatedProducts';
-// import { relatedProducts } from '@utils/test';
 import QuickViewModal from '@ui/organisms/QuickView';
 import { products } from '@utils/test';
 import { Image } from '@ui/atoms/Image';
@@ -45,14 +43,13 @@ import { RootState } from '@store/store';
 import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
-import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
 import AddToCartPageProducts from '@ui/molecules/AddToCartPageProducts';
 import { profileMenuItems } from '@ui/molecules/AccountMenu';
-
+import CartPage from '@ui/organisms/CartPage';
 
 
 interface ISearchbar {
@@ -137,10 +134,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     (state: RootState) => state.authSlice.userInfo
   );
   console.log('isLoggedIn', isLoggedIn?.isVerified);
+  const [showCartDetails, setShowCartDetails] = useState(false);
   return (
     <>
-      <AddToCartPageProducts></AddToCartPageProducts>
+      <AddToCartPageProducts
+        showCartDetails={showCartDetails}
+        setShowCartDetails={setShowCartDetails} // Pass the state setter to the child
+      />
       
+      <CartPage></CartPage>
       <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
@@ -437,7 +439,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         )}
       </div>{' '}
     
-      <ProductDetailsContentSkeleton />
+      {/* <ProductDetailsContentSkeleton /> */}
       <div >
         {isLoggedIn ? (
           isLoggedIn.isVerified ? (

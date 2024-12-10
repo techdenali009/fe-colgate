@@ -9,7 +9,9 @@ import { RootState } from '@store/store';
 import FavoriteButton from '@ui/atoms/ProductDetailsPageFavoriteButton';
 
 import QuantityButton from '@ui/atoms/QuantityButton';
-import { addToCart, updateQuantity } from '@store/services/Slices/AddToCartSlice';
+import { addToCart, removeFromCart, updateQuantity } from '@store/services/Slices/AddToCartSlice';
+import { useEffect } from 'react';
+
 
 interface CartItem {
   id: string;
@@ -34,12 +36,12 @@ function Product({
   const dispatch = useDispatch();
   // const navigate = useNavigate();
   // const handleNavigate = () => navigate(`/products/${id}/${name}`);
-  
+
   const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo);
   const cartItems: CartItem[] = useSelector((state: RootState) => state.addtocart.items);
-  // useEffect(() => {
-  //   console.log('Cart Items:', cartItems); // Log cart items in component
-  // }, [cartItems]);
+  useEffect(() => {
+    console.log('Cart Items Updated:', cartItems); // Log cart items in component
+  }, [cartItems]);
   const isProductInCart = cartItems.find((item) => item.id === id?.toString());
 
   const handleAddToCart = () => {
@@ -58,20 +60,28 @@ function Product({
 
   // Function to handle the quantity change
   const handleQuantityChange = (newQuantity: number) => {
-    if (isProductInCart) {
+    if (newQuantity < 1) {
+      // Dispatch removeFromCart when quantity is 0
+      dispatch(removeFromCart(id?.toString() || ''));
+    } else {
       dispatch(updateQuantity({ id: id?.toString() || '', quantity: newQuantity }));
     }
   };
-
+  
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
   const handaleClick = (id: number) => {
+    // const handaleClick = (id: number) => {
     // navigate(`/products/${id}/${name}`);
+    console.log('id',id);
   };
 
+
+   
   return (
     <div
-      className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName} `}
+      className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName}`}
       onClick={() => handaleClick(Number(id))}
-         // onClick={handleNavigate}
+    // onClick={handleNavigate}
     >
       <div className={`${ProductImageClassName}`}>
         <ProductImage
@@ -132,7 +142,7 @@ function Product({
                 <div className="w-full space-y-2">
                   {showAddToCartButton && (
                     <>
-                      {!isProductInCart  ? (
+                      {!isProductInCart ? (
                         <Button
                           className={`py-[0.625rem] px-6
        w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
@@ -144,14 +154,14 @@ function Product({
                         >
                           {'Add To Cart'}
                         </Button>
-                       
+
                       ) : (
                         <QuantityButton
                           initialQuantity={isProductInCart.quantity}
-                          className="!border-2 !border-appTheme"
-                          decreaseQuantityclassName="!rounded-none "
-                          increaseQuantityclassName="!rounded-none "
-                          quantityclassName="!pl-9 !pr-8"
+                          containerClassName="!border-2 !border-appTheme w-full"
+                          decreaseButtonClassName="!rounded-none w-1/3 "
+                          increaseButtonClassName="!rounded-none w-1/3 "
+                          quantityClassName=" w-1/3"
                           onQuantityChange={handleQuantityChange}
                         />
                       )}

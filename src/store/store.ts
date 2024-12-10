@@ -20,7 +20,6 @@ const rootReducer = combineReducers({
   [AuthApi.reducerPath]: AuthApi.reducer,
   [PlpProductsEndpoints.reducerPath]: PlpProductsEndpoints.reducer,
   [UserApi.reducerPath]: UserApi.reducer, 
- 
   [OrderApi.reducerPath]:OrderApi.reducer,
 });
 
@@ -41,7 +40,8 @@ export const store = configureStore({
     }).concat(
       AuthApi.middleware,
       UserApi.middleware,
-      PlpProductsEndpoints.middleware
+      PlpProductsEndpoints.middleware,
+      OrderApi.middleware
     ),
 });
 

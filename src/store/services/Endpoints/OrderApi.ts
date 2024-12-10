@@ -32,8 +32,11 @@ export const OrderApi = createApi({
           url: `/order/${userId}`,
           params,
         };
+
       },
       
+     
+
       onQueryStarted: async (_arg, { queryFulfilled }) => {
         try {
           const { data } = await queryFulfilled;
@@ -42,8 +45,17 @@ export const OrderApi = createApi({
           console.error('Error fetching order data:', error);
         }
       },
+
+      // Separate endpoint for getOrderById
+   
+    }),
+    getOrderById: builder.query({
+      query: (orderId) => `order/getOrderById/${orderId}`,
     }),
   }),
 });
 
-export const { useLazyGetOrdersQuery } = OrderApi;
+export const { useLazyGetOrdersQuery,useLazyGetOrderByIdQuery } = OrderApi;
+
+
+
