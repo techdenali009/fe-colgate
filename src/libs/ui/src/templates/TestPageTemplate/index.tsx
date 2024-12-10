@@ -44,7 +44,6 @@ import { Button } from '@ui/atoms/Button';
 import { RootState } from '@store/store';
 import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
-import { LandingPageSkeleton} from '../LandingPageSkeleton';
 import OverviewPage from '@ui/organisms/OverViewPage';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
