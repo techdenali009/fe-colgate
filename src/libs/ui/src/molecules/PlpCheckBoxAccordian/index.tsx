@@ -9,6 +9,10 @@ interface CheckboxAccordionProps {
   onCheckboxChange: (option: string) => void;
   ulClassName?: string;
   liClassName?: string;
+  counts: { [key: string]: number };
+  activecheckcategory: string | null; // New prop for active category
+  onChange?: () => void;
+  
 }
 
 const CheckboxAccordion: React.FC<CheckboxAccordionProps> = ({
@@ -18,6 +22,8 @@ const CheckboxAccordion: React.FC<CheckboxAccordionProps> = ({
   onCheckboxChange,
   ulClassName,
   liClassName,
+  counts,
+  activecheckcategory,
 }) => (
   <AccordionItem
     title={title}
@@ -25,21 +31,21 @@ const CheckboxAccordion: React.FC<CheckboxAccordionProps> = ({
     contentClassName=" text-left"
     containerClassName="border-b pt-3 pb-3"
     className='font-HeroNewBold font-bold lg:pr-0 lg:pl-0'
-    svgIconColor='blue'
+    svgIconColor='rgb(var(--primary-color))'
   >
     <ul className={`space-y-1 ${ulClassName}`}>
       {options.map((option, index) => (
         <li
           key={index}
-          className={`${checkedFilters[option] ? 'text-appTextColor font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-blue-600 dark:text-appWhiteTheme-opacity-50'
+          className={`${checkedFilters[option] || activecheckcategory === option ? 'text-black font-bold pl-2 pb-1 mr-2' : 'text-gray-700 pl-2 pb-1 mr-2 hover:font-bold hover:text-appTheme'
           } cursor-pointer ${liClassName}`}
         >
           <Checkbox
             className="mr-2"
-            checked={checkedFilters[option] || false}
+            checked={checkedFilters[option] || activecheckcategory === option} // Check if the option matches active category
             onChange={() => onCheckboxChange(option)}
           >
-            {option}
+            {option} {counts[option] !== undefined && ` (${counts[option]})`}
           </Checkbox>
         </li>
       ))}

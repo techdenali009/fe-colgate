@@ -4,17 +4,11 @@ import CheckboxAccordion from '../PlpCheckBoxAccordian';
 import RadioAccordion from '../PlpRadioAccordian';
 import Modal from '../PlpSortModal';
 import { plpFilters, AccordionType } from '@utils/plpFilterData';
-
-interface FilterData {
-  productCategory: string[];
-  bestSeller: string[];
-  productTypes: string[];
-  skinConcern: string[];
-  skinType: string[];
-}
+import { viewAllProducts } from '@utils/test';
+import { useLocation } from 'react-router-dom';
 
 interface SidebarProps {
-  filterData: FilterData;
+  currentProductCategory: string;
   className?: string;
   ulClassName?: string;
   liClassName?: string;
@@ -22,16 +16,21 @@ interface SidebarProps {
   onCategorySelect: (category: string | null) => void;
   onSortChange: (sortOption: string) => void;
   enableBestSeller: boolean;
+  onproduct: string;
+  filters: string[];
+  onFilterChange: (filters: string[]) => void;
 }
 
 const PlpAccordians: React.FC<SidebarProps> = ({
   className,
   ulClassName,
   liClassName,
-  onBestSellerChange,
   onCategorySelect,
   onSortChange,
   enableBestSeller,
+  currentProductCategory,
+  filters,
+  onFilterChange,
 }) => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedProductCategory, setSelectedProductCategory] = useState<string | null>(null);
@@ -40,35 +39,80 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [selectedSort, setSelectedSort] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
 
+  const categoryFromUrl = urlParams.get('skin-type');
+  const skinConcernFromUrl = urlParams.get('skin-concern');
+
+  const activecheckcategory = categoryFromUrl || skinConcernFromUrl || selectedProductCategory;
+
+  const calculateCounts = () => {
+    const counts: { [key: string]: number } = {};
+    viewAllProducts.forEach(product => {
+      const category = product.category;
+      counts[category] = (counts[category] || 0) + 1;
+    });
+    return counts;
+  };
+
+  const counts = calculateCounts();
 
   const handleSortChange = (sortOption: string) => {
     setSelectedSort(sortOption);
     onSortChange(sortOption);
   };
 
+  // In PlpAccordians.tsx - modify handleCheckboxChange
   const handleCheckboxChange = (option: string) => {
-    setCheckedFilters((prev) => ({
-      ...prev,
-      [option]: !prev[option],
-    }));
+    setCheckedFilters((prev) => {
+      const newCheckedFilters = {
+        ...prev,
+        [option]: !prev[option],
+      };
 
-    if (option === 'Best Seller') {
-      onBestSellerChange(!checkedFilters[option]);
-    }
+      // Update filters array
+      const newFilters = Object.entries(newCheckedFilters)
+        .filter(([, isChecked]) => isChecked)
+        .map(([key]) => key);
+
+      onFilterChange(newFilters); // This triggers parent update
+
+      // Don't set selectedProductCategory to null here
+      // setSelectedProductCategory(null); - Remove this line
+
+      onCategorySelect(option);
+      return newCheckedFilters;
+    });
   };
 
   const handleProductCategoryClick = (category: string) => {
     const isSelected = category === selectedProductCategory;
     setSelectedProductCategory(isSelected ? null : category);
+
     onCategorySelect(isSelected ? null : category);
+
   };
 
   const toggleShowCategories = () => {
     setShowAllCategories(!showAllCategories);
   };
 
-  // Filter to show "Best Seller" only when `enableBestSeller` is true
+  // Sync checkedFilters with external filters prop
+  useEffect(() => {
+    const newCheckedFilters: { [key: string]: boolean } = {};
+    filters.forEach(filter => {
+      newCheckedFilters[filter] = true;
+    });
+    setCheckedFilters(newCheckedFilters);
+  }, [filters]);
+
+  useEffect(() => {
+    if (currentProductCategory) {
+      setSelectedProductCategory(currentProductCategory);
+    }
+  }, [currentProductCategory, filters]);
+
   const displayFilters = enableBestSeller
     ? plpFilters
     : plpFilters.filter((filter) => filter.title !== 'Best Seller');
@@ -85,12 +129,18 @@ const PlpAccordians: React.FC<SidebarProps> = ({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const combinedCategories = [
+    ...plpFilters.find(filter => filter.mainCatagory === 'Daily care')?.options || [],
+    ...plpFilters.find(filter => filter.mainCatagory === 'Professional treatments')?.options || []
+  ];
+
   return (
-    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center  rounded-lg ${className}`}>
+    <div className={`w-full ${isSmallScreen ? 'space-y-1' : 'w-[380px] pl-2 space-y-6'} text-center bg-white rounded-lg ${className}`}>
       {isSmallScreen && (
         <button
           onClick={() => setIsModalOpen(true)}
-          className="text-blue-600 font-bold"
+          className="text-appTheme font-bold"
         >
           Show Filters & Sort
         </button>
@@ -98,6 +148,7 @@ const PlpAccordians: React.FC<SidebarProps> = ({
 
       {isSmallScreen ? (
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Filter & Sort">
+          <div></div><p>products</p>
           {displayFilters.map((filter, index) => (
             <div key={index}>
               {filter.AccordionType === AccordionType.Radio && (
@@ -118,14 +169,14 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onItemClick={handleProductCategoryClick}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
+                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)}
+                  activeCategory={categoryFromUrl || selectedProductCategory}
                 >
-                  <button onClick={toggleShowCategories} className="text-blue-600 mt-2">
+                  <button onClick={toggleShowCategories} className="text-appTheme mt-2">
                     {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
                   </button>
                 </LabelAccordion>
               )}
-
               {filter.AccordionType === AccordionType.Checkbox && (
                 <CheckboxAccordion
                   title={filter.title}
@@ -134,6 +185,8 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onCheckboxChange={handleCheckboxChange}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
+                  counts={counts}
+                  activecheckcategory={activecheckcategory}
                 />
               )}
             </div>
@@ -150,14 +203,14 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onItemClick={handleProductCategoryClick}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
-                  items={showAllCategories ? filter.options : filter.options.slice(0, 5)}
+                  items={showAllCategories ? combinedCategories : combinedCategories.slice(0, 5)}
+                  activeCategory={categoryFromUrl || selectedProductCategory}
                 >
-                  <button onClick={toggleShowCategories} className="text-blue-600 mt-2">
+                  <button onClick={toggleShowCategories} className="text-appTheme mt-2">
                     {showAllCategories ? 'Show Less Categories' : 'Show All Categories'}
                   </button>
                 </LabelAccordion>
               )}
-
               {filter.AccordionType === AccordionType.Checkbox && (
                 <CheckboxAccordion
                   title={filter.title}
@@ -166,6 +219,8 @@ const PlpAccordians: React.FC<SidebarProps> = ({
                   onCheckboxChange={handleCheckboxChange}
                   ulClassName={ulClassName}
                   liClassName={liClassName}
+                  counts={counts}
+                  activecheckcategory={activecheckcategory}
                 />
               )}
             </div>

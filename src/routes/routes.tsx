@@ -7,12 +7,29 @@ import RegisterPage from '@pages/RegisterPage';
 import ShippingTermsPage from '@pages/ShippingTerms';
 import PlpPage from '@pages/ProductListPage';
 import PCAskinInternationalPage from '@pages/SkinInternationalPage';
+
+
+
 import { LandingPageSkeleton } from '@ui/templates/LandingPageSkeleton';
 
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import CartModule from 'src/modules/CartModule/cartModule';
+import ProfileModule from 'src/modules/ProfileModule/profileModule';
 import ProductModule from 'src/modules/usersModule/usersModule';
+import { AccountVerificationPage } from '@pages/AccountVerificationPage';
 
+import AdminModule from 'src/modules/adminModule/adminModule';
+import AdminProduct from '@ui/organisms/AdminProduct';
+import UserDate from '@ui/templates/UserDateTemplate';
+
+import AddUserTemplate from '@ui/templates/AddUserTemplate';
+import EditUserTemplate from '@ui/templates/EditUserTemplate';
+
+import ViewCartModal from '@ui/organisms/ViewCartModal';
+
+import MyAccountPage from '@pages/MyAccountPage';
+import OrderHistoryPage from '@pages/OrderHistoryPage';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -58,7 +75,7 @@ export const AppRoutes = () => (
       <Route path="/products" element={<ProductModule />}>
         <Route path="" element={<PlpPage />}></Route>
         {/* <Route  path="/" element={<Products/>}></Route> */}
-        <Route path=":id" element={<ProductDetailsPage />}></Route>
+        <Route path=":id/:name" element={<ProductDetailsPage />}></Route>
       </Route>
 
       {/* About module */}
@@ -80,9 +97,33 @@ export const AppRoutes = () => (
 
 
       </Route>
-
+      
       <Route path="/test" element={<TestPage />}></Route>
+     
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
+     
+      <Route path="/myaccount" element={<ProfileModule />}>
+        {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
+        <Route path="" element={<MyAccountPage/>}>
+          <Route path="Orders" element={<OrderHistoryPage/>} />
+          <Route path="overview" element={<p>My Fav</p>} />
+          <Route path="Invoices" element={<p>my Invoices</p>} />
+          <Route path="Shipping" element={<p>my Shipping</p>} />
+          <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
+          <Route path="Favorites" element={<p>my Favorites</p>} />
+        </Route>
+          
+      </Route> 
+      <Route path="/" element={<CartModule />}>
+        <Route path="cart" element={<ViewCartModal/>} />
+      </Route> 
     </Route>
+    <Route path="/admin" element={<AdminModule />}>
+      <Route path="products" element={<AdminProduct />} />
+      <Route path="users" element={<UserDate />} />
+      <Route path='adduser' element={<AddUserTemplate/>}/>
+      <Route path='users/:id' element={<EditUserTemplate/>}/>
+    </Route>
+    <Route path="/verifyToken" element={<AccountVerificationPage></AccountVerificationPage>}> </Route>
   </Routes>
 )

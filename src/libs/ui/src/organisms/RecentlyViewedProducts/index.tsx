@@ -1,104 +1,122 @@
-import { useRef, useState, useEffect } from 'react';
-import ProductHeader from '@ui/molecules/PopularProductHeading';
-import { PopularProductsProps } from '@utils/Product';
+import {  useRef, useState } from 'react';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Product from '../Product';
+import { PopularProductsProps } from '@utils/Product';
+import ProductHeader from '@ui/molecules/PopularProductHeading';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/store';
 
-const RecentlyViewedProducts = ({ products ,modalSetToggle}: PopularProductsProps) => {
+function RecentlyViewedProducts({
+  products,
+  modalSetToggle,
+  hasMore,
+  onNextPage,
+}: PopularProductsProps) {
   const swiperRef = useRef<SwiperRef | null>(null);
-  const [disablePrev, setDisablePrev] = useState(true);
-  const [disableNext, setDisableNext] = useState(false);
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.authSlice.userInfo
+  );
 
+  const [disableLeftButton, setDisableLeftButton] = useState(true);
+  const [disableRightButton, setDisableRightButton] = useState(!hasMore);
+ 
+  // Handle slide change and button state update
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const handleSlideChange = (swiper: any) => {
+    const atStart = swiper.activeIndex === 0;
+    const atEnd = swiper.isEnd;
 
-  // Update button states based on the swiper's position
-  const updateButtonState = () => {
-    if (swiperRef.current) {
-      const { isBeginning, isEnd } = swiperRef.current.swiper;
-      
-      // Only disable buttons if there are 4 or fewer products
-      if (products.length <= 4) {
-        setDisablePrev(isBeginning);
-        setDisableNext(isEnd);
-      } else {
-        setDisablePrev(false);
-        setDisableNext(false);
-      }
+    setDisableLeftButton(atStart);
+    setDisableRightButton(atEnd && !hasMore);
+  };
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const handleSlideChangeWrapper = (swiper: any) => {
+    // Call onNextPage only when swiper reaches the end (but not on the initial load)
+    if (swiper.isEnd ) {
+      onNextPage();
     }
+    handleSlideChange(swiper);
   };
 
-  useEffect(() => {
-    // Update button state on initial render and resize
-    updateButtonState();
-    const handleResize = () => {
-      updateButtonState();
-    };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (swiperRef.current) {
-      if (direction === 'left' && !disablePrev) {
+      if (direction === 'left' && !disableLeftButton) {
         swiperRef.current.swiper.slidePrev();
-      } else if (direction === 'right' && !disableNext) {
+      } else if (direction === 'right' && !disableRightButton) {
         swiperRef.current.swiper.slideNext();
       }
     }
   };
 
-  // Enable loop only if there are more than 4 products
-  const isLoopEnabled = products.length > 4;
 
-
+  // Swiper settings for responsiveness
   const swiperSettings = {
     slidesPerView: 1.2,
     spaceBetween: 16,
-    loop: isLoopEnabled,
+    loop: false,
     modules: [Navigation],
-    navigation: false, 
-    onSlideChange: updateButtonState,
-    onInit: updateButtonState,
+    navigation: false,
     breakpoints: {
       640: {
         slidesPerView: 2.2,
-      
       },
       1024: {
         slidesPerView: 3,
-      
       },
       1280: {
         slidesPerView: 4,
-  
       },
     },
   };
+
   return (
     <div className="w-full">
-      <ProductHeader
-        headingLabel="Recently Viewed Products"
-        description=""
-        handleScroll={handleScroll}
-        LogInButtonDisable={false}
-        disableLeftButton={disablePrev}
-        disableRightButton={disableNext} 
-        modalSetToggle={modalSetToggle}
-        className=''
-      />
+      <div className="mb-6">
+        <ProductHeader
+          className=""
+          headingLabel="Recently Viewed Products"
+          description="A selection of products you have recently viewed."
+          handleScroll={handleScroll}
+          LogInButtonDisable={!isLoggedIn}
+          modalSetToggle={modalSetToggle}
+          disableLeftButton={disableLeftButton}
+          disableRightButton={disableRightButton}
+        />
+      </div>
 
-      <Swiper ref={swiperRef} {...swiperSettings} className="mySwiper">
+      <Swiper
+        ref={swiperRef}
+        {...swiperSettings}
+        onSlideChange={handleSlideChangeWrapper} // Handle slide change dynamically
+        className="mySwiper"
+      >
         {products.map((product) => (
-          <SwiperSlide key={product.id} className="mt-1 px-2 !items-start">
-            <Product product={product} modalSetToggle={modalSetToggle} openQuickView={() => console.log('')} showQuickView={false}/>
+          <SwiperSlide key={product.id} className="!items-start">
+            <Product
+              key={`${product._id}-${product.name}`}
+              product={{
+                id: product._id,
+                name: product.name,
+                image: product?.images?.length > 0 ? product.images[0]?.url : '',
+                rating: product?.rating || 0,
+                price: product?.price,
+                isBestSeller: product?.isBestSeller || false,
+              }}
+              modalSetToggle={modalSetToggle}
+              openQuickView={() => {console.log()}}
+              showQuickView={false}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
     </div>
   );
-};
+}
 
 export default RecentlyViewedProducts;

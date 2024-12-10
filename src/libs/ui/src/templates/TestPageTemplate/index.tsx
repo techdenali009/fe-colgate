@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { PrimaryButton } from '@ui/molecules/PrimaryButton';
 import { SecondaryButton } from '@ui/molecules/SecondaryButton';
 import { HeaderLabel } from '@ui/molecules/HeaderLabel';
@@ -28,15 +28,15 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
-import coursesData from '@utils/CoursesData';
+
 import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
-import RelatedProducts from '@ui/organisms/RelatedProducts';
-import { relatedProducts } from '@utils/test';
+// import RelatedProducts from '@ui/organisms/RelatedProducts';
+// import { relatedProducts } from '@utils/test';
 import QuickViewModal from '@ui/organisms/QuickView';
 import { products } from '@utils/test';
 import { Image } from '@ui/atoms/Image';
@@ -46,22 +46,20 @@ import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
 import { LandingPageSkeleton} from '../LandingPageSkeleton';
 import OverviewPage from '@ui/organisms/OverViewPage';
+import { LandingPageSkeleton } from '../LandingPageSkeleton';
+import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
+import PersonalProfile from '@ui/organisms/PersonalProfile';
+import QuantityButton from '@ui/atoms/QuantityButton';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
+import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+import { profileMenuItems } from '@ui/molecules/AccountMenu';
+
 
 
 interface ISearchbar {
   submitLabel: string;
   onSubmit: (value: string) => void;
 }
-
-
-
-
-
-
-
-
-
-  
 
 export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [toggle, SetToggle] = useState(false);
@@ -75,9 +73,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   const [isChecked, setIsChecked] = useState(false); // State for Checkbox
 
   const [searchQuery, setSearchQuery] = useState('');
- 
-
-  
 
   const navigate = useNavigate();
   const breadcrumbs = [
@@ -85,8 +80,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     { label: 'All Products', href: '/products' },
     { label: 'Treatment Enhancements' },
   ];
-
-
 
   const handleButtonClick = () => {
     console.log('Learn more clicked!');
@@ -104,9 +97,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     setIsChecked(event.target.checked);
   };
   const modalSetToggle = () => {
-    SetToggle(!toggle)
-  }
-
+    SetToggle(!toggle);
+  };
 
   const handleRegisterClick = () => {
     navigate('auth/register'); // Navigate to the /register route
@@ -123,7 +115,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   const price = 1234.567;
 
-
   // Handle sorting option selection
   const handleSortingSelect = (option: string) => {
     console.log('Selected sorting option:', option);
@@ -138,19 +129,25 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   };
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [QuickViewModalOpen,setQuickViewModalOpen]=useState(false)
+  const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
-  const openQuickReviewModal=()=>setQuickViewModalOpen(true);
-  const closeQuickViewModal=()=>setQuickViewModalOpen(false);
+  const openQuickReviewModal = () => setQuickViewModalOpen(true);
+  const closeQuickViewModal = () => setQuickViewModalOpen(false);
 
-  const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo); 
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.authSlice.userInfo
+  );
+  console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
       {/* <OverviewPageSkeleton/> */}
       <OverviewPage></OverviewPage>
+      
+      <AddFavouritePage className={''}></AddFavouritePage>
+      <LandingPageSkeleton />
+      <PersonalProfile></PersonalProfile>
       <LandingPageSkeleton/>
       <GreetRegister></GreetRegister>
-
       <form>
         <div className="flex justify-center mb-4">
           <PrimaryButton className="font-HeroNewBold">
@@ -170,28 +167,35 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </Checkbox>
         </div>
       </form>
-
       <HeaderLabel className="m-4">Title component</HeaderLabel>
       <SubtitleLabel className="m-4">Subtitle component</SubtitleLabel>
-
       {/* Filter Dropdown */}
-      <div className='m-5'>
+      <div className="m-5">
         <FilterDropdown
-          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
+          options={[
+            'Alphabetical A - Z',
+            'Alphabetical Z - A',
+            'Price Low to High',
+            'Price High to Low',
+          ]}
           onSelect={handleSortingSelect}
         >
         </FilterDropdown>
         <FilterDropdown
-          options={['Alphabetical A - Z', 'Alphabetical Z - A', 'Price Low to High', 'Price High to Low']}
-          onSelect={handleSortingSelect}>
+          options={[
+            'Alphabetical A - Z',
+            'Alphabetical Z - A',
+            'Price Low to High',
+            'Price High to Low',
+          ]}
+          onSelect={handleSortingSelect}
+        >
           <div className="p-4 bg-gray-100">
             <p>Additional Options:</p> {/* passing child */}
             <button className="text-blue-500">Extra Action</button>
           </div>
         </FilterDropdown>
-
       </div>
-
       {/* Popover buttons */}
       <div className="flex mb-4 space-x-4 justify-center">
         <div
@@ -228,7 +232,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           )}
         </div>
       </div>
-
       <div className="flex flex-col flex-wrap content-center p-8 m-5 bg-slate-200 leading-10">
         <h1 className="text-slate-950 text-3xl mb-5">Product Prices</h1>
         <p>
@@ -254,49 +257,35 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <Currency value={price} currency="USD" decimalPlaces={3} />
         </p>
       </div>
-
       <div className="flex">
         <Sidebar filterData={filterData} />
       </div>
-
-      <h1 className='pl-28 pt-16 font-bold'>Business Sidebar</h1>
-
-      <div className='pl-24 pt-4'>
-        <BusinessSidebar
-          categories={coursesData.courseCategories}
+      <h1 className="pl-28 pt-16 font-bold">Business Sidebar</h1>
+      <div className="pl-24 pt-4">
+        <BusinessSidebar categories={profileMenuItems}
           selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        >
-          <div className="mt-4">
-            <p>Select a category to see more details.</p>
-          </div>
-        </BusinessSidebar>
+          onCategorySelect={setSelectedCategory} onCategoryActive={setSelectedCategory}  />
+        
       </div>
-
       <div className="mb-4">
         <ProductCard
           name="Stylish Chair"
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
-          className="p-4 border rounded-lg shadow-lg"
-        />
+          className="p-4 border rounded-lg shadow-lg" productId={''}        />
       </div>
-
       <div className="mb-4">
         Rating Component:
         <Rating totalStars={5} initialRating={3} onRatingChange={console.log} />
       </div>
-
       <div className="mb-4">
         <ProductCard
           name="Stylish Chair"
           imageSrc="https://example.com/chair.jpg"
           altText="A stylish chair"
           className="p-4 border rounded-lg shadow-lg"
-          isBestSeller={true}
-        />
+          isBestSeller={true} productId={''}        />
       </div>
-
       <div className="mb-4">
         <AccordionItem
           title="Product Category"
@@ -314,7 +303,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           </div>
         </AccordionItem>
       </div>
-
       <div>
         <h3>Product Card skeleton</h3>
         <ProductCardSkeleton />
@@ -329,7 +317,6 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         <h3>Filter skeleton</h3>
         <FilterSkeleton />
       </div>
-
       <div>
         <PrimaryButton onClick={modalSetToggle}>Login</PrimaryButton>
         {toggle && <LoginModal closeModal={modalSetToggle} />}
@@ -351,11 +338,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
       />
-
       <div className="p-8">
         <PageTitleHeader breadcrumbs={breadcrumbs}></PageTitleHeader>
       </div>
-
       <div className="flex justify-center mt-10">
         <BusinessCard
           imageSrc="https://pcaskin.vtexassets.com/arquivos/ids/155951-956-auto/15277-Enhanced-Merchandising--1--1.jpg?v=638307165671830000&width=956&height=auto&aspect=true"
@@ -365,15 +350,12 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           onButtonClick={handleButtonClick}
         />
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         <BusinessCardSkeleton />
       </div>
-
       <div>
         <TwoCardsComponent />
       </div>
-
       <div>
         <h3 className="font-semibold mb-4">Skin Types</h3>
         <div className="flex flex-wrap space-x-2">
@@ -381,59 +363,127 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           <SkinTypeBadge active={true}>Oily</SkinTypeBadge>
         </div>
       </div>
-
       <div className="p-6">
         <StarRating totalStars={5} initialRating={4} />
       </div>
-
       <div className="p-4">
         <h1 className="text-lg font-bold mb-4">Product Ratings</h1>
         <ReviewRatings ratings={ratings} />
       </div>
-
       <div className="container mx-auto p-4 ">
         <h1>Filter Reviews</h1>
         <div>
-          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
         </div>
-        
       </div>
       <div className="p-6">
-        <ResponseCard title={'Response from PCA SKIN:'} pcaTimeAgo={'3 weeks ago'} iconSrc={'responsePCASkin'} consumerAffairsText={'Thank you for your feedback! We strive to improve our products and appreciate your input. Please reach out if you have any further questions.'} reviewId={1}></ResponseCard>
+        <ResponseCard
+          title={'Response from PCA SKIN:'}
+          pcaTimeAgo={'3 weeks ago'}
+          iconSrc={'responsePCASkin'}
+          consumerAffairsText={
+            'Thank you for your feedback! We strive to improve our products and appreciate your input. Please reach out if you have any further questions.'
+          }
+          reviewId={1}
+        >
+        </ResponseCard>
       </div>
       <div>
         <button onClick={openModal}>Open Review Modal</button>
 
-        {isModalOpen && <ReviewBarModal isVisible={false} onClose={function (): void {
-          throw new Error('Function not implemented.');
-        }} />}
+        {isModalOpen && (
+          <ReviewBarModal
+            isVisible={false}
+            onClose={function (): void {
+              throw new Error('Function not implemented.');
+            }}
+          />
+        )}
       </div>
-      <RelatedProducts relatedProducts={relatedProducts} className='pl-appPaddingLeft pr-appPaddingRight'/>
+      {/* <RelatedProducts
+        relatedProducts={relatedProducts}
+        className="pl-appPaddingLeft pr-appPaddingRight"
+      /> */}
       <div>
         <div className="relative group">
           <Image
             className=""
-            src={'https://pcaskin.vtexassets.com/arquivos/ids/156885-608-auto/4percent-retinol-peel.jpg?v=638579566473630000&width=608&height=auto&aspect=true'}
+            src={
+              'https://pcaskin.vtexassets.com/arquivos/ids/156885-608-auto/4percent-retinol-peel.jpg?v=638579566473630000&width=608&height=auto&aspect=true'
+            }
             alt={'xyz'}
             width={310}
             height={'auto'}
           />
-        
-     
+
           {isLoggedIn && (
             <div className="absolute flex inset-0 bg-[#1e293b82] invisible group-hover:visible w-[310px] justify-center items-center">
               <Button
                 onClick={openQuickReviewModal}
                 className="w-2/3 absolute bg-appTheme text-[1rem] p-[.344rem ,.118rem] py-[0.625rem] px-[2.313rem] text-white leading-6 font-bold font-HeroNewBold hover:bg-[#555555] justify-center"
               >
-              Quick View
+                Quick View
               </Button>
             </div>
           )}
         </div>
         <button onClick={openQuickReviewModal}>open Quick review Modal</button>
-        {QuickViewModalOpen && <QuickViewModal closeModal={closeQuickViewModal} product={products[0]} />}
+        {QuickViewModalOpen && (
+          <QuickViewModal
+            closeModal={closeQuickViewModal}
+            product={products[0]}
+          />
+        )}
+      </div>{' '}
+    
+      <ProductDetailsContentSkeleton />
+      <div >
+        {isLoggedIn ? (
+          isLoggedIn.isVerified ? (
+            <div>
+              <QuantityButton
+                initialQuantity={0}
+                onQuantityChange={() => {
+                  console.log('quqantity updated');
+                }}
+              />
+              <Button
+                className={`py-[0.625rem] px-6
+          w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
+          group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
+          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white  dark:group-hover:text-black  
+        `}
+                type={'submit'}
+              >
+                {'Add To Cart'}
+              </Button>
+            </div>
+          ) : (
+            <div className="">
+              <div className="text-xs font-bold text-appTheme my-4 ">
+                Must be a verified professional to access wholesale pricing
+              </div>
+            </div>
+          )
+        ) : (
+          <Button
+            className={`py-[0.625rem] px-6
+          w-full text-appTheme border-appTheme border-2 text-[1rem] font-bold  font-HeroNewBold  leading-6 tracking-[0.3px]
+          group-hover:bg-appBlackTheme group-hover:text-white group-hover:underline group-hover:border-white
+          hover:bg-appBlackTheme hover:text-white hover:underline hover:border-white  dark:group-hover:text-black  
+        `}
+            type={'submit'}
+          >
+            {' Log In to Order'}
+          </Button>
+        )}
+      
       </div>
+      <PlpPageSkeleton/>
+      
     </>
   );
 };

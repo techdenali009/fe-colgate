@@ -5,11 +5,13 @@ interface ButtonWithTextAndIconProps extends React.ButtonHTMLAttributes<HTMLButt
     onClick?: () => void;
     children?: React.ReactNode;
     className?: string;
+
 }
 
 export const ButtonWithTextAndIcon: React.FC<ButtonWithTextAndIconProps> = ({
   onClick,
   children,
+  
   className = '',
   ...rest // Capture additional props
 }) => {
