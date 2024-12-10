@@ -140,6 +140,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   return (
     <>
       <AddToCartPageProducts></AddToCartPageProducts>
+      
       <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
       <PersonalProfile></PersonalProfile>
