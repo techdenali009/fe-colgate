@@ -5,14 +5,13 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AddToCartPageProducts from '../AddToCartPageProducts';
 
-
-
 const CartModal: React.FC = () => {
-
   const [, setIsVisible] = useState(false);
   const cartItems = useSelector((state: RootState) => selectCartDetails(state));
   const [showCartDetails, setShowCartDetails] = useState(false);
-  const [promotionMessage] = useState<string>('Free drop-shipping for any order $100 or above');
+  const [promotionMessage] = useState<string>(
+    'Free drop-shipping for any order $100 or above'
+  );
   const totalCartPrice = cartItems.reduce((acc, item) => {
     const price = item.price || 0;
     const quantity = item.quantity || 0;
@@ -21,12 +20,11 @@ const CartModal: React.FC = () => {
   return (
     <div
       className="relative "
-      onMouseEnter={() => setIsVisible(true)}  // Show on hover
+      onMouseEnter={() => setIsVisible(true)} // Show on hover
       onMouseLeave={() => setIsVisible(false)} // Hide on leave
     >
-
-
-      <div className="absolute float-right right-0 h-auto bg-white px-4 py-4  
+      <div
+        className="absolute float-right right-0 h-auto bg-white px-4 py-4  
                      bg-brand-white-100 
                     shadow-md rounded-b-3xl flex flex-col !rounded-none -mr-[80px] z-[999]"
       >
@@ -34,22 +32,26 @@ const CartModal: React.FC = () => {
           {promotionMessage}
         </div>
 
-        {cartItems.length > 0 ? (<AddToCartPageProducts
-          showCartDetails={showCartDetails}
-          setShowCartDetails={setShowCartDetails} // Pass the state setter to the child
-        />) : (<div className="flex font-HeroNewRegular flex-col items-center justify-center min-h-[15.625rem] global-cart-empty-view">
-          <h2>There is nothing here yet</h2>
-          <a
-            className="text-blue-600 relative gap-1 flex font-bold text-base font-HeroNewBold py-1 px-4 -ml-4 mr-4 light"
-            href="/products"
-          >
-            <h2>Start Shopping</h2><CartRightArrow className='mt-1' />
-
-          </a>
-        </div>)}
+        {cartItems.length > 0 ? (
+          <AddToCartPageProducts
+            showCartDetails={showCartDetails}
+            setShowCartDetails={setShowCartDetails} // Pass the state setter to the child
+          />
+        ) : (
+          <div className="flex font-HeroNewRegular flex-col items-center justify-center min-h-[15.625rem] global-cart-empty-view">
+            <h2>There is nothing here yet</h2>
+            <a
+              className="text-blue-600 relative gap-1 flex font-bold text-base font-HeroNewBold py-1 px-4 -ml-4 mr-4 light"
+              href="/products"
+            >
+              <h2>Start Shopping</h2>
+              <CartRightArrow className="mt-1" />
+            </a>
+          </div>
+        )}
 
         <div className="flex flex-row  justify-between pt-4 pb-2 gap-16">
-          <div className='flex flex-row'>
+          <div className="flex flex-row">
             <a
               className="text-primary-400 font-bold text-base bg-blue-600 hover:text-secondary-400 text-white 
                                  focus-visible:rounded-3xl link inline-block leading-24 tracking-[0.3px] 
@@ -62,11 +64,12 @@ const CartModal: React.FC = () => {
           </div>
           <div className="flex flex-row mr-5 py-4 px-4">
             <span className="text-base ">Subtotal:</span>
-            <span className='font-HeroNewSemiBold'>&#8377;{totalCartPrice.toFixed(2)}</span>
+            <span className="font-HeroNewSemiBold">
+              &#8377;{totalCartPrice.toFixed(2)}
+            </span>
           </div>
         </div>
       </div>
-
     </div>
   );
 };

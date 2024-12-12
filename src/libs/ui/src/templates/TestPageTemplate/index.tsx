@@ -42,6 +42,7 @@ import { Button } from '@ui/atoms/Button';
 import { RootState } from '@store/store';
 import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
+import OverviewPage from '@ui/organisms/OverViewPage';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
@@ -141,6 +142,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
         showCartDetails={showCartDetails}
         setShowCartDetails={setShowCartDetails} // Pass the state setter to the child
       />
+      {/* <OverviewPageSkeleton/> */}
+      <OverviewPage></OverviewPage>
       
       <CartPage></CartPage>
       <AddFavouritePage className={''}></AddFavouritePage>

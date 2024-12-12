@@ -68,7 +68,7 @@ function Product({
     }
   };
   
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+   
   const handaleClick = (id: number) => {
     // const handaleClick = (id: number) => {
     // navigate(`/products/${id}/${name}`);
