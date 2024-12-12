@@ -37,19 +37,6 @@ export const recentOrders: Order[] = [
   },
 ];
 
-export const getStatusColor = (status: string): string => {
-  switch (status) {
-  case 'Delivered':
-    return 'text-green-600';
-  case 'Pending':
-    return 'text-yellow-600';
-  case 'Processing':
-    return 'text-blue-600';
-  default:
-    return 'text-gray-600';
-  }
-};
-
 export const performanceData = [
   { name: 'Jan', sales: 4000, users: 2400, orders: 1800 },
   { name: 'Feb', sales: 3000, users: 1398, orders: 2800 },

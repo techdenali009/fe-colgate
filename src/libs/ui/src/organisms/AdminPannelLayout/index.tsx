@@ -19,7 +19,7 @@ const AdminLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className='Admin-Pannel relative h-screen flex flex-col'>
+    <div className='Admin-Pannel absloute flex flex-col'>
       <Header
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
@@ -27,7 +27,7 @@ const AdminLayout: React.FC = () => {
         setIsProfileOpen={setIsProfileOpen}
       />
 
-      <div className='flex h-full pt-16'>
+      
         <Sidebar isSidebarOpen={isSidebarOpen} />
 
         {/* Backdrop */}
@@ -38,7 +38,7 @@ const AdminLayout: React.FC = () => {
           >
           </div>
         )}
-      </div>
+      
     </div>
   );
 };

@@ -31,6 +31,7 @@ import ViewCartModal from '@ui/organisms/ViewCartModal';
 import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
 import OverviewPage from '@ui/organisms/OverViewPage';
+import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -55,76 +56,77 @@ const ProductDetailsPage = lazy(() => import('../pages/ProductDetailsPage'))
 
 export const AppRoutes = () => (
   <Routes>
-    {/* <Route path="/" element={<LoginPage />} /> */}
-    {/* <Route path="/" element={<RegisterPage />} /> */}
-    <Route path="/" element={
+    {/* <Route path='/' element={<LoginPage />} /> */}
+    {/* <Route path='/' element={<RegisterPage />} /> */}
+    <Route path='/' element={
       <Suspense fallback={<LandingPageSkeleton />}>
         <MainModule />
       </Suspense>
     }>
-      <Route path="" element={<LandingPage />}></Route>
-      <Route path="auth/register" element={<RegisterPage />}></Route>
+      <Route path='' element={<LandingPage />}></Route>
+      <Route path='auth/register' element={<RegisterPage />}></Route>
 
       {/* User Module */}
-      {/* <Route path="/users" element={<UserModule />}>
-                   <Route  path="/" element={<Users/>}></Route>
-                   <Route  path="users/:id" element={<UserDetails}></Route>
+      {/* <Route path='/users' element={<UserModule />}>
+                   <Route  path='/' element={<Users/>}></Route>
+                   <Route  path='users/:id' element={<UserDetails}></Route>
                 </Route> */}
 
       {/* Product module */}
 
-      <Route path="/products" element={<ProductModule />}>
-        <Route path="" element={<PlpPage />}></Route>
-        {/* <Route  path="/" element={<Products/>}></Route> */}
-        <Route path=":id/:name" element={<ProductDetailsPage />}></Route>
+      <Route path='/products' element={<ProductModule />}>
+        <Route path='' element={<PlpPage />}></Route>
+        {/* <Route  path='/' element={<Products/>}></Route> */}
+        <Route path=':id/:name' element={<ProductDetailsPage />}></Route>
       </Route>
 
       {/* About module */}
-      <Route path="/about" element={<AboutModule />}>
-        <Route path="contact-us" element={<ContactUsPage />} />
-        <Route path="our-story" element={<OurStoryPage />} />
-        <Route path="culture" element={<CulturePage />} />
-        <Route path="our-peel-legacy" element={<OurPeelLegacyPage />} />
-        <Route path="returns-exchanges" element={<ReturnsAndExchangePage />} />
-        <Route path="subscriptions" element={<SubscriptionTermsPage />} />
-        <Route path="FAQs" element={<FrequentlyAskedQuestionsPage />} />
-        <Route path="faq" element={<FrequentlyAskedQuestionsPage />} />
-        <Route path="Shipping-terms" element={<ShippingTermsPage />} />
-        <Route path="terms-conditions" element={<TermsConditionPage />} />
-        <Route path="careers" element={<CareersPage />} />
-        <Route path="product-excellence" element={<ProductExcellencePage />} />
-        <Route path="pca-skin-international" element={<PCAskinInternationalPage />} />
-        <Route path="do-not-sell-my-personal-information" element={<DoNotSellPersonalInfoPage />} />
+      <Route path='/about' element={<AboutModule />}>
+        <Route path='contact-us' element={<ContactUsPage />} />
+        <Route path='our-story' element={<OurStoryPage />} />
+        <Route path='culture' element={<CulturePage />} />
+        <Route path='our-peel-legacy' element={<OurPeelLegacyPage />} />
+        <Route path='returns-exchanges' element={<ReturnsAndExchangePage />} />
+        <Route path='subscriptions' element={<SubscriptionTermsPage />} />
+        <Route path='FAQs' element={<FrequentlyAskedQuestionsPage />} />
+        <Route path='faq' element={<FrequentlyAskedQuestionsPage />} />
+        <Route path='Shipping-terms' element={<ShippingTermsPage />} />
+        <Route path='terms-conditions' element={<TermsConditionPage />} />
+        <Route path='careers' element={<CareersPage />} />
+        <Route path='product-excellence' element={<ProductExcellencePage />} />
+        <Route path='pca-skin-international' element={<PCAskinInternationalPage />} />
+        <Route path='do-not-sell-my-personal-information' element={<DoNotSellPersonalInfoPage />} />
 
 
       </Route>
       
-      <Route path="/test" element={<TestPage />}></Route>
+      <Route path='/test' element={<TestPage />}></Route>
      
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
      
-      <Route path="/myaccount" element={<ProfileModule />}>
-        {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
-        <Route path="" element={<MyAccountPage/>}>
-          <Route path="Orders" element={<OrderHistoryPage/>} />
-          <Route path="overview" element={<OverviewPage/>} />
-          <Route path="Invoices" element={<p>my Invoices</p>} />
-          <Route path="Shipping" element={<p>my Shipping</p>} />
-          <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
-          <Route path="Favorites" element={<p>my Favorites</p>} />
+      <Route path='/myaccount' element={<ProfileModule />}>
+        {/* <Route path='OrderModal' element={<OrderHistoryPage/>} /> */}
+        <Route path='' element={<MyAccountPage/>}>
+          <Route path='Orders' element={<OrderHistoryPage/>} />
+          <Route path='overview' element={<p>My Fav</p>} />
+          <Route path='Invoices' element={<p>my Invoices</p>} />
+          <Route path='Shipping' element={<p>my Shipping</p>} />
+          <Route path='PaytmMethod' element={<p>my PaytmMethod</p>} />
+          <Route path='Favorites' element={<p>my Favorites</p>} />
         </Route>
           
       </Route> 
-      <Route path="/" element={<CartModule />}>
-        <Route path="cart" element={<ViewCartModal/>} />
+      <Route path='/' element={<CartModule />}>
+        <Route path='cart' element={<ViewCartModal/>} />
       </Route> 
     </Route>
-    <Route path="/admin" element={<AdminModule />}>
-      <Route path="products" element={<AdminProduct />} />
-      <Route path="users" element={<UserDate />} />
+    <Route path='/admin' element={<AdminModule />}>
+      <Route path='products' element={<AdminProduct />} />
+      <Route path='users' element={<UserDate />} />
       <Route path='adduser' element={<AddUserTemplate/>}/>
       <Route path='users/:id' element={<EditUserTemplate/>}/>
+      <Route path='dashboard' element={<AdminDashboard/>}/>
     </Route>
-    <Route path="/verifyToken" element={<AccountVerificationPage></AccountVerificationPage>}> </Route>
+    <Route path='/verifyToken' element={<AccountVerificationPage></AccountVerificationPage>}> </Route>
   </Routes>
 )
