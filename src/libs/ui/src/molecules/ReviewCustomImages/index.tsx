@@ -15,10 +15,10 @@ interface ImageProps {
   url: string;
   alt: string;
 }
-
-const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className }) => {
+ 
+const CustomImages: React.FC<CustomImagesProps> = ({ reviewId, className}) => {
   const { productReviews } = useReviewContext();
-
+   
   const [, setSelectedImage] = useState<ImageProps | null>(null);
 
   // Find the review based on the provided reviewId
