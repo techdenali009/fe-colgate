@@ -28,16 +28,16 @@ const AdminLayout: React.FC = () => {
       />
 
       
-        <Sidebar isSidebarOpen={isSidebarOpen} />
+      <Sidebar isSidebarOpen={isSidebarOpen} />
 
-        {/* Backdrop */}
-        {isSidebarOpen && (
-          <div
-            className='fixed inset-0 bg-gray-900 bg-opacity-50 z-30'
-            onClick={() => setIsSidebarOpen(false)}
-          >
-          </div>
-        )}
+      {/* Backdrop */}
+      {isSidebarOpen && (
+        <div
+          className='fixed inset-0 bg-gray-900 bg-opacity-50 z-30'
+          onClick={() => setIsSidebarOpen(false)}
+        >
+        </div>
+      )}
       
     </div>
   );

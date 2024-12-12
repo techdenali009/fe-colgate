@@ -30,7 +30,6 @@ import ViewCartModal from '@ui/organisms/ViewCartModal';
 
 import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
-import OverviewPage from '@ui/organisms/OverViewPage';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))

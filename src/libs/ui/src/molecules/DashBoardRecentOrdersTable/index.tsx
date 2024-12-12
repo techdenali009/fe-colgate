@@ -71,18 +71,18 @@ const RecentOrdersTable: React.FC = () => {
   }
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
-      case 'pending':
-        return ' text-yellow-800 ';
-      case 'processing':
-        return ' text-blue-800 ';
-      case 'shipped':
-        return ' text-green-800 ';
-      case 'delivered':
-        return ' text-green-900 ';
-      case 'cancelled':
-        return ' text-red-800 ';
-      default:
-        return ' text-gray-800 ';
+    case 'pending':
+      return ' text-yellow-800 ';
+    case 'processing':
+      return ' text-blue-800 ';
+    case 'shipped':
+      return ' text-green-800 ';
+    case 'delivered':
+      return ' text-green-900 ';
+    case 'cancelled':
+      return ' text-red-800 ';
+    default:
+      return ' text-gray-800 ';
     }
   };
 
