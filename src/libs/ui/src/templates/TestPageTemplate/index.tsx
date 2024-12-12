@@ -44,6 +44,7 @@ import { Button } from '@ui/atoms/Button';
 import { RootState } from '@store/store';
 import { useSelector } from 'react-redux';
 import GreetRegister from '@ui/organisms/GreetingRegister';
+import OverviewPage from '@ui/organisms/OverViewPage';
 import { LandingPageSkeleton } from '../LandingPageSkeleton';
 import ProductDetailsContentSkeleton from '@ui/molecules/ProductDetailsContentSkeleton';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
@@ -138,6 +139,8 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   return (
     <>
+      {/* <OverviewPageSkeleton/> */}
+      <OverviewPage></OverviewPage>
       
       <AddFavouritePage className={''}></AddFavouritePage>
       <LandingPageSkeleton />
