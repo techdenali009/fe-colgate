@@ -1,7 +1,7 @@
 import { Product } from '@ui/templates/LandingPage';
 
 export interface ProductType {
-  id: string ;
+  id: string | number;
   name: string;
   image: string;
   rating: number;
@@ -15,6 +15,7 @@ export interface ProductType {
 }
 
 
+ 
 export interface ProductDetailsContentProps {
   id: string ;
   name: string ;

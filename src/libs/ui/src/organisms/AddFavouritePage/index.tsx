@@ -14,8 +14,8 @@ const AddFavouritePage: React.FC<AddFavouritePageProps> = () => {
         <h2>Favorites</h2>
       </div>
       <div className='flex flex-col lg:flex-row'>
-        <div className='w-[30%]'>Favourites Page</div>
-        <div className='lg:w-[70%] w-full'>
+      
+        <div className='lg:w-full w-full'>
           <FavouritesPage
             subHeading="Nothing favorited"
             buttonText="Shop Products"

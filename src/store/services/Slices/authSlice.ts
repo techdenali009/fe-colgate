@@ -13,7 +13,16 @@ interface UserInfo {
   createdAt: string;
   updatedAt: string;
   isVerified?:boolean;
-  favoriteProducts:string[]
+  favoriteProducts:string[];
+  addresses?: Address; 
+}
+
+interface Address {
+  address: string;
+  city: string;
+  country: string;
+  postalCode: string;
+ 
 }
 
 interface LoginState {

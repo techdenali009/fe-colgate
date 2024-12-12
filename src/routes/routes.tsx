@@ -26,12 +26,12 @@ import UserDate from '@ui/templates/UserDateTemplate';
 import AddUserTemplate from '@ui/templates/AddUserTemplate';
 import EditUserTemplate from '@ui/templates/EditUserTemplate';
 
-import ViewCartModal from '@ui/organisms/ViewCartModal';
-
 import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
+import PersonalProfileFields from '@ui/molecules/PersonalProfileFields';
+import CartPage from '@ui/organisms/CartPage';
 import OverviewPage from '@ui/organisms/OverViewPage';
-
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
 
@@ -109,19 +109,22 @@ export const AppRoutes = () => (
           <Route path="Orders" element={<OrderHistoryPage/>} />
           <Route path="overview" element={<OverviewPage/>} />
           <Route path="Invoices" element={<p>my Invoices</p>} />
+          <Route path="PersonalProfile" element={<PersonalProfileFields></PersonalProfileFields>} />
           <Route path="Shipping" element={<p>my Shipping</p>} />
           <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
-          <Route path="Favorites" element={<p>my Favorites</p>} />
+          <Route path="Favorites" element={<AddFavouritePage className=''></AddFavouritePage>} />
         </Route>
           
       </Route> 
-      <Route path="/" element={<CartModule />}>
-        <Route path="cart" element={<ViewCartModal/>} />
+      <Route path="/" element={<CartModule/>}>
+        <Route path="cart" element={<CartPage/>} />
       </Route> 
     </Route>
     <Route path="/admin" element={<AdminModule />}>
       <Route path="products" element={<AdminProduct />} />
-      <Route path="users" element={<UserDate />} />
+      
+      
+      <Route path="users" element={<UserDate/>} />
       <Route path='adduser' element={<AddUserTemplate/>}/>
       <Route path='users/:id' element={<EditUserTemplate/>}/>
     </Route>
