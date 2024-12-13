@@ -52,10 +52,11 @@ export const OrderApi = createApi({
     getOrderById: builder.query({
       query: (orderId) => `order/getOrderById/${orderId}`,
     }),
+    getAllOrders: builder.query({
+      query: (params) => `order/all?${new URLSearchParams(params).toString()}`,
+    
+    }),
   }),
 });
 
-export const { useLazyGetOrdersQuery,useLazyGetOrderByIdQuery } = OrderApi;
-
-
-
+export const { useLazyGetOrdersQuery,useLazyGetAllOrdersQuery,useLazyGetOrderByIdQuery } = OrderApi;
