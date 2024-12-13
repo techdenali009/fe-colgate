@@ -8,7 +8,7 @@ export const UserApi = createApi({
     baseUrl: UserUrl,
     credentials: 'include',
   }),
-  tagTypes: ['User', 'MyFavList'], 
+  tagTypes: ['User', 'MyFavList','Order'], 
   endpoints: (builder) => ({
     // Fetch users
     getUsers: builder.query({
@@ -72,6 +72,15 @@ export const UserApi = createApi({
       invalidatesTags:['MyFavList']
     }),
 
+    createorder: builder.mutation({
+      query: (data) => ({
+        url: '/order/create',
+        method: 'POST',
+        body: data, // Payload for changing the password
+      }),
+      invalidatesTags:['Order']
+    }),
+
   }),
 });
 
@@ -83,6 +92,6 @@ export const {
   useGetUserByIdQuery,
   useLazyGetUserByIdQuery,
   useLazyGetFavouriteProductsQuery,
-  useAddfavouriteMutation
+  useAddfavouriteMutation,useCreateorderMutation
 } = UserApi;
  

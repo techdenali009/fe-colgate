@@ -50,7 +50,6 @@ const PlpPageTemplate: React.FC = () => {
   const [toggle, SetToggle] = useState(false);
 
   const handleCategorySelect = (category: string | null) => {
-
     const newCategory = category ?? 'All Products';
     const searchParams = new URLSearchParams(location.search);
 
@@ -142,10 +141,10 @@ const PlpPageTemplate: React.FC = () => {
     <>
       {isLoading && <PlpPageSkeleton />}
       {!isLoading && (
-        <div className="relative pr-2 pl-2">
-          <div className="!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1">
+        <div className='relative pr-2 pl-2'>
+          <div className='!mt-10 text-[2.375rem] font-HeroNewBold font-extrabold plpPageTittle my-0 mx-[30px] py-0 lg:px-6 px-14 tm:px-6  xl:px-14 tm:mx-1'>
             <PageTitleHeader
-              className="!text-xs !leading-4 text-tertiary-400 font-HeroNewBold tm:text-[2.375rem]"
+              className='!text-xs !leading-4 text-tertiary-400 font-HeroNewBold tm:text-[2.375rem]'
               breadcrumbs={breadcrumbs}
             />
           </div>

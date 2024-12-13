@@ -19,7 +19,7 @@ const AdminLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className='Admin-Pannel relative h-screen flex flex-col'>
+    <div className='Admin-Pannel absloute flex flex-col'>
       <Header
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
@@ -27,18 +27,18 @@ const AdminLayout: React.FC = () => {
         setIsProfileOpen={setIsProfileOpen}
       />
 
-      <div className='flex h-full pt-16'>
-        <Sidebar isSidebarOpen={isSidebarOpen} />
+      
+      <Sidebar isSidebarOpen={isSidebarOpen} />
 
-        {/* Backdrop */}
-        {isSidebarOpen && (
-          <div
-            className='fixed inset-0 bg-gray-900 bg-opacity-50 z-30'
-            onClick={() => setIsSidebarOpen(false)}
-          >
-          </div>
-        )}
-      </div>
+      {/* Backdrop */}
+      {isSidebarOpen && (
+        <div
+          className='fixed inset-0 bg-gray-900 bg-opacity-50 z-30'
+          onClick={() => setIsSidebarOpen(false)}
+        >
+        </div>
+      )}
+      
     </div>
   );
 };

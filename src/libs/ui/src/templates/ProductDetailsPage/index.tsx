@@ -3,7 +3,6 @@ import ProductDetails from '@ui/molecules/ProductDetails';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
 
 import { marketingBannerTwo } from '@utils/banner';
-
 import { useParams } from 'react-router-dom';
 import './ProductDetailsPage.styles.scss';
 import PageTitleHeader from '@ui/molecules/PageTitleHeader';
@@ -69,11 +68,7 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
           <div className='xl:!px-[96px] md:!px-[56px] '>
             <ProductDetails></ProductDetails>
           </div>
-          <div
-            className={
-              'w-full  xl:!px-[96px] md:!px-[50px] 2xs:px-[24px]  !m-0'
-            }
-          >
+          <div className={'w-full  xl:!px-[96px] md:!px-[50px] 2xs:px-[24px]  !m-0'}>
             {/* <RelatedProducts relatedProducts={relatedProducts} className={'xl:!px-[5rem]'} /> */}
           </div>
           <div className='pt-[7.5rem] lg:px-4 !w-full xl:!px-[96px] '>

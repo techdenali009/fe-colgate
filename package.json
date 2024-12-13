@@ -13,7 +13,9 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "@midudev/tailwind-animations": "^0.1.0",
+    "@radix-ui/react-radio-group": "^1.2.1",
     "@reduxjs/toolkit": "^2.2.7",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.460.0",
     "pca_skin_pro": "file:",
     "query-string": "^9.1.1",
@@ -33,10 +35,12 @@
     "react-tiny-popover": "^8.1.2",
     "react-toastify": "^10.0.6",
     "react-transition-group": "^4.4.5",
+    "recharts": "^2.13.3",
     "redux-persist": "^6.0.0",
     "sass-embedded": "^1.79.1",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.14",
+    "tailwind-merge": "^2.5.5",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {
