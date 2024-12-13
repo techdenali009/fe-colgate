@@ -11,6 +11,7 @@ import FavoriteButton from '@ui/atoms/ProductDetailsPageFavoriteButton';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import { addToCart, removeFromCart, updateQuantity } from '@store/services/Slices/AddToCartSlice';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 interface CartItem {
@@ -34,8 +35,8 @@ function Product({
 }: ProductProps & { showAddToCartButton?: boolean }) {
   const { image, name, isBestSeller, rating, id, price } = product;
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const handleNavigate = () => navigate(`/products/${id}/${name}`);
+  const navigate = useNavigate();
+  const handleNavigate = () => navigate(`/products/${id}/${name}`);
 
   const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo);
   const cartItems: CartItem[] = useSelector((state: RootState) => state.addtocart.items);
@@ -80,8 +81,8 @@ function Product({
   return (
     <div
       className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName}`}
-      onClick={() => handaleClick(Number(id))}
-    // onClick={handleNavigate}
+      // onClick={() => handaleClick(Number(id))}
+    onClick={handleNavigate}
     >
       <div className={`${ProductImageClassName}`}>
         <ProductImage

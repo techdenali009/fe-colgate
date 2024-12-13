@@ -12,7 +12,7 @@ import { ReviewProvider } from '@ui/molecules/ReviewUseContext';
 import ReviewSection from '@ui/organisms/ReviewSection';
 import { useDispatch } from 'react-redux';
 import { addVisitedProduct } from '@store/services/Slices/visitedProductsSlice';
-import { useLazyGetProductByIdQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
+import { useLazyGetProductByIdQuery, useLazyGetRelativeProductsQuery } from '@store/services/Endpoints/PlpProductsEndPoint';
 
 interface PDPage {
   submitLabel: string;
@@ -22,13 +22,15 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const [trigger, { data: product, isLoading }] = useLazyGetProductByIdQuery();
+  const [fetch, { data: relativeproducts }]= useLazyGetRelativeProductsQuery();
   useEffect(() => {
     if (id) {
       dispatch(addVisitedProduct(id));
       trigger(id); // Fetch product data on demand
+      fetch({productId:id})
     }
   }, [id, trigger, dispatch]);
-
+console.log('relativeproducts',relativeproducts);
   // Breadcrumbs array, updated dynamically based on the selected product
   const breadcrumbs = [
     { label: 'Home', href: '/' },
@@ -66,10 +68,10 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
         )}
         <div className={'w-full bg-lightGray '}>
           <div className='xl:!px-[96px] md:!px-[56px] '>
-            <ProductDetails></ProductDetails>
+            <ProductDetails howToApply={product?.howToApply} regimenInfromation={product?.regimenInfromation}></ProductDetails>
           </div>
           <div className={'w-full  xl:!px-[96px] md:!px-[50px] 2xs:px-[24px]  !m-0'}>
-            {/* <RelatedProducts relatedProducts={relatedProducts} className={'xl:!px-[5rem]'} /> */}
+            {/* <RelatedProducts products={relativeproducts?.data} modalSetToggle={()=>{}} /> */}
           </div>
           <div className='pt-[7.5rem] lg:px-4 !w-full xl:!px-[96px] '>
             <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />

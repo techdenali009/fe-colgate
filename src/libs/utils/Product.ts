@@ -43,15 +43,15 @@ export interface ProductProps {
 }
 
 export interface RelatedProductsProps{
-  relatedProducts: ProductType[];
+  relatedProducts: Product[];
   className:string
 }
 export interface PopularProductsProps {
   products:Product[];
-  modalSetToggle: () => void;
+  modalSetToggle?: () => void;
  
-  onNextPage: () => void;
-  hasMore: boolean;
+  onNextPage?: () => void;
+  hasMore?: boolean;
  
 }
 export interface RecentlyViewedProductsProps{
