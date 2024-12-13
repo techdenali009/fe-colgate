@@ -26,11 +26,10 @@ import UserDate from '@ui/templates/UserDateTemplate';
 import AddUserTemplate from '@ui/templates/AddUserTemplate';
 import EditUserTemplate from '@ui/templates/EditUserTemplate';
 
-import ViewCartModal from '@ui/organisms/ViewCartModal';
-
 import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
+import ViewCartModal from '@ui/organisms/ViewCartModal';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));

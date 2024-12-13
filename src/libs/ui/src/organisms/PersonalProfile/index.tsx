@@ -46,10 +46,8 @@ const PersonalProfile: React.FC<PersonalProfileProps> = ({
   };
   return (
     <div className={`w-full py-14 px-6 lg:!flex lg:p-0 ${className}`}>
-      <div className='w-[50%] lg:w-[25%]'>
-        <h3 className='text-[20px] font-HeroNewRegular mb-3'>Account</h3>
-      </div>
-      <div className='w-[100%] lg:w-[75%] '>
+     
+      <div className='w-[100%] lg:w-full '>
         <h3 className="text-[38px] text-appTheme mb-[28px] font-HeroNewRegular">Personal Profile</h3>
        
         <PersonalProfileFields />

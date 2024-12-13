@@ -38,6 +38,7 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
   const onSubmit = async (data: LoginData) => {
     try {
       const result = await login(data).unwrap();
+      console.log('result',result)
       if (result.status) {
         dispatch(userInfo(result.data.userInfo));
         dispatch(setAuthToken(result.data.token));
