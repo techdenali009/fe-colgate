@@ -82,7 +82,7 @@ function Product({
     <div
       className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName}`}
       // onClick={() => handaleClick(Number(id))}
-    onClick={handleNavigate}
+      onClick={handleNavigate}
     >
       <div className={`${ProductImageClassName}`}>
         <ProductImage

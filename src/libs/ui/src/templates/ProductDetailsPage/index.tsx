@@ -30,7 +30,7 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
       fetch({productId:id})
     }
   }, [id, trigger, dispatch]);
-console.log('relativeproducts',relativeproducts);
+  console.log('relativeproducts',relativeproducts);
   // Breadcrumbs array, updated dynamically based on the selected product
   const breadcrumbs = [
     { label: 'Home', href: '/' },
