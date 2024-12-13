@@ -59,4 +59,7 @@ export const OrderApi = createApi({
   }),
 });
 
-export const { useLazyGetOrdersQuery,useLazyGetAllOrdersQuery } = OrderApi;
+export const { useLazyGetOrdersQuery,useLazyGetOrderByIdQuery } = OrderApi;
+
+
+
