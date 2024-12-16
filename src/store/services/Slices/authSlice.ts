@@ -23,6 +23,7 @@ interface Address {
   country: string;
   postalCode: string;
  
+  addresses:string[]
 }
 
 interface LoginState {
