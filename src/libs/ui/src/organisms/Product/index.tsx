@@ -36,7 +36,7 @@ function Product({
   const { image, name, isBestSeller, rating, id, price } = product;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleNavigate = () => navigate(`/products/${id}/${name}`);
+  // const handleNavigate = () => navigate(`/products/${id}/${name}`);
 
   const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo);
   const cartItems: CartItem[] = useSelector((state: RootState) => state.addtocart.items);
@@ -70,9 +70,9 @@ function Product({
   };
   
    
-  const handaleClick = (id: number) => {
-    // const handaleClick = (id: number) => {
-    // navigate(`/products/${id}/${name}`);
+
+  const handaleClick = (id: string) => {
+    navigate(`/products/${id}`);
     console.log('id',id);
   };
 
@@ -82,7 +82,7 @@ function Product({
     <div
       className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName}`}
       // onClick={() => handaleClick(Number(id))}
-      onClick={handleNavigate}
+      // onClick={handleNavigate}
     >
       <div className={`${ProductImageClassName}`}>
         <ProductImage
@@ -112,7 +112,7 @@ function Product({
         </div>
         <h3
           className="mt-2.5 text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold"
-          onClick={() => handaleClick(Number(id))}
+          onClick={() => handaleClick((id))}
         >
           {name}
         </h3>
