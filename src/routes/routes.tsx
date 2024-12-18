@@ -75,7 +75,7 @@ export const AppRoutes = () => (
       <Route path='/products' element={<ProductModule />}>
         <Route path='' element={<PlpPage />}></Route>
         {/* <Route  path='/' element={<Products/>}></Route> */}
-        <Route path=':id/:name' element={<ProductDetailsPage />}></Route>
+        <Route path=':id' element={<ProductDetailsPage />}></Route>
       </Route>
 
       {/* About module */}

@@ -102,7 +102,7 @@ export const LandingTemplatePage = () => {
       <Carousel slides={carouselData} />
 
       {/* marketing-banner-1 */}
-      <div className="px-16 p-12">
+      <div className='px-16 p-12'>
         <MarketingBannerList marketingBannersData={marketingBannersData} />
       </div>
 
@@ -113,7 +113,7 @@ export const LandingTemplatePage = () => {
       <MarketingBannerTwo bannerData={marketingBannerTwo[0]} />
 
       {/* popular-products */}
-      <div className="lg:pl-appPaddingLeft lg:pr-appPaddingRight pl-6 pr-6 mb-20">
+      <div className='lg:pl-appPaddingLeft lg:pr-appPaddingRight pl-6 pr-6 mb-20'>
         {isLoading ? (
           <PopularProductSkeleton />
         ) : (
