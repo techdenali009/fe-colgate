@@ -240,12 +240,12 @@ const OrderHistoryTemplate: React.FC = () => {
 
 
             {/* Labels */}
-            <div className="flex gap-10 relative font-HeroNewBold border-b border-black">
+            <div className="flex gap-10 relative  border-b border-black">
               {['All Orders', 'Pending', 'Shipped', 'Cancelled'].map((label) => (
                 <button
                   key={label}
-                  className={`pb-2 transition-colors relative ${selectedStatus === label
-                    ? 'text-appTheme border-b-5'
+                  className={`pb-2 transition-colors  relative  ${selectedStatus === label
+                    ? 'text-appTheme border-b-5 font-HeroNewBold'
                     : ' hover:text-black-700'
                   }`}
                   onClick={() => setSelectedStatus(label)}
@@ -291,7 +291,7 @@ const OrderHistoryTemplate: React.FC = () => {
           <div className="overflow-x-auto w-full">
             <table className="table-auto w-full">
               <thead>
-                <tr className="bg-[#125ee0] text-white font-HeroNewRegular whitespace-nowrap">
+                <tr className="bg-appTheme text-white font-HeroNewRegular whitespace-nowrap">
                   <th className="py-3 px-4 text-left font-medium">ID</th>
                   <th className="py-3 px-4 text-left font-medium">Product Name</th>
                   <th className="py-3 px-4 text-left font-medium">Payment</th>
@@ -311,7 +311,7 @@ const OrderHistoryTemplate: React.FC = () => {
                 ) : (
                   orderResponse?.data?.orders.map((order: Order) => (
                     <tr key={order._id} className="hover:bg-gray-50">
-                      <td className="py-4 px-4 text-appTheme font-bold font-[Hero New Regular">#{order.orderId.slice(0, 8)}</td>
+                      <td className="py-4 px-4  font-bold text-darkGray font-[Hero New Regular">#{order.orderId.slice(0, 8)}</td>
                       <td className="py-4 px-4">
                         {renderProductColumn(order.products, order._id)}
                       </td>

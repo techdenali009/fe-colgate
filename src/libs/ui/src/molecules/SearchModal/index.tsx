@@ -1,64 +1,55 @@
 import React, { ReactNode, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // For navigation
 import ModalHeader from '../SearchDailogHedaer';
 import ModalBackground from '../SearchDailogContent';
 import SearchResults from '../SearchDailogModal';
 
 interface ModalProps {
-  isOpen: boolean; // Indicates whether the modal is open or not
-  onClose: () => void; // Function to close the modal
-  children?: ReactNode; // Optional content to be displayed inside the modal
-  className?: string; // Optional className for additional styling
+  isOpen: boolean;
+  onClose: () => void;
+  children?: ReactNode;
+  className?: string;
 }
 
 const SearchModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [closing, setClosing] = useState(false);
-  const [loading, setLoading] = useState(true); // State for loading
+  const [searchQuery, setSearchQuery] = useState(''); // Store user input
+  const [loading, setLoading] = useState(true); // Loading state for the search
+  const navigate = useNavigate(); // For navigation
 
   const handleSearch = () => {
     if (searchQuery.trim() !== '') {
       setRecentSearches((prevSearches) => [searchQuery, ...prevSearches.slice(0, 4)]);
       setSearchQuery('');
+      navigate(`/products?searchkeyword=${searchQuery}`); // Redirect to search results page
     }
   };
 
   const handleClear = () => {
-    setSearchQuery(''); // Clear the input field
-  };
-
-  const handleClose = () => {
-    setClosing(true);
-    setTimeout(() => {
-      setClosing(false);
-      onClose();
-    }, 300); // Timeout to allow slide-out animation
+    setSearchQuery('');
   };
 
   useEffect(() => {
     if (isOpen) {
-      setClosing(false);
-      // Simulate loading delay
       setLoading(true);
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         setLoading(false); // Simulate loading finished
-      }, 1000); // Adjust time as necessary
-      return () => clearTimeout(timer); // Clean up timeout
+      }, 1000); // Adjust this as per your need
     }
   }, [isOpen]);
 
   return (
     <>
       {isOpen && (
-        <div className={`fixed !ml-0 h-[360px] inset-0 flex items-start justify-center z-50 overflow-y-scroll ${closing ? 'animate-slideOut' : 'animate-slideIn'}`}>
-          <ModalBackground onClick={handleClose} />
-          <div className={`bg-white w-full h-[24rem] max-h-[119vh] tm:max-h-[114vh] tm:h-[55rem] shadow-lg transform duration-300 dark:bg-appModalColor ${closing ? 'slide-out' : 'slide-in'}`}>
+        <div className="fixed h-[360px] inset-0 flex items-start justify-center z-50 overflow-y-scroll">
+          <ModalBackground onClick={onClose} />
+          <div className="bg-white w-full h-[24rem] max-h-[119vh] tm:max-h-[114vh] shadow-lg transform duration-300 dark:bg-appModalColor">
             <ModalHeader
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
               handleClear={handleClear}
               handleSearch={handleSearch}
-              onClose={handleClose}
+              onClose={onClose}
             />
             <SearchResults loading={loading} recentSearches={recentSearches} />
           </div>
