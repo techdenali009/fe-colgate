@@ -30,6 +30,7 @@ import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
 import ViewCartModal from '@ui/organisms/ViewCartModal';
+import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -102,15 +103,16 @@ export const AppRoutes = () => (
      
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
      
-      <Route path='/myaccount' element={<ProfileModule />}>
-        {/* <Route path='OrderModal' element={<OrderHistoryPage/>} /> */}
-        <Route path='' element={<MyAccountPage/>}>
-          <Route path='Orders' element={<OrderHistoryPage/>} />
-          <Route path='overview' element={<p>My Fav</p>} />
-          <Route path='Invoices' element={<p>my Invoices</p>} />
-          <Route path='Shipping' element={<p>my Shipping</p>} />
-          <Route path='PaytmMethod' element={<p>my PaytmMethod</p>} />
-          <Route path='Favorites' element={<p>my Favorites</p>} />
+      <Route path="/myaccount" element={<ProfileModule />}>
+        {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
+        <Route path="" element={<MyAccountPage/>}>
+          <Route path="Orders" element={<OrderHistoryPage/>} />
+          <Route path="Orders/:id" element={<OrderDetailsTemplate/>} />
+          <Route path="overview" element={<p>My Fav</p>} />
+          <Route path="Invoices" element={<p>my Invoices</p>} />
+          <Route path="Shipping" element={<p>my Shipping</p>} />
+          <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
+          <Route path="Favorites" element={<p>my Favorites</p>} />
         </Route>
           
       </Route> 

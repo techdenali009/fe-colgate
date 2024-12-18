@@ -293,7 +293,7 @@ const Header: React.FC<headerProps> = ({
                     </Popover>
                   ) : (
                     <Popover className=" w-1/4 mr-10 ml-2 rounded-none float-left right-[0px] pt-3 pb-3 boxshadow">
-                     
+
 
                       <ProfileModal handleLogoutClick={handleLogoutClick} />
 
