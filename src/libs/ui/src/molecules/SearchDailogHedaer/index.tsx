@@ -7,11 +7,11 @@ import SearchIcon from '@ui/atoms/SvgAtoms/SearchIcon';
 import ReviewCloseSearch from '@ui/atoms/SvgAtoms/ReviewCloseSearch';
 
 interface ModalHeaderProps {
-    searchQuery: string;
-    setSearchQuery: (query: string) => void;
-    handleClear: () => void;
-    handleSearch: () => void;
-    onClose: () => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  handleClear: () => void;
+  handleSearch: () => void;
+  onClose: () => void;
 }
 
 const SearchModalHeader: React.FC<ModalHeaderProps> = ({ searchQuery, setSearchQuery, handleClear, handleSearch, onClose }) => (
@@ -42,11 +42,11 @@ const SearchModalHeader: React.FC<ModalHeaderProps> = ({ searchQuery, setSearchQ
       className="lg:mr-10 cursor-pointer hover:bg-[#f2f2f2] lg:rounded-[13rem] pt-[15px] pl-[15px] pr-0 pb-0 "
       onClick={onClose}
     >
-      <div className="tm:grid tm:relative tm:pr-0 relative left:[3px] top: [2px] w-[40px] h-[40px]">
-        <ReviewCloseSearch></ReviewCloseSearch>  
-      </div> 
+      <div className="tm:grid tm:relative tm:pr-0 relative left:[3px] top: [2px] w-[32px] h-[32px]">
+        <ReviewCloseSearch></ReviewCloseSearch>
+      </div>
     </span>
-        
+
   </div>
 );
 

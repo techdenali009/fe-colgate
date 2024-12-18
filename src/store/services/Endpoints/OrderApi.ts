@@ -4,7 +4,7 @@ const UserUrl = import.meta.env.VITE_AUTH_URL;
 
 export const OrderApi = createApi({
   reducerPath: 'orderApi',
-  
+
   baseQuery: fetchBaseQuery({
     baseUrl: UserUrl,
     credentials: 'include',
@@ -19,23 +19,25 @@ export const OrderApi = createApi({
 
   endpoints: (builder) => ({
     getOrders: builder.query({
-      query: ({ userId, page = 1, limit = 10, orderStatus,orderId }) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const params: Record<string, any> = { 
-          page, 
+      query: ({ userId, page = 1, limit = 10, orderStatus, orderId, startDate, endDate }) => {
+        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+        const params: Record<string, any> = {
+          page,
           limit,
           orderStatus,
-          orderId
+          orderId,
+          startDate,
+          endDate
         };
-        
+
         return {
           url: `/order/${userId}`,
           params,
         };
 
       },
-      
-     
+
+
 
       onQueryStarted: async (_arg, { queryFulfilled }) => {
         try {
@@ -47,16 +49,24 @@ export const OrderApi = createApi({
       },
 
       // Separate endpoint for getOrderById
-   
+
     }),
     getOrderById: builder.query({
       query: (orderId) => `order/getOrderById/${orderId}`,
     }),
     getAllOrders: builder.query({
       query: (params) => `order/all?${new URLSearchParams(params).toString()}`,
-    
+
+    }),
+
+    updateOrder: builder.mutation({
+      query: ({ orderId, orderData }) => ({
+        url: `/order/update/${orderId}`,
+        method: 'PUT',
+        body: orderData,
+      }),
     }),
   }),
 });
 
-export const { useLazyGetOrdersQuery,useLazyGetAllOrdersQuery,useLazyGetOrderByIdQuery } = OrderApi;
+export const { useLazyGetOrdersQuery, useLazyGetAllOrdersQuery, useLazyGetOrderByIdQuery, useUpdateOrderMutation } = OrderApi;

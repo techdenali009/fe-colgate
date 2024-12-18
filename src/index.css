@@ -18,7 +18,7 @@
 }
 @media (prefers-color-scheme: dark) {
   #appBody {
-    --primary-color: 3, 168, 244;
+    --primary-color: 18, 94, 224;
     --hover-icon-color: hsl(200, 10%, 50%);
     --secondary-color: hwb(0 100% 0%);
     --app-errorMessage-color: hsl(5, 70%, 50%);

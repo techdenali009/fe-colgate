@@ -16,6 +16,8 @@
     "@radix-ui/react-radio-group": "^1.2.1",
     "@reduxjs/toolkit": "^2.2.7",
     "clsx": "^2.1.1",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "lucide-react": "^0.460.0",
     "pca_skin_pro": "file:",
     "query-string": "^9.1.1",

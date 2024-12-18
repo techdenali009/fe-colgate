@@ -63,7 +63,7 @@ function MyAccountPageTemplate() {
             />
           </aside>
         )}
-        <div className="flex-1 p-4 bg-white-100 tm:overflow-x-auto">
+        <div className="flex-1 p-4 bg-white-100 tm:overflow-x-auto ">
           <Outlet />
         </div>
       </div>

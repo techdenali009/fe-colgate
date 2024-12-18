@@ -14,7 +14,8 @@ interface UserInfo {
   updatedAt: string;
   isVerified?:boolean;
   favoriteProducts:string[];
-  addresses?: Address; 
+  addresses?: Address; // Optional, add based on your data structure
+ 
 }
 
 interface Address {
@@ -22,7 +23,7 @@ interface Address {
   city: string;
   country: string;
   postalCode: string;
- 
+  phone:number;
 }
 
 interface LoginState {

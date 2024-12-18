@@ -42,6 +42,7 @@ interface ProductContextType {
   totalProducts: number;
   isLoading: boolean;
   isProductLoading: boolean;
+  
 }
 
 // Create the context

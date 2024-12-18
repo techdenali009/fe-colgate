@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
   [PlpProductsEndpoints.reducerPath]: PlpProductsEndpoints.reducer,
   [UserApi.reducerPath]: UserApi.reducer, 
   [OrderApi.reducerPath]:OrderApi.reducer,
+  
 });
 
 // Persist config
