@@ -67,7 +67,7 @@ export const UserApi = createApi({
       query: (data) => ({
         url: '/users/addProductToFavorite',
         method: 'POST',
-        body: data, // Payload for changing the password
+        body: data, 
       }),
       invalidatesTags:['MyFavList']
     }),

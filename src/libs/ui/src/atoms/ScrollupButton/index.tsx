@@ -28,7 +28,7 @@ export const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({
       className={`fixed  z-50 right-3 bottom-10 md:right-10 md:bottom-10 w-10 h-10 rounded-full shadow-lg transition duration-400  ${
         isVisible
           ? isClicked
-            ? 'bg-[#125CE0] bg-opacity-100'
+            ? 'bg-appTheme bg-opacity-100'
             : 'bg-[#555555] bg-opacity-100'
           : 'hidden'
       }`}

@@ -1,6 +1,5 @@
 import { Button } from '@ui/atoms/Button';
 import { ProductImage } from '@ui/atoms/ProductImage';
-import StarRating from '@ui/atoms/StarRating';
 import BestSellerBadge from '@ui/molecules/BestSeller';
 import QuickViewButton from '@ui/molecules/QuickViewButton';
 import { ProductProps } from '@utils/Product';
@@ -32,7 +31,7 @@ function Product({
   ProductImageClassName,
   showAddToCartButton = true,
 }: ProductProps & { showAddToCartButton?: boolean }) {
-  const { image, name, isBestSeller, rating, id, price } = product;
+  const { image, name, isBestSeller, id, price } = product;
   const dispatch = useDispatch();
   // const navigate = useNavigate();
   // const handleNavigate = () => navigate(`/products/${id}/${name}`);
@@ -103,12 +102,12 @@ function Product({
         )}
       </div>
       <div className="">
-        <div className="flex my-2">
+        {/* <div className="flex my-2">
           <StarRating rating={rating} />
           <span className=" p-[0.15em] text-base leading-5 font-HeroNewRegular text-appTextColor">
             {rating} (150)
           </span>
-        </div>
+        </div> */}
         <h3
           className="mt-2.5 text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold"
           onClick={() => handaleClick(Number(id))}

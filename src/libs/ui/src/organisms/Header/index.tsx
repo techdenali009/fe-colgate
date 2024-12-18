@@ -24,6 +24,7 @@ import { useLogoutMutation } from '@store/services/Endpoints/AuthApi';
 import CartModal from '@ui/molecules/Cart-modal';
 
 import ProfileModal from '@ui/molecules/Profile-modal';
+import { selectCartDetails } from '@store/services/Slices/AddToCartSlice';
 interface headerProps {
   modalSetToggle: () => void;
   handleRegisterClick: () => void;
@@ -44,6 +45,7 @@ const Header: React.FC<headerProps> = ({
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
   const [selectNavLink, setSelectNavLink] = useState<string>('');
+  const cartItems = useSelector((state: RootState) => selectCartDetails(state));
   const dispatch = useDispatch();
   const [LogOut] = useLogoutMutation();
   const navigate = useNavigate();
@@ -311,11 +313,25 @@ const Header: React.FC<headerProps> = ({
               <ButtonWithIcon
                 className="w-[40px] h-[40px] border-0 border-b-0 pt-[1.1rem]  pr-[39px] pb-[2.5rem] pl-[18px] dark:hover:bg-appTheme-opacity-10"
                 onClick={handleCartClick}
+
               >
+               
                 {isCartHovered ? (
-                  <CartIcon></CartIcon>
+                  <div className='relative'>
+                    {cartItems.length > 0 && (
+                      <div className='absolute -top-[10px] -right-[23px] text-appTheme  bg-appTheme text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>{cartItems.length}</div>
+                    )}
+                    <CartIcon className=''></CartIcon>
+  
+                  </div>
                 ) : (
-                  <CartIcon fillColor="var(--secondary-color)"></CartIcon>
+                  <div className='relative '>
+                    {cartItems.length > 0 && (
+                      <div className='absolute -top-[10px] -right-[23px]  bg-black text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>{cartItems.length}</div>
+                    )}
+                    <CartIcon fillColor="var(--secondary-color)" className=''></CartIcon>
+                 
+                  </div> 
                 )}
               </ButtonWithIcon>
 

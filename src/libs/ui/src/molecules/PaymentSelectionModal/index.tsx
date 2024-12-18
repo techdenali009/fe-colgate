@@ -101,8 +101,6 @@ const PaymentSelectionModal: React.FC<PaymentSelectionModalProps> = ({
       }
 
       setOrderId(response.data?.orderId);
-
-
     } catch (error) {
       alert('Failed to create order. Please try again.');
       console.error('Error creating order:', error);
@@ -114,11 +112,9 @@ const PaymentSelectionModal: React.FC<PaymentSelectionModalProps> = ({
       <Card className="w-full max-w-md  p-6 bg-white text-center ">
         <CardHeader className="flex flex-col items-center">
           <CardTitle className="text-center text-[20px]">Select Payment Method</CardTitle>
-
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-
             <RadioButton
               id="cod"
               name="paymentMethod"
