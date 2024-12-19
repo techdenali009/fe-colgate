@@ -55,20 +55,20 @@ const CartModal: React.FC = () => {
                                  focus-visible:rounded-3xl link inline-block leading-24 tracking-[0.3px] 
                                 py-4 px-4 -ml-4 mr-4 light secondary anchor-wrapper false align-middle text-center 
                                  font-HeroNewBold !m-0 !w-40 justify-center hover:!bg-black hover:!underline hover:!bg-brand-black-100 global-cart-view-button"
-                href="/cart"
-              >
+              href="/cart"
+            >
                 View Cart
-              </a>
-            </div>
-            <div className="flex flex-row mr-5 py-4 px-4">
-              <span className="text-base ">Subtotal:</span>
-              <span className="font-HeroNewSemiBold">
+            </a>
+          </div>
+          <div className="flex flex-row mr-5 py-4 px-4">
+            <span className="text-base ">Subtotal:</span>
+            <span className="font-HeroNewSemiBold">
                 &#8377;{totalCartPrice.toFixed(2)}
-              </span>
-            </div>
+            </span>
           </div>
         </div>
       </div>
+    </div>
     
   );
 };
