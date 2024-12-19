@@ -36,8 +36,9 @@ const PlpAccordians: React.FC<SidebarProps> = ({
   const [selectedProductCategory, setSelectedProductCategory] = useState<string | null>(null);
   const [checkedFilters, setCheckedFilters] = useState<{ [key: string]: boolean }>({});
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-  const [selectedSort, setSelectedSort] = useState<string>('');
+  const [selectedSort, setSelectedSort] = useState<string>('Alphabetical A - Z');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
 
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);

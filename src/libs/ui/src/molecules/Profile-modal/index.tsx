@@ -29,7 +29,7 @@ const profileModal: React.FC<profileModalProps> = ({ handleLogoutClick, }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex flex-col ">
-        <div className="bg-blue text-sm mb-4 bg-blue-100 text-blue-600 p-4 text-primary-500 leading-5 rounded-lg w-full">
+        <div className="bg-blue text-sm mb-4 bg-blue-100 text-appTheme p-4 text-primary-500 leading-5 rounded-lg w-full">
           Free drop-shipping for any order totaling $100 or more
         </div>
         <ul className="w-full overflow-auto max-h-64 text-sm ">

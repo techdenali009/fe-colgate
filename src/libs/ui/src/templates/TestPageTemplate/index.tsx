@@ -52,6 +52,8 @@ import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 import AddToCartPageProducts from '@ui/molecules/AddToCartPageProducts';
 import { profileMenuItems } from '@ui/molecules/AccountMenu';
 import CartPage from '@ui/organisms/CartPage';
+import OrderDetailsSkeleton from '@ui/molecules/OrderDetailsSkelton';
+import OrderHistorySkeleton from '@ui/molecules/OrderHistorySkelton';
 
 
 interface ISearchbar {
@@ -485,10 +487,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             {' Log In to Order'}
           </Button>
         )}
+        <OrderDetailsSkeleton/>
+        <OrderHistorySkeleton/>
       
       </div>
       <PlpPageSkeleton/>
+     
       
     </>
   );
 };
+
+

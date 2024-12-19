@@ -22,7 +22,8 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         <div>
           <p className="text-2xl font-semibold text-center">Are You Sure?</p>
           <p className="text-center mt-8">
-            Do you really want to delete these records? This process cannot be
+            Do you really want to Cancel the order?<br></br>
+            This process cannot be
             undone.
           </p>
         </div>
@@ -37,7 +38,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             className="bg-red-500 text-white rounded-lg w-32 h-10 mx-5"
             onClick={onConfirm}
           >
-            Delete
+            Continue
           </Button>
         </div>
       </ModalBody>

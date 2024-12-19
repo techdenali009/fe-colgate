@@ -1,7 +1,7 @@
 import { Product } from '@ui/templates/LandingPage';
 
 export interface ProductType {
-  id: string | number;
+  id: string ;
   name: string;
   image: string;
   rating: number;
@@ -43,7 +43,7 @@ export interface ProductProps {
 }
 
 export interface RelatedProductsProps{
-  relatedProducts: ProductType[];
+  relatedProducts: Product[];
   className:string
 }
 export interface PopularProductsProps {
@@ -51,7 +51,7 @@ export interface PopularProductsProps {
   modalSetToggle: () => void;
  
   onNextPage: () => void;
-  hasMore: boolean;
+  hasMore?: boolean;
  
 }
 export interface RecentlyViewedProductsProps{

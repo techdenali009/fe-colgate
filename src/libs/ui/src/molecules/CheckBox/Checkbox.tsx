@@ -2,12 +2,12 @@ import { Input } from '@ui/atoms/Input';
 import React, { ReactNode, InputHTMLAttributes, ChangeEventHandler, FocusEventHandler } from 'react';
 
 interface ICheckbox extends InputHTMLAttributes<HTMLInputElement> {
-    children?: ReactNode; 
-    checked?: boolean; 
-    onChange?: ChangeEventHandler<HTMLInputElement>; 
-    onFocus?: FocusEventHandler<HTMLInputElement>; 
-    onBlur?: FocusEventHandler<HTMLInputElement>; 
-    className?: string;
+  children?: ReactNode;
+  checked?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  className?: string;
 }
 
 export const Checkbox: React.FC<ICheckbox> = ({

@@ -22,7 +22,7 @@ interface Address {
   city: string;
   country: string;
   postalCode: string;
- 
+  phone:number;
 }
 
 interface LoginState {

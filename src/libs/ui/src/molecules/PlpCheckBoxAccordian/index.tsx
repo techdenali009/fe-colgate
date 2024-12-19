@@ -12,7 +12,7 @@ interface CheckboxAccordionProps {
   counts: { [key: string]: number };
   activecheckcategory: string | null; // New prop for active category
   onChange?: () => void;
-  
+
 }
 
 const CheckboxAccordion: React.FC<CheckboxAccordionProps> = ({

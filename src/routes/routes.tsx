@@ -32,6 +32,8 @@ import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
 import CartPage from '@ui/organisms/CartPage';
 import PaymentPage from '@ui/organisms/PaymentPageComponent';
+import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
+
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -77,7 +79,7 @@ export const AppRoutes = () => (
       <Route path='/products' element={<ProductModule />}>
         <Route path='' element={<PlpPage />}></Route>
         {/* <Route  path='/' element={<Products/>}></Route> */}
-        <Route path=':id/:name' element={<ProductDetailsPage />}></Route>
+        <Route path=':id' element={<ProductDetailsPage />}></Route>
       </Route>
 
       {/* About module */}
@@ -108,6 +110,7 @@ export const AppRoutes = () => (
         {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
         <Route path="" element={<MyAccountPage/>}>
           <Route path="Orders" element={<OrderHistoryPage/>} />
+          <Route path="Orders/:id" element={<OrderDetailsTemplate/>} />
           <Route path="overview" element={<p>My Fav</p>} />
           <Route path="Invoices" element={<p>my Invoices</p>} />
           <Route path="Shipping" element={<p>my Shipping</p>} />
