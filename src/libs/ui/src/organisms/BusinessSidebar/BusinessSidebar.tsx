@@ -1,5 +1,5 @@
 interface CategoryListProps {
-  categories: { title: string; icon?: string }[]; // Icon is now optional
+  categories: { title: string; icon?: React.ReactNode }[]; // Icon is now optional
   selectedCategory: string | null;
   onCategorySelect: (category: string) => void;
   onCategoryActive: (category: string) => void;
@@ -42,14 +42,10 @@ const CategoryList: React.FC<CategoryListProps> = ({
                 }}
               >
                 <div className="flex items-center">
-                  {category.icon && (
-                    <img
-                      src={category.icon}
-                      alt={category.title}
-                      className="mr-2 inline-block"
-                    />
-                  )}
-                  <span className="font-HeroNewRegular text-xs leading-7 font-normal hover:text-appTheme">
+                  <div className="mr-2 inline-block">
+                    {category.icon}
+                  </div>
+                  <span className="font-HeroNewRegular text-xs leading-7 font-normal">
                     {category.title}
                   </span>
                 </div>

@@ -35,7 +35,8 @@ import PaymentPage from '@ui/organisms/PaymentPageComponent';
 import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
 import SearchPage from '@pages/SearchPage/PlpSearchPage';
 import OverviewPage from '@ui/organisms/OverViewPage';
-import FavouritesPage from '@ui/molecules/FavouritesPage';
+import PersonalProfile from '@ui/organisms/PersonalProfile';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
@@ -110,25 +111,23 @@ export const AppRoutes = () => (
      
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
      
-      <Route path="/myaccount" element={<ProfileModule />}>
-        {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
-        <Route path="" element={<MyAccountPage/>}>
-          <Route path="Orders" element={<OrderHistoryPage/>} />
+      <Route path='/myaccount' element={<ProfileModule />}>
+        {/* <Route path='OrderModal' element={<OrderHistoryPage/>} /> */}
+        <Route path='' element={<MyAccountPage/>}>
+          <Route path='Orders' element={<OrderHistoryPage/>}/>
           <Route path="Orders/:id" element={<OrderDetailsTemplate/>} />
-          <Route path="overview" element={<OverviewPage />} />
-
-          <Route path="Invoices" element={<p>my Invoices</p>} />
-          <Route path="Shipping" element={<p>my Shipping</p>} />
-          <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
-          <Route path="Favorites" element={<p>my Favorites</p>} />
+          <Route path='Overview' element={<OverviewPage/>} />
+          <Route path='PersonalProfile' element={<PersonalProfile/>}/>
+          <Route path='Invoices' element={<p>my Invoices</p>} />
+          <Route path='PaytmMethod' element={<p>my PaytmMethod</p>} />
+          <Route path='Favorites' element={<AddFavouritePage className={''}/>} />
           <Route path="Dropshipaddresses" element={<DropshipAddresses/>} /> 
-          <Route path="Favorites" element={<FavouritesPage/>} />
+          {/* <Route path="Favorites" element={<FavouritesPage/>} /> */}
         </Route>
           
       </Route> 
       <Route path='/' element={<CartModule />}>
         <Route path='cart' element={<CartPage/>} />
-        {/* <Route path='payment' element={<PaymentPage/>} /> */}
       </Route> 
       <Route path='/payment' element={<PaymentPage onClose={function (): void {
         throw new Error('Function not implemented.');

@@ -10,7 +10,7 @@ interface TextBlockProps {
 
 const CustomerServiceOverView: React.FC<TextBlockProps> = ({ className }) => {
   return (
-    <div className={`py-8 px-6 bg-[#f3f3f3] flex lg:p-8    ${className}`}>
+    <div className={`py-8 px-6 bg-[#f3f3f3] flex lg:p-8 ${className}`}>
       <div
         style={{
           backgroundImage:

@@ -28,8 +28,6 @@ import filterData from '@utils/FilterData';
 import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import TwoCardsComponent from '@ui/molecules/AlreadyHaveAnAccountCard/index';
 import SkinTypeBadge from '@ui/molecules/SkinTypeBadge';
-
-import BusinessSidebar from '@ui/organisms/BusinessSidebar/BusinessSidebar';
 import StarRating from '@ui/molecules/HoveringRatingStar';
 import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
@@ -50,8 +48,14 @@ import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
 import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 import AddToCartPageProducts from '@ui/molecules/AddToCartPageProducts';
-import { profileMenuItems } from '@ui/molecules/AccountMenu';
 import CartPage from '@ui/organisms/CartPage';
+import Home from '@ui/atoms/SvgAtoms/Home';
+import OrderInvoice from '@ui/atoms/SvgAtoms/OrderInvoice';
+import PreviewPerson from '@ui/atoms/SvgAtoms/PreviewPerson';
+import Shipping from '@ui/atoms/SvgAtoms/Shipping';
+import PaytmMethod from '@ui/atoms/SvgAtoms/PaytmMethod';
+import Heart from '@ui/atoms/SvgAtoms/Heart';
+
 import OrderDetailsSkeleton from '@ui/molecules/OrderDetailsSkelton';
 import OrderHistorySkeleton from '@ui/molecules/OrderHistorySkelton';
 
@@ -120,7 +124,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
     console.log('Selected sorting option:', option);
   };
   // State for selected category in business side bar
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  // const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const ratings = {
     quality: { score: 4.3, label: 'Quality' },
@@ -139,9 +143,17 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   );
   console.log('isLoggedIn', isLoggedIn?.isVerified);
   const [showCartDetails, setShowCartDetails] = useState(false);
+ 
+
   return (
     <>
       <DropshipAddresses/>
+      <Home/>
+      <OrderInvoice></OrderInvoice>
+      <PreviewPerson/>
+      <Shipping/>
+      <PaytmMethod/>
+      <Heart/>
       <AddToCartPageProducts
         showCartDetails={showCartDetails}
         setShowCartDetails={setShowCartDetails} // Pass the state setter to the child
@@ -269,9 +281,9 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
       </div>
       <h1 className="pl-28 pt-16 font-bold">Business Sidebar</h1>
       <div className="pl-24 pt-4">
-        <BusinessSidebar categories={profileMenuItems}
+        {/* <BusinessSidebar categories={profileMenuItems}
           selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory} onCategoryActive={setSelectedCategory}  />
+          onCategorySelect={setSelectedCategory} onCategoryActive={setSelectedCategory}  /> */}
         
       </div>
       <div className="mb-4">
