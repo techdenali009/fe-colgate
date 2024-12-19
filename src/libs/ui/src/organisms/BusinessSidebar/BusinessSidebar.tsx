@@ -49,7 +49,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
                       className="mr-2 inline-block"
                     />
                   )}
-                  <span className="font-HeroNewRegular text-xs leading-7 font-normal">
+                  <span className="font-HeroNewRegular text-xs leading-7 font-normal hover:text-appTheme">
                     {category.title}
                   </span>
                 </div>
