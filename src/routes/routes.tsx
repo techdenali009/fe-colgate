@@ -33,6 +33,9 @@ import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
 import CartPage from '@ui/organisms/CartPage';
 import PaymentPage from '@ui/organisms/PaymentPageComponent';
 import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
+import SearchPage from '@pages/SearchPage/PlpSearchPage';
+import OverviewPage from '@ui/organisms/OverViewPage';
+import FavouritesPage from '@ui/molecules/FavouritesPage';
 
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
@@ -75,9 +78,10 @@ export const AppRoutes = () => (
                 </Route> */}
 
       {/* Product module */}
-
+      <Route path="/search/searchkeyword" element={<SearchPage />} />
       <Route path='/products' element={<ProductModule />}>
         <Route path='' element={<PlpPage />}></Route>
+       
         {/* <Route  path='/' element={<Products/>}></Route> */}
         <Route path=':id' element={<ProductDetailsPage />}></Route>
       </Route>
@@ -111,12 +115,14 @@ export const AppRoutes = () => (
         <Route path="" element={<MyAccountPage/>}>
           <Route path="Orders" element={<OrderHistoryPage/>} />
           <Route path="Orders/:id" element={<OrderDetailsTemplate/>} />
-          <Route path="overview" element={<p>My Fav</p>} />
+          <Route path="overview" element={<OverviewPage />} />
+
           <Route path="Invoices" element={<p>my Invoices</p>} />
           <Route path="Shipping" element={<p>my Shipping</p>} />
           <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
           <Route path="Favorites" element={<p>my Favorites</p>} />
           <Route path="Dropshipaddresses" element={<DropshipAddresses/>} /> 
+          <Route path="Favorites" element={<FavouritesPage/>} />
         </Route>
           
       </Route> 
