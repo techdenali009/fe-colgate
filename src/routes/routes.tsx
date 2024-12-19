@@ -33,6 +33,7 @@ import CartPage from '@ui/organisms/CartPage';
 import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import OverviewPage from '@ui/organisms/OverViewPage';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
+import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -78,7 +79,7 @@ export const AppRoutes = () => (
       <Route path='/products' element={<ProductModule />}>
         <Route path='' element={<PlpPage />}></Route>
         {/* <Route  path='/' element={<Products/>}></Route> */}
-        <Route path=':id/:name' element={<ProductDetailsPage />}></Route>
+        <Route path=':id' element={<ProductDetailsPage />}></Route>
       </Route>
 
       {/* About module */}
@@ -109,6 +110,7 @@ export const AppRoutes = () => (
         {/* <Route path='OrderModal' element={<OrderHistoryPage/>} /> */}
         <Route path='' element={<MyAccountPage/>}>
           <Route path='Orders' element={<OrderHistoryPage/>}/>
+          <Route path="Orders/:id" element={<OrderDetailsTemplate/>} />
           <Route path='Overview' element={<OverviewPage/>} />
           <Route path='PersonalProfile' element={<PersonalProfile/>}/>
           <Route path='Invoices' element={<p>my Invoices</p>} />

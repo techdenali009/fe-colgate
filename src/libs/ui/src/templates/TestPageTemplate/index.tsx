@@ -55,6 +55,8 @@ import Shipping from '@ui/atoms/SvgAtoms/Shipping';
 import PaytmMethod from '@ui/atoms/SvgAtoms/PaytmMethod';
 import Heart from '@ui/atoms/SvgAtoms/Heart';
 
+import OrderDetailsSkeleton from '@ui/molecules/OrderDetailsSkelton';
+import OrderHistorySkeleton from '@ui/molecules/OrderHistorySkelton';
 
 
 interface ISearchbar {
@@ -495,10 +497,15 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
             {' Log In to Order'}
           </Button>
         )}
+        <OrderDetailsSkeleton/>
+        <OrderHistorySkeleton/>
       
       </div>
       <PlpPageSkeleton/>
+     
       
     </>
   );
 };
+
+

@@ -64,9 +64,11 @@ export const PlpProductsEndpoints = createApi({
         body: data, // Payload for changing the password
       }),
     }),
-
+    getRelativeProducts: builder.query({
+      query:(params)=>`products/getReletive?${new URLSearchParams(params).toString()}`
+    })
   }),
 });
 
 // Export the auto-generated hook for use in components
-export const { useLazyGetProductsQuery,useAddfavouriteMutation ,useLazyGetProductByIdQuery} = PlpProductsEndpoints;
+export const { useLazyGetProductsQuery,useAddfavouriteMutation ,useLazyGetProductByIdQuery,useLazyGetRelativeProductsQuery} = PlpProductsEndpoints;

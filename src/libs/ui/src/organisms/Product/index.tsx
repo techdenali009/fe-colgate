@@ -10,6 +10,7 @@ import FavoriteButton from '@ui/atoms/ProductDetailsPageFavoriteButton';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import { addToCart, removeFromCart, updateQuantity } from '@store/services/Slices/AddToCartSlice';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 interface CartItem {
@@ -33,7 +34,7 @@ function Product({
 }: ProductProps & { showAddToCartButton?: boolean }) {
   const { image, name, isBestSeller, id, price } = product;
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const handleNavigate = () => navigate(`/products/${id}/${name}`);
 
   const isLoggedIn = useSelector((state: RootState) => state.authSlice.userInfo);
@@ -68,9 +69,9 @@ function Product({
   };
   
    
-  const handaleClick = (id: number) => {
-    // const handaleClick = (id: number) => {
-    // navigate(`/products/${id}/${name}`);
+
+  const handaleClick = (id: string) => {
+    navigate(`/products/${id}`);
     console.log('id',id);
   };
 
@@ -79,8 +80,8 @@ function Product({
   return (
     <div
       className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName}`}
-      onClick={() => handaleClick(Number(id))}
-    // onClick={handleNavigate}
+      // onClick={() => handaleClick(Number(id))}
+      // onClick={handleNavigate}
     >
       <div className={`${ProductImageClassName}`}>
         <ProductImage
@@ -110,7 +111,7 @@ function Product({
         </div> */}
         <h3
           className="mt-2.5 text-appTextColor text-[1rem] h-12 font-HeroNewBold font-bold"
-          onClick={() => handaleClick(Number(id))}
+          onClick={() => handaleClick((id))}
         >
           {name}
         </h3>

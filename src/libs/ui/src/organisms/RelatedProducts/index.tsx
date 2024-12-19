@@ -1,45 +1,121 @@
-// import { useRef } from 'react';
-// import Slider from 'react-slick';
-// import Product from '../Product';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
-// import ProductHeader from '@ui/molecules/PopularProductHeading';
-// import { sliderSettings } from '@utils/SliderSetting';
-// import { RelatedProductsProps } from '@utils/Product';
+import { useRef, useState } from 'react';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-// function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
-//   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-//   const sliderRef = useRef<any>(null);
-//   const handleScroll = (direction: 'left' | 'right') => {
-//     if (direction === 'left') {
-//       sliderRef.current.slickPrev();
-//       return;
-//     }
-//     sliderRef.current.slickNext();
-//   };
+import { PopularProductsProps } from '@utils/Product';
+import ProductHeader from '@ui/molecules/PopularProductHeading';
 
-//   return (    
-//     <div className='2xs:ml-[10px] lg:!ml-0 lg:!mr-0 lg:!pl-0 lg:!pr-0'>
-//       <div className='mt-[60px]'>
-//         <ProductHeader
-//           className='2xs:text-[20px] lg:!text-[28px] !h-[10px]'
-//           headingLabel="Related Products"
-//           handleScroll={handleScroll}
-//           LogInButtonDisable={false} description={''} modalSetToggle={()=>console.log('')} 
-//           disableLeftButton={false}
-//           disableRightButton={false}
-//         />
-//       </div>
-//       <Slider ref={sliderRef} {...sliderSettings}  >
-//         {relatedProducts.map((relatedProducts) => (
-//           <div key={relatedProducts.id} className="mt-1 2xs:px-[9px] lg:!px-[15px] md:!px-[17px]" >
+import Product from '../Product';
 
-//             <Product className='!h-[40px] text-center !py-[0.5rem]' product={relatedProducts} modalSetToggle={() => console.log('')} openQuickView={() => console.log('')} showQuickView={false}/>
-//           </div>
-//         ))}
-//       </Slider>
-//     </div>      
-//   );
-// }
+function RelatedProducts({
+  products,
+  modalSetToggle,
+  onNextPage,
+  hasMore,
+}: PopularProductsProps) {
+  const swiperRef = useRef<SwiperRef | null>(null);
 
-// export default RelatedProducts;
+  console.log('products', products);
+  const [disableLeftButton, setDisableLeftButton] = useState(true);
+  const [disableRightButton, setDisableRightButton] = useState(!hasMore);
+
+  const handleScroll = (direction: 'left' | 'right') => {
+    if (swiperRef.current) {
+      if (direction === 'left') {
+        swiperRef.current.swiper.slidePrev();
+      } else {
+        swiperRef.current.swiper.slideNext();
+      }
+    }
+  };
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const handleSlideChange = (swiper: any) => {
+    // Check if Swiper is at the start or end
+    const atStart = swiper.activeIndex === 0;
+    const atEnd = swiper.isEnd;
+
+    setDisableLeftButton(atStart); // Disable left button if at the start
+    setDisableRightButton(atEnd && !hasMore); // Disable right button if at the end and no more items
+  };
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const handleSlideChangeEnd = (swiper: any) => {
+    if (swiper.isEnd) {
+      console.log('Reached the end of the swiper');
+      onNextPage();
+    }
+  };
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const handleSlideChangeWrapper = (swiper: any) => {
+    handleSlideChange(swiper);
+    handleSlideChangeEnd(swiper);
+  };
+  // Swiper settings with responsive breakpoints
+  const swiperSettings = {
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    loop: false,
+    modules: [Navigation],
+    navigation: false,
+    breakpoints: {
+      640: {
+        slidesPerView: 2.2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+      1280: {
+        slidesPerView: 4,
+      },
+    },
+  };
+
+  return (
+    <div className="w-full">
+      <div className="mb-6">
+        <ProductHeader
+          className="2xs:text-[20px] lg:!text-[28px] !h-[10px]"
+          headingLabel="Related Products"
+          handleScroll={handleScroll}
+          LogInButtonDisable={false}
+          description={''}
+          modalSetToggle={modalSetToggle}
+          disableLeftButton={disableLeftButton}
+          disableRightButton={disableRightButton}
+        />
+      </div>
+
+      <Swiper
+        ref={swiperRef}
+        {...swiperSettings}
+        onSlideChange={handleSlideChangeWrapper} // Handle slide change dynamically
+        className="mySwiper"
+      >
+        {products?.map((product) => (
+          <SwiperSlide key={product._id} className="!items-start">
+            <Product
+              key={`${product._id}-${product.name}`}
+              product={{
+                id: product._id,
+                name: product.name,
+                image:
+                  product?.images?.length > 0 ? product.images[0]?.url : '',
+                rating: product?.rating || 0,
+                price: product?.price,
+                isBestSeller: product?.isBestSeller || false,
+              }}
+              modalSetToggle={modalSetToggle}
+              openQuickView={() => {
+                console.log();
+              }}
+              showQuickView={false}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+}
+
+export default RelatedProducts;
