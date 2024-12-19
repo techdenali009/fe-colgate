@@ -29,12 +29,12 @@ import EditUserTemplate from '@ui/templates/EditUserTemplate';
 import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
-import ViewCartModal from '@ui/organisms/ViewCartModal';
+import CartPage from '@ui/organisms/CartPage';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
+import PersonalProfile from '@ui/organisms/PersonalProfile';
 import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
 import SearchPage from '@pages/SearchPage/PlpSearchPage';
 import OverviewPage from '@ui/organisms/OverViewPage';
-import FavouritesPage from '@ui/molecules/FavouritesPage';
-
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
 
@@ -107,22 +107,23 @@ export const AppRoutes = () => (
      
       {/* <Route path='/ProductDetails' element={<ProductDetailsPage/>}></Route> */}
      
-      <Route path="/myaccount" element={<ProfileModule />}>
-        {/* <Route path="OrderModal" element={<OrderHistoryPage/>} /> */}
-        <Route path="" element={<MyAccountPage/>}>
-          <Route path="Orders" element={<OrderHistoryPage/>} />
+      <Route path='/myaccount' element={<ProfileModule />}>
+        {/* <Route path='OrderModal' element={<OrderHistoryPage/>} /> */}
+        <Route path='' element={<MyAccountPage/>}>
+          <Route path='Orders' element={<OrderHistoryPage/>}/>
           <Route path="Orders/:id" element={<OrderDetailsTemplate/>} />
-          <Route path="overview" element={<OverviewPage />} />
-
-          <Route path="Invoices" element={<p>my Invoices</p>} />
-          <Route path="Shipping" element={<p>my Shipping</p>} />
-          <Route path="PaytmMethod" element={<p>my PaytmMethod</p>} />
-          <Route path="Favorites" element={<FavouritesPage/>} />
+          <Route path='Overview' element={<OverviewPage/>} />
+          <Route path='PersonalProfile' element={<PersonalProfile/>}/>
+          <Route path='Invoices' element={<p>my Invoices</p>} />
+          <Route path='Shipping' element={<p>my Shipping</p>} />
+          <Route path='PaytmMethod' element={<p>my PaytmMethod</p>} />
+          <Route path='Favorites' element={<AddFavouritePage className={''}/>} />
+          {/* <Route path="Favorites" element={<FavouritesPage/>} /> */}
         </Route>
           
       </Route> 
       <Route path='/' element={<CartModule />}>
-        <Route path='cart' element={<ViewCartModal/>} />
+        <Route path='cart' element={<CartPage/>} />
       </Route> 
     </Route>
     <Route path='/admin' element={<AdminModule />}>

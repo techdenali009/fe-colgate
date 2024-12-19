@@ -6,7 +6,7 @@ const AccountDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); // Track selected item
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  const handleItemClick = (item: { title: any; href?: string; icon?: string; }) => {
+  const handleItemClick = (item: { title: any; href?: string; icon:React.ReactNode }) => {
     setSelectedItem(item.title); // Set the selected item
     setIsOpen(false); // Close the dropdown when an item is clicked
   };
