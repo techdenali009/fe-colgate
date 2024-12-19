@@ -6,11 +6,15 @@ import { useDeleteAddressMutation, useEditUserMutation, useGetUserByIdQuery, use
 import { PrimaryButton } from '../PrimaryButton';
 import { Label } from '@ui/atoms/Label';
 import { InputField } from '@ui/molecules/FormField';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { ValidationForm } from '@utils/Login';
 import { CiLocationOn } from 'react-icons/ci';
 import { MdOutlineCall } from 'react-icons/md';
+import { updateAddresses } from '@store/services/Slices/authSlice';
+import { useNavigate } from 'react-router-dom';
+
+import { Checkbox } from '../CheckBox/Checkbox';
 
 interface FormValues {
   Address: string;
@@ -27,7 +31,7 @@ const DropshipAddresses: React.FC = () => {
   const { handleSubmit, control, setValue, formState: { errors } } = useForm<FormValues>({ mode: 'onChange' });
   const [editUser] = useEditUserMutation();
   const userId = useSelector((state: RootState) => state.authSlice.userInfo?._id);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
   const [addedAddress, setAddedAddress] = useState<FormValues | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false); // New state to toggle form visibility
@@ -35,13 +39,36 @@ const DropshipAddresses: React.FC = () => {
   const [updateAddress] = useUpdateAddressMutation();
   const [deleteAddress] = useDeleteAddressMutation();
   const { data: user } = useGetUserByIdQuery(userId);
-  console.log('addedAddress',addedAddress);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [defaultAddressId, setDefaultAddressId] = useState<string | null>(null);
+  const isAddressAdded = useSelector((state: RootState) => state.authSlice.isAddressAdded);
+  console.log('isAddressAdded', isAddressAdded);
+  console.log('addedAddress', addedAddress)
 
+
+  const handleSetDefault = (addressId: string) => {
+    setDefaultAddressId(addressId); // Set the clicked address as default
+  };
   const onSubmit = async (data: FormValues) => {
     try {
       const updatedUser = {
         name: data.name,
-        addresses: {
+        address: {
+          city: data.city,
+          phone: data.Phone,
+          state: data.state,
+          street: data.Address,
+          zipCode: data.pinCode,
+          country: data.Address,  // Assuming country should also be addressed here
+          id: data._id,
+          name: data.name
+        }
+      };
+
+      if (userId) {
+        const updatedAddressUser = {
+
           city: data.city,
           phone: data.Phone,
           state: data.state,
@@ -50,36 +77,41 @@ const DropshipAddresses: React.FC = () => {
           country: data.Address,  // Assuming country should also be addressed here
           id: data._id,
           name: data.name,
-        }
-      };
 
-      if (userId) {
+        };
         // If editing, update the address
         if (isEditing && userId) {
           // Update existing address using updateAddress mutation
-          await updateAddress({ userId: userId, id: data._id, updatedAddress: updatedUser.addresses });
+          await updateAddress({ userId: userId, id: data._id, updatedAddress: updatedAddressUser });
           toast.success('Address updated successfully!');
         } else {
           // Add new address logic here if needed (e.g., if not editing)
           await editUser({ id: userId, updatedUser });
           toast.success('Address added successfully');
         }
-
+        const updatedAddresses = [...(user?.addresses || []), updatedUser];
+        dispatch(updateAddresses(updatedAddresses));
         setAddedAddress(data);   //Save the submitted address
         setIsEditing(false);     // Set editing state to false
         setShowForm(false);      // Close form after submission
+
+
+        if (isAddressAdded) {
+          navigate('/payment');
+        }
+
       } else {
         toast.error('User must be logged in first');
       }
-    } 
-    catch (error) {
+    } catch (error) {
       toast.error('Failed to save address. Please try again.');
-      console.log('error',error);
+      console.log('error', error)
     }
   };
 
 
-  const handleEdit = async (address: { name: string; street: string; Address2:string; city: string; zipCode: string; state: string; phone: string; _id: string; }) => {
+
+  const handleEdit = async (address: { name: string; street: string; Address2: string; city: string; zipCode: string; state: string; phone: string; _id: string; }) => {
     setIsEditing(true);  // Enable editing mode
     setShowForm(true);   // Show the form
 
@@ -95,13 +127,17 @@ const DropshipAddresses: React.FC = () => {
     setValue('_id', address._id); // Set the address ID so that it can be used in submission
   };
 
-  const handleDelete = async (address: { _id: string; }) => {
-    const user = userId;
-
-    const id = address._id; // Get the address ID from the address object
-    if (user) {
-      // Pass both userId and addressId in the body
-      await deleteAddress({ userId: user, id });
+  const handleDelete = async (address: { _id: string }) => {
+    try {
+      if (userId) {
+        await deleteAddress({ userId, id: address._id });
+        const updatedAddresses = (user?.addresses || []).filter((addr: { _id: string; }) => addr._id !== address._id);
+        dispatch(updateAddresses(updatedAddresses)); // Update Redux state
+        toast.success('Address deleted successfully!');
+      }
+    } catch (error) {
+      toast.error('Failed to delete address. Please try again.');
+      console.log('error', error)
     }
   };
 
@@ -120,7 +156,7 @@ const DropshipAddresses: React.FC = () => {
 
   // if (isLoading) return <p>Loading user details...</p>;
   // if (error) return <p>Failed to load user details. Please try again later.</p>;
-  
+
   return (
     <div className="lg:px-14 mx-5">
       {/* Toggle between form and display content */}
@@ -128,7 +164,7 @@ const DropshipAddresses: React.FC = () => {
         <div className="mt-6">
           <div className='flex w-full'>
             <h2 className="text-4xl text-appTheme font-SansSerif">Dropship Addresses</h2>
-  
+
           </div>
           <div className='lg:!justify-self-end 2xs:justify-self-start'>
             <PrimaryButton className='lg:mt-[-25px] mb-7  font-SansSerif font-semibold !text-[17px] px-6' onClick={handleAddNewAddress}>Add new Address</PrimaryButton>
@@ -143,7 +179,26 @@ const DropshipAddresses: React.FC = () => {
                       key={address._id || index}
                       className="p-6 border rounded-lg shadow-md bg-white"
                     >
-                      <p className='mb-4'><strong>{address.name}</strong> </p>
+                      {defaultAddressId === address._id ? (
+                        <span className="text-sm text-appTheme font-semibold float-right pb-4">
+                          Default Address
+                        </span>
+                      ) : (
+                        <>
+                          <Checkbox
+                            id={`default-${address._id}`}
+                            name={'defaultAddress'}
+                            value={address._id}
+                            checked={defaultAddressId === address._id}
+                            className="cursor-pointer float-right"
+                            onChange={() => handleSetDefault(address._id)}
+                          >
+                            Set as Default Address
+                          </Checkbox>
+                        </>
+                      )}
+
+                      <p className='mb-4 mt-6'><strong>{address.name}</strong> </p>
                       <div className='flex'>
                         <CiLocationOn className='text-appTheme h-[24px] w-[33px]' />
                         <span className='pl-4'>{address.country}</span>
@@ -152,25 +207,30 @@ const DropshipAddresses: React.FC = () => {
                       <p className='pl-12'>{address.zipCode}</p>
                       <br />
                       <div className='flex'> <MdOutlineCall className='text-appTheme h-[24px] w-[33px] ' /><span className='pl-4'>{address.phone}</span></div>
+                      <div className="flex items-center mt-4">
+
+                      </div>
                       <div className="flex mt-4">
                         <PrimaryButton className='bg-transparent font-SansSerif font-semibold !text-appTheme hover:bg-transparent hover:text-appTheme hover:no-underline' onClick={() => handleEdit(address)}>
-                            Edit
+                          Edit
                         </PrimaryButton>
                         <PrimaryButton
                           onClick={() => handleDelete(address)}
                           className="bg-transparent !text-appTheme font-SansSerif font-semibold hover:bg-transparent hover:text-appTheme hover:no-underline"
                         >
-                            Delete
+                          Delete
                         </PrimaryButton>
                       </div>
                     </div>
                   ))}
+
                 </div>
               ) : (
                 <p>No addresses available.</p>
               )}
             </>
           )}
+
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="inline-grid w-full">
@@ -308,8 +368,8 @@ const DropshipAddresses: React.FC = () => {
                       focus:outline-none`}
                   >
                     <option value="">Select</option>
-                    <option value="New York">Alabama</option>
-                    <option value="Los Angeles">Alaska</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Karnataka">Karnataka</option>
                     {/* Additional options */}
                   </select>
                   {errors.state && (
@@ -392,10 +452,17 @@ const DropshipAddresses: React.FC = () => {
             )}
           />
 
+
           {/* Submit Button */}
           <PrimaryButton className='w-40 !m-0' onClick={handleSubmit(onSubmit)}>
             {isEditing ? 'Save Changes' : 'Add Address'}
           </PrimaryButton>
+          {/* <PrimaryButton className='w-40 !m-0' onClick={handleSubmit(onSubmit)}>
+              {isEditing ? 'Set as default' : 'Set as default'}
+            </PrimaryButton> */}
+
+
+
         </form>
       )}
     </div>

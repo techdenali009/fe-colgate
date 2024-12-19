@@ -30,7 +30,8 @@ import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
 import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
-import ViewCartModal from '@ui/organisms/ViewCartModal';
+import CartPage from '@ui/organisms/CartPage';
+import PaymentPage from '@ui/organisms/PaymentPageComponent';
 
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
@@ -117,8 +118,12 @@ export const AppRoutes = () => (
           
       </Route> 
       <Route path='/' element={<CartModule />}>
-        <Route path='cart' element={<ViewCartModal/>} />
+        <Route path='cart' element={<CartPage/>} />
+        {/* <Route path='payment' element={<PaymentPage/>} /> */}
       </Route> 
+      <Route path='/payment' element={<PaymentPage onClose={function (): void {
+        throw new Error('Function not implemented.');
+      }}/>} />
     </Route>
     <Route path='/admin' element={<AdminModule />}>
       <Route path='products' element={<AdminProduct />} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Check, Gift } from 'lucide-react';
 import CardHeader from '@ui/atoms/CardHeader';
 import Card from '@ui/atoms/Card';
@@ -6,35 +6,52 @@ import CardTitle from '@ui/atoms/CardTitle';
 import CardContent from '@ui/atoms/CardContent';
 import { ButtonWithTextAndIcon } from '../ButtonWithTextAndIcon';
 import { useNavigate } from 'react-router-dom';
-
+import Confetti from 'react-confetti';
 
 interface OrderSuccessModalProps {
   orderNumber?: string;
-  onClose: () => void;
+
   totalAmount?: number;
 }
 
-const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({ 
-  orderNumber = 'N/A', 
-  onClose, 
-  totalAmount = 0 
+const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
+  orderNumber = 'N/A',
+
+  totalAmount = 0
 }) => {
   const navigate = useNavigate();
+  const [confettiActive, setConfettiActive] = useState(true);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      onClose(); // Close the modal after 2 seconds
-    }, 2000);
+      setConfettiActive(false); // Stop confetti after 5 seconds
+    }, 5000);
 
     // Clean up the timer if the component is unmounted before the timer is done
     return () => clearTimeout(timer);
-  }, [onClose]);
+  }, []);
 
   const handleContinueShopping = () => {
-    onClose(); // Close the modal
-    navigate('/products'); // Redirect to the PLP page
+    setTimeout(() => {
+
+
+      navigate('/products');
+    }, 15000)
+    // Redirect to the PLP page
   };
+
+  // Get window dimensions for Confetti
+  const { innerWidth: width, innerHeight: height } = window;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      {confettiActive && (
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={500}
+        />
+      )}
       <Card className="w-full max-w-md p-4 text-center bg-white ">
         <CardHeader className="flex flex-col items-center">
           <div className="bg-green-500 rounded-full p-4 mb-4">
@@ -55,14 +72,14 @@ const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
               <span className="font-bold text-green-700">₹{(totalAmount || 0).toFixed(2)}</span>
             </div>
           </div>
-          
+
           <div className="flex items-center justify-center space-x-2 text-green-700">
             <Gift className="w-5 h-5" />
             <span>Thank you for your purchase!</span>
           </div>
 
-          <ButtonWithTextAndIcon 
-            className="w-full mt-4 !bg-appTheme !text-white" 
+          <ButtonWithTextAndIcon
+            className="w-full mt-4 !bg-appTheme !text-white"
             onClick={handleContinueShopping}
           >
             Continue Shopping
