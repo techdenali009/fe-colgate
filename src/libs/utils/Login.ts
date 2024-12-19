@@ -12,7 +12,13 @@ export const ValidationForm = {
   EmailValidationRule : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/,
   EmailRuleFailed :'E-mail address is invalid.',
   PasswordValidationRule:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-  EmailPasswordFailed : 'Invalid login or password'
+  EmailPasswordFailed : 'Invalid login or password',
+  StateRequired:'State is required',
+  ZipCodeRequired:'Zip Code is required',
+  NameIsRequired:'Name is required',
+  AddressIsRequired:'Address is required',
+  CityIsRequired:'City is required',
+  PhoneIsRequired:'Phone (No parenthesis or dashes) is required'
 }
 
 export const LoginConsts = {

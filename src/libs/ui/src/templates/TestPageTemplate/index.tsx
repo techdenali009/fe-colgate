@@ -46,6 +46,7 @@ import PersonalProfile from '@ui/organisms/PersonalProfile';
 import QuantityButton from '@ui/atoms/QuantityButton';
 import AddFavouritePage from '@ui/organisms/AddFavouritePage';
 import PlpPageSkeleton from '@ui/molecules/PlpPageSkeleton';
+import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 import AddToCartPageProducts from '@ui/molecules/AddToCartPageProducts';
 import CartPage from '@ui/organisms/CartPage';
 import Home from '@ui/atoms/SvgAtoms/Home';
@@ -146,6 +147,7 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
 
   return (
     <>
+      <DropshipAddresses/>
       <Home/>
       <OrderInvoice></OrderInvoice>
       <PreviewPerson/>

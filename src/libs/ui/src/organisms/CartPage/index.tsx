@@ -5,6 +5,7 @@ import AddToCartPageProducts from '@ui/molecules/AddToCartPageProducts';
 import OrderSummary from '@ui/molecules/OrderSummary';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage: React.FC = () => {
   const cartItems = useSelector((state: RootState) => selectCartDetails(state));
@@ -28,6 +29,7 @@ const CartPage: React.FC = () => {
     }
   };
   const [showCartDetails, setShowCartDetails] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <div className="flex-col px-6  lg:flex-row flex lg:px-[84.8px] w-full pt-10">
@@ -48,7 +50,7 @@ const CartPage: React.FC = () => {
               shippingAmount={shippingAmount}
               Tax={Tax}
               totalToPay={totalToPay}
-              handleCheckout={() => setIsModalOpen(true)} // Open modal on checkout
+              handleCheckout={() => navigate('/payment')} // Open modal on checkout
               isLoading={isLoading}
               isError={isError}
               onPlaceOrder={handleOrderPlacement}

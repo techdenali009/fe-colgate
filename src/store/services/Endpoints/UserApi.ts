@@ -28,7 +28,7 @@ export const UserApi = createApi({
       invalidatesTags: [{ type: 'User', id: 'LIST' }], 
     }),
 
-    // Add a new user
+    // Add a new userz
     addUser: builder.mutation({
       query: (newUser) => ({
         url: '/users/create',
@@ -47,7 +47,26 @@ export const UserApi = createApi({
       }),
       invalidatesTags: [{ type: 'User', id: 'LIST' }],
     }),
-    
+    //update address
+    updateAddress: builder.mutation({
+      query: ({ userId, id, updatedAddress }) => ({
+        url: `/users/updateAddress/${userId}`, // Include userId and addressId in the URL
+        method: 'PUT',
+        body: { id, ...updatedAddress },
+      }),
+      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+    }),
+
+    //delete address
+    deleteAddress: builder.mutation({
+      query: ({ userId, id }) => ({
+        url: `/users/deleteAddress/${userId}`, // Only pass userId in the URL
+        method: 'PUT',
+        body: { id }, // Send the addressId in the body
+      }),
+      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+    }),
+
     //Get USer By Id
     getUserById: builder.query({
       query: (id) => ({
@@ -89,8 +108,11 @@ export const {
   useDeleteUserMutation,
   useAddUserMutation,
   useEditUserMutation,
+  useUpdateAddressMutation,
+  useDeleteAddressMutation,
   useGetUserByIdQuery,
   useLazyGetUserByIdQuery,
   useLazyGetFavouriteProductsQuery,
   useAddfavouriteMutation,useCreateorderMutation
 } = UserApi;
+ 

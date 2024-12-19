@@ -14,8 +14,7 @@ interface UserInfo {
   updatedAt: string;
   isVerified?:boolean;
   favoriteProducts:string[];
-  addresses?: Address; // Optional, add based on your data structure
- 
+  addresses?: Address[]; 
 }
 
 interface Address {
@@ -30,11 +29,13 @@ interface LoginState {
  
   userInfo: UserInfo | null; 
   authToken:string;
+  isAddressAdded: boolean;
 }
 
 const initialState: LoginState = {
   userInfo: null, 
-  authToken: ''
+  authToken: '',
+  isAddressAdded: false,
 };
 
 const authSlice = createSlice({
@@ -50,6 +51,14 @@ const authSlice = createSlice({
     setAuthToken:(state, action:PayloadAction<string>)=>{
       state.authToken = action.payload
     },
+    updateAddresses: (state, action: PayloadAction<Address[]>) => {
+      if (state.userInfo) {
+        state.userInfo.addresses = action.payload;
+      }
+    },
+    setAddressAdded(state, action) {
+      state.isAddressAdded = action.payload; // true or false
+    },
     logout: (state) => {
   
       state.userInfo = null;
@@ -58,5 +67,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { userInfo, logout ,setAuthToken, updateUserProfile} = authSlice.actions;
+export const { userInfo, logout ,setAuthToken, updateUserProfile,updateAddresses, setAddressAdded } = authSlice.actions;
 export default authSlice.reducer;

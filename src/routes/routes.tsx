@@ -28,13 +28,17 @@ import EditUserTemplate from '@ui/templates/EditUserTemplate';
 
 import MyAccountPage from '@pages/MyAccountPage';
 import OrderHistoryPage from '@pages/OrderHistoryPage';
+import DropshipAddresses from '@ui/molecules/DropshipAddresses';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
 import CartPage from '@ui/organisms/CartPage';
-import AddFavouritePage from '@ui/organisms/AddFavouritePage';
-import PersonalProfile from '@ui/organisms/PersonalProfile';
+import PaymentPage from '@ui/organisms/PaymentPageComponent';
 import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
 import SearchPage from '@pages/SearchPage/PlpSearchPage';
 import OverviewPage from '@ui/organisms/OverViewPage';
+import PersonalProfile from '@ui/organisms/PersonalProfile';
+import AddFavouritePage from '@ui/organisms/AddFavouritePage';
+
+
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
 
@@ -115,9 +119,9 @@ export const AppRoutes = () => (
           <Route path='Overview' element={<OverviewPage/>} />
           <Route path='PersonalProfile' element={<PersonalProfile/>}/>
           <Route path='Invoices' element={<p>my Invoices</p>} />
-          <Route path='Shipping' element={<p>my Shipping</p>} />
           <Route path='PaytmMethod' element={<p>my PaytmMethod</p>} />
           <Route path='Favorites' element={<AddFavouritePage className={''}/>} />
+          <Route path="Dropshipaddresses" element={<DropshipAddresses/>} /> 
           {/* <Route path="Favorites" element={<FavouritesPage/>} /> */}
         </Route>
           
@@ -125,6 +129,9 @@ export const AppRoutes = () => (
       <Route path='/' element={<CartModule />}>
         <Route path='cart' element={<CartPage/>} />
       </Route> 
+      <Route path='/payment' element={<PaymentPage onClose={function (): void {
+        throw new Error('Function not implemented.');
+      }}/>} />
     </Route>
     <Route path='/admin' element={<AdminModule />}>
       <Route path='products' element={<AdminProduct />} />

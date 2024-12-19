@@ -319,7 +319,7 @@ const Header: React.FC<headerProps> = ({
                 {isCartHovered ? (
                   <div className='relative'>
                     {cartItems.length > 0 && (
-                      <div className='absolute -top-[10px] -right-[23px] text-appTheme  bg-appTheme text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>{cartItems.length}</div>
+                      <div className='absolute -top-[7px] -right-[32px] text-appTheme  bg-appTheme text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>{cartItems.length}</div>
                     )}
                     <CartIcon className=''></CartIcon>
   
@@ -327,7 +327,7 @@ const Header: React.FC<headerProps> = ({
                 ) : (
                   <div className='relative '>
                     {cartItems.length > 0 && (
-                      <div className='absolute -top-[10px] -right-[23px]  bg-black text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>{cartItems.length}</div>
+                      <div className='absolute -top-[7px] -right-[32px]  bg-black text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>{cartItems.length}</div>
                     )}
                     <CartIcon fillColor="var(--secondary-color)" className=''></CartIcon>
                  

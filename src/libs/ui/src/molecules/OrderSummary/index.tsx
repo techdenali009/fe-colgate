@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PriceSummary from '@ui/atoms/SvgAtoms/PriceSummary';
 import { ButtonWithTextAndIcon } from '../ButtonWithTextAndIcon';
-import PaymentSelectionModal from '../PaymentSelectionModal';
+// import PaymentSelectionModal from '../PaymentSelectionModal';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/store';
+import { toast } from 'react-toastify';
+import { setAddressAdded } from '@store/services/Slices/authSlice';
 
 interface OrderSummaryProps {
  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -22,24 +27,30 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
   shippingAmount,
   Tax,
   totalToPay,
-  handleCheckout,
   isLoading
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const userId = useSelector((state: RootState) => state.authSlice.userInfo); 
+  console.log('userId',userId?.addresses);
+  // const isAddressAdded = useSelector((state: RootState) => state.authSlice.isAddressAdded);
+  const dispatch = useDispatch();
+
+  const address = userId?.addresses
+  console.log('address',address);
+
   const handleOpenModal = () => {
-    setIsModalOpen(true); // Open the modal when checkout is clicked
+    if (Array.isArray(address) && address.length > 0) {
+      // Address exists
+      dispatch(setAddressAdded(false)); // Set flag to true
+      navigate('/payment'); // Navigate to payment page
+    } else {
+      // Address does not exist
+      dispatch(setAddressAdded(true)); // Set flag to false
+      toast.info('Please add an address before proceeding.');
+      navigate('/myaccount/DropshipAddresses'); // Navigate to address page
+    }
   };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the modal
-  };
-
-  const handleProceedToPayment = (paymentMethod: string) => {
-    
-    handleCheckout(paymentMethod);
-    handleCloseModal(); // Close modal after proceeding
-  };
-
+  const navigate = useNavigate(); // Initialize useNavigate
   return (
     <div className="p-4">
       <div className="flex">
@@ -70,14 +81,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
         disabled={isLoading}>
           CHECK OUT
       </ButtonWithTextAndIcon>
-     
-      {isModalOpen && (
-        <PaymentSelectionModal
-          totalAmount={totalToPay}
-          onProceed={handleProceedToPayment}
-          onClose={handleCloseModal}
-        />
-      )}
+
     </div>
   );
 };
