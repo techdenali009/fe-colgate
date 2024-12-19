@@ -31,10 +31,10 @@ import OrderHistoryPage from '@pages/OrderHistoryPage';
 import AdminDashboard from '@ui/organisms/AdminPannelDashBoard';
 import CartPage from '@ui/organisms/CartPage';
 import AddFavouritePage from '@ui/organisms/AddFavouritePage';
-import OverviewPage from '@ui/organisms/OverViewPage';
 import PersonalProfile from '@ui/organisms/PersonalProfile';
 import OrderDetailsTemplate from '@ui/templates/OrderDetailsTemplate';
-
+import SearchPage from '@pages/SearchPage/PlpSearchPage';
+import OverviewPage from '@ui/organisms/OverViewPage';
 const MainModule = lazy(() => import('../modules/mainModule/mainModule'))
 const LandingPage = lazy(() => import('../pages/LandingPage/index'));
 
@@ -75,9 +75,10 @@ export const AppRoutes = () => (
                 </Route> */}
 
       {/* Product module */}
-
+      <Route path="/search/searchkeyword" element={<SearchPage />} />
       <Route path='/products' element={<ProductModule />}>
         <Route path='' element={<PlpPage />}></Route>
+       
         {/* <Route  path='/' element={<Products/>}></Route> */}
         <Route path=':id' element={<ProductDetailsPage />}></Route>
       </Route>
@@ -117,6 +118,7 @@ export const AppRoutes = () => (
           <Route path='Shipping' element={<p>my Shipping</p>} />
           <Route path='PaytmMethod' element={<p>my PaytmMethod</p>} />
           <Route path='Favorites' element={<AddFavouritePage className={''}/>} />
+          {/* <Route path="Favorites" element={<FavouritesPage/>} /> */}
         </Route>
           
       </Route> 

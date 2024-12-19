@@ -40,6 +40,7 @@ const PlpPageTemplate: React.FC = () => {
     totalProducts,
     isLoading,
     isProductLoading,
+
   } = useProductContext();
 
   const [, setIsBestSellerState] = useState<boolean>(false);

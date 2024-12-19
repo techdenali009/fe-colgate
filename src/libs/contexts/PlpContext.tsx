@@ -42,7 +42,9 @@ interface ProductContextType {
   totalProducts: number;
   isLoading: boolean;
   isProductLoading: boolean;
-  
+  searchQuery:string,
+  setSearchQuery: (searchQuery: string) => void;
+ 
 }
 
 // Create the context
@@ -52,8 +54,7 @@ const ProductContext = createContext<ProductContextType | undefined>(undefined);
 export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [selectedProductCategory, setSelectedProductCategory] =
-    useState<string>('All Products');
+  const [selectedProductCategory, setSelectedProductCategory] = useState<string>('All Products');
   const [isBestSeller, setIsBestSeller] = useState<boolean>(false);
   const [filters, setFilters] = useState<string[]>([]);
   const [selectedSortOption, setSelectedSortOption] = useState<string>('Alphabetical A - Z');
@@ -65,7 +66,9 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   const location = useLocation();
   const [isProductLoading, setProductLoading] = useState<boolean>(true);
   const [triggerGetProducts, { isLoading }] = useLazyGetProductsQuery();
-
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [, setFilteredProducts] = useState<Product[]>([]);
+  const[query,setQuery]=useState('');
   const loadMoreProducts = () => {
     // Save the current scroll position
 
@@ -86,18 +89,33 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
     ],
     [selectedProductCategory]
   );
+  console.log('query', query);
+  useEffect(() => {
+    // Combine category and search query for filtering
+    const filtered = allProducts.filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        (selectedProductCategory === 'All Products' ||
+          product.category.name === selectedProductCategory)
+    );
+    setFilteredProducts(filtered);
+  }, [searchQuery, selectedProductCategory, allProducts]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const categoryParam = urlParams.get('category') || 'All Products';
+  
+    // Handle category and filters
+    const categoryParam = urlParams.get('category') || 'All Products'; 
     const filtersParam = Array.from(urlParams.entries()).filter(
-      ([key]) => key !== 'category'
+      ([key]) => key !== 'category' && key !== 'query'
     );
     const allFilters = filtersParam.map(([, value]) => value);
 
+    // Set category and filters in state
     setSelectedProductCategory(categoryParam);
     setFilters(allFilters);
 
+    // Set 'Best Seller' flag if needed
     setEnableBestSeller(
       categoryParam === 'All Products' || categoryParam === 'Best Seller'
     );
@@ -105,7 +123,14 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
     // Reset products and page on category/filter change
     setAllProducts([]);
     setPage(1);
-  }, [location, selectedSortOption]);
+
+    // Handle search query
+    const searchQuery = urlParams.get('searchkeyword');
+    if (searchQuery) {
+      setQuery(searchQuery); // Set the search query in state
+      setSelectedProductCategory(searchQuery);
+    }
+  }, [location, selectedSortOption]); 
 
   const allFilters = useMemo(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -114,7 +139,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
     const queryString = filtersParam
       .map(([key, value]) => `${key}=${value}`)
       .join('&');
-    return `${queryString}&sortBy=${sortBy}&page=${page}&limit=9`;
+    return `${queryString}&sortBy=${sortBy}&page=${page}&limit=9&search=${query}`;
   }, [filters, selectedSortOption, page, location.search]);
 
 
@@ -165,8 +190,12 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
         totalProducts,
         isLoading,
         isProductLoading,
+        searchQuery,
+        setSearchQuery,
+
       }}
     >
+      
       {children}
     </ProductContext.Provider>
   );

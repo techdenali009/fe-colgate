@@ -6,6 +6,7 @@ interface SearchResultsProps {
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({ loading, recentSearches }) => (
+  
   <div className="overflow-y-auto h-full pt-0 p-4">
     <div className="tm:contents absolute pr-8 mr-0 ml-[19rem] gap-[18rem] grid grid-cols-2 gap-8">
       {/* Popular Searches */}
