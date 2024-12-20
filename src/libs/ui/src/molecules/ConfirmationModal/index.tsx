@@ -7,13 +7,13 @@ import { Button } from '@ui/atoms/Button';
 interface ConfirmationModalProps {
   onClose: () => void;
   onConfirm: () => void;
-
+  message: React.ReactNode;
 }
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   onClose,
   onConfirm,
-
+  message
 }) => {
   return (
     <Modal onClose={onClose} className="rounded-xl !h-70 lg:!w-1/3">
@@ -22,9 +22,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         <div>
           <p className="text-2xl font-semibold text-center">Are You Sure?</p>
           <p className="text-center mt-8">
-            Do you really want to Cancel the order?<br></br>
-            This process cannot be
-            undone.
+            {message}
           </p>
         </div>
         <div className="flex justify-center mt-6">

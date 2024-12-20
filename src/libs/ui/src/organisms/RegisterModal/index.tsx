@@ -58,12 +58,13 @@ const RegisterForm: React.FC = () => {
     const userData = { email, password, firstName, lastName };
     try {
       const response = await addUser(userData).unwrap();
-      console.log('User created successfully:', response.status);
+      // console.log('User created successfully:', response.status);
       if (response.status === 'Success') {
-        showSuccessToast(
-          'User created successfully!', 'top-right'
-        );
         navigate('/');
+        showSuccessToast(
+          'User Registered successfully!', 'top-right'
+        );
+      
      
       }
     } 

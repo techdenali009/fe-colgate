@@ -31,9 +31,9 @@ const ProductDetailsContent: React.FC<ProductDetailsContentProps> = ({
         <h2 className='heading-mobile text-appTheme font-bold font-sans lg:text-4xl lg:leading-10 leading-8 mb-4 product-name'>
           {name}
         </h2>
-        <p className='text-mobile text-[#555] font-normal text-sm mb-6'>
+        {/* <p className='text-mobile text-[#555] font-normal text-sm mb-6'>
           Item #{id}
-        </p>
+        </p> */}
       </div>
       <div className='productdetailspage-media py-3 px-[55px] w-1/2 '>
         <ProductCarousel images={images} name={name} />
@@ -43,9 +43,9 @@ const ProductDetailsContent: React.FC<ProductDetailsContentProps> = ({
           <h2 className='heading-desktop text-appTheme font-bold font-sans  text-[2.875rem]  lg:leading-10 leading-8 mb-4 product-name'>
             {name}
           </h2>
-          <p className='text-desktop text-[#555] font-normal text-sm mb-6'>
+          {/* <p className='text-desktop text-[#555] font-normal text-sm mb-6'>
             Item #{id}
-          </p>
+          </p> */}
         </div>
         <div className='rating-icons-container flex mb-[20px]'>
           <div className='rating flex '>

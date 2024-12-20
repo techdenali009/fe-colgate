@@ -19,12 +19,14 @@ import CartIcon from '@ui/atoms/SvgAtoms/CartIcon';
 import ProfileIcon from '@ui/atoms/SvgAtoms/ProfileIcon';
 import SearchIcon from '@ui/atoms/SvgAtoms/SearchIcon';
 import { plpFilters } from '@utils/plpFilterData';
-import { useLogoutMutation } from '@store/services/Endpoints/AuthApi';
 
 import CartModal from '@ui/molecules/Cart-modal';
 
 import ProfileModal from '@ui/molecules/Profile-modal';
 import { selectCartDetails } from '@store/services/Slices/AddToCartSlice';
+import { useUserlogoutMutation } from '@store/services/Endpoints/AuthApi';
+import { clearCart } from '@store/services/Slices/AddToCartSlice';
+import { clearVisitedProducts } from '@store/services/Slices/visitedProductsSlice';
 interface headerProps {
   modalSetToggle: () => void;
   handleRegisterClick: () => void;
@@ -47,7 +49,7 @@ const Header: React.FC<headerProps> = ({
   const [selectNavLink, setSelectNavLink] = useState<string>('');
   const cartItems = useSelector((state: RootState) => selectCartDetails(state));
   const dispatch = useDispatch();
-  const [LogOut] = useLogoutMutation();
+  const [userlogout] = useUserlogoutMutation();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
@@ -199,8 +201,12 @@ const Header: React.FC<headerProps> = ({
     }
   };
   const handleLogoutClick = () => {
-    LogOut({});
+    userlogout({});
     dispatch(logout());
+    dispatch(clearCart());
+    dispatch(clearVisitedProducts())
+    navigate('/');
+
   };
   return (
     <>

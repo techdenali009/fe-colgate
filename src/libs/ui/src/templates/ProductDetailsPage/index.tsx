@@ -1,6 +1,7 @@
 import ProductDetailsContent from '@ui/organisms/ProductDetailsContent';
 import ProductDetails from '@ui/molecules/ProductDetails';
 import { MarketingBannerTwo } from '@ui/organisms/MarketingBannerTwo';
+import './ProductDetailsPage.styles.scss';
 
 import { marketingBannerTwo } from '@utils/banner';
 import { useParams } from 'react-router-dom';
@@ -38,10 +39,9 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
     if (id) {
       dispatch(addVisitedProduct(id));
       trigger(id); // Fetch product data on demand
-      fetch( {productId: id, page, limit } );
+      fetch({ productId: id, page, limit });
     }
   }, [id, trigger, dispatch]);
-
 
   useEffect(() => {
     if (relativeproducts) {

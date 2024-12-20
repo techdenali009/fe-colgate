@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* --primary-color: #125ee0; */
+
 #appBody {
   --primary-color:18, 94, 224;
   --hover-icon-color:#1b5796;

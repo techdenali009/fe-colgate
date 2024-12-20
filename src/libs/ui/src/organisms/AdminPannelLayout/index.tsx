@@ -3,7 +3,7 @@ import Header from '../../molecules/AdminPannelHeader';
 import Sidebar from '../../molecules/AdminPannelSidebar';
 
 const AdminLayout: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [, setWindowWidth] = useState<number>(
     typeof window !== 'undefined' ? window.innerWidth : 0

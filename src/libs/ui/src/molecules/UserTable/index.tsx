@@ -49,7 +49,6 @@ const UserTable: React.FC<UserTableProps> = ({
   currentPage,
   setCurrentPage,
   totalPages,
-  hasMore,
 }) => {
   const [visiblePopover, setVisiblePopover] = useState<string | null>(null);
   const [filter, setFilter] = useState('All');
@@ -63,7 +62,6 @@ const UserTable: React.FC<UserTableProps> = ({
       setCurrentPage(selectedPage.selected + 1);
     }
   };
-  console.log('hasMore',hasMore);
 
   const filteredUsers = users.filter((user) => {
     const matchesStatus =

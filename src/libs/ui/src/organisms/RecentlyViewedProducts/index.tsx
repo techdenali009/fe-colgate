@@ -19,7 +19,7 @@ function RecentlyViewedProducts({
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
   );
-
+  console.log('products',products);
   const [disableLeftButton, setDisableLeftButton] = useState(true);
   const [disableRightButton, setDisableRightButton] = useState(!hasMore);
  

@@ -17,9 +17,12 @@ const visitedProductsSlice = createSlice({
         state.productIds.push(action.payload); // Add only if not already in the array
       }
     },
+    clearVisitedProducts: (state) => {
+      state.productIds = []; // Reset the array to an empty array
+    },
   },
 });
 
-export const { addVisitedProduct } = visitedProductsSlice.actions;
+export const { addVisitedProduct, clearVisitedProducts } = visitedProductsSlice.actions;
 
 export default visitedProductsSlice.reducer;

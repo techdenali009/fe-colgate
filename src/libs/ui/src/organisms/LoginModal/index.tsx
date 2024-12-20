@@ -11,6 +11,7 @@ import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 import { useLoginMutation } from '@store/services/Endpoints/AuthApi';
 import { AppSpinner } from '@ui/atoms/AppSpinner';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginModalProps {
   closeModal: () => void;
@@ -23,7 +24,7 @@ interface LoginData {
 const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
   const [currentForm, setCurrentForm] = useState<'login' | 'forgotPassword' | 'alreadyRegistered'>('login');
   const dispatch = useDispatch(); 
-
+  const navigate=useNavigate();
    
   const [login, { isLoading ,isError}] = useLoginMutation();
 
@@ -33,7 +34,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeModal }) => {
       const result = await login(data).unwrap(); 
       if (result.status) {
         dispatch(userInfo(result.data.userInfo));
-        dispatch(setAuthToken(result.data.token))
+        dispatch(setAuthToken(result.data.token));
+        if(result.data.userInfo.userType==='admin'){
+          navigate('/admin/Dashboard');
+        }
+        else{
+          navigate('/');
+        }
         dispatch(toggleLoginModel());
       } else {
         console.error('Login failed:', result);

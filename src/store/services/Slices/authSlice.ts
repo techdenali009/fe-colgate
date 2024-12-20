@@ -15,6 +15,7 @@ interface UserInfo {
   isVerified?:boolean;
   favoriteProducts:string[];
   addresses?: Address[]; 
+  userType:string;
 }
 
 interface Address {

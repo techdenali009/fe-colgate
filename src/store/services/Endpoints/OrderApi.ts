@@ -4,37 +4,26 @@ const UserUrl = import.meta.env.VITE_AUTH_URL;
 
 export const OrderApi = createApi({
   reducerPath: 'orderApi',
-
   baseQuery: fetchBaseQuery({
     baseUrl: UserUrl,
     credentials: 'include',
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
   }),
-
+  tagTypes: ['Orders'],
   endpoints: (builder) => ({
     getOrders: builder.query({
-      query: ({ userId, page = 1, limit = 10, orderStatus, orderId, startDate, endDate }) => {
-        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+      query: ({ userId, page = 1, limit = 10, orderStatus, orderId }) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const params: Record<string, any> = {
           page,
           limit,
           orderStatus,
           orderId,
-          startDate,
-          endDate
         };
 
         return {
           url: `/order/${userId}`,
           params,
         };
-
       },
 
 
@@ -49,24 +38,37 @@ export const OrderApi = createApi({
       },
 
       // Separate endpoint for getOrderById
+    }),
 
+    getAllOrders: builder.query({
+      query: (params) => `order/all?${new URLSearchParams(params).toString()}`,
+      providesTags: (result) =>
+        result ? [{ type: 'Orders', id: 'LIST' }] : [],
     }),
     getOrderById: builder.query({
       query: (orderId) => `order/getOrderById/${orderId}`,
+      providesTags: (result, _error, orderId)  =>
+        result ? [{ type: 'Orders', id: orderId }] : [],
     }),
-    getAllOrders: builder.query({
-      query: (params) => `order/all?${new URLSearchParams(params).toString()}`,
-
-    }),
-
     updateOrder: builder.mutation({
       query: ({ orderId, orderData }) => ({
-        url: `/order/update/${orderId}`,
+        url: `order/update/${orderId}`,
         method: 'PUT',
         body: orderData,
       }),
+  
+      invalidatesTags: ( { orderId }) => [
+        { type: 'Orders', id: 'LIST' },
+        { type: 'Orders', id: orderId },
+      ],
     }),
+   
   }),
 });
 
-export const { useLazyGetOrdersQuery, useLazyGetAllOrdersQuery, useLazyGetOrderByIdQuery, useUpdateOrderMutation } = OrderApi;
+export const {
+  useLazyGetOrdersQuery,
+  useLazyGetAllOrdersQuery,
+  useLazyGetOrderByIdQuery,
+  useUpdateOrderMutation,
+} = OrderApi;

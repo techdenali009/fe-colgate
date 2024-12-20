@@ -18,6 +18,12 @@ function AdminSideBar() {
       >
         User
       </Button>
+      <Button
+        className="bg-gray-700 text-white hover:bg-gray-600 py-2 px-4 text-left"
+        onClick={() => navigate('/admin/orders')}
+      >
+        orders
+      </Button>
     </div>
   );
 }
