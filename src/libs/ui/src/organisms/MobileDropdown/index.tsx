@@ -18,7 +18,7 @@ const AccountDropdown = () => {
         className="w-full flex items-center justify-between px-4 py-3 rounded-[9rem] bg-[#f2f2f2] border border-black text-gray-700 hover:bg-gray-50"
       >
         {/* Display the selected item text or default "Orders" */}
-        <span className="text-xl font-HeroNewExtraBold">
+        <span className="font-HeroNewExtraBold">
           {selectedItem ? selectedItem : 'Orders'}
         </span>
         <ChevronDown
@@ -32,9 +32,9 @@ const AccountDropdown = () => {
             <a
               key={item.title}
               onClick={() => handleItemClick(item)} // Close dropdown on click
-              className={`block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600
+              className={`block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-appTheme
                 ${index === 0 ? 'rounded-t-lg' : ''} 
-                ${selectedItem === item.title ? 'bg-blue-50 text-blue-600' : ''}`}
+                ${selectedItem === item.title ? 'bg-blue-50 text-appTheme' : ''}`}
             >
               {item.title}
             </a>
