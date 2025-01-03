@@ -16,7 +16,7 @@ export default function OrderDetailsTemplate() {
       triggerGetOrderById(id);
     }
   }, [id, triggerGetOrderById]);
-
+  console.log('orderData',orderData);
   return (
 
     <>

@@ -19,21 +19,30 @@ interface PaymentInfo {
 interface Order {
     _id: string;
     userId: {
-        _id: string;
-        email: string;
-        firstName: string;
-        lastName: string;
-    };
+      firstName: string;
+      lastName: string;
+      email: string;
+      address: {
+          phone: string;
+          city: string;
+          street: string;
+          zipCode: number;
+          country: number;
+      };
+  };
     shippingAddress: ShippingAddress;
     billingAddress: ShippingAddress;
     paymentInfo: PaymentInfo;
     products: Array<{
-        product: {
-            name: string;
-            price: number;
-        };
-        quantity: number;
-    }>;
+      product: {
+          _id: string;
+          name: string;
+          images?: { url: string }[];
+      };
+      quantity: number;
+      priceSnapshot: number;
+      _id: string;
+  }>;
     orderStatus: string;
     totalAmount: number;
     orderId: string;
@@ -42,9 +51,8 @@ interface Order {
     estimatedDelivery: string;
     createdAt: string;
     updatedAt: string;
-
-}
- 
+  
+  }
 interface OrderDetailsProps {
     order: Order;
     onClose: () => void;
@@ -216,8 +224,8 @@ const OrderHistoryInvoice: React.FC<OrderDetailsProps> = ({ order, onClose }) =>
       body: invoiceData.products.map(item => [
         item.product.name,
         item.quantity,
-        `${item.product.price.toFixed(2)}`,
-        `${(item.quantity * item.product.price).toFixed(2)}`,
+        `${`${item.priceSnapshot.toFixed(2)}`}`,
+        `${(item.quantity * item.priceSnapshot).toFixed(2)}`,
       ]),
       styles: {
         fontSize: 10,
@@ -364,8 +372,8 @@ const OrderHistoryInvoice: React.FC<OrderDetailsProps> = ({ order, onClose }) =>
                   <tr key={index} className="border-b">
                     <td className="p-2">{item.product.name}</td>
                     <td className="text-right p-2">{item.quantity}</td>
-                    <td className="text-right p-2">₹{item.product.price}</td>
-                    <td className="text-right p-2">₹{item.quantity * item.product.price}</td>
+                    <td className="text-right p-2">₹{item.priceSnapshot}</td>
+                    <td className="text-right p-2">₹{item.quantity * item.priceSnapshot}</td>
                   </tr>
                 ))}
               </tbody>

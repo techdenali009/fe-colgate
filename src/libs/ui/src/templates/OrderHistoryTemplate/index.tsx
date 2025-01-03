@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { useLazyGetOrdersQuery, useUpdateOrderMutation } from '@store/services/Endpoints/OrderApi';
 import { LiaFileDownloadSolid } from 'react-icons/lia';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Eye } from 'lucide-react';
 import ReactPaginate from 'react-paginate';
 import CarouselPrevArrow from '@ui/atoms/SvgAtoms/CarouselPrevArrow';
@@ -15,6 +14,7 @@ import ConfirmationModal from '@ui/molecules/ConfirmationModal';
 import 'jspdf-autotable';
 import OrderHistoryInvoice from '@ui/organisms/OrderHistoryInvoice';
 import OrderHistorySkeleton from '@ui/molecules/OrderHistorySkelton';
+import { MdCancel } from 'react-icons/md';
 
 // Types
 interface ShippingAddress {
@@ -32,21 +32,30 @@ interface PaymentInfo {
 interface Order {
   _id: string;
   userId: {
-    _id: string;
-    email: string;
     firstName: string;
     lastName: string;
-  };
+    email: string;
+    address: {
+        phone: string;
+        city: string;
+        street: string;
+        zipCode: number;
+        country: number;
+    };
+};
   shippingAddress: ShippingAddress;
   billingAddress: ShippingAddress;
   paymentInfo: PaymentInfo;
   products: Array<{
     product: {
-      name: string;
-      price: number;
+        _id: string;
+        name: string;
+        images?: { url: string }[];
     };
     quantity: number;
-  }>;
+    priceSnapshot: number;
+    _id: string;
+}>;
   orderStatus: string;
   totalAmount: number;
   orderId: string;
@@ -83,7 +92,6 @@ const OrderHistoryTemplate: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showInvoice, setShowInvoice] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order>();
-
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
   const [userToDelete, setUserToDelete] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
@@ -95,6 +103,7 @@ const OrderHistoryTemplate: React.FC = () => {
   const totalPages = orderResponse?.data?.meta.totalPages || 1;
   const [updateOrder] = useUpdateOrderMutation();
 
+
   const fetchOrders = async () => {
     if (!userId) {
       console.error('User ID is missing');
@@ -105,7 +114,7 @@ const OrderHistoryTemplate: React.FC = () => {
       const queryParams: OrderQueryParams = {
         userId,
         page: currentPage,
-        limit: 3,
+        limit: 5,
         orderStatus: selectedStatus === 'All Orders' ? undefined : selectedStatus,
         orderId: searchTerm,
         productName: searchTerm,
@@ -240,36 +249,34 @@ const OrderHistoryTemplate: React.FC = () => {
 
 
             {/* Labels */}
-            <div className="flex gap-10 relative  border-b border-black">
-              {['All Orders', 'Pending', 'Shipped', 'Cancelled'].map((label) => (
-                <button
-                  key={label}
-                  className={`pb-2 transition-colors  relative  ${selectedStatus === label
-                    ? 'text-appTheme border-b-5 font-HeroNewBold'
-                    : ' hover:text-black-700'
-                  }`}
-                  onClick={() => setSelectedStatus(label)}
+            
+
+
+         
+
+            <div className="flex justify-between mb-6">
+              <div className="w-1/4">
+                <SearchBar
+                  searchQuery={searchTerm}
+                  setSearchQuery={setSearchTerm}
+                  placeholder="Search Orders"
+                  InputclassName="bg-[#f2f3f5]"
+                  searchclassName="bg-[#f2f3f5]  rounded-[15rem] px-[14px] py-[5px] xl:!w-[546px] 2xs:!w-[357px] lg:!w-[1px]"
+                />
+              </div>
+              <div className="relative flex h-[39px] top-[13px] pl-[20px] pr-[32px] lg:flex-none">
+                <select
+                  className="border border-black rounded px-4 py-2 focus:outline-none  focus:ring-appTheme bg-[#f2f3f5]"
+                  value={selectedStatus}
+                  onChange={(e) => setSelectedStatus(e.target.value)}
                 >
-                  {label}
-
-
-                </button>
-
-              ))}
-
-            </div>
-            <hr></hr>
-          </div>
-
-          <div className="flex justify-between mb-6">
-            <div className="w-1/4">
-              <SearchBar
-                searchQuery={searchTerm}
-                setSearchQuery={setSearchTerm}
-                placeholder="Search Orders"
-                InputclassName="bg-[#f2f3f5]"
-                searchclassName="bg-[#f2f3f5]  rounded-[15rem] px-[14px] py-[5px] xl:!w-[546px] 2xs:!w-[357px] lg:!w-[1px]"
-              />
+                  {['All Orders', 'Pending', 'Shipped', 'Cancelled'].map((label) => (
+                    <option key={label} value={label}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             {/* <div className="flex items-center gap-2">
               <input
@@ -305,47 +312,53 @@ const OrderHistoryTemplate: React.FC = () => {
                 {orderResponse?.data?.orders.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="text-center py-4 text-gray-500">
-                      No products available
+        No products available
                     </td>
                   </tr>
                 ) : (
-                  orderResponse?.data?.orders.map((order: Order) => (
-                    <tr key={order._id} className="hover:bg-gray-50">
-                      <td className="py-4 px-4  font-bold text-darkGray font-[Hero New Regular">#{order.orderId.slice(0, 8)}</td>
+                  orderResponse?.data?.orders.map((order: Order, index: number) => (
+                    <tr
+                      key={order._id}
+                      className={`hover:bg-gray-50 ${
+                        index % 2 === 0 ? 'bg-orange-100' : 'bg-green-100'
+                      }`}
+                    >
+                      <td className="py-4 px-4 font-bold text-darkGray font-[Hero New Regular]">
+          #{order.orderId.slice(0, 8)}
+                      </td>
                       <td className="py-4 px-4">
                         {renderProductColumn(order.products, order._id)}
                       </td>
-                      <td className="py-4 px-4 font-bold font-[Hero New Regular">
+                      <td className="py-4 px-4 font-bold font-[Hero New Regular]">
                         <span className={getPaymentColor(order.paymentInfo.method)}>
                           {order.paymentInfo.method}
                         </span>
                       </td>
-                      <td className="py-4 px-4 font-bold font-[Hero New Regular">
+                      <td className="py-4 px-4 font-bold font-[Hero New Regular]">
                         <span className={getStatusColor(order.orderStatus)}>
                           {order.orderStatus}
                         </span>
                       </td>
-                      <td className="py-4 px-4"> ₹{order.totalAmount}</td>
+                      <td className="py-4 px-4">₹{order.totalAmount}</td>
                       <td className="py-4 px-4 flex gap-3 mt-2">
-                        {/* <button className="text-blue-600 hover:underline">View</button> */}
                         <button
                           className="text-appTheme hover:underline flex items-center"
-                          title="View Order" onClick={() => Navigate(`${order._id}`)}
+                          title="View Order"
+                          onClick={() => Navigate(`${order._id}`)}
                         >
                           <Eye className="w-5 h-5" />
-
                         </button>
-                        {/* Invoice Download Icon */}
                         <button
                           className="text-red-400 hover:underline flex items-center"
-                          title="Remove" onClick={() => handleOrderRemove(`${order._id}`)}
+                          title="Remove"
+                          onClick={() => handleOrderRemove(`${order._id}`)}
                         >
-                          <RiDeleteBin6Line className="w-5 h-5" />
+                          <MdCancel className="w-5 h-5" />
                         </button>
-                        {/* Cancel Order Icon */}
                         <button
                           className="text-purple-700 hover:underline flex items-center"
-                          title="Download" onClick={() => handleInvoiceView(order)}
+                          title="Download"
+                          onClick={() => handleInvoiceView(order)}
                         >
                           <LiaFileDownloadSolid className="w-5 h-5" />
                         </button>
@@ -354,6 +367,7 @@ const OrderHistoryTemplate: React.FC = () => {
                   ))
                 )}
               </tbody>
+
             </table>
           </div>
 

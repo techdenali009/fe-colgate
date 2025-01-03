@@ -1,53 +1,64 @@
 
 import { useNavigate } from 'react-router-dom';
-
+import OrderHistoryInvoice from '../OrderHistoryInvoice';
+import { LiaFileDownloadSolid } from 'react-icons/lia';
+import { useState } from 'react';
+interface ShippingAddress {
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
+interface PaymentInfo {
+  method: string;
+  status: string;
+}
 interface OrderDetailProps {
-    orderData: {
-        _id: string;
-        orderStatus: string;
-        shippingAddress: {
-            name: string;
-            address: string;
-            city: string;
-            postalCode: string;
-            country: string;
-
-        };
-        userId: {
-            firstName: string;
-            lastName: string;
-            email: string;
-            address: {
-                phone: string;
-                city: string;
-                street: string;
-                zipCode: number;
-                country: number;
-            };
-        };
-        products: Array<{
-            product: {
-                _id: string;
-                name: string;
-                images?: { url: string }[];
-            };
-            quantity: number;
-            priceSnapshot: number;
-            _id: string;
-        }>;
-        totalAmount: number;
-        taxAmount: number;
-        shippingCost: number;
-        createdAt?: string;
-        estimatedDelivery?: string;
-
-    };
+  orderData: {
+    _id: string;
+    userId: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      address: {
+          phone: string;
+          city: string;
+          street: string;
+          zipCode: number;
+          country: number;
+      };
+  };
+    shippingAddress: ShippingAddress;
+    billingAddress: ShippingAddress;
+    paymentInfo: PaymentInfo;
+    products: Array<{
+      product: {
+          _id: string;
+          name: string;
+          images?: { url: string }[];
+      };
+      quantity: number;
+      priceSnapshot: number;
+      _id: string;
+  }>;
+    orderStatus: string;
+    totalAmount: number;
+    orderId: string;
+    taxAmount: number;
+    shippingCost: number;
+    estimatedDelivery: string;
+    createdAt: string;
+    updatedAt: string;
+  
+  }
     isLoading: boolean;
     userEmail?: string;
 }
 
 
 const OrderDetail = ({ orderData, isLoading }: OrderDetailProps) => {
+  const [showInvoice, setShowInvoice] = useState(false);
+  const navigate = useNavigate();
   if (isLoading) {
     return <div className="p-4">Loading...</div>;
   }
@@ -91,11 +102,14 @@ const OrderDetail = ({ orderData, isLoading }: OrderDetailProps) => {
     return dateString ? new Date(dateString).toLocaleDateString() : 'N/A';
   };
 
-  const navigate = useNavigate();
+
   const handleBackToList = () => {
     navigate('/myaccount/Orders'); // Navigate to the correct route
   };
-  console.log('orderData', orderData);
+  // console.log('orderData', orderData);
+  const handleInvoiceView = () => {
+    setShowInvoice(true);
+  };
   return (
     <div className="max-w-5xl mx-auto p-3 bg-white rounded-lg shadow-sm border-[0.1rem]">
       {/* Header Section */}
@@ -108,9 +122,18 @@ const OrderDetail = ({ orderData, isLoading }: OrderDetailProps) => {
             <span>{orderData.products?.length || 0} Products</span>
           </div>
         </div>
-        <button className="text-appTheme font-bold font-['Hero_New_Bold']" onClick={handleBackToList}>Back to List</button>
+        <div className='flex text-center gap-[1rem]'>
+          <button
+            className="text-appTheme hover:underline flex items-center"
+            title="Download Invoice"
+            onClick={handleInvoiceView}
+          >
+            <LiaFileDownloadSolid className="w-5 h-5" />
+            <span className="ml-1 text-sm">Invoice</span>
+          </button>
+          <button className="text-appTheme font-bold font-['Hero_New_Bold']" onClick={handleBackToList}>Back to List</button>
+        </div>
       </div>
-
       {/* Info Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3  mb-8">
         {/* Customer Details */}
@@ -122,8 +145,8 @@ const OrderDetail = ({ orderData, isLoading }: OrderDetailProps) => {
               <h2 className='font-HeroNewRegular'>{orderData.userId.firstName}</h2>
 
               <div className="">
-                <h2 className='font-HeroNewRegular text-gray-500 text-[13px] mt-[19px]'>{orderData.userId?.address?.city},{orderData.userId?.address?.street}
-                  <p> {orderData.userId?.address?.zipCode}</p>
+                <h2 className='font-HeroNewRegular text-gray-500 text-[13px] mt-[19px]'>{orderData.billingAddress.city},{orderData.billingAddress.address}
+                  <p> {orderData.billingAddress.postalCode}</p>
                 </h2>
               </div>
             </p>
@@ -134,7 +157,7 @@ const OrderDetail = ({ orderData, isLoading }: OrderDetailProps) => {
             </p>
             <p className="text-sm mt-2">
               <span className="text-gray-600">PHONE:</span>
-              <span className='font-HeroNewRegular'><p></p>{orderData.userId?.address?.phone}</span>
+              {/* <span className='font-HeroNewRegular'><p></p>{orderData.userId.address.phone}</span> */}
             </p>
 
           </div>
@@ -288,6 +311,12 @@ const OrderDetail = ({ orderData, isLoading }: OrderDetailProps) => {
           </tbody>
         </table>
       </div>
+      {showInvoice && (
+        <OrderHistoryInvoice
+          order={orderData}
+          onClose={() => setShowInvoice(false)}
+        />
+      )}
     </div>
   );
 };
