@@ -35,18 +35,12 @@ const CouponForm: React.FC<Props> = ({ totalAmount, setDiscountedTotal }) => {
         placeholder="Enter coupon code"
         value={couponCode}
         onChange={(e) => setCouponCode(e.target.value)}
-        style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+        className='w-full p-2 mb-[10px]'
       />
       <button
         onClick={handleApplyCoupon}
         disabled={isLoading}
-        style={{
-          width: '100%',
-          padding: '10px',
-          backgroundColor: '#4CAF50',
-          color: 'white',
-          border: 'none',
-        }}
+        className='w-full p-[10px] bg-[#4CAF50] text-white border-none '
       >
         {isLoading ? 'Applying...' : 'Apply Coupon'}
       </button>

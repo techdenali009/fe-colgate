@@ -35,7 +35,6 @@ const CartPage: React.FC = () => {
     const originalPrice = item.price ?? 0;          // Original price of the item
     const discountedPrice = item.discount ?? 0; // Discounted price of the item
     const quantity = item.quantity ?? 1;             // Quantity of the item
-    console.log(originalPrice,discountedPrice   , 'discountAmount')
     // Calculate the discount for the current item
     const discountAmount = (originalPrice - discountedPrice) * quantity;
     

@@ -96,7 +96,6 @@ const OrderHistoryTemplate: React.FC = () => {
   const [endDate] = useState('');
   const userId = userInfo?._id;
   const [getOrders, { data: orderResponse, isLoading }] = useLazyGetOrdersQuery();
-  // console.log("orderdata",orderResponse.discount);
   const totalPages = orderResponse?.data?.meta.totalPages || 1;
   const [updateOrder] = useUpdateOrderMutation();
 

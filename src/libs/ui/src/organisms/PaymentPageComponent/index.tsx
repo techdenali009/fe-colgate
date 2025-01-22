@@ -39,25 +39,10 @@ const PaymentPage: React.FC<paymentProps> = () => {
   const addresses = user?.data?.addresses || [];
 
   const [discount] = useState(0); // Track discount amount
-  // const [message, setMessage] = useState("");
-  // const [totalAmount, setTotalAmount] = useState(100); // Example total amount
-
   const [isCouponApplied, setIsCouponApplied] = useState(false);
 
-
-  // const [discountedTotal, setDiscountedTotal] = useState(totalAmount);
   const [couponCode] = useState('');
-  // const totalToPay = discountedTotal + Tax + shippingAmount - discount;
-  // const handleCouponCodeSubmit = () => {
-  //   if (couponCode.toLowerCase() === 'save0') {
-  //     const discountAmount = +(totalCartPrice * 0.1).toFixed(2); // 10% discount
-  //     setDiscount(discountAmount);
-  //     alert(`Coupon applied! You saved ₹${discountAmount}.`);
-  //   } else {
-  //     alert('Invalid coupon code. Please try again.');
-  //     setDiscount(0); // Reset discount if coupon is invalid
-  //   }
-  // };
+
   const formatAddress = (address: { street: string; city: string; postalCode: string; country: string; name: string; phone: string; zipCode: string; }) => ({
     address: `${address.street}, ${address.city}, ${address.postalCode}, ${address.country}, ${address.name}, ${address.phone}`,
     street: address.street || '',
