@@ -210,10 +210,12 @@ const PlpPageTemplate: React.FC = () => {
                         rating: product?.rating || 0,
                         price: product?.price,
                         isBestSeller: product?.isBestSeller || false,
+                        discount:product.discount
                       }}
                       modalSetToggle={() => dispatch(toggleLoginModel())}
                       openQuickView={() => openQuickReviewModal(product._id)}
                       showQuickView={isLoggedIn}
+                      
                     />
                   ))}
               </div>

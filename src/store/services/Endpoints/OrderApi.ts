@@ -65,8 +65,17 @@ export const OrderApi = createApi({
         method: 'PUT',
         body: orderData,
       }),
+    
+
+    }),
+    applyCoupon: builder.mutation({
+      query: ({ code, totalAmount }) => ({
+        url: '/coupon/apply',
+        method: 'POST',
+        body: { code, totalAmount },
+      }),
     }),
   }),
 });
 
-export const { useLazyGetOrdersQuery, useLazyGetAllOrdersQuery, useLazyGetOrderByIdQuery, useUpdateOrderMutation } = OrderApi;
+export const { useLazyGetOrdersQuery, useLazyGetAllOrdersQuery, useLazyGetOrderByIdQuery, useUpdateOrderMutation,useApplyCouponMutation  } = OrderApi;

@@ -8,6 +8,7 @@ import Product from '@ui/organisms/Product';
 import FavoriteButton from '@ui/atoms/ProductDetailsPageFavoriteButton';
 
 interface Product {
+  discount: number;
   _id: string;
   name: string;
   images?: { url: string }[];
@@ -92,8 +93,9 @@ const FavouritesPage: React.FC<FavouritesPageProps> = ({
                         name: product.name,
                         image: product.images![0]?.url || '',
                         rating: product?.rating || 0,
-                        price: product?.price,
-                        isBestSeller: product?.isBestSeller || false
+                        price: product.price,
+                        isBestSeller: product?.isBestSeller || false,
+                        discount:product?.discount
                       }}
                       modalSetToggle={() => { console.log('dffsdad') }}
                       openQuickView={() => openQuickReviewModal(product._id)}

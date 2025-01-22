@@ -55,6 +55,10 @@ interface Order {
   estimatedDelivery: string;
   createdAt: string;
   updatedAt: string;
+  discount: {
+    couponCode: string,
+    amount: number
+},
 
 }
 
@@ -92,6 +96,7 @@ const OrderHistoryTemplate: React.FC = () => {
   const [endDate] = useState('');
   const userId = userInfo?._id;
   const [getOrders, { data: orderResponse, isLoading }] = useLazyGetOrdersQuery();
+  // console.log("orderdata",orderResponse.discount);
   const totalPages = orderResponse?.data?.meta.totalPages || 1;
   const [updateOrder] = useUpdateOrderMutation();
 
@@ -112,7 +117,12 @@ const OrderHistoryTemplate: React.FC = () => {
         startDate: startDate || undefined,
         endDate: endDate || undefined,
       };
-      await getOrders(queryParams).unwrap();
+      const response = await getOrders(queryParams).unwrap();
+      if (response?.data?.orders) {
+        response.data.orders.forEach((order: Order) => {
+          console.log(`Order ID: ${order._id}, Coupon Code: ${order.discount.couponCode}`);
+        });
+      }
     } catch (err) {
       console.error('Failed to fetch orders:', err);
     }

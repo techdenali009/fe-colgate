@@ -31,6 +31,18 @@ const CartPage: React.FC = () => {
   const [showCartDetails, setShowCartDetails] = useState(true);
   const navigate = useNavigate();
 
+  const totalDiscount = cartItems.reduce((acc, item) => {
+    const originalPrice = item.price ?? 0;          // Original price of the item
+    const discountedPrice = item.discount ?? 0; // Discounted price of the item
+    const quantity = item.quantity ?? 1;             // Quantity of the item
+    console.log(originalPrice,discountedPrice   , 'discountAmount')
+    // Calculate the discount for the current item
+    const discountAmount = (originalPrice - discountedPrice) * quantity;
+    
+    // Accumulate the discount for all items
+    return acc + discountAmount;
+  }, 0);
+
   return (
     <div className="flex-col px-6  lg:flex-row flex lg:px-[84.8px] w-full pt-10">
 
@@ -39,6 +51,7 @@ const CartPage: React.FC = () => {
           showCartDetails={showCartDetails}
           setShowCartDetails={setShowCartDetails} // Pass the state setter to the child
         />
+       
       </div>
       {cartItems.length > 0 && (
         <>
@@ -54,7 +67,8 @@ const CartPage: React.FC = () => {
               isLoading={isLoading}
               isError={isError}
               onPlaceOrder={handleOrderPlacement}
-              isSuccess={isSuccess}
+              isSuccess={isSuccess} 
+              discountAmount={totalDiscount}           
             />
           </div>
         </>
