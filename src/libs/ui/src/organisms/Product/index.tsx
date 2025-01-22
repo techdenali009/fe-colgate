@@ -69,8 +69,6 @@ function Product({
   
    
   const handaleClick = (id: string) => {
-    
-    // const handaleClick = (id: number) => {
     navigate(`/products/${id}`);
     console.log('id',id);
   };
@@ -80,8 +78,7 @@ function Product({
   return (
     <div
       className={`group relative p-2 bg-white dark:bg-appdarkcolor ${overallclassName}`}
-      // onClick={() => handaleClick(Number(id))}
-    // onClick={handleNavigate}
+     
     >
       <div className={`${ProductImageClassName}`}>
         <ProductImage
