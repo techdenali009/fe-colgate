@@ -42,6 +42,7 @@ export const PlpProductsEndpoints = createApi({
             name: string;
             price: number;
             description: string;
+            discount:number;
             // eslint-disable-next-line  @typescript-eslint/no-explicit-any
             [key: string]: any; // Allow for other dynamic fields
             images: {url:string, alt:string}[];

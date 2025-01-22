@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
+
 interface CartItem {
   id: string;
   name: string;
@@ -32,7 +33,7 @@ function Product({
   ProductImageClassName,
   showAddToCartButton = true,
 }: ProductProps & { showAddToCartButton?: boolean }) {
-  const { image, name, isBestSeller, id, price } = product;
+  const { image, name, isBestSeller, id, price, discount } = product;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const handleNavigate = () => navigate(`/products/${id}/${name}`);
@@ -45,18 +46,27 @@ function Product({
   const isProductInCart = cartItems.find((item) => item.id === id?.toString());
 
   const handleAddToCart = () => {
+    let finalPrice = price as number;
+  
+    // Apply discount if it exists and is greater than 0
+    if (discount && discount > 0) {
+      finalPrice = finalPrice - discount;
+    }
+  
     if (!isProductInCart || isProductInCart.quantity < 1) {
       dispatch(
         addToCart({
           id: id?.toString() || '',
           name,
-          price: price as number,
+          price: finalPrice,  // Use the discounted price
           image,
           quantity: 1,
+          discount:discount as number,
         })
       );
     }
   };
+  
 
   // Function to handle the quantity change
   const handleQuantityChange = (newQuantity: number) => {
@@ -102,7 +112,7 @@ function Product({
           </BestSellerBadge>
         )}
       </div>
-      <div className="">
+      <div className="mb-10">
         {/* <div className="flex my-2">
           <StarRating rating={rating} />
           <span className=" p-[0.15em] text-base leading-5 font-HeroNewRegular text-appTextColor">
@@ -114,7 +124,10 @@ function Product({
           onClick={() => handaleClick((id))}
         >
           {name}
+         
+          
         </h3>
+       
       </div>
       {footerContent && <>{footerContent}</>}
       {!footerContent && (

@@ -12,6 +12,7 @@ export interface ProductType {
   reviews?: { stars: number; count: number }[];
   restrictedmessage?:string;
   images?: {url:string}[];
+  discount?:number;
 }
 
 
@@ -27,6 +28,7 @@ export interface ProductDetailsContentProps {
   restrictedmessage:string;
   bySkinConcern: string[];
   bySkinType: string[];
+  discount:number;
 }
 export interface ProductProps {
   product: ProductType;

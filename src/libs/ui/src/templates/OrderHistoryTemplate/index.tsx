@@ -55,6 +55,10 @@ interface Order {
   estimatedDelivery: string;
   createdAt: string;
   updatedAt: string;
+  discount: {
+    couponCode: string,
+    amount: number
+},
 
 }
 
@@ -112,7 +116,12 @@ const OrderHistoryTemplate: React.FC = () => {
         startDate: startDate || undefined,
         endDate: endDate || undefined,
       };
-      await getOrders(queryParams).unwrap();
+      const response = await getOrders(queryParams).unwrap();
+      if (response?.data?.orders) {
+        response.data.orders.forEach((order: Order) => {
+          console.log(`Order ID: ${order._id}, Coupon Code: ${order.discount.couponCode}`);
+        });
+      }
     } catch (err) {
       console.error('Failed to fetch orders:', err);
     }

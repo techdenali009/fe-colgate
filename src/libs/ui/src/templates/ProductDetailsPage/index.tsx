@@ -87,13 +87,10 @@ export const ProductDetailsPage: React.FC<PDPage> = () => {
             features={product.features ?? 'No description available'}
             rating={product?.averageRating}
             reviews={product.reviews ?? 'No description available'}
-            restrictedmessage={
-              product.restrictedmessage ??
-              'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'
-            }
+            restrictedmessage={product.restrictedmessage ??
+                'The Professional Peel Certification course is required to access professional-only products. If you want to become PCA Certified please call 877.PCA.SKIN, email info@pcaskin.com or click here for more details. If you have completed the course, please email info@pcaskin.com with proof of completion (certificate).'}
             bySkinConcern={product.bySkinConcern ?? 'No description available'}
-            bySkinType={product.bySkinType ?? 'No description available'}
-          />
+            bySkinType={product.bySkinType ?? 'No description available'} discount={product.discount}          />
         ) : (
           <div>Loading...</div>
         )}
