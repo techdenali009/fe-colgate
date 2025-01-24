@@ -117,7 +117,7 @@ const RecentOrdersTable: React.FC = () => {
           {products[0].product.name}{' '}
           <span
             className='text-xs text-gray-500 hover:text-appTheme hover:underline'
-            onClick={() => navigate(`orders/${orderId}`)}
+            onClick={() => navigate(`/admin/orders/${orderId}`)}
           >
             + {products.length - 1} more
           </span>

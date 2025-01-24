@@ -46,8 +46,27 @@ export interface RelatedProductsProps{
   relatedProducts: Product[];
   className:string
 }
+export interface ProductItem {
+  id: string | number | undefined;
+  _id: string;
+  name: string;
+  description: string;
+  category: {
+    name: string;
+    description: string;
+  };
+  images: {
+    url: string;
+    altText: string;
+  }[];
+  rating?: number;
+  isBestSeller?: boolean;
+  discount: number;
+  stock: number;
+  price: number;
+}
 export interface PopularProductsProps {
-  products:Product[];
+  products:ProductItem[];
   modalSetToggle: () => void;
  
   onNextPage: () => void;

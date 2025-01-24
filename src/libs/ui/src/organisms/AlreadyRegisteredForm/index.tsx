@@ -10,6 +10,7 @@ import { useLoginMutation } from '@store/services/Endpoints/AuthApi';
 import { useDispatch } from 'react-redux';
 import { setAuthToken, userInfo } from '@store/services/Slices/authSlice';
 import { AppSpinner } from '@ui/atoms/AppSpinner';
+import { useNavigate } from 'react-router-dom';
 
 interface FormValues {
   email: string;
@@ -29,7 +30,7 @@ interface LoginData {
 const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode }) => {
 
   const [login, { isLoading, isError }] = useLoginMutation();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -42,6 +43,12 @@ const AlreadyRegistered: React.FC<LoginFormProps> = ({ setIsForgotPassword, mode
       if (result.status) {
         dispatch(userInfo(result.data.userInfo));
         dispatch(setAuthToken(result.data.token));
+        if(result.data.userInfo.userType==='admin'){
+          navigate('/admin/Dashboard');
+        }
+        else{
+          navigate('/');
+        }
       } else {
         console.error('Login failed:', result);
       }

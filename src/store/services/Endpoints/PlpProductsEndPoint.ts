@@ -66,9 +66,16 @@ export const PlpProductsEndpoints = createApi({
     }),
     getRelativeProducts: builder.query({
       query:(params)=>`products/getReletive?${new URLSearchParams(params).toString()}`
-    })
+    }),
+    getRecentlyViewedProducts: builder.mutation({
+      query: ({ productIds, page, limit }: { productIds:  string[] ; page: number; limit: number }) => ({
+        url: `/products/recently-viewedProducts?${new URLSearchParams({ page: String(page), limit: String(limit) }).toString()}`,
+        method: 'POST',
+        body: { productIds }, // Send productIds object containing productsIds array in the body
+      }),
+    }),
   }),
 });
 
 // Export the auto-generated hook for use in components
-export const { useLazyGetProductsQuery,useAddfavouriteMutation ,useLazyGetProductByIdQuery,useLazyGetRelativeProductsQuery} = PlpProductsEndpoints;
+export const { useLazyGetProductsQuery,useAddfavouriteMutation ,useLazyGetProductByIdQuery,useLazyGetRelativeProductsQuery,useGetRecentlyViewedProductsMutation} = PlpProductsEndpoints;

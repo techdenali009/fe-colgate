@@ -22,12 +22,14 @@ interface PersonalProfileFieldsProps {
   className?: string;
 }
 
-const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className }) => {
+const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({
+  className,
+}) => {
   const dispatch = useDispatch(); // Use dispatch to send actions to Redux
   const {
     control,
-   
-    formState: { errors},
+
+    formState: { errors },
     handleSubmit,
     setValue, // Allows you to manually set form values
     getValues,
@@ -48,7 +50,7 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
   // Fetching user info from the redux store
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
   const isLoggedIn = userInfo && userInfo.email;
-  
+
   useEffect(() => {
     if (isLoggedIn) {
       // Set the form fields from the redux store when user info is loaded
@@ -77,6 +79,12 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
       createdAt: userInfo.createdAt,
       updatedAt: new Date().toISOString(),
       favoriteProducts: userInfo.favoriteProducts,
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      email: userInfo.email,
+      mobileNumber: userInfo.mobileNumber,
+      customerId: userInfo.customerId,
+      userType:userInfo.userType
     };
     // Dispatch the action to update the profile in Redux
     dispatch(updateUserProfile(userData));
@@ -94,14 +102,13 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
         userInfo.firstName !== getValues('firstName') ||
         userInfo.lastName !== getValues('lastName') ||
         userInfo.mobileNumber !== getValues('mobileNumber'));
-  
+
     setIsFieldChanged(Boolean(isChanged));
-  },  [getValues, userInfo]);
-  
+  }, [getValues, userInfo]);
 
   return (
     <div>
-      <form >
+      <form>
         <div className={`lg:grid-cols-2 grid lg:pt-8 gap-6 ${className}`}>
           {/* Email */}
           <div className="mb-2 inline-grid text-start">
@@ -137,13 +144,19 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
                 )}
               />
             )}
-            {errors.email && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.email.message}</span>}
+            {errors.email && (
+              <span className="text-appErrorMessage text-normal font-HeroNewBold">
+                {errors.email.message}
+              </span>
+            )}
           </div>
 
           {/* Customer ID */}
           <div className="mb-2 inline-grid text-start">
             <div className="flex text-xs font-heroNewLight">
-              <Label className="text-xs font-HeroNewRegular">Customer Number</Label>
+              <Label className="text-xs font-HeroNewRegular">
+                Customer Number
+              </Label>
             </div>
             {!isEditMode ? (
               <p className="py-2  mt-1 text-base text-black border-[1px] border-transparent bg-transparent">
@@ -175,14 +188,22 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
                     placeholder="Customer ID *"
                     {...field}
                     className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
-                    ${errors.customerId ? 'border-formFieldBorder' : 'border-black'} 
+                    ${
+                  errors.customerId
+                    ? 'border-formFieldBorder'
+                    : 'border-black'
+                  } 
                     ${isEditMode ? 'border-black' : 'border-transparent px-0'}`}
                     disabled={!isEditMode || !isFieldChanged}
                   />
                 )}
               />
             )}
-            {errors.customerId && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.customerId.message}</span>}
+            {errors.customerId && (
+              <span className="text-appErrorMessage text-normal font-HeroNewBold">
+                {errors.customerId.message}
+              </span>
+            )}
           </div>
 
           {/* First Name */}
@@ -206,14 +227,22 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
                     placeholder="First Name *"
                     {...field}
                     className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
-                    ${errors.firstName ? 'border-formFieldBorder' : 'border-black'} 
+                    ${
+                  errors.firstName
+                    ? 'border-formFieldBorder'
+                    : 'border-black'
+                  } 
                     ${isEditMode ? 'border-black' : 'border-transparent'}`}
                     disabled={!isEditMode}
                   />
                 )}
               />
             )}
-            {errors.firstName && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.firstName.message}</span>}
+            {errors.firstName && (
+              <span className="text-appErrorMessage text-normal font-HeroNewBold">
+                {errors.firstName.message}
+              </span>
+            )}
           </div>
 
           {/* Last Name */}
@@ -237,20 +266,30 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
                     placeholder="Last Name *"
                     {...field}
                     className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
-                    ${errors.lastName ? 'border-formFieldBorder' : 'border-black'} 
+                    ${
+                  errors.lastName
+                    ? 'border-formFieldBorder'
+                    : 'border-black'
+                  } 
                     ${isEditMode ? 'border-black' : 'border-transparent'}`}
                     disabled={!isEditMode}
                   />
                 )}
               />
             )}
-            {errors.lastName && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.lastName.message}</span>}
+            {errors.lastName && (
+              <span className="text-appErrorMessage text-normal font-HeroNewBold">
+                {errors.lastName.message}
+              </span>
+            )}
           </div>
 
           {/* Mobile Phone Number */}
           <div className="mb-2 inline-grid text-start">
             <div className="flex text-xs font-heroNewLight">
-              <Label className="text-xs font-HeroNewRegular">Mobile Phone Number</Label>
+              <Label className="text-xs font-HeroNewRegular">
+                Mobile Phone Number
+              </Label>
             </div>
             {!isEditMode ? (
               <p className="py-2  mt-1 text-base text-black border-[1px] border-transparent bg-transparent">
@@ -278,14 +317,22 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
                     placeholder="Mobile Number"
                     {...field}
                     className={`h-12 rounded-none py-2 px-3 mt-1 text-base border-[1px] w-full text-black !bg-transparent
-                    ${errors.mobileNumber ? 'border-formFieldBorder' : 'border-black'} 
+                    ${
+                  errors.mobileNumber
+                    ? 'border-formFieldBorder'
+                    : 'border-black'
+                  } 
                     ${isEditMode ? 'border-black' : 'border-transparent'}`}
                     disabled={!isEditMode}
                   />
                 )}
               />
             )}
-            {errors.mobileNumber && <span className="text-appErrorMessage text-normal font-HeroNewBold">{errors.mobileNumber.message}</span>}
+            {errors.mobileNumber && (
+              <span className="text-appErrorMessage text-normal font-HeroNewBold">
+                {errors.mobileNumber.message}
+              </span>
+            )}
           </div>
         </div>
       </form>
@@ -296,8 +343,9 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
           <div className={`w-full mt-8 bg-[#e6e7eb] ${className}`}>
             <div className="w-full p-8 lg:w-[672px]">
               <Paragraph className={`mb-6 ${className}`}>
-                Need to make changes to your information shown above? Submit a request form and our customer service team
-                will make the changes.
+                Need to make changes to your information shown above? Submit a
+                request form and our customer service team will make the
+                changes.
               </Paragraph>
 
               <ButtonWithTextAndIcon
@@ -307,13 +355,18 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
                   }
                   toggleEditMode();
                 })}
-                className={`${isEditMode
-                  ? isFieldChanged
-                    ? '!bg-appTheme text-white'
-                    : '!bg-[#9a9998] text-white'
-                  : '!bg-appTheme text-white'
-                } !border-none hover:!bg-black hover:!border-none font-HeroNewBold   ${isEditMode ? 'w-[140px] h-[48px]' : ''}`}
-                disabled={!isFieldChanged && isEditMode && hasInitialEditStarted}
+                className={`${
+                  isEditMode
+                    ? isFieldChanged
+                      ? '!bg-appTheme text-white'
+                      : '!bg-[#9a9998] text-white'
+                    : '!bg-appTheme text-white'
+                } !border-none hover:!bg-black hover:!border-none font-HeroNewBold   ${
+                  isEditMode ? 'w-[140px] h-[48px]' : ''
+                }`}
+                disabled={
+                  !isFieldChanged && isEditMode && hasInitialEditStarted
+                }
               >
                 {isEditMode ? 'Save Request' : 'Request Information Update'}
               </ButtonWithTextAndIcon>
@@ -335,9 +388,9 @@ const PersonalProfileFields: React.FC<PersonalProfileFieldsProps> = ({ className
           </div>
         </div>
       </div>
+      {/* <PersonalProfile></PersonalProfile> */}
     </div>
   );
 };
 
 export default PersonalProfileFields;
-

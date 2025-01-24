@@ -4,12 +4,11 @@ import FilterDropdown from '@ui/molecules/FilterDropdown/FilterDropdown';
 import PageTitleHeader from '@ui/molecules/PageTitleHeader';
 import PlpAccordians from '@ui/molecules/PlpAccordians';
 import Product from '@ui/organisms/Product';
-import { useState } from 'react';
-import { ProductType } from '@utils/Product';
+import { useEffect, useState } from 'react';
 import { RootState } from '@store/store';
 import PopularProductSkeleton from '@ui/molecules/PopularProductSkeleton';
 import RecentlyViewedProducts from '@ui/organisms/RecentlyViewedProducts';
-import { RecentProduct as products } from '@utils/test';
+
 import LoginModal from '@ui/organisms/LoginModal';
 import { toggleLoginModel } from '@store/services/Slices/ModalSlice';
 import { SortOptions } from '@utils/plpFilterData';
@@ -20,6 +19,10 @@ import { useProductContext } from '../../../../contexts/PlpContext';
 import PlpPageSkeleton, {
   PlpProductCardSkeleton,
 } from '@ui/molecules/PlpPageSkeleton';
+import { useGetRecentlyViewedProductsMutation } from '@store/services/Endpoints/PlpProductsEndPoint';
+
+import { Product as productItems } from '../LandingPage';
+import QuickViewModal from '@ui/organisms/QuickView';
 
 const PlpPageTemplate: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,11 +47,49 @@ const PlpPageTemplate: React.FC = () => {
   } = useProductContext();
 
   const [, setIsBestSellerState] = useState<boolean>(false);
-  const [QuickViewModalOpen] = useState(false);
-  const [selectedProduct] = useState<ProductType | null>(null);
+  const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<productItems | null>(
+    null
+  );
   const userInfo = useSelector((state: RootState) => state.authSlice.userInfo);
+  const [page, setPage] = useState(1);
+  const [productsList, setProductsList] = useState<productItems[]>([]); // Store all products
+  const [hasMore2, setHasMore2] = useState<boolean>(true); // State to track if there are more products
   const isLoggedIn = Boolean(userInfo);
   const [toggle, SetToggle] = useState(false);
+
+  const [
+    fetch,
+    { data: recentViewedProducts, isLoading: recentProductsISLoading },
+  ] = useGetRecentlyViewedProductsMutation();
+  const productsID = useSelector(
+    (state: RootState) => state.visitedProducts.productIds
+  ); // Get userId from state
+  useEffect(() => {
+    if (productsID) {
+      fetch({
+        productIds: productsID,
+        page: 1,
+        limit: 10,
+      });
+    }
+  }, [fetch, page, productsID]); // Dependencies for re-fetching
+
+  useEffect(() => {
+    if (recentViewedProducts) {
+      setProductsList((prevProducts) => [
+        ...prevProducts,
+        ...recentViewedProducts.data.products,
+      ]);
+
+      setHasMore2(recentViewedProducts.hasMore);
+    }
+  }, [recentViewedProducts]);
+  const handleNextPage = () => {
+    if (hasMore2) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
 
   const handleCategorySelect = (category: string | null) => {
     const newCategory = category ?? 'All Products';
@@ -135,8 +176,18 @@ const PlpPageTemplate: React.FC = () => {
     setFilters([]);
     navigate('/products');
   };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const openQuickReviewModal = async (_id: string) => {};
+   
+  const openQuickReviewModal = async (_id: string) => {
+    // Fetch the product data based on the _id
+    const selectedProduct = filteredProducts.find(
+      (product) => product._id === _id
+    );
+
+    if (selectedProduct) {
+      setSelectedProduct(selectedProduct); // Set the selected product data
+      setQuickViewModalOpen(true); // Open the modal
+    }
+  };
 
   return (
     <>
@@ -238,20 +289,38 @@ const PlpPageTemplate: React.FC = () => {
           </div>
           <div className="bg-[#f3f3f3] dark:bg-appModalColor">
             <div className="lg:px-[3.5rem] px-6 xl:w-[90rem] w-full  py-14 xl:mx-auto">
-              {products.length === 0 ? (
+              {recentProductsISLoading ? (
                 <PopularProductSkeleton />
               ) : (
                 <RecentlyViewedProducts
-                  products={filteredProducts}
+                  products={productsList}
                   modalSetToggle={modalSetToggle}
-                  hasMore={true}
-                  onNextPage={() => {}}
+                  hasMore={hasMore2}
+                  onNextPage={handleNextPage}
                 />
               )}
             </div>
           </div>
           {toggle && <LoginModal closeModal={modalSetToggle} />}
-          {QuickViewModalOpen && selectedProduct && <></>}
+          {QuickViewModalOpen && selectedProduct && (
+            <QuickViewModal
+              closeModal={() => {
+                setQuickViewModalOpen(false);
+              }}
+              product={{
+                id: selectedProduct._id,
+                name: selectedProduct.name,
+                image:
+                  selectedProduct?.images?.length > 0
+                    ? selectedProduct.images[0]?.url
+                    : '',
+                rating: selectedProduct?.rating || 0,
+                price:selectedProduct.price,
+                isBestSeller: selectedProduct?.isBestSeller || false,
+              }}
+            >
+            </QuickViewModal>
+          )}
         </div>
       )}
     </>

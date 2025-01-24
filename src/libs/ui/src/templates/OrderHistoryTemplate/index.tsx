@@ -29,7 +29,7 @@ interface PaymentInfo {
   status: string;
 }
 
-interface Order {
+export interface Order {
   _id: string;
   userId: {
     _id: string;
@@ -387,6 +387,7 @@ const OrderHistoryTemplate: React.FC = () => {
             <ConfirmationModal
               onClose={() => setShowModal(false)}
               onConfirm={handleDeleteConfirm}
+              message={' Do you really want to Cancel the order? This process cannot be undone.'}
             />
           )}
         </div>

@@ -33,8 +33,7 @@ import ReviewRatings from '@ui/molecules/QuantityValueScent';
 import SearchBar from '@ui/molecules/SearchBar';
 import ResponseCard from '@ui/molecules/ResponsePCASkin';
 import ReviewBarModal from '@ui/organisms/ReviewStarModal';
-import QuickViewModal from '@ui/organisms/QuickView';
-import { products } from '@utils/test';
+
 import { Image } from '@ui/atoms/Image';
 import { Button } from '@ui/atoms/Button';
 import { RootState } from '@store/store';
@@ -133,10 +132,10 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
   };
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [QuickViewModalOpen, setQuickViewModalOpen] = useState(false);
+  const [, setQuickViewModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
   const openQuickReviewModal = () => setQuickViewModalOpen(true);
-  const closeQuickViewModal = () => setQuickViewModalOpen(false);
+
 
   const isLoggedIn = useSelector(
     (state: RootState) => state.authSlice.userInfo
@@ -450,12 +449,12 @@ export const TestTemplatePage: React.FC<ISearchbar> = () => {
           )}
         </div>
         <button onClick={openQuickReviewModal}>open Quick review Modal</button>
-        {QuickViewModalOpen && (
+        {/* {QuickViewModalOpen && (
           <QuickViewModal
             closeModal={closeQuickViewModal}
             product={products[0]}
           />
-        )}
+        )} */}
       </div>{' '}
     
       {/* <ProductDetailsContentSkeleton /> */}

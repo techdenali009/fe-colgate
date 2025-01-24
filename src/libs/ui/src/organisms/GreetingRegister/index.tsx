@@ -19,16 +19,21 @@ const GreetRegister: React.FC = () => {
   const [currentForm, setCurrentForm] = useState<
     'login' | 'forgotPassword' | 'alreadyRegistered'
   >('alreadyRegistered');
-   
+
   const dispatch = useDispatch();
 
-  const [login, { isLoading,isError }] = useLoginMutation();
+  const [login, { isLoading, isError }] = useLoginMutation();
   const onSubmit = async (data: LoginData) => {
     try {
       const result = await login(data).unwrap();
       if (result.status) {
         dispatch(userInfo(result.data.userInfo));
         dispatch(setAuthToken(result.data.token));
+        if (result.data.userInfo.userType === 'admin') {
+          navigate('/admin/Dashboard');
+        } else {
+          navigate('/');
+        }
       } else {
         console.error('Login failed:', result);
       }
@@ -42,8 +47,8 @@ const GreetRegister: React.FC = () => {
     navigate('auth/register');
   }
   //Use this attribute  forshowing the  'invalid email and password' in modal
-  console.log('isError',isError);
-  return(
+  console.log('isError', isError);
+  return (
     <div className=" px-6 flex flex-col gap:4 lg:flex-row 2xs:!pb-4 p-16 lg:mx-8 lg:px-14  gap-8 pt-12 text-left">
       <div className="basis-1/2 lg:pt-0 ">
         <Heading className="text-appTextColor text-[24px] font-normal font-HeroNewRegular">
@@ -67,8 +72,8 @@ const GreetRegister: React.FC = () => {
           <ForgotPasswordForm
             onSubmit={onSubmit}
             className={'font-HeroNewRegular !mb-0 2xs:!px-0'}
-            setIsForgotPassword={() => setCurrentForm('alreadyRegistered')} 
-            headclassname='!text-2xl !px-0'
+            setIsForgotPassword={() => setCurrentForm('alreadyRegistered')}
+            headclassname="!text-2xl !px-0"
           />
         )}
         {currentForm === LoginConsts.AlreadyRegistered && (
@@ -76,18 +81,16 @@ const GreetRegister: React.FC = () => {
             <div className={isLoading ? 'opacity-50' : 'opacity-100'}>
               <AlreadyRegistered
                 onSubmit={onSubmit}
-                setIsForgotPassword={() => setCurrentForm('forgotPassword')} mode={'welcome'}              />
-               
+                setIsForgotPassword={() => setCurrentForm('forgotPassword')}
+                mode={'welcome'}
+              />
             </div>
-           
+
             {isLoading && (
               <AppSpinner containerClassName="!h-[150px] flex justify-center items-center absolute inset-0" />
             )}
-            
-            
           </div>
         )}
-       
       </div>
     </div>
   );

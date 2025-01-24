@@ -16,7 +16,7 @@ interface ModalHeaderProps {
 
 const SearchModalHeader: React.FC<ModalHeaderProps> = ({ searchQuery, setSearchQuery, handleClear, handleSearch, onClose }) => (
   <div className="p-4 flex items-center justify-between">
-    <div className="tm:hidden lg:ml-[80px] ml-10">
+    <div className="tm:hidden lg:ml-[80px] ml-10 ">
       <HeaderLogo />
     </div>
     <div className="relative flex-1 pb-[35px] tm:pb-0 lg:ml-12">

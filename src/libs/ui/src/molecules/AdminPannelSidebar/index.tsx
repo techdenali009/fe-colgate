@@ -17,6 +17,8 @@ import {
   ProfileOption,
 } from '@utils/AdminPannelUserProfileData';
 import { API_ENDPOINTS } from '@utils/AdminPanelHeaderSideBardata';
+import { useNavigate } from 'react-router-dom';
+
 
 const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const isDesktop = window.innerWidth > 1020;
@@ -25,6 +27,8 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     name: '',
     email: '',
   });
+
+  const navigate = useNavigate();
 
   const menuItems: MenuItem[] = [
     { icon: Home, label: 'Dashboard' },
@@ -50,12 +54,13 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     {
       icon: LogOut,
       label: 'Logout',
-      action: () => console.log('Logout clicked'),
+      action: () => console.log('Change password LogOut'),
     },
   ];
 
   const handleMenuClick = (label: string) => {
     setActiveMenuItem(label);
+    navigate(`/admin/${label}`);
   };
 
   useEffect(() => {
@@ -84,15 +89,15 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
           : 'w-64 -translate-x-full lg:w-20 lg:translate-x-0'
       }`}
     >
-      <nav className='p-4 flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100'>
+      <nav className="p-4 flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
         {/* User Profile Section */}
         {!isDesktop && (
-          <div className='mb-6 pb-6 border-b'>
-            <div className='flex items-center gap-3 px-3 mb-4'>
-              <div className='w-10 h-10 bg-gray-200 rounded-full'></div>
+          <div className="mb-6 pb-6 border-b">
+            <div className="flex items-center gap-3 px-3 mb-4">
+              <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
               <div>
-                <p className='text-sm font-medium'>{userData.name || 'User'}</p>
-                <p className='text-xs text-gray-500'>
+                <p className="text-sm font-medium">{userData.name || 'User'}</p>
+                <p className="text-xs text-gray-500">
                   {userData.email || 'Email not available'}
                 </p>
               </div>
@@ -135,20 +140,20 @@ const DesktopSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
         })}
 
         {/* Profile Options */}
-        <div className='hidden tm:block'>
+        <div className="hidden tm:block">
           {profileOptions.map((option, index) => {
             const IconComponent = option.icon;
             return (
               <button
                 key={index}
                 onClick={option.action}
-                className='group w-full flex items-center gap-4 p-3 rounded-lg mb-1 transition-colors hover:bg-appTheme'
+                className="group w-full flex items-center gap-4 p-3 rounded-lg mb-1 transition-colors hover:bg-appTheme"
               >
                 <IconComponent
                   size={18}
-                  className='text-gray-500 transition-colors group-hover:text-white'
+                  className="text-gray-500 transition-colors group-hover:text-white"
                 />
-                <span className='text-gray-700 transition-colors group-hover:text-white'>
+                <span className="text-gray-700 transition-colors group-hover:text-white">
                   {option.label}
                 </span>
               </button>
